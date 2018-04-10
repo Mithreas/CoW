@@ -12,7 +12,6 @@
 
 #include "x0_i0_projtrap"
 
-#include "mi_inc_traps"
 void main()
 {
     TriggerProjectileTrap(SPELL_FIREBALL, GetEnteringObject(), 5);

@@ -143,9 +143,6 @@ void gsCOLoad(string sID, object oContainer, int nLimit = GS_LIMIT_DEFAULT, int 
                     }
 
                 }
-                else
-                    ConvertItemToNoStack(oItem, TRUE);
-
               }
               SetLocalInt(oItem, SLOT_VAR, nSlot);
 
@@ -277,9 +274,6 @@ void spCORemove(string sID, object oContainer, object oItem)
     string sItemCache = GetLocalString(oContainer, "SP_CO_ITEMSTRING");
     string sUseID     = SQLEncodeSpecialChars(sID);
 
-
-
-
     // Special case: Loot containers for different modules, SERVER_ISLAND (surface) is the default and has no prefix, others do
     if (GetStringLeft(sID, 12) == "GS_INVENTORY")
     {
@@ -301,16 +295,18 @@ void spCORemove(string sID, object oContainer, object oItem)
     string sCheck;
     if (nSlot == 0)
     {
-      // If it's gold, it's all good. Otherwise, it's a bug.
+	  //------------------------------------------------------------------------------
+      // If it's gold, it's all good. Otherwise, it suggests that the removed item
+	  // stacked, meaning we lost access to its slot variable, or was never saved in
+	  // the first place.  Check for stacking first and clean up the database entry.
+	  //------------------------------------------------------------------------------
       if (GetResRef(oItem) != "nw_it_gold001")
       {
         Error(CO, "Item had no slot assigned, container ID was " + sID + ".");
 
-
-
-        //Loop through all the items..
-
-       /* if (sID != "" && GetIsObjectValid(oContainer))
+        // Loop through all the items still in the container, to find which slot was 
+		// removed.
+        if (sID != "" && GetIsObjectValid(oContainer))
         {
           object oChest = GetFirstItemInInventory(oContainer);
 
@@ -342,9 +338,11 @@ void spCORemove(string sID, object oContainer, object oItem)
 
             }
           }
-        }*/
-
+        }
       }
+	  
+	  // If we have not already returned, then the item was never saved.  In this 
+	  // case there is nothing to do, so we can return safely. 
       return;
     }
 

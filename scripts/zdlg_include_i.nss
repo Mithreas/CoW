@@ -139,7 +139,7 @@ int GetDlgPageInt();
 // Called to initiate a conversation programmatically between
 // the dialog source and the object to converse with.  If
 // dlgHandler is "" then the object's default script will be used.
-void StartDlg( object oPC, object oObjectToConverseWith,string dlgandler = "", int bPrivate = FALSE, int bPlayHello = TRUE );
+void StartDlg( object oPC, object oObjectToConverseWith, string dlgHandler = "", int bPrivate = FALSE, int bPlayHello = TRUE );
 
 // Ends the current conversation and will fire the DLG_END event.
 void EndDlg();

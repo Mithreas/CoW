@@ -13,8 +13,20 @@
 #include "fb_inc_zombie"
 #include "mi_inc_divinatio"
 #include "mi_inc_totem"
+
 void main()
 {
+    object oCollar = GetItemPossessedBy(OBJECT_SELF, "dogcollar");
+
+    if (oCollar == OBJECT_INVALID)
+    {
+      FloatingTextStringOnCreature("You don't have a dog to call!", OBJECT_SELF);
+    }
+    else
+    {
+      SummonAnimalCompanion();
+    }
+  
     if (fbZGetIsZombie(OBJECT_SELF))
     {
         FloatingTextStringOnCreature("... that's the first time your animal companion has ignored you. You feel saddened and alone.", OBJECT_SELF, FALSE);

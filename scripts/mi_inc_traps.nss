@@ -14,18 +14,18 @@ int miTRPreHook()
   object oCreator = GetTrapCreator(OBJECT_SELF);
   int nStamp, nTime;
 
-    // PC on PC trapping
-    if (GetIsObjectValid(oCreator) && GetIsPC(oVictim)) {
-        nTime = gsTIGetActualTimestamp();
-        nStamp = GetLocalInt(oCreator, "TRAP_STACKING_TIMESTAMP");
-        if (nTime - nStamp < 10) {
-            SendMessageToPC(oCreator, "A trap failed to trigger due to the proximity of other traps.");
-            Log(TRAPS, GetName(oVictim) + " stepped into a trap created by " + GetName(oCreator) + ", but the trap failed to trigger due to Trap Stacking.");
-            return TRUE; // avoid the trap
-        } else {
-            SetLocalInt(oCreator, "TRAP_STACKING_TIMESTAMP", nTime);
-        }
-    }
+  // PC on PC trapping
+  if (GetIsObjectValid(oCreator) && GetIsPC(oVictim)) {
+      nTime = gsTIGetActualTimestamp();
+      nStamp = GetLocalInt(oCreator, "TRAP_STACKING_TIMESTAMP");
+      if (nTime - nStamp < 10) {
+          SendMessageToPC(oCreator, "A trap failed to trigger due to the proximity of other traps.");
+          Log(TRAPS, GetName(oVictim) + " stepped into a trap created by " + GetName(oCreator) + ", but the trap failed to trigger due to Trap Stacking.");
+          return TRUE; // avoid the trap
+      } else {
+          SetLocalInt(oCreator, "TRAP_STACKING_TIMESTAMP", nTime);
+      }
+  }
 
   return miTRPreHook2(oCreator, oVictim);
 }
@@ -40,17 +40,13 @@ int miTRPreHook2(object oCreator, object oVictim)
   {
     Log(TRAPS, GetName(oVictim) + " stepped into a trap set via the toolset.");
   }
+  
+  if (GetTrapDetectedBy(OBJECT_SELF, oVictim))
+  {
+    // Workaround to the "you triggered a trap" message you can't disable...
+    SendMessageToPC(oTarget, "...but you saw it, so were able to avoid it.");
+    return TRUE;
+  }
 
   return FALSE; // proceed.
-
-  /* TODO
-
-      if (GetTrapDetectedBy(OBJECT_SELF, oVictim))
-    {
-      // Workaround to the "you triggered a trap" message you can't disable...
-      SendMessageToPC(GetEnteringObject(), "...but you saw it, so were able to avoid it.");
-      return TRUE; // avoid the trap
-    }
-
-  */
 }

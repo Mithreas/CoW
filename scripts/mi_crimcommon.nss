@@ -2,7 +2,7 @@
   Name: mi_crimcommon
   Author: Mithreas
   Date: 9 Sep 05
-  Version: 1.4
+  Version: 1.3
 
   Description: This script provides a set of common functions to implement
                automatic law enforcement in a module/PW. It requires a set of
@@ -16,8 +16,6 @@
                 of the faction (see below). Make sure the creatures are
                 assigned to the correct factions!
 
-                @@@nb FOR FUTURE - GetFactionID in nwnx_funcs
-
                 Need wanted token items to exist with the tags defined below
                 (wanted1, wanted2, wanted3 etc). The blueprints names must match
                 the tags.
@@ -27,39 +25,24 @@
   be called after they change faction.
 
 */
-#include "mi_log"
-const string FACTIONS = "FACTIONS"; // for logging
-
+#include "mi_log" // uses BOUNTY string below.
 /*
   Nation constants. If you add to this, you will have to update the list of
   wanted tokens as well (and probably the list of factions... and some other
   stuff if you add factions :)).
 */
-const int NATION_INVALID     = 0;
-const int NATION_DEFAULT     = 1;
-const int NATION_BLACKSILVER = 2;
-const int NATION_BYRNE       = 3;
-const int NATION_DARKWOODS   = 4;
-const int NATION_DRUID       = 5;
-const int NATION_GLORWING    = 6;
-const int NATION_RAVENSCALL  = 7;
-const int NATION_X           = 8;
-const int NATION_Y           = 9;
-const int NATION_NEWLYRUN    = 10;
+const int NATION_INVALID           = 0;
+const int NATION_DEFAULT           = 1; // Imperial
+const int NATION_DRANNIS           = 2;
+const int NATION_ERENIA            = 3;
+const int NATION_RENERRIN          = 4;
+const int NATION_SHADOW            = 5;
 
-/* Tags for nation wanted tokens. */
+const int NUM_NATIONS              = 6;
+
+/* Tags for nation wanted tokens are root + nation number. */
 
 const string WANTED_TOKEN_ROOT        = "obj_wanted";
-const string WANTED_TOKEN_DEFAULT     = "obj_wanted1";
-const string WANTED_TOKEN_BLACKSILVER = "obj_wanted2";
-const string WANTED_TOKEN_BYRNE       = "obj_wanted3";
-const string WANTED_TOKEN_DARKWOODS   = "obj_wanted4";
-const string WANTED_TOKEN_DRUID       = "obj_wanted5";
-const string WANTED_TOKEN_GLORWING    = "obj_wanted6";
-const string WANTED_TOKEN_RAVENSCALL  = "obj_wanted7";
-const string WANTED_TOKEN_X           = "obj_wanted8";
-const string WANTED_TOKEN_Y           = "obj_wanted9";
-const string WANTED_TOKEN_NEWLYRUN    = "obj_wanted10";
 
 /*
   Faction constants. Note the standard faction values:
@@ -68,31 +51,29 @@ const string WANTED_TOKEN_NEWLYRUN    = "obj_wanted10";
     Merchant: 2
     Defender: 3
 
-    Note - if you update this list, UPDATE THE CheckFactionNation,
-    GetIsDefenderFaction and GetDefaultReputation METHODS TOO! :)
+    Note - if you update this list, UPDATE THE CheckFactionNation AND
+    GetIsDefenderFaction METHODS TOO! :)
 */
 const string FACTION = "faction";
 
-const int FACTION_BLACKSILVER_COMMONER = 4;
-const int FACTION_BLACKSILVER_DEFENDER = 5;
-const int FACTION_BYRNE_COMMONER   = 6;
-const int FACTION_BYRNE_DEFENDER   = 7;
-const int FACTION_DARKWOODS_COMMONER    = 8;
-const int FACTION_DARKWOODS_DEFENDER    = 9;
-const int FACTION_DRUID_COMMONER   = 10;
-const int FACTION_DRUID_DEFENDER   = 11;
-const int FACTION_GLORWING_COMMONER   = 12;
-const int FACTION_GLORWING_DEFENDER   = 13;
-const int FACTION_RAVENSCALL_COMMONER   = 14;
-const int FACTION_RAVENSCALL_DEFENDER   = 15;
-const int FACTION_X_COMMONER   = 16;
-const int FACTION_X_DEFENDER   = 17;
-const int FACTION_Y_COMMONER   = 18;
-const int FACTION_Y_DEFENDER   = 19;
-const int FACTION_NEWLYRUN_COMMONER = 20;
-const int FACTION_NEWLYRUN_DEFENDER = 21;
+const int FACTION_DRANNIS_COMMONER     = 4;
+const int FACTION_DRANNIS_DEFENDER     = 5;
+const int FACTION_ERENIA_COMMONER      = 6;
+const int FACTION_ERENIA_DEFENDER      = 7;
+const int FACTION_RENERRIN_COMMONER    = 8;
+const int FACTION_RENERRIN_DEFENDER    = 9;
+const int FACTION_SHADOW_COMMONER      = 10;
+const int FACTION_SHADOW_DEFENDER      = 11;
+const int FACTION_QUEST                = 12;
 
-const int NUM_FACTIONS               = 22;
+const int FACTION_DRANNIS_MERCS        = 13;
+const int FACTION_ERENIA_MERCS         = 14;
+const int FACTION_RENERRIN_MERCS       = 15;
+const int FACTION_SHADOW_MERCS         = 16;
+const int FACTION_ANIMAL               = 17;
+const int FACTION_UNALIGNED_MERCS      = 18;
+
+const int NUM_FACTIONS                 = 19;
 
 /* Bounty values for crimes. */
 
@@ -105,7 +86,7 @@ const int BOUNTY_THRESHOLD = 2999;
 
 /* Name of the bounty variable. */
 
-const string BOUNTY = "bounty";
+const string BOUNTY = "BOUNTY";
 
 /*
   Function prototypes. With nice block comments so they show up in the right
@@ -145,7 +126,7 @@ void RemoveBountyToken(int nNation, object oPC);
 // system of law). If so, returns the nNation value needed to pass into the
 // other methods in the criminal script set.
 //------------------------------------------------------------------------------
-int CheckFactionNation(object oNPC);
+int CheckFactionNation(object oNPC, int nCountMercenaries = FALSE);
 
 //------------------------------------------------------------------------------
 // Is this NPC a member of a defender faction?
@@ -167,22 +148,6 @@ void MarkAllItemsAsStolen(object oContainer);
 // Returns true if oNPC can see oPC.
 //------------------------------------------------------------------------------
 int GetCanSeeParticularPC(object oPC, object oNPC = OBJECT_SELF);
-
-//------------------------------------------------------------------------------
-// Returns the default faction rep for each faction.
-//------------------------------------------------------------------------------
-int GetDefaultReputation(int nFaction);
-
-//------------------------------------------------------------------------------
-// Restores a PC to default reputations with all other factions. Use for
-// e.g. respawning PCs.
-//------------------------------------------------------------------------------
-void ResetCustomFactionReputations(object oPC);
-
-//------------------------------------------------------------------------------
-// Jails a PC in nNation's jail and lets them out again 15 minutes later.
-//------------------------------------------------------------------------------
-void JailPC(object oPC, int nNation);
 /* End prototypes. */
 
 /*
@@ -199,7 +164,7 @@ int GetFaction(object oCreature)
   if (nFaction == 0)
   {
     int ii;
-    for (ii = 0; ii <= NUM_FACTIONS; ii++)
+    for (ii = 0; ii < NUM_FACTIONS; ii++)
     {
       object oFactionExample = GetObjectByTag("factionexample" +
                                               IntToString(ii));
@@ -310,7 +275,8 @@ void RemoveBountyToken(int nNation, object oPC)
   if (oWantedToken != OBJECT_INVALID)
   {
     // It appears that using while here can loop, because the DestroyObject
-    // command is asynchronous. Damn. So we only delete one object.
+    // command executes once the script ends. Damn. So we only delete one
+    // object.
     DestroyObject(oWantedToken);
     Trace(FACTIONS, "Destroyed token.");
   }
@@ -322,7 +288,7 @@ void RemoveBountyToken(int nNation, object oPC)
   system of law). If so, returns the nNation value needed to pass into the other
   common methods.
 */
-int CheckFactionNation(object oNPC)
+int CheckFactionNation(object oNPC, int nCountMercenaries = FALSE)
 {
   Trace(FACTIONS, "CheckFactionNation called.");
   int nNation  = NATION_INVALID;
@@ -333,44 +299,66 @@ int CheckFactionNation(object oNPC)
      case STANDARD_FACTION_COMMONER:
      case STANDARD_FACTION_MERCHANT:
      case STANDARD_FACTION_DEFENDER:
-      nNation = NATION_DEFAULT;
-      break;
-     case FACTION_BLACKSILVER_COMMONER:
-     case FACTION_BLACKSILVER_DEFENDER:
-      nNation = NATION_BLACKSILVER;
-      break;
-     case FACTION_BYRNE_COMMONER:
-     case FACTION_BYRNE_DEFENDER:
-      nNation = NATION_BYRNE;
-      break;
-     case FACTION_DARKWOODS_COMMONER:
-     case FACTION_DARKWOODS_DEFENDER:
-      nNation = NATION_DARKWOODS;
-      break;
-     case FACTION_DRUID_COMMONER:
-     case FACTION_DRUID_DEFENDER:
-      nNation = NATION_DRUID;
-      break;
-     case FACTION_GLORWING_COMMONER:
-     case FACTION_GLORWING_DEFENDER:
-      nNation = NATION_GLORWING;
-      break;
-     case FACTION_RAVENSCALL_COMMONER:
-     case FACTION_RAVENSCALL_DEFENDER:
-      nNation = NATION_RAVENSCALL;
-      break;
-     case FACTION_X_COMMONER:
-     case FACTION_X_DEFENDER:
-      nNation = NATION_X;
-      break;
-     case FACTION_Y_COMMONER:
-     case FACTION_Y_DEFENDER:
-      nNation = NATION_Y;
-      break;
-     case FACTION_NEWLYRUN_COMMONER:
-     case FACTION_NEWLYRUN_DEFENDER:
-       nNation = NATION_NEWLYRUN;
+     {
+       nNation = NATION_DEFAULT;
        break;
+     }
+     case FACTION_DRANNIS_COMMONER:
+     case FACTION_DRANNIS_DEFENDER:
+     {
+       nNation = NATION_DRANNIS;
+       break;
+     }
+     case FACTION_ERENIA_COMMONER:
+     case FACTION_ERENIA_DEFENDER:
+     {
+       nNation = NATION_ERENIA;
+       break;
+     }
+     case FACTION_RENERRIN_COMMONER:
+     case FACTION_RENERRIN_DEFENDER:
+     {
+       nNation = NATION_RENERRIN;
+       break;
+     }
+     case FACTION_SHADOW_COMMONER:
+     case FACTION_SHADOW_DEFENDER:
+     {
+       nNation = NATION_SHADOW;
+       break;
+     }
+     default:
+     {
+       nNation = NATION_INVALID;
+       break;
+     }
+  }
+
+  if (nCountMercenaries && (nNation == NATION_INVALID))
+  {
+    switch (nFaction)
+    {
+      case FACTION_DRANNIS_MERCS:
+      {
+        nNation = NATION_DRANNIS;
+        break;
+      }
+      case FACTION_ERENIA_MERCS:
+      {
+        nNation = NATION_ERENIA;
+        break;
+      }
+      case FACTION_RENERRIN_MERCS:
+      {
+        nNation = NATION_RENERRIN;
+        break;
+      }
+      case FACTION_SHADOW_MERCS:
+      {
+        nNation = NATION_SHADOW;
+        break;
+      }
+    }
   }
 
   Trace(FACTIONS, "CheckFactionNation returning: " + IntToString(nNation));
@@ -387,15 +375,10 @@ int GetIsDefender(object oNPC)
   switch (nFaction)
   {
     case STANDARD_FACTION_DEFENDER:
-    case FACTION_BLACKSILVER_DEFENDER:
-    case FACTION_BYRNE_DEFENDER:
-    case FACTION_DARKWOODS_DEFENDER:
-    case FACTION_DRUID_DEFENDER:
-    case FACTION_GLORWING_DEFENDER:
-    case FACTION_RAVENSCALL_DEFENDER:
-    case FACTION_X_DEFENDER:
-    case FACTION_Y_DEFENDER:
-    case FACTION_NEWLYRUN_DEFENDER:
+    case FACTION_DRANNIS_DEFENDER:
+    case FACTION_ERENIA_DEFENDER:
+    case FACTION_RENERRIN_DEFENDER:
+    case FACTION_SHADOW_DEFENDER:
       Trace(FACTIONS, "GetIsDefender returning 1");
       return 1;
   }
@@ -463,73 +446,4 @@ int GetCanSeeParticularPC(object oPC, object oNPC = OBJECT_SELF)
   }
 
   return FALSE;
-}
-
-int GetDefaultReputation(int nFaction)
-{
-  int nRetVal = 20;  // default hostile.
-  switch (nFaction)
-  {
-  case STANDARD_FACTION_COMMONER:
-  case STANDARD_FACTION_MERCHANT:
-  case STANDARD_FACTION_DEFENDER:
-  case FACTION_BLACKSILVER_COMMONER:
-  case FACTION_BLACKSILVER_DEFENDER:
-  case FACTION_BYRNE_COMMONER:
-  case FACTION_BYRNE_DEFENDER:
-  case FACTION_DARKWOODS_COMMONER:
-  case FACTION_DARKWOODS_DEFENDER:
-  case FACTION_DRUID_COMMONER:
-  case FACTION_DRUID_DEFENDER:
-  case FACTION_GLORWING_COMMONER:
-  case FACTION_GLORWING_DEFENDER:
-  case FACTION_RAVENSCALL_COMMONER:
-  case FACTION_RAVENSCALL_DEFENDER:
-  case FACTION_X_COMMONER:
-  case FACTION_X_DEFENDER:
-  case FACTION_Y_COMMONER:
-  case FACTION_Y_DEFENDER:
-  case FACTION_NEWLYRUN_COMMONER:
-  case FACTION_NEWLYRUN_DEFENDER:
-    nRetVal =  80; // friendly
-  }
-
-  return nRetVal;
-}
-
-void ResetCustomFactionReputations(object oPC)
-{
-  int nFaction = 4; // start at the first custom faction
-  for (nFaction = 4; nFaction < NUM_FACTIONS; nFaction++)
-  {
-     object oFactionExample = GetObjectByTag("factionexample" +
-                                              IntToString(nFaction));
-
-     if (GetIsObjectValid(oFactionExample))
-     {
-       // Get current reputation
-       int nRep = GetReputation(oFactionExample, oPC);
-       int nIdeal = GetDefaultReputation(nFaction);
-       int nDifference = nIdeal - nRep; // e.g if currently 80 and default is 20,
-                                        // we want to adjust by -60.
-
-       AdjustReputation(oPC, oFactionExample, nDifference);
-     }
-  }
-}
-
-void JailPC(object oPC, int nNation)
-{
-  string sNation = IntToString(nNation);
-  object oWP = GetObjectByTag("jail" + sNation);
-  object oExitWP = GetObjectByTag("jailexit" + sNation);
-  AssignCommand(oPC, ClearAllActions());
-  AssignCommand(oPC, JumpToLocation(GetLocation(oWP)));
-
-  // Let them out after 15 minutes.
-  SendMessageToPC(oPC, "((You have been jailed. You will automatically "
-          + "be released after 15 (RL) minutes. Do not log out, or you won't "
-          + "be released at all! Your weapons have not been removed in case the "
-          + "server crashes, but please RP that they have been.))");
-  DelayCommand(900.0, AssignCommand(oPC, JumpToLocation(GetLocation(oExitWP))));
 }

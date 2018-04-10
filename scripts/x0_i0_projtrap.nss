@@ -106,6 +106,7 @@ void TriggerProjectileTrap(int nSpell,
 
     if ( ! GetIsObjectValid(oTrapOrigin) ) {
         // Origin destroyed, nothing happens
+        SendMessageToPC(oTarget, "You hear a click, but nothing happens.");
         return;
     }
 

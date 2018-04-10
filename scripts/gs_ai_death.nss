@@ -12,6 +12,7 @@
 #include "inc_item"
 #include "inc_loot"
 #include "inc_math"
+#include "mi_crimcommon"
 #include "mi_inc_divinatio"
 #include "mi_inc_pop"
 #include "gvd_inc_slave"
@@ -336,6 +337,34 @@ void main()
         }
         return;
       }
+    }
+  }
+  
+  /*
+  OnDeath addition to check faction and increase a PC's bounty if necessary.
+  Author: Mithreas
+  Date: 4 Sep 05
+  Version: 1.1
+
+  Rev 1.1 - add to bounty of master for associate's actions.
+  */
+
+  Trace(BOUNTY, "Calling bounty script");
+  int nNation = CheckFactionNation(OBJECT_SELF);
+  if (nNation != NATION_INVALID)
+  {
+    Log ("NPC is from a nation that gives bounties.");
+    // Note - killing by traps will not give you a bounty.
+    if (GetIsPC(GetLastKiller()))
+    {
+      Log("Adding to PC's bounty");
+      AddToBounty(nNation, FINE_MURDER, GetLastKiller());
+    }
+    else if ((GetAssociateType(GetLastKiller()) != ASSOCIATE_TYPE_NONE) &&
+             GetIsPC(GetMaster(GetLastKiller())))
+    {
+      Log("Adding to master's bounty");
+      AddToBounty(nNation, FINE_MURDER, GetMaster(GetLastKiller()));
     }
   }
 

@@ -395,7 +395,7 @@ void main()
     }
 
     // item removed from container
-    if (GetLocalInt(oAcquired, SLOT_VAR) && !bShop && GetEventScript(oAcquiredFrom, EVENT_SCRIPT_PLACEABLE_ON_OPEN) == "gs_co_open")
+    if (!bShop && GetEventScript(oAcquiredFrom, EVENT_SCRIPT_PLACEABLE_ON_OPEN) == "gs_co_open")
     {
       string sFrom = GetLocalString(oAcquiredFrom, "MD_OPN_ID");
       if(sFrom == "") sFrom = GetTag(oAcquiredFrom);
