@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: FileName ck_pers_norm
+//:://////////////////////////////////////////////
+//:://////////////////////////////////////////////
+//:: Created By: Script Wizard
+//:: Created On: 5/26/2003 8:22:46 PM
+//:://////////////////////////////////////////////
+#include "nw_i0_tool"
+
+int StartingConditional()
+{
+
+	// Perform skill checks
+	if(!(AutoDC(DC_MEDIUM, SKILL_PERSUADE, GetPCSpeaker())))
+		return FALSE;
+
+	return TRUE;
+}
