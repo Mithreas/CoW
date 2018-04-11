@@ -18,7 +18,7 @@ also serves as a wrapper for all the libraries required for this script.
 */
 
 #include "fb_inc_worship"
-#include "mi_inc_favsoul"
+#include "inc_favsoul"
 
 const string MM_RESPONSES  = "ZZS_MM_RESPONSES";
 const string SAC_RESPONSES = "ZZS_SAC_RESPONSES";

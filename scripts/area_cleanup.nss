@@ -3,7 +3,7 @@
   removes bodybags, dropped items and creatures when there are no PCs left.
 */
 
-#include "mi_log"
+#include "inc_log"
 const string AREACLEANUP = "AREA_CLEANUP"; // For trace
 
 void TrashObject(object oObject)

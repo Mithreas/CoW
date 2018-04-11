@@ -1,5 +1,5 @@
 #include "fb_inc_names"
-#include "mi_inc_disguise"
+#include "inc_disguise"
 #include "nwnx_events"
 #include "nwnx_creature"
 #include "nwnx_object"

@@ -14,7 +14,7 @@
 #include "fb_inc_chatutils"
 #include "inc_dm"
 #include "inc_examine"
-#include "mi_inc_backgr"
+#include "inc_backgrounds"
 
 const string HELP = "Removes a gift from the PC last targeted with DM Tool 1. <cÿ× >[Nth Gift]</c> refers to the index of the gift (e.g. 1 would set the value of gift 1).";
 

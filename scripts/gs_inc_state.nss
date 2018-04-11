@@ -4,7 +4,7 @@
 #include "gs_inc_subrace"
 #include "gs_inc_text"
 #include "inc_vampire"
-#include "mi_inc_weather"
+#include "inc_weather"
 
 //void main() {}
 

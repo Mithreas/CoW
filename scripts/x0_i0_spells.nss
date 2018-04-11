@@ -32,7 +32,7 @@
 #include "x2_inc_switches"
 #include "x2_inc_itemprop"
 #include "x0_i0_henchman"
-#include "mi_inc_spells"
+#include "inc_customspells"
 // * Constants
 // * see spellsIsTarget for a definition of these constants
 const int SPELL_TARGET_ALLALLIES = 1;

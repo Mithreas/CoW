@@ -6,7 +6,7 @@
     Assassin's Guild NPC.  Accepts and cancels contracts.
 */
 #include "fb_inc_chat"
-#include "mi_inc_azn"
+#include "inc_assassin"
 #include "zdlg_include_i"
 
 const string CONTINUE = "DLG_CONTINUE";

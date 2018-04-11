@@ -16,7 +16,7 @@
 //::  Creatures immune to Mind Spells or Paralyze will be Immobilized instead
 
 #include "x0_i0_spells"
-#include "mi_inc_spells"
+#include "inc_customspells"
 #include "gs_inc_text"
 #include "inc_spells"
 

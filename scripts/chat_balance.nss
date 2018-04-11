@@ -1,6 +1,6 @@
 #include "fb_inc_chatutils"
-#include "mi_inc_spells"
-#include "mi_inc_pop"
+#include "inc_customspells"
+#include "inc_pop"
 #include "inc_examine"
 
 const string HELP = "<cþôh>-balance</c><cþ£ ></c>\nAllows druids to cast a ritual that directly improves the balance of an area that is overrun.  The size of the effect scales with Druid levels.";

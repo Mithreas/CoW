@@ -1,6 +1,6 @@
 #include "fb_inc_chatutils"
-#include "mi_inc_database"
-#include "mi_inc_xfer"
+#include "inc_database"
+#include "inc_xfer"
 #include "inc_examine"
 
 const string HELP = "DM command: Displays the time, in real life hours, that the server has been up for.";

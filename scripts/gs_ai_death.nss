@@ -12,13 +12,11 @@
 #include "inc_item"
 #include "inc_loot"
 #include "inc_math"
-#include "mi_crimcommon"
-#include "mi_inc_divinatio"
-#include "mi_inc_pop"
-#include "gvd_inc_slave"
-#include "gvd_inc_arena"
-#include "bm_inc_blood"
-#include "gvd_inc_adv_xp"
+#include "inc_crime"
+#include "inc_divination"
+#include "inc_pop"
+#include "inc_bloodstains"
+#include "inc_adv_xp"
 #include "inc_quest"
 #include "inc_ranger"
 #include "inc_stacking"
@@ -93,7 +91,6 @@ void gsDropLoot(object oCorpse)
             DestroyObject(oItem);
         }
         // ]--
-        // DestroyObject(oItem);
 
       }
     }
@@ -179,9 +176,6 @@ void main()
       // Assign piety points.
       if (GetIsPC(oKiller))
       {
-        // Hook for Quests
-        TallyKillsForQuest(oKiller, oSelf);
-
         // Hook for Ranger
         if (GetLevelByClass(CLASS_TYPE_RANGER, oKiller) > 4)
             TallyRangerKills(oKiller, oSelf);
@@ -213,8 +207,6 @@ void main()
       } else if (GetIsObjectValid(GetMaster(oKiller))) {
 
         object oMaster = GetMaster(oKiller);
-        // Hook for Quests, treat the summoner as oKiller
-        TallyKillsForQuest(oMaster, oSelf);
 
         // Hook for Ranger
         if (GetLevelByClass(CLASS_TYPE_RANGER, oMaster) > 4)
@@ -225,7 +217,6 @@ void main()
         object oNearest = GetNearestCreature(CREATURE_TYPE_PLAYER_CHAR, PLAYER_CHAR_IS_PC);
         if (GetIsObjectValid(oNearest))
         {
-            TallyKillsForQuest(oNearest, oSelf);
             // Hook for Ranger
             if (GetLevelByClass(CLASS_TYPE_RANGER, oNearest) > 4)
                 TallyRangerKills(oNearest, oSelf);
@@ -282,24 +273,6 @@ void main()
           oLeaderHead = CreateItemOnObject(sTemplate);
         }
 
-        // addition by Dunshine: create a Head of a Slaver item if the corpse is of any of the slaver NPCs AND if the NPC was killed by a Slave Guild PC
-        if (gvd_SlaveGuildMember(oKiller) == TRUE) {
-
-          // killer is guild member, now check target
-          if (gvd_CheckIsSlaver(oSelf) == TRUE) {
-            // corpse was a Slaver, create the head based on CR
-            string sTemplate = "";
-
-            if (fChallengeRating >= 20.0)      sTemplate = "gvd_slaver_head4";
-            else if (fChallengeRating >= 15.0) sTemplate = "gvd_slaver_head3";
-            else if (fChallengeRating >= 10.0) sTemplate = "gvd_slaver_head2";
-            else                               sTemplate = "gvd_slaver_head1";
-
-            oLeaderHead = CreateItemOnObject(sTemplate);
-          }
-
-        }
-
         // change the name and description of the head
         if (oLeaderHead != OBJECT_INVALID) {
 
@@ -353,17 +326,17 @@ void main()
   int nNation = CheckFactionNation(OBJECT_SELF);
   if (nNation != NATION_INVALID)
   {
-    Log ("NPC is from a nation that gives bounties.");
+    Trace (BOUNTY, "NPC is from a nation that gives bounties.");
     // Note - killing by traps will not give you a bounty.
     if (GetIsPC(GetLastKiller()))
     {
-      Log("Adding to PC's bounty");
+      Trace(BOUNTY, "Adding to PC's bounty");
       AddToBounty(nNation, FINE_MURDER, GetLastKiller());
     }
     else if ((GetAssociateType(GetLastKiller()) != ASSOCIATE_TYPE_NONE) &&
              GetIsPC(GetMaster(GetLastKiller())))
     {
-      Log("Adding to master's bounty");
+      Trace(BOUNTY, "Adding to master's bounty");
       AddToBounty(nNation, FINE_MURDER, GetMaster(GetLastKiller()));
     }
   }

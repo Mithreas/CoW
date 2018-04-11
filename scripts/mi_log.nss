@@ -1,5 +1,5 @@
 /*
-  Name: mi_log
+  Name: inc_log
   Author: Mithreas
   Date: 4 Sep 05
   Version: 1.0

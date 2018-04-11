@@ -1,6 +1,5 @@
 #include "fb_inc_names"
 #include "gs_inc_boss"
-#include "gs_inc_chain"
 #include "gs_inc_common"
 #include "gs_inc_craft"
 #include "gs_inc_encounter"
@@ -15,17 +14,15 @@
 #include "gs_inc_time"
 #include "gs_inc_quarter"
 #include "gs_inc_xp"
-#include "mi_inc_azn"
-#include "mi_inc_class"
-#include "mi_inc_divinatio"
-#include "mi_inc_poison"
-#include "mi_inc_warlock"
+#include "inc_assassin"
+#include "inc_class"
+#include "inc_divination"
+#include "inc_poison"
+#include "inc_warlock"
 #include "zzdlg_tools_inc"
-#include "gvd_inc_contain"
+#include "inc_holders"
 #include "gs_inc_combat"
-#include "gvd_inc_rope"
-#include "gvd_inc_adv_xp"
-#include "gvd_inc_quest"
+#include "inc_adv_xp"
 #include "gvd_inc_subdual"
 #include "ar_sys_poison"
 #include "ki_wrapr_bldsgr"
@@ -52,14 +49,6 @@ void main()
     // (e.g. totems). TO DO: clean this up later.
     _SetIsCreatureLastSpellCastItemValid(oActivator, TRUE);
     ExecuteCustomItemBehaviors();
-
-    //chain
-    if (sTag == "GS_CHAIN")
-    {
-        gsCHRemoveChain(oItem);
-        gsCHApplyChain(oItem, oTarget);
-        return;
-    }
 
     // wolfsbane
     if (sTag == "MI_WOLFSBANE")
@@ -501,68 +490,23 @@ void main()
     // Shovel. No, wait, spade!
     if (sTag == "C_SHOVEL")
     {
-
       AssignCommand(oActivator, ActionSpeakString("*digs*"));
 
-      // first check if it's a quest location (if so, this is handled in gvd_inc_quest)
-      if (FoundQuestLocation(lLocation, oActivator) == 0) {
-        // nope, handle normally
+      int iTreasure = GetLocalInt(oActivator,"treasure_area");
+      object oMap;
 
-        int iTreasure = GetLocalInt(oActivator,"treasure_area");
-        object oMap;
-
-        // check if in treasure area
-        if (iTreasure == 0 || GetLocalInt(GetArea(oActivator), "TREASURE_FOUND"))
-        {
-          FloatingTextStringOnCreature("You dig and you dig, but you don't find anything.", oActivator);
-        }
-        else
-        {
-          // yes
-
-          // added by Dunshine: check if in slave dump area (Slave Pits (UD area))
-          object oArea = GetArea(oActivator);
-
-          if (GetTag(oArea) == "gvd_slavepits") {
-            // digging in the slave dump, check how long ago there was digging here
-
-            int iCurrentTime = (GetCalendarYear()*60*24*28*12)+(GetCalendarMonth()*60*24*28)+(GetCalendarDay()*60*24)+(GetTimeHour()*60)+GetTimeMinute();
-            int iLastTime = GetLocalInt(oArea,"last_digged");
-            if ((iCurrentTime - iLastTime) > 10) {
-              // more then 10 minutes have past since last digging
-
-              // random chance on some treasure
-              switch (d20(1)) {
-                case 11 : CreateItemOnObject("gs_item040", oActivator, 1); break; // arm bones
-                case 12 : CreateItemOnObject("gs_item024", oActivator, 1); break; // skull
-                case 13 : CreateItemOnObject("shiprattail", oActivator, 1); break; // rat tail
-                case 14 : CreateItemOnObject("gs_item040", oActivator, 1); break; // arm bones
-                case 15 : CreateItemOnObject("gs_item039", oActivator, 1); break; // thigh bone
-                case 16 : CreateItemOnObject("nw_it_msmlmisc13", oActivator, 1); break; // skeleton's knuckle
-                case 17 : CreateItemOnObject("gs_item042", oActivator, 1); break; // rusted armor
-                case 18 : CreateItemOnObject("ar_it_special003", oActivator, 1); break; // ogre's tooth
-                case 19 : GiveGoldToCreature(oActivator, d100(1)); break; // some gold
-                case 20 : CreateItemOnObject("ar_it_special004", oActivator, 1); break; // orc's tooth
-                default : GiveGoldToCreature(oActivator, d20(1)); break; // some gold
-              }
-
-              FloatingTextStringOnCreature("Digging through the remains in this foul soil, you find something between the bodyparts...", oActivator);
-
-              // set new time-out for next dig
-              SetLocalInt(oArea,"last_digged",iCurrentTime);
-
-            } else {
-              FloatingTextStringOnCreature("You dig and you dig, but you don't find anything.", oActivator);
-            }
-
-          } else {
-            // "normal" treasure
-            SendMessageToPC(oActivator, "You've found a hidden treasure!!");
-            CreateObject(OBJECT_TYPE_PLACEABLE, "mi_hidden_treasu", GetLocation(oActivator));
-            GiveXPToCreature(oActivator, 50);
-            SetLocalInt(GetArea(oActivator), "TREASURE_FOUND", 1);
-          }
-        }
+      // check if in treasure area
+      if (iTreasure == 0 || GetLocalInt(GetArea(oActivator), "TREASURE_FOUND"))
+      {
+        FloatingTextStringOnCreature("You dig and you dig, but you don't find anything.", oActivator);
+      }
+      else
+      {
+        // "normal" treasure
+        SendMessageToPC(oActivator, "You've found a hidden treasure!!");
+        CreateObject(OBJECT_TYPE_PLACEABLE, "mi_hidden_treasu", GetLocation(oActivator));
+        GiveXPToCreature(oActivator, 50);
+        SetLocalInt(GetArea(oActivator), "TREASURE_FOUND", 1);
       }
     }
 
@@ -1485,224 +1429,6 @@ void main()
 
     }
 
-
-    if (GetStringLeft(sTag, 9) == "GVD_LASSO") {
-      // lasso rope used, handle it
-
-      // targetted use or not?
-      if (oTarget == oActivator) {
-        // lasso has no target, check if PC is inside a "rope use" trigger
-        if (GetLocalInt(oActivator,"gvd_rope_use") == 1) {
-          // highlight (make useable) any possible targets from this location, look for placeables with tag gvd_rope_marker in the same area
-          // and with the value of the gvd_dest_marker string variable as an int variable with value 1.
-
-          // retrieve the gvd_tr_rope_area trigger where the PC is in from the local variable on the PC
-          object oRopeArea = GetLocalObject(oActivator, "gvd_rope_area");
-
-          if (oRopeArea != OBJECT_INVALID) {
-
-            // determine the current area the trigger is located in
-            object oArea = GetArea(oRopeArea);
-
-            // get the name of the variables for the destination markers from the trigger
-            string sDestMarker = GetLocalString(oRopeArea,"gvd_dest_marker");
-            string sSourceMarker = GetLocalString(oRopeArea,"gvd_source_marker");
-
-            // loop through all gvd_rope_marker placeables
-            int iRopeMarker = 0;
-            int iRopeTargets = 0;
-            object oRopeMarker = GetObjectByTag("gvd_rope_marker", iRopeMarker);
-            while (oRopeMarker != OBJECT_INVALID) {
-
-              // same area?
-              if (GetArea(oRopeMarker) == oArea) {
-                // belongs to the destination markers for this trigger?
-                if (GetLocalInt(oRopeMarker, sDestMarker) == 1) {
-                  // check for a gvd_detect_dc on the marker for the PC to search/spot this
-                  int iDetectDC = GetLocalInt(oRopeMarker,"gvd_detect_dc");
-
-              // check for a spot bonus tag (used in Drunken Pirate's quest)
-              string sSpotBonusTag = GetLocalString(oRopeMarker, "gvd_spot_bonus_tag");
-
-                  if (sSpotBonusTag != "") {
-
-                    // substract 10 for each unique item in PC inventory starting with the spot bonus tag (used in Drunken Pirate's quest)
-                    int iPaper;
-                    for (iPaper = 1; iPaper < 13; iPaper = iPaper + 1) {
-                      if (GetItemPossessedBy(oActivator, sSpotBonusTag + IntToString(iPaper)) != OBJECT_INVALID) {
-                        iDetectDC = iDetectDC - 10;
-                      }
-                      // check next one
-                    }
-                  }
-
-                  if ((iDetectDC == 0) || (GetSkillRank(SKILL_SEARCH, oActivator) >= iDetectDC) || (GetSkillRank(SKILL_SPOT, oActivator) >= iDetectDC)) {
-                    // yes, valid target, highlight it
-                    iRopeTargets = iRopeTargets + 1;
-                    SetUseableFlag(oRopeMarker,TRUE);
-
-                    // store the rope user on the marker, for use in the onclick event of the marker placeable
-                    SetLocalObject(oRopeMarker, "gvd_rope_user", oActivator);
-
-                  } else {
-                    // valid target, PC doesn't detect it however, do nothing
-                  }
-
-                } else {
-                  // nope, invalid target, now check if it's the source marker for this trigger area
-                  if (GetLocalString(oRopeMarker, "gvd_source_marker") == sSourceMarker) {
-                    // yes, store this object on the trigger, so we can easily use it in the onclick event later
-                    SetLocalObject(oRopeArea, "gvd_source_marker_object", oRopeMarker);
-                  }
-                }
-              } else {
-                // different area, invalid target
-              }
-
-              // next rope marker
-              iRopeMarker = iRopeMarker + 1;
-              oRopeMarker = GetObjectByTag("gvd_rope_marker", iRopeMarker);
-
-            }
-
-            // inform the PC about the possible targets found
-            if (iRopeTargets > 0) {
-              if (iRopeTargets > 1) {
-                FloatingTextStringOnCreature("You detect " + IntToString(iRopeTargets) + " possible targets for the lasso.", oActivator);
-              } else {
-                FloatingTextStringOnCreature("You detect 1 possible target for the lasso.", oActivator);
-              }
-
-              // log to be able to check which locations were found by players
-              WriteTimestampedLogEntry("Lasso locations found at " + sSourceMarker + " by pc " + GetName(oActivator));
-
-              // adventure xp for this
-              gvd_AdventuringXP_ForObject(oActivator, "LASSO", oTarget);
-
-              // inform the PC ooc-ly how to proceed
-              SendMessageToPC(oActivator, "[Just click on one of the targets that appeared, do not use the targetting option of the lasso item for this]");
-            } else {
-              FloatingTextStringOnCreature("You cannot find any possible targets for the lasso.", oActivator);
-            }
-
-          } else {
-            // PC is in a rope area trigger, but somehow the object is not available, shouldn't happen normally
-            FloatingTextStringOnCreature("You can't find any use for the lasso nearby.", oActivator);
-          }
-
-        } else {
-          // nope, no use for a rope here
-          FloatingTextStringOnCreature("You can't find any use for the lasso nearby.", oActivator);
-        }
-
-      } else {
-        // lasso was targetted on something, see if the target is a NPC or a PC
-        if (GetIsPC(oTarget) == TRUE) {
-
-          // dead PC? should be only possible for subdualled PCs, since the regular dead PCs will not remain on the ground
-          if (GetCurrentHitPoints(oTarget) < -10) {
-            // PC is tying up the target
-            gvd_LassoSubdual(oActivator, oTarget, oItem);
-
-          } else {
-            // a PC, is the target hostile or not?
-            if (GetIsReactionTypeHostile(oTarget, oActivator)) {
-              // hostile, try to lasso the targetted PC and immobilize it (auto-fails though)
-
-              // animations
-              AssignCommand(oActivator, PlaySound("as_cv_shipsail1"));
-              AssignCommand(oActivator, ActionPlayAnimation(ANIMATION_LOOPING_CONJURE2, 1.0f, 3.0f));
-
-              // perform the attack
-              AssignCommand(oActivator, LassoAttackOnTarget(oTarget));
-
-            } else {
-              // do not allow lassoing of friendly PCs, but check if the activator already has a captured NPC, in that case we assume he wants to hand it over
-              TransferLassoToTarget(oActivator, oTarget, oItem);
-
-            }
-          }
-
-        } else {
-          if (GetObjectType(oTarget) == OBJECT_TYPE_CREATURE) {
-            // try to lasso the targetted NPC
-
-            // check if the PC isn't already holding a creature captured in a lasso
-            object oCaptured = GetLocalObject(oActivator,"gvd_lasso_capture");
-            if ((oCaptured == OBJECT_INVALID) || (GetIsDead(oCaptured))) {
-
-              DeleteLocalObject(oActivator, "gvd_lasso_capture");
-
-              // check maximum number of henchman
-              if (GetNumHenchmen(oActivator) < GetMaxHenchmen()) {
-
-                // target becomes angry
-                AdjustReputation(oActivator, oTarget, -100);
-                AssignCommand(oTarget, ActionAttack(oActivator));
-                SetLocalObject(oTarget, "GS_CB_ATTACK_TARGET", oActivator);
-                AssignCommand(oTarget, gsCBDetermineCombatRound(oActivator));
-
-                // animations
-                AssignCommand(oActivator, PlaySound("as_cv_shipsail1"));
-                AssignCommand(oActivator, ActionPlayAnimation(ANIMATION_LOOPING_CONJURE2, 1.0f, 3.0f));
-
-                // perform the attack
-                DelayCommand(3.0f, AssignCommand(oActivator, LassoAttackOnTarget(oTarget)));
-
-              } else {
-                // maximum qty of henchman reached, auto-fail
-                FloatingTextStringOnCreature("You are too busy handling your other henchmen to capture another creature.", oActivator);
-
-              }
-
-            } else {
-              // check if the target is the already captured creature
-              if (oTarget == oCaptured) {
-                // PC wants to release the creature
-                ReleaseTargetFromLasso(oActivator, oTarget, "");
-
-              } else {
-                // PC attempts to use a lasso on a second creature, this is not allowed
-                FloatingTextStringOnCreature("You are too busy controlling your captured creature to be able to throw another lasso.", oActivator);
-              }
-            }
-
-          } else {
-            // no valid target
-            FloatingTextStringOnCreature("You can't find any use for the lasso this way.", oActivator);
-          }
-        }
-      }
-
-    }
-
-
-    if (sTag == "GVD_DRPIR_BOTTLE") {
-      // bottle with a piece of paper (drunken pirate's quest)
-
-      // depending on the variable it will spawn a different piece of paper
-      int iPaper = GetLocalInt(oItem, "gvd_drunkenpirate");
-      object oQuestPaper;
-
-      if (iPaper == 0) {
-        // the main scroll, without the hints
-        FloatingTextStringOnCreature("You find a scroll inside the bottle!", oActivator);
-        CreateItemOnObject("gvd_drpir_scroll", oActivator, 1);
-      } else {
-        // one of the hint paper pieces
-        FloatingTextStringOnCreature("You find a piece of paper inside the bottle!", oActivator);
-
-        // create a piece of paper with tagname including the variable, so only papers with the exact same hintline stack with each other
-        oQuestPaper = CreateItemOnObject("gvd_drpir_paper", oActivator, 1, "gvd_drpir_paper"+IntToString(iPaper));
-        SetLocalInt(oQuestPaper, "gvd_drunkenpirate", iPaper);
-        SetDescription(oQuestPaper, GetDescription(oQuestPaper) + GetLocalString(oItem, "gvd_hinttext"));
-      }
-
-      // destroy the empty bottle
-      DestroyObject(oItem);
-
-    }
-
     if (GetStringLeft(sTag, 11) == "GVD_SHOEPOL") {
       // shoe polish changes appearance on boots
       int iItemType = GetBaseItemType(oTarget);
@@ -1810,11 +1536,6 @@ void main()
     if (! (GetIsDM(oActivator) ||
            GetIsDMPossessed(oActivator)))
         return;
-
-    if (sTag == "GVD_QUEST_WIDGET") {
-      // add a quest at the targetted location
-      AddQuest(oActivator, lLocation);
-    }
 
     if (sTag == "GVD_GENDER_WAND") {
       // change gender on PC
@@ -2139,7 +1860,7 @@ void main()
 
     // DM Area Text Widget
     // TO-DO: - Probably make this into a conversation-based widget later.
-    //        - Add hooks in bm_inc_blood, maybe mi_inc_divinatio?
+    //        - Add hooks in inc_bloodstains, maybe inc_divination?
     if (sTag == "BAT_DM_AREATEXTTOOL")
     {
       object oArea = GetArea(oActivator);

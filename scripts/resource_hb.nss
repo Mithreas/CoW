@@ -1,5 +1,5 @@
-#include "mi_resourcecomm"
-// includes mi_repcomm, mi_crimcommon, mi_log and aps_include
+#include "inc_resource"
+// includes inc_reputation, inc_crime, inc_log and inc_database
 const string RES_WP_TAG = "resource_area";
 const string RES_WP_LIST = "resource_waypoint_list";
 

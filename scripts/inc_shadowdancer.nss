@@ -15,7 +15,7 @@
 #include "nwnx_object"
 #include "nwnx_alts"
 #include "nwnx_admin"
-#include "mi_inc_class"
+#include "inc_class"
 
 /**********************************************************************
  * CONFIG PARAMETERS

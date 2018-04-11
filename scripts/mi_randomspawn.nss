@@ -21,7 +21,7 @@
 
 #include "gs_inc_subrace"
 #include "gs_inc_flag"
-#include "mi_log"
+#include "inc_log"
 #include "ar_utils"
 
 const string RANDOMSPAWN = "RANDOMSPAWN";   //:: For tracing

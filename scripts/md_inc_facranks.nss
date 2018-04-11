@@ -1,5 +1,5 @@
 //Created by Morderon on 04/26/2015
-//Ugg.. this is to avoid circular include: mi_inc_citizen and mi_inc_factions are heavily intertwined
+//Ugg.. this is to avoid circular include: inc_citizen and inc_factions are heavily intertwined
 
 //Mord edit: Non-member rank, but pays in or out
 //SPECIAL NOTE: When adding to the databse, non-members rank should be 1.

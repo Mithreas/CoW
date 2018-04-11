@@ -14,7 +14,7 @@ also serves as a wrapper for all the libraries required for this script.
 */
 
 #include "fb_inc_worship"
-#include "mi_inc_favsoul"
+#include "inc_favsoul"
 
 const string FB_RESPONSES = "FB_RESPONSES";
 

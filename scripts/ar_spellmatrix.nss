@@ -17,6 +17,7 @@
 #include "nwnx_alts"
 #include "nwnx_admin"
 #include "inc_data_arr"
+#include "inc_tempvars"
 
 const string txtFail = "<cÿcG>";
 
@@ -87,8 +88,16 @@ void _arDoChaosMessage(object oCaster, object oTarget, string sMessage);
 //::  GENERIC FUNCTIONS
 //::----------------------------------------------------------------------------
 
+//:: Called from Spellhooks, will restore the last spell cast for nForClass.  
+//:: nForClass can be CLASS_TYPE_WIZARD, CLASS_TYPE_CLERIC, CLASS_TYPE_DRUID, 
+//:: CLASS_TYPE_PALADIN or CLASS_TYPE_RANGER.
+void ar_RestoreLastSpell(int nForClass);
+
 //:: Called from Spellhooks, will restore the spell cast by Wizards only.
 void ar_RestoreLastWizardSpell();
+
+//:: Called from spellhooks, handles favoured soul spell refreshes.
+void ar_RestoreFavouredSoulSpell();
 
 //::  Will Buff oCaster's summon with bonuses the same as regular summons.
 //::  This is just a work-around function for Wild Mage summoning.
@@ -841,17 +850,11 @@ void ar_DoHealSpell(object oTarget) {
 //::----------------------------------------------------------------------------
 //:: GENERIC
 //::----------------------------------------------------------------------------
-void ar_RestoreLastWizardSpell() {
-    int nClass = GetLastSpellCastClass();
-
-    //::  Only for Wizards!
-    if ( nClass == CLASS_TYPE_INVALID || nClass != CLASS_TYPE_WIZARD )    return;
-
-    //::  Get Spell Level
-    string sColumn  = "Wiz_Sorc";
+int _ar_GetLastSpellCastLevel(string s2daColName)
+{
     int nSpell      = _arGetCorrectSpellId(GetSpellId());   //::  Get Correct Spell Id from Grouped spells
-    int nSpellLevel = StringToInt(Get2DAString("spells", sColumn, nSpell));
-
+    int nSpellLevel = StringToInt(Get2DAString("spells", s2daColName, nSpell));
+	
     //::  Apply Meta Magic to total Spell Level
     int nMetaMagic = GetMetaMagicFeat();
     switch ( nMetaMagic )
@@ -874,23 +877,98 @@ void ar_RestoreLastWizardSpell() {
             nSpellLevel += 4;
             break;
     }
+	
+	return nSpellLevel;
+}
 
+void ar_RestoreLastSpell(int nForClass) {
+    int nClass = GetLastSpellCastClass();
+
+    //::  Check spell cast class.
+    if ( nClass == CLASS_TYPE_INVALID || nClass != nForClass )    return;
+
+	string s2daColName = "";
+	switch (nClass)
+	{
+	  case CLASS_TYPE_WIZARD:
+	    s2daColName = "Wiz_Sorc";
+		break;
+	  case CLASS_TYPE_CLERIC:
+	    s2daColName = "Cleric";
+		break;
+	  case CLASS_TYPE_DRUID:
+	    s2daColName = "Druid";
+		break;
+	  case CLASS_TYPE_PALADIN:
+	    s2daColName = "Paladin";
+		break;
+	  case CLASS_TYPE_RANGER:
+	    s2daColName = "Ranger";
+		break;
+	}
+	
+    //::  Get Spell Level
+    string sColumn  = s2daColName;
+    int nSpell      = _arGetCorrectSpellId(GetSpellId());   //::  Get Correct Spell Id from Grouped spells
+    int nSpellLevel = _ar_GetLastSpellCastLevel(sColumn);
+	
     //::  Loop Memorized Spells
     struct NWNX_Creature_MemorisedSpell mss;
     int nMaxSlots = NWNX_Creature_GetMaxSpellSlots(OBJECT_SELF, nClass, nSpellLevel);
     int x;
-
+	
     for( x = 0; x <= nMaxSlots; x++ )
     {
-        mss = NWNX_Creature_GetMemorisedSpell(OBJECT_SELF, CLASS_TYPE_WIZARD, nSpellLevel, x);
+        mss = NWNX_Creature_GetMemorisedSpell(OBJECT_SELF, nClass, nSpellLevel, x);
 
         //::  Found The spell that was used in the book, so replenish it.
-        if( nSpell == mss.id && mss.ready == FALSE && nMetaMagic == mss.meta) {
+        if( nSpell == mss.id && mss.ready == FALSE && GetMetaMagicFeat() == mss.meta) {
             mss.ready = TRUE;
             NWNX_Creature_SetMemorisedSpell(OBJECT_SELF, nClass, nSpellLevel, x, mss);
             break;
         }
     }
+}
+
+void ar_RestoreLastWizardSpell() {
+  ar_RestoreLastSpell(CLASS_TYPE_WIZARD);
+}
+
+void ar_RestoreFavouredSoulSpell()
+{
+  if (GetLastSpellCastClass() != CLASS_TYPE_CLERIC) return;
+  
+  int nSpellLevel = _ar_GetLastSpellCastLevel("Cleric");
+  
+  // Get the number of spell slots the PC has at that level.
+  int nMaxSpellsPerDay = NWNX_Creature_GetMaxSpellSlots(OBJECT_SELF, CLASS_TYPE_CLERIC, nSpellLevel);
+  
+  // Get the number of spells cast at that level.
+  int nSpellsCast = GetLocalInt(OBJECT_SELF, "FS_CAST_COUNT_" + IntToString(nSpellLevel)) + 1;
+  
+  //SendMessageToPC(OBJECT_SELF, "Spell level: " + IntToString(nSpellLevel) + ", Max spells: " + IntToString(nMaxSpellsPerDay) + ", spells cast " + IntToString(nSpellsCast));
+  
+  if (nSpellsCast < nMaxSpellsPerDay)
+  {
+    // Restore and notify.
+	ar_RestoreLastSpell(CLASS_TYPE_CLERIC);
+	
+	SendMessageToPC(OBJECT_SELF, IntToString(nSpellsCast) + " of " + IntToString(nMaxSpellsPerDay) + " cast today.");
+	
+    SetTempInt(OBJECT_SELF, "FS_CAST_COUNT_" + IntToString(nSpellLevel), nSpellsCast, TEMP_VARIABLE_EXPIRATION_EVENT_REST);
+  }
+  else
+  {
+    // Wipe out all spells of that level. 
+	int x;
+    struct NWNX_Creature_MemorisedSpell mss;
+    for( x = 0; x <= nMaxSpellsPerDay; x++ )
+    {
+      mss = NWNX_Creature_GetMemorisedSpell(OBJECT_SELF, CLASS_TYPE_CLERIC, nSpellLevel, x);
+      mss.ready = FALSE;
+      NWNX_Creature_SetMemorisedSpell(OBJECT_SELF, CLASS_TYPE_CLERIC, nSpellLevel, x, mss);
+    }
+  }
 }
 
 void ar_ApplySummonBonuses(object oCaster) {

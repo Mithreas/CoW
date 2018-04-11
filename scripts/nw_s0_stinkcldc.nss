@@ -13,7 +13,7 @@
 //:://////////////////////////////////////////////
 
 #include "X0_I0_SPELLS"
-#include "mi_inc_spells"
+#include "inc_customspells"
 void main()
 {
 

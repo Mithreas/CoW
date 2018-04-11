@@ -21,9 +21,9 @@
 
 */
 #include "gs_inc_listener"
-#include "mi_inc_criers"
+#include "inc_criers"
 #include "zdlg_include_i"
-#include "mi_log"
+#include "inc_log"
 
 const string OPTIONS = "CRI_OPTIONS";
 const string CONFIRM = "CRI_CONFIRM";

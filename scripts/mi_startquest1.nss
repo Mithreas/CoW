@@ -1,4 +1,4 @@
-#include "mi_questcomm"
+#include "inc_quest"
 /*
   Name: mi_startquest1
   Author: Mithreas

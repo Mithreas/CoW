@@ -14,7 +14,7 @@
 //:://////////////////////////////////////////////
 #include "nw_i0_spells"
 
-#include "mi_inc_traps"
+#include "inc_traps"
 void main()
 {
     //Declare major variables

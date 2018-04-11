@@ -1,5 +1,5 @@
 #include "X0_I0_SPELLS"
-#include "mi_inc_spells"
+#include "inc_customspells"
 #include "gs_inc_text"
 
 int nCasterLevel = AR_GetCasterLevel(OBJECT_SELF);

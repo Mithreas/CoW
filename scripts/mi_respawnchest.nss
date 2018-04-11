@@ -1,5 +1,5 @@
 /* mi_chestrespawn v1.2 */
-#include "mi_log"
+#include "inc_log"
 
 void CreateObjectReturnsVoid(int nObjectType, string sResRef, location lLocation)
 {

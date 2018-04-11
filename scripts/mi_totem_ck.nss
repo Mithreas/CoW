@@ -1,4 +1,4 @@
-#include "mi_inc_totem"
+#include "inc_totem"
 int StartingConditional()
 {
   return (miTOGetTotemAnimalAppearance(GetPCSpeaker()) > 0);

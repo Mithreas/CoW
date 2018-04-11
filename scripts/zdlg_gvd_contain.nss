@@ -7,7 +7,7 @@
 #include "nwnx_creature"
 #include "nwnx_object"
 #include "zdlg_include_i"
-#include "gvd_inc_contain"
+#include "inc_holders"
 #include "zzdlg_color_inc"
 #include "inc_stacking"
 const string OBJECTOPTIONS = "OBJECTOPTIONS";

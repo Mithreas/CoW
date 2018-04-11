@@ -18,7 +18,7 @@
 //Edited by Morderon on October 24, 2010.
 //Warlock DCs should now be computed correctly
 #include "md_inc_spell"
-#include "mi_inc_spells"
+#include "inc_customspells"
 void main()
 {
     //Declare major variables

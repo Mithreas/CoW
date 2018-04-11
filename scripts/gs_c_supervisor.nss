@@ -1,4 +1,4 @@
-#include "mi_inc_factions"
+#include "inc_factions"
 #include "gs_inc_quarter"
 int StartingConditional()
 {

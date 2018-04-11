@@ -1,5 +1,5 @@
-#include "mi_questcomm"
-#include "mi_repcomm"
+#include "inc_quest"
+#include "inc_reputation"
 /*
   Name: mi_donequest1
   Author: Mithreas

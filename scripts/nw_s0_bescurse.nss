@@ -1,5 +1,5 @@
 #include "gs_inc_spell"
-#include "mi_inc_warlock"
+#include "inc_warlock"
 #include "inc_spells"
 
 void main()

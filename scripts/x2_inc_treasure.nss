@@ -10,7 +10,7 @@
 //:: Created By: Georg Zoeller
 //:: Created On: 2003-06-03
 //:://////////////////////////////////////////////
-#include "mi_log"
+#include "inc_log"
 #include "x2_inc_itemprop"
 const int X2_DTS_CLASS_LOW     = 0;       //Treasure Class Low
 const int X2_DTS_CLASS_MEDIUM  = 1;       //Treasure Clas Medium

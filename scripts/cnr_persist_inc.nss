@@ -13,7 +13,7 @@
 
 // #include "your_persistent_db_inc_here"
 // Note: no include is required to use Bioware's database.
-#include "aps_include"
+#include "inc_database"
 
 // CNR defined return codes for CnrSQLFetch()
 int CNR_SQL_ERROR = 0;

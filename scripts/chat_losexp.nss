@@ -12,7 +12,7 @@
 //:://////////////////////////////////////////////
 
 //:: Includes
-#include "mi_log"
+#include "inc_log"
 #include "fb_inc_chatutils.nss"
 #include "x3_inc_string"
 #include "inc_examine"

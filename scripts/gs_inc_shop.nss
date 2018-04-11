@@ -4,7 +4,7 @@
 #include "gs_inc_common"
 #include "gs_inc_container"
 #include "gs_inc_listener"
-#include "mi_inc_factions"
+#include "inc_factions"
 
 //void main() {}
 const int SHOP_LIMIT = 20; // If you reduce this, some items will be lost!

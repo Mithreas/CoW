@@ -9,7 +9,7 @@ CREATE TABLE gsfo_messages (id INT(11) AUTO_INCREMENT, tag VARCHAR(64), message 
 CREATE INDEX forumid ON gsfo_messages(tag);
 */
 #include "gs_inc_pc"
-#include "mi_inc_database"
+#include "inc_database"
 
 //void main() {};
 

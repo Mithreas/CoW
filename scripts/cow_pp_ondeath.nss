@@ -3,10 +3,10 @@
   Script for when persistent people die.
 
 */
-#include "mi_perspeople"
-// includes mi_log, aps_include and pg_lists_i
-#include "mi_randquestcomm"
-// includes pg_lists_i, mi_repcomm, aps_include and mi_log
+#include "inc_perspeople"
+// includes inc_log, inc_database and pg_lists_i
+#include "inc_randomquest"
+// includes pg_lists_i, inc_reputation, inc_database and inc_log
 void main()
 {
   if (GetHasActivePlayers(OBJECT_SELF))

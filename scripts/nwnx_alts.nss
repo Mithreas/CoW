@@ -3,7 +3,7 @@
 
 #include "inc_data_arr"
 #include "nwnx_creature"
-#include "mi_inc_database"
+#include "inc_database"
 #include "nwnx_weapon"
 
 const string OBJECT_ARRAY_AREAS = "OBJECT_ARRAY_AREAS";

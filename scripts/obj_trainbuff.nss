@@ -6,9 +6,9 @@
     Characters who have trained will get uses of this widget. It gives them a
     bonus of 2 to AB, AC and damage.
 */
-#include "aps_include"
+#include "inc_database"
 #include "x2_inc_switches"
-#include "mi_log"
+#include "inc_log"
 const string TRAINING = "TRAINING";
 void main()
 {

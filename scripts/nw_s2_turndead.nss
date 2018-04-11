@@ -19,7 +19,7 @@
 //:: MODIFIED JULY 24 2003 for Planar Turning to include turn resistance hd
 
 #include "fb_inc_zombie"
-#include "mi_inc_class"
+#include "inc_class"
 #include "inc_statuseffect"
 
 void main()

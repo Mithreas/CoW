@@ -14,7 +14,7 @@
 
 #include "nw_i0_spells"
 #include "x2_inc_spellhook"
-#include "mi_inc_spllswrd"
+#include "inc_spellsword"
 
 void main()
 {

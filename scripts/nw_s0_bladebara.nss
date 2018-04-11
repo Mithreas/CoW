@@ -1,4 +1,4 @@
-#include "mi_inc_spells"
+#include "inc_customspells"
 #include "inc_generic"
 
 void main()

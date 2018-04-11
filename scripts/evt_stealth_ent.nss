@@ -1,8 +1,8 @@
 #include "fb_inc_names"
 #include "inc_timelock"
-#include "mi_inc_divinatio"
-#include "mi_inc_xfer"
-#include "mi_inc_class"
+#include "inc_divination"
+#include "inc_xfer"
+#include "inc_class"
 
 void RoundStealthTimerIncrement()
 {

@@ -13,7 +13,7 @@
 //:: Created On: July 30, 2001
 //:://////////////////////////////////////////////
 
-#include "mi_inc_traps"
+#include "inc_traps"
 void main()
 {
     if (miTRPreHook()) return;

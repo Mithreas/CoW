@@ -18,7 +18,7 @@
   And no non-humans (for now at least).
 
 */
-#include "aps_include"
+#include "inc_database"
 int HasInvalidClasses(object oPC)
 {
   int nInvalid = 0;

@@ -1,5 +1,5 @@
 #include "fb_inc_chatutils"
-#include "mi_inc_warlock"
+#include "inc_warlock"
 #include "inc_examine"
 
 const string HELP1 = "Use this command to set your warlock's eldritch blast <cÿ× >[Damage Type]</c> and activate/deactivate glowing eyes. If no <cÿ× >[Damage Type]</c> is specified, then you will be able to select one from a conversation window.\n\nValid <cÿ× >[Damage Type]</c> Parameters:\n- (mag)ic\n- fire\n- cold, ice\n- acid\n- (elec)trical, (light)ning\n- (neg)ative\n- (pos)itive\n\nText in parentheses represents shortcuts (i.e. 'neg', 'negative', and 'negqwerty' will all set your damage type to negative energy damage).";

@@ -24,7 +24,7 @@
 //:://////////////////////////////////////////////
 
 
-#include "mi_inc_scry"
+#include "inc_customspells"
 #include "zzdlg_main_inc"
 
 

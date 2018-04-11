@@ -1,5 +1,5 @@
 #include "gs_inc_portal"
-#include "gvd_inc_adv_xp"
+#include "inc_adv_xp"
 
 int StartingConditional()
 {

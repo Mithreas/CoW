@@ -13,7 +13,7 @@
 //:: Update Pass By: Preston W, On: Aug 3, 2001
 
 #include "inc_effect"
-#include "mi_inc_poison"
+#include "inc_poison"
 
 void main()
 {

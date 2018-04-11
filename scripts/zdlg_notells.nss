@@ -15,7 +15,7 @@
 
 */
 #include "gs_inc_listener"
-#include "mi_inc_tells"
+#include "inc_tells"
 #include "zdlg_include_i"
 
 const string OPTIONS = "NOT_OPTIONS";

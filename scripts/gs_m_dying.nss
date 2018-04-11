@@ -3,14 +3,14 @@
 #include "gs_inc_effect"
 #include "gs_inc_flag"
 #include "gs_inc_text"
-#include "bm_inc_blood"
+#include "inc_bloodstains"
 #include "x2_inc_itemprop"
 #include "gvd_inc_subdual"
 
-//depreciated by bm_inc_blood
+//depreciated by inc_bloodstains
 //const string GS_TEMPLATE_BLOOD = "plc_bloodstain";
 
-// Dunshine: moved some function to bm_inc_blood to make them useable in other scripts as well
+// Dunshine: moved some function to inc_bloodstains to make them useable in other scripts as well
 
 void gsDying(int nHeal = FALSE)
 {

@@ -12,9 +12,9 @@
 //:://////////////////////////////////////////////
 #include "zzdlg_main_inc"
 #include "gs_inc_shop"
-#include "mi_inc_factions"
+#include "inc_factions"
 #include "gs_inc_listener"
-#include "mi_inc_backgr"
+#include "inc_backgrounds"
 //Pages
 const string PAGE_OWNER = "PAGE_OWNER";
 const string PAGE_AVAILABLE = "PAGE_AVAILABLE";

@@ -18,13 +18,13 @@
 #include "gs_inc_subrace"
 #include "inc_bonuses"
 #include "inc_notifychange"
-#include "mi_log"
-#include "mi_inc_backgr"
-#include "mi_inc_class"
-#include "mi_inc_favsoul"
-#include "mi_inc_totem"
-#include "mi_inc_warlock"
-#include "mi_inc_spllswrd"
+#include "inc_log"
+#include "inc_backgrounds"
+#include "inc_class"
+#include "inc_favsoul"
+#include "inc_totem"
+#include "inc_warlock"
+#include "inc_spellsword"
 #include "zdlg_include_i"
 //------------------------------------------------------------------------------
 // Set up some constants to use for list and variable names.
@@ -96,6 +96,7 @@ string PATH_INTRO = "You may choose to follow a path.  A path modifies a class "
   "\nSniper: Lose dual wield feats but gain point blank shot and rapid shot at level 1" +
   " and called shot at level 9." +
   "\nHealer: Become a more potent healer, but cannot gain proficiency in armors or weapons other than Simple weapons. " +
+  "\nFavoured Soul: Spontaneous casting of cleric spells, but lose Domains, Heavy Armour and Turn Undead. " +
   "\nTribesman: Rage loses its normal effects, but summons an NPC of your tribe to fight " +
   "with you.  You can have two tribesman at any point." +
   "\nShadow Mage: (Experimental!) May not cast Evocation spells.  May take Shadowdancer without usual prerequisites.  Shadow Dancer gives " +
@@ -942,6 +943,7 @@ void _SetUpAllowedPaths()
   if (GetLevelByClass(CLASS_TYPE_CLERIC, oPC))
   {
     AddStringElement(PATH_OF_THE_HEALER, AVAILABLE_PATHS);
+    AddStringElement(PATH_OF_FAVOURED_SOUL, AVAILABLE_PATHS);
   }
 
   if (GetLevelByClass(CLASS_TYPE_DRUID, oPC))
@@ -1664,6 +1666,31 @@ void HandleSelection()
         SetLocalInt(oItem, "HEALER", TRUE);
         EndDlg();
       }
+	  else if (sPath == PATH_OF_FAVOURED_SOUL)
+	  {
+	    // Remove both domains.
+		SetClericDomain(oPC, 1, 3); // 3 is an unused index in domains.2da.
+		SetClericDomain(oPC, 2, 3); // 3 is an unused index in domains.2da.
+		
+		// Remove all domain feats. 
+		int nFeat;
+		for (nFeat = 306; nFeat < 326; nFeat++)
+		{
+		  RemoveKnownFeat(oPC, nFeat);
+		}  
+		
+		// Remove heavy armour proficiency and Turn Undead.
+		RemoveKnownFeat(oPC, FEAT_ARMOR_PROFICIENCY_HEAVY);
+		RemoveKnownFeat(oPC, FEAT_TURN_UNDEAD);
+		
+		// Improve reflex saves (+0 -> +2 at first level)
+		AddItemProperty(DURATION_TYPE_PERMANENT,
+		                ItemPropertyBonusSavingThrow(IP_CONST_SAVEBASETYPE_REFLEX, 2),
+						oItem);
+		
+		SetLocalInt(oItem, "FAVOURED_SOUL", TRUE);		
+        EndDlg();
+	  }
       else if (sPath == PATH_OF_SHADOW)
       {
         SetLocalInt(oItem, "SHADOW_MAGE", TRUE);

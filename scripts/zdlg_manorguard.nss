@@ -4,10 +4,10 @@
 #include "gs_inc_area"
 #include "gs_inc_quarter"
 #include "gs_inc_iprop"
-#include "mi_inc_factions"
-#include "mi_inc_divinatio"
+#include "inc_factions"
+#include "inc_divination"
 #include "fb_inc_chatutils"
-#include "gvd_inc_contain"
+#include "inc_holders"
 #include "ar_utils"
 
 

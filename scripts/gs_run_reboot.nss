@@ -1,7 +1,7 @@
 // Ripped out of gs_inc_common into its own script.
 
 #include "gs_inc_common"
-#include "mi_inc_xfer"
+#include "inc_xfer"
 #include "nwnx_admin"
 
 void __RebootServer()

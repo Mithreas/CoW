@@ -5,7 +5,7 @@
 */
 #include "fb_inc_chatutils"
 #include "gs_inc_pc"
-#include "mi_log"
+#include "inc_log"
 #include "zdlg_include_i"
 
 const string HELP0 = "Here are the possible actions you can take with bans. Some may not be available unless there is a soul inside the cage. Others will only work when there is exactly one soul in the cage.";

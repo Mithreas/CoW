@@ -8,8 +8,8 @@
 */
 
 #include "zdlg_include_i"
-#include "mi_log"
-#include "mi_inc_divinatio"
+#include "inc_log"
+#include "inc_divination"
 
 const string OPTIONS = "DS_OPTIONS";
 const string CARDLIST = "DS_CARDLIST";

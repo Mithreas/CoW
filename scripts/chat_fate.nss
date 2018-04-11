@@ -1,5 +1,6 @@
 #include "fb_inc_chatutils"
-#include "ar_sys_faerzress"
+#include "ar_sys_wildmagic"
+#include "inc_customspells"
 #include "inc_examine"
 
 const string HELP = "Wild Mages can use the Fatidical Manipulation (<c€€ >-fate</c>) spell once per rest.  By using Fatidical Manipulation the next spell will always provide a non-replenishable Wild Surge effect from a span starting from a picked value, e.g -fate 50, and ending at +8 from that value (Example: 50-58). The span decreases by 1 for each Wild Mage Level after 21, to be perfect at Level 28.";

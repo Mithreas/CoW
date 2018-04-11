@@ -14,8 +14,8 @@
 #include "fb_inc_chatutils"
 #include "inc_dm"
 #include "inc_examine"
-#include "mi_inc_backgr"
-#include "mi_log"
+#include "inc_backgrounds"
+#include "inc_log"
 
 const string HELP = "Adds a gift for the PC last targeted with DM Tool 1. <cÿ× >[Gift Constant]</c> refers to the constant associated with the gift to be added. Type -gifts for a list of all valid gift constants.";
 

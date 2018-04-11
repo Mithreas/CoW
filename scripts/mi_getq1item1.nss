@@ -7,8 +7,8 @@
   Gives the PC the item with a tag stored on the speaking NPC under the variable
   name "quest1item1".
 */
-#include "mi_log"
-#include "aps_include"
+#include "inc_log"
+#include "inc_database"
 void main()
 {
   string sItemTag = GetPersistentString(OBJECT_SELF, "quest1item1");

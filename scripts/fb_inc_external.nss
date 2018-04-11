@@ -7,9 +7,9 @@
  */
 
 #include "gs_inc_pc"
-#include "mi_log"
-#include "mi_inc_database"
-#include "mi_inc_xfer"
+#include "inc_log"
+#include "inc_database"
+#include "inc_xfer"
 #include "nwnx_ruby"
 #include "nwnx_admin"
 

@@ -12,7 +12,7 @@
 
 //Include snazzy logging script to see where things are going wrong
 
-#include "mi_log"
+#include "inc_log"
 
 //Logs will have the CARA_GEM_CRAFTING name, however I only have to type
 //GEMCRAFT

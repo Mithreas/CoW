@@ -7,7 +7,7 @@
     You can only do this once.  Should be called repeatedly until
     the PC has MI_CL_PDK_PATH set to a non zero value.
 */
-#include "mi_inc_class"
+#include "inc_class"
 #include "inc_bonuses"
 #include "zdlg_include_i"
 

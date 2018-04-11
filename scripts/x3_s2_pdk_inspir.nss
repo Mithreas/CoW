@@ -13,7 +13,7 @@
 //:://////////////////////////////////////////////
 
 #include "inc_tempvars"
-#include "mi_inc_class"
+#include "inc_class"
 #include "x0_i0_spells"
 #include "gs_inc_respawn"
 #include "inc_statuseffect"

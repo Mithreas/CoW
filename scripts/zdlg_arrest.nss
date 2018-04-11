@@ -6,7 +6,7 @@
 
 */
 #include "zdlg_include_i"
-#include "mi_crimcommon"
+#include "inc_crime"
 #include "nw_i0_generic"
 
 const string MAIN_MENU   = "main_options";

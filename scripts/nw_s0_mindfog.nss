@@ -14,13 +14,13 @@
 //:: Created On: Aug 1, 2001
 //:://////////////////////////////////////////////
 
-#include "mi_inc_spells"
+#include "inc_customspells"
 //Edited by Morderon October 24, 2010.
 //Added ASF for warlocks
 //Added mdSetAOECreatedByWarlock
 //Changed duration calculation for warlocks
 #include "md_inc_spell"
-#include "mi_inc_warlock"
+#include "inc_warlock"
 #include "inc_spells"
 
 void main()
@@ -30,7 +30,7 @@ void main()
   Spellcast Hook Code
   Added 2003-06-20 by Georg
   If you want to make changes to all spells,
-  check mi_inc_spells.nss to find out more
+  check inc_customspells.nss to find out more
 
 */
 

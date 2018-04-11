@@ -3,7 +3,7 @@
 
   Warlock staff conversation - lets the warlock select which element to use.
 */
-#include "mi_inc_warlock"
+#include "inc_warlock"
 #include "zdlg_include_i"
 const string ELEMENTS = "MI_WA_ELEMENTS";
 

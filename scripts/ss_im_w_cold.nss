@@ -2,7 +2,7 @@
   Spellsword Imbue Weapon Ability - COLD
 */
 
-#include "mi_inc_spllswrd"
+#include "inc_spellsword"
 
 void main()
 {

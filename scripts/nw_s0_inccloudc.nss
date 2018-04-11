@@ -13,7 +13,7 @@
 //:://////////////////////////////////////////////
 //:: Updated By: GeorgZ 2003-08-21: Now affects doors and placeables as well
 #include "X0_I0_SPELLS"
-#include "mi_inc_spells"
+#include "inc_customspells"
 #include "inc_generic"
 
 void main()

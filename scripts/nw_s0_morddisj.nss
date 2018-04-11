@@ -1,5 +1,5 @@
-#include "mi_inc_spells"
-#include "mi_inc_spllswrd"
+#include "inc_customspells"
+#include "inc_spellsword"
 
 
 void main()

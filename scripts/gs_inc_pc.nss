@@ -1,6 +1,6 @@
 /* PC Library by Gigaschatten */
 #include "gs_inc_time"
-#include "mi_inc_database"
+#include "inc_database"
 #include "nwnx_admin"
 //void main() {}
 
@@ -24,7 +24,7 @@
    current_location    VARCHAR(64)
    respawn_location    VARCHAR(64)
    subrace_applied     TINYINT(2)
-   nation              VARCHAR(64) (see mi_inc_citizen)
+   nation              VARCHAR(64) (see inc_citizen)
    awia                TINYINT(2)
 
    fb_ban_nodes
@@ -148,7 +148,7 @@ void gsPCCacheValues(object oPC)
     SetLocalLocation(oPC, "GS_LOCATION",    APSStringToLocation(SQLGetData(10)));
     SetLocalLocation(oPC, "GS_RESPAWN",     APSStringToLocation(SQLGetData(11)));
     SetLocalInt(oPC, "GS_SU_APPLIED",  StringToInt(SQLGetData(12)));
-    SetLocalString(oPC, "MI_NATION", SQLDecodeSpecialChars(SQLGetData(13)));
+    SetLocalString(oPC, "MI_NATION", SQLGetData(13));
     SetLocalInt(oPC, "MI_AWIA", StringToInt(SQLGetData(14)));
 
     // Add the PC's race etc.

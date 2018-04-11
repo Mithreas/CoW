@@ -1,12 +1,12 @@
 #include "gs_inc_effect"
 #include "inc_bonuses"
-#include "mi_inc_class"
-#include "mi_inc_favsoul"
-#include "mi_inc_warlock"
+#include "inc_class"
+#include "inc_favsoul"
+#include "inc_warlock"
 #include "x2_inc_itemprop"
-#include "mi_inc_spllswrd"
+#include "inc_spellsword"
 #include "inc_paladin"
-#include "ki_inc_horses"
+#include "inc_horses"
 
 // Handle weapon-switching attack penalty
 void handlePenalty(object oOldLeft, object oOldRight, object oUnequipped, object oPC);

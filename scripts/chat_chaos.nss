@@ -1,5 +1,6 @@
+#include "ar_sys_wildmagic"
+#include "inc_customspells"
 #include "fb_inc_chatutils"
-#include "ar_sys_faerzress"
 #include "inc_examine"
 
 const string HELP = "Wild Mages can use the Chaos Shield (<c€€ >-chaos</c>) spell once per rest.  When casting Chaos Shield the caster will be surrounded by a protective aura lasting 1 Round / Caster Level.  There is a 20% chance for Enemies entering the aura to be afflicted by a random negative Surge.";

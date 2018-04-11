@@ -1,6 +1,6 @@
 //  ScarFace's Persistent Banking system  - Withdraw Gold -
 #include "bank_inc"
-#include"aps_include"
+#include"inc_database"
 void main()
 {
     object oPC = GetPCSpeaker();

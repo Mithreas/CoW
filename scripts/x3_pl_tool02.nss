@@ -1,7 +1,7 @@
 // Player tool 2 = Assassination tool.
 // Fairly straightforward - implement the assassinate ability against target.
 
-#include "inc_assassinate"
+#include "inc_assassin"
 
 void main()
 {

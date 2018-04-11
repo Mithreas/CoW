@@ -11,8 +11,8 @@
 //:://////////////////////////////////////////////
 
 //:: Includes
-#include "ki_inc_bondtags"
-#include "ki_inc_bonditem"
+#include "inc_bondeditems"
+#include "inc_bondeditems"
 
 //:: Public Function Declarations
 //bond the Thieves Gloves with PC

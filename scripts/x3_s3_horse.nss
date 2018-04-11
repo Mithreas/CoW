@@ -16,7 +16,7 @@
 
 #include "x3_inc_horse"
 #include "gs_inc_pc"
-#include "ki_inc_horses"
+#include "inc_horses"
 
 /*
     NOTE: If considering using Party Mount or similar feature

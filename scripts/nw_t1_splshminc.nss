@@ -13,7 +13,7 @@
 //:: Created On: Nov 16th , 2001
 //:://////////////////////////////////////////////
 #include "nw_i0_spells"
-#include "mi_inc_traps"
+#include "inc_traps"
 
 void main()
 {

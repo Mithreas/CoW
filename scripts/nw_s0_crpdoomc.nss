@@ -10,7 +10,7 @@
 //:: Created On: Mars 25, 2017
 //:://////////////////////////////////////////////
 
-#include "mi_inc_spells"
+#include "inc_customspells"
 #include "inc_generic"
 
 void main()

@@ -6,7 +6,7 @@ alongside the chat scipt.These methods are mostly for use in scripts such as
 scripts for -commands (see comments in ar_chat for details on -commands).
 */
 
-#include "mi_log"
+#include "inc_log"
 #include "nwnx_chat"
 #include "zzdlg_lists_inc"
 

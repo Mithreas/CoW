@@ -1,5 +1,5 @@
-﻿#include "mi_inc_totem"
-#include "mi_inc_awia"
+﻿#include "inc_totem"
+#include "inc_werewolf"
 #include "fb_inc_chatutils"
 #include "gs_inc_subrace"
 #include "gs_inc_state"

@@ -1,4 +1,4 @@
-#include "mi_inc_totem"
+#include "inc_totem"
 void main()
 {
    miTOGrantTotem(GetPCSpeaker(), MI_TO_BEAR);

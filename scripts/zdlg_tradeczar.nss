@@ -4,7 +4,7 @@
   Date: 6 October 2008
   Description: Trade czar script. Uses Z-Dialog.
 
-  See mi_inc_citizen for background and design.
+  See inc_citizen for background and design.
 
   zdlg_tradeczar
   - if settlement leader, lets you set purchase prices
@@ -13,15 +13,15 @@
     - inventory.
 
 */
+#include "inc_class"
+#include "inc_factions"
+#include "inc_poison"
+#include "inc_disguise"
 #include "gs_inc_listener"
-#include "gs_inc_quarter"
-#include "mi_inc_factions"
-#include "mi_inc_poison"
-#include "zdlg_include_i"
-#include "mi_inc_disguise"
 #include "gs_inc_message"
+#include "gs_inc_quarter"
+#include "zdlg_include_i"
 #include "zzdlg_color_inc"
-#include "md_inc_conclrace"
 
 const string TC_LOG        = "TRADE_CZAR";
 const string BUY_MENU      = "buy_menu";

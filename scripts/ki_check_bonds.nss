@@ -12,17 +12,15 @@
 //:://////////////////////////////////////////////
 
 //:: Includes
-#include "ki_inc_bondtags"
-#include "ki_inc_bonditem"
+#include "inc_bondeditems"
+#include "inc_bondeditems"
 #include "ki_wrapr_bldsgr"
 #include "ki_wrapr_thfglv"
-#include "ki_wrapr_orog"
 
 //:: Public Function Declarations
 
 //Check item bonds
 void CheckBonds(object oPC, object oItem);
-
 
 // wrapper holding all bonds item scripts
 void BondItemWrapper(object oPC, object oItem, int nBondType);
@@ -113,11 +111,6 @@ void BondItemWrapper(object oPC, object oItem, int nBondType)
         {
             BondThievesGloves(oItem, oPC);
         }
-		//Bond Orog Items
-		else if (nBondTag == BOND_TAG_OROGBATTLEARMOUR || nBondTag == BOND_TAG_OROGHEAVYSWORD || nBondTag == BOND_TAG_OROGHEAVYSWORD)
-		{
-			BondOrogItems(oItem, oPC);
-		}
     }
 }
 

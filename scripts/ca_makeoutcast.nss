@@ -1,5 +1,5 @@
-#include "mi_inc_backgr"
-#include "mi_inc_citizen"
+#include "inc_backgrounds"
+#include "inc_citizen"
 #include "gs_inc_pc"
 void main()
 {

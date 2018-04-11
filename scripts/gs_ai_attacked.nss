@@ -1,6 +1,6 @@
 #include "gs_inc_combat"
 #include "gs_inc_event"
-#include "mi_inc_divinatio"
+#include "inc_divination"
 
 void main()
 {

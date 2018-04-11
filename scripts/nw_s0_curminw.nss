@@ -1,6 +1,6 @@
 #include "gs_inc_spell"
 #include "inc_healer"
-#include "mi_inc_spells"
+#include "inc_customspells"
 
 void main()
 {

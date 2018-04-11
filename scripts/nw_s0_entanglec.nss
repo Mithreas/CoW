@@ -13,7 +13,7 @@
 //:://////////////////////////////////////////////
 //::Updated Aug 14, 2003 Georg: removed some artifacts
 #include "X0_I0_SPELLS"
-#include "mi_inc_spells"
+#include "inc_customspells"
 
 int GetIsEntangled(object oCreature);
 

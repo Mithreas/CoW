@@ -1,7 +1,7 @@
 #include "gs_inc_quarter"
 #include "zdlg_include_i"
-#include "gvd_inc_contain"
-#include "mi_inc_factions"
+#include "inc_holders"
+#include "inc_factions"
 
 void main()
 {

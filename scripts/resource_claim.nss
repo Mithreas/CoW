@@ -2,7 +2,7 @@
   Claims a resource for the using PC, if there's nobody from the owning faction
   present.
 */
-#include "mi_resourcecomm"
+#include "inc_resource"
 void main()
 {
   object oPC = GetLastUsedBy();

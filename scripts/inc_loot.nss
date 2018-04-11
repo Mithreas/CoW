@@ -5,8 +5,8 @@
 #include "inc_lootgen"
 #include "inc_lootname"
 #include "inc_lootresref"
-#include "mi_inc_database"
-#include "mi_log"
+#include "inc_database"
+#include "inc_log"
 #include "x3_inc_string"
 #include "gs_inc_language"
 

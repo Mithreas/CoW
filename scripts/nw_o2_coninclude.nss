@@ -1,4 +1,4 @@
-#include "mi_log"
+#include "inc_log"
 
 //::///////////////////////////////////////////////
 //:: NW_O2_CONINCLUDE.nss

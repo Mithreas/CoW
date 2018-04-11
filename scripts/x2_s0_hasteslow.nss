@@ -14,7 +14,7 @@
 //:: Created On: Jan 3/03
 //:://////////////////////////////////////////////
 
-#include "mi_inc_spells" 
+#include "inc_customspells" 
 
 void main()
 {
@@ -23,7 +23,7 @@ void main()
   Spellcast Hook Code 
   Added 2003-07-07 by Georg Zoeller
   If you want to make changes to all spells,
-  check mi_inc_spells.nss to find out more
+  check inc_customspells.nss to find out more
   
 */
 

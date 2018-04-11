@@ -20,7 +20,7 @@ bugfix by Kovi 2002.07.30
 
 #include "fb_inc_chatutils"
 #include "fb_inc_zombie"
-#include "mi_inc_class"
+#include "inc_class"
 #include "x0_i0_spells"
 
 void main()

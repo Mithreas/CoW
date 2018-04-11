@@ -1,6 +1,6 @@
 #include "gs_inc_subrace"
-#include "mi_inc_backgr"
-#include "mi_inc_citizen"
+#include "inc_backgrounds"
+#include "inc_citizen"
 
 
 //void main(){}
@@ -237,7 +237,7 @@ int ar_GetPCMonsterInRange(object oPC, float fRadius = 15.0, int bOutcast = FALS
 
 int ar_GetPCHavePath(object oPC) {
     object oItem = gsPCGetCreatureHide(oPC);
-    string sPath = GetLocalString(oItem, "MI_PATH");    //::  Path Consts found in 'mi_inc_class'
+    string sPath = GetLocalString(oItem, "MI_PATH");    //::  Path Consts found in 'inc_class'
 
     //::  Check if Player already has a Path
     if (    GetLocalInt(oItem, "TRIBESMAN") ||

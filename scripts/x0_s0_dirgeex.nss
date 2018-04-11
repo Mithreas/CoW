@@ -16,7 +16,7 @@
 
 #include "x0_i0_spells"
 #include "x2_inc_spellhook"
-#include "mi_inc_spells"
+#include "inc_customspells"
 
 void main()
 {

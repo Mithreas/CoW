@@ -3,7 +3,7 @@
 //:: Created By: Kirito
 //:: Created On: July 14, 2017
 //:://////////////////////////////////////////////
-#include "mi_inc_spllswrd"
+#include "inc_spellsword"
 
 void main()
 {

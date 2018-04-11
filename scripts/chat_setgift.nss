@@ -15,8 +15,8 @@
 #include "inc_dm"
 #include "inc_examine"
 #include "inc_string"
-#include "mi_inc_backgr"
-#include "mi_log"
+#include "inc_backgrounds"
+#include "inc_log"
 
 const string HELP = "Sets a gift for the PC last targeted with DM Tool 1. <cÿ× >[Nth Gift]</c> refers to the index of the gift (e.g. 1 would set the value of gift 1). <cÿ× >[Gift Constant]</c> refers to the constant associated with the gift itself. Type -gifts for a list of all valid gift constants.";
 

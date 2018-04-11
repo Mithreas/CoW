@@ -10,8 +10,8 @@ works when linked to from another conversation.
 #include "gs_inc_forum"
 #include "gs_inc_message"
 #include "zzdlg_main_inc"
-#include "mi_log"
-#include "mi_inc_factions"
+#include "inc_log"
+#include "inc_factions"
 
 const string FB_RESPONSES   = "FB_RESPONSES";
 const string FB_VAR_CHECK   = "FB_DL_CHECK";

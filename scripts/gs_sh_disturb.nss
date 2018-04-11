@@ -1,8 +1,8 @@
 #include "gs_inc_shop"
 #include "gs_inc_text"
 #include "inc_generic"
-#include "mi_log"
-#include "mi_inc_factions"
+#include "inc_log"
+#include "inc_factions"
 void main()
 {
     if (gsSHGetIsVacant(OBJECT_SELF)) return;

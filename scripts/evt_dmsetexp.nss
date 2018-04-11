@@ -1,4 +1,4 @@
-#include "mi_log"
+#include "inc_log"
 #include "nwnx_events"
 #include "nwnx_creature"
 #include "nwnx_object"

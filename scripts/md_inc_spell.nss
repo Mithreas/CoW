@@ -13,9 +13,9 @@
 
 //Included for Warlock Staff Tag and Warlock Spell
 //Resistance
-#include "mi_inc_warlock"
+#include "inc_warlock"
 //Included for GetSpellDCModifiers
-#include "mi_inc_spells"
+#include "inc_customspells"
 #include "nw_i0_spells"
 
 //A variable that stores if a warlock casted an AoE

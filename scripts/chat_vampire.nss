@@ -4,7 +4,7 @@
 #include "inc_examine"
 #include "inc_thrall"
 #include "inc_vampire"
-#include "mi_inc_totem"
+#include "inc_totem"
 #include "x3_inc_string"
 
 void main()

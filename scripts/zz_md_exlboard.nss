@@ -12,7 +12,7 @@
 //:: Created On: 08/10/2016
 //:://////////////////////////////////////////////
 
-#include "mi_inc_citizen"
+#include "inc_citizen"
 #include "zzdlg_main_inc"
 void OnInit()
 {

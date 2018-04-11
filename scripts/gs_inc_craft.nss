@@ -2,10 +2,10 @@
 
 #include "gs_inc_time"
 #include "gs_inc_worship"
-#include "mi_inc_backgr"
-#include "mi_inc_database"
-#include "mi_inc_divinatio"
-#include "mi_inc_class"
+#include "inc_backgrounds"
+#include "inc_database"
+#include "inc_divination"
+#include "inc_class"
 #include "inc_stacking"
 
 //void main() {}

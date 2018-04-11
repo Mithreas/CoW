@@ -4,7 +4,7 @@
 #include "nwnx_admin"
 #include "zdlg_include_i"
 #include "fb_inc_chatutils"
-#include "gvd_inc_adv_xp"
+#include "inc_adv_xp"
 
 const string VARNAMES = "VARNAMES";
 const string VARTYPES = "VARTYPES";

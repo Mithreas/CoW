@@ -1,4 +1,4 @@
-#include "mi_inc_spells"
+#include "inc_customspells"
 
 void gsRun(object oTarget, int nSpell, int nMetaMagic, int nDuration, int bStaticLevel)
 {

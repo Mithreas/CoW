@@ -8,7 +8,7 @@
 //:: Created On: Jan 22, 2002
 //:://////////////////////////////////////////////
 
-#include "mi_inc_spells"
+#include "inc_customspells"
 #include "gs_inc_common"
 
 void _FixVars(object oTarget, object oSubraceHide)
@@ -27,7 +27,7 @@ void main()
   Spellcast Hook Code
   Added 2003-06-23 by GeorgZ
   If you want to make changes to all spells,
-  check mi_inc_spells.nss to find out more
+  check inc_customspells.nss to find out more
 
 */
 

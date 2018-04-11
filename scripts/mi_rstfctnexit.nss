@@ -7,7 +7,7 @@
   NPC of the correct faction in a string variable called "faction_creature",
   and put this in the OnExit slot.
 */
-#include "mi_log"
+#include "inc_log"
 const string FACTIONS = "FACTIONS"; // For trace
 void main()
 {

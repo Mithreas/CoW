@@ -1,31 +1,28 @@
 #include "fb_inc_chatutils"
+#include "fb_inc_names"
 #include "fb_inc_external"
 #include "fb_inc_zombie"
 #include "gs_inc_common"
+#include "gs_inc_death"
 #include "gs_inc_effect"
+#include "gs_inc_language"
+#include "gs_inc_shop"
 #include "gs_inc_text"
 #include "gs_inc_pc"
-#include "fb_inc_names"
-#include "mi_inc_awia"
-#include "mi_inc_azn"
-#include "mi_inc_class"
-#include "mi_inc_factions"
-#include "mi_inc_relation"
-#include "mi_inc_xfer"
-#include "mi_inc_backgr"
-#include "mi_inc_checker"
-#include "mi_inc_disguise"
-#include "gs_inc_language"
-#include "gvd_inc_slave"
-#include "mi_inc_disguise"
+#include "inc_assassin"
+#include "inc_backgrounds"
+#include "inc_bonuses"
+#include "inc_checker"
+#include "inc_class"
+#include "inc_disguise"
+#include "inc_factions"
+#include "inc_relations"
+#include "inc_xfer"
 #include "inc_associates"
-#include "inc_notifychange"
+#include "inc_spellsword"
+#include "inc_werewolf"
 #include "nwnx_alts"
 #include "x3_inc_horse"
-#include "gs_inc_death"
-#include "mi_inc_spllswrd"
-#include "inc_artefactfade"
-#include "gs_inc_shop"
 
 void _FixXPECL(object oPC, int nSubRace);
 void _CreateDefaultSetting(object pc, string name, int value);
@@ -359,42 +356,6 @@ void main()
     }
     */
 
-    // ARTEFACT FADING - See inc_artefactfade for details
-    fadeArtefactsInInventory(oEntering);
-
-    // added by Dunshine:
-    // if a Slave logs on and was inactive for 14 days or more, set a variable on the PC, so he/she has the option to reset the owner to the NPC Slavemaster of Andunor, this will activate when they talk to the NPC Slavemaster
-    // inactive Slavemasters are handled slightly differently, they have a time-out of 7 days, but this will only activate, when a Slave PC talks to the NPC Slavemaster
-    if (gvd_CheckIsSlave(oEntering)) {
-
-      int iTimeStamp = GetLocalInt(GetModule(),"GS_TIMESTAMP");
-      object oClamp = gvd_GetSlaveClamp(oEntering);
-      int iLastLogin = GetLocalInt(oClamp,"GVD_SLAVE_LASTLOGIN");
-      SetLocalInt(oClamp,"GVD_SLAVE_LASTLOGIN", iTimeStamp);
-      if ((((gsTIGetRealTimestamp(iTimeStamp) - gsTIGetRealTimestamp(iLastLogin)) / 86400) > 14) && (iLastLogin != 0)) {
-        // inactive for 14 days, make sure the PC can reset the ownership by talking to the NPC slavemaster this session
-        SendMessageToPC(oEntering,"Talk to the NPC Slavemaster this session to return ownership to the NPC, this is possible now due to more then 14 day inactivity. If you relog the option will NOT be available anymore!");
-        SetLocalInt(oEntering,"GVD_SlaveInactive",1);
-      }
-    }
-
-    // if a Slave logs on, makes sure the (Slave) part is added to the dynamic name
-    if (gvd_CheckIsClamped(oEntering)) {
-      // add the (Slave) addition to the dynamic name of the PC
-      if (GetIsPCDisguised(oEntering) == TRUE) {
-        int nPerform = GetSkillRank(SKILL_PERFORM, oEntering);
-        int nBluff   = GetSkillRank(SKILL_BLUFF,   oEntering);
-        if ((nPerform > 20) || (nBluff > 20)) {
-          fbNAAddNameModifier(oEntering, FB_NA_MODIFIER_DISGUISE, "", " (Disguised)");
-        } else {
-          // disguising, but still recognisable as a slave
-          fbNAAddNameModifier(oEntering, FB_NA_MODIFIER_DISGUISE, "", " (Disguised Slave)");
-        }
-      } else {
-        fbNAAddNameModifier(oEntering, FB_NA_MODIFIER_DISGUISE, "", " (Slave)");
-      }
-    }
-
     object oHide = gsPCGetCreatureHide(oEntering);
 
     // Dunshine: check for artifacts and flag them so we can track them later on
@@ -562,11 +523,6 @@ void main()
         md_SaveSpellLevel(oEntering, 0);
         md_SaveSpellLevel(oEntering, 1);
         md_SaveSpellLevel(oEntering, 2);
-    }
-
-    if (GetIsObjectValid(gsPCGetCreatureHide(oEntering)))
-    {
-        NotifyChangesDetectAndDispatch(oEntering);
     }
 
     // TODO: We need a library for settings in general.

@@ -6,11 +6,11 @@
 #include "gs_inc_strack"
 #include "gs_inc_pc"
 #include "inc_spells"
-#include "mi_inc_class"
-#include "mi_inc_divinatio"
-#include "mi_inc_relation"
+#include "inc_class"
+#include "inc_divination"
+#include "inc_relations"
 #include "x2_inc_switches"
-#include "ar_sys_faerzress"
+#include "ar_sys_wildmagic"
 #include "inc_spells"
 #include "gvd_inc_subdual"
 
@@ -361,10 +361,6 @@ void main()
 //   number of rounds equal to the spell level - 1 before casting another spell.
 //   Sorcs halve the delay.
 // - Quickened spells bypass the delay but cannot be cast during it.
-//
-// IMPORTANT - right now, this only works for sorcs.  The function to restore
-// spell slots for other casters isn't working, so it's disabled (and sorcs
-// have to wait the full duration and don't get their /2).
 //------------------------------------------------------------------------------
       int bFavoredSoul = miFSGetIsFavoredSoul(OBJECT_SELF) &&
                             GetLastSpellCastClass() == CLASS_TYPE_BARD;
@@ -520,6 +516,12 @@ void main()
           // Spell list is recorded in gs_a_enter during init.
           // RestoreReadySpells(OBJECT_SELF, GetLocalString(OBJECT_SELF, "SP_SPELL_LIST"));
         }
+      }
+      // New style favoured souls.
+      else if (GetLastSpellCastClass() == CLASS_TYPE_CLERIC && GetIsFavouredSoul(OBJECT_SELF))
+	  {
+		//SendMessageToPC(OBJECT_SELF, "Your god grants you this blessing.");
+		ar_RestoreFavouredSoulSpell();
       }
       else
       {

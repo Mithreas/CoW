@@ -9,23 +9,21 @@
 #include "gs_inc_theft"
 #include "gs_inc_time"
 #include "gs_inc_xp"
-#include "inc_landbroker"
 #include "inc_thrall"
+#include "inc_caravan"
+#include "inc_criers"
+#include "inc_factions"
+#include "inc_pop"
+#include "inc_relations"
+#include "inc_resource"
 #include "inc_vampire"
-#include "mi_inc_awia"
-#include "mi_inc_caravan"
-#include "mi_inc_factions"
-#include "mi_inc_criers"
-#include "mi_inc_pop"
-#include "mi_inc_relation"
-#include "mi_inc_weather"
-#include "mi_inc_xfer"
-#include "ar_sys_faerzress"
+#include "inc_weather"
+#include "inc_werewolf"
+#include "inc_xfer"
 #include "gs_inc_respawn"
 #include "nwnx_admin"
-#include "gvd_inc_adv_xp"
-#include "gvd_inc_tribal"
-#include "ki_inc_bonditem"
+#include "inc_adv_xp"
+#include "inc_bondeditems"
 
 void gsCombat()
 {
@@ -155,9 +153,6 @@ void main()
     if (nPreviousDay != nCurrentDay)
     {
         SetLocalInt(OBJECT_SELF, "GS_DAY", nCurrentDay);
-
-        //::  Update Landbrokerage every IG Month
-        UpdateLandBroker();
     }
 
     //per hour
@@ -226,8 +221,6 @@ void main()
                 // Weather
                 if (ALLOW_WEATHER) {
                     miWHDoWeatherEffects(oPC);
-                    //::  ActionReplay - Apply Faerzress Effects - If not UD module it will simply return.
-                    ar_DoFaerzressEffects(oPC);
                 }
 
                 //:: Kirito - Increment Item Bonds
@@ -254,8 +247,6 @@ void main()
         // Do weather checks.
         if (ALLOW_WEATHER) {
             miWHAdjustWeather();
-            //::  ActionReplay - Update Faerzress Weather- If not UD module it will simply return.
-            ar_UpdateFaerzress();
         }
 
         // Make caravans depart, at certain hours.
@@ -269,6 +260,31 @@ void main()
             DelayCommand(0.5, miCADoDepartures());
             break;
         }
+		
+        Trace(RESOURCE, "Assigning resources.");
+        // Clear the faction resource chests.
+        ClearAllFactionResourceChests();
+
+        // Determine who owns each area. Give them rep points and resources.
+        int iCount = 0;
+        object oWP = GetObjectByTag(RES_WP_TAG, iCount);
+
+        while (GetIsObjectValid(oWP))
+        {
+          int nOwner = GetOwningFaction(GetArea(oWP));
+          GivePointsToFaction(1, nOwner);
+          GiveResourcesToOwningFaction(oWP);
+
+          // Store the current owner.
+          SetPersistentString(OBJECT_INVALID,
+                              GetName(GetArea(oWP)),
+                              GetFactionName(nOwner),
+                              0,
+                              AREA_DB);
+
+          iCount++;
+          oWP = GetObjectByTag(RES_WP_TAG, iCount);
+        }		
     }
 
     // Added by Mith - per RL minute (10 game minutes, 10 heartbeats)
@@ -300,12 +316,6 @@ void main()
     {
       nCount = 0;
       miCRDoShoutMessages();
-
-      // dunshine: this caused time differences between both servers when CandP was launched later then Surface, or when CandP crashed/relaunched while Surface kept running
-      // Cordor is the 'master' and controls time.  The others sync
-      // off it on startup.
-      // string sCurrentServer = GetLocalString(GetModule(), VAR_SERVER_NAME);
-      // if (sCurrentServer == SERVER_UNDERDARK || miXFGetCurrentServer() == SERVER_PREHISTORY)
 
       // moved this from 6 RL minute to 1 RL minute interval, so the maximum difference between both servers is now 1 RL minute
       miDASetKeyedValue("gs_system", "time", "value", IntToString(nTimestamp));
@@ -342,9 +352,6 @@ void main()
 
             if (! (GetIsDM(oPC) || GetIsDMPossessed(oPC)))
             {
-                // tribal bonuses
-                gvd_ApplyTribalBonus(oPC, oArea);
-
                 //combat
                 if (! gsFLGetAreaFlag("PVP", oPC)) AssignCommand(oPC, gsCombat());
 

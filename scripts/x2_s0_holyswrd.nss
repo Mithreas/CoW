@@ -26,7 +26,7 @@
 //:://////////////////////////////////////////////
 
 #include "gs_inc_text"
-#include "mi_inc_spells"
+#include "inc_customspells"
 #include "nw_i0_spells"
 #include "x2_i0_spells"
 

@@ -16,11 +16,11 @@
 #include "gs_inc_common"
 #include "gs_inc_iprop"
 #include "gs_inc_craft"
-#include "mi_inc_spells"
+#include "inc_customspells"
 #include "x2_inc_itemprop"
 #include "x2_inc_switches"
 #include "gs_inc_pc"
-#include "gvd_inc_adv_xp"
+#include "inc_adv_xp"
 
 struct craft_struct
 {

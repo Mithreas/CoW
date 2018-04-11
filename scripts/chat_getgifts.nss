@@ -14,7 +14,7 @@
 #include "fb_inc_chatutils"
 #include "inc_dm"
 #include "inc_examine"
-#include "mi_inc_backgr"
+#include "inc_backgrounds"
 
 const string HELP = "Lists all gifts for the PC last targeted with DM Tool 1.";
 

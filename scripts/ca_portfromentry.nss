@@ -1,7 +1,7 @@
 #include "gs_inc_respawn"
 #include "gs_inc_subrace"
-#include "mi_inc_backgr"
-#include "mi_inc_xfer"
+#include "inc_backgrounds"
+#include "inc_xfer"
 
 void _jumpToTarget(object oPC, object oTarget)
 {

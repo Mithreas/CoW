@@ -1,4 +1,4 @@
-#include "mi_inc_disguise"
+#include "inc_disguise"
 
 // separate script file to be able to use the disguise functions in the NPCs investigate features for fixture remains
 

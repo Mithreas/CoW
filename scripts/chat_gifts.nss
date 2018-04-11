@@ -12,7 +12,7 @@
 
 #include "fb_inc_chatutils"
 #include "inc_examine"
-#include "mi_inc_backgr"
+#include "inc_backgrounds"
 
 const string HELP = "This command lists all available gift constant values for use with the -addgift and -setgift commands.";
 

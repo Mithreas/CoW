@@ -1,6 +1,6 @@
 // mi_initnation
-// See mi_inc_citizen for details.
-#include "mi_inc_factions"
+// See inc_citizen for details.
+#include "inc_factions"
 void CreateSettlementFaction(string sNation)
 {
   fbFACreateFaction(sNation, OBJECT_INVALID, SETTLEMENT_PREFIX, sNation, FAC_NATION);

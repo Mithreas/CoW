@@ -1,5 +1,5 @@
-//#include "mi_inc_warlock"
-#include "mi_inc_spells"
+//#include "inc_warlock"
+#include "inc_customspells"
 //Edited by Morderon on October 23, 2010.
 //Added ASF for warlocks
 //And mdSetAOECreatedByWarlock
@@ -13,7 +13,7 @@ void main()
   Spellcast Hook Code
   Added 2003-06-20 by Georg
   If you want to make changes to all spells,
-  check mi_inc_spells.nss to find out more
+  check inc_customspells.nss to find out more
 
 */
 

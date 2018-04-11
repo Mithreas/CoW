@@ -1,7 +1,7 @@
 #include "gs_inc_pc";
 #include "fb_inc_chatutils"
 #include "inc_dm"
-#include "mi_log"
+#include "inc_log"
 #include "inc_examine"
 
 const string HELP = "Sets the PVP Death Counter of the PC last targeted with DM Tool 1 to a new value (0 to 4).";

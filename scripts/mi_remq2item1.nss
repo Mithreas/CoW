@@ -7,7 +7,7 @@
   Checks for the existence of an item with a tag stored on the speaking NPC
   under the variable name "quest1item1"/
 */
-#include "mi_log"
+#include "inc_log"
 void main()
 {
   string sItemTag = GetLocalString(OBJECT_SELF, "quest2item1");

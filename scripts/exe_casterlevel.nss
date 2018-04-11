@@ -12,7 +12,7 @@
 //:: Created On: June 13, 2016
 //:://////////////////////////////////////////////
 
-#include "mi_inc_spells"
+#include "inc_customspells"
 #include "x2_inc_switches"
 
 void main()

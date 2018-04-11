@@ -23,10 +23,10 @@
 
 */
 #include "zdlg_include_i"
-#include "mi_resourcecomm"
- // includes mi_repcomm, mi_crimcommon, mi_log and aps_include
-#include "mi_perspeople"
- // includes mi_log, aps_include and pg_lists_i
+#include "inc_resource"
+ // includes inc_reputation, inc_crime, inc_log and inc_database
+#include "inc_perspeople"
+ // includes inc_log, inc_database and pg_lists_i
 #include "nw_i0_generic"
 const string MERC         = "MERCENARIES"; // For logging
 const string MERC_WP_TAG  = "merc_spawn";

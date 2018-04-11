@@ -1,4 +1,4 @@
-#include "mi_inc_climb"
+#include "inc_climb"
 void main()
 {
   // PC tries to ford the river.  Strength test that applies armor check

@@ -1,4 +1,4 @@
-#include "mi_inc_weather"
+#include "inc_weather"
 #include "zdlg_include_i"
 #include "zzdlg_color_inc"
 
@@ -9,7 +9,7 @@ const string WEATHER_SELECTIONS = "WEATHER_SELECTIONS";
 //::  Also removes 50 XP from the PC using this power.
 void AlterWeather(object oPC, int nHeat, int nHumidity, int nWind);
 
-//::  Based on the 'miWHAdjustWeather' function from  mi_inc_weather but makes
+//::  Based on the 'miWHAdjustWeather' function from  inc_weather but makes
 //::  certain the applied effects from the weather stone happens EVERYWHERE no matter
 //::  an area's climate.  Giving a more forced effect.
 void ExAdjustWeather();

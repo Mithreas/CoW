@@ -6,8 +6,8 @@
 
 */
 #include "zdlg_include_i"
-#include "mi_repcomm"
-// mi_repcomm includes mi_log, mi_crimcommon and aps_include
+#include "inc_reputation"
+// inc_reputation includes inc_log, inc_crime and inc_database
 const string DMWAND = "DMWAND"; // for logging
 
 // pages

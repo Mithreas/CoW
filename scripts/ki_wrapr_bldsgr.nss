@@ -11,9 +11,9 @@
 //:://////////////////////////////////////////////
 
 //:: Includes
-#include "mi_inc_spllswrd"
-#include "ki_inc_bondtags"
-#include "ki_inc_bonditem"
+#include "inc_spellsword"
+#include "inc_bondeditems"
+#include "inc_bondeditems"
 #include "gs_inc_subrace"
 
 

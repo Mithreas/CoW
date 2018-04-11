@@ -2,7 +2,7 @@
   Spellsword Imbue Weapon Ability - ACID
 */
 
-#include "mi_inc_spllswrd"
+#include "inc_spellsword"
 #include "inc_dot"
 
 //apply Spellsword Imbue effect acid damage function

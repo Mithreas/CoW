@@ -1,6 +1,6 @@
 #include "gs_inc_shop"
-#include "mi_log"
-#include "mi_inc_factions"
+#include "inc_log"
+#include "inc_factions"
 void _save(object oPC)
 {
     if (gsSHGetIsVacant(OBJECT_SELF)) return;

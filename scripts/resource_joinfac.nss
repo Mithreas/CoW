@@ -1,6 +1,6 @@
 // Assigns the PC to the faction stored in this object's MI_FACTION variable.
-// See mi_repcomm for a list of available factions.
-#include "mi_repcomm"
+// See inc_reputation for a list of available factions.
+#include "inc_reputation"
 void main()
 {
   int nFaction = GetLocalInt(OBJECT_SELF, "MI_FACTION");

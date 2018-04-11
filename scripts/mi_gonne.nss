@@ -1,6 +1,6 @@
 // mi_gonne
 // Needs its own script so we can call TouchAttackRanged.
-#include "mi_inc_scry"
+#include "inc_customspells"
 void main()
 {
   object oShooter = OBJECT_SELF;

@@ -1,7 +1,6 @@
-#include "bm_inc_blood"
+#include "inc_bloodstains"
 #include "fb_inc_external"
 #include "fb_inc_zombie"
-#include "gs_inc_chain"
 #include "gs_inc_common"
 #include "gs_inc_flag"
 #include "gs_inc_pc"
@@ -12,20 +11,18 @@
 #include "gs_inc_time"
 #include "gs_inc_worship"
 #include "gs_inc_xp"
-#include "gvd_inc_arena"
 #include "inc_healer"
 #include "inc_spells"
 #include "inc_vampire"
-#include "mi_inc_factions"
+#include "inc_factions"
 #include "gvd_inc_reward"
 
 const int GS_PENALTY_PER_LEVEL  = 25;
 
 // Original gsDeath function.
-void gsDeath(int iCageFight);
+void gsDeath();
 // Original main function. Moved to a separate function so it can be delayed.
 void DoDeath(object oDied);
-
 
 void DoDeath(object oDied)
 {
@@ -35,40 +32,25 @@ void DoDeath(object oDied)
     // always turn subdual mode off when someone dies
     DeleteLocalInt(oDied, "GVD_SUBDUAL_MODE");
 
-    // added by Dunshine: check if the PC that died was the Cage Fighter in the Slave Pits (UD area)
-    object oLever = GetObjectByTag("gvd_cf_lever");
-    int iCF_FightBusy = GetLocalInt(oLever,"iCF_FightBusy");
-    if ((GetLocalObject(oLever,"oCF_PCFighter") == oDied) && (iCF_FightBusy != 0)) {
-      // died in cagefight
-      DeleteLocalObject(oLever,"oCF_PCFighter");
-      ExecuteScript("gvd_cf_pc_death",oDied);
 
-      // then execute normal Arelith death script delayed
-      DelayCommand(25.0f, AssignCommand(oDied, gsDeath(1)));
-
+    if (!GetLocalInt(GetModule(), "ZOMBIE_MODE")) {
+      AssignCommand(oDied, gsDeath());
     } else {
 
-
-        if (!GetLocalInt(GetModule(), "ZOMBIE_MODE")) {
-          AssignCommand(oDied, gsDeath(0));
-        } else {
-
-          fbZDied(oDied);
-          // Remove effects.
-          effect eEffect = GetFirstEffect(oDied);
-          while (GetIsEffectValid(eEffect))
-          {
-            RemoveEffect(oDied, eEffect);
-            eEffect = GetNextEffect(oDied);
-          }
-          StopFade(oDied);
-
-          return;
-        }
+      fbZDied(oDied);
+      // Remove effects.
+      effect eEffect = GetFirstEffect(oDied);
+      while (GetIsEffectValid(eEffect))
+      {
+        RemoveEffect(oDied, eEffect);
+        eEffect = GetNextEffect(oDied);
+      }
+      StopFade(oDied);
+      return;
     }
 }
 
-void gsDeath(int iCageFight)
+void gsDeath()
 {
   object oSelf    = OBJECT_SELF;
   int nPVP        = FALSE;
@@ -99,27 +81,24 @@ void gsDeath(int iCageFight)
   // delete last attacker variable now, so it doesn't linger for future deaths
   DeleteLocalObject(oSelf, "GVD_LAST_ATTACKER");
 
-  // addition by Dunshine: prevent PCs dying in a cage fight from getting a Deity raise or leaving their corpses, skip this entire part
-  if (iCageFight != 1) {
+  if (GetObjectType(oObject1) == OBJECT_TYPE_CREATURE)
+  {
+    object oObject2 = OBJECT_INVALID;
 
-    if (GetObjectType(oObject1) == OBJECT_TYPE_CREATURE)
+    //get master
+    do
     {
-        object oObject2 = OBJECT_INVALID;
+        oObject2 = oObject1;
+        oObject1 = GetMaster(oObject2);
+    }
+    while (GetIsObjectValid(oObject1));
 
-        //get master
-        do
-        {
-            oObject2 = oObject1;
-            oObject1 = GetMaster(oObject2);
-        }
-        while (GetIsObjectValid(oObject1));
+    nSuicide        = oObject2 == oSelf;
+    nPVP            = GetIsPC(oObject2) && !nSuicide;
+    nKiller_RPR     = nPVP ? gsPCGetRolePlay(oObject2) : 0;
 
-        nSuicide        = oObject2 == oSelf;
-        nPVP            = GetIsPC(oObject2) && !nSuicide;
-        nKiller_RPR     = nPVP ? gsPCGetRolePlay(oObject2) : 0;
-
-        if (! nSuicide)
-        {
+    if (! nSuicide)
+    {
             if (VampireIsVamp(oSelf) && VampireCanEnterGaseousForm(oSelf))
             {
                 VampireEnterGaseousForm(oSelf);
@@ -188,17 +167,14 @@ void gsDeath(int iCageFight)
                     GS_T_16777437,
                     GetName(oSelf),
                     GetName(oObject2) + sPVP));
-        }
-
-        if (nSuicide || ! nPVP)
-        {
-            //apply penalty
-            gsXPApplyDeathPenalty(oSelf, GetHitDice(oSelf) * GS_PENALTY_PER_LEVEL, TRUE);
-        }
     }
 
-    //chain
-    if (gsCHGetHasChain()) gsCHRemoveChain(gsCHGetChain());
+    if (nSuicide || ! nPVP)
+    {
+        //apply penalty
+        gsXPApplyDeathPenalty(oSelf, GetHitDice(oSelf) * GS_PENALTY_PER_LEVEL, TRUE);
+    }
+    
 
     //drop corpses
     gsPODropAllCorpses(oSelf);
@@ -227,22 +203,17 @@ void gsDeath(int iCageFight)
   ActionDoCommand(SetCommandable(TRUE));
   SetCommandable(FALSE);
 
-  //timeout, dunshine: no longer use bio db for this, but PC hide:
+  //timeout
   SetLocalInt(gsPCGetCreatureHide(oSelf), "GS_DEATH_TIMESTAMP", gsTIGetActualTimestamp());
-  //SetCampaignInt("GS_DEATH_TIMESTAMP",
-  //               gsPCGetPlayerID(oSelf),
-  //               gsTIGetActualTimestamp());
 
-  // addition by Dunshine: prevent PCs dying in a cage fight from getting a Deity raise or leaving their corpses, skip this entire part
-  if (iCageFight != 1) {
 
-    //create corpse
-    oObject1 = CreateObject(OBJECT_TYPE_PLACEABLE,
-                            GS_TEMPLATE_CORPSE,
-                            GetLocation(oSelf));
+  //create corpse
+  oObject1 = CreateObject(OBJECT_TYPE_PLACEABLE,
+                          GS_TEMPLATE_CORPSE,
+                          GetLocation(oSelf));
 
-    if (GetIsObjectValid(oObject1))
-    {
+  if (GetIsObjectValid(oObject1))
+  {
         int nGold = GetGold();
         int nGender = GetGender(oSelf);
 
@@ -259,8 +230,6 @@ void gsDeath(int iCageFight)
             TakeGoldFromCreature(nGold, oSelf, TRUE);
             SetLocalInt(oObject1, "GS_GOLD", nGold);
         }
-    }
-
   }
 
   // Addition by Mithreas - Mark of Despair

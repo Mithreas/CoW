@@ -1,4 +1,4 @@
-#include "mi_inc_awia"
+#include "inc_werewolf"
 
 void main()
 {

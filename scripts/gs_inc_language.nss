@@ -6,9 +6,9 @@
 #include "gs_inc_subrace"
 #include "gs_inc_text"
 #include "inc_emote_style"
-#include "mi_inc_backgr"
-#include "mi_inc_warlock"
-#include "mi_log"
+#include "inc_backgrounds"
+#include "inc_warlock"
+#include "inc_log"
 #include "x3_inc_string"
 
 //void main() {}

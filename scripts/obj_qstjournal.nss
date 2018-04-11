@@ -4,7 +4,7 @@
   When used, tells the PC their last briefing.
 
 */
-#include "mi_randquestcomm"
+#include "inc_randomquest"
 #include "x2_inc_switches"
 void main()
 {

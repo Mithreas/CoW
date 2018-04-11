@@ -1,4 +1,4 @@
-#include "mi_inc_pop"
+#include "inc_pop"
 void main()
 {
   if (GetLocalInt(OBJECT_SELF, "GS_ACTIVE")) return;

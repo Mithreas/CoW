@@ -14,7 +14,7 @@
 #include "fb_inc_chatutils"
 #include "inc_dm"
 #include "inc_examine"
-#include "mi_log"
+#include "inc_log"
 
 const string HELP = "Sets the subrace of the PC last targeted with DM Tool 1.";
 

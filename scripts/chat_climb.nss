@@ -1,7 +1,7 @@
 #include "__server_config"
 #include "fb_inc_chatutils"
 #include "gs_inc_flag"
-#include "mi_inc_climb"
+#include "inc_climb"
 #include "inc_examine"
 
 const string HELP = "Use -climb to climb up or down normally impassable terrain. This only works in certain areas.";

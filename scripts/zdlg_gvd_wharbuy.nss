@@ -10,7 +10,7 @@
 #include "zdlg_include_i"
 #include "gs_inc_pc"
 #include "gvd_inc_rope"
-#include "gvd_inc_adv_xp"
+#include "inc_adv_xp"
 
 const string MAINOPTIONS = "MAINOPTIONS001";
 const string CONFIRM = "MES_CONFIRM001";

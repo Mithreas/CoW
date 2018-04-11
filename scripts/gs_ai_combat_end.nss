@@ -1,7 +1,7 @@
 #include "__server_config"
 #include "gs_inc_combat"
 #include "gs_inc_event"
-#include "mi_inc_weather"
+#include "inc_weather"
 
 void main()
 {

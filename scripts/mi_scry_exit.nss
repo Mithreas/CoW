@@ -1,4 +1,4 @@
-#include "mi_inc_scry"
+#include "inc_customspells"
 void main()
 {
   object oPC = GetExitingObject();

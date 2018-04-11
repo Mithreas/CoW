@@ -3,7 +3,7 @@
 
 #include "gs_inc_location"
 #include "gs_inc_iprop"
-#include "mi_inc_database"
+#include "inc_database"
 #include "gvd_inc_seeds"
 #include "gs_inc_subrace"
 
@@ -40,7 +40,7 @@ string gvd_GetRemainsResRefForFixture(object oFixture);
 // function that retrieves seperate variables from a big variable string and stores them on oFixture
 void gvd_SetFixtureRemainsData(object oFixture);
 
-// copied these 2 over of bm_inc_blood because of include issues while compiling
+// copied these 2 over of inc_bloodstains because of include issues while compiling
 
 string gvd_GetWeaponDamageType(object oWeapon)
 {
@@ -168,7 +168,7 @@ void _LoadVars(object oFixture)
 
   while (SQLFetch())
   {
-    SetLocalString(oFixture, SQLGetData(1), SQLDecodeSpecialChars(SQLGetData(2)));
+    SetLocalString(oFixture, SQLGetData(1), SQLGetData(2));
     AddStringElement(SQLGetData(1), "VAR_LIST", oFixture);
   }
 
@@ -197,8 +197,8 @@ void gsFXLoadFixture(string sID, int nLimit = ALLOW_MAX_FIXTURES)
             lLocation    = APSStringToLocation(SQLGetData(2));
             sTemplate    = SQLGetData(3);
             sTag         = SQLGetData(4);
-            sName        = SQLDecodeSpecialChars(SQLGetData(5));
-            sDescription = SQLDecodeSpecialChars(SQLGetData(6));
+            sName        = SQLGetData(5);
+            sDescription = SQLGetData(6);
             oFixture  = CreateObject(OBJECT_TYPE_PLACEABLE, sTemplate, lLocation, FALSE, sTag);
             if (sName != "") SetName(oFixture, sName);
             if (sDescription != "") SetDescription(oFixture, sDescription);
@@ -492,7 +492,7 @@ void gvdFXCreateRemains(object oFixture, object oDamager) {
       int iSubRace = gsSUGetSubRaceByName(GetSubRace(oDamager));
       string sSubRace = gsSUGetNameBySubRace(iSubRace);
       
-      // use same logic as in mi_inc_tracks
+      // use same logic as in inc_tracks
       switch (iSubRace)
       // Override for aasimar, tieflings, genasi and other subraces very
       // similar culturally and physically to base.
@@ -551,7 +551,7 @@ void gvdFXCreateRemains(object oFixture, object oDamager) {
         // if not a PC
         if (!GetIsPC(oNPC)) {     
 
-          // enter investigation data into the NPCs memory, use an execute script for this to prevent a big include mess with mi_inc_disguise
+          // enter investigation data into the NPCs memory, use an execute script for this to prevent a big include mess with inc_disguise
           SetLocalObject(oNPC, "GVD_REMAINS_DAMAGER", oDamager);
           SetLocalString(oNPC, "GVD_REMAINS_NAME", sName);
           ExecuteScript("exe_investrem", oNPC);

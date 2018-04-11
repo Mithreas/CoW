@@ -1,4 +1,4 @@
-#include "mi_inc_warlock"
+#include "inc_warlock"
 int StartingConditional()
 {
   return miWAGetIsWarlock(GetPCSpeaker());

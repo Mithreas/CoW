@@ -15,7 +15,7 @@
 //:: Last Updated By: Andrew Nobbs May 01, 2003
 
 #include "x0_i0_spells"
-#include "mi_inc_spells"
+#include "inc_customspells"
 #include "gs_inc_text"
 #include "inc_spells"
 

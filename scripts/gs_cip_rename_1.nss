@@ -1,5 +1,5 @@
 #include "gs_inc_iprop"
-#include "mi_inc_factions"
+#include "inc_factions"
 int StartingConditional()
 {
     object oItem = GetFirstItemInInventory();

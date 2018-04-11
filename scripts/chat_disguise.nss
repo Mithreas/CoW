@@ -1,8 +1,8 @@
 #include "fb_inc_chatutils"
 #include "gs_inc_pc"
 #include "gs_inc_time"
-#include "mi_inc_disguise"
-#include "mi_inc_divinatio"
+#include "inc_disguise"
+#include "inc_divination"
 #include "inc_examine"
 
 const string HELP1 = "<cþôh>-disguise </c><cþ£ >[Text]</c>\nUse -disguise to attempt to disguise yourself. Other people can then see that you are disguised, and can see whether they recognize your character or not using the *looks* command. The higher your Bluff or Perform skills, the more likely you are to remain disguised.\nPlease note: Common sense is to be executed here. If your 'disguise' isn't plausible, don't be surprised if other people recognize you whether you use -disguise or not.";

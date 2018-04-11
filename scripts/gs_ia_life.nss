@@ -3,7 +3,7 @@
 #include "gs_inc_respawn"
 #include "gs_inc_time"
 #include "gs_inc_xp"
-#include "mi_inc_xfer"
+#include "inc_xfer"
 
 void main()
 {

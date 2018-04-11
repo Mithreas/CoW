@@ -15,7 +15,7 @@
 #include "cnr_persist_inc"
 #include "cnr_spells_inc"
 #include "cnr_language_inc"
-#include "mi_repcomm"
+#include "inc_reputation"
 
 int CNR_SELECTIONS_PER_PAGE = 6;
 int CNR_CONVO_CRAFTING = TRUE;
@@ -3308,7 +3308,7 @@ void CnrLoadAllDeviceRecipesFromScript()
 
 // Problems can arise with SQL commands if variables or values have single quotes
 // in their names. These functions replace these quotes with the tilde character.
-// These two functions pilfered from aps_include
+// These two functions pilfered from inc_database
 
 /////////////////////////////////////////////////////////
 string CnrSQLEncodeSpecialChars(string sString)

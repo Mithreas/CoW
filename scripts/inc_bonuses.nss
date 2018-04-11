@@ -14,26 +14,25 @@
 #include "gs_inc_language"
 #include "gs_inc_pc"
 #include "gs_inc_subrace"
-#include "inc_boon"
 #include "inc_effect"
 #include "inc_item"
 #include "inc_levelbonuses"
 #include "inc_spells"
 #include "inc_sumstream"
 #include "inc_timelock"
-#include "mi_inc_backgr"
-#include "mi_inc_class"
-#include "mi_inc_favsoul"
-#include "mi_inc_spells"
-#include "mi_inc_totem"
-#include "mi_inc_warlock"
+#include "inc_backgrounds"
+#include "inc_class"
+#include "inc_favsoul"
+#include "inc_customspells"
+#include "inc_totem"
+#include "inc_warlock"
 #include "nw_i0_spells"
 #include "nwnx_creature"
 #include "nwnx_object"
 #include "nwnx_alts"
 #include "nwnx_admin"
 #include "x0_i0_match"
-#include "mi_inc_spllswrd"
+#include "inc_spellsword"
 
 /**********************************************************************
  * CONFIG PARAMETERS
@@ -106,8 +105,6 @@ int arIsValidLargeSizedWeapon(object oItem);
 int RemoveTwoHandedBonus(object oItem);
 // Checks if two hand is applicable
 void DoTwoHandedBonusCheck(object oPC, object oUnequipped=OBJECT_INVALID);
-// Remove character boons.
-void RemoveCharacterBoons(object oPC);
 
 // remove most tagged effects on login (to prevent exploit with -save making them permanent)
 void RemoveTaggedEffectsOnLogin(object oPC);
@@ -199,8 +196,7 @@ void ApplyCharacterBonuses(object oPC, int bReapplySpecialAbilities = FALSE, int
     if(bReapplySpecialAbilities) RemoveAllItemProperties(oSubraceToken);
     RemoveAllSpecialAbilities(oPC);
     RemoveCharacterBonusEffects(oPC);
-    RemoveCharacterBoons(oPC);
-
+    
     // Dunshine: added this one to remove any other tagged effects that have been made permanent by using the -save exploit while under a tagged effect
     RemoveTaggedEffectsOnLogin(oPC);
 
@@ -229,8 +225,7 @@ void ApplyCharacterBonuses(object oPC, int bReapplySpecialAbilities = FALSE, int
     UpdateSkillBonuses(oPC);
     MigrateStreamData(oPC);
     ApplyAutoStillASFReduction(oPC);
-    bnRefreshBoons(oPC);
-
+    
     SetLocalInt(oPC, LIB_BONUSES_PREFIX + "FirstLogin", TRUE);
 
     // Fix for non-standard subrace movement.
@@ -710,7 +705,7 @@ void DoTwoHandedBonusCheck(object oPC, object oUnequipped=OBJECT_INVALID)
     int nTwoHandMode = GetLocalInt(oPC, "AR_TWO_HAND");
     if(nTwoHandMode) { //two hand mode engaged
 
-        if(GetIsObjectValid(oLeft)) //has a shild equipped, remove boons if applied
+        if(GetIsObjectValid(oLeft)) //has a shild equipped
         {
             RemoveTaggedEffects(oPC, EFFECT_TAG_TWOHAND);
 
@@ -738,20 +733,6 @@ void DoTwoHandedBonusCheck(object oPC, object oUnequipped=OBJECT_INVALID)
     }
 
 
-}
-//::///////////////////////////////////////////////
-//: RemoveCharacterBonusEffects
-//:://////////////////////////////////////////////
-/*
-    Remove effects from boons from the PC.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Batrachophrenoboocosmomachia
-//:: Created On: June 7, 2017
-//:://////////////////////////////////////////////
-void RemoveCharacterBoons(object oPC)
-{
-    RemoveTaggedEffects(oPC, EFFECT_TAG_BOON);
 }
 
 void RemoveTaggedEffectsOnLogin(object oPC) {

@@ -1,6 +1,6 @@
 #include "gs_inc_common"
 #include "gs_inc_portal"
-#include "mi_inc_spells"
+#include "inc_customspells"
 
 void main()
 {

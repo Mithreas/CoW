@@ -1,6 +1,6 @@
 /* Respawn the NPC in 15 minutes and run the standard death script. */
-#include "mi_log"
-#include "mi_repcomm"
+#include "inc_log"
+#include "inc_reputation"
 
 void CreateObjectReturnsVoid(int nObjectType, string sResRef, location lLocation)
 {

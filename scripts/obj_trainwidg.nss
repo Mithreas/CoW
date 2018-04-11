@@ -5,7 +5,7 @@
   Description:
     OnUsed script for the training widget.
 */
-#include "mi_log"
+#include "inc_log"
 #include "x2_inc_switches"
 const string TRAINING = "TRAINING";
 void main()

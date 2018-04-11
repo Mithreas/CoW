@@ -1,7 +1,7 @@
 /* AREA Library by Gigaschatten */
 
-#include "mi_inc_database"
-#include "mi_inc_xfer"
+#include "inc_database"
+#include "inc_xfer"
 
 //void main() {}
 

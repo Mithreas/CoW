@@ -1,4 +1,4 @@
-#include "mi_inc_weather"
+#include "inc_weather"
 void main()
 {
   object oArea = GetArea(OBJECT_SELF);

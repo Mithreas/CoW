@@ -1,8 +1,7 @@
 #include "gs_inc_common"
 #include "gs_inc_time"
-#include "gvd_inc_quest"
 #include "inc_loot"
-#include "mi_log"
+#include "inc_log"
 
 const int GS_TIMEOUT            = 21600; //6 hours
 const int GS_LIMIT_GOLD         =  2000;
@@ -185,9 +184,6 @@ void main()
                 }
             }
 
-            // small chance of Quest item spawning (if there is a quest active, see gvd_inc_quest)
-            AddQuestItem(OBJECT_SELF, opener);
- 
             // check for chest specific treasure, and spawn those as well
             int iTreasureExtra = GetLocalInt(OBJECT_SELF, "GVD_TREASURE");
             string sTreasureExtraResRef;

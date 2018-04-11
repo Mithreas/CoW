@@ -1,8 +1,8 @@
 /*
   Script to load all the quests into the database.
 */
-#include "mi_randquestcomm"
-  //Includes pg_lists_i,  mi_repcomm, aps_include and mi_log
+#include "inc_randomquest"
+  //Includes pg_lists_i,  inc_reputation, inc_database and inc_log
 void SetStringValue(string sName, string sValue, string sDatabase)
 {
   // Designed to break TMI by breaking this script up into lots of small actions.

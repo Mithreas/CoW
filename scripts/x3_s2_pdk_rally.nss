@@ -11,7 +11,7 @@
 //:://////////////////////////////////////////////
 
 #include "gs_inc_combat"
-#include "mi_inc_class"
+#include "inc_class"
 #include "x0_i0_spells"
 #include "inc_timelock"
 #include "x2_inc_itemprop"

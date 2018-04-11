@@ -6,8 +6,8 @@
 // ---------- ---------------- ---------------------------------------------
 // 07/24/2003 Artos            Initial release.
 //
-#include "mi_inc_warlock"
-#include "mi_inc_favsoul"
+#include "inc_warlock"
+#include "inc_favsoul"
 int StartingConditional()
 {
     object oPC = GetPCSpeaker( );

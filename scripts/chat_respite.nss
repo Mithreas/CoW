@@ -18,7 +18,7 @@
 #include "inc_examine"
 #include "inc_spells"
 #include "inc_tempvars"
-#include "mi_inc_class"
+#include "inc_class"
 
 const string HELP = "At level 28, pure healers gain access to the epic Respite spell:\n\nRespite\nCaster Level(s): Healer 10\nInnate Level: 10\nSchool: Abjuration\nDescriptor(s):\nComponent(s):\nCasting Time: Instant\nRange: Personal\nArea of Effect / Target: 4.0 meters\nDuration: 9 Seconds\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\n";
 const string HELP_2 = "The healer creates a zone that defies death itself. Creatures within the area of effect become immune to all forms of crowd control (except Timestop) and cannot be reduced to less than one hit point. When the spell expires, all allies within the area of effect are healed for 150 points of damage.";

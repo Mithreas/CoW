@@ -4,7 +4,7 @@
   Gate can be specified with "GATE_TAG" variable on this placeable. If not
   specified, the nearest gate will be used.
 */
-#include "mi_resourcecomm"
+#include "inc_resource"
 void main()
 {
   object oPC = GetLastUsedBy();

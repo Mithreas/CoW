@@ -1,5 +1,5 @@
 #include "fb_inc_chatutils"
-#include "inc_assassinate"
+#include "inc_assassin"
 #include "inc_examine"
 
 const string HELP = "-assassinate [Target].  Activates the Assassination class ability, increasing damage against a specified target.  Can be sent directly via Tell.";

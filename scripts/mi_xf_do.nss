@@ -3,13 +3,13 @@
 //
 // Object with this script must have a variable "DEST_WP" set up with the
 // string value of the waypoint the character should be ported to on arrival.
-// mi_inc_xfer contains a current list of these.
+// inc_xfer contains a current list of these.
 //
 // The object should also have SERVER_NAME set up to point to the correct server
-// (see mi_inc_xfer for allowed values).  If blank, it will be defaulted
+// (see inc_xfer for allowed values).  If blank, it will be defaulted
 // sensibly - in practise it currently only needs setting for transitions from
 // the main isle into Cordor.
-#include "mi_inc_xfer"
+#include "inc_xfer"
 void main()
 {
   object oPC = GetClickingObject();

@@ -2,8 +2,8 @@
 
 #include "gs_inc_common"
 #include "gs_inc_pc"
-#include "mi_inc_database"
-#include "mi_log"
+#include "inc_database"
+#include "inc_log"
 
 const string BANK = "BANK"; // for logging
 

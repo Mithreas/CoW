@@ -2,7 +2,7 @@
 #include "fb_inc_chatutils"
 #include "gs_inc_flag"
 #include "gs_inc_text"
-#include "mi_inc_spells"
+#include "inc_customspells"
 #include "gs_inc_spell"
 #include "gs_inc_worship"
 #include "inc_examine"

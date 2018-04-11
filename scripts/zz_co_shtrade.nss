@@ -12,7 +12,7 @@
 //:://////////////////////////////////////////////
 #include "zzdlg_main_inc"
 #include "gs_inc_shop"
-#include "mi_inc_factions"
+#include "inc_factions"
 
 const string PAGE_MAIN = "PAGE_MAIN";
 const string PAGE_STACK = "PAGE_STACK";

@@ -19,7 +19,7 @@ The existing data will be moved across.
 #include "gs_inc_pc"
 #include "gs_inc_text"
 #include "gs_inc_time"
-#include "mi_inc_database"
+#include "inc_database"
 
 const string GS_MESSAGE = "gsme_messages";
 
@@ -61,13 +61,13 @@ object gsMELoadMessage(string sMessageID)
         SQLExecDirect("SELECT timestamp, title, text1, text2, text3, text4, author, real_author, anonymous FROM gsme_messages WHERE id='"+SQLEncodeSpecialChars(sMessageID)+"' LIMIT 1");
         if (!SQLFetch()) return oCache;
         SetLocalInt(oCache, sMessageID+"TIMESTAMP", StringToInt(SQLGetData(1)));
-        SetLocalString(oCache, sMessageID+"TITLE", SQLDecodeSpecialChars(SQLGetData(2)));
-        SetLocalString(oCache, sMessageID+"TEXT1", SQLDecodeSpecialChars(SQLGetData(3)));
-        SetLocalString(oCache, sMessageID+"TEXT2", SQLDecodeSpecialChars(SQLGetData(4)));
-        SetLocalString(oCache, sMessageID+"TEXT3", SQLDecodeSpecialChars(SQLGetData(5)));
-        SetLocalString(oCache, sMessageID+"TEXT4", SQLDecodeSpecialChars(SQLGetData(6)));
-        SetLocalString(oCache, sMessageID+"AUTHOR", SQLDecodeSpecialChars(SQLGetData(7)));
-        SetLocalString(oCache, sMessageID+"REAL_AUTHOR", SQLDecodeSpecialChars(SQLGetData(8)));
+        SetLocalString(oCache, sMessageID+"TITLE", SQLGetData(2));
+        SetLocalString(oCache, sMessageID+"TEXT1", SQLGetData(3));
+        SetLocalString(oCache, sMessageID+"TEXT2", SQLGetData(4));
+        SetLocalString(oCache, sMessageID+"TEXT3", SQLGetData(5));
+        SetLocalString(oCache, sMessageID+"TEXT4", SQLGetData(6));
+        SetLocalString(oCache, sMessageID+"AUTHOR", SQLGetData(7));
+        SetLocalString(oCache, sMessageID+"REAL_AUTHOR", SQLGetData(8));
         SetLocalInt(oCache, sMessageID+"ANONYMOUS", StringToInt(SQLGetData(9)));
         SetLocalInt(oCache, sMessageID+"LOADED", TRUE);
     }

@@ -13,7 +13,7 @@
 //:: Last Updated By: Georg Zoeller, Aug 2003
 
 #include "x2_i0_spells"
-#include "mi_inc_spells"
+#include "inc_customspells"
 
 //Creates the weapon that the creature will be using.
 void spellsCreateItemForSummoned(object oCaster, float fDuration)
@@ -55,7 +55,7 @@ void main()
       Spellcast Hook Code
       Added 2003-07-07 by Georg Zoeller
       If you want to make changes to all spells,
-      check mi_inc_spells.nss to find out more
+      check inc_customspells.nss to find out more
 
     */
 

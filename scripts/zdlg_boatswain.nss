@@ -2,8 +2,8 @@
 #include "zdlg_include_i"
 #include "zzdlg_color_inc"
 #include "ar_sys_ship"
-#include "mi_inc_factions"
-#include "gvd_inc_contain"
+#include "inc_factions"
+#include "inc_holders"
 
 const string ANCHOR_SELECTIONS = "ANCHOR_SELECTIONS";
 const string ATTACK_SELECTIONS = "ATTACK_SELECTIONS";

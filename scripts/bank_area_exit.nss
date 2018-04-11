@@ -1,5 +1,5 @@
 //  ScarFace's Persistent Banking system - OnAreaExit -
-#include "aps_include"
+#include "inc_database"
 #include "bank_inc"
 void SpawnChest(string sResRef, location lLoc)
 {

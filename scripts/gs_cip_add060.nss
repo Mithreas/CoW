@@ -1,6 +1,7 @@
 #include "gs_inc_common"
 #include "gs_inc_craft"
 #include "gs_inc_iprop"
+#include "gs_inc_language"
 #include "x3_inc_string"
 
 const int GS_LIMIT_COST = 10000;

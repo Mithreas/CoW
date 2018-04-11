@@ -10,8 +10,8 @@
 //:: Created By: Brent
 //:: Created On: September 7, 2002
 //:://////////////////////////////////////////////
-#include "mi_inc_warlock"
-#include "mi_inc_spells"
+#include "inc_warlock"
+#include "inc_customspells"
 
 void main()
 {
@@ -20,7 +20,7 @@ void main()
   Spellcast Hook Code
   Added 2003-06-20 by Georg
   If you want to make changes to all spells,
-  check mi_inc_spells.nss to find out more
+  check inc_customspells.nss to find out more
 
 */
 

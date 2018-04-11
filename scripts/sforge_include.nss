@@ -19,7 +19,7 @@ cost of the item.
 
 */
 #include "x2_inc_itemprop"
-#include "mi_log"
+#include "inc_log"
 const string SOULFORGING = "SOULFORGING"; // For logging
 const string SOULFORGE_ITEM    = "SOULFORGE_ITEM"; // Notes which item we've
                                                    // targetted.

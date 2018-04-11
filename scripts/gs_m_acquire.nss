@@ -7,12 +7,11 @@
 #include "gs_inc_time"
 #include "gs_inc_xp"
 #include "inc_itemupdates"
-#include "mi_inc_divinatio"
-#include "mi_log"
-#include "mi_inc_factions"
-#include "mi_inc_disguise"
+#include "inc_divination"
+#include "inc_log"
+#include "inc_factions"
+#include "inc_disguise"
 #include "fb_inc_chatutils"
-#include "inc_artefactfade"
 #include "inc_stacking"
 
 const int GS_TIMEOUT = 300; //5 minutes
@@ -72,10 +71,6 @@ void main()
     // Set the item's ILR if it's not already set.
 	SetItemILR(oAcquired);
 
-    // Fade any artefact upon interaction.
-    if (fadeIsAnArte(oAcquired))
-        fadeSpecificArtefactFor(oAcquiredBy, oAcquired);
-	
     if (!GetIdentified(oAcquired) && GetLocalInt(oAcquired, "ID_ATTEMPTED"))
     {
       int nStack = GetItemStackSize(oAcquired);

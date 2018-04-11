@@ -40,8 +40,8 @@
 */
 
 #include "fb_inc_chatutils"
-#include "mi_inc_factions"
-#include "mi_log"
+#include "inc_factions"
+#include "inc_log"
 //#include "x0_i0_position"
 #include "zzdlg_main_inc"
 

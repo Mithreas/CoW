@@ -22,11 +22,11 @@
     GetPcDlgSpeaker = GetPCSpeaker
     GetDlgSelection - gets user selection (index of the response list)
 */
-#include "mi_log"
+#include "inc_log"
 #include "zdlg_include_i"
 #include "gs_inc_finance"
 #include "gs_inc_listener"
-#include "mi_inc_factions"
+#include "inc_factions"
 
 const string MAIN_MENU = "MAIN_BANK_MENU";
 const string AMOUNT_MENU = "AMOUNT_BANK_MENU";

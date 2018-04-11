@@ -1,8 +1,8 @@
 #include "gs_inc_pc"
 #include "gs_inc_quarter"
-#include "mi_inc_favsoul"
-#include "mi_inc_warlock"
-#include "mi_inc_backgr"
+#include "inc_favsoul"
+#include "inc_warlock"
+#include "inc_backgrounds"
 
 int StartingConditional()
 {

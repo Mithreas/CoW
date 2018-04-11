@@ -6,7 +6,7 @@
   Pseudo-heartbeat that is fired while training. To use, ExecuteScript() on
   the training PC.
 */
-#include "mi_traininc"
+#include "inc_activity"
 void main()
 {
   Trace(TRAINING, "Called training heartbeat script");

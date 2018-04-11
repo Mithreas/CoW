@@ -13,7 +13,7 @@
 //:: Created On: August 2003
 //:://////////////////////////////////////////////
 #include "x2_inc_compon"
-#include "mi_crimcommon"
+#include "inc_crime"
 void main()
 {
   /*

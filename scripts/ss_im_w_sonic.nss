@@ -2,7 +2,7 @@
   Spellsword Imbue Weapon Ability - SONIC
 */
 
-#include "mi_inc_spllswrd"
+#include "inc_spellsword"
 
 void main()
 {

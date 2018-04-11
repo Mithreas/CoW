@@ -1,4 +1,3 @@
-#include "gs_inc_chain"
 #include "gs_inc_fixture"
 #include "gs_inc_flag"
 #include "gs_inc_iprop"
@@ -6,10 +5,10 @@
 #include "gs_inc_text"
 #include "gs_inc_time"
 #include "gs_inc_common"
-#include "mi_inc_pop"
+#include "inc_disguise"
+#include "inc_pop"
 #include "fb_inc_chatutils"
 #include "gvd_inc_seeds"
-#include "mi_inc_disguise"
 
 const string GS_TEMPLATE_CORPSE = "gs_placeable017";
 const string GS_TEMPLATE_BODY = "gvd_pl_body";
@@ -35,23 +34,6 @@ void main()
         gsCMCopyItem(oItem, oLostBy, TRUE);
         DestroyObject(oItem);
         return;
-    }
-
-    //chain
-    if (sTag == "GS_CHAIN")
-    {
-        gsCHRemoveChain(oItem);
-        return;
-    }
-
-    // slave/prisoner clamp
-    if (sTag == "gvd_slave_clamp") {
-      // remove (slave) tag from name
-      fbNARemoveNameModifier(oLostBy, FB_NA_MODIFIER_DISGUISE);
-
-      if (GetIsPCDisguised(oLostBy)) {      
-        fbNAAddNameModifier(oLostBy, FB_NA_MODIFIER_DISGUISE, "", " (Disguised)");
-      }
     }
 
     //::Kirito-Spellsword path

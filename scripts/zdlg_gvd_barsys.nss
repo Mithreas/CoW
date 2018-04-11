@@ -6,7 +6,7 @@
 */
 
 #include "zdlg_include_i"
-#include "gvd_inc_bar"
+#include "inc_bar"
 
 const string MAINOPTIONS = "MAINOPTIONS";
 const string DONE    = "MES_DONE";

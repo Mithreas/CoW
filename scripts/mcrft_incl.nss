@@ -1,7 +1,7 @@
 /*
   Mith's Crafting System v1.0
 */
-#include "mi_log"
+#include "inc_log"
 const string CRAFTING = "M_CRAFTING"; // For logging.
 
 // Tags

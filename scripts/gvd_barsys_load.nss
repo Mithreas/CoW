@@ -1,4 +1,4 @@
-#include "gvd_inc_bar"
+#include "inc_bar"
 #include "nwnx_creature"
 #include "nwnx_object"
 #include "nwnx_alts"

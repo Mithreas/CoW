@@ -19,7 +19,7 @@
 #include "gs_inc_spell"
 #include "inc_spells"
 #include "inc_generic"
-#include "mi_inc_spells"
+#include "inc_customspells"
 void main()
 {
 

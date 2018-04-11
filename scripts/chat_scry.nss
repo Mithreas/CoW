@@ -1,7 +1,7 @@
 #include "__server_config"
 #include "fb_inc_chatutils"
 #include "fb_inc_names"
-#include "mi_inc_scry"
+#include "inc_customspells"
 #include "gs_inc_spell"
 #include "gs_inc_worship"
 #include "inc_examine"

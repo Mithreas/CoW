@@ -7,7 +7,7 @@
 // Additions and changes from original copyright (c) 2005-2006 Greyhawk0
 
 #include "zzdlg_lists_inc"
-#include "mi_log"
+#include "inc_log"
 const string ZDIALOG = "ZDIALOG"; // For tracing
 
 // SOURCE FILE CONVENTIONS - START

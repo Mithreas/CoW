@@ -3,7 +3,6 @@
 #include "inc_spells"
 #include "gs_inc_respawn"
 #include "fb_inc_names"
-#include "gvd_inc_rope"
 #include "gs_inc_death"
 
 /* *** subdual system ***
@@ -239,28 +238,6 @@ void gvd_ApplyUnconscious(object oPC, int iSubdualTimeout) {
 
 void gvd_ReviveUnconscious(object oPC) {
 
-  // first check if the PC hasn't been tied up with a lasso in the meantime
-  int iLassoTyingState = GetLocalInt(oPC, "GVD_LASSO_TYING_STATE");
-  if (iLassoTyingState == 1) {
-    // PC is tied up, postpone revival
-
-    WriteTimestampedLogEntry("SUBDUAL SYSTEM: Reviving Unconscious Postponed due to tie up with Lasso for: " + GetName(oPC));
-    
-    // if lasso tying state = 1, then the PC is tied up succesfully
-
-    // PC wants to break free and succeeds within 2.5 to 5 RL minutes depending on rope use skill
-    int iRopeUseSkill = GetSkillRankRopeUse(oPC); // this skill will roughly be between 10 and 40 normally depending on char level (see gvd_inc_rope)
-
-    // we'll use rope skill * 3 to shorten the time. Real skilled rope users could have 50ish, so that would mean 150 seconds bonus
-    float fSubdualTimeout = 300.0f - (iRopeUseSkill * 3);
-    DelayCommand(fSubdualTimeout, gvd_ReviveUnconscious(oPC)); 
-    DelayCommand(fSubdualTimeout, FloatingTextStringOnCreature("You finally manage to break free from the ropes!", oPC));
-
-    // flag the pc as tied up
-    SetLocalInt(oPC, "GVD_LASSO_TYING_STATE", 2);
-
-  } else {
-
     WriteTimestampedLogEntry("SUBDUAL SYSTEM: Reviving Unconscious: " + GetName(oPC));
 
     object oHide = gsPCGetCreatureHide(oPC);
@@ -270,128 +247,5 @@ void gvd_ReviveUnconscious(object oPC) {
 
     // ability drains similar to death
     gvdREApplyNewSubdualPenalty(oPC);
-
-  }
+}
   
-}
-
-/*
-void _gvd_ApplyUnconscious() {
-
-  object oPC = OBJECT_SELF;
-
-  // store the location oPC got knocked Unconscious for fallback purposes
-  SetLocalLocation(gsPCGetCreatureHide(oPC), "GVD_LOC_Unconscious", GetLocation(oPC));
-
-  // Remove effects.
-  effect eEffect = GetFirstEffect(oPC);
-  while (GetIsEffectValid(eEffect))
-  {
-    RemoveEffect(oPC, eEffect);
-    eEffect = GetNextEffect(oPC);
-  }
-
-  //drop corpses
-  gsPODropAllCorpses(oPC);
-
-  // teleport
-  SetPlotFlag(oPC, TRUE);
-  ApplyResurrection(oPC);
-  ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectHeal(GetMaxHitPoints() + 10), oPC);
-  ClearAllActions(TRUE);        
-  ActionJumpToObject(GetObjectByTag("GVD_TARGET_Unconscious"));
-  ActionDoCommand(DelayCommand(6.0, SetPlotFlag(oPC, FALSE)));
-  ActionDoCommand(SetCommandable(TRUE));
-  SetCommandable(FALSE);  
-
-  //create body
-  object oObject1 = CreateObject(OBJECT_TYPE_PLACEABLE, GS_TEMPLATE_BODY, GetLocation(oPC));
-
-  if (GetIsObjectValid(oObject1)) {
-        int nGold = GetGold();
-        int nGender = GetGender(oPC);
-
-        SetName(oObject1, GetName(oPC) + " (" + (nGender == GENDER_MALE ? "Male " : "Female ") + GetSubRace(oPC) + ")");
-        SetLocalString(oObject1, "GS_TARGET", gsPCGetPlayerID(oPC));
-        SetLocalInt(oObject1, "GS_GENDER", nGender);
-        SetLocalInt(oObject1, "GS_SIZE", GetCreatureSize(oPC));
-        SetLocalObject(oPC, "GVD_BODY", oObject1);
-  }
-
-  SetLocalInt(gsPCGetCreatureHide(oPC), "GVD_SUBDUAL_TIMESTAMP", gsTIGetActualTimestamp());
-
-}
-*/
-
-void gvd_LassoSubdual(object oPC, object oTarget, object oLasso) {
-
-  // double check if target is "dead" and not tied up already
-  if (GetLocalInt(oTarget, "GVD_LASSO_TYING_STATE") == 0) {
-
-    if ((GetCurrentHitPoints(oTarget) < -10) && (gvd_GetSubdualState(oTarget) == 1)) {
-
-      WriteTimestampedLogEntry("SUBDUAL SYSTEM: " + GetName(oTarget) + " is unconscious and being tied up by " + GetName(oPC));
-   
-      // walk to target and animation
-      AssignCommand(oPC, ActionMoveToLocation(GetLocation(oTarget)));
-      AssignCommand(oPC, ActionDoCommand(SetFacingPoint(GetPosition(oTarget))));
-      AssignCommand(oPC, ActionPlayAnimation(ANIMATION_LOOPING_GET_LOW, 1.0, 3.0));
-
-      FloatingTextStringOnCreature("You try to tie the target up...", oPC);
-      FloatingTextStringOnCreature("You barely reach consciousness as someone is attempting to tie you up!", oTarget);
-
-      DestroyObject(oLasso);
-
-      // save lasso wielder PC as variable on target so we can use it later
-      SetLocalObject(oTarget, "GVD_LASSO_TYER", oPC);    
-      SetLocalInt(oTarget, "GVD_LASSO_TYING_STATE", 1);
-
-      DelayCommand(3.0f, gvd_LassoSubdualResult(oPC, oTarget));
-
-    } else {     
-      // not dead from subdual fight 
-      FloatingTextStringOnCreature("You can't tie the target up", oPC);
-    }
-
-  } else {
-    // already tied up
-    FloatingTextStringOnCreature("The target is already tied up", oPC);
-  }
-
-}
-
-void gvd_LassoSubdualResult(object oPC, object oTarget) {
-
-  // check the -unrelent mode of the target
-  if (gvd_GetUnrelentMode(oTarget) == 1) {
-    // forcibly struggle
-
-    // 5% chance on succes/survival
-    if (d20(1) == 1) { 
-      // lucky target
-      WriteTimestampedLogEntry("SUBDUAL SYSTEM: " + GetName(oTarget) + " struggles forcibly and succeeds");
-
-      FloatingTextStringOnCreature(GetName(oTarget) + " struggles forcibly and escapes the rope!", oPC);        
-      FloatingTextStringOnCreature("You struggle forcibly and escape the rope!", oTarget);        
-
-    } else {
-      // target dies in the struggle
-      WriteTimestampedLogEntry("SUBDUAL SYSTEM: " + GetName(oTarget) + " struggles forcibly and dies");
-
-      FloatingTextStringOnCreature(GetName(oTarget) + " struggles forcibly and dies in the attempt.", oPC);        
-      FloatingTextStringOnCreature("With your last strength you try to forcibly resist, but you fail and die.", oTarget);        
-      DoDeath(oTarget);
-    }
-
-    DeleteLocalObject(oTarget, "GVD_LASSO_TYER");
-    DeleteLocalInt(oTarget, "GVD_LASSO_TYING_STATE");
-
-  } else {
-    // target let's itself be tied up and will try to break free slowly
-    WriteTimestampedLogEntry("SUBDUAL SYSTEM: " + GetName(oTarget) + " is succesfully tied up by " + GetName(oPC));
-    FloatingTextStringOnCreature("... and succeed!", oPC);  
-    FloatingTextStringOnCreature("You are now tied up.", oTarget);      
-
-  }
-
-}

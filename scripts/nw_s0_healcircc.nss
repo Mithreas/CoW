@@ -17,9 +17,9 @@
 //:://////////////////////////////////////////////
 
 #include "nw_i0_spells"
-#include "mi_inc_spells"
+#include "inc_customspells"
 #include "inc_healer"
-#include "mi_inc_class"
+#include "inc_class"
 
 int GetIsPureHealer(object oCaster);
 

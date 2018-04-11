@@ -266,8 +266,8 @@ void gsPLLoadArea(object oArea = OBJECT_SELF)
       sID = SQLGetData(1);
       iPlaceableID = StringToInt(sID);
       sResRef = SQLGetData(2);
-      sName = SQLDecodeSpecialChars(SQLGetData(3));
-      sDescription = SQLDecodeSpecialChars(SQLGetData(4));
+      sName = SQLGetData(3);
+      sDescription = SQLGetData(4);
       sLocation = SQLGetData(5);
       lLocation = APSStringToLocation(sLocation);
 

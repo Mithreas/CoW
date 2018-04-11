@@ -9,7 +9,7 @@
 //
 // Aug 2015: Do the same for chests and gold piles. 
 #include "gs_inc_encounter"
-#include "mi_log"
+#include "inc_log"
 
 const string TRAPS = "TRAPS"; // for logging
 void main()

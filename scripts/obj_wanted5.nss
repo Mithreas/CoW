@@ -11,7 +11,7 @@
   This script fires when the Wanted token is activated, allowing people to find
   out their current bounty.
 */
-#include "mi_crimcommon"
+#include "inc_crime"
 void main()
 {
   int nBounty = GetLocalInt(GetItemActivated(), BOUNTY);

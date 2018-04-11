@@ -12,21 +12,15 @@ are internal only.
 #include "fb_inc_chatutils"
 #include "gs_inc_combat2"
 #include "gs_inc_language"
-#include "gs_inc_worship"
-#include "gs_inc_xp"
-#include "gvd_inc_slave"
-#include "inc_notifychange"
 #include "inc_vampire"
-#include "mi_inc_class"
-#include "mi_inc_climb"
-#include "mi_inc_disguise"
-#include "mi_inc_divinatio"
-#include "mi_inc_relation"
-#include "mi_inc_scry"
-#include "mi_inc_spells"
-#include "mi_inc_tells"
-#include "mi_inc_xfer"
-#include "mi_log"
+#include "inc_class"
+#include "inc_climb"
+#include "inc_divination"
+#include "inc_relations"
+#include "inc_customspells"
+#include "inc_tells"
+#include "inc_xfer"
+#include "inc_log"
 #include "nwnx_chat"
 #include "x0_i0_match"
 #include "x3_inc_string"
@@ -517,7 +511,6 @@ string fbCHCommandList(object oSpeaker)
       (GetCanSendImage(oSpeaker) && !GetLocalInt(oHide, "SPELLSWORD")) ? STRING_COLOR_GREEN : STRING_COLOR_RED);
   }
 
-  sList += _fbCHPrepareChatCommand("-relevel", NotifyChangesQualifyForRelevel(oSpeaker) ? STRING_COLOR_GREEN : STRING_COLOR_RED);
   sList += _fbCHPrepareChatCommand("-respite", (GetIsHealer(oSpeaker) && GetLevelByClass(CLASS_TYPE_CLERIC, oSpeaker) >= 28) ? STRING_COLOR_GREEN : STRING_COLOR_RED);
   sList += _fbCHPrepareChatCommand("-reveal", STRING_COLOR_GREEN);
   sList += _fbCHPrepareChatCommand("-revealparty", STRING_COLOR_GREEN);
@@ -1153,15 +1146,6 @@ string fbDoLooksAndGetString(object first, object second)
                       "GS_PERMISSION_CLASS_" + IntToString(CLASS_TYPE_HARPER))))
                 {
                   sMessage += txtFuchsia + "This character wears a harper pin!</c>\n";
-                }
-
-                // added by Dunshine, check for slave clamp
-                if (gvd_CheckIsPrisoner(second)) {
-                    sMessage += "\n" + txtLime + "This character wears a slave clamp, marking it as a prisoner.</c>\n";
-                } else {
-                    if (gvd_CheckIsSlave(second)) {
-                        sMessage += "\n" + txtLime + "This character wears a slave clamp, marking it owned by " + gvd_GetSlaveOwnerName(second) + ".</c>\n";
-                    }
                 }
 
                 // Radiant Heart seals

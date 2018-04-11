@@ -23,7 +23,7 @@
 //:://////////////////////////////////////////////
 
 #include "x2_inc_craft"
-#include "mi_inc_spells"
+#include "inc_customspells"
 
 void main()
 {

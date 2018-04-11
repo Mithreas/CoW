@@ -39,7 +39,7 @@ string GetStringElement( int index, string list, object holder = OBJECT_SELF);
 int ReplaceStringElement(int index, string newitem, string list, object holder);
 
 // Begins a list iteration for string values
-string GetFirstStringElement( string list, object holder );
+string GetFirstStringElement( string list, object holder = OBJECT_SELF);
 
 // Returns the next item in a list iteration
 string GetNextStringElement();
@@ -240,7 +240,7 @@ int ReplaceStringElement(int index, string newitem, string list, object holder)
 }
 
 // Begins a list iteration for string values
-string GetFirstStringElement( string list, object holder )
+string GetFirstStringElement( string list, object holder = OBJECT_SELF )
 {
     object oModule = GetModule();
     SetLocalInt(oModule, "LISTS_CURRENT_COUNT", GetElementCount( list, holder ));

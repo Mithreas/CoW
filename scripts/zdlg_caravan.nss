@@ -14,7 +14,7 @@
 */
 #include "zdlg_include_i"
 #include "gs_inc_subrace"
-#include "mi_inc_caravan"
+#include "inc_caravan"
 
 //------------------------------------------------------------------------------
 // Set up some constants to use for list and variable names.

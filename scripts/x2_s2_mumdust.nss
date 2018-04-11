@@ -14,7 +14,7 @@
 
 #include "inc_spells"
 #include "inc_sumstream"
-#include "mi_inc_spells"
+#include "inc_customspells"
 #include "x2_inc_spellhook"
 
 void main()

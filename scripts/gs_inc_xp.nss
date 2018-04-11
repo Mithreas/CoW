@@ -6,11 +6,10 @@
 #include "gs_inc_subrace"
 #include "gs_inc_text"
 #include "gs_inc_time"
-#include "mi_inc_checker"
+#include "inc_checker"
 #include "__server_config"
-#include "inc_bonuses"
 #include "inc_spells"
-#include "gvd_inc_adv_xp"
+#include "inc_adv_xp"
 
 //void main() {}
 
@@ -155,12 +154,9 @@ void gsXPRewardKill(object oVictim = OBJECT_SELF, float fRange = 40.0)
             }
             else
             {
-                // dunshine: don't count lassoed creatures in the rating calculations
-                if (NWNX_Object_GetEventHandler(oCreature, CREATURE_EVENT_HEARTBEAT) != "gvd_roped_hb") {
-                  fRating     = GetChallengeRating(oCreature) / 2.0;
-                  fRating    *= fRating;
-                  fRatingNPC += fRating;
-                }
+                fRating     = GetChallengeRating(oCreature) / 2.0;
+                fRating    *= fRating;
+                fRatingNPC += fRating;
             }
         }
 
@@ -362,8 +358,7 @@ void gsXPGiveExperience(object oCreature, int nAmount, int nFloat = TRUE, int nK
     {
         if (level > GetHitDice(oCreatureToReward)) // We deleveled
         {
-            VerifyQuickbarMetaMagic(oCreatureToReward);
-            ApplyCharacterBonuses(oCreatureToReward, TRUE);
+		  ExecuteScript("gs_m_level_down", oCreatureToReward);
         }
     }
 

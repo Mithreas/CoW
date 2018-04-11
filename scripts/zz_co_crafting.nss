@@ -21,11 +21,11 @@ zz_co_crafting for it to work (to change this, do a find+replace on all the plac
 where zz_co_crafting is mentioned).
 */
 
-#include "gs_inc_istate"
 #include "fb_inc_chatutils"
-#include "zzdlg_main_inc"
-#include "md_inc_conclrace"
+#include "inc_class"
+#include "gs_inc_istate"
 #include "gs_inc_pc"
+#include "zzdlg_main_inc"
 
 const string FB_RESPONSES = "FB_RESPONSES";
 

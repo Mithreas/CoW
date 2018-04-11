@@ -5,7 +5,7 @@
 #include "gs_inc_event"
 #include "gs_inc_flag"
 #include "gs_inc_time"
-#include "mi_inc_weather"
+#include "inc_weather"
 
 const int GS_TIMEOUT = 7200; //2 hours
 
@@ -256,6 +256,8 @@ void main()
     }
 
    //::  Visual Effects OnSpawn
+   effect eFX;
+   
     if (GetLocalInt(OBJECT_SELF, "AR_FX_GHOST"))                //::  Ghost
     {
         eFX = SupernaturalEffect(EffectVisualEffect(VFX_DUR_GHOSTLY_VISAGE_NO_SOUND));

@@ -1,5 +1,5 @@
-#include "mi_inc_checker"
-#include "mi_log"
+#include "inc_checker"
+#include "inc_log"
 
 // Returns TRUE if the PC is a completely legal first level character, false
 // otherwise. Method _1 initialises variables and checks stats and hitpoints.

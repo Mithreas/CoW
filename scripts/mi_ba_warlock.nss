@@ -1,5 +1,5 @@
 // Turns the PC into a warlock.  Muahaha.
-#include "mi_inc_warlock"
+#include "inc_warlock"
 void main()
 {
   object oWarlock = OBJECT_SELF;

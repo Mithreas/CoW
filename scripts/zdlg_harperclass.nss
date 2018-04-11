@@ -6,7 +6,7 @@
     Allows Harper Agents to select their class.
     You can only do this once (and default to regular agent otherwise).
 */
-#include "mi_inc_class"
+#include "inc_class"
 #include "inc_bonuses"
 #include "zdlg_include_i"
 

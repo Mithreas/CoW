@@ -1,4 +1,4 @@
-#include "mi_inc_database"
+#include "inc_database"
 
 // Returns a space delimited list of topic IDs from the provided forum.
 // Empty string if failure.

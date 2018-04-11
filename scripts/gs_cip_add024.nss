@@ -1,6 +1,7 @@
 #include "gs_inc_common"
 #include "gs_inc_craft"
 #include "gs_inc_iprop"
+#include "gs_inc_language"
 #include "gs_inc_text"
 #include "gs_inc_worship"
 #include "gs_inc_xp"

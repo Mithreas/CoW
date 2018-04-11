@@ -10,7 +10,7 @@
 //:: Created By: Mord
 //:: Created On: 3/10/2017
 //:://////////////////////////////////////////////
-#include "gvd_inc_contain"
+#include "inc_holders"
 #include "nwnx_creature"
 #include "nwnx_object"
 #include "x3_inc_string"

@@ -31,7 +31,7 @@
 //:: Created On: 2003-08-20
 //:://////////////////////////////////////////////
 
-#include "mi_inc_class"
+#include "inc_class"
 #include "X0_I0_SPELLS"
 #include "x2_i0_spells"
 #include "x2_inc_spellhook"

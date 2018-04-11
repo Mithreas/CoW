@@ -13,7 +13,7 @@ By Gulni
 #include "zzdlg_main_inc"
 #include "gs_inc_common"
 #include "gs_inc_language"
-#include "mi_log"
+#include "inc_log"
 #include "fb_inc_chat"
 
 const string DEBUG = "DEBUG";

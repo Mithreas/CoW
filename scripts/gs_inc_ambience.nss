@@ -319,7 +319,7 @@ void gsAMApplyAmbience(int nType, object oArea = OBJECT_SELF, int nOption = GS_A
 //................................................................
 
     //weather
-    // Removed by Mith - mi_inc_weather has replaced this code.
+    // Removed by Mith - inc_weather has replaced this code.
     /*if (nOption & GS_AM_OPTION_WEATHER)
     {
         if (nType != GS_AM_TYPE_NONE)

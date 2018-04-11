@@ -3,12 +3,12 @@
 #include "gs_inc_iprop"
 #include "gs_inc_text"
 #include "inc_bonuses"
-#include "mi_inc_class"
-#include "mi_inc_favsoul"
-#include "mi_inc_warlock"
+#include "inc_class"
+#include "inc_favsoul"
+#include "inc_warlock"
 #include "gvd_inc_subdual"
 #include "x2_i0_spells"
-#include "mi_inc_spllswrd"
+#include "inc_spellsword"
 #include "inc_barbarian"
 #include "inc_paladin"
 #include "nwnx_creature"
@@ -16,7 +16,7 @@
 #include "nwnx_alts"
 #include "nwnx_admin"
 #include "ki_check_bonds"
-#include "ki_inc_horses"
+#include "inc_horses"
 
 void gsUnequipItem(object oItem)
 {

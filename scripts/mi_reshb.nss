@@ -6,7 +6,7 @@
   Pseudo-heartbeat that is fired while researching. To use, ExecuteScript() on
   the praying PC.
 */
-#include "mi_traininc"
+#include "inc_activity"
 void main()
 {
   Trace(TRAINING, "Called research heartbeat script");

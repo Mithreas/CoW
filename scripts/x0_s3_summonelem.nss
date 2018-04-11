@@ -16,7 +16,7 @@
 //:: Latest Update: Andrew Nobbs April 9, 2003
 
 #include "x2_inc_spellhook"
-#include "mi_inc_spllswrd"
+#include "inc_spellsword"
 
 void main()
 {

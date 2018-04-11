@@ -2,9 +2,9 @@
   Spellsword Imbue Weapon Ability - Electric
 */
 
-#include "mi_inc_spllswrd"
+#include "inc_spellsword"
 #include "x2_I0_SPELLS"
-#include "mi_inc_spells"
+#include "inc_customspells"
 #include "inc_spells"
 
 //missile storm function

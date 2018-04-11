@@ -21,7 +21,7 @@
 #include "inc_string"
 #include "inc_tempvars"
 #include "inc_timelock"
-#include "mi_inc_database"
+#include "inc_database"
 #include "nwnx_creature"
 #include "nwnx_object"
 #include "nwnx_alts"
@@ -540,7 +540,7 @@ int AR_GetSpellSaveDC(int nDefaultValue = -1)
     if(nDCOverride) return nDCOverride;
     if(nDefaultValue != -1) return nDefaultValue;
 
-    // We can't include mi_inc_class here without creating dependency loops.
+    // We can't include inc_class here without creating dependency loops.
     // So rather than call GetIsShadowMage, check the hide variable directly.
     if (GetLocalInt(gsPCGetCreatureHide(OBJECT_SELF), "SHADOW_MAGE") &&
         (

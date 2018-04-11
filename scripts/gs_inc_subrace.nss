@@ -11,12 +11,12 @@ See inc_subrace
 #include "inc_generic"
 #include "inc_effect"
 #include "inc_sumstream"
-#include "mi_log"
+#include "inc_log"
 #include "nwnx_creature"
 #include "nwnx_object"
 #include "nwnx_alts"
 #include "nwnx_admin"
-#include "mi_inc_totem"
+#include "inc_totem"
 #include "inc_subrace"
 
 //::  Bloodlines
@@ -348,7 +348,7 @@ void gsSUApplyProperty(object oItem, int nSubRace, int nLevel, int bUpdateNatura
         }
         }
 
-        // for now only check for gold dragon, we can add more types from mi_inc_totem later
+        // for now only check for gold dragon, we can add more types from inc_totem later
         if (iDragonType == MI_TO_DRG_GOLD) {
           AddItemProperty(DURATION_TYPE_PERMANENT,
                           ItemPropertyDamageResistance(IP_CONST_DAMAGETYPE_FIRE,

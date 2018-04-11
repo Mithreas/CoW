@@ -13,12 +13,12 @@ zdlg_registrar
 */
 
 #include "fb_inc_chatutils"
-#include "mi_inc_class"
-#include "mi_inc_factions"
-#include "mi_inc_zdialog"
+#include "inc_class"
+#include "inc_factions"
 #include "gs_inc_time"
 #include "gs_inc_quarter"
 #include "x3_inc_string"
+#include "zdlg_include_i"
 #include "ar_utils"
 
 //in game time, how long between a new token is earned

@@ -2,8 +2,8 @@
   Spellsword Imbue Weapon Ability - MAGIC
 */
 
-#include "mi_inc_spllswrd"
-#include "mi_inc_spells"
+#include "inc_spellsword"
+#include "inc_customspells"
 
 void main()
 {

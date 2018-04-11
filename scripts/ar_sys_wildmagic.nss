@@ -2,7 +2,7 @@
   Name: ar_sys_wildmagic
   Author: ActionReplay
   Date: 24 May 15
-  Description:  Handles the Wild Magic feature used by "ar_sys_faerzress".
+  Description:  Handles the Wild Magic feature used by "ar_sys_wildmagic".
 */
 
 //void main(){}
@@ -13,13 +13,18 @@
 #include "gs_inc_state"
 #include "inc_math"
 
-
+//::  For Wild Mages
+const string AR_WILD_MAGE    = "WILD_MAGE";
+const string AR_SURGE_ACTIVE = "AR_SURGE_ACTIVE";
+const string AR_CHAOS_ACTIVE = "AR_CHAOS_ACTIVE";
+const string AR_FATE_ACTIVE  = "AR_FATE_ACTIVE";
 
 const string AR_WM_CANCEL_NEXT  = "AR_WM_CANCEL_NEXT";       //::  So Spells created by the Wild Magic system does not trigger Wild Magic.
 const string AR_DOUBLE_SURGE    = "AR_DOUBLE_SURGE";         //::  Flag so double surge can't happen again, and again and...
 
 const string LOG_SURGE = "WMSURGE";   //:: For tracing
 
+const string WILD_MAGIC_AREA = "WILD_MAGIC";
 
 //::----------------------------------------------------------------------------
 //:: DECLARATION
@@ -32,6 +37,11 @@ void ar_FaerzressWildMagicTable(object oPC, object oTarget, location lTarget, in
 //::  Internal helper function for scaling of Gem Wild Surge (Too much logic to put in table!)
 void _arCreateWMGems(object oPC, int nCasterLevel, int isWildMage);
 
+//:: Called from gs_spellscript, this hooks into the spellcasting system.
+//:: Checks if the apropriate conditions are met and if so will proceed to apply
+//:: a Wild Magic effect from ar_FaerzressWildMagicTable found in "ar_sys_wildmagic".
+//:: Hooked into "gs_spellscript"
+void ar_FaerzressWildMagic(object oPC, object oTarget, location lTarget, int nSpell, int nHarmful);
 
 //::----------------------------------------------------------------------------
 //:: IMPLEMENTATION
@@ -1508,5 +1518,66 @@ void _arCreateWMGems(object oPC, int nCasterLevel, int isWildMage) {
     length  = Random(nECL+1);
     for (i = 0; i < length; i++) {
         CreateItemOnObject("nw_it_gem006", oPC);
+    }
+}
+//::----------------------------------------------------------------------------
+//:: WILD MAGIC TABLE
+//::----------------------------------------------------------------------------
+
+void ar_FaerzressWildMagic(object oPC, object oTarget, location lTarget, int nSpell, int nHarmful) {
+    object oArea        = GetArea(oPC);
+    int nFaer           = GetLocalInt(oArea, WILD_MAGIC_AREA);
+    object oHide        = gsPCGetCreatureHide(oPC);
+    int isWildMage      = GetLocalInt(oHide, AR_WILD_MAGE);
+    int isArcaneMagic   = miSPGetLastSpellArcane(oPC);
+    int nFaerzressBonus = d6();
+    int nWildMageBonus  = GetLocalInt(oPC, "AR_WM_BONUS");  //::  Bonus from a "special" NPC :)
+
+    //::  Non-Arcane magic will be ignored
+    if ( isArcaneMagic == FALSE )  return;
+
+    //::  Magical Items will be ignored
+    if ( GetIsObjectValid(GetSpellCastItem()) ) return;
+
+    //:: Ignore crafting.  Not sure if this will work as intended.
+    if ( GetBaseItemType(oTarget) == BASE_ITEM_BLANK_POTION || GetBaseItemType(oTarget) == BASE_ITEM_BLANK_SCROLL || GetBaseItemType(oTarget) == BASE_ITEM_BLANK_WAND ||
+         GetBaseItemType(oTarget) == BASE_ITEM_ENCHANTED_POTION || GetBaseItemType(oTarget) == BASE_ITEM_ENCHANTED_SCROLL || GetBaseItemType(oTarget) == BASE_ITEM_ENCHANTED_WAND ) {
+        return;
+    }
+
+    //::  Faerzress not high enough, ignore.  Wild Mages bypass this.
+    int bForced = GetLocalInt(oArea, WILD_MAGIC_AREA);  //::  DM Forced Area?
+    if ( !nFaer && !isWildMage) 
+	{
+        return;
+    }
+
+    //::  Different Calculations for Wild Mages
+    if ( isWildMage ) {
+        if ( nFaerzressBonus < 0 ) nFaerzressBonus = 0;
+        int nChance = d20() + nFaerzressBonus + nWildMageBonus;
+
+        //::  Automatic Wild Surge from '-surge', '-chaos' & '-fate' command
+        if ( GetLocalInt(oPC, AR_SURGE_ACTIVE) == TRUE ||
+             GetLocalInt(oPC, AR_CHAOS_ACTIVE) == TRUE ||
+             GetLocalInt(oPC, AR_FATE_ACTIVE)  == TRUE ) {
+            DeleteLocalInt(oPC, AR_SURGE_ACTIVE);
+            nChance = 20;
+        }
+
+        //nChance = 20;       //::  TODO:  For testing.
+        if ( nChance >= 20 ) {
+            ar_FaerzressWildMagicTable(oPC, oTarget, lTarget, nSpell, nHarmful);
+        }
+        return;
+    }
+
+    //::  Default calculations for non Wild Mages in Faerzress areas.
+    //::  Chance for a wild surge:  Larger chance if stronger Faerzress.
+    int nChance = d20() + nFaerzressBonus;
+    if ( nChance >= 20 ) {
+
+        //_arLogMessage("Wild Surge occurrence in " + GetName(oArea) + ", spell cast by " + GetName(oPC, TRUE) + " (True Name)!", TRUE);
+        ar_FaerzressWildMagicTable(oPC, oTarget, lTarget, nSpell, nHarmful);
     }
 }

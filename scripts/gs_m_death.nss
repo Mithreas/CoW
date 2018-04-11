@@ -5,33 +5,10 @@ void main()
 {
     object oDied = GetLastPlayerDied();
 
-    // Dunshine: this function doesn't work in player death event, no idea how this could have ever worked the last 4 months...
-    //object oKiller = GetLastKiller();
-
-    // instead use this one:
     object oKiller = GetLastHostileActor(oDied);
 
     if (gsFLGetAreaFlag("PVP", oDied))
     {
-        // Dunshine: moved this from DoDeath, since the Cordor Arena is a PVP flagged area and this would never execute anymore:
-
-        // check if the PC that died was killed in the Cordor Arena
-        object oArena = GetObjectByTag(OBJECT_ARENA);
-        if (GetLocalObject(oArena, "gvd_pc_fighter") == oDied) {
-
-          // handle the end of the fight
-          if (oKiller != OBJECT_INVALID) {
-            AssignCommand(oKiller, gvd_EndArenaFight(oDied));
-          } else {
-            gvd_EndArenaFight(oDied);
-          }
-
-          // make a cleanable bloodstain
-          string sDamageType = _GetLargestDamageDealt(oDied);
-          BMCreateBloodStainAtLocation(oDied, oKiller, sDamageType);
-
-        }
-
         DelayCommand(20.0, ApplyResurrection(oDied));
         return;
     }

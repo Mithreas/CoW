@@ -13,7 +13,7 @@
 //:: Created By: Preston Watamaniuk
 //:: Created On: Aug 1, 2001
 //:://////////////////////////////////////////////
-#include "mi_inc_spells"
+#include "inc_customspells"
 #include "nwnx_alts"
 
 void main()

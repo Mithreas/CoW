@@ -1,5 +1,6 @@
 #include "fb_inc_chatutils"
-#include "ar_sys_faerzress"
+#include "ar_sys_wildmagic"
+#include "inc_customspells"
 #include "inc_examine"
 
 const string HELP = "Wild Mages can use the <c€€ >-surge</c> spell at least once per rest and will gain an additional use every 6th Wizard Level. Surge will make sure the next spellcast will always produce a Wild Surge. Wild Surges always replenish the last spellcast for the user.";

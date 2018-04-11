@@ -2,13 +2,13 @@
 /* Expanded and rewritten by Mithreas; see zdlg_quarter for design */
 
 #include "gs_inc_class"
-#include "mi_inc_database"
+#include "inc_database"
 #include "gs_inc_finance"
 #include "gs_inc_message"
 #include "gs_inc_pc"
 #include "gs_inc_subrace"
 #include "gs_inc_time"
-#include "mi_inc_factions"
+#include "inc_factions"
 
 /*
   DB table

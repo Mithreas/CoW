@@ -20,7 +20,7 @@
 //:://////////////////////////////////////////////
 
 #include "x0_i0_spells"
-#include "mi_inc_spells"
+#include "inc_customspells"
 void DoDamage(int nDamage, object oTarget)
 {
     effect eVis = EffectVisualEffect(VFX_IMP_SONIC);

@@ -2,8 +2,8 @@
 #include "fb_inc_chatutils"
 #include "gs_inc_encounter"
 #include "gs_inc_subrace"
-#include "mi_inc_class"
-#include "mi_inc_pop"
+#include "inc_class"
+#include "inc_pop"
 #include "inc_examine"
 
 const string HELP = "Forest Gnomes, Wild Dwarves, Wild & Wood Elves, Rangers and Harper Scouts Scouts can use the -track command to check the area for creatures. These classes can learn something of what is likely to spawn in the current area.";

@@ -12,8 +12,8 @@
 //:: Created On: March 26, 2009
 //:://////////////////////////////////////////////
 
-#include "mi_inc_database"
-#include "mi_inc_xfer"
+#include "inc_database"
+#include "inc_xfer"
 #include "inc_stacking"
 
 // Database table needs to have the following schema:

@@ -14,7 +14,7 @@
 //:://////////////////////////////////////////////
 
 
-#include "mi_inc_traps"
+#include "inc_traps"
 void main()
 {
     if (miTRPreHook()) return;

@@ -1,6 +1,6 @@
 #include "gs_inc_combat"
 #include "gs_inc_event"
-#include "mi_crimcommon"
+#include "inc_crime"
 
 void main()
 {
@@ -20,6 +20,7 @@ void main()
     */
     SpeakString("Stop, thief! GUARDS!", TALKVOLUME_SHOUT);
     object oItem = GetInventoryDisturbItem(); // The item that was stolen
+    object oPickPocketer = GetLastDisturbed();
     int nValue = 0;
     int nNation = CheckFactionNation(OBJECT_SELF);
 

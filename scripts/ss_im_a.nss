@@ -4,9 +4,9 @@
 */
 #include "nw_i0_spells"
 
-#include "mi_inc_spells"
+#include "inc_customspells"
 
-#include "mi_inc_spllswrd"
+#include "inc_spellsword"
 
 void main()
 {

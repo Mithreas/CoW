@@ -9,7 +9,7 @@
 #include "nwnx_object"
 #include "nwnx_alts"
 #include "nwnx_admin"
-#include "mi_inc_spllswrd"
+#include "inc_spellsword"
 #include "gs_inc_pc"
 
 int StartingConditional()

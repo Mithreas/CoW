@@ -1,5 +1,5 @@
 #include "gs_inc_time"
-#include "mi_inc_divinatio"
+#include "inc_divination"
 #include "inc_ore_vein"
 
 const int GS_DAMAGE = 25;

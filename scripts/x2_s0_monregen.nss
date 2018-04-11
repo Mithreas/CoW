@@ -14,7 +14,7 @@
 //:: Last Updated By: Andrew Nobbs May 09, 2003
 //:: 2003-07-07: Stacking Spell Pass, Georg Zoeller
 
-#include "mi_inc_spells"
+#include "inc_customspells"
 #include "x0_i0_spells"
 
 void main()
@@ -24,7 +24,7 @@ void main()
     //--------------------------------------------------------------------------
     // Spellcast Hook Code
     // Added 2003-06-20 by Georg
-    // If you want to make changes to all spells, check mi_inc_spells.nss to
+    // If you want to make changes to all spells, check inc_customspells.nss to
     // find out more
     //--------------------------------------------------------------------------
     if (!X2PreSpellCastCode())

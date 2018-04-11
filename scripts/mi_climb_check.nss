@@ -3,7 +3,7 @@
 // position and then have to make a skill check. If they fail, they may take
 // damage and may end up back where they started depending on the relative
 // heights of the two locations.
-#include "mi_inc_climb"
+#include "inc_climb"
 #include "__server_config"
 void main()
 {

@@ -6,7 +6,7 @@
 #include "nwnx_admin"
 #include "inc_examine"
 #include "gs_inc_pc"
-#include "mi_inc_disguise"
+#include "inc_disguise"
 
 const string HELP  = "<cþôh>-name</c><cþ£ > Text</c>\nChanges your portrait to <cþ£ >Text</c>. You must know the name of the portrait file you wish to use.";
 

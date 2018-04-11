@@ -1,6 +1,6 @@
 #include "fb_inc_chatutils"
 #include "fb_inc_external"
-#include "mi_inc_database"
+#include "inc_database"
 #include "inc_examine"
 
 // Chat command to create forum accounts and set passwords.

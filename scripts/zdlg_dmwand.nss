@@ -16,8 +16,8 @@
 #include "gs_inc_finance"
 #include "gs_inc_listener"
 #include "gs_inc_xp"
-#include "mi_log"
-#include "mi_inc_tells"
+#include "inc_log"
+#include "inc_tells"
 #include "zdlg_include_i"
 #include "zzdlg_color_inc"
 

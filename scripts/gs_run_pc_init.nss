@@ -1,9 +1,8 @@
-#include "mi_inc_class"
-#include "gs_inc_chain"
+#include "inc_class"
 #include "gs_inc_common"
 #include "gs_inc_pc"
 #include "gs_inc_strack"
-#include "mi_inc_citizen"
+#include "inc_citizen"
 
 const string INIT = "INIT"; // for tracing
 
@@ -291,15 +290,6 @@ void gsInitialize()
 
             }
 
-        }
-
-        //chain
-        else if (gsCHGetHasChain())
-        {
-            object oChain = gsCHGetChain();
-
-            gsCHRemoveChain(oChain);
-            gsCHApplyChain(oChain, OBJECT_SELF);
         }
     }
 

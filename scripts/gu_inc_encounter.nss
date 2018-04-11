@@ -8,7 +8,7 @@
 
 //void main() {}
 
-#include "mi_log"
+#include "inc_log"
 
 // Temporary NPC to use for walkmesh probing
 // (we use the existing Dynamic Encounter just for now)

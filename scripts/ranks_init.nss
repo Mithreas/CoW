@@ -1,5 +1,5 @@
 /* ranks_init */
-#include "mi_repcomm"
+#include "inc_reputation"
 
 void ClearTable()
 {

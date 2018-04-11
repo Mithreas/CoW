@@ -25,7 +25,7 @@
 
 #include "x2_I0_SPELLS"
 #include "x2_inc_toollib"
-#include "mi_inc_spells"
+#include "inc_customspells"
 #include "inc_spells"
 
 void RunCombustImpact(object oTarget, object oCaster, int nLevel, int nMetaMagic);
@@ -39,7 +39,7 @@ void main()
     //--------------------------------------------------------------------------
     // Spellcast Hook Code
     // Added 2003-06-20 by Georg
-    // If you want to make changes to all spells, check mi_inc_spells.nss to
+    // If you want to make changes to all spells, check inc_customspells.nss to
     // find out more
     //--------------------------------------------------------------------------
     if (!X2PreSpellCastCode())

@@ -1,6 +1,6 @@
 #include "__server_config"
 #include "fb_inc_chatutils"
-#include "mi_inc_tells"
+#include "inc_tells"
 #include "inc_examine"
 
 const string HELP = "Use the -notells command to bring up a dialog allowing you to turn tells on or off globally, with the option to whitelist or blacklist certain players.";

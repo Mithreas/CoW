@@ -13,7 +13,7 @@
     GetDlgSelection - gets user selection (index of the response list)
 */
 #include "gs_inc_pc"
-#include "mi_log"
+#include "inc_log"
 #include "zdlg_include_i"
 //------------------------------------------------------------------------------
 // Set up some constants to use for list and variable names.

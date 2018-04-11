@@ -1,5 +1,5 @@
 #include "fb_inc_chatutils"
-#include "mi_inc_xfer"
+#include "inc_xfer"
 #include "inc_examine"
 
 const string HELP = "DM Command: Travel instantly to the tell target. This command must be sent as a tell to a player or DM. Adding ' to me' on the end makes the target PC jump to you instead of you to them. Adding the name or number of a server (1 = Surface, 2 = Underdark, 3 = Cordor) makes you jump to that server (in which case it need not be a tell).";

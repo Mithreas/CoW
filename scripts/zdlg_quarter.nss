@@ -59,8 +59,8 @@
 #include "gs_inc_quarter"
 #include "gs_inc_time"
 #include "zdlg_include_i"
-#include "mi_inc_factions"
-#include "mi_inc_backgr"
+#include "inc_factions"
+#include "inc_backgrounds"
 
 //------------------------------------------------------------------------------
 // Set up some constants to use for list and variable names.

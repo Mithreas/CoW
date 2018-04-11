@@ -7,7 +7,7 @@ const string GS_SPT_INDEX       = "GS_SPT_I_";
 const string GS_SPT_SPELL       = "GS_SPT_S_";
 const string GS_SPT_METAMAGIC   = "GS_SPT_M_";
 const string GS_SPT_SPELL_COUNT = "GS_SPT_C_";
-#include "mi_inc_spells"
+#include "inc_customspells"
 //store use of nSpell by oCaster
 void gsSPTCast(object oCaster, int nSpell, int nMetaMagic = METAMAGIC_NONE);
 //decrement spells of caller by stored uses

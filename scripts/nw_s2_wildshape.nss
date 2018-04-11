@@ -32,10 +32,10 @@
 */
 
 #include "fb_inc_zombie"
-#include "mi_inc_totem"
+#include "inc_totem"
 #include "x2_inc_itemprop"
 #include "x3_inc_horse"
-#include "mi_inc_disguise"
+#include "inc_disguise"
 
 const int POLYMORPH_TYPE_TOTEM_5 = 107;
 const int POLYMORPH_TYPE_TOTEM_6 = 108;

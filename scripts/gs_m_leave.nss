@@ -5,7 +5,7 @@
 #include "gs_inc_pc"
 #include "gs_inc_portal"
 #include "gs_inc_text"
-#include "mi_inc_xfer"
+#include "inc_xfer"
 void main()
 {
     object oExiting = GetExitingObject();

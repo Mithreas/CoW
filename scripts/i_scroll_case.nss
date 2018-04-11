@@ -1,7 +1,7 @@
 // i_scroll_case
 // Activation script of scroll cases.
 
-#include "gvd_inc_contain"
+#include "inc_holders"
 #include "zzdlg_color_inc"
 
 void main()

@@ -10,7 +10,7 @@
 
     Notes:      Requires the blood patch and water puddle placeables with
                 the corresponding item tags and ResRefs as described in the
-                the include file "bm_inc_blood".
+                the include file "inc_bloodstains".
 
     EDIT: Now calls to a script so that the same functionality can be called from an item
             or directly from another script, executed on the player in question

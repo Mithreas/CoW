@@ -1,5 +1,5 @@
 #include "fb_inc_chatutils"
-#include "mi_inc_xfer"
+#include "inc_xfer"
 #include "inc_examine"
 
 const string HELP = "Brings up a list of players, and says which server they're on.";

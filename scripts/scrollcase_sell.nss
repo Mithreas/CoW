@@ -1,5 +1,5 @@
 // Sell all contents of a scroll case.
-#include "gvd_inc_contain"
+#include "inc_holders"
 #include "nwnx_object"
 #include "x3_inc_string"
 #include "zdlg_include_i"

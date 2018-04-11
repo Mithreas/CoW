@@ -1,7 +1,7 @@
 #include "gs_inc_combat"
 #include "gs_inc_event"
-#include "mi_inc_divinatio"
-#include "mi_crimcommon"
+#include "inc_divination"
+#include "inc_crime"
 
 void main()
 {

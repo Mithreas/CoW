@@ -1,6 +1,6 @@
 #include "inc_spells"
-#include "mi_inc_spells"
-#include "mi_inc_warlock"
+#include "inc_customspells"
+#include "inc_warlock"
 
 void main()
 {

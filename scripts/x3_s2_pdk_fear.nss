@@ -18,7 +18,7 @@
 
 #include "inc_statuseffect"
 #include "inc_tempvars"
-#include "mi_inc_class"
+#include "inc_class"
 #include "X0_I0_SPELLS"
 #include "x2_inc_spellhook"
 #include "inc_timelock"

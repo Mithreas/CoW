@@ -1,6 +1,6 @@
 #include "gs_inc_common"
 #include "gs_inc_time"
-#include "mi_inc_divinatio"
+#include "inc_divination"
 
 const int GS_DAMAGE = 25;
 

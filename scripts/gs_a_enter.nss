@@ -12,20 +12,19 @@
 #include "gs_inc_time"
 #include "gs_inc_worship"
 #include "gs_inc_xp"
-#include "mi_inc_caravan"
-#include "mi_inc_citizen"
-#include "mi_inc_class"
-#include "mi_inc_disguise"
-#include "mi_inc_divinatio"
-#include "mi_inc_scry"
-#include "mi_inc_tracks"
-#include "mi_inc_weather"
-#include "mi_inc_xfer"
-#include "mi_log"
+#include "inc_caravan"
+#include "inc_citizen"
+#include "inc_class"
+#include "inc_customspells"
+#include "inc_log"
+#include "inc_disguise"
+#include "inc_divination"
+#include "inc_randomquest"
+#include "inc_tracks"
+#include "inc_weather"
+#include "inc_xfer"
 #include "x3_inc_horse"
-#include "ar_sys_faerzress"
-#include "gvd_inc_rope"
-#include "gvd_inc_adv_xp"
+#include "inc_adv_xp"
 #include "gvd_inc_seeds"
 #include "gvd_inc_subdual"
 #include "gvd_inc_store"
@@ -309,6 +308,18 @@ void main()
         } // is mounted
       }
     }
+		
+    // Clear PC state if they've been using the training/research/praying widgets
+    // and logged off unexpectedly, or changed areas.
+    DeleteLocalInt(oEntering, "training_time");
+    DeleteLocalInt(oEntering, "is_training");
+    DeleteLocalLocation(oEntering, "pray_location");
+    DeleteLocalInt(oEntering, "praying_time");
+    DeleteLocalLocation(oEntering, "research_location");
+    DeleteLocalInt(oEntering, "research_time");
+		
+    // Hook into the quest scripts.
+    CheckIfOnPatrol(oEntering, OBJECT_SELF);
 
     UpdateRangerHiPS(oEntering);
 
@@ -715,15 +726,10 @@ void main()
     if (ALLOW_WEATHER)
     {
         miWHSetWeather();
-        //::  ActionReplay - Faerzress Weather (If not UD module it will simply return)
-        ar_UpdateAreaFaerzress();
     }
 
     if (GetIsPossessedFamiliar(oEntering)) return;
     if (GetIsDMPossessed(oEntering))       return;
-
-    // Quest Hook
-    CheckQuestAreaProgress(oEntering, oArea);
 
     if (GetIsDM(oEntering))
     {
@@ -804,8 +810,6 @@ void main()
         // Apply weather effects.
         if (ALLOW_WEATHER) {
             miWHDoWeatherEffects(oEntering);
-            //::  ActionReplay - Faerzress Weather (If not UD module it will simply return)
-            ar_DoFaerzressEffects(oEntering);
         }
 
         // Tracks.
@@ -921,39 +925,6 @@ void main()
             APSLocationToString(lLocation));
           AssignCommand(oEntering, ActionJumpToLocation(lLocation));
         }
-
-        // dunshine: check if coming from another server with a lasso capture
-        object oHide = gsPCGetCreatureHide(oEntering);
-        string sLassoResRef = GetLocalString(oHide, "gvd_xfer_lasso_resref");
-        if (sLassoResRef != "") {
-          // found one, recreate the creature based on resref with same tag, name and hp
-          string sLassoTag = GetLocalString(oHide, "gvd_xfer_lasso_tag");
-          string sLassoName = GetLocalString(oHide, "gvd_xfer_lasso_name");
-          int iLassoHP = GetLocalInt(oHide, "gvd_xfer_lasso_hp");
-          int iCaptureTimestamp = GetLocalInt(oHide, "gvd_xfer_lasso_timestamp");
-
-          object oLassoCapture = CreateObject(OBJECT_TYPE_CREATURE, sLassoResRef, GetLocation(oEntering), 0, sLassoTag);
-          SetName(oLassoCapture, sLassoName);
-          gsCMSetHitPoints(iLassoHP, oLassoCapture);
-
-          // flag this creature as being a lasso capture that just came across another server, so we can delay the getmaster checks a bit in the heartbeat scripts
-          // hopefully solves the bug, with them disappearing when taken cross server with the domination effect instead of the henchman
-          SetLocalInt(oLassoCapture, "GVD_LASSO_XFER", 1);
-
-          // now do the lasso capture on that creature again, with auto-success
-          // the bug with them not being transfered is probably because the script wasn't executed by the PC, and since an effect is used
-          // the effect creator may have been wonky because of that. Hopefully fixed now, by using assigncommand.
-          AssignCommand(oEntering, LassoCapture(oEntering, oLassoCapture));
-
-          // make sure to use the initial timestamp of the capture
-          SetLocalInt(oLassoCapture, "gvd_lasso_timestamp", iCaptureTimestamp);
-
-        }
-        DeleteLocalString(oHide, "gvd_xfer_lasso_resref");
-        DeleteLocalString(oHide, "gvd_xfer_lasso_tag");
-        DeleteLocalString(oHide, "gvd_xfer_lasso_name");
-        DeleteLocalInt(oHide, "gvd_xfer_lasso_hp");
-        DeleteLocalInt(oHide, "gvd_xfer_lasso_timestamp");
 
         //initialize player state
         AssignCommand(oEntering, gsSTSetInitialState());

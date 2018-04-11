@@ -12,8 +12,8 @@
 //              specified for a Door that has a LinkedTo
 //              Destination Type other than None.
 ////////////////////////////////////////////////////////////
-#include "mi_inc_teleport"
-#include "mi_inc_tracks"
+#include "inc_teleport"
+#include "inc_tracks"
 void main()
 {
   object oClicker = GetClickingObject();

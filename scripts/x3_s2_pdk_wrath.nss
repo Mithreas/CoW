@@ -19,7 +19,7 @@
 //:: Created By: Stratovarius
 //:: Created On: Sept 22, 2005
 //:://////////////////////////////////////////////
-#include "mi_inc_class"
+#include "inc_class"
 #include "x2_inc_itemprop"
 #include "inc_timelock"
 

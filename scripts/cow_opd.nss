@@ -1,4 +1,4 @@
-#include "mi_crimcommon"
+#include "inc_crime"
 void main()
 {
   // Bounty system code to clear a player's bounty if they were killed by

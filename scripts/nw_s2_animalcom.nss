@@ -11,8 +11,8 @@
 //:: Created On: Sept 27, 2001
 //:://////////////////////////////////////////////
 #include "fb_inc_zombie"
-#include "mi_inc_divinatio"
-#include "mi_inc_totem"
+#include "inc_divination"
+#include "inc_totem"
 
 void main()
 {

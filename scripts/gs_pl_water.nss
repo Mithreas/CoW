@@ -1,6 +1,6 @@
 #include "gs_inc_state"
 #include "gs_inc_text"
-#include "mi_inc_poison"
+#include "inc_poison"
 
 void gsDrink(int nQuality, object oWell)
 {

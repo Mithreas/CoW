@@ -15,7 +15,7 @@
 
 #include "nw_i0_spells"
 #include "x0_i0_spells"
-#include "mi_inc_spells"
+#include "inc_customspells"
 
 int GetIsEntangled(object oCreature);
 
