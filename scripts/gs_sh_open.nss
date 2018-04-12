@@ -1,4 +1,4 @@
-#include "gs_inc_shop"
+#include "inc_shop"
 
 void main()
 {

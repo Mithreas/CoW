@@ -12,7 +12,7 @@
 //:: based on the mil tailor by Jake E. Fitch (Milambus Mandragon)
 //:://////////////////////////////////////////////
 #include "btlr__inc"
-#include "gs_inc_pc"
+#include "inc_pc"
 
 
 void main()

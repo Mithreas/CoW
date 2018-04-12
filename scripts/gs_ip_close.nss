@@ -1,4 +1,4 @@
-#include "gs_inc_text"
+#include "inc_text"
 
 void main()
 {

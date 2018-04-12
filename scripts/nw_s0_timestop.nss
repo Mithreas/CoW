@@ -1,5 +1,5 @@
-#include "gs_inc_spell"
-#include "gs_inc_text"
+#include "inc_spell"
+#include "inc_text"
 #include "x0_i0_assoc"
 // assoc included for GetPercentageHPLoss
 

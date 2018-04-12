@@ -1,4 +1,4 @@
-#include "gs_inc_shop"
+#include "inc_shop"
 #include "inc_log"
 #include "inc_factions"
 void _save(object oPC)

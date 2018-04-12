@@ -1,6 +1,6 @@
-#include "gs_inc_ai"
-#include "gs_inc_event"
-#include "gs_inc_task"
+#include "inc_ai"
+#include "inc_event"
+#include "inc_task"
 
 void main()
 {

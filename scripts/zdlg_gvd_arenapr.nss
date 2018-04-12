@@ -9,7 +9,7 @@
 
 #include "zdlg_include_i"
 #include "x0_i0_position"
-#include "gs_inc_pc"
+#include "inc_pc"
 
 const string SPELLOPTIONS = "SPELLOPTIONS";
 const string DONE    = "MES_DONE";

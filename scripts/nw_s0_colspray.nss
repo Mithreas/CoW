@@ -1,4 +1,4 @@
-#include "gs_inc_spell"
+#include "inc_spell"
 #include "inc_spells"
 
 void main()

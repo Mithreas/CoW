@@ -1,10 +1,10 @@
-#include "gs_inc_common"
-#include "gs_inc_craft"
-#include "gs_inc_iprop"
-#include "gs_inc_language"
-#include "gs_inc_text"
+#include "inc_common"
+#include "inc_craft"
+#include "inc_iprop"
+#include "inc_language"
+#include "inc_text"
 #include "inc_worship"
-#include "gs_inc_xp"
+#include "inc_xp"
 
 const int GS_LIMIT_COST = 10000;
 

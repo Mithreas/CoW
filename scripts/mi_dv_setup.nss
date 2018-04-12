@@ -3,7 +3,7 @@
   Author: Mithreas
   Description: Sets up a PC's subrace/gender/wings/tail details in the database.
 */
-#include "gs_inc_subrace"
+#include "inc_subrace"
 void main()
 {
   object oPC = OBJECT_SELF;

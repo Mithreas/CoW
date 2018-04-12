@@ -347,8 +347,8 @@
    - vassal menu (view/become/release)
 
 */
-#include "gs_inc_finance"
-#include "gs_inc_time"
+#include "inc_finance"
+#include "inc_time"
 #include "inc_log"
 #include "inc_facranks"
 #include "inc_xfer"

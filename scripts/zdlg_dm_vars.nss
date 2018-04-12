@@ -1,5 +1,5 @@
-#include "gs_inc_listener"
-#include "gs_inc_area"
+#include "inc_listener"
+#include "inc_area"
 #include "zdlg_include_i"
 #include "zzdlg_color_inc"
 #include "nwnx_creature"

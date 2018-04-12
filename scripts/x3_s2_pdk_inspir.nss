@@ -15,7 +15,7 @@
 #include "inc_tempvars"
 #include "inc_class"
 #include "x0_i0_spells"
-#include "gs_inc_respawn"
+#include "inc_respawn"
 #include "inc_statuseffect"
 
 void main()

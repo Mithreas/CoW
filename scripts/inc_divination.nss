@@ -46,7 +46,7 @@
   - skin_color
 */
 #include "inc_log"
-#include "gs_inc_subrace"
+#include "inc_subrace"
 #include "inc_relations"
 #include "inc_weather"
 const string DIVINATION = "DIVINATION";

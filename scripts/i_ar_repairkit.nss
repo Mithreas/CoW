@@ -1,5 +1,5 @@
-#include "gs_inc_istate"
-#include "gs_inc_craft"
+#include "inc_istate"
+#include "inc_craft"
 
 /*
 

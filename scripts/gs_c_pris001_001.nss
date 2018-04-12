@@ -1,4 +1,4 @@
-#include "gs_inc_combat"
+#include "inc_combat"
 
 void main()
 {

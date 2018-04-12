@@ -1,4 +1,4 @@
-#include "gs_inc_portal"
+#include "inc_portal"
 
 const string GS_TEMPLATE_PORTAL             = "gs_placeable273";
 const string GS_TEMPLATE_PORTAL_DESTINATION = "gs_placeable313";

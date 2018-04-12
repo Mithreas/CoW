@@ -4,8 +4,8 @@
   NWServer Linux.
 */
 
-#include "gs_inc_combat2"
-#include "gs_inc_time"
+#include "inc_combat2"
+#include "inc_time"
 
 void main()
 {

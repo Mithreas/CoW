@@ -1,5 +1,5 @@
 #include "inc_chatutils"
-#include "gs_inc_iprop"
+#include "inc_iprop"
 #include "inc_examine"
 #include "inc_timelock"
 #include "nwnx_item"

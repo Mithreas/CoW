@@ -1,5 +1,5 @@
 #include "inc_chatutils"
-#include "gs_inc_pc"
+#include "inc_pc"
 #include "inc_examine"
 
 const string HELP = "-hood [variant]. Dons a hood. If variant is passed in, equips that variant instead.";

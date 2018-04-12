@@ -46,6 +46,8 @@ int gsTIGetDifference(int nTime1, int nTime2);
 //return a nicely formatted time and date - if nTime isn't specified, uses the
 //current time.
 string gsTIGetPresentableTime(int nTime=0);
+// Returns the current time in seconds.
+int GetModuleTime();
 
 // This value is set in module properties.  We can calculate it dynamically from
 // HoursToSeconds() etc, but having it as a constant makes it easier to follow
@@ -214,4 +216,22 @@ string gsTIGetPresentableTime(int nTime=0)
   return sDate;
 }
 
-
+//::///////////////////////////////////////////////
+//:: GetModuleTime
+//:://////////////////////////////////////////////
+/*
+    Returns the current time in seconds.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Peppermint
+//:: Created On: January 26, 2016
+//:://////////////////////////////////////////////
+int GetModuleTime()
+{
+    return 2903040 * (GetCalendarYear() - GetLocalInt(GetModule(), "GS_YEAR"))
+        + 241920 * (GetCalendarMonth() - 1)
+        + 8640 * (GetCalendarDay() - 1)
+        + 360 * GetTimeHour()
+        + 60 * GetTimeMinute()
+        + GetTimeSecond();
+}

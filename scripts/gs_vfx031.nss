@@ -1,4 +1,4 @@
-#include "gs_inc_effect"
+#include "inc_effect"
 
 const string GS_TEMPLATE_WALL    = "gs_placeable289";
 const string GS_TEMPLATE_STONE   = "gs_placeable299";

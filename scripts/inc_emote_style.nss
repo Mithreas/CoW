@@ -1,4 +1,4 @@
-#include "gs_inc_pc"
+#include "inc_pc"
 
 // NOTE: To add a new emote style, update the constants here, then introduce additional code in translator.rb.
 const int EMOTE_STYLE_STANDARD = 0;

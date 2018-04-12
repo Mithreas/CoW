@@ -13,7 +13,7 @@
 //:://////////////////////////////////////////////
 //:: VFX Pass By: Preston W, On: June 20, 2001
 
-#include "gs_inc_flag"
+#include "inc_flag"
 #include "X0_I0_SPELLS"
 #include "inc_customspells"
 #include "inc_warlock"

@@ -5,7 +5,7 @@
 //
 // Now in the on-enter event for a dynamic boss AoE trigger.
 
-#include "gs_inc_encounter"
+#include "inc_encounter"
 
 void main()
 {

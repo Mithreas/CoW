@@ -10,7 +10,7 @@
 //:: Created On: Mars 25, 2017
 //:://////////////////////////////////////////////
 
-#include "gs_inc_spell"
+#include "inc_spell"
 #include "inc_generic"
 
 

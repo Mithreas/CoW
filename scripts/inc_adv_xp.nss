@@ -1,7 +1,7 @@
 // library that holds the functions for the adventuring XP system
 
-#include "gs_inc_pc"
-#include "gs_inc_area"
+#include "inc_pc"
+#include "inc_area"
 #include "X0_i0_stringlib"
 
 const int DEFAULT_AREA_XP = 50;
@@ -159,7 +159,7 @@ void gvd_AdventuringXP_ForObject(object oPC, string sObjectType, object oObject)
 
 void gvd_AdventuringXP_XPBonus(object oPC) {
 
-  // first check if PC isn't lvl 30 already or already has enough XP to gain a new lvl (taken from gs_inc_xp)
+  // first check if PC isn't lvl 30 already or already has enough XP to gain a new lvl (taken from inc_xp)
   int nXP = GetXP(oPC);
   int nLevel = GetHitDice(oPC);
   int nXPLevel = (nLevel + 1) * nLevel / 2 * 1000;

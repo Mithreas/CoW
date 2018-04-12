@@ -4,7 +4,7 @@
 */
 #include "inc_names"
 #include "inc_worship"
-#include "gs_inc_pc"
+#include "inc_pc"
 #include "inc_effect"
 #include "__server_config"
 #include "zzdlg_color_inc"

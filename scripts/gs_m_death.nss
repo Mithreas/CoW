@@ -1,4 +1,4 @@
-#include "gs_inc_death"
+#include "inc_death"
 #include "inc_subdual"
 
 void main()

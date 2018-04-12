@@ -3,7 +3,7 @@
 #include "zzdlg_lists_inc"
 #include "inc_examine"
 #include "inc_bloodstains"
-#include "gs_inc_craft"
+#include "inc_craft"
 
 const string HELP = "-investigate lets you study a bloodstain or fixture remains and work out details of the encounter that caused it.  It keys off Search and Lore.";
 const int INVEST_BLOOD = 1;

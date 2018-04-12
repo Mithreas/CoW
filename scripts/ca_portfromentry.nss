@@ -1,5 +1,5 @@
-#include "gs_inc_respawn"
-#include "gs_inc_subrace"
+#include "inc_respawn"
+#include "inc_subrace"
 #include "inc_backgrounds"
 #include "inc_xfer"
 

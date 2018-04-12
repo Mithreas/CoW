@@ -76,16 +76,16 @@
    - type VARCHAR(32)
    - message TEXT
 */
-#include "gs_inc_effect"
-#include "gs_inc_pc"
-#include "gs_inc_respawn"
+#include "inc_effect"
+#include "inc_pc"
+#include "inc_respawn"
 #include "inc_summons"
 #include "inc_database"
 #include "x0_i0_position"
 const string MESSENGERS = "MESSENGERS"; // For logging
 const string VAR_SERVER_NAME = "SERVER_NAME";
 
-// IMPORTANT - if you add to this list, add a case to gs_inc_container to
+// IMPORTANT - if you add to this list, add a case to inc_container to
 // make the tags for the GS_INVENTORY containers unique for the new server.
 // SERVER_UNDERDARK now includes Cordor.
 

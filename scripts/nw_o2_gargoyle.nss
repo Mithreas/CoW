@@ -10,7 +10,7 @@
 //:: Created By:   Brent
 //:: Created On:   January 17, 2002
 //:://////////////////////////////////////////////
-#include "gs_inc_common"
+#include "inc_common"
 
 void main()
 {

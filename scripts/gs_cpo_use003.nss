@@ -1,5 +1,5 @@
-#include "gs_inc_portal"
-#include "gs_inc_token"
+#include "inc_portal"
+#include "inc_token"
 
 int StartingConditional()
 {

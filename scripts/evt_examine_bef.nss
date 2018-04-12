@@ -1,6 +1,6 @@
 #include "inc_chat"
 #include "inc_names"
-#include "gs_inc_time"
+#include "inc_time"
 #include "inc_item"
 #include "inc_disguise"
 #include "nwnx_events"
@@ -10,7 +10,7 @@
 #include "nwnx_admin"
 #include "x0_i0_match"
 #include "x3_inc_string"
-#include "gs_inc_language"
+#include "inc_language"
 
 // Adds text flagging an item as not copyable (if relevant).
 void AddItemDescriptionCopyable(object oItem);

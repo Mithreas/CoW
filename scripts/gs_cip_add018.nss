@@ -1,4 +1,4 @@
-#include "gs_inc_token"
+#include "inc_token"
 
 int StartingConditional()
 {

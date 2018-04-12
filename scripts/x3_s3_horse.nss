@@ -15,7 +15,7 @@
 //:://////////////////////////////////////////////
 
 #include "x3_inc_horse"
-#include "gs_inc_pc"
+#include "inc_pc"
 #include "inc_horses"
 
 /*

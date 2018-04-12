@@ -1,5 +1,5 @@
-#include "gs_inc_common"
-#include "gs_inc_text"
+#include "inc_common"
+#include "inc_text"
 
 void main()
 {

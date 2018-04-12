@@ -1,6 +1,6 @@
 #include "__server_config"
-#include "gs_inc_combat"
-#include "gs_inc_event"
+#include "inc_combat"
+#include "inc_event"
 #include "inc_weather"
 
 void main()

@@ -1,4 +1,4 @@
-#include "gs_inc_subrace"
+#include "inc_subrace"
 int StartingConditional()
 {
   object oPC = GetPCSpeaker();

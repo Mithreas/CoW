@@ -1,4 +1,4 @@
-#include "gs_inc_flag"
+#include "inc_flag"
 
 void main()
 {

@@ -1,4 +1,4 @@
-#include "gs_inc_text"
+#include "inc_text"
 #include "inc_customspells"
 #include "nw_i0_spells"
 #include "x2_i0_spells"

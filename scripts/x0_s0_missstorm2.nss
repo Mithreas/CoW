@@ -15,8 +15,8 @@
 
 #include "X0_I0_SPELLS"
 #include "x2_inc_spellhook"
-#include "gs_inc_spell"
-#include "gs_inc_text"
+#include "inc_spell"
+#include "inc_text"
 
 
 void main()

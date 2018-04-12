@@ -17,7 +17,7 @@
 #include "inc_quickbar"
 #include "inc_spells"
 #include "inc_summons"
-#include "gs_inc_pc"
+#include "inc_pc"
 #include "nwnx_events"
 
 void RestoreQuickbar();

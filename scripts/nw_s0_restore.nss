@@ -14,7 +14,7 @@
 //:: VFX Pass By: Preston W, On: June 22, 2001
 
 #include "x2_inc_spellhook"
-#include "gs_inc_respawn"
+#include "inc_respawn"
 #include "inc_statuseffect"
 #include "inc_effecttags"
 #include "inc_effect"

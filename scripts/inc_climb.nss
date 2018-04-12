@@ -1,5 +1,5 @@
 //void main() {}
-#include "gs_inc_common"
+#include "inc_common"
 #include "__server_config"
 
 // Returns vVector limited by the dimensions of oArea.

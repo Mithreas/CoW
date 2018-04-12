@@ -34,7 +34,7 @@
 
 
 */
-#include "gs_inc_common"
+#include "inc_common"
 
 const string VAR_POISON_TYPE = "mi_poison_type";
 const string VAR_POISON_QTY  = "mi_poison_quantity";

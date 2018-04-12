@@ -1,4 +1,4 @@
-#include "gs_inc_state"
+#include "inc_state"
 
 int StartingConditional()
 {

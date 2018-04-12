@@ -1,8 +1,8 @@
 ﻿#include "inc_totem"
 #include "inc_werewolf"
 #include "inc_chatutils"
-#include "gs_inc_subrace"
-#include "gs_inc_state"
+#include "inc_subrace"
+#include "inc_state"
 #include "inc_examine"
 
 const string HELP = "<cþôh>-polymorph</c>\nUsed by werewolves and totem shapeshifters to change form.  Toggles you between shifted and non-shifted form.";

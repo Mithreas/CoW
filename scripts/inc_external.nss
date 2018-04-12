@@ -6,7 +6,7 @@
  * and methods, refer to extern.rb and the files it includes.
  */
 
-#include "gs_inc_pc"
+#include "inc_pc"
 #include "inc_log"
 #include "inc_database"
 #include "inc_xfer"

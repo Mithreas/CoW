@@ -10,7 +10,7 @@
 //:: Created On: Sept 22, 2005
 //:://////////////////////////////////////////////
 
-#include "gs_inc_combat"
+#include "inc_combat"
 #include "inc_class"
 #include "x0_i0_spells"
 #include "inc_timelock"

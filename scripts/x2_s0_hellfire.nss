@@ -12,7 +12,7 @@
 //:: Created On: May 25, 2001
 //:://////////////////////////////////////////////
 
-#include "gs_inc_spell"
+#include "inc_spell"
 
 void BurstWeapon(object oWeapon, float fDur)
 {

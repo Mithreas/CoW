@@ -16,7 +16,7 @@ create table mi_relationships (
   constraint mi_relationships_FK_1 foreign key (pc_b) references gs_pc_data (id)
 ) default charset=latin1;
 */
-#include "gs_inc_pc"
+#include "inc_pc"
 #include "inc_database"
 #include "nwnx_creature"
 #include "nwnx_object"

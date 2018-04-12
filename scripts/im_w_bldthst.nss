@@ -5,7 +5,7 @@
 #include "x2_I0_SPELLS"
 #include "inc_customspells"
 #include "inc_spells"
-#include "gs_inc_pc"
+#include "inc_pc"
 
 void main()
 {

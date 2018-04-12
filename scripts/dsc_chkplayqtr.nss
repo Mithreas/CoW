@@ -1,5 +1,5 @@
-#include "gs_inc_pc"
-#include "gs_inc_quarter"
+#include "inc_pc"
+#include "inc_quarter"
 #include "inc_favsoul"
 #include "inc_warlock"
 #include "inc_backgrounds"

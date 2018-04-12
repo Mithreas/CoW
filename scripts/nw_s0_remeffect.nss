@@ -20,7 +20,7 @@
 
 #include "x2_inc_spellhook"
 
-#include "gs_inc_respawn"
+#include "inc_respawn"
 #include "inc_effect"
 
 void RemoveBadEffect(int nEffectTypeID, object oTarget);

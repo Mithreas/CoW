@@ -1,4 +1,4 @@
-#include "gs_inc_placeable"
+#include "inc_placeable"
 
 const int GS_SLOT = 2;
 

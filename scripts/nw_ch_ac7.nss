@@ -22,8 +22,8 @@
 //:: Modified On: April 9th, 2008
 //:: Added Support for Dying Wile Mounted
 //:://///////////////////////////////////////////////
-#include "gs_inc_common"
-#include "gs_inc_event"
+#include "inc_common"
+#include "inc_event"
 #include "inc_spells"
 #include "nw_i0_generic"
 #include "nw_i0_plot"

@@ -17,9 +17,9 @@
 #include "inc_factions"
 #include "inc_poison"
 #include "inc_disguise"
-#include "gs_inc_listener"
-#include "gs_inc_message"
-#include "gs_inc_quarter"
+#include "inc_listener"
+#include "inc_message"
+#include "inc_quarter"
 #include "zdlg_include_i"
 #include "zzdlg_color_inc"
 

@@ -1,4 +1,4 @@
-#include "gs_inc_iprop"
+#include "inc_iprop"
 
 int StartingConditional()
 {

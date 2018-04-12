@@ -1,5 +1,5 @@
-#include "gs_inc_event"
-#include "gs_inc_xp"
+#include "inc_event"
+#include "inc_xp"
 
 void main()
 {

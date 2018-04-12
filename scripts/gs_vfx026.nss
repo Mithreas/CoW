@@ -1,4 +1,4 @@
-#include "gs_inc_container"
+#include "inc_container"
 const string GS_TEMPLATE_OBJECT = "gs_placeable268";
 
 void main()

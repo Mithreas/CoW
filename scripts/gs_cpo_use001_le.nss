@@ -1,4 +1,4 @@
-#include "gs_inc_portal"
+#include "inc_portal"
 #include "inc_adv_xp"
 
 int StartingConditional()

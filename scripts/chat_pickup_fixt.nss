@@ -1,5 +1,5 @@
 #include "inc_chatutils"
-#include "gs_inc_fixture"
+#include "inc_fixture"
 #include "inc_examine"
 
 const string HELP = "<cþôh>-pickup_fixture </c><cþ£ >[Text]</c>\nPicks up the nearest fixture. If <cþ£ >[Text]</c> is given, the nearest fixture with the name <cþ£ >[Text]</c> (case insensitive) will be picked up instead.";

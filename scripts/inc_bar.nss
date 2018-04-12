@@ -1,4 +1,4 @@
-#include "gs_inc_pc"
+#include "inc_pc"
 #include "inc_disguise"
 
 /* Bar System, features:

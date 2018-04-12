@@ -10,7 +10,7 @@
  * - Religious class - needs to follow deity alignment restrictions
  * - Gain Raise Dead as a subrace ability.
  */
-#include "gs_inc_pc"
+#include "inc_pc"
 #include "nwnx_creature"
 #include "nwnx_object"
 #include "nwnx_alts"

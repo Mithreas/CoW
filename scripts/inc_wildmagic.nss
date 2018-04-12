@@ -10,7 +10,7 @@
 
 #include "inc_spellmatrix"
 #include "ar_utils"
-#include "gs_inc_state"
+#include "inc_state"
 #include "inc_math"
 #include "inc_customspells"
 

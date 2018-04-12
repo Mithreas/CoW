@@ -1,7 +1,7 @@
 /* WORSHIP Library by Gigaschatten */
 
-#include "gs_inc_state"
-#include "gs_inc_xp"
+#include "inc_state"
+#include "inc_xp"
 
 const int ASPECT_WAR_DESTRUCTION     = 1;
 const int ASPECT_HEARTH_HOME         = 2;

@@ -14,8 +14,8 @@
 //:: Created On: Aug 13, 2001
 //:://////////////////////////////////////////////
 
-#include "gs_inc_pc"
-#include "gs_inc_iprop"
+#include "inc_pc"
+#include "inc_iprop"
 #include "x2_i0_spells"
 #include "x2_inc_itemprop"
 #include "inc_item"

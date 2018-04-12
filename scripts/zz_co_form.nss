@@ -11,8 +11,8 @@
 //:: Created On: 12/11/2010 Added spellbook save: 04/23/2012
 //:://////////////////////////////////////////////
 #include "zzdlg_main_inc"
-#include "gs_inc_iprop"
-#include "gs_inc_text"
+#include "inc_iprop"
+#include "inc_text"
 #include "x2_inc_itemprop"
 #include "x2_inc_craft"
 #include "x0_inc_skills"

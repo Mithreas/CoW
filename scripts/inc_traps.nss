@@ -3,7 +3,7 @@
 // 12/3/2017 - Adding in 1 second cooldown on PC traps to counteract Trap Stacking
 
 #include "inc_log"
-#include "gs_inc_time"
+#include "inc_time"
 const string TRAPS = "TRAPS"; // For logging
 
 int miTRPreHook();

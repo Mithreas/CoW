@@ -13,7 +13,7 @@
 //:: Created By: Georg Zoeller
 //:: Created On: 2003-10-19
 //:://////////////////////////////////////////////
-#include "gs_inc_pc"
+#include "inc_pc"
 
 // * These constants are used with the ShifterGetSaveDC function
 const int SHIFTER_DC_VERY_EASY    = 0;

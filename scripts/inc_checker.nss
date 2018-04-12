@@ -6,7 +6,7 @@
 // skills (so e.g. a fighter with 4 starting Tumble would pass).
 //
 #include "inc_log"
-#include "gs_inc_pc"
+#include "inc_pc"
 #include "inc_class"
 #include "inc_quickbar"
 const string CHECKER = "CHECKER"; // for tracing

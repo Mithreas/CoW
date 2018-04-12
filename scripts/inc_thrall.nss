@@ -1,4 +1,4 @@
-#include "gs_inc_pc"
+#include "inc_pc"
 #include "inc_effect"
 #include "inc_math"
 

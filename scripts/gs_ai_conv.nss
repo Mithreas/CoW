@@ -1,6 +1,6 @@
-#include "gs_inc_combat"
-#include "gs_inc_event"
-#include "gs_inc_ai"
+#include "inc_combat"
+#include "inc_event"
+#include "inc_ai"
 
 void main()
 {

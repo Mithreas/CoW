@@ -2,7 +2,7 @@
 // Used to set a variable on a PC's creature hide when they cast the correct spell
 // on this object.
 //
-#include "gs_inc_pc"
+#include "inc_pc"
 
 void main()
 {

@@ -1,5 +1,5 @@
-#include "gs_inc_event"
-#include "gs_inc_flag"
+#include "inc_event"
+#include "inc_flag"
 void main()
 {
     switch (GetUserDefinedEventNumber())

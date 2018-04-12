@@ -10,7 +10,7 @@
 #include "nwnx_alts"
 #include "nwnx_admin"
 #include "inc_spellsword"
-#include "gs_inc_pc"
+#include "inc_pc"
 
 int StartingConditional()
 {

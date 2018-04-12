@@ -1,4 +1,4 @@
-#include "gs_inc_boss"
+#include "inc_boss"
 
 void main()
 {

@@ -11,7 +11,7 @@
 //:: Created On: March 9, 2017
 //:://////////////////////////////////////////////
 
-#include "gs_inc_common"
+#include "inc_common"
 #include "inc_levelbonuses"
 #include "inc_sumstream"
 

@@ -24,7 +24,7 @@
 #include "x0_i0_position"
 #include "X0_INC_HENAI"
 #include "x3_inc_skin"
-#include "gs_inc_pc"
+#include "inc_pc"
 #include "inc_horses"
 
 /*

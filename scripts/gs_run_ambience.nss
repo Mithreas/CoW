@@ -1,5 +1,5 @@
-#include "gs_inc_ambience"
-#include "gs_inc_time"
+#include "inc_ambience"
+#include "inc_time"
 
 void main()
 {

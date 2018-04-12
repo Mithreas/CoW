@@ -11,9 +11,9 @@
 //:: Created On: 1/22/2012
 //:://////////////////////////////////////////////
 #include "zzdlg_main_inc"
-#include "gs_inc_shop"
+#include "inc_shop"
 #include "inc_factions"
-#include "gs_inc_listener"
+#include "inc_listener"
 #include "inc_backgrounds"
 //Pages
 const string PAGE_OWNER = "PAGE_OWNER";

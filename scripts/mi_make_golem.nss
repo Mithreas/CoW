@@ -9,7 +9,7 @@
 // output
 // create golem NPC of the right type.
 //------------------------------------------------------------------------------
-#include "gs_inc_common"
+#include "inc_common"
 void CreateGolem(string sResRef)
 {
   object oGolem = CreateObject(OBJECT_TYPE_CREATURE, sResRef, GetLocation(OBJECT_SELF));

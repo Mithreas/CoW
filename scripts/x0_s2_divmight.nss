@@ -23,8 +23,8 @@
 
 #include "inc_generic"
 #include "inc_item"
-#include "gs_inc_iprop"
-#include "gs_inc_pc"
+#include "inc_iprop"
+#include "inc_pc"
 #include "inc_worship"
 #include "x0_i0_spells"
 #include "x2_inc_itemprop"

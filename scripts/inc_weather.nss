@@ -35,8 +35,8 @@
 
     Weather changes every 11 game hours minus the wind score.
 */
-#include "gs_inc_fixture"
-#include "gs_inc_spell"
+#include "inc_fixture"
+#include "inc_spell"
 #include "inc_log"
 
 //--[

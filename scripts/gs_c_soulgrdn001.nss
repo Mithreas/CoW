@@ -1,4 +1,4 @@
-#include "gs_inc_xp"
+#include "inc_xp"
 
 int StartingConditional()
 {

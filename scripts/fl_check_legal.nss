@@ -2,12 +2,12 @@
 //
 // Script to check that PCs are legally built according to the latest
 // class and feat restrictions etc.
-#include "gs_inc_pc"
+#include "inc_pc"
 #include "nwnx_creature"
 #include "nwnx_object"
 #include "nwnx_alts"
 #include "nwnx_admin"
-#include "gs_inc_iprop"
+#include "inc_iprop"
 void _RefundGoldLvl(object oPC)
 {
   int nPCLevel = GetLocalInt(gsPCGetCreatureHide(oPC), "FL_LEVEL") - 1;

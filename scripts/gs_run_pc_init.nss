@@ -1,7 +1,7 @@
 #include "inc_class"
-#include "gs_inc_common"
-#include "gs_inc_pc"
-#include "gs_inc_strack"
+#include "inc_common"
+#include "inc_pc"
+#include "inc_strack"
 #include "inc_citizen"
 
 const string INIT = "INIT"; // for tracing

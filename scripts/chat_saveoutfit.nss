@@ -3,7 +3,7 @@
 #include "nwnx_object"
 #include "nwnx_item"
 #include "nwnx_admin"
-#include "gs_inc_iprop"
+#include "inc_iprop"
 #include "inc_examine"
 
 const string HELP = "Use the -saveoutfit command to save an outfit. Type an outfit name after -saveoutfit. Will save currently equipped weapon, armor, shield, cloak, and helmet. -d parameter can be used to delete an outfit -r can be used to replace an outfit";

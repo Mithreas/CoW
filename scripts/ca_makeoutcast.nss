@@ -1,6 +1,6 @@
 #include "inc_backgrounds"
 #include "inc_citizen"
-#include "gs_inc_pc"
+#include "inc_pc"
 void main()
 {
     object oSpeaker = GetPCSpeaker();

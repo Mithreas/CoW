@@ -1,5 +1,5 @@
 // Haunted Door script, by Mith.
-#include "gs_inc_encounter"
+#include "inc_encounter"
 void CloseDoorIfOpen(object oDoor)
 {
   if (GetIsOpen(oDoor))

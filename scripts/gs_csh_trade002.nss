@@ -1,7 +1,7 @@
-#include "gs_inc_common"
-#include "gs_inc_finance"
-#include "gs_inc_shop"
-#include "gs_inc_text"
+#include "inc_common"
+#include "inc_finance"
+#include "inc_shop"
+#include "inc_text"
 
 // Edit by Mithreas - work around the fact that we now log when people add stuff
 // to their shop.

@@ -198,7 +198,7 @@ void SetIsItemMundane(object oItem, int bIsMundane);
 void StoreLastItemUsed();
 // Checks whether the item's ILR has been set, and if not, sets it.
 void SetItemILR(object oItem);
-// return value of oItem (disregarding plot flag etc.) - moved from gs_inc_common 
+// return value of oItem (disregarding plot flag etc.) - moved from inc_common 
 int gsCMGetItemValue(object oItem);
 
 /**********************************************************************
@@ -213,7 +213,7 @@ int gsCMGetItemValue(object oItem);
 	and identified flags as needed.
 	
 	Note: this function has been moved from 
-	gs_inc_common, as it is needed here (and belongs
+	inc_common, as it is needed here (and belongs
 	here as an item-related function).  However, it's
 	called in about 20 places so hasn't been renamed 
 	yet.

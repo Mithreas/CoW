@@ -1,4 +1,4 @@
-#include "gs_inc_effect"
+#include "inc_effect"
 
 void main()
 {

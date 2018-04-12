@@ -10,8 +10,8 @@ are internal only.
 #include "inc_chatalias"
 #include "inc_chatcomm"
 #include "inc_chatutils"
-#include "gs_inc_combat2"
-#include "gs_inc_language"
+#include "inc_combat2"
+#include "inc_language"
 #include "inc_vampire"
 #include "inc_class"
 #include "inc_climb"
@@ -25,7 +25,7 @@ are internal only.
 #include "x0_i0_match"
 #include "x3_inc_string"
 #include "zzdlg_lists_inc"
-#include "gs_inc_pc"
+#include "inc_pc"
 
 struct fbCHChat
 {

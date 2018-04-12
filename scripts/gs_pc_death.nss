@@ -1,6 +1,6 @@
-#include "gs_inc_common"
-#include "gs_inc_pc"
-#include "gs_inc_text"
+#include "inc_common"
+#include "inc_pc"
+#include "inc_text"
 
 const string GS_TEMPLATE_CORPSE = "gs_placeable016";
 const string GS_TEMPLATE_SKULL  = "gs_item050";

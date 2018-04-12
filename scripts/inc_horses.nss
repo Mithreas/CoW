@@ -16,8 +16,8 @@
 #include "inc_effecttags"
 #include "inc_effect"
 #include "x2_inc_itemprop"
-#include "gs_inc_common"
-#include "gs_inc_state"
+#include "inc_common"
+#include "inc_state"
 
 //:: Public Function Declarations
 

@@ -11,22 +11,22 @@
 //:: Created On: January 30, 2016
 //:://////////////////////////////////////////////
 
-#include "inc_names"
-#include "gs_inc_pc"
 #include "inc_associates"
 #include "inc_chatrelay"
+#include "inc_database"
+#include "inc_data_arr"
 #include "inc_effect"
 #include "inc_generic"
 #include "inc_math"
+#include "inc_names"
+#include "inc_pc"
 #include "inc_string"
 #include "inc_tempvars"
 #include "inc_timelock"
-#include "inc_database"
 #include "nwnx_creature"
 #include "nwnx_object"
 #include "nwnx_alts"
 #include "nwnx_admin"
-#include "inc_data_arr"
 #include "x0_i0_position"
 #include "x2_inc_switches"
 

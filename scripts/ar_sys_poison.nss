@@ -116,7 +116,7 @@
 #include "x2_inc_itemprop"
 #include "X2_inc_switches"
 #include "nw_i0_spells"
-#include "gs_inc_common"
+#include "inc_common"
 #include "inc_log"
 
 const string MSG_PO_INVALID         = "Invalid Target.  Must be coated on a Piercing/Slashing Weapon, or ammunition (Arrows, Bolts, Darts, Shuriken, Throwing Axe).";

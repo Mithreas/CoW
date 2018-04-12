@@ -1,8 +1,8 @@
 #include "inc_chatutils"
-#include "gs_inc_combat2"
-#include "gs_inc_common"
-#include "gs_inc_pc"
-#include "gs_inc_time"
+#include "inc_combat2"
+#include "inc_common"
+#include "inc_pc"
+#include "inc_time"
 #include "inc_examine"
 
 const string HELP = "The -save command allows you to save your character at any time. This is done automatically periodically, but you may sometimes want to save manually as a safeguard against server crashes. You can only save once per minute.";

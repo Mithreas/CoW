@@ -1,9 +1,9 @@
-#include "gs_inc_portal"
+#include "inc_portal"
 #include "inc_effect"
 #include "inc_spells"
-#include "gs_inc_respawn"
+#include "inc_respawn"
 #include "inc_names"
-#include "gs_inc_death"
+#include "inc_death"
 
 /* *** subdual system ***
 

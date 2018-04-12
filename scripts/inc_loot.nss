@@ -1,6 +1,6 @@
 // This header includes everything that is necessary for spawning loot on Arelith.
 
-#include "gs_inc_pc"
+#include "inc_pc"
 #include "inc_lootdist"
 #include "inc_lootgen"
 #include "inc_lootname"
@@ -8,7 +8,7 @@
 #include "inc_database"
 #include "inc_log"
 #include "x3_inc_string"
-#include "gs_inc_language"
+#include "inc_language"
 
 // ----- PUBLIC API ------
 

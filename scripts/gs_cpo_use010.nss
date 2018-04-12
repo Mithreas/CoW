@@ -1,5 +1,5 @@
-#include "gs_inc_common"
-#include "gs_inc_portal"
+#include "inc_common"
+#include "inc_portal"
 #include "inc_customspells"
 
 void main()

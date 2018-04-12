@@ -1,4 +1,4 @@
-#include "gs_inc_event"
+#include "inc_event"
 
 string CONTROLLER_VAR   = "MI_GOLEM_CONTROLLER"; // also in gs_m_activate.
 

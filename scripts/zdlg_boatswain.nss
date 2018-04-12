@@ -1,4 +1,4 @@
-#include "gs_inc_quarter"
+#include "inc_quarter"
 #include "zdlg_include_i"
 #include "zzdlg_color_inc"
 #include "ar_sys_ship"

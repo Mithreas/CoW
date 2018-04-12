@@ -5,7 +5,7 @@
 
 
 #include "inc_chatutils"
-#include "gs_inc_common"
+#include "inc_common"
 #include "inc_examine"
 
 const string HELP  = "<cþôh>-mimic </c><cþ£ >[Attribute] [Hi / Lo / Av / St]</c>\nWith the help of Bluff or Perform ranks, you may change how your physical stats are displayed to others via right-click examine.  The first parameter of <cþ£ >[Attribute]</c> may be <cþ£ >STR</c>, <cþ£ >DEX</c>, <cþ£ >CON</c>, or <cþ£ >CHA</c>.";

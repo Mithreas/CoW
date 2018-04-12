@@ -17,7 +17,7 @@
 //:: Created On: Nov 19, 2001
 //:://////////////////////////////////////////////
 
-#include "gs_inc_event"
+#include "inc_event"
 #include "inc_npccooldowns"
 #include "X0_INC_HENAI"
 

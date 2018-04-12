@@ -1,5 +1,5 @@
 #include "inc_chatutils"
-#include "gs_inc_pc"
+#include "inc_pc"
 #include "inc_examine"
 
 const string HELP = "DM command: Displays the Roleplay Ratings of every player currently online. Players with a Mark of Destiny have (Destiny) added to their name, players with a mark of despair have (Despair) added to their name.";

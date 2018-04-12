@@ -14,8 +14,8 @@
     GetDlgSelection - gets user selection (index of the response list)
 */
 #include "__server_config"
-#include "gs_inc_state"
-#include "gs_inc_subrace"
+#include "inc_state"
+#include "inc_subrace"
 #include "inc_bonuses"
 #include "inc_log"
 #include "inc_backgrounds"

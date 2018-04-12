@@ -1,10 +1,10 @@
-#include "gs_inc_ai"
-#include "gs_inc_boss"
-#include "gs_inc_common"
-#include "gs_inc_encounter"
-#include "gs_inc_event"
-#include "gs_inc_flag"
-#include "gs_inc_time"
+#include "inc_ai"
+#include "inc_boss"
+#include "inc_common"
+#include "inc_encounter"
+#include "inc_event"
+#include "inc_flag"
+#include "inc_time"
 #include "inc_weather"
 
 const int GS_TIMEOUT = 7200; //2 hours

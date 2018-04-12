@@ -1,7 +1,7 @@
 //::  Lets a torturer tortue placeables with the tag AR_OBJ_TORTURED
 
-#include "gs_inc_area"
-#include "gs_inc_event"
+#include "inc_area"
+#include "inc_event"
 
 //----------------------------------------------------------------
 void Run()

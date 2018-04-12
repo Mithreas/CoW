@@ -18,7 +18,7 @@
 //:: Created On: August 22, 2017
 //:://////////////////////////////////////////////
 
-#include "gs_inc_spell"
+#include "inc_spell"
 #include "inc_generic"
 #include "nw_i0_spells"
 

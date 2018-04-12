@@ -1,5 +1,5 @@
 #include "inc_chat"
-#include "gs_inc_language"
+#include "inc_language"
 #include "inc_examine"
 #include "x3_inc_string"
 

@@ -1,4 +1,4 @@
-#include "gs_inc_spell"
+#include "inc_spell"
 #include "inc_healer"
 #include "inc_class"
 

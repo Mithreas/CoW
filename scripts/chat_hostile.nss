@@ -1,6 +1,6 @@
 #include "inc_chatutils"
 #include "inc_names"
-#include "gs_inc_fixture"
+#include "inc_fixture"
 #include "inc_examine"
 
 const string HELP = "-hostile [distance]. Hostiles all characters in the area up to specified distance in yards. If no distance specified, hostiles the entire area.";

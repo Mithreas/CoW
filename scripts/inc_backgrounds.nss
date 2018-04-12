@@ -1,7 +1,7 @@
 // BACKGROUNDS library by Mithreas
-#include "gs_inc_common"
-#include "gs_inc_iprop"
-#include "gs_inc_subrace"
+#include "inc_common"
+#include "inc_iprop"
+#include "inc_subrace"
 #include "inc_log"
 #include "inc_effect"
 #include "inc_generic"
@@ -803,7 +803,7 @@ int miBAGetCraftSkillBonus(object oPC, int nCraftSkill)
 
     switch (nBackground)
     {
-      // Note: We can't include gs_inc_craft for the constants, as that library
+      // Note: We can't include inc_craft for the constants, as that library
       // needs to include this one to call this method.
       case MI_BA_NOBLE: // art
       case BA_ARTIST:

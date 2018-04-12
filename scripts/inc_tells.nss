@@ -11,7 +11,7 @@
 
   The settings are stored on the creature hide for persistence.
 */
-#include "gs_inc_pc"
+#include "inc_pc"
 #include "inc_database"
 
 // Returns the object representing the player whose name begins with sName. If

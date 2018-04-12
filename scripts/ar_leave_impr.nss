@@ -1,4 +1,4 @@
-#include "gs_inc_respawn"
+#include "inc_respawn"
 
 void _arJumpBackToStoredLoc(object oTarget, location lLoc);
 

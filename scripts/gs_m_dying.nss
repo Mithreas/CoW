@@ -1,8 +1,8 @@
 #include "inc_zombie"
-#include "gs_inc_common"
-#include "gs_inc_effect"
-#include "gs_inc_flag"
-#include "gs_inc_text"
+#include "inc_common"
+#include "inc_effect"
+#include "inc_flag"
+#include "inc_text"
 #include "inc_bloodstains"
 #include "x2_inc_itemprop"
 #include "inc_subdual"
@@ -86,7 +86,7 @@ void main()
     // store the last hostile actor in case it's in subdual mode, to be able to grab this in ondeath when a PC bleeds to death
     object oAttacker = GetLastHostileActor(oDying);
 
-    // store last attacker for use in gs_inc_death and gs_m_death
+    // store last attacker for use in inc_death and gs_m_death
     SetLocalObject(oDying, "GVD_LAST_ATTACKER", oAttacker);
 
     if (gvd_GetSubdualMode(oAttacker) != 0) {

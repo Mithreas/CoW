@@ -1,6 +1,6 @@
-// Ripped out of gs_inc_common into its own script.
+// Ripped out of inc_common into its own script.
 
-#include "gs_inc_common"
+#include "inc_common"
 #include "inc_xfer"
 #include "nwnx_admin"
 

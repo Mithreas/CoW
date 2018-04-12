@@ -1,6 +1,6 @@
-#include "gs_inc_quarter"
-#include "gs_inc_time"
-#include "gs_inc_finance"
+#include "inc_quarter"
+#include "inc_time"
+#include "inc_finance"
 
 int StartingConditional()
 {

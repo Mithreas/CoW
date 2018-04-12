@@ -1,5 +1,5 @@
-#include "gs_inc_common"
-#include "gs_inc_event"
+#include "inc_common"
+#include "inc_event"
 #include "inc_item"
 
 void main()

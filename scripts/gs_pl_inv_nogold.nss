@@ -1,5 +1,5 @@
-#include "gs_inc_common"
-#include "gs_inc_time"
+#include "inc_common"
+#include "inc_time"
 #include "inc_generic"
 
 const int GS_TIMEOUT    = 10800; //3 hours

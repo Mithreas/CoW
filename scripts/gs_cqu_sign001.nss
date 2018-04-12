@@ -1,5 +1,5 @@
-#include "gs_inc_quarter"
-#include "gs_inc_time"
+#include "inc_quarter"
+#include "inc_time"
 
 int StartingConditional()
 {

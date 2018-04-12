@@ -1,5 +1,5 @@
 #include "inc_chat"
-#include "gs_inc_pc"
+#include "inc_pc"
 #include "x3_inc_string"
 #include "inc_effect"
 

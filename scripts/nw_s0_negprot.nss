@@ -14,7 +14,7 @@
 
 #include "inc_customspells" 
 #include "inc_effect"
-#include "gs_inc_respawn"
+#include "inc_respawn"
 
 void main()
 {

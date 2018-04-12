@@ -1,10 +1,10 @@
 #include "inc_chatutils"
 #include "inc_external"
 #include "inc_zombie"
-#include "gs_inc_common"
-#include "gs_inc_pc"
-#include "gs_inc_portal"
-#include "gs_inc_text"
+#include "inc_common"
+#include "inc_pc"
+#include "inc_portal"
+#include "inc_text"
 #include "inc_xfer"
 void main()
 {

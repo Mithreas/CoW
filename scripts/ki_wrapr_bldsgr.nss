@@ -14,7 +14,7 @@
 #include "inc_spellsword"
 #include "inc_bondeditems"
 #include "inc_bondeditems"
-#include "gs_inc_subrace"
+#include "inc_subrace"
 
 
 //:: Public Function Declarations

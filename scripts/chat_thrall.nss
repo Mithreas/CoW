@@ -1,5 +1,5 @@
 #include "inc_chat"
-#include "gs_inc_state"
+#include "inc_state"
 #include "inc_examine"
 #include "inc_thrall"
 #include "inc_vampire"

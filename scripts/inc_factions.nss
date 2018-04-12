@@ -97,7 +97,7 @@ create table fb_fa_messages (faction VARCHAR(51), message TEXT, timestamp INT(11
 //
 
 #include "inc_database"
-//#include "gs_inc_finance"
+//#include "inc_finance"
 #include "inc_citizen"
 #include "inc_log"
 

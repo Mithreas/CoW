@@ -8,8 +8,8 @@
 
 #include "__server_config"
 #include "inc_chatutils"
-#include "gs_inc_pc"
-#include "gs_inc_iprop"
+#include "inc_pc"
+#include "inc_iprop"
 #include "inc_worship"
 #include "inc_class"
 #include "inc_customspells"

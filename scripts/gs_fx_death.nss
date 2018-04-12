@@ -1,4 +1,4 @@
-#include "gs_inc_fixture"
+#include "inc_fixture"
 
 void main()
 {

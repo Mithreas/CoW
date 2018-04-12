@@ -1,6 +1,6 @@
-#include "gs_inc_finance"
+#include "inc_finance"
 
-// Dunshine: moved all reward functions to this include file so they can be called from other scripts (i.e. MoD deaths in gs_inc_death)
+// Dunshine: moved all reward functions to this include file so they can be called from other scripts (i.e. MoD deaths in inc_death)
 
 const string AWARD_MAJOR = "Major";     //award 1
 const string AWARD_NORMAL = "Normal";   //award 2

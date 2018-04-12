@@ -11,7 +11,7 @@
 //:: Created On: 2/5/2012
 //:://////////////////////////////////////////////
 #include "zzdlg_main_inc"
-#include "gs_inc_craft"
+#include "inc_craft"
 #include "inc_chat"
 
 

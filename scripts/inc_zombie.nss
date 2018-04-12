@@ -8,7 +8,7 @@ Have fun! The best April Fool's joke ever. :)
 
 const int FB_Z_LANGUAGE_ZOMBIE = 100;
 
-#include "gs_inc_ambience"
+#include "inc_ambience"
 #include "inc_spells"
 
 // Returns TRUE if oObject is a zombie, otherwise FALSE.

@@ -46,7 +46,7 @@
     Population marker with GS_PO_MASTER=0.
 
 */
-#include "gs_inc_encounter"
+#include "inc_encounter"
 #include "inc_database"
 #include "inc_xfer"
 

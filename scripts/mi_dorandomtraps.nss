@@ -8,7 +8,7 @@
 // traps by looking at the challenge rating of the first creature to spawn here.
 //
 // Aug 2015: Do the same for chests and gold piles. 
-#include "gs_inc_encounter"
+#include "inc_encounter"
 #include "inc_log"
 
 const string TRAPS = "TRAPS"; // for logging

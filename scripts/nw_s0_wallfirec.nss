@@ -16,7 +16,7 @@
 #include "x2_inc_spellhook"
 //Edited by Morderon on October 23, 2010.
 //Warlock DCs should now be computed correctly.
-#include "gs_inc_spell"
+#include "inc_spell"
 #include "inc_spells"
 #include "inc_generic"
 #include "inc_customspells"

@@ -6,7 +6,7 @@
 // 1 = Lesser, 2 = Greater, 3 = Masterwork
 
 #include "x3_inc_string"
-#include "gs_inc_language"
+#include "inc_language"
 
 // ---------------------------------------------------------
 // Checks whether the PC knows the language in question

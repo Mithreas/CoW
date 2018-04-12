@@ -15,7 +15,7 @@ creatures.
 //:://////////////////////////////////////////////
 //:: Updated By: Georg Zoeller, 2003-08-20: Added variable check for spawn in animation
 
-#include "gs_inc_event"
+#include "inc_event"
 #include "inc_npccooldowns"
 #include "X0_INC_HENAI"
 #include "x2_inc_switches"

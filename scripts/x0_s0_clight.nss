@@ -1,5 +1,5 @@
-#include "gs_inc_iprop"
-#include "gs_inc_spell"
+#include "inc_iprop"
+#include "inc_spell"
 
 void main()
 {

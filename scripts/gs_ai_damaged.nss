@@ -1,8 +1,8 @@
-#include "gs_inc_combat"
-#include "gs_inc_combat2"
-#include "gs_inc_effect"
-#include "gs_inc_event"
-#include "gs_inc_state"
+#include "inc_combat"
+#include "inc_combat2"
+#include "inc_effect"
+#include "inc_event"
+#include "inc_state"
 #include "inc_vampire"
 
 void _teleportSummonsToAttacker(object attacker, object attacked);

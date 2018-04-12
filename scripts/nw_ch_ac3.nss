@@ -17,7 +17,7 @@
 //:://////////////////////////////////////////////
 
 #include "X0_INC_HENAI"
-#include "gs_inc_spell"
+#include "inc_spell"
 #include "inc_associates"
 #include "inc_npccooldowns"
 

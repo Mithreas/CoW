@@ -1,10 +1,10 @@
 // Utilities for custom spells.
 
-#include "gs_inc_pc"
-#include "gs_inc_spell"
-#include "gs_inc_time"
+#include "inc_pc"
+#include "inc_spell"
+#include "inc_time"
 #include "inc_class"
-#include "gs_inc_common"
+#include "inc_common"
 #include "inc_disguise"
 #include "inc_generic"
 #include "inc_spells"

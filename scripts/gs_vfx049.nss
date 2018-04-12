@@ -1,4 +1,4 @@
-#include "gs_inc_area"
+#include "inc_area"
 
 void main()
 {

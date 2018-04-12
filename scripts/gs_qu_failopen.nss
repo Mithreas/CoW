@@ -1,4 +1,4 @@
-#include "gs_inc_quarter"
+#include "inc_quarter"
 #include "zdlg_include_i"
 #include "inc_holders"
 #include "inc_factions"

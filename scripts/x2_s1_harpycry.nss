@@ -17,7 +17,7 @@
 //:://////////////////////////////////////////////
 
 #include "X0_I0_SPELLS"
-#include "gs_inc_pc"
+#include "inc_pc"
 
 void main()
 {

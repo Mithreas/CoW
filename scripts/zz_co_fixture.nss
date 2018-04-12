@@ -7,7 +7,7 @@ Fireboar. This is a very simple conversation that has no need for pages.
 The "use object" conversation option relies on zz_co_forum (a port of gs_fo_use
 also converted to ZZ-Dialog) if the fixture in question is a message board.
 */
-#include "gs_inc_fixture"
+#include "inc_fixture"
 #include "zzdlg_main_inc"
 
 const string FB_RESPONSES = "FB_RESPONSES";

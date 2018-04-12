@@ -1,4 +1,4 @@
-#include "gs_inc_common"
+#include "inc_common"
 #include "inc_item"
 
 void main()

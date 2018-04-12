@@ -23,8 +23,8 @@ where zz_co_crafting is mentioned).
 
 #include "inc_chatutils"
 #include "inc_class"
-#include "gs_inc_istate"
-#include "gs_inc_pc"
+#include "inc_istate"
+#include "inc_pc"
 #include "zzdlg_main_inc"
 
 const string FB_RESPONSES = "FB_RESPONSES";

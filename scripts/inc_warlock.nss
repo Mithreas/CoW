@@ -65,8 +65,8 @@
   This has the added benefit of migrating experienced warlocks.
 
 */
-#include "gs_inc_pc"
-#include "gs_inc_spell"
+#include "inc_pc"
+#include "inc_spell"
 #include "nwnx_creature"
 #include "nwnx_object"
 #include "nwnx_alts"

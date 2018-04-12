@@ -19,8 +19,8 @@
 //::  AR_DROW_PROTECT (int) - set to 1 to check if PC entering trigger has a UD PC in their party to "protect" them from the spawn, i.e from drow occasional surface spawns
 //::  AR_VFX                - set to a VFX constant value to spawn this VFX on creature location when they appear, omit or set at zero to ignore
 
-#include "gs_inc_subrace"
-#include "gs_inc_flag"
+#include "inc_subrace"
+#include "inc_flag"
 #include "inc_log"
 #include "ar_utils"
 

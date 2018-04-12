@@ -14,7 +14,7 @@
  * below them.
  */
  
-#include "gs_inc_pc"
+#include "inc_pc"
  
 // Returns 1(TRUE) if the creature can fly, and 2 if it can carry others.
 int miFLGetCanFly(object oCreature);

@@ -2,8 +2,8 @@
 //
 // Each PC can use this once to get loot.  Will get tidied up by area cleanup
 // scripts.
-#include "gs_inc_common"
-#include "gs_inc_treasure"
+#include "inc_common"
+#include "inc_treasure"
 #include "inc_holders"
 #include "inc_stacking"
 

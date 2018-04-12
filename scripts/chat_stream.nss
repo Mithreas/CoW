@@ -12,7 +12,7 @@
 //:://////////////////////////////////////////////
 
 #include "inc_chatutils"
-#include "gs_inc_common"
+#include "inc_common"
 #include "inc_examine"
 #include "inc_string"
 #include "inc_sumstream"

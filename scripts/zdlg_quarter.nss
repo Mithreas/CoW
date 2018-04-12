@@ -43,7 +43,7 @@
 
   Future - footman, butler
 
-  Quarter table definition - see gs_inc_quarter
+  Quarter table definition - see inc_quarter
 
   On init
   - if needed, load from db
@@ -55,9 +55,9 @@
 
 */
 #include "__server_config"
-#include "gs_inc_listener"
-#include "gs_inc_quarter"
-#include "gs_inc_time"
+#include "inc_listener"
+#include "inc_quarter"
+#include "inc_time"
 #include "zdlg_include_i"
 #include "inc_factions"
 #include "inc_backgrounds"

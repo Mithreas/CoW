@@ -1,4 +1,4 @@
-#include "gs_inc_message"
+#include "inc_message"
 
 int StartingConditional()
 {

@@ -1,4 +1,4 @@
-#include "gs_inc_encounter"
+#include "inc_encounter"
 
 int StartingConditional()
 {

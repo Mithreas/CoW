@@ -1,4 +1,4 @@
-#include "gs_inc_effect"
+#include "inc_effect"
 
 const string GS_TEMPLATE_SKULL = "gs_placeable374";
 

@@ -6,8 +6,8 @@ have it all in one place - it's less in-grained into the module this way.
 
 */
 
-#include "gs_inc_iprop"
-#include "gs_inc_pc"
+#include "inc_iprop"
+#include "inc_pc"
 #include "inc_database"
 #include "inc_log"
 

@@ -1,7 +1,7 @@
 const int TRIGGER_COOLDOWN = 360; // 6 minutes
 
 // Haunt script by Mith
-#include "gs_inc_encounter"
+#include "inc_encounter"
 #include "inc_timelock"
 void main()
 {

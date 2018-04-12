@@ -12,11 +12,11 @@
     GetDlgSelection - gets user selection (index of the response list)
 */
 #include "inc_external"
-#include "gs_inc_craft"
-#include "gs_inc_finance"
-#include "gs_inc_language"
-#include "gs_inc_listener"
-#include "gs_inc_xp"
+#include "inc_craft"
+#include "inc_finance"
+#include "inc_language"
+#include "inc_listener"
+#include "inc_xp"
 #include "inc_log"
 #include "inc_tells"
 #include "zdlg_include_i"

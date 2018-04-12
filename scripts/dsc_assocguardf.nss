@@ -11,7 +11,7 @@
 //:: Created On: January 25, 2017
 //:://////////////////////////////////////////////
 
-#include "gs_inc_combat"
+#include "inc_combat"
 
 int StartingConditional()
 {

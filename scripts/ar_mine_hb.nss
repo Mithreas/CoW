@@ -1,4 +1,4 @@
-#include "gs_inc_time"
+#include "inc_time"
 #include "inc_ore_vein"
 
 void UpdateOre() {

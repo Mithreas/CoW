@@ -17,7 +17,7 @@ effect SetSummonEffect(int nSpellID, int nUnderdarker);
 
 #include "inc_customspells"
 #include "inc_warlock"
-#include "gs_inc_subrace"
+#include "inc_subrace"
 #include "inc_summons"
 #include "inc_timelock"
 #include "inc_spellsword"

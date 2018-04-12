@@ -11,9 +11,9 @@
 //:: Created On: February 28, 2016
 //:://////////////////////////////////////////////
 
-#include "gs_inc_language"
-#include "gs_inc_pc"
-#include "gs_inc_subrace"
+#include "inc_language"
+#include "inc_pc"
+#include "inc_subrace"
 #include "inc_effect"
 #include "inc_item"
 #include "inc_levelbonuses"

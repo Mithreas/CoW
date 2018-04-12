@@ -1,4 +1,4 @@
-#include "gs_inc_craft"
+#include "inc_craft"
 
 void main()
 {

@@ -1,5 +1,5 @@
 #include "inc_chatutils"
-#include "gs_inc_common"
+#include "inc_common"
 #include "inc_examine"
 
 const string HELP  = "<cþôh>-description </c><cþ£ >[+] Text</c>\nChanges your description to <cþ£ >Text</c>. If the optional parameter <cþ£ >+</c> is given, then instead of changing your description this command will append <cþ£ >Text</c> to the end of your current description as a new paragraph.\nExample:\n<cþôh>-description The new description.\n-description + An extra paragraph.\n-description +np An extra paragraph.\n-description +nl An extra line.\n-description +ap Adds onto the current line.</c>";

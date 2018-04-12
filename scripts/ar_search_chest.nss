@@ -8,7 +8,7 @@
     That's all.
 */
 
-#include "gs_inc_area"
+#include "inc_area"
 #include "inc_log"
 
 //----------------------------------------------------------------

@@ -13,7 +13,7 @@
 //:: Created By: Georg Zoeller
 //:: Created On: 2003-07-25
 //:://////////////////////////////////////////////
-#include "gs_inc_pc"
+#include "inc_pc"
 
 // Level up a creature to a specific level.
 // See x2_inc_summscale for more information

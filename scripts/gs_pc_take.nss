@@ -1,5 +1,5 @@
-#include "gs_inc_pc"
-#include "gs_inc_text"
+#include "inc_pc"
+#include "inc_text"
 
 const string GS_TEMPLATE_CORPSE_FEMALE = "gs_item016";
 const string GS_TEMPLATE_CORPSE_MALE   = "gs_item017";

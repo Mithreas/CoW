@@ -1,7 +1,7 @@
-#include "gs_inc_common"
-#include "gs_inc_flag"
-#include "gs_inc_time"
-#include "gs_inc_xp"
+#include "inc_common"
+#include "inc_flag"
+#include "inc_time"
+#include "inc_xp"
 
 void main()
 {

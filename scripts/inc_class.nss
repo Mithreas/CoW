@@ -1,7 +1,7 @@
 // CLASS library by Mithreas.
 #include "inc_external"
-#include "gs_inc_iprop"
-#include "gs_inc_subrace"
+#include "inc_iprop"
+#include "inc_subrace"
 #include "inc_effect"
 #include "inc_generic"
 #include "inc_item"

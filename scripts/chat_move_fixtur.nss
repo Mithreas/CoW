@@ -1,5 +1,5 @@
 #include "inc_chatutils"
-#include "gs_inc_fixture"
+#include "inc_fixture"
 #include "inc_examine"
 #include "x3_inc_string"
 #include "nwnx_player"

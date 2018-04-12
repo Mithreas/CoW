@@ -9,8 +9,8 @@
 96-100: Blade Rune Material (Secondary Roll: 80% Lesser, 15% Greater, 5% Masterwork material)
 */
 
-#include "gs_inc_common"
-#include "gs_inc_time"
+#include "inc_common"
+#include "inc_time"
 
 // const int GS_LIMIT_GOLD = 5000;
 

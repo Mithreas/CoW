@@ -11,15 +11,15 @@
 //:: Created On:
 //:://////////////////////////////////////////////
 
-#include "gs_inc_common"
+#include "inc_common"
 #include "inc_list"
 #include "nwnx_creature"
 #include "nwnx_object"
 #include "nwnx_alts"
 #include "nwnx_admin"
 #include "nwnx_alts"
-#include "gs_inc_pc"
-#include "gs_inc_iprop"
+#include "inc_pc"
+#include "inc_iprop"
 #include "x2_inc_itemprop"
 #include "inc_effecttags"
 

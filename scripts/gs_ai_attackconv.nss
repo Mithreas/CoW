@@ -1,4 +1,4 @@
-#include "gs_inc_combat"
+#include "inc_combat"
 
 // Batra: Makes NPC attack the PC who tries to speak to it.
 

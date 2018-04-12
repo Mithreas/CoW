@@ -10,7 +10,7 @@
   - knock
 
 */
-#include "gs_inc_quarter"
+#include "inc_quarter"
 #include "zdlg_include_i"
 
 //::///////////////////////////////////////////////

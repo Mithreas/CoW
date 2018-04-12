@@ -30,7 +30,7 @@
 
 */
 #include "inc_citizen"
-#include "gs_inc_finance"
+#include "inc_finance"
 #include "inc_names"
 #include "inc_timelock"
 #include "inc_xfer"

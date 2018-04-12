@@ -26,8 +26,8 @@
 
 
 //:: Includes
-#include "gs_inc_pc"
-#include "gs_inc_subrace"
+#include "inc_pc"
+#include "inc_subrace"
 
 const int BOND_TAG_NULL = 0;
 const int BOND_TAG_BLADESINGER = 1;

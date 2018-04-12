@@ -28,8 +28,8 @@
 
     BM: MODIFIED: Modified to work with gs_ timesystem, replacing all bm_inc_common code with arelith specific calls
 */
-#include "gs_inc_time"
-#include "gs_inc_subrace"
+#include "inc_time"
+#include "inc_subrace"
 #include "inc_divination"
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -1,4 +1,4 @@
-#include "gs_inc_effect"
+#include "inc_effect"
 
 const string GS_TEMPLATE_STONE  = "gs_placeable291";
 const string GS_TEMPLATE_COLUMN = "gs_placeable292";

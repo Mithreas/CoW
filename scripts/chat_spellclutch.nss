@@ -4,7 +4,7 @@
 #include "nwnx_admin"
 #include "inc_chatutils"
 #include "inc_examine"
-#include "gs_inc_subrace"
+#include "inc_subrace"
 
 const string HELP = "Spell clutch allows Depp Imaskari to refresh 2nd circle and below spells 1/day";
 void _RestoreSpells(object oPC, int nLevel)

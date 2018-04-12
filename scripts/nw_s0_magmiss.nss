@@ -19,7 +19,7 @@
 
 #include "NW_I0_SPELLS"
 #include "inc_customspells"
-#include "gs_inc_istate"
+#include "inc_istate"
 
 void _DoMagicMissile(object oTarget, int nCasterLvl, int nMetaMagic) {
 

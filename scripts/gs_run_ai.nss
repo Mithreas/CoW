@@ -1,8 +1,8 @@
-#include "gs_inc_ai"
-#include "gs_inc_area"
-#include "gs_inc_combat"
-#include "gs_inc_flag"
-#include "gs_inc_task"
+#include "inc_ai"
+#include "inc_area"
+#include "inc_combat"
+#include "inc_flag"
+#include "inc_task"
 
 void main()
 {

@@ -12,8 +12,8 @@
 //:://////////////////////////////////////////////
 
 #include "zzdlg_main_inc"
-#include "gs_inc_text"
-#include "gs_inc_common"
+#include "inc_text"
+#include "inc_common"
 #include "inc_chatutils"
 //These hold the responses that aren't going to change
 const string STARTER_MENU  = "STARTER_MENU";

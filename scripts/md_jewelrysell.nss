@@ -11,11 +11,11 @@
 //:: Created On: 3/10/2017
 //:://////////////////////////////////////////////
 #include "inc_holders"
+#include "inc_shop"
 #include "nwnx_creature"
 #include "nwnx_object"
 #include "x3_inc_string"
 #include "zdlg_include_i"
-#include "gs_inc_common"
 
 
 void _DelayRemoval(object oContainer)

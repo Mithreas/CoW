@@ -1,9 +1,9 @@
 // Sell all contents of a scroll case.
 #include "inc_holders"
+#include "inc_shop"
 #include "nwnx_object"
 #include "x3_inc_string"
 #include "zdlg_include_i"
-#include "gs_inc_common"
 
 
 void _DelayRemoval(object oContainer)

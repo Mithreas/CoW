@@ -13,13 +13,13 @@
 //:: Created On: 2003-05-09
 //:: Last Updated On: 2003-10-14
 //:://////////////////////////////////////////////
-#include "gs_inc_common"
-#include "gs_inc_iprop"
-#include "gs_inc_craft"
+#include "inc_common"
+#include "inc_iprop"
+#include "inc_craft"
 #include "inc_customspells"
 #include "x2_inc_itemprop"
 #include "x2_inc_switches"
-#include "gs_inc_pc"
+#include "inc_pc"
 #include "inc_adv_xp"
 
 struct craft_struct

@@ -1,6 +1,6 @@
 // i_bloodvial
 // For use with preserved blood vial, for all your vamp needs
-#include "gs_inc_state"
+#include "inc_state"
 
 void main()
 {

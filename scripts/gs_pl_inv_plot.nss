@@ -1,4 +1,4 @@
-#include "gs_inc_time"
+#include "inc_time"
 
 const int GS_TIMEOUT = 7200; //2 hours
 

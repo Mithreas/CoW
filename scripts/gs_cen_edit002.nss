@@ -1,4 +1,4 @@
-#include "gs_inc_encounter"
+#include "inc_encounter"
 #include "inc_log"
 
 void main()

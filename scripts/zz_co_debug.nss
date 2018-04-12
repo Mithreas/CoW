@@ -11,8 +11,8 @@ By Gulni
 */
 
 #include "zzdlg_main_inc"
-#include "gs_inc_common"
-#include "gs_inc_language"
+#include "inc_common"
+#include "inc_language"
 #include "inc_log"
 #include "inc_chat"
 

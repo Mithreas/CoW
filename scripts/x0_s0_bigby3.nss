@@ -17,7 +17,7 @@
 
 #include "x0_i0_spells"
 #include "inc_customspells"
-#include "gs_inc_text"
+#include "inc_text"
 #include "inc_spells"
 
 void main()

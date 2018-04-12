@@ -1,9 +1,9 @@
 #include "__server_config"
 #include "inc_chatutils"
-#include "gs_inc_flag"
-#include "gs_inc_text"
+#include "inc_flag"
+#include "inc_text"
 #include "inc_customspells"
-#include "gs_inc_spell"
+#include "inc_spell"
 #include "inc_worship"
 #include "inc_examine"
 

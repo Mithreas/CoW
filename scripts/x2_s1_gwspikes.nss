@@ -8,7 +8,7 @@
 //::///////////////////////////////////////////////////
 
 #include "x0_i0_spells"
-#include "gs_inc_pc"
+#include "inc_pc"
 void SHManticoreAttack(int nMissiles, int nCap, int nSpell, int nMIRV = VFX_IMP_MIRV,
     int nVIS = VFX_IMP_MAGBLUE, int nDAMAGETYPE = DAMAGE_TYPE_MAGICAL, int nONEHIT = FALSE)
 {

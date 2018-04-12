@@ -1,6 +1,6 @@
 #include "inc_chatutils"
-#include "gs_inc_pc"
-#include "gs_inc_time"
+#include "inc_pc"
+#include "inc_time"
 #include "inc_disguise"
 #include "inc_divination"
 #include "inc_examine"

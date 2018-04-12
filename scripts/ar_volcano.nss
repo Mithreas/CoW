@@ -1,4 +1,4 @@
-#include "gs_inc_area"
+#include "inc_area"
 #include "X0_I0_SPELLS"
 #include "x2_inc_spellhook"
 

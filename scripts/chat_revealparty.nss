@@ -1,5 +1,5 @@
 #include "inc_chatutils"
-#include "gs_inc_pc"
+#include "inc_pc"
 #include "nwnx_alts"
 #include "inc_examine"
 

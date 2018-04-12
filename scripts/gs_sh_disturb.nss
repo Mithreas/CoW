@@ -1,5 +1,5 @@
-#include "gs_inc_shop"
-#include "gs_inc_text"
+#include "inc_shop"
+#include "inc_text"
 #include "inc_generic"
 #include "inc_log"
 #include "inc_factions"

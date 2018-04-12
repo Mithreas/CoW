@@ -14,7 +14,7 @@
 //:://////////////////////////////////////////////
 //:: Last Updated By: Andrew Nobbs May 20, 2003
 
-#include "gs_inc_pc"
+#include "inc_pc"
 #include "inc_class"
 #include "x2_i0_spells"
 

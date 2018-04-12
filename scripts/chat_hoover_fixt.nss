@@ -1,5 +1,5 @@
-#include "gs_inc_pc"
-#include "gs_inc_fixture"
+#include "inc_pc"
+#include "inc_fixture"
 #include "inc_chatutils"
 #include "inc_examine"
 

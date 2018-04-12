@@ -23,7 +23,7 @@ create table micr_messages (tag VARCHAR(32), message VARCHAR(512), timestamp VAR
 
 #include "inc_database"
 #include "inc_log"
-#include "gs_inc_time"
+#include "inc_time"
 
 const string CRIERS = "CRIERS"; // for tracing
 

@@ -3,7 +3,7 @@
 // destroys the wardstone and grants them passage.
 //
 // Duergar and gnolls travel for free.
-#include "gs_inc_subrace"
+#include "inc_subrace"
 void main()
 {
   object oPC = GetClickingObject();

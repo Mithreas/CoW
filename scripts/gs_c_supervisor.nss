@@ -1,5 +1,5 @@
 #include "inc_factions"
-#include "gs_inc_quarter"
+#include "inc_quarter"
 int StartingConditional()
 {
     object oPC = GetPCSpeaker();

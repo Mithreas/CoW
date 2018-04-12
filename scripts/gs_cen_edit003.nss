@@ -1,6 +1,6 @@
-#include "gs_inc_common"
-#include "gs_inc_encounter"
-#include "gs_inc_text"
+#include "inc_common"
+#include "inc_encounter"
+#include "inc_text"
 
 const int GS_SLOT = 2;
 

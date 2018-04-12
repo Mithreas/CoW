@@ -1,4 +1,4 @@
-#include "gs_inc_effect"
+#include "inc_effect"
 #include "inc_bonuses"
 #include "inc_class"
 #include "inc_favsoul"

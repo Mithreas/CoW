@@ -7,8 +7,8 @@ This is a very simple conversation that has no need for pages.
 I've put the initialization code in OnPageInit rather than OnInit so that it
 works when linked to from another conversation.
 */
-#include "gs_inc_forum"
-#include "gs_inc_message"
+#include "inc_messageboard"
+#include "inc_message"
 #include "zzdlg_main_inc"
 #include "inc_log"
 #include "inc_factions"

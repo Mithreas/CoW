@@ -1,6 +1,6 @@
 #include "nw_o0_itemmaker"
 #include "inc_chatutils"
-#include "gs_inc_state"
+#include "inc_state"
 #include "zzdlg_color_inc"
 #include "inc_names"
 #include "ar_utils"

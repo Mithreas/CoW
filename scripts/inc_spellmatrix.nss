@@ -8,7 +8,7 @@
 
 //void main() {}
 
-#include "gs_inc_spell"
+#include "inc_spell"
 #include "nw_i0_spells"
 #include "inc_effect"
 #include "inc_statuseffect"

@@ -1,5 +1,5 @@
-#include "gs_inc_listener"
-#include "gs_inc_common"
+#include "inc_listener"
+#include "inc_common"
 void main()
 {
     //slot 1

@@ -2,7 +2,7 @@
 #include "inc_chatutils"
 #include "inc_names"
 #include "inc_customspells"
-#include "gs_inc_spell"
+#include "inc_spell"
 #include "inc_worship"
 #include "inc_examine"
 

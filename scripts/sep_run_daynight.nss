@@ -1,4 +1,4 @@
-#include "gs_inc_event"
+#include "inc_event"
 //..............................................................................
 // Kick players out of the area
 void handlePlayerKick(int nEventNum, int bRespectStealth);

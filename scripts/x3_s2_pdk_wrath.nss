@@ -96,7 +96,7 @@ void main()
     // Apply effect to bad guy
     ApplyEffectToObject(DURATION_TYPE_TEMPORARY, ExtraordinaryEffect(eACPen), oTarget, TurnsToSeconds(1));
 
-    // Set local variables for gs_inc_combat to hook into
+    // Set local variables for inc_combat to hook into
     SetLocalObject(oTarget, "PDKWrath", OBJECT_SELF);
     SetLocalInt(oTarget, "WrathTimeStamp", GetModuleTime());
 

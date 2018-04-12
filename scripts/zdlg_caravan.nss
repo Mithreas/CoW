@@ -13,7 +13,7 @@
     GetDlgSelection - gets user selection (index of the response list)
 */
 #include "zdlg_include_i"
-#include "gs_inc_subrace"
+#include "inc_subrace"
 #include "inc_caravan"
 
 //------------------------------------------------------------------------------

@@ -1,5 +1,5 @@
-#include "gs_inc_iprop"
-#include "gs_inc_token"
+#include "inc_iprop"
+#include "inc_token"
 
 int StartingConditional()
 {

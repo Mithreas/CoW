@@ -1,9 +1,9 @@
-#include "gs_inc_pc";
+#include "inc_pc";
 #include "inc_chatutils"
 #include "inc_dm"
 #include "inc_log"
 #include "inc_examine"
-#include "gs_inc_respawn"
+#include "inc_respawn"
 
 const string HELP = "Removed the current Death Penalty of the PC last targeted with DM Tool 1";
 

@@ -1,5 +1,5 @@
 #include "inc_chatutils"
-#include "gs_inc_time"
+#include "inc_time"
 #include "inc_data_arr"
 #include "inc_examine"
 #include "inc_forum"

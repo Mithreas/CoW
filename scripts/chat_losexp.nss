@@ -16,7 +16,7 @@
 #include "inc_chatutils.nss"
 #include "x3_inc_string"
 #include "inc_examine"
-#include "gs_inc_pc"
+#include "inc_pc"
 
 const string HELP = "This command will remove the amount of XP specified. Eg. -losexp 1500 will remove 1500 from the character. All uses of this function are logged for DM monitoring";
 

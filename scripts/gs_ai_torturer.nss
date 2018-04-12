@@ -1,6 +1,6 @@
-#include "gs_inc_event"
-#include "gs_inc_task"
-#include "gs_inc_torture"
+#include "inc_event"
+#include "inc_task"
+#include "inc_torture"
 
 void main()
 {

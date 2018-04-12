@@ -30,7 +30,7 @@
 #include "nwnx_object"
 #include "nwnx_alts"
 #include "nwnx_admin"
-#include "gs_inc_pc"
+#include "inc_pc"
 #include "inc_generic"
 #include "inc_item"
 #include "inc_spells"

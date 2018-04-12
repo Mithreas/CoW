@@ -12,7 +12,7 @@
     GetPcDlgSpeaker = GetPCSpeaker
     GetDlgSelection - gets user selection (index of the response list)
 */
-#include "gs_inc_pc"
+#include "inc_pc"
 #include "inc_log"
 #include "zdlg_include_i"
 //------------------------------------------------------------------------------

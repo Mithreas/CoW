@@ -21,12 +21,12 @@ int StartingConditional()
 
     if(GetHasFeat(FEAT_EPIC_REPUTATION, oPC))
     {
-        int nRankIntimidate = nRankIntimidate + 10;
-        int nRankPersuade = nRankPersuade + 10;
-        int nRankBluff = nRankBluff + 10;
-        int nRankPerform = nRankPerform + 10;
-        int nRankAppraise = nRankAppraise + 10;
-        int nRankTaunt = nRankTaunt + 10;
+        nRankIntimidate = nRankIntimidate + 10;
+        nRankPersuade = nRankPersuade + 10;
+        nRankBluff = nRankBluff + 10;
+        nRankPerform = nRankPerform + 10;
+        nRankAppraise = nRankAppraise + 10;
+        nRankTaunt = nRankTaunt + 10;
     }
 
     int nResult = FALSE;

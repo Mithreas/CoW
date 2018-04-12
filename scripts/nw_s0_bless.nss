@@ -1,5 +1,5 @@
 #include "inc_customspells"
-#include "gs_inc_pc"
+#include "inc_pc"
 
 void main()
 {

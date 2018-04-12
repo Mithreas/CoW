@@ -12,8 +12,8 @@
 //:: Created On: 02-15-2012
 //:://////////////////////////////////////////////
 #include "zzdlg_main_inc"
-#include "gs_inc_listener"
-#include "gs_inc_shop"
+#include "inc_listener"
+#include "inc_shop"
 //Pages
 const string PAGE_MAIN = "PAGE_MAIN";
 const string PAGE_CONFIRM = "PAGE_CONFIRM";

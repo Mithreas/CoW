@@ -1,5 +1,5 @@
 #include "inc_chatutils"
-#include "gs_inc_fixture"
+#include "inc_fixture"
 #include "inc_examine"
 
 const string HELP = "-rotate_fixture [degrees] or [cardinal direction]. Rotates the nearest fixture (must be within 4 yards) by the provided degrees (minimum 25) or cardinal direction (north/east/south/west).";

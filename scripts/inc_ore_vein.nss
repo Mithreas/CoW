@@ -1,5 +1,5 @@
-#include "gs_inc_common"
-#include "gs_inc_placeable"
+#include "inc_common"
+#include "inc_placeable"
 
 const int DUR_DAY           = 864000;   //::  24 RL Hours
 const string ORE_EXPIRE     = "ORE_EXPIRE";

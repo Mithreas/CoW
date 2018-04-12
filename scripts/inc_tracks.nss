@@ -1,5 +1,5 @@
-#include "gs_inc_subrace"
-#include "gs_inc_combat2"
+#include "inc_subrace"
+#include "inc_combat2"
 #include "inc_customspells"
 void miTRDoTracks(object oPC, int bEntering=TRUE)
 {

@@ -1,5 +1,5 @@
-#include "gs_inc_event"
-#include "gs_inc_ai"
+#include "inc_event"
+#include "inc_ai"
 
 // Replaces gs_ai_default for onvivore creatures:
 //   Those creatures which are docile until approached

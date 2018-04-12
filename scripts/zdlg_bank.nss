@@ -24,8 +24,8 @@
 */
 #include "inc_log"
 #include "zdlg_include_i"
-#include "gs_inc_finance"
-#include "gs_inc_listener"
+#include "inc_finance"
+#include "inc_listener"
 #include "inc_factions"
 
 const string MAIN_MENU = "MAIN_BANK_MENU";

@@ -1,8 +1,8 @@
-#include "gs_inc_area"
-#include "gs_inc_boss"
-#include "gs_inc_common"
-#include "gs_inc_encounter"
-#include "gs_inc_flag"
+#include "inc_area"
+#include "inc_boss"
+#include "inc_common"
+#include "inc_encounter"
+#include "inc_flag"
 
 const int GS_TIMEOUT = 3600; //1 hour
 

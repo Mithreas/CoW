@@ -11,7 +11,7 @@
 //:: Created On: 2/5/2012
 //:://////////////////////////////////////////////
 #include "zzdlg_main_inc"
-#include "gs_inc_shop"
+#include "inc_shop"
 #include "inc_factions"
 
 const string PAGE_MAIN = "PAGE_MAIN";

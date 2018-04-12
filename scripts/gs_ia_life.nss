@@ -1,8 +1,8 @@
-#include "gs_inc_common"
-#include "gs_inc_pc"
-#include "gs_inc_respawn"
-#include "gs_inc_time"
-#include "gs_inc_xp"
+#include "inc_common"
+#include "inc_pc"
+#include "inc_respawn"
+#include "inc_time"
+#include "inc_xp"
 #include "inc_xfer"
 
 void main()
@@ -69,10 +69,10 @@ void main()
 	}
 
     //penalty
-    // Septire - Death Penalty now 10% of what it was, refer to gs_inc_xp
+    // Septire - Death Penalty now 10% of what it was, refer to inc_xp
 	gsXPApplyDeathPenalty(oUsedBy);
 	
-	// Septire - New Ability Drain death penalty, refer to gs_inc_respawn
+	// Septire - New Ability Drain death penalty, refer to inc_respawn
 	ExecuteScript("sep_respawn_new", oUsedBy);
 	
 	// Randomize alignment!

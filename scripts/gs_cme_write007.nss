@@ -1,5 +1,5 @@
-#include "gs_inc_common"
-#include "gs_inc_message"
+#include "inc_common"
+#include "inc_message"
 // Edited by Mithreas to allow longer messages.
 const string GS_TEMPLATE_LETTER = "gs_item370";
 

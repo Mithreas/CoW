@@ -1,5 +1,5 @@
-#include "gs_inc_craft"
-#include "gs_inc_token"
+#include "inc_craft"
+#include "inc_token"
 
 // Prevent ammo being used in the basin.  Various stacking bugs are exploitable.
 int _RestrictedItem(object oItem)

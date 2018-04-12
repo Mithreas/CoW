@@ -1,6 +1,6 @@
 // Create an evil clone of the PC and have them attack.
 #include "inc_generic"
-#include "gs_inc_combat"
+#include "inc_combat"
 void main()
 {
   object oPC = GetLastUsedBy();

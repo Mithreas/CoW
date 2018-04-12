@@ -12,7 +12,7 @@
 //:: Created On: September 15, 2016
 //:://////////////////////////////////////////////
 
-#include "gs_inc_pc"
+#include "inc_pc"
 #include "inc_generic"
 #include "inc_math"
 #include "inc_spells"

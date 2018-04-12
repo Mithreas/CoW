@@ -1,4 +1,4 @@
-#include "gs_inc_common"
+#include "inc_common"
 
 const int GS_LIMIT_ITEM_VALUE            = 12000; //maximum item value
 const int GS_ITEM_REPLACEMENT_PERCENTAGE =    10; //item replacement in percent

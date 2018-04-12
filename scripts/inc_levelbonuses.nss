@@ -12,7 +12,7 @@
 //:: Created On: July 8, 2016
 //:://////////////////////////////////////////////
 
-#include "gs_inc_common"
+#include "inc_common"
 #include "inc_list"
 #include "nwnx_creature"
 #include "nwnx_object"

@@ -1,9 +1,9 @@
 #include "__server_config"
 #include "inc_chatalias"
 #include "inc_chatutils"
-#include "gs_inc_ambience"
-#include "gs_inc_container"
-#include "gs_inc_time"
+#include "inc_ambience"
+#include "inc_container"
+#include "inc_time"
 #include "inc_worship"
 #include "inc_loot"
 #include "inc_database"
@@ -16,7 +16,7 @@
 #include "nwnx_chat"
 #include "nwnx_events"
 #include "nwnx_alts"
-#include "gs_inc_area"
+#include "inc_area"
 
 void DropPassword()
 {

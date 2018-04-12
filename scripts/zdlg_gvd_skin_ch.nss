@@ -1,5 +1,5 @@
 #include "__server_config"
-#include "gs_inc_subrace"
+#include "inc_subrace"
 #include "zdlg_include_i"
 #include "zzdlg_color_inc"
 

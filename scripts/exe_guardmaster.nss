@@ -10,7 +10,7 @@
 //:: Created On: September 13, 2016
 //:://////////////////////////////////////////////
 
-#include "gs_inc_combat"
+#include "inc_combat"
 
 void main()
 {

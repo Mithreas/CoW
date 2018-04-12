@@ -8,7 +8,7 @@
 */
 //:://////////////////////////////////////////////
 
-#include "gs_inc_common"
+#include "inc_common"
 #include "inc_array"
 #include "inc_generic"
 #include "inc_levelbonuses"
