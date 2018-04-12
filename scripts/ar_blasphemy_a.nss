@@ -7,7 +7,7 @@
     Applied OnEnter of the Blasphemy AoE
 */
 
-#include "ar_spellmatrix"
+#include "inc_spellmatrix"
 
 void main()
 {

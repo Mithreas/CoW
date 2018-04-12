@@ -10,7 +10,7 @@
 #include "inc_divination"
 #include "inc_relations"
 #include "x2_inc_switches"
-#include "ar_sys_wildmagic"
+#include "inc_wildmagic"
 #include "inc_spells"
 #include "gvd_inc_subdual"
 

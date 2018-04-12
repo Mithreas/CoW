@@ -1,17 +1,18 @@
 /*
-  Name: ar_sys_wildmagic
+  Name: inc_wildmagic
   Author: ActionReplay
   Date: 24 May 15
-  Description:  Handles the Wild Magic feature used by "ar_sys_wildmagic".
+  Description:  Handles the Wild Magic feature used by "inc_wildmagic".
 */
 
 //void main(){}
 
 
-#include "ar_spellmatrix"
+#include "inc_spellmatrix"
 #include "ar_utils"
 #include "gs_inc_state"
 #include "inc_math"
+#include "inc_customspells"
 
 //::  For Wild Mages
 const string AR_WILD_MAGE    = "WILD_MAGE";
@@ -39,7 +40,7 @@ void _arCreateWMGems(object oPC, int nCasterLevel, int isWildMage);
 
 //:: Called from gs_spellscript, this hooks into the spellcasting system.
 //:: Checks if the apropriate conditions are met and if so will proceed to apply
-//:: a Wild Magic effect from ar_FaerzressWildMagicTable found in "ar_sys_wildmagic".
+//:: a Wild Magic effect from ar_FaerzressWildMagicTable found in "inc_wildmagic".
 //:: Hooked into "gs_spellscript"
 void ar_FaerzressWildMagic(object oPC, object oTarget, location lTarget, int nSpell, int nHarmful);
 

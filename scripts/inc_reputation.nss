@@ -74,6 +74,9 @@ int GetFactionScore(int nFaction);
 // Get a PC's faction.
 int GetPCFaction(object oPC);
 
+// Set a PC's faction.
+void SetPCFaction(object oPC, int nFaction);
+
 // Return the number of reputation points a PC needs to hit the next level.
 int GetRepPointsNeededToLevel(object oPC);
 
@@ -366,6 +369,11 @@ int GetPCFaction(object oPC)
 {
   string sSubRace = GetSubRace(oPC);
   return (GetFactionFromName(sSubRace));
+}
+
+void SetPCFaction(object oPC, int nFaction)
+{
+  SetSubRace (oPC, GetFactionName(nFaction));
 }
 
 //void main() {}

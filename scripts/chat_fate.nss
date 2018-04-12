@@ -1,5 +1,5 @@
 #include "fb_inc_chatutils"
-#include "ar_sys_wildmagic"
+#include "inc_wildmagic"
 #include "inc_customspells"
 #include "inc_examine"
 

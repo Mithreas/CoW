@@ -3,7 +3,7 @@
     Will randomly Polymorph if entering the AoE
 */
 
-#include "ar_spellmatrix"
+#include "inc_spellmatrix"
 #include "inc_spells"
 
 void main()

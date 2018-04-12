@@ -3,7 +3,6 @@
 */
 
 #include "inc_spellsword"
-#include "inc_dot"
 
 //apply Spellsword Imbue effect acid damage function
 void ApplySSDoT( object oTarget, int nDamage, float fTimestep );

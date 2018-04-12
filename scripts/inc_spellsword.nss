@@ -35,7 +35,7 @@
 #include "inc_item"
 #include "inc_spells"
 #include "inc_effecttags"
-#include "ar_spellmatrix"
+#include "inc_spellmatrix"
 #include "x2_inc_itemprop"
 #include "inc_bondeditems"
 #include "inc_bondeditems"

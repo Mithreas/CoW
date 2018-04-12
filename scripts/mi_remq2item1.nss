@@ -8,6 +8,7 @@
   under the variable name "quest1item1"/
 */
 #include "inc_log"
+#include "inc_quest"
 void main()
 {
   string sItemTag = GetLocalString(OBJECT_SELF, "quest2item1");
@@ -16,6 +17,6 @@ void main()
   if (sItem != OBJECT_INVALID)
   {
     DestroyObject(sItem);
-    Log("Destroyed " + GetName(sItem));
+    Trace(QUESTS, "Destroyed " + GetName(sItem));
   }
 }

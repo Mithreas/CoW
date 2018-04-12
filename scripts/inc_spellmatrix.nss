@@ -1,5 +1,5 @@
 /*
-  Name: ar_spellmatrix
+  Name: inc_spellmatrix
   Author: ActionReplay
   Date: 13 Feb 16
   Modified: 03 April 16

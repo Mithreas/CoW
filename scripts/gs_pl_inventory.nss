@@ -51,7 +51,6 @@ void main()
     {
         oPC = GetLastOpenedBy();
 
-        //if (! GetIsObjectValid(GetFirstItemInInventory())) - Removed by Mithreas
         if (sTag == "GS_GOLD_HIGH")
         {
           gsCMCreateGold(Random(1000) + 1001);
@@ -239,8 +238,6 @@ void main()
     {
         string sTag = GetTag(OBJECT_SELF);
 
-        //if (! nTimeout) nTimeout = nTimestamp + gsTIGetTimestamp(0, 0, 0, GS_TIMEOUT);
-        // Mith edit - line above was broken.
         if (! nTimeout || nTimeout < nTimestamp) nTimeout = nTimestamp + GS_TIMEOUT;
 
         if (sTag == "GS_TREASURE_LOW")

@@ -8,6 +8,7 @@
   under the variable name "quest1item1"/
 */
 #include "inc_log"
+#include "inc_quest"
 int StartingConditional()
 {
   string sItemTag = GetLocalString(OBJECT_SELF, "quest2item1");
@@ -16,7 +17,7 @@ int StartingConditional()
    if (sItem != OBJECT_INVALID)
   {
     nRetVal = 1;
-    Log("Found item: " + GetName(sItem));
+    Trace(QUESTS, "Found item: " + GetName(sItem));
   }
 
   return nRetVal;

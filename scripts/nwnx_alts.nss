@@ -225,6 +225,8 @@ int SetWeaponSpecializationFeat (int nBaseItem, int nFeat);
 // emptied/disabled functions //
 ////////////////////////////////
 
+// Index of the effect integer that defines a visual effect's value.
+const int EFFECT_INTEGER_VISUAL_EFFECT_TYPE = 0;
 
 /* Returns the internal effect integer at the index specified. The index
  * is limited to being between 0 and GetEffectNumIntegers(), and which index

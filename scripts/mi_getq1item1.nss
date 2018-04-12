@@ -9,6 +9,7 @@
 */
 #include "inc_log"
 #include "inc_database"
+#include "inc_quest"
 void main()
 {
   string sItemTag = GetPersistentString(OBJECT_SELF, "quest1item1");
@@ -16,6 +17,6 @@ void main()
 
   if (oItem == OBJECT_INVALID)
   {
-    Log("ERROR! Tried to create non-existent item " + sItemTag);
+    Trace(QUESTS, "ERROR! Tried to create non-existent item " + sItemTag);
   }
 }

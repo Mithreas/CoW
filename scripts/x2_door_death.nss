@@ -30,16 +30,16 @@ void main()
                                      PLAYER_CHAR_NOT_PC,
                                      OBJECT_SELF,
                                      nCount);
-    Trace(FACTIONS, "Door bashed. Found NPC: " + GetName(oNPC));
+    Trace(BOUNTY, "Door bashed. Found NPC: " + GetName(oNPC));
     float fDistance = GetDistanceBetween(OBJECT_SELF, oNPC);
 
     while (fDistance < 20.0)
     {
-      Trace(FACTIONS, "NPC is close enough. Checking faction and visibility.");
+      Trace(BOUNTY, "NPC is close enough. Checking faction and visibility.");
       int nNation = CheckFactionNation(oNPC);
       if (GetCanSeeParticularPC(oPC, oNPC) && (nNation != NATION_INVALID))
       {
-        Trace(FACTIONS, "NPC is from a nation that gives bounties, and can see PC.");
+        Trace(BOUNTY, "NPC is from a nation that gives bounties, and can see PC.");
         AddToBounty(nNation, FINE_THEFT, oPC);
         break; // Only add to one bounty
       }
@@ -49,7 +49,7 @@ void main()
                               PLAYER_CHAR_NOT_PC,
                               OBJECT_SELF,
                               nCount);
-      Trace(FACTIONS, "Got next NPC: " + GetName(oNPC));
+      Trace(BOUNTY, "Got next NPC: " + GetName(oNPC));
       fDistance = GetDistanceBetween(OBJECT_SELF, oNPC);
     }
 

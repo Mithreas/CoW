@@ -14,6 +14,7 @@
 #include "fb_inc_external"
 #include "gs_inc_craft"
 #include "gs_inc_finance"
+#include "gs_inc_language"
 #include "gs_inc_listener"
 #include "gs_inc_xp"
 #include "inc_log"

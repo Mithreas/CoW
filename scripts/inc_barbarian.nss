@@ -34,7 +34,7 @@
 #include "inc_spells"
 #include "inc_effecttags"
 #include "inc_timelock"
-#include "ar_spellmatrix"
+#include "inc_spellmatrix"
 #include "x0_i0_spells"
 #include "x2_i0_spells"
 #include "x2_inc_itemprop"

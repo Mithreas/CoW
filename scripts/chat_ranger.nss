@@ -153,7 +153,7 @@ void main()
             if (!bRemoved && nFeat == nExistingFeat)
             {
                 // Remove Feat
-                RemoveKnownFeat(oPC, nFeat);
+                NWNX_Creature_RemoveFeat(oPC, nFeat);
                 // Reset variable
                 DeleteArrayInt(oHide, RSTUDIED, i);
                 bRemoved = TRUE;

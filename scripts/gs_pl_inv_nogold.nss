@@ -14,7 +14,6 @@ void main()
 
     if (nTimeout < nTimestamp)
     {
-        //if (! GetIsObjectValid(GetFirstItemInInventory())) - Removed by Mithreas
         {
             //create inventory
             string sTag       = GetTag(OBJECT_SELF);

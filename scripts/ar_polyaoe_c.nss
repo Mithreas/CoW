@@ -3,7 +3,7 @@
     Will randomly Polymorph on HB
 */
 
-#include "ar_spellmatrix"
+#include "inc_spellmatrix"
 #include "inc_spells"
 
 void main()

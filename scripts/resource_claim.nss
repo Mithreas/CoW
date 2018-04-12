@@ -13,7 +13,7 @@ void main()
   if (CheckNoOwnersPresent(oArea))
   {
     ClaimResource(oPC, oArea);
-    Log("PC " + GetName(oPC) + " claimed area " + GetName(oArea));
+    Trace(RESOURCE, "PC " + GetName(oPC) + " claimed area " + GetName(oArea));
 
     // Give all members of the PC's party a rep point with their faction.
     // 4th July 06 - removed. Replaced with rep bonus when buying mercs.

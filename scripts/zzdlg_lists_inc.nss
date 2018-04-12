@@ -6,9 +6,6 @@
 
 const string LIST_PREFIX = "zzdlgList:";
 
-// Note! I removed defaults since zdlg rarely uses OBJECT_SELF and if so at
-//   the wrong times will produce bugs into end-user dialog scripts.
-
 ///// Core prototypes
 
 // Returns the number of items in the specified list.
@@ -16,11 +13,11 @@ int GetElementCount( string list, object holder = OBJECT_SELF);
 
 // Removes the list element at the specified index.  Returns
 // the new item count.
-int RemoveElement( int index, string list, object holder );
+int RemoveElement( int index, string list, object holder = OBJECT_SELF);
 
 // Removes the list elements from start to end-1 inclusive at the
 // specified index.  Returns the new item count.
-int RemoveElements( int start, int end, string list, object holder );
+int RemoveElements( int start, int end, string list, object holder = OBJECT_SELF);
 
 // Deletes the list and all contents.  Returns the number
 // of elements deleted in the process.
@@ -53,7 +50,7 @@ int AddObjectElement( object item, string list, object holder = OBJECT_SELF);
 object GetObjectElement( int index, string list, object holder = OBJECT_SELF);
 
 // Begins a list iteration for object values
-object GetFirstObjectElement( string list, object holder );
+object GetFirstObjectElement( string list, object holder = OBJECT_SELF);
 
 // Returns the next item in an object list iteration
 object GetNextObjectElement();
@@ -67,7 +64,7 @@ int AddIntElement( int item, string list, object holder = OBJECT_SELF);
 int GetIntElement( int index, string list, object holder = OBJECT_SELF);
 
 // Begins a list iteration for int values
-int GetFirstIntElement( string list, object holder );
+int GetFirstIntElement( string list, object holder = OBJECT_SELF);
 
 // Returns the next item in a list iteration
 int GetNextIntElement();

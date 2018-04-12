@@ -17,7 +17,6 @@
 #include "gs_inc_state"
 #include "gs_inc_subrace"
 #include "inc_bonuses"
-#include "inc_notifychange"
 #include "inc_log"
 #include "inc_backgrounds"
 #include "inc_class"
@@ -396,7 +395,6 @@ int _ApplySubRace()
 
   }
 
-  NotifyChangesRegisterNewCharacter(oSpeaker);
   md_AddRacialBonuses(oSpeaker, nSubRace, oProperty);
 
   //:: Remove major awards.
@@ -1669,19 +1667,19 @@ void HandleSelection()
 	  else if (sPath == PATH_OF_FAVOURED_SOUL)
 	  {
 	    // Remove both domains.
-		SetClericDomain(oPC, 1, 3); // 3 is an unused index in domains.2da.
-		SetClericDomain(oPC, 2, 3); // 3 is an unused index in domains.2da.
+		NWNX_Creature_SetClericDomain(oPC, 1, 2); // 2 is an unused index in domains.2da.
+		NWNX_Creature_SetClericDomain(oPC, 2, 2); // 2 is an unused index in domains.2da.
 		
 		// Remove all domain feats. 
 		int nFeat;
 		for (nFeat = 306; nFeat < 326; nFeat++)
 		{
-		  RemoveKnownFeat(oPC, nFeat);
+		  NWNX_Creature_RemoveFeat(oPC, nFeat);
 		}  
 		
 		// Remove heavy armour proficiency and Turn Undead.
-		RemoveKnownFeat(oPC, FEAT_ARMOR_PROFICIENCY_HEAVY);
-		RemoveKnownFeat(oPC, FEAT_TURN_UNDEAD);
+		NWNX_Creature_RemoveFeat(oPC, FEAT_ARMOR_PROFICIENCY_HEAVY);
+		NWNX_Creature_RemoveFeat(oPC, FEAT_TURN_UNDEAD);
 		
 		// Improve reflex saves (+0 -> +2 at first level)
 		AddItemProperty(DURATION_TYPE_PERMANENT,

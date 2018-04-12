@@ -3,7 +3,7 @@
     Will damage targets on HB, Fort Save.
 */
 
-#include "ar_spellmatrix"
+#include "inc_spellmatrix"
 
 void main()
 {

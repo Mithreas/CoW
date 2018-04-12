@@ -2,7 +2,7 @@
   Wild Mage Chaos Shield Effect OnHeartBeat
 */
 
-#include "ar_spellmatrix"
+#include "inc_spellmatrix"
 #include "inc_effect"
 
 void doFeedbackMessage(object oCaster, object oTarget, string sMessage);
