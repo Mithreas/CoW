@@ -1,5 +1,5 @@
-#include "fb_inc_chatutils"
-#include "fb_inc_names"
+#include "inc_chatutils"
+#include "inc_names"
 #include "gs_inc_fixture"
 #include "inc_examine"
 

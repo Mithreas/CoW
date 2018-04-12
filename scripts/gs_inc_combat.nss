@@ -1,11 +1,10 @@
 /* COMBAT Library by Gigaschatten */
 
-#include "fb_inc_names"
-#include "fb_inc_zombie"
+#include "inc_names"
+#include "inc_zombie"
 #include "gs_inc_combat2"
 #include "gs_inc_combat3"
 #include "gs_inc_flag"
-#include "gu_inc_ailevel"
 #include "inc_time"
 
 //void main() {}
@@ -515,7 +514,7 @@ void gsCBDetermineAttackTarget(object oVictim)
 void gsCBDetermineCombatRound(object oTarget = OBJECT_INVALID)
 {
 
-    guALSetAILevel(GU_AI_LEVEL_COMBAT);
+    guALSetAILevel(AI_LEVEL_NORMAL);
 
     if (GetPlotFlag() ||
         gsFLGetFlag(GS_FL_DISABLE_COMBAT))

@@ -1,4 +1,4 @@
-#include "sep_inc_event"
+#include "gs_inc_event"
 void main()
 {
     SetLocalInt(OBJECT_SELF, "sep_forceful", 1);

@@ -12,7 +12,7 @@
 //:://////////////////////////////////////////////
 #include "zzdlg_main_inc"
 #include "gs_inc_craft"
-#include "fb_inc_chat"
+#include "inc_chat"
 
 
 const string PAGE_MAIN = "CR_PAGE_MAIN";

@@ -21,7 +21,7 @@
 #include "nwnx_object"
 #include "nwnx_alts"
 #include "nwnx_admin"
-#include "fb_inc_names"
+#include "inc_names"
 
 // Forces the caller to equip the given items.
 void EquipItems(object oArmor, object oHelm, object oWeapon1, object oWeapon2);

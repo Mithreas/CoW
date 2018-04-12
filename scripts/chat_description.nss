@@ -1,4 +1,4 @@
-#include "fb_inc_chatutils"
+#include "inc_chatutils"
 #include "gs_inc_common"
 #include "inc_examine"
 

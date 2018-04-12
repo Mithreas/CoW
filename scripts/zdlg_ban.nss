@@ -3,7 +3,7 @@
   Author: Fireboar
   Description: Used by DMs as an interface to manage bans
 */
-#include "fb_inc_chatutils"
+#include "inc_chatutils"
 #include "gs_inc_pc"
 #include "inc_log"
 #include "zdlg_include_i"

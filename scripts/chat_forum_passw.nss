@@ -1,5 +1,5 @@
-#include "fb_inc_chatutils"
-#include "fb_inc_external"
+#include "inc_chatutils"
+#include "inc_external"
 #include "inc_database"
 #include "inc_examine"
 

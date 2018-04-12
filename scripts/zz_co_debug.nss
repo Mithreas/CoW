@@ -14,7 +14,7 @@ By Gulni
 #include "gs_inc_common"
 #include "gs_inc_language"
 #include "inc_log"
-#include "fb_inc_chat"
+#include "inc_chat"
 
 const string DEBUG = "DEBUG";
 

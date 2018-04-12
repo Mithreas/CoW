@@ -1,6 +1,6 @@
-#include "gs_inc_worship"
-#include "fb_inc_chatutils"
-#include "fb_inc_zombie"
+#include "inc_worship"
+#include "inc_chatutils"
+#include "inc_zombie"
 #include "inc_examine"
 
 const string HELP = "Pray to whichever god you worship to receive all sorts of fancy aid!";

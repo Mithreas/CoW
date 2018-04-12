@@ -1,4 +1,4 @@
-#include "fb_inc_zombie"
+#include "inc_zombie"
 #include "gs_inc_combat"
 #include "gs_inc_event"
 #include "gs_inc_subrace"

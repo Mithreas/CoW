@@ -26,7 +26,7 @@
 
 */
 
-#include "fb_inc_zombie"
+#include "inc_zombie"
 #include "gs_inc_common"
 #include "x2_inc_itemprop"
 #include "x3_inc_horse"

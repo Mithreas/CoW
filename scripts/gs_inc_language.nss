@@ -1,7 +1,7 @@
 /* LANGUAGE Library by Gigaschatten */
 
-#include "fb_inc_external"
-#include "fb_inc_zombie"
+#include "inc_external"
+#include "inc_zombie"
 #include "gs_inc_common"
 #include "gs_inc_subrace"
 #include "gs_inc_text"

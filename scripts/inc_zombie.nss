@@ -1,6 +1,6 @@
 /*
 ZOMBIE SURVIVAL
-fb_inc_zombie
+inc_zombie
 By Fireboar
 
 Have fun! The best April Fool's joke ever. :)

@@ -1,10 +1,10 @@
 #include "__server_config"
-#include "fb_inc_chatutils"
+#include "inc_chatutils"
 #include "gs_inc_flag"
 #include "gs_inc_text"
 #include "inc_customspells"
 #include "gs_inc_spell"
-#include "gs_inc_worship"
+#include "inc_worship"
 #include "inc_examine"
 
 const string HELP = "If a character has the Epic Spell Focus: Abjuration, they get a bonus spell once per day that allows them to ward their current location. Using -ward activates this spell, which holds multiple enemies in place for one round within a set radius around the caster, unless they pass a will save. This ward lasts for a long time, so it can buy a fleeing caster valuable time. There is also an alternative version: '-ward teleport', which blocks all forms of teleportation within your current area.";

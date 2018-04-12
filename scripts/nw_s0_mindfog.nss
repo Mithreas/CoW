@@ -15,24 +15,10 @@
 //:://////////////////////////////////////////////
 
 #include "inc_customspells"
-//Edited by Morderon October 24, 2010.
-//Added ASF for warlocks
-//Added mdSetAOECreatedByWarlock
-//Changed duration calculation for warlocks
-#include "md_inc_spell"
 #include "inc_warlock"
-#include "inc_spells"
 
 void main()
 {
-
-/*
-  Spellcast Hook Code
-  Added 2003-06-20 by Georg
-  If you want to make changes to all spells,
-  check inc_customspells.nss to find out more
-
-*/
 
     if (!X2PreSpellCastCode())
     {
@@ -53,19 +39,8 @@ void main()
     location lTarget = GetSpellTargetLocation();
     int nDuration;
     int nMetaMagic = AR_GetMetaMagicFeat();
-    object oItem = GetSpellCastItem();
     object oCaster = OBJECT_SELF;
-
-    if (GetIsObjectValid(oItem) && GetTag(oItem) == TAG_WARLOCK_STAFF)
-    {
-      // ASF. Morderon Added, noticed it was missing
-      if (miWAArcaneSpellFailure(oCaster)) return;
-      nDuration = 2 + miWAGetCasterLevel(oCaster) / 2;
-    }
-    else
-    {
-      nDuration = 2 + AR_GetCasterLevel(oCaster) / 2;
-    }
+    nDuration = 2 + AR_GetCasterLevel(oCaster) / 2;
 
     if (nDuration == 0)
     {
@@ -82,7 +57,5 @@ void main()
     ApplyEffectAtLocation(DURATION_TYPE_INSTANT, eImpact, lTarget);
     //Create an instance of the AOE Object using the Apply Effect function
     CreateNonStackingPersistentAoE(DURATION_TYPE_TEMPORARY, AOE_PER_FOGMIND, lTarget, RoundsToSeconds(nDuration));
-
-    mdSetAOECreatedByWarlock(oItem, lTarget, oCaster);
 }
 

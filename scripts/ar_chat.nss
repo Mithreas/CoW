@@ -12,7 +12,7 @@ This has four main sections:
 - Interprets *emotes* and special commands
 - Translates the text into whatever language the PC is speaking
 
-The bulk of the work for all of these is handled by the fb_inc_chat library.
+The bulk of the work for all of these is handled by the inc_chat library.
 
 Creating -commands is simple. Simply make a script for it with the prefix chat_,
 so for example to create the command -sample, you would use the script
@@ -26,7 +26,7 @@ exists.
 When creating a command, some extra code ought to be added to fbCHCommandList.
 */
 
-#include "fb_inc_chat"
+#include "inc_chat"
 #include "inc_examine"
 
 void _showHelp(object speaker)

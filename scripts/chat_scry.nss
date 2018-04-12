@@ -1,9 +1,9 @@
 #include "__server_config"
-#include "fb_inc_chatutils"
-#include "fb_inc_names"
+#include "inc_chatutils"
+#include "inc_names"
 #include "inc_customspells"
 #include "gs_inc_spell"
-#include "gs_inc_worship"
+#include "inc_worship"
 #include "inc_examine"
 
 const string HELP1 = "<cþôh>-scry </c><cþ£ >[Text]</c>\nUse this to scry on the character named <cþ£ >Text</c>. <cþ£ >Text</c> Need only be the first few letters of a character, so 'Joh' will work on 'John Doe'. You can also send -scry as a tell to someone to scry on that person.";

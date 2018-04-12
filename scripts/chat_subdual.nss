@@ -1,6 +1,6 @@
-#include "fb_inc_chatutils"
+#include "inc_chatutils"
 #include "inc_examine"
-#include "gvd_inc_subdual"
+#include "inc_subdual"
 
 const string HELP = "Allows you to fight in subdual mode, instead of killing your opponent you knock them unconcious. Note that there is always a small risk of an accidental kill.";
 

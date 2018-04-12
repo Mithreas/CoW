@@ -39,7 +39,7 @@
   to remove some nasty bugs that were creeping in.
 */
 
-#include "fb_inc_chatutils"
+#include "inc_chatutils"
 #include "inc_factions"
 #include "inc_log"
 //#include "x0_i0_position"

@@ -31,7 +31,7 @@
 
 */
 
-#include "fb_inc_zombie"
+#include "inc_zombie"
 #include "inc_totem"
 #include "x2_inc_itemprop"
 #include "x3_inc_horse"

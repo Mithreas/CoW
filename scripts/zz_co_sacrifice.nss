@@ -12,12 +12,12 @@ Page 3: Confirmation page for consecration/desecration
 Prayer and ceremonies leave the dialog up, but don't have a different page.
 The character starts emoting.
 
-This uses the library fb_inc_worship. It's not so much a library as a text dump
+This uses the library inc_worship. It's not so much a library as a text dump
 since it is where all the deities and their respective portfolios are stored. It
 also serves as a wrapper for all the libraries required for this script.
 */
-
-#include "fb_inc_worship"
+#include "zzdlg_main_inc"
+#include "inc_worship"
 #include "inc_favsoul"
 
 const string MM_RESPONSES  = "ZZS_MM_RESPONSES";

@@ -3,7 +3,7 @@
 // info taken from gs_m_unaquire:
 // the seed items tag = GS_FX_ + the crop placeable resref
 // when a PC plants a seed, the fixture will get the following tag: GS_FX_ + seed item resref
-// only the seed item resrefs are consistantly starting with "seeds", the placeable resrefs, and therefor the item tags are not consistant and can't be used reliably
+// only the seed item resrefs are consistently starting with "seeds", the placeable resrefs, and therefore the item tags are not consistent and can't be used reliably
 
 // checks if an oItem is a seed
 int gvd_GetItemIsSeed(object iItem);
@@ -47,13 +47,11 @@ int gvd_GetPlaceableIsSeed(object oPlaceable) {
   } else {
     return 0;
   }
-
 }
 
 object gvd_GetCropAreaForPC(object oPC) {
 
   return GetLocalObject(oPC, "GVD_CROP_AREA");
-
 }
 
 int gvd_GetQtyInCropArea(object oCropArea) {
@@ -178,6 +176,5 @@ void gvd_ActivateCropAreas(object oArea) {
     iTrigger = iTrigger + 1;
     oCropTrigger = GetNearestObjectByTag("gvd_tr_crop", oObjectInArea, iTrigger);
   }
-
 }
 

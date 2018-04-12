@@ -1,8 +1,8 @@
 // Simple Console Command, shows color tags defined in zzdlg_color_inc
 
-#include "fb_inc_chatutils"
+#include "inc_chatutils"
 #include "zzdlg_color_inc"
-#include "fb_inc_chat"
+#include "inc_chat"
 #include "inc_examine"
 
 void main()

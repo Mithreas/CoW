@@ -2,7 +2,7 @@
 #include "nwnx_object"
 #include "nwnx_alts"
 #include "nwnx_admin"
-#include "fb_inc_chatutils"
+#include "inc_chatutils"
 #include "inc_examine"
 #include "gs_inc_subrace"
 

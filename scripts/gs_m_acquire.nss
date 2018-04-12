@@ -11,7 +11,7 @@
 #include "inc_log"
 #include "inc_factions"
 #include "inc_disguise"
-#include "fb_inc_chatutils"
+#include "inc_chatutils"
 #include "inc_stacking"
 
 const int GS_TIMEOUT = 300; //5 minutes

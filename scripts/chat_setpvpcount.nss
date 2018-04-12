@@ -1,5 +1,5 @@
 #include "gs_inc_pc";
-#include "fb_inc_chatutils"
+#include "inc_chatutils"
 #include "inc_dm"
 #include "inc_log"
 #include "inc_examine"

@@ -11,9 +11,6 @@ const string AWARD_GREATER = "Greater"; //award1_5
 void gvd_DoRewards(object oPC);
 
 
-
-
-
 // Algorithm for adjusting gold piece worth of items
 int _goldCalculationAlgorithm(int nRawGoldPieceValue) {
   int nReturn = 0;

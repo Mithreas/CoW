@@ -1,4 +1,4 @@
-#include "fb_inc_chatutils"
+#include "inc_chatutils"
 #include "inc_examine"
 
 string HELP = "DM command: Toggle receiving text in message panel from NPCs. Usage: <cþôh>-filter_npc</c>";

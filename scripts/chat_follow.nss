@@ -1,6 +1,6 @@
-#include "fb_inc_chatutils"
+#include "inc_chatutils"
 #include "inc_examine"
-#include "fb_inc_names"
+#include "inc_names"
 
 const string HELP = "-follow [name]. Follows the provided target if you are within 15 yards of them.";
 

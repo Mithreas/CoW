@@ -11,7 +11,7 @@
     GetPcDlgSpeaker = GetPCSpeaker
     GetDlgSelection - gets user selection (index of the response list)
 */
-#include "fb_inc_external"
+#include "inc_external"
 #include "gs_inc_craft"
 #include "gs_inc_finance"
 #include "gs_inc_language"

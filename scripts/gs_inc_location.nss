@@ -2,6 +2,9 @@
 
 //void main() {}
 
+// Temporary NPC to use for walkmesh probing
+const string GU_EN_TEMPLATE_WALKPROBE = "gu_walkmesh";
+
 struct gsLOLocation
 {
     string sArea;
@@ -19,6 +22,8 @@ void gsLOSetDBLocation(string sDB, string sID, location lLocation);
 struct gsLOLocation gsLOGetDBLocationX(string sDB, string sID);
 //return location from sDB using sID
 location gsLOGetDBLocation(string sDB, string sID);
+// Return the nearest walkable location to a given probe location.
+location guENFindNearestWalkable(location lProbe);
 
 struct gsLOLocation gsLOGetLocationX(object oObject = OBJECT_SELF)
 {
@@ -85,4 +90,19 @@ location gsLOGetDBLocation(string sDB, string sID)
     }
 
     return Location(OBJECT_INVALID, Vector(), 0.0);
+}
+//----------------------------------------------------------------
+location guENFindNearestWalkable(location lProbe)
+{
+    // This is expensive but appears to be the only portable way to achieve
+    // this.
+    object oCreature = CreateObject(OBJECT_TYPE_CREATURE,
+                                    GU_EN_TEMPLATE_WALKPROBE,
+                                    lProbe,
+                                    FALSE,
+                                    "GU_WALKMESH_PROBE");
+
+    location lNearest = GetLocation(oCreature);
+    DestroyObject(oCreature);
+    return lNearest;
 }

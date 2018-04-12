@@ -18,7 +18,7 @@
 
 #include "inc_class"
 #include "x0_i0_spells"
-#include "fb_inc_names"
+#include "inc_names"
 #include "inc_timelock"
 
 void main()

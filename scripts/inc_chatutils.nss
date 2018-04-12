@@ -1,5 +1,5 @@
 /*
-fb_inc_chatutils
+inc_chatutils
 
 Chat library, contains all functions required for managing the chat, working
 alongside the chat scipt.These methods are mostly for use in scripts such as

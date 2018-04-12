@@ -1,4 +1,4 @@
-#include "fb_inc_chatutils"
+#include "inc_chatutils"
 
 // Depreciated: Use chatGetLastMessage instead
 string gsLIGetLastMessage(object oPC = OBJECT_SELF);

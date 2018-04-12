@@ -1,4 +1,4 @@
-#include "fb_inc_chatutils"
+#include "inc_chatutils"
 #include "inc_examine"
 #include "nwnx_creature"
 #include "x3_inc_string"

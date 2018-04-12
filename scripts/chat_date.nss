@@ -1,4 +1,4 @@
-#include "fb_inc_chatutils"
+#include "inc_chatutils"
 #include "inc_examine"
 #include "gs_inc_craft"
 #include "zzdlg_color_inc"

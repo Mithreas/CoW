@@ -1,5 +1,5 @@
 #include "gs_inc_iprop"
-#include "fb_inc_chatutils"
+#include "inc_chatutils"
 #include "x3_inc_string"
 
 void main()

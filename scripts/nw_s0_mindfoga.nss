@@ -15,10 +15,8 @@
 //:://////////////////////////////////////////////
 
 //#include "X0_I0_SPELLS"
-//Edited by Morderon on October 24, 2010.
-//Warlock DCs should now be computed correctly
-#include "md_inc_spell"
 #include "inc_customspells"
+#include "inc_warlock"
 void main()
 {
     //Declare major variables
@@ -61,11 +59,14 @@ void main()
         }
         if(bValid == FALSE)
         {
-            if(!mdWLBWResistSpell(oCaster, oTarget))
+            if(!(miWAGetIsWarlock(oCaster) ? miWAResistSpell(oCaster, oTarget) : MyResistSpell(oCaster, oTarget)))
             {
                 if(!GetIsImmune(oTarget, IMMUNITY_TYPE_MIND_SPELLS, oCaster))
                 {
-                    if(MySavingThrow(SAVING_THROW_WILL, oTarget, mdWLBWSpellDC(oCaster, SPELL_SCHOOL_ENCHANTMENT), SAVING_THROW_TYPE_MIND_SPELLS))
+                    if(MySavingThrow(SAVING_THROW_WILL, 
+					                 oTarget, 
+									 miWAGetIsWarlock(oCaster) ? miWAGetSpellDC(oCaster) + GetSpellDCModifiers(oCaster, SPELL_SCHOOL_ENCHANTMENT) : GetSpellSaveDC(), 
+									 SAVING_THROW_TYPE_MIND_SPELLS))
                     {
                         nWillDamage /= 2;
                     }

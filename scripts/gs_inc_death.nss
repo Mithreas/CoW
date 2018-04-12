@@ -1,6 +1,6 @@
 #include "inc_bloodstains"
-#include "fb_inc_external"
-#include "fb_inc_zombie"
+#include "inc_external"
+#include "inc_zombie"
 #include "gs_inc_common"
 #include "gs_inc_flag"
 #include "gs_inc_pc"
@@ -9,13 +9,13 @@
 #include "gs_inc_text"
 #include "gs_inc_theft"
 #include "gs_inc_time"
-#include "gs_inc_worship"
+#include "inc_worship"
 #include "gs_inc_xp"
 #include "inc_healer"
 #include "inc_spells"
 #include "inc_vampire"
 #include "inc_factions"
-#include "gvd_inc_reward"
+#include "inc_awards"
 
 const int GS_PENALTY_PER_LEVEL  = 25;
 

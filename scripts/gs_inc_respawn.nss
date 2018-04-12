@@ -156,7 +156,7 @@ void sepREApplyRespawnDrains(object oPC, int nDrain)
 void sepREApplyNewDeathPenalty(object oUsedBy)
 {
     int nDrainLevelGrouping        = 3;
-    int GS_WO_TIMEOUT_FAVOR        = 10800; // 3 hours game time. This is a copy from gs_inc_worship as it is not a const.
+    int GS_WO_TIMEOUT_FAVOR        = 10800; // 3 hours game time. This is a copy from inc_worship as it is not a const.
     int nTimestamp                 = gsTIGetActualTimestamp();
     string sDeity                  = GetDeity(oUsedBy);
 

@@ -1,5 +1,5 @@
 #include "gs_inc_death"
-#include "gvd_inc_subdual"
+#include "inc_subdual"
 
 void main()
 {

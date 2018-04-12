@@ -3,7 +3,7 @@
 #include "gs_inc_iprop"
 #include "gs_inc_language"
 #include "gs_inc_text"
-#include "gs_inc_worship"
+#include "inc_worship"
 #include "gs_inc_xp"
 
 const int GS_LIMIT_COST = 10000;

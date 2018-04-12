@@ -1,5 +1,5 @@
-#include "fb_inc_chat"
-#include "fb_inc_names"
+#include "inc_chat"
+#include "inc_names"
 #include "gs_inc_time"
 #include "inc_item"
 #include "inc_disguise"

@@ -9,7 +9,7 @@
 #include "x2_inc_itemprop"
 #include "x3_inc_string"
 #include "inc_subrace"
-#include "fb_inc_names"
+#include "inc_names"
 #include "inc_stacking"
 
 const string GS_CM_TEMPLATE_RECREATOR         = "gs_placeable034";
@@ -122,6 +122,8 @@ object gsCMGetCacheItemOnObject(string sKey, object oTarget);
 void gsCMCopyPropertiesAndVariables(object oOldSkin, object oNewSkin);
 //struct to hold open store variables
 struct openStore md_DoAppraise(object oStore, object oMerchant, object oCustomer);
+// checks if an item is allowed in stores / merchants, returns 1 is allowed, 0 if not (this is resref based)
+int gvd_ItemAllowedInStores(object oCheck);
 
 struct openStore {
     int nMaxBuyPrice;
@@ -1258,6 +1260,30 @@ void gsCMCopyPropertiesAndVariables(object oOldSkin, object oNewSkin)
     // Copying variables is unnecessary - gsPCGetCreatureHide should be used
     // where variables are needed.
 }
+//----------------------------------------------------------------
+// checks if an item is allowed in stores / merchants, returns 1 is allowed, 0 if not (this is resref based)
+int gvd_ItemAllowedInStores(object oCheck) {
 
+  // loop through all items in the exclusion chest
+  object oExclusion = GetObjectByTag("GVD_MERCHANT_EXCLUDE");
+
+  if (oExclusion != OBJECT_INVALID) {
+
+    string sResRef = GetResRef(oCheck);
+    object oItem = GetFirstItemInInventory(oExclusion);
+
+    while (GetIsObjectValid(oItem)) {
+
+      if (GetResRef(oItem) == sResRef) {
+        return 0;
+      }
+
+      oItem = GetNextItemInInventory(oExclusion);
+    }
+
+  }
+
+  return 1;
+}
 
 

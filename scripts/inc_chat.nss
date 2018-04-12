@@ -1,5 +1,5 @@
 /*
-fb_inc_chat
+inc_chat
 
 Chat library, contains all functions required for managing the chat, working
 alongside the chat scipt. Most of these methods are used by the chat_script or
@@ -7,9 +7,9 @@ are internal only.
 */
 
 #include "__server_config"
-#include "fb_inc_chatalias"
-#include "fb_inc_chatcomm"
-#include "fb_inc_chatutils"
+#include "inc_chatalias"
+#include "inc_chatcomm"
+#include "inc_chatutils"
 #include "gs_inc_combat2"
 #include "gs_inc_language"
 #include "inc_vampire"

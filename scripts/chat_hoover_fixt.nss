@@ -1,6 +1,6 @@
 #include "gs_inc_pc"
 #include "gs_inc_fixture"
-#include "fb_inc_chatutils"
+#include "inc_chatutils"
 #include "inc_examine"
 
 const string HELP = "DM command: Hoovers up all fixtures in an area (up to inventory capacity.)";

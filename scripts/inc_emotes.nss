@@ -1,6 +1,6 @@
 // This include file contains functionality for performing a visual emote.
 
-#include "fb_inc_zombie"
+#include "inc_zombie"
 
 // NOTE: If you add a new emote, ADD IT IN ALPHABETICAL ORDER!
 // If you add an emote to the end, make sure to update EMOTE_LAST!

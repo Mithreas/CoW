@@ -3,7 +3,7 @@
 #include "nwnx_alts"
 #include "nwnx_admin"
 #include "zdlg_include_i"
-#include "fb_inc_chatutils"
+#include "inc_chatutils"
 #include "inc_adv_xp"
 
 const string VARNAMES = "VARNAMES";

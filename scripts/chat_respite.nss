@@ -13,8 +13,8 @@
 //:: Created On: June 13, 2016
 //:://////////////////////////////////////////////
 
-#include "fb_inc_chatutils"
-#include "gs_inc_worship"
+#include "inc_chatutils"
+#include "inc_worship"
 #include "inc_examine"
 #include "inc_spells"
 #include "inc_tempvars"

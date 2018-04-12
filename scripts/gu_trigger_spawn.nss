@@ -22,7 +22,7 @@ void main()
 
     SetLocalInt(OBJECT_SELF, "GS_ENABLED", TRUE);
 
-    Trace(ENCOUNTER, "Trigger spawn 2 at " + __loc(GetLocation(OBJECT_SELF)));
+    Trace(ENCOUNTER, "Trigger spawn 2 at " + APSLocationToString(GetLocation(OBJECT_SELF)));
 
     object oArea = GetArea(OBJECT_SELF);
     int nChance  = gsENGetEncounterChance(oArea);

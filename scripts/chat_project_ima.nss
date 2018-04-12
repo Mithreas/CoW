@@ -1,9 +1,9 @@
 #include "__server_config"
-#include "fb_inc_chatutils"
+#include "inc_chatutils"
 #include "inc_customspells"
 #include "inc_xfer"
 #include "gs_inc_spell"
-#include "gs_inc_worship"
+#include "inc_worship"
 #include "inc_examine"
 #include "inc_spells"
 

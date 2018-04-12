@@ -1,5 +1,5 @@
 // chat_portrait
-#include "fb_inc_chatutils"
+#include "inc_chatutils"
 #include "nwnx_creature"
 #include "nwnx_object"
 #include "nwnx_alts"

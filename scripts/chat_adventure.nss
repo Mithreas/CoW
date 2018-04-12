@@ -1,4 +1,4 @@
-#include "fb_inc_chat"
+#include "inc_chat"
 #include "inc_examine"
 #include "inc_adv_xp"
 

@@ -19,7 +19,7 @@
  * - Generic customizable "Are you sure?" interface.
  * - "Waiting for speech input" interface.
  */
-#include "fb_inc_chatutils"
+#include "inc_chatutils"
 #include "inc_log"
 #include "zzdlg_lists_inc"
 

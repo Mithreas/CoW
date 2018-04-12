@@ -1,4 +1,4 @@
-#include "fb_inc_chatutils"
+#include "inc_chatutils"
 #include "nwnx_alts"
 #include "inc_examine"
 

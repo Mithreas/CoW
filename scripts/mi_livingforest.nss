@@ -1,7 +1,7 @@
 // mi_livingforest
 // Script intended to make a properly scary forest.  Think the Old Forest from
 // LoTR.
-#include "fb_inc_names"
+#include "inc_names"
 #include "gs_inc_flag"
 
 void _DoQuicksand(object oPC, int nCount = 0)

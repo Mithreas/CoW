@@ -1,4 +1,4 @@
-#include "fb_inc_chatutils"
+#include "inc_chatutils"
 #include "inc_examine"
 
 const string HELP = "DM command: Set receiving text in the message panel whenever anyone acquires gold on or off. If a player's gold acquisition is being highlighted through the DM wand, you will still receive gold values acquired by them. The settings are 2 (All areas), 1 (Only in your area), or 0 (Turned off). Example: -filter_gold 2";

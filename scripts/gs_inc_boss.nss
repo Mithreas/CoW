@@ -3,11 +3,19 @@
 //void main() {}
 
 #include "gs_inc_area"
+#include "gs_inc_effect"
 #include "gs_inc_flag"
 #include "gs_inc_location"
-#include "gu_inc_encounter"
+#include "inc_log"
 
-const int GS_BO_LIMIT_SLOT          = 5;
+const int GU_EN_VFX_BOSS             = 51;
+const int GS_BO_LIMIT_SLOT           = 5;
+
+// Marker waypoint for dynamic encounters
+const string GU_BO_TEMPLATE_WAYPOINT = "gu_wp_encounter";
+
+// For Logging
+const string BOSS               = "BOSS";
 
 //create boss spawn positions in oArea
 void gsBOSetUpArea(object oArea = OBJECT_SELF);
@@ -29,6 +37,10 @@ int gsBOGetIsBossCreature(object oCreature = OBJECT_SELF);
 void gsBOSaveArea(object oArea = OBJECT_SELF);
 //load setting of oArea
 void gsBOLoadArea(object oArea = OBJECT_SELF);
+// Place a new dynamic boss encounter at a given location,
+// storing the sResRef on the encounter waypoint to remember the desired
+// boss spawn.
+void guENPlaceBossEncounter(location lWhere, string sResRef);
 
 void gsBOSetUpArea(object oArea = OBJECT_SELF)
 {
@@ -198,4 +210,30 @@ void gsBOLoadArea(object oArea = OBJECT_SELF)
       nNth = nNth + 1;
 
     }
+}
+//----------------------------------------------------------------
+void guENPlaceBossEncounter(location lWhere, string sResRef)
+{
+    Trace(BOSS, "Boss attempt at " + APSLocationToString(lWhere));
+
+    location lWalkable = guENFindNearestWalkable(lWhere);
+    Trace(BOSS, "walkmesh probe at " + APSLocationToString(lWalkable));
+
+    object oWaypoint = CreateObject(OBJECT_TYPE_WAYPOINT,
+                                    GU_BO_TEMPLATE_WAYPOINT,
+                                    lWalkable,
+                                    FALSE,
+                                    "GU_BOSS");
+    SetLocalString(oWaypoint, "GU_BOSS_RESREF", sResRef);
+
+    effect eTrigger = EffectAreaOfEffect(GU_EN_VFX_BOSS);
+    // Don't want it to be dispellable!
+    eTrigger = SupernaturalEffect(eTrigger);
+    object oAOE = gsFXCreateEffectAtLocation(DURATION_TYPE_PERMANENT,
+                                             eTrigger,
+                                             lWalkable);
+    SetLocalObject(oWaypoint, "GU_EN_AOE", oAOE);
+    SetLocalObject(oAOE, "GU_EN_WP", oWaypoint);
+
+    Trace(BOSS, "Boss encounter initialised.");
 }

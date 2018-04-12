@@ -15,6 +15,8 @@ void gsFXCreateCircle(float fStart, float fEnd, float fPace, float fRadius, floa
 int gsFXGetHasMindAffactingEffect(object oCreature = OBJECT_SELF);
 //remove all area of effects in oArea
 void gsFXRemoveAllAOLs(object oArea);
+//create an AoE effect, and return the object just created.
+object gsFXCreateEffectAtLocation(int nDurationType, effect eEffect, location lLocation, float fDuration=0.0f);
 
 void gsFXBleed()
 {
@@ -266,4 +268,26 @@ void gsFXRemoveAllAOLs(object oArea)
         if (GetObjectType(oObject) == OBJECT_TYPE_AREA_OF_EFFECT) DestroyObject(oObject);
         oObject = GetNextObjectInArea(oArea);
     }
+}
+//----------------------------------------------------------------
+object gsFXCreateEffectAtLocation(int nDurationType, effect eEffect,
+                               location lLocation, float fDuration=0.0f)
+{
+    ApplyEffectAtLocation(nDurationType, eEffect, lLocation, fDuration);
+
+    int nNth = 1;
+    object oAOE;
+    while (TRUE)
+    {
+        oAOE = GetNearestObjectToLocation(OBJECT_TYPE_AREA_OF_EFFECT,
+                                          lLocation, nNth++);
+        if (!GetIsObjectValid(oAOE))
+        {
+            break;
+        }
+
+        if (GetLocation(oAOE) == lLocation)
+            break;
+    }
+    return oAOE;
 }

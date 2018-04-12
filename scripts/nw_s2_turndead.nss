@@ -18,7 +18,7 @@
 //:: MODIFIED MARCH 5 2003 for Blackguards
 //:: MODIFIED JULY 24 2003 for Planar Turning to include turn resistance hd
 
-#include "fb_inc_zombie"
+#include "inc_zombie"
 #include "inc_class"
 #include "inc_statuseffect"
 

@@ -1,10 +1,10 @@
 #include "__server_config"
-#include "fb_inc_chatutils"
+#include "inc_chatutils"
 #include "gs_inc_flag"
 #include "gs_inc_text"
 #include "inc_customspells"
 #include "gs_inc_spell"
-#include "gs_inc_worship"
+#include "inc_worship"
 #include "inc_examine"
 
 const string HELP = "If a character has Greater Spell Focus: Transmutation and is level 21+, they can teleport to any destination portal on the island once per day. Using -teleport activates this spell, which functions exactly like a Planar Portal or a Portal Lens.  If the character has Epic Spell Focus: Transmutation, they gain the additional option of creating a temporary source portal usable by anyone, at their location.  Using '-teleport create' creates such a portal, which lasts five minutes.";

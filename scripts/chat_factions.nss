@@ -1,4 +1,4 @@
-#include "fb_inc_chatutils"
+#include "inc_chatutils"
 #include "zzdlg_tools_inc"
 #include "inc_examine"
 

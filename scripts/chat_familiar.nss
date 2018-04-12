@@ -1,4 +1,4 @@
-#include "fb_inc_chat"
+#include "inc_chat"
 
 void main()
 {

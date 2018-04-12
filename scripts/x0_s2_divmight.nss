@@ -25,7 +25,7 @@
 #include "inc_item"
 #include "gs_inc_iprop"
 #include "gs_inc_pc"
-#include "gs_inc_worship"
+#include "inc_worship"
 #include "x0_i0_spells"
 #include "x2_inc_itemprop"
 #include "inc_effecttags"

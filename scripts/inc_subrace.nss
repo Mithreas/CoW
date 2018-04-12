@@ -73,7 +73,7 @@
 
     Remember to remove base race language if necessary
 
-    Script: gs_inc_worship
+    Script: inc_worship
 
     Function:
 

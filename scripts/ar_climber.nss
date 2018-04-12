@@ -8,7 +8,7 @@
 //::  Extended from Mith's climbing system!
 
 
-#include "fb_inc_names"
+#include "inc_names"
 #include "inc_climb"
 void main()
 {

@@ -14,7 +14,7 @@
 */
 #include "gs_inc_pc"
 #include "gs_inc_time"
-#include "gs_inc_worship"
+#include "inc_worship"
 #include "inc_customspells"
 #include "zdlg_include_i"
 #include "__server_config"

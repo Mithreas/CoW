@@ -22,7 +22,7 @@ void main()
 
     SetLocalInt(OBJECT_SELF, "GS_ENABLED", TRUE);
 
-    Trace(ENCOUNTER, "Trigger spawn 2 at " + __loc(GetLocation(OBJECT_SELF)));
+    Trace(ENCOUNTER, "Trigger spawn 2 at " + APSLocationToString(GetLocation(OBJECT_SELF)));
 
     object oArea     = GetArea(OBJECT_SELF);
     int nChance      = gsENGetEncounterChance(oArea);
@@ -46,15 +46,6 @@ void main()
             if (GetIsObjectValid(oCreature))
             {
                 gsFLSetFlag(GS_FL_BOSS, oCreature);
-
-                //true seeing - removed by Mith
-                //if (GetChallengeRating(oCreature) >= 15.0)
-                //{
-                //    ApplyEffectToObject(
-                //        DURATION_TYPE_PERMANENT,
-                //        ExtraordinaryEffect(EffectTrueSeeing()),
-                //        oCreature);
-                //}
 
                 //phylactery
                 object oObject = GetNearestObjectByTag("GS_PHYLACTERY", oCreature);

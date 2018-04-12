@@ -1,6 +1,6 @@
-#include "fb_inc_chatutils"
+#include "inc_chatutils"
 #include "inc_examine"
-#include "fb_inc_names"
+#include "inc_names"
 
 const string HELP = "<cþôh>-guard </c><cþ£ >[Text]</c>\n Tells your character to try and intercept attacks on a character whose name starts with <cþ£ >[Text]</c>, or alternatively you can send this command as a tell to the target.  You must stay close to them for this to work!  Turn off guard mode by sending -guard to yourself as a Tell.";
 

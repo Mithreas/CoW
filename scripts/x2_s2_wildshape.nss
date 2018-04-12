@@ -28,7 +28,7 @@
 
 */
 
-#include "fb_inc_zombie"
+#include "inc_zombie"
 #include "x3_inc_horse"
 
 void main()

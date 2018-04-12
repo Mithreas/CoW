@@ -434,7 +434,7 @@ void miXFDeliverMessage(string sPCID, string sMessage, string sType)
   }
   else if (sType == MESSAGE_TYPE_DMC)
   {
-    // Message is written in fb_inc_chat and includes PC name and server name.
+    // Message is written in inc_chat and includes PC name and server name.
     SendMessageToAllDMs(sMessage);
   }
   else

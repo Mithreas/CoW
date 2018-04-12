@@ -1,11 +1,11 @@
-#include "fb_inc_zombie"
+#include "inc_zombie"
 #include "gs_inc_common"
 #include "gs_inc_effect"
 #include "gs_inc_flag"
 #include "gs_inc_text"
 #include "inc_bloodstains"
 #include "x2_inc_itemprop"
-#include "gvd_inc_subdual"
+#include "inc_subdual"
 
 //depreciated by inc_bloodstains
 //const string GS_TEMPLATE_BLOOD = "plc_bloodstain";

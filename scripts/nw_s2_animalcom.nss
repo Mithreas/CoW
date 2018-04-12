@@ -10,7 +10,7 @@
 //:: Created By: Preston Watamaniuk
 //:: Created On: Sept 27, 2001
 //:://////////////////////////////////////////////
-#include "fb_inc_zombie"
+#include "inc_zombie"
 #include "inc_divination"
 #include "inc_totem"
 

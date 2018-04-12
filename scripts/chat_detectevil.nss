@@ -1,10 +1,10 @@
 #include "__server_config"
 #include "gs_inc_text_en"
 #include "gs_inc_pc"
-#include "gs_inc_worship"
+#include "inc_worship"
 #include "gs_inc_xp"
-#include "fb_inc_chatutils"
-#include "fb_inc_zombie"
+#include "inc_chatutils"
+#include "inc_zombie"
 #include "inc_examine"
 #include "x3_inc_string"
 

@@ -1,16 +1,26 @@
 /* ENCOUNTER library by Gigaschatten */
 
 #include "gs_inc_area"
+#include "gs_inc_effect"
 #include "gs_inc_flag"
+#include "gs_inc_location"
+#include "inc_log"
 #include "gs_inc_subrace"
-#include "gu_inc_encounter"
 
 //void main() {}
 
-const float GS_EN_DISTANCE          = 25.0;
-const int GS_EN_LIMIT_SLOT          = 15;
-const int GS_EN_LIMIT_ENCOUNTER     = 25;
-const int GS_EN_LIMIT_SPAWN         =  6;
+const float GS_EN_DISTANCE           = 25.0;
+const int GS_EN_LIMIT_SLOT           = 15;
+const int GS_EN_LIMIT_ENCOUNTER      = 25;
+const int GS_EN_LIMIT_SPAWN          =  6;
+
+const int GU_EN_VFX_ENCOUNTER        = 50;
+
+// Marker waypoint for dynamic encounters
+const string GU_EN_TEMPLATE_WAYPOINT = "gu_wp_encounter";
+
+// For Logging
+const string ENCOUNTER               = "ENCOUNTER";
 
 //create encounter spawn positions in oArea
 void gsENSetUpArea(object oArea = OBJECT_SELF);
@@ -57,6 +67,12 @@ void gsENSaveArea(object oArea = OBJECT_SELF);
 void gsENLoadArea(object oArea = OBJECT_SELF, int bOverride = TRUE);
 //copy setting of area oSource to area oTarget
 void gsENCopyArea(object oSource, object oTarget = OBJECT_SELF);
+// Attempt to place a new dynamic encounter at a given location, while
+// ensuring that it is at least fMaxDistance from any other encounter.
+void guENTryDynamicEncounter(location lWhere, float fMaxDistance);
+// Add a temporary safe zone to prevent mobs spawning near a certain point
+// The caller must remove the returned waypoint later.
+object guENCreateSafeZone(location lWhere);
 
 void gsENSetUpArea(object oArea = OBJECT_SELF)
 {
@@ -633,4 +649,76 @@ void gsENCopyArea(object oSource, object oTarget = OBJECT_SELF)
 
     gsENSetEncounterChance(gsENGetEncounterChance(oSource), oTarget);
     gsENSetMinimumRating(gsENGetMinimumRating(oSource), oTarget);
+}
+//----------------------------------------------------------------
+void guENTryDynamicEncounter(location lWhere, float fMaxDistance)
+{
+    location lWalkable = guENFindNearestWalkable(lWhere);
+
+    Trace(ENCOUNTER, "Spawn attempt at " + APSLocationToString(lWhere));
+
+    object oObject = GetNearestObjectToLocation(OBJECT_TYPE_WAYPOINT,
+                                                lWalkable, 1);
+    Trace(ENCOUNTER, "walkmesh probe at " + APSLocationToString(lWalkable));
+
+    int nNth = 1;
+    string sTag;
+
+    // [Slight re-edit here by Space Pirate]
+    // Now we break if the nearest WP is out of range,
+    // even if it is not an encounter.
+    while (GetIsObjectValid(oObject))
+    {
+        // Nearest WP is too far away to care about
+        if (GetDistanceBetweenLocations(lWalkable, GetLocation(oObject))
+            > fMaxDistance)
+
+            break;
+
+        sTag = GetTag(oObject);
+
+        // Alreay an encounter in range, don't make another
+        if (sTag == "GU_ENCOUNTER" || sTag == "GU_BOSS")
+        {
+            Trace(ENCOUNTER, "too near encounter at " + APSLocationToString(GetLocation(oObject)));
+
+            return;
+        }
+
+        oObject = GetNearestObjectToLocation(OBJECT_TYPE_WAYPOINT,
+                                             lWalkable, ++nNth);
+    }
+
+    // Bingo... drop a waypoint to mark this dynamic encounter,
+    // and an AoE trigger to activate it.
+
+    object oWaypoint = CreateObject(OBJECT_TYPE_WAYPOINT,
+                                    GU_EN_TEMPLATE_WAYPOINT,
+                                    lWalkable,
+                                    FALSE,
+                                    "GU_ENCOUNTER");
+
+    effect eTrigger = EffectAreaOfEffect(GU_EN_VFX_ENCOUNTER);
+    // Don't want it to be dispellable!
+    eTrigger = SupernaturalEffect(eTrigger);
+    object oAOE = gsFXCreateEffectAtLocation(DURATION_TYPE_PERMANENT,
+                                             eTrigger,
+                                             lWalkable);
+    SetLocalObject(oWaypoint, "GU_EN_AOE", oAOE);
+    SetLocalObject(oAOE, "GU_EN_WP", oWaypoint);
+
+    Trace(ENCOUNTER, "Encounter initialised.");
+}
+//----------------------------------------------------------------
+object guENCreateSafeZone(location lWhere)
+{
+    // Create a temporary encounter waypoint with no AoE trigger,
+    // purely to prevent any other encounters from spawning near
+    // this one.
+    object oWaypoint = CreateObject(OBJECT_TYPE_WAYPOINT,
+                                    GU_EN_TEMPLATE_WAYPOINT,
+                                    lWhere,
+                                    FALSE,
+                                    "GU_ENCOUNTER");
+    return oWaypoint;
 }

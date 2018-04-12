@@ -1,8 +1,8 @@
-﻿#include "fb_inc_chatutils"
-#include "fb_inc_external"
+﻿#include "inc_chatutils"
+#include "inc_external"
 #include "inc_xfer"
 #include "inc_examine"
-#include "gvd_inc_reward"
+#include "inc_awards"
 
 const string HELP = "Use -delete_character to delete your current character from the vault. Note: once you have deleted your character, you will NEVER be able to get it back.";
 
@@ -20,7 +20,7 @@ void main()
     int nConfirm = GetLocalInt(oHide, "CONFIRM_DELETE");
     if (nConfirm == 1) {
 
-      // Dunshine, moved reward stuff to a seperate function/include file (gvd_inc_reward) so it can be used for MoDs as well:
+      // Dunshine, moved reward stuff to a seperate function/include file (inc_awards) so it can be used for MoDs as well:
       gvd_DoRewards(oSpeaker);
 
       // Hopefully this will prevent issues when remaking with the same name.

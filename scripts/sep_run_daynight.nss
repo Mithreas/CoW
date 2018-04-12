@@ -1,4 +1,3 @@
-#include "sep_inc_event"
 #include "gs_inc_event"
 //..............................................................................
 // Kick players out of the area

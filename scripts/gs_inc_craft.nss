@@ -1,7 +1,7 @@
 /* CRAFT library by Gigaschatten */
 
 #include "gs_inc_time"
-#include "gs_inc_worship"
+#include "inc_worship"
 #include "inc_backgrounds"
 #include "inc_database"
 #include "inc_divination"

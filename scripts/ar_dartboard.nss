@@ -1,8 +1,8 @@
 #include "nw_o0_itemmaker"
-#include "fb_inc_chatutils"
+#include "inc_chatutils"
 #include "gs_inc_state"
 #include "zzdlg_color_inc"
-#include "fb_inc_names"
+#include "inc_names"
 #include "ar_utils"
 
 const int SINGLE        = 0;

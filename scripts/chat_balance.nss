@@ -1,4 +1,4 @@
-#include "fb_inc_chatutils"
+#include "inc_chatutils"
 #include "inc_customspells"
 #include "inc_pop"
 #include "inc_examine"

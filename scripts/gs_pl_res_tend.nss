@@ -1,4 +1,4 @@
-#include "gs_inc_worship"
+#include "inc_worship"
 void main()
 {
   object oPC = GetLastClosedBy();

@@ -1,5 +1,5 @@
-#include "fb_inc_chat"
-#include "fb_inc_chatutils"
+#include "inc_chat"
+#include "inc_chatutils"
 #include "inc_examine"
 #include "inc_dm"
 #include "inc_log"

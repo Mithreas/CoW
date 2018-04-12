@@ -4,7 +4,7 @@
   Z-Dialog conversation script for betting imp (cage fight)
 
 */
-#include "fb_inc_chatutils"
+#include "inc_chatutils"
 #include "zdlg_include_i"
 #include "zzdlg_color_inc"
 

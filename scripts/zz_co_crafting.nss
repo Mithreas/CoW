@@ -21,7 +21,7 @@ zz_co_crafting for it to work (to change this, do a find+replace on all the plac
 where zz_co_crafting is mentioned).
 */
 
-#include "fb_inc_chatutils"
+#include "inc_chatutils"
 #include "inc_class"
 #include "gs_inc_istate"
 #include "gs_inc_pc"

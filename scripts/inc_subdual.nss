@@ -2,7 +2,7 @@
 #include "inc_effect"
 #include "inc_spells"
 #include "gs_inc_respawn"
-#include "fb_inc_names"
+#include "inc_names"
 #include "gs_inc_death"
 
 /* *** subdual system ***

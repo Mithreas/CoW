@@ -8,13 +8,14 @@ Page 1: Service category selection
 Page 2: Deity list
 Page 3: Confirm selection
 
-This uses the library fb_inc_worship. It's not so much a library as a text dump
+This uses the library inc_worship. It's not so much a library as a text dump
 since it is where all the deities and their respective portfolios are stored. It
 also serves as a wrapper for all the libraries required for this script.
 */
 
-#include "fb_inc_worship"
+#include "inc_worship"
 #include "inc_favsoul"
+#include "zzdlg_main_inc"
 
 const string FB_RESPONSES = "FB_RESPONSES";
 

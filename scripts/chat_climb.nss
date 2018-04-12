@@ -1,5 +1,5 @@
 #include "__server_config"
-#include "fb_inc_chatutils"
+#include "inc_chatutils"
 #include "gs_inc_flag"
 #include "inc_climb"
 #include "inc_examine"

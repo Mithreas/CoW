@@ -12,7 +12,6 @@
 //:://////////////////////////////////////////////
 
 #include "gs_inc_event"
-#include "sep_inc_event"
 
 /**********************************************************************
  * CONFIG PARAMETERS
@@ -177,8 +176,6 @@ string UserDefinedEventToEventScript(int nEvent)
         case SEP_EV_ON_BASHED:           return EVENT_SCRIPT_ON_BASHED;
         case SEP_EV_ON_OPENED:           return EVENT_SCRIPT_ON_OPENED;
         case SEP_EV_ON_CLEANUP:          return EVENT_SCRIPT_ON_CLEANUP;
-        case SEP_EV_ON_KILLED:           return EVENT_SCRIPT_ON_DEATH;
-        case SEP_EV_ON_INVDISTURBED:     return EVENT_SCRIPT_ON_DISTURBED;
     }
     return "";
 }

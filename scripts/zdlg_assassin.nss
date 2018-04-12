@@ -5,7 +5,7 @@
   Description:
     Assassin's Guild NPC.  Accepts and cancels contracts.
 */
-#include "fb_inc_chat"
+#include "inc_chat"
 #include "inc_assassin"
 #include "zdlg_include_i"
 

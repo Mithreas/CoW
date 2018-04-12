@@ -1,5 +1,5 @@
-#include "fb_inc_chatutils"
-#include "fb_inc_zombie"
+#include "inc_chatutils"
+#include "inc_zombie"
 #include "inc_examine"
 
 const string HELP = "Cleans up a nearby pool of blood.";

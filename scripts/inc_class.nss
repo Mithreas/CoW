@@ -1,5 +1,5 @@
 // CLASS library by Mithreas.
-#include "fb_inc_external"
+#include "inc_external"
 #include "gs_inc_iprop"
 #include "gs_inc_subrace"
 #include "inc_effect"

@@ -1,6 +1,6 @@
 // This file provides functionality to add and resolve chat command aliases.
 
-#include "fb_inc_chatcomm"
+#include "inc_chatcomm"
 #include "gs_inc_language"
 #include "inc_data_arr"
 #include "inc_emotes"

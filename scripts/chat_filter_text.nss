@@ -1,4 +1,4 @@
-#include "fb_inc_chatutils"
+#include "inc_chatutils"
 #include "inc_examine"
 
 const string HELP = "DM command: Toggle receiving text in the message panel whenever anyone speaks in character on or off. If a player's chat is being highlighted through the DM wand, you will still receive messages spoken by them.";

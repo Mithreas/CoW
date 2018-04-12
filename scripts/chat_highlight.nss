@@ -1,6 +1,6 @@
-#include "fb_inc_chatutils"
+#include "inc_chatutils"
 #include "inc_examine"
-#include "fb_inc_names"
+#include "inc_names"
 
 const string HELP = "DM Command: Highlight the player's text in the DM combat window by sending them -highlight as a Tell, or by entering their name (or part of it) after the command.";
 

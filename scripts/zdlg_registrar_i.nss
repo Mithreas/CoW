@@ -12,7 +12,7 @@ zdlg_registrar
   - vassal menu (view/become/release)
 */
 
-#include "fb_inc_chatutils"
+#include "inc_chatutils"
 #include "inc_class"
 #include "inc_factions"
 #include "gs_inc_time"

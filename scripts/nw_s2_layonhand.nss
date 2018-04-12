@@ -15,7 +15,7 @@
 //:: Updated On: Oct 20, 2003
 //:://////////////////////////////////////////////
 
-#include "fb_inc_zombie"
+#include "inc_zombie"
 #include "nw_i0_spells"
 #include "inc_timelock"
 

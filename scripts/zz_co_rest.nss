@@ -7,10 +7,10 @@
 //   for example, anything related to the dynamic crafting menues.
 
 #include "__server_config"
-#include "fb_inc_chatutils"
+#include "inc_chatutils"
 #include "gs_inc_pc"
 #include "gs_inc_iprop"
-#include "gs_inc_worship"
+#include "inc_worship"
 #include "inc_class"
 #include "inc_customspells"
 #include "inc_emotes"

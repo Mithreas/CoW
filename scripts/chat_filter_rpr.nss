@@ -1,4 +1,4 @@
-#include "fb_inc_chatutils"
+#include "inc_chatutils"
 #include "inc_examine"
 
 string HELP = "DM command: Toggle RPR highlighting. Slightly colourizes text so you can see a character's RPR contextually. " + 

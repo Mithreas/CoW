@@ -2,8 +2,8 @@
   Standard include utility for scripts involving disguised PCs.
   Author: Mithreas
 */
-#include "fb_inc_names"
-#include "gs_inc_worship"
+#include "inc_names"
+#include "inc_worship"
 #include "gs_inc_pc"
 #include "inc_effect"
 #include "__server_config"

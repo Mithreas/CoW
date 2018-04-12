@@ -32,7 +32,7 @@
 
 */
 
-#include "fb_inc_zombie"
+#include "inc_zombie"
 #include "x2_inc_itemprop"
 #include "x2_inc_shifter"
 #include "x3_inc_horse"

@@ -2,7 +2,7 @@
 // DC is set by the MI_CLIMBING_DC variable
 // Destination is nearest waypoint with tag MI_CLIMBING_DEST
 //
-#include "fb_inc_names"
+#include "inc_names"
 #include "inc_climb"
 void main()
 {

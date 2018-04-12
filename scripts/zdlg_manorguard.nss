@@ -6,7 +6,7 @@
 #include "gs_inc_iprop"
 #include "inc_factions"
 #include "inc_divination"
-#include "fb_inc_chatutils"
+#include "inc_chatutils"
 #include "inc_holders"
 #include "ar_utils"
 

@@ -1,6 +1,6 @@
 // chat_name
-#include "fb_inc_chatutils"
-#include "fb_inc_external"
+#include "inc_chatutils"
+#include "inc_external"
 #include "inc_examine"
 
 const string HELP  = "<cþôh>-name</c><cþ£ > Text</c>\nChanges your name to <cþ£ >Text</c>. Once you are done, you will appear to do an area transition - this is necessary to apply the new name and only takes a few seconds.";

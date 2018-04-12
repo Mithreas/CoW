@@ -1,6 +1,6 @@
 /* STATE Library by Gigaschatten */
 
-#include "fb_inc_zombie"
+#include "inc_zombie"
 #include "gs_inc_subrace"
 #include "gs_inc_text"
 #include "inc_vampire"

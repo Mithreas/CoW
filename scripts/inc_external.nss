@@ -1,5 +1,5 @@
 /**
- * fb_inc_external
+ * inc_external
  *
  * Deals with communicating with the operating system under which nwserver runs.
  * Note that this requires nwnx_ruby to run. For information about Ruby classes

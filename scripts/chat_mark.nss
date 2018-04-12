@@ -1,4 +1,4 @@
-#include "fb_inc_chatutils"
+#include "inc_chatutils"
 const string HELP = "DM command: Mark your current location, or by passing parameter j to this function, jump to previously marked location. Example usage: -mark to set your current location, -mark j to jump back to your previous -mark. NEW: Send -mark to a player as a tell to track them. -mark j to jump to that player later. MORE NEW: -mark l (letter L) to mark the location of your target. -mark j to jump to your saved location.";
 #include "inc_examine"
 

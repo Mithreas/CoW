@@ -1,7 +1,7 @@
 #include "gs_inc_flag"
 #include "gs_inc_iprop"
 #include "gs_inc_text"
-#include "gs_inc_worship"
+#include "inc_worship"
 #include "gs_inc_spell"
 #include "gs_inc_strack"
 #include "gs_inc_pc"
@@ -12,7 +12,7 @@
 #include "x2_inc_switches"
 #include "inc_wildmagic"
 #include "inc_spells"
-#include "gvd_inc_subdual"
+#include "inc_subdual"
 
 int _GetIsSummonSpell(int nSpellId, int bUndead = 0, int bSwords = 0)
 {

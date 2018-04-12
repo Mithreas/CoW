@@ -43,6 +43,12 @@ const string GS_C2_LAST_DAMAGE_TYPE           = "GS_C2_14";
 
 const string GS_C2_SPELL_EFFECTIVENESS        = "GS_C2_SE_";
 
+// AI level to set nearby NPCs to when one NPC enters combat mode
+const int GU_AI_LEVEL_NEAR_COMBAT = AI_LEVEL_NORMAL;
+
+// Radius of nearby NPCs to wake up on a combat event
+const float GU_AI_WAKEUP_RADIUS = 35.0;
+
 int gsC2BreachableSpellNth                    = 0;
 int gsC2DamageTypeNth                         = 0;
 
@@ -99,6 +105,9 @@ int gsC2GetIsSpellEffective(int nSpell, object oCreature);
 void gsC2AdjustSpellEffectiveness(int nSpell, object oCreature, int nEffective = TRUE);
 // Check whether oCreature is incapacitated.
 int gsC2GetIsIncapacitated(object oCreature);
+// Set an NPC's AI level to a desired value, waking up other
+// nearby NPCs if appropriate.
+void guALSetAILevel(int nAILevel, object oTarget = OBJECT_SELF);
 
 void gsC2Analyze(object oCreature = OBJECT_SELF, int bAllEffects = FALSE)
 {
@@ -774,4 +783,40 @@ int gsC2GetIsIncapacitated(object oCreature)
            gsC2GetHasEffect(EFFECT_TYPE_PETRIFY, oCreature, TRUE) ||
            gsC2GetHasEffect(EFFECT_TYPE_SLEEP, oCreature, TRUE) ||
            gsC2GetHasEffect(EFFECT_TYPE_STUNNED, oCreature, TRUE));
+}
+//----------------------------------------------------------------
+void guALSetAILevel(int nAILevel, object oTarget = OBJECT_SELF)
+{
+    int nOldAILevel = GetAILevel(oTarget);
+
+    if (nOldAILevel == nAILevel)
+        return;
+
+    SetAILevel(oTarget, nAILevel);
+
+    // If, and only if, we're raising the NPC's AI level to combat, then search
+    // for other NPCs to wake up too.
+
+    if (!(nAILevel == AI_LEVEL_NORMAL &&
+          nOldAILevel <= nAILevel))
+        return;
+
+    location lTarget = GetLocation(oTarget);
+    object oNPC = GetFirstObjectInShape(SHAPE_SPHERE,
+                                        GU_AI_WAKEUP_RADIUS,
+                                        lTarget,
+                                        FALSE,  // No line-of-sight check
+                                        OBJECT_TYPE_CREATURE);
+
+    while (GetIsObjectValid(oNPC))
+    {
+        if (!GetIsPC(oNPC) && GetAILevel(oNPC) < GU_AI_LEVEL_NEAR_COMBAT)
+            SetAILevel(oNPC, GU_AI_LEVEL_NEAR_COMBAT);
+
+        oNPC = GetNextObjectInShape(SHAPE_SPHERE,
+                                    GU_AI_WAKEUP_RADIUS,
+                                    lTarget,
+                                    FALSE,  // No line-of-sight check
+                                    OBJECT_TYPE_CREATURE);
+    }
 }

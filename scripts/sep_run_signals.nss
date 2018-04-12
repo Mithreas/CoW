@@ -1,4 +1,4 @@
-#include "sep_inc_event"
+#include "gs_inc_event"
 void main()
 {
     string sDay = GetLocalString(OBJECT_SELF, "DAY_TAG");

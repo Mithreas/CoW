@@ -4,7 +4,7 @@
 #include "gs_inc_location"
 #include "gs_inc_iprop"
 #include "inc_database"
-#include "gvd_inc_seeds"
+#include "inc_seeds"
 #include "gs_inc_subrace"
 
 

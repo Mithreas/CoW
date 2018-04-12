@@ -7,8 +7,8 @@
 #include "gs_inc_common"
 #include "inc_disguise"
 #include "inc_pop"
-#include "fb_inc_chatutils"
-#include "gvd_inc_seeds"
+#include "inc_chatutils"
+#include "inc_seeds"
 
 const string GS_TEMPLATE_CORPSE = "gs_placeable017";
 const string GS_TEMPLATE_BODY = "gvd_pl_body";
