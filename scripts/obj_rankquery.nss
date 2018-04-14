@@ -3,7 +3,7 @@
   Displays the current faction rank of all logged on PCs.
 */
 #include "x2_inc_switches"
-#include "zdlg_include_i"
+#include "inc_zdlg"
 
 void main()
 {

@@ -13,7 +13,6 @@
 
 #include "cnr_config_inc"
 #include "cnr_persist_inc"
-#include "cnr_spells_inc"
 #include "cnr_language_inc"
 #include "inc_reputation"
 
@@ -1224,7 +1223,7 @@ string CnrRecipeBuildRecipeStringCommon(object oPC, object oContainer, string sK
       // and tally the count.
       int nSpell = CnrRecipeGetComponentRetainOnFailQty(sKeyToRecipe, nComponentIndex);
       int nSpellCount = GetHasSpell(nSpell, oPC);
-      sRecipe = sRecipe + IntToString(nSpellCount) + CNR_TEXT_OF + IntToString(nComponentQty) + "   " + CNR_TEXT_SPELLS_OF + CnrGetNameForSpell(nSpell) + "\n";
+      sRecipe = sRecipe + IntToString(nSpellCount) + CNR_TEXT_OF + IntToString(nComponentQty) + "   " + CNR_TEXT_SPELLS_OF + GetStringByStrRef(Get2DAString("spells", "Name", nSpell)) + "\n";
     }
     else if (sComponentTag != "COMPONENT_INVALID")
     {

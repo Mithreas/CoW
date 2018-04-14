@@ -1,4 +1,4 @@
-#include "mi_teleport"
+#include "inc_teleport"
 void main()
 {
   object oWP = GetNearestObjectByTag("WP_resource_exit");

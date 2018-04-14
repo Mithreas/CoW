@@ -8,7 +8,7 @@
 //
 // TODO: split conversation into arcane vs mundane trainers to make list
 // shorter!
-#include "zdlg_include_i"
+#include "inc_zdlg"
 #include "inc_pc"
 #include "inc_iprop"
 #include "inc_customspells"

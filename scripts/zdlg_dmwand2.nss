@@ -5,7 +5,7 @@
   Description: DM Wand conversation script. Uses Z-Dialog.
 
 */
-#include "zdlg_include_i"
+#include "inc_zdlg"
 #include "inc_reputation"
 // inc_reputation includes inc_log, inc_crime and inc_database
 const string DMWAND = "DMWAND"; // for logging

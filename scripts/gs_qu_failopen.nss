@@ -1,5 +1,5 @@
 #include "inc_quarter"
-#include "zdlg_include_i"
+#include "inc_zdlg"
 #include "inc_holders"
 #include "inc_factions"
 

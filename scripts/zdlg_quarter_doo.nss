@@ -11,7 +11,7 @@
 
 */
 #include "inc_quarter"
-#include "zdlg_include_i"
+#include "inc_zdlg"
 
 //::///////////////////////////////////////////////
 //:: DoTrapSpike

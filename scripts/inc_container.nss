@@ -256,7 +256,6 @@ struct gsCOResults gsCOSave(string sID, object oContainer, int nLimit = GS_LIMIT
             oItem = GetNextItemInInventory(oContainer);
         }
 
-
         if (GetStringLeft(GetTag(oContainer), 12) == "GS_INVENTORY")
         {
             fbCOSaveInventory(oContainer);

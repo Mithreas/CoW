@@ -5,7 +5,7 @@
   Description: Guard arrest conversation script. Uses Z-Dialog.
 
 */
-#include "zdlg_include_i"
+#include "inc_zdlg"
 #include "inc_crime"
 #include "nw_i0_generic"
 

@@ -23,7 +23,7 @@
     GetDlgSelection - gets user selection (index of the response list)
 */
 #include "inc_log"
-#include "zdlg_include_i"
+#include "inc_zdlg"
 #include "inc_finance"
 #include "inc_listener"
 #include "inc_factions"

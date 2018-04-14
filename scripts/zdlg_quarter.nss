@@ -58,7 +58,7 @@
 #include "inc_listener"
 #include "inc_quarter"
 #include "inc_time"
-#include "zdlg_include_i"
+#include "inc_zdlg"
 #include "inc_factions"
 #include "inc_backgrounds"
 

@@ -1,4 +1,4 @@
-#include "mi_teleport"
+#include "inc_teleport"
 void main()
 {
   string sDestWP = GetLocalString(OBJECT_SELF, "DEST_WP");

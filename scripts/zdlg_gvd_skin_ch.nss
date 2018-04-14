@@ -1,6 +1,6 @@
 #include "__server_config"
 #include "inc_subrace"
-#include "zdlg_include_i"
+#include "inc_zdlg"
 #include "zzdlg_color_inc"
 
 //------------------------------------------------------------------------------

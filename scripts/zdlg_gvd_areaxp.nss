@@ -2,7 +2,7 @@
 #include "nwnx_object"
 #include "nwnx_alts"
 #include "nwnx_admin"
-#include "zdlg_include_i"
+#include "inc_zdlg"
 #include "inc_chatutils"
 #include "inc_adv_xp"
 

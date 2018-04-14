@@ -24,7 +24,7 @@
 #include "inc_totem"
 #include "inc_warlock"
 #include "inc_spellsword"
-#include "zdlg_include_i"
+#include "inc_zdlg"
 //------------------------------------------------------------------------------
 // Set up some constants to use for list and variable names.
 //------------------------------------------------------------------------------

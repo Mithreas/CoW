@@ -5,7 +5,7 @@
   Description:Dog seller conversation script. Uses Z-Dialog.
 
 */
-#include "zdlg_include_i"
+#include "inc_zdlg"
 #include "nw_i0_generic"
 
 const string MAIN_MENU   = "main_options";

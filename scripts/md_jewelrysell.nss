@@ -15,7 +15,7 @@
 #include "nwnx_creature"
 #include "nwnx_object"
 #include "x3_inc_string"
-#include "zdlg_include_i"
+#include "inc_zdlg"
 
 
 void _DelayRemoval(object oContainer)

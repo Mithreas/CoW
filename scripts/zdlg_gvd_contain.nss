@@ -6,7 +6,7 @@
 
 #include "nwnx_creature"
 #include "nwnx_object"
-#include "zdlg_include_i"
+#include "inc_zdlg"
 #include "inc_holders"
 #include "zzdlg_color_inc"
 #include "inc_stacking"

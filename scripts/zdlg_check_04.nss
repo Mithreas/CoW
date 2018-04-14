@@ -6,7 +6,7 @@
  *  Copyright (c) 2004 Paul Speed - BSD licensed.
  *  NWN Tools - http://nwntools.sf.net/
  */
-#include "zdlg_include_i"
+#include "inc_zdlg"
 
 const int ENTRY_NUM = 4;
 

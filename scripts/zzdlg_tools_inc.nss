@@ -1,6 +1,6 @@
 // zzdlg_tools_inc
 //
-// Original filename under Z-Dialog: zdlg_include_i
+// Original filename under Z-Dialog: inc_zdlg
 // Copyright (c) 2004 Paul Speed - BSD licensed.
 //  NWN Tools - http://nwntools.sf.net/
 //

@@ -6,7 +6,7 @@
 #include "inc_chatutils"
 #include "inc_pc"
 #include "inc_log"
-#include "zdlg_include_i"
+#include "inc_zdlg"
 
 const string HELP0 = "Here are the possible actions you can take with bans. Some may not be available unless there is a soul inside the cage. Others will only work when there is exactly one soul in the cage.";
 const string HELP1 = "Retrieve ban: Allows you to speak a player name, IP address or CD key and remove the appropriate player ban from the cage. The item is placed in the inventory of the cage, and nothing is saved until you commit the ban.";

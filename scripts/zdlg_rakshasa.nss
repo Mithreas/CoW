@@ -14,7 +14,7 @@
 */
 #include "inc_pc"
 #include "inc_log"
-#include "zdlg_include_i"
+#include "inc_zdlg"
 //------------------------------------------------------------------------------
 // Set up some constants to use for list and variable names.
 //------------------------------------------------------------------------------

@@ -18,7 +18,7 @@ zdlg_registrar
 #include "inc_time"
 #include "inc_quarter"
 #include "x3_inc_string"
-#include "zdlg_include_i"
+#include "inc_zdlg"
 #include "ar_utils"
 
 //in game time, how long between a new token is earned

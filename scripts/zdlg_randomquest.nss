@@ -4,7 +4,7 @@
   Date: Apr 9 2006
   Description: Random quest conversation script. Uses Z-Dialog.
 */
-#include "zdlg_include_i"
+#include "inc_zdlg"
 #include "inc_randomquest"
   // inc_randomquest includes inc_database, inc_reputation and inc_log
 #include "nw_i0_generic"

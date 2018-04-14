@@ -19,7 +19,7 @@
 #include "inc_xp"
 #include "inc_log"
 #include "inc_tells"
-#include "zdlg_include_i"
+#include "inc_zdlg"
 #include "zzdlg_color_inc"
 
 //------------------------------------------------------------------------------

@@ -7,7 +7,7 @@
 
 */
 
-#include "zdlg_include_i"
+#include "inc_zdlg"
 #include "x0_i0_position"
 #include "inc_pc"
 

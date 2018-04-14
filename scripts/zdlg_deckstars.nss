@@ -7,7 +7,7 @@
 
 */
 
-#include "zdlg_include_i"
+#include "inc_zdlg"
 #include "inc_log"
 #include "inc_divination"
 

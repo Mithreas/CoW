@@ -10,7 +10,7 @@
  *  start of the conversation.  All future pages will hit zdlg_check_init0..9
  *  instead.
  */
-#include "zdlg_include_i"
+#include "inc_zdlg"
 
 int StartingConditional()
 {

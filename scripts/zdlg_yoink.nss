@@ -16,7 +16,7 @@
 #include "inc_time"
 #include "inc_worship"
 #include "inc_customspells"
-#include "zdlg_include_i"
+#include "inc_zdlg"
 #include "__server_config"
 
 //------------------------------------------------------------------------------

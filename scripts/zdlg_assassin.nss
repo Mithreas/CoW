@@ -7,7 +7,7 @@
 */
 #include "inc_chat"
 #include "inc_assassin"
-#include "zdlg_include_i"
+#include "inc_zdlg"
 
 const string CONTINUE = "DLG_CONTINUE";
 const string OPTIONS  = "DLG_OPTIONS";

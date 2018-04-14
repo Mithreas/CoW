@@ -2,7 +2,7 @@
 #include "inc_chatutils"
 #include "inc_flag"
 #include "inc_customspells"
-#include "zdlg_include_i"
+#include "inc_zdlg"
 #include "inc_spell"
 #include "inc_worship"
 #include "inc_examine"

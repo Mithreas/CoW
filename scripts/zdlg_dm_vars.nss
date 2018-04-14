@@ -1,6 +1,6 @@
 #include "inc_listener"
 #include "inc_area"
-#include "zdlg_include_i"
+#include "inc_zdlg"
 #include "zzdlg_color_inc"
 #include "nwnx_creature"
 #include "nwnx_object"

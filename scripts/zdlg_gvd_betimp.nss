@@ -5,7 +5,7 @@
 
 */
 #include "inc_chatutils"
-#include "zdlg_include_i"
+#include "inc_zdlg"
 #include "zzdlg_color_inc"
 
 // time to wait between fights/bets (10 RL minutes)

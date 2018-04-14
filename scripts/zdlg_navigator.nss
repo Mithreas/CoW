@@ -1,4 +1,4 @@
-#include "zdlg_include_i"
+#include "inc_zdlg"
 #include "zzdlg_color_inc"
 #include "ar_sys_ship"
 #include "inc_factions"

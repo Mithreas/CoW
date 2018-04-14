@@ -16,7 +16,7 @@
 */
 #include "inc_listener"
 #include "inc_tells"
-#include "zdlg_include_i"
+#include "inc_zdlg"
 
 const string OPTIONS = "NOT_OPTIONS";
 

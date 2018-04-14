@@ -20,7 +20,7 @@
 */
 #include "inc_listener"
 #include "inc_xfer"
-#include "zdlg_include_i"
+#include "inc_zdlg"
 #include "inc_log"
 
 const string OPTIONS = "MES_OPTIONS";

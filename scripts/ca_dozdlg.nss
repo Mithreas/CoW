@@ -1,4 +1,4 @@
-#include "zdlg_include_i"
+#include "inc_zdlg"
 void main()
 {
   object oPC = GetPCSpeaker();

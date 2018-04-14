@@ -22,7 +22,7 @@
 */
 #include "inc_listener"
 #include "inc_criers"
-#include "zdlg_include_i"
+#include "inc_zdlg"
 #include "inc_log"
 
 const string OPTIONS = "CRI_OPTIONS";

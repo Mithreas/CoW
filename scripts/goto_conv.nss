@@ -6,7 +6,7 @@
   Jump the PC speaker to the location marked by the object whose tag is the
   variable "GOTO" on the NPC speaker.
 */
-#include "mi_teleport"
+#include "inc_teleport"
 void main()
 {
   JumpAllToLocation(GetPCSpeaker(),

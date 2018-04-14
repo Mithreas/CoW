@@ -1,4 +1,4 @@
-#include "zdlg_include_i"
+#include "inc_zdlg"
 #include "zzdlg_color_inc"
 #include "inc_common"
 #include "inc_area"

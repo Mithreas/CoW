@@ -20,7 +20,7 @@
 #include "inc_listener"
 #include "inc_message"
 #include "inc_quarter"
-#include "zdlg_include_i"
+#include "inc_zdlg"
 #include "zzdlg_color_inc"
 
 const string TC_LOG        = "TRADE_CZAR";

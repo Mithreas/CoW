@@ -29,7 +29,7 @@
 #include "inc_xfer"
 #include "inc_xp"
 #include "x3_inc_horse"
-#include "zdlg_include_i"
+#include "inc_zdlg"
 
 const int GS_TIMEOUT   = 2400;  // 4 RT minutes (40 game minutes)
 const string ENTER = "ENTER"; // For logging

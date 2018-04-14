@@ -22,7 +22,7 @@
   You should also use House colours, too, for easy identification.
 
 */
-#include "zdlg_include_i"
+#include "inc_zdlg"
 #include "inc_resource"
  // includes inc_reputation, inc_crime, inc_log and inc_database
 #include "inc_perspeople"
