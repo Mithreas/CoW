@@ -358,7 +358,7 @@ void gsXPGiveExperience(object oCreature, int nAmount, int nFloat = TRUE, int nK
     {
         if (level > GetHitDice(oCreatureToReward)) // We deleveled
         {
-		  ExecuteScript("gs_m_level_down", oCreatureToReward);
+		  ExecuteScript("m_level_down", oCreatureToReward);
         }
     }
 

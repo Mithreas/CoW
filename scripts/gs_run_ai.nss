@@ -11,11 +11,6 @@ void main()
 
     object oSelf = OBJECT_SELF;
 
-	if ((GetTimeHour() == 6 || GetTimeHour() == 20) &&
-		(GetLocalString(OBJECT_SELF, "DAY_TAG") != "" || GetLocalString(OBJECT_SELF, "NIGHT_TAG") != ""))
-	{
-		return;
-	}
     // If this is a possessed creature, make sure AI level is set to default,
     // otherwise DMs will experience very poor performance.
     if (GetIsDMPossessed(oSelf))

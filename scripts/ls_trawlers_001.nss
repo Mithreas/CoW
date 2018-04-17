@@ -10,4 +10,6 @@ object oChair = GetObjectByTag("TRAWLERS_RECEPTION");
 
 AssignCommand(oReceptionist, ClearAllActions());
 AssignCommand(oReceptionist, ActionSit(oChair));
+
+ExecuteScript("a_enter", OBJECT_SELF);
 }

@@ -5,7 +5,7 @@
   Database tables
   rep_pcRep - this table ties player.charname to one (or more) groups, and holds
   the actual reputation score for that entry. Value names are
-                   'player.charname.groupnumber'
+                   'pcid.groupnumber'
 
   rep_repRankText - holds all of the rank "titles" for all of the groups, the
   associated GroupID, and the minimum / maximum reputation score for each
@@ -17,13 +17,14 @@
 #include "inc_crime"
 // inc_crime includes inc_log
 #include "inc_database"
+#include "inc_pc"
 const string REP = "REPUTATION"; // for tracing
 const string RANKS = "RANKS"; // for tracing
 
 /* Database names */
-const string DB_VALUES     = "rep_pcRep";
-const string DB_FACTIONREP = "rep_factionRep";
-const string DB_RANKS      = "rep_pcRanks";
+const string DB_VALUES     = "rep_pcrep";
+const string DB_FACTIONREP = "rep_factionrep";
+const string DB_RANKS      = "rep_pcranks";
 /* faction/rank(number)/(min)score/name */
 
 /* Faction definitions */

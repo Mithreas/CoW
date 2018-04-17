@@ -37,12 +37,7 @@ void main()
 
     case GS_EV_ON_HEART_BEAT:
 //................................................................
-        if (GetLocalInt(OBJECT_SELF, "nSignal") != 1)
-        {
-            ExecuteScript("gs_run_ai", OBJECT_SELF);
-        }
-        ExecuteScript("sep_run_signals", OBJECT_SELF);
-        ExecuteScript("sep_run_despawn", OBJECT_SELF);
+        ExecuteScript("gs_run_ai", OBJECT_SELF);
         break;
 
     case GS_EV_ON_PERCEPTION:
@@ -62,7 +57,6 @@ void main()
 
     case GS_EV_ON_SPAWN:
 //................................................................
-        ExecuteScript("sep_run_dn_init", OBJECT_SELF);
         break;
 
     case GS_EV_ON_SPELL_CAST_AT:

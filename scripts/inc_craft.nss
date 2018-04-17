@@ -1148,10 +1148,6 @@ void gsCRLoadCategoryList()
     SQLExecStatement("SELECT id,name FROM md_cr_category ORDER BY tier ASC, name ASC");
     if(!SQLFetch())
     {
-        SQLExecStatement("CREATE TABLE md_cr_category (id int(11) NOT NULL AUTO_INCREMENT, name VARCHAR(64) NOT NULL, original int(11), tier int(11) DEFAULT 50, PRIMARY KEY(id))");
-        SQLExecStatement("ALTER TABLE md_cr_recipes " +
-                         "MODIFY COLUMN category int(11);");
-
         for (; nNth < GS_CR_LIMIT_CATEGORY; nNth++)
         {
             sName = Get2DAString("baseitems", "Name", nNth);
@@ -1165,23 +1161,17 @@ void gsCRLoadCategoryList()
             }
         }
         SQLExecStatement("UPDATE md_cr_recipes SET category=113 WHERE category=0");
-        SQLExecStatement("ALTER TABLE md_cr_recipes " +
-                         "ADD CONSTRAINT FK_CatID " +
-                         "FOREIGN KEY (category) REFERENCES md_cr_category(id) " +
-                         "ON UPDATE CASCADE");
     }
     else
     {
+	    // NB - the ints below are not set up in the branch above, so this may not work correctly
+		// when the data is first populated.
         SetLocalInt(oCraftCache, "MD_USING_CAT_TABLE", 1);
-        /*SetLocalString(oCraftCache, "GS_CR_CATEGORY_0_NAME", SQLGetData(2));
-        SetLocalInt(oCraftCache, "GS_CR_CATEGORY_0_ID", StringToInt(SQLGetData(1))); */
         string sID = SQLGetData(1);
         SetLocalString(oCraftCache, "GS_CR_CATEGORY_"+sID+"_NAME", SQLGetData(2));
         SetLocalInt(oCraftCache, "GS_CR_CATEGORY_0_ID", StringToInt(sID));
         while(SQLFetch())
         {
-           /* SetLocalString(oCraftCache, "GS_CR_CATEGORY_"+IntToString(++nNth)+"_NAME", SQLGetData(2));
-            SetLocalInt(oCraftCache, "GS_CR_CATEGORY_"+IntToString(nNth)+"_ID", StringToInt(SQLGetData(1))); */
             sID = SQLGetData(1);
             SetLocalString(oCraftCache, "GS_CR_CATEGORY_"+sID+"_NAME", SQLGetData(2));
             SetLocalInt(oCraftCache, "GS_CR_CATEGORY_"+IntToString(++nNth)+"_ID", StringToInt(sID));

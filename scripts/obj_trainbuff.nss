@@ -17,7 +17,7 @@ void main()
 
   object oPC = GetItemActivator();
   string sName = GetName(oPC);
-  int nNumOfUsesLeft = GetPersistentInt(GetItemActivated(), "train_uses_" + sName, "pwobjdata");
+  int nNumOfUsesLeft = GetLocalInt(GetItemActivated(), "train_uses_" + sName);
 
   if (nNumOfUsesLeft == 0)
   {
@@ -27,7 +27,7 @@ void main()
   }
 
   nNumOfUsesLeft--;
-  SetPersistentInt(GetItemActivated(), "train_uses_" + sName, nNumOfUsesLeft, 0, "pwobjdata");
+  SetLocalInt(GetItemActivated(), "train_uses_" + sName, nNumOfUsesLeft);
 
   effect eAttack = EffectAttackIncrease(2);
   effect eDamage = EffectDamageIncrease(2, DAMAGE_TYPE_BLUDGEONING);

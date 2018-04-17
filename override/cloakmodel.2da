@@ -1,0 +1,20 @@
+2DA V2.0
+
+      LABEL         MODEL   TEXTURE   ICON   HIDEWING  HIDETAIL  HIDESHOL  HIDESHOR  ENVMAP
+0     None          0       0         0      0         0         0         0         ****
+1     Plain         1       1         1      1         0         0         1         default
+2     Arcane        1       10        2      1         0         0         1         default
+3     GreatCloak    2       2         3      1         0         1         1         default
+4     FineGreatCl   2       13        4      1         0         1         1         default
+5     Hooded        3       3         5      1         0         1         1         default
+6     Fancy         4       4         6      1         0         1         1         default
+7     Elegant       4       11        7      1         0         1         1         default
+8     Elvan         4       12        8      1         0         1         1         default
+9     Wizard        5       5         9      1         0         1         1         default
+10    Jeweled       7       14        10     1         0         1         1         default
+11    Blackgd_Cyric 6       6         11     1         0         0         0         default
+12    Paladin_Helm  6       7         12     1         0         0         0         default
+13    Champion_Torm 6       8         13     1         0         0         0         default
+14    DragonKnight  6       9         14     1         0         0         0         default
+15    ManyStarred   5       15        15     1         0         1         1         default
+16    PlainWizard   5       16        16     1         0         1         1         default

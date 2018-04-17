@@ -46,11 +46,9 @@ void OnPageInit(string sPage)
             if (sServing == "") sServing = GS_T_16777332;
             dlgSetPrompt("You are serving "+sServing+". You can change your belief by selecting a deity from this book. It is only possible to choose deities that convene with your character. If you turn away from your deity it will punish you with a loss of 500 experience points.");
             dlgAddResponseTalk(FB_RESPONSES, "Major deities");
-            dlgAddResponseTalk(FB_RESPONSES, "Intermediate deities");
-            dlgAddResponseTalk(FB_RESPONSES, "Lesser deities");
-            dlgAddResponseTalk(FB_RESPONSES, "Demigods");
-            dlgAddResponseTalk(FB_RESPONSES, "Planar powers");
-            dlgAddResponseTalk(FB_RESPONSES, "Setting-specific deities");
+            //dlgAddResponseTalk(FB_RESPONSES, "Intermediate deities");
+            //dlgAddResponseTalk(FB_RESPONSES, "Lesser deities");
+            //dlgAddResponseTalk(FB_RESPONSES, "Demigods");
             dlgAddResponseAction(FB_RESPONSES, "[No deity]");
             dlgDeactivateResetResponse();
             break;

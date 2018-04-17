@@ -1,6 +1,8 @@
 #include "inc_teleport"
-#include "cow_house_check"
+#include "inc_house_check"
 #include "inc_database"
+#include "inc_respawn"
+
 void main()
 {
   object oPC = GetPCSpeaker();
@@ -28,4 +30,5 @@ void main()
                       GetLocation(GetObjectByTag("gen_start")));
   }
 
+    AssignCommand(oPC, ActionDoCommand(gsRESetRespawnLocation()));
 }

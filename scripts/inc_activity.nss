@@ -8,6 +8,8 @@
 */
 #include "inc_log"
 #include "inc_database"
+#include "inc_spells"
+#include "inc_xp"
 const string TRAINING = "TRAINING";
 const string IS_DOJO  = "is_dojo";
 const string IS_LIB   = "is_library";
@@ -91,7 +93,7 @@ void GiveXP(object oPC, int InGoodArea = FALSE)
 
   int nXP = FloatToInt(fXP);
 
-  GiveXPToCreature(oPC, nXP);
+  gsXPGiveExperience(oPC, nXP);
 }
 
 void GiveTrainingBoost(object oPC)
@@ -108,56 +110,48 @@ void GiveTrainingBoost(object oPC)
   }
   else
   {
-    nNumOfUses = GetPersistentInt(oTrainBuffObject, "train_uses_" + sName, "pwobjdata");
+    nNumOfUses = GetLocalInt(oTrainBuffObject, "train_uses_" + sName);
     Trace(TRAINING, "Widget already exists with " + IntToString(nNumOfUses) +
                      " uses.");
   }
 
   nNumOfUses++;
-  SetPersistentInt(oTrainBuffObject, "train_uses_" + sName, nNumOfUses, 0, "pwobjdata");
+  SetLocalInt(oTrainBuffObject, "train_uses_" + sName, nNumOfUses);
 }
 
-void GivePrayerPoint(object oPC)
+void GivePrayerBoon(object oPC)
 {
   Trace(TRAINING, "GivePrayerPoint called for PC: " + GetName(oPC));
 
   string sDeity = GetDeity(oPC);
   if (sDeity == "")
   {
-    SendMessageToPC(oPC, "(( You don't have a deity to pray to!. ))");
+    SendMessageToPC(oPC, "(( You don't have a deity to pray to! ))");
     return;
   }
 
-  Trace(TRAINING, "Got deity " + sDeity + " for PC " + GetName(oPC));
-  int nPrayerPoints = GetPersistentInt(OBJECT_INVALID, sDeity, "god_table");
-  nPrayerPoints ++;
-  SetPersistentInt(OBJECT_INVALID, sDeity, nPrayerPoints, 0, "god_table");
-
-  // Give the PC a piety point
-  Trace(TRAINING, "Giving piety point to " + GetName(oPC));
-  int nPietyPoints = GetPersistentInt(oPC, "points", "pc_piety_points");
-  if (nPietyPoints < 100)
-  {
-    nPietyPoints++;
-    SetPersistentInt(oPC, "points", nPietyPoints, 0, "pc_piety_points");
-  }
-
-  // 33% chance of raising a nearby dead PC.
-  if (d3() -2)
+  // 25% chance of raising a nearby dead PC.
+  if (d4() -3)
   {
     Trace(TRAINING, "Raising nearby dead PC, if any.");
     int nCount = 1;
-    object oCreature = GetNearestObject(OBJECT_TYPE_CREATURE, oPC, nCount);
-    float fDistance = GetDistanceBetween(oPC, oCreature);
-    while ((fDistance < 20.0) && (GetIsObjectValid(oCreature)))
+    object oCorpse = GetNearestObjectByTag(GS_PLACEABLE, oPC, nCount);
+    float fDistance = GetDistanceBetween(oPC, oCorpse);
+	
+    while ((fDistance < 20.0) && (GetIsObjectValid(oCorpse)))
     {
-      if (GetIsPC(oCreature) && GetIsDead(oCreature))
-      {
-        Trace(TRAINING, "Found dead PC to raise: "+GetName(oCreature));
-        effect eRaise = EffectResurrection();
-        effect eVis = EffectVisualEffect(VFX_IMP_RAISE_DEAD);
-        ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oCreature);
-        ApplyEffectToObject(DURATION_TYPE_INSTANT, eRaise, oCreature);
+      sCorpse = GetLocalString(oCorpse, "GS_TARGET");
+
+      if (sCorpse != "") 
+	  {
+        // player still around?
+        if (gsPCGetPlayerByID(sCorpse) != OBJECT_INVALID) 
+		{
+          Trace(TRAINING, "Found dead PC to raise: "+GetName(oCorpse));
+          SetLocalInt(oCorpse, "GVD_ALTAR_RAISE", 1);
+          SetLocalObject(oCorpse, "GVD_ALTAR_USER", oPC);
+          ExecuteScript("gs_pc_spell", oCorpse);
+		}  
       }
 
       nCount ++;

@@ -1,4 +1,4 @@
 void main()
 {
-  SetDeity(GetPCSpeaker(), "DIVINES");
+  SetDeity(GetPCSpeaker(), "The Divines");
 }

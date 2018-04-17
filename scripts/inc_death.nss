@@ -1,4 +1,5 @@
 #include "inc_bloodstains"
+#include "inc_crime"
 #include "inc_external"
 #include "inc_zombie"
 #include "inc_common"
@@ -22,9 +23,9 @@ const int GS_PENALTY_PER_LEVEL  = 25;
 // Original gsDeath function.
 void gsDeath();
 // Original main function. Moved to a separate function so it can be delayed.
-void DoDeath(object oDied);
+void DoDeath(object oDied, object oKiller);
 
-void DoDeath(object oDied)
+void DoDeath(object oDied, object oKiller)
 {
     //spelltracker
     gsSPTReset(oDied);
@@ -32,7 +33,19 @@ void DoDeath(object oDied)
     // always turn subdual mode off when someone dies
     DeleteLocalInt(oDied, "GVD_SUBDUAL_MODE");
 
+	// Bounty system code to clear a player's bounty if they were killed by
+    // a guard.
+	// Note: we apply this even if a god save or similar happens.  
+    int nNation = CheckFactionNation(oKiller);
 
+    if ((nNation != NATION_INVALID) &&
+         GetIsDefender(oKiller) &&
+         CheckWantedToken(nNation, oDied))
+    {
+      RemoveBountyToken(nNation, oDied);
+      AdjustReputation(oDied, oKiller, 50);
+	}	
+	  
     if (!GetLocalInt(GetModule(), "ZOMBIE_MODE")) {
       AssignCommand(oDied, gsDeath());
     } else {

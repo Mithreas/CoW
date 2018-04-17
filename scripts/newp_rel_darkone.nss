@@ -1,4 +1,4 @@
 void main()
 {
-  SetDeity (GetPCSpeaker(), "DARK_ONE");
+  SetDeity (GetPCSpeaker(), "The Dark One");
 }

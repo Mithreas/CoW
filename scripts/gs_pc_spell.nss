@@ -8,7 +8,7 @@ void main()
     if (GetIsObjectValid(oTarget) && GetTag(GetArea(oTarget)) == "gs_death")
     {
         int nSpell = GetLastSpell();
-	object oCaster = GetLastSpellCaster();
+	    object oCaster = GetLastSpellCaster();
 	
         // Dunshine: check for altar raises through prayer (see zz_co_sacrifice)
         if (GetLocalInt(OBJECT_SELF, "GVD_ALTAR_RAISE") == 1) {

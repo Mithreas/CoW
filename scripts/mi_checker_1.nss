@@ -193,8 +193,16 @@ void miCheckIfCharacterIsLegal_1(object oPC)
   DelayCommand(0.5, ExecuteScript("mi_checker_2", oPC));
 }
 
-// Uncomment to compile for test purposes.
 void main()
 {
+  // City of Winds - allowed races and classes.
+  if (GetRacialType(OBJECT_SELF) != RACIAL_TYPE_HUMAN || !CoW_HasAllowedClasses(OBJECT_SELF))
+  {
+       DelayCommand(3.0, JumpToLocation(GetLocation(GetObjectByTag("invalid_classes")) ));
+       return;
+  }
+  
+  // End City of Winds custom check.
+
   miCheckIfCharacterIsLegal_1(OBJECT_SELF);
 }

@@ -42,7 +42,11 @@ void main()
       DeleteLocalLocation(oPC, "research_location");
       DeleteLocalInt(oPC, "research_time");
       Trace(TRAINING, "Checking whether to give training boost");
-      if (d3() == 3)
+	  	  
+      // Humans are quicker to put information together than other 
+      // races.	  
+      if ((GetRacialType(oPC) == RACIAL_TYPE_HUMAN && d3() == 3) ||
+	      (GetRacialType(oPC) != RACIAL_TYPE_HUMAN && d6() == 6))
       {
         Trace(TRAINING, "Giving information");
         GiveResearchInformation(oPC);

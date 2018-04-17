@@ -518,7 +518,7 @@ struct Service mdCZYearlyResourceCost(string sNation);
 struct Service GetService(int nService);
 //Checks to see if they have resources for the year and decreases resources by service amount
 //oPC is the PC making the transaction
-//sAreaID is for use for landbroker services only and is the area id used in that table.
+//Enable expanded warehouse service. sAreaID is no longer used.
 int EnableService(int nService, string sNationID, object oPC, string sAreaID="");
 //------------------------------------------------------------------------------
 // Structs
@@ -1883,31 +1883,6 @@ struct Service mdCZYearlyResourceCost(string sNation)
         ResCost.nMetal += Exp.nMetal;
     }
 
-    int x=0;
-    string sTag;
-    struct Service Upkeep;
-    SQLExecStatement("SELECT service FROM landbroker WHERE nation_id=?", sNation);
-
-
-     while(SQLFetch())
-     {
-       nService =  StringToInt(SQLGetData(1));
-       if(nService & SVC_UPKEEP_HIGH)
-         Upkeep = GetService(SVC_UPKEEP_HIGH);
-       else if(nService & SVC_UPKEEP_MED)
-         Upkeep = GetService(SVC_UPKEEP_MED);
-       else
-         Upkeep = GetService(SVC_UPKEEP_LOW);
-
-
-       ResCost.nFood += Upkeep.nFood;
-       ResCost.nWood += Upkeep.nWood;
-       ResCost.nCloth += Upkeep.nCloth;
-       ResCost.nStone += Upkeep.nStone;
-       ResCost.nMetal += Upkeep.nMetal;
-
-     }
-
     return ResCost;
 }
 
@@ -1924,13 +1899,6 @@ int EnableService(int nService, string sNationID, object oPC, string sAreaID="")
 {
   int nOldService;
   struct Service PriorService;
-  if(sAreaID != "")
-  {
-    SQLExecStatement("SELECT service FROM landbroker WHERE area_id=?", sAreaID);
-    SQLFetch();
-    nOldService = StringToInt(SQLGetData(1));
-    PriorService = GetService(nOldService);
-  }
   struct Service Ext = GetService(nService);
   struct Service YearlyCost = mdCZYearlyResourceCost(sNationID);
 
@@ -1946,10 +1914,7 @@ int EnableService(int nService, string sNationID, object oPC, string sAreaID="")
      miCZGetSettlementStockpile(sNationID, RESOURCE_STONE) > Ext.nStone * 2 + YearlyCost.nStone &&
      miCZGetSettlementStockpile(sNationID, RESOURCE_WOOD) > Ext.nWood * 2 + YearlyCost.nWood)
   {
-     if(sAreaID != "")
-        SQLExecStatement("UPDATE landbroker SET service=? WHERE area_id=?", IntToString(nService), sAreaID);
-     else
-       SQLExecStatement("UPDATE micz_nations SET services = services | ? WHERE id=?", IntToString(nService), sNationID);
+     SQLExecStatement("UPDATE micz_nations SET services = services | ? WHERE id=?", IntToString(nService), sNationID);
 
      if(Ext.nFood>0)
        miCZAddtoStockpile(sNationID, RESOURCE_FOOD, -1*Ext.nFood);

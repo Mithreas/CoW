@@ -27,6 +27,8 @@ void VerifyQuickbarMetaMagic(object pc);
 // verify if oPC still meets all requirements for their feats (for now it just logs those invalid feats)
 void VerifyFeatRequirements(object oPC);
 
+// City of Winds method for enforcing current class restrictions by race.
+int CoW_HasAllowedClasses(object oPC);
 
 string GetSummarisedPlayerInfo(object pc)
 {
@@ -164,4 +166,29 @@ void VerifyFeatRequirements(object oPC) {
     iFeat = iFeat + 1;
   }
 
+}
+
+int CoW_HasAllowedClasses(object oPC)
+{
+  switch (GetRacialType(oPC))
+  {
+    case RACIAL_TYPE_HUMAN:
+	{
+	  if (GetLevelByClass(CLASS_TYPE_WIZARD, oPC) ||
+	      GetLevelByClass(CLASS_TYPE_SORCERER, oPC) ||
+		  GetLevelByClass(CLASS_TYPE_BARD, oPC) ||
+		  GetLevelByClass(CLASS_TYPE_DRUID, oPC))
+      {
+	    return FALSE;
+	  }
+	  else
+	  {
+	    return TRUE;
+	  }
+	}
+	default:
+	  return FALSE;
+  }
+  
+  return FALSE;
 }

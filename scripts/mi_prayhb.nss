@@ -7,6 +7,7 @@
   the praying PC.
 */
 #include "inc_activity"
+#include "inc_worship"
 void main()
 {
   Trace(TRAINING, "Called praying heartbeat script");
@@ -29,11 +30,13 @@ void main()
     {
       Trace(TRAINING, "In temple.");
       GiveXP(oPC, TRUE);
+      gsWOAdjustPiety(oPC, 2.0f);
     }
     else
     {
       Trace(TRAINING, "Not in temple.");
       GiveXP(oPC);
+      gsWOAdjustPiety(oPC, 1.0f);
     }
 
     if (nTimeSoFar == 10) // 60 s, give prayer point
@@ -41,7 +44,7 @@ void main()
       Trace(TRAINING, "Giving prayer point to god.");
       DeleteLocalLocation(oPC, "pray_location");
       DeleteLocalInt(oPC, "praying_time");
-      GivePrayerPoint(oPC);
+      GivePrayerBoon(oPC);
     }
     else
     {

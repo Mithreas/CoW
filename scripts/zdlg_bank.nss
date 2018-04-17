@@ -25,6 +25,7 @@
 #include "inc_log"
 #include "inc_zdlg"
 #include "inc_finance"
+#include "inc_house_check"
 #include "inc_listener"
 #include "inc_factions"
 
@@ -36,6 +37,7 @@ const string FACTION_MENU = "BANK_FAC_MENU";
 const string FACTION_OPTIONS = "BANK_FAC_OPT";
 
 const string MAIN_OPTIONS = "MAIN_BANK_OPTIONS";
+const string NO_OPTIONS   = "NO_OPTIONS";
 const string CONFIRM_OPTIONS = "CONFIRM_OPTIONS";
 const string ACCOUNTS = "BANK_ACCOUNTS";
 const string ACCOUNT_NAMES = "BANK_ACCOUNT_NAMES";
@@ -82,7 +84,7 @@ void Init()
   DeleteLocalString(oPC, "BANK_OVERRIDE_ID");
 
   if (sID == "") sID = gsPCGetPlayerID(oPC);
-
+  
   SetLocalString(OBJECT_SELF, VAR_ID, sID);
   DeleteList(FACTION_MENU);
   DelayCommand(0.1, _RefreshFactionList(oPC));
@@ -119,7 +121,11 @@ void Init()
     AddStringElement("<cþ  >[Leave]</c>", MAIN_OPTIONS);
     SetDlgPageString("");
   }
-
+  
+  if (GetElementCount(NO_OPTIONS) == 0)
+  {
+    AddStringElement("<cþ  >[Leave]</c>", NO_OPTIONS);
+  }
 }
 
 void PageInit()
@@ -133,6 +139,14 @@ void PageInit()
 
   if (sPage == "")
   {
+    // Check whether this banker is restricted to city factions.
+    if (GetLocalInt(OBJECT_SELF, "city_factions_only"))
+    {
+	  SetDlgPrompt("You have no business here.  Kindly leave.\n\n" +
+	  "<c þ >[Only city factions may use this bank.]</c>");
+      SetDlgResponseList(NO_OPTIONS);
+    }
+  
     DeleteLocalString(oSelf, VAR_ACCOUNT);
     DeleteLocalString(oSelf, VAR_ACCOUNT_NAME);
     SetDlgPrompt("<c þ >[Current balance: " + IntToString(nCurrentBalance) +
