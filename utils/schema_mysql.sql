@@ -2670,7 +2670,7 @@ DROP TABLE IF EXISTS `renerrin_vars`;
 CREATE TABLE `renerrin_vars` (
         `player` varchar(32) default NULL,
         `tag` varchar(32) default NULL,
-        `name` varchar(32) default NULL,
+        `name` varchar(64) default NULL,
         `val` text,
         `expire` int(11) default NULL,
         `modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -2692,7 +2692,7 @@ DROP TABLE IF EXISTS `drannis_vars`;
 CREATE TABLE `drannis_vars` (
         `player` varchar(32) default NULL,
         `tag` varchar(32) default NULL,
-        `name` varchar(32) default NULL,
+        `name` varchar(64) default NULL,
         `val` text,
         `expire` int(11) default NULL,
         `modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -2714,7 +2714,7 @@ DROP TABLE IF EXISTS `erenia_vars`;
 CREATE TABLE `erenia_vars` (
         `player` varchar(32) default NULL,
         `tag` varchar(32) default NULL,
-        `name` varchar(32) default NULL,
+        `name` varchar(64) default NULL,
         `val` text,
         `expire` int(11) default NULL,
         `modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -2754,4 +2754,14 @@ CREATE TABLE `rep_pcranks` (
         `expire` int(11) default NULL,
         `modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         KEY idx (faction,score)
+        ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+		
+-- Random quest table to mark whether a player has done a quest.
+DROP TABLE IF EXISTS `rquest_player_data`;
+CREATE TABLE `rquest_player_data` (
+        `pcid` varchar(32) default NULL,
+        `quest` varchar(32) default NULL,
+        `questset` varchar(64) default NULL,
+        `modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        KEY idx (pcid,quest,questset)
         ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;

@@ -17,6 +17,9 @@
 #   - grant all privileges on nwn.* to 'nwn'@'localhost'
 #   - \q
 #   - mysql nwn < schema_mysql.sql
+# - installing ruby/rubygems: apt-get install ruby
+# - installing the NWN library for ruby: gem install nwn-lib (may take a while)
+# NOTE: need to get this working within the container!
 # - installing Docker CE (https://docs.docker.com/install/linux/docker-ce/debian/)
 # - running the script below to start the server. 
 #
@@ -29,9 +32,13 @@ sudo docker run --restart unless-stopped -dit \
     -v $(pwd):/nwn/home \
     -e NWN_MODULE='City of Winds' \
     -e NWN_PUBLICSERVER=1 \
-        -e NWN_SERVERNAME='City of Winds Test' \
-        -e NWN_PLAYERPASSWORD='T3st925#' \
+    -e NWN_SERVERNAME='City of Winds Test' \
+    -e NWN_PLAYERPASSWORD='T3st925#' \
     -e NWN_DMPASSWORD='DMT3st925#' \
+    -e NWN_ELC=0 \
+    -e NWN_ILR=0 \
+    -e NWN_MAXLEVEL=15 \
+    -e NWN_GAMETYPE=10 \
     -e NWNX_ADMINISTRATION_SKIP=n \
     -e NWNX_BEHAVIOURTREE_SKIP=y \
     -e NWNX_CHAT_SKIP=n \

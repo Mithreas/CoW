@@ -245,7 +245,7 @@ void miWHSetWeather(object oArea = OBJECT_SELF)
       if (nHeat < 6 && nWind < 3)
       {
         SetWeather(oArea, WEATHER_CLEAR);
-        bFoggy = FALSE ;  // Fog disabled :(
+        bFoggy = TRUE ; 
       }
       else SetWeather(oArea, WEATHER_RAIN);
     }
@@ -271,6 +271,8 @@ void miWHSetWeather(object oArea = OBJECT_SELF)
         DeleteLocalInt(oArea, "GS_AM_SKY_OVERRIDE");
     }
 
+	// Replaced by code in a_enter to spawn mist placeables.
+	/*	
     if (bFoggy)
     {
         SetFogAmount(FOG_TYPE_ALL, 35, oArea);
@@ -285,6 +287,7 @@ void miWHSetWeather(object oArea = OBJECT_SELF)
         SetFogColor(FOG_TYPE_MOON, GetLocalInt(oArea,VAR_FOG_C_MOON), oArea);
         DeleteLocalInt(oArea, "GS_AM_FOG_OVERRIDE");
     }
+	*/
 }
 
 int miWHGetWeather(object oArea = OBJECT_SELF)
@@ -423,7 +426,7 @@ void miWHDoWeatherEffects(object oCreature)
         else if (nHumidity > 7 && nHeat > 3)
         {
             // Mist
-            if (nWind < 3)
+            if (nHeat < 6 && nWind < 3)
             {
               sMessage = FB_T_WEATHER_MESSAGE_MIST;
             }

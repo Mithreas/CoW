@@ -282,5 +282,5 @@ void main()
     WriteTimestampedLogEntry ("Initialising persistent people");
     SetUpPersistentPeople();	
 	
-    DelayCommand(300.0, DropPassword());
+    DelayCommand(150.0, DropPassword());
 }
