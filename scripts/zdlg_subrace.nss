@@ -736,7 +736,9 @@ void _BypassGiftOption(object oPC)
         }
         else
         {
-           SetDlgPageString(BACKGROUND_SELECT);
+			//Saleph: Background and Startloc temp disabled, go to Path select 
+			SetDlgPageString(PATH_SELECT);
+            //SetDlgPageString(BACKGROUND_SELECT);
         }
     }
     else
@@ -766,10 +768,7 @@ void _SetUpAllowedBackgrounds()
   //  }
   // }
 
-  // Removing all backgrounds except for slave and outcast.
-
-  if (miBAGetIsBackgroundLegal(MI_BA_SLAVE, oPC))   _AddBackgroundAsOption(MI_BA_SLAVE);
-  if (miBAGetIsBackgroundLegal(MI_BA_OUTCAST, oPC)) _AddBackgroundAsOption(MI_BA_OUTCAST);
+  // Removing all backgrounds 
   _AddBackgroundAsOption(MI_BA_NONE);
 }
 
@@ -1302,7 +1301,7 @@ void PageInit()
     SetDlgPrompt("Are you sure?  Selected path: " + GetLocalString(oPC, VAR_PATH));
     SetDlgResponseList(CONFIRM, OBJECT_SELF);
   }
-  else if (sPage == BACKGROUND_SELECT)
+ else if (sPage == BACKGROUND_SELECT)
   {
     SetDlgPrompt(BACKGROUND_INTRO);
     SetDlgResponseList(AVAILABLE_BACKGROUNDS, OBJECT_SELF);
@@ -1321,6 +1320,7 @@ void PageInit()
     }
     SetDlgResponseList(CONFIRM, OBJECT_SELF);
   }
+
   else if (sPage == SKIN_SELECT)
   {
     SetDlgPrompt(SKIN_INTRO);
@@ -1567,7 +1567,9 @@ void HandleSelection()
             }
             else
             {
-              SetDlgPageString(BACKGROUND_SELECT);
+				//Saleph: Background and Startloc temp disabled, go to Path select 
+				SetDlgPageString(PATH_SELECT);
+				//SetDlgPageString(BACKGROUND_SELECT);
             }
       }
       else
@@ -1728,11 +1730,15 @@ void HandleSelection()
     if (sResponse == "Major award") SetLocalInt(oPC, "award_type", 1);
     else if (sResponse == "Normal award") SetLocalInt(oPC, "award_type", 2);
     else if (sResponse == "Minor award") SetLocalInt(oPC, "award_type", 3);
-    else SetDlgPageString(BACKGROUND_SELECT);
+	//Saleph: Background and Startloc temp disabled, go to Path select 
+	SetDlgPageString(PATH_SELECT);
+    //else SetDlgPageString(BACKGROUND_SELECT);
   }
   else if (sPage == AWARD_SELECT)
   {
-    SetDlgPageString(BACKGROUND_SELECT);
+	//Saleph: Background and Startloc temp disabled, go to Path select 
+	SetDlgPageString(PATH_SELECT);
+    //SetDlgPageString(BACKGROUND_SELECT);
     int nType = GetLocalInt(oPC, "award_type");
 
     switch (selection)
@@ -1837,7 +1843,10 @@ void HandleSelection()
     			   miBAGetBackground(oPC) != MI_BA_OUTCAST &&
     			   miBAGetBackground(oPC) != MI_BA_SLAVE)
 		    {
-            SetDlgPageString(STARTLOC_SELECT);
+			//Saleph: Background and Startloc temp disabled, go to Path select 
+			SetDlgPageString(PATH_SELECT);
+            //SetDlgPageString(STARTLOC_SELECT);
+
             break;
         }
         else
@@ -1849,7 +1858,9 @@ void HandleSelection()
       }
       case 1:
         // Back
-        SetDlgPageString(BACKGROUND_SELECT);
+		//Saleph: Background and Startloc temp disabled, go to Path select 
+		SetDlgPageString(PATH_SELECT);
+        //SetDlgPageString(BACKGROUND_SELECT);
         break;
     }
   }
