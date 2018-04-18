@@ -5,6 +5,7 @@
   Description: Skeleton knuckles conversation script. Uses Z-Dialog.
 
 */
+#include "inc_xp"
 #include "inc_zdlg"
 #include "nw_i0_generic"
 
@@ -19,12 +20,15 @@ void Init()
   // Responses to greeting.
   if (GetElementCount(MAIN_MENU) == 0)
   {
-    AddStringElement("Yes, I have some. Here you are!", MAIN_MENU);
     AddStringElement("Why do you want bones?", MAIN_MENU);
     AddStringElement("None, sorry.", MAIN_MENU);
+	if (GetItemPossessedBy(GetPcDlgSpeaker(), "NW_IT_MSMLMISC13") != OBJECT_INVALID)
+	{
+      AddStringElement("Yes, I have some. Here you are!", MAIN_MENU);
+	}  
   }
 
-  // Responses to being told why she wants them.
+  // Responses to being told why he wants them.
   if (GetElementCount(PAGE_2) == 0)
   {
     AddStringElement("Oh, I see... Goodbye...", PAGE_2);
@@ -77,16 +81,16 @@ void PageInit()
       sTag = GetTag(oItem);
       if (sTag == "NW_IT_MSMLMISC13")
       {
+        nGold += 5 * GetItemStackSize(oItem);
+        nXP += 5 * GetItemStackSize(oItem);
         DestroyObject (oItem);
-        nGold += 5;
-        nXP += 25;
       }
 
       oItem = GetNextItemInInventory(oPC);
     }
 
     GiveGoldToCreature(oPC, nGold);
-    GiveXPToCreature(oPC, nXP);
+    gsXPGiveExperience(oPC, nXP);
     SetDlgPrompt("Thank-you kindly, stranger. Take this for your efforts.");
     SetDlgResponseList(END, OBJECT_SELF);
   }
@@ -117,21 +121,21 @@ void HandleSelection()
     switch (selection)
     {
       case 0:
-        // Yes, have some skins to sell.
-        {
-          SetDlgPageString(PAGE_3);
-          break;
-        }
-      case 1:
         // End conv
         {
           EndDlg();
           break;
         }
-      case 2:
+      case 1:
         // Ask why
         {
           SetDlgPageString(PAGE_2);
+          break;
+        }
+      case 2:
+        // Yes, have some skins to sell.
+        {
+          SetDlgPageString(PAGE_3);
           break;
         }
     }

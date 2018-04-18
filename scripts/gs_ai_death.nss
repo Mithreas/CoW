@@ -18,6 +18,7 @@
 #include "inc_bloodstains"
 #include "inc_adv_xp"
 #include "inc_quest"
+#include "inc_randomquest"
 #include "inc_ranger"
 #include "inc_stacking"
 
@@ -153,6 +154,12 @@ void main()
       Log("DEATH", GetName(oKiller) + " just killed " + GetName(oSelf) +
        " in " + GetName(GetArea(oSelf)));
     }
+	
+	// Random quests hook - have we completed an assassin mission?
+	if (GetIsPlayerActive(oKiller, GetTag(oSelf)))
+	{
+	  PlayerNoLongerActive(oKiller, GetTag(oSelf));
+	}
   }
 
   if (!nOverride)

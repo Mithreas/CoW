@@ -135,8 +135,9 @@ void GivePrayerBoon(object oPC)
   {
     Trace(TRAINING, "Raising nearby dead PC, if any.");
     int nCount = 1;
-    object oCorpse = GetNearestObjectByTag(GS_PLACEABLE, oPC, nCount);
+    object oCorpse = GetNearestObjectByTag("GS_PLACEABLE", oPC, nCount);
     float fDistance = GetDistanceBetween(oPC, oCorpse);
+	string sCorpse;
 	
     while ((fDistance < 20.0) && (GetIsObjectValid(oCorpse)))
     {
@@ -155,8 +156,8 @@ void GivePrayerBoon(object oPC)
       }
 
       nCount ++;
-      oCreature = GetNearestObject(OBJECT_TYPE_CREATURE, oPC, nCount);
-      fDistance = GetDistanceBetween(oPC, oCreature);
+      oCorpse = GetNearestObject(OBJECT_TYPE_CREATURE, oPC, nCount);
+      fDistance = GetDistanceBetween(oPC, oCorpse);
     }
   }
 }

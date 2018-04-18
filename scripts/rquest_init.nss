@@ -37,6 +37,7 @@ void main()
    "ready to do more for the House, come back to me.",
    DB_VARS);
   SetStringValue(QUEST+LEVEL_RANGE, "01_01", DB_VARS);
+  SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
 
   QUEST = "patrol_city";
   SetStringValue(QUEST, PATROL, DB_QUEST);
@@ -47,6 +48,7 @@ void main()
   SetStringValue(QUEST+REWARD_XP, "200", DB_VARS);
   SetStringValue(QUEST+LEVEL_RANGE, "01_03", DB_VARS);
   SetStringValue(QUEST+AREA_TAGS, "southgates", DB_VARS);
+  SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
 
   QUEST="drarayne_rats";
   SetStringValue(QUEST, HELP, DB_QUEST);
@@ -69,8 +71,9 @@ void main()
   SetStringValue(QUEST+REWARD_GOLD, "50", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "150", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "01_03", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "01_15", DB_VARS);
   SetStringValue(QUEST+ITEM_TAG, "NW_IT_GEM004", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
 
   QUEST = "deliver_to_alian";
   SetStringValue(QUEST, MESSENGER, DB_QUEST);
@@ -94,7 +97,7 @@ void main()
   "and very unobservant. The magistrates will receive a tip-off later... you "+
   "can find Cardinal Jarian's house on Sunrise Isle, near the docks.",
   DB_VARS);
-  SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
+  SetStringValue(QUEST+REWARD_FAC_REP, "2", DB_VARS);
   SetStringValue(QUEST+LEVEL_RANGE, "01_15", DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "100", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "500", DB_VARS);
@@ -111,7 +114,7 @@ void main()
   DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "1000", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
-  SetStringValue(QUEST+REWARD_FAC_REP, "2", DB_VARS);
+  SetStringValue(QUEST+REWARD_FAC_REP, "3", DB_VARS);
   SetStringValue(QUEST+LEVEL_RANGE, "02_05", DB_VARS);
   SetStringValue(QUEST+TARGET_TAG, "arin_meyo", DB_VARS);
 
@@ -131,6 +134,7 @@ void main()
    "ready to do more for the House, come back to me.",
    DB_VARS);
   SetStringValue(QUEST+LEVEL_RANGE, "01_01", DB_VARS);
+  SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
 
   QUEST = "patrol_city";
   SetStringValue(QUEST, PATROL, DB_QUEST);
@@ -152,7 +156,7 @@ void main()
    DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "100", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "200", DB_VARS);
-  SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
+  SetStringValue(QUEST+REWARD_FAC_REP, "2", DB_VARS);
   SetStringValue(QUEST+LEVEL_RANGE, "02_05", DB_VARS);
   SetStringValue(QUEST+OTHER_NPC, "arin_meyo", DB_VARS);
 
@@ -163,7 +167,7 @@ void main()
    "rats in her home. It would do the House's reputation good if we were seen "+
    "to help her. You can cope with that, can't you? Her house is in the " +
    "Northeast corner of the Merchants' District.", DB_VARS);
-  SetStringValue(QUEST+REWARD_FAC_REP, "2", DB_VARS);
+  SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "10", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "200", DB_VARS);
   SetStringValue(QUEST+LEVEL_RANGE, "01_03", DB_VARS);
@@ -223,6 +227,7 @@ void main()
    "ready to do more for the House, come back to me.",
    DB_VARS);
   SetStringValue(QUEST+LEVEL_RANGE, "01_01", DB_VARS);
+  SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
 
   QUEST = "gather_holywater";
   SetStringValue(QUEST, RETRIEVE, DB_QUEST);
@@ -234,9 +239,21 @@ void main()
   SetStringValue(QUEST+REWARD_GOLD, "100", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "100", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "01_01", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "01_05", DB_VARS);
   SetStringValue(QUEST+ITEM_TAG, "X1_WMGRENADE005", DB_VARS);
 
+  QUEST = "more_holywater";
+  SetStringValue(QUEST, RETRIEVE, DB_QUEST);
+  SetStringValue(QUEST+DESCRIPTION,
+   "I've run out of holy water to keep the ghost out of my rooms. " + 
+   "Please can you fetch me some more?", DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "50", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "50", DB_VARS);
+  SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "01_15", DB_VARS);
+  SetStringValue(QUEST+ITEM_TAG, "X1_WMGRENADE005", DB_VARS); 
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
   QUEST="drarayne_rats";
   SetStringValue(QUEST, HELP, DB_QUEST);
   SetStringValue(QUEST+DESCRIPTION,
@@ -276,7 +293,7 @@ void main()
   DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "1000", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
-  SetStringValue(QUEST+REWARD_FAC_REP, "2", DB_VARS);
+  SetStringValue(QUEST+REWARD_FAC_REP, "3", DB_VARS);
   SetStringValue(QUEST+LEVEL_RANGE, "02_05", DB_VARS);
   SetStringValue(QUEST+TARGET_TAG, "arin_meyo", DB_VARS);
 
@@ -287,7 +304,7 @@ void main()
    "station, he's often targetted by members of other Houses. Please check " +
    "his desk and make sure there's nothing untoward in it... his house is near "+
    "the docks, here on Sunrise Isle.", DB_VARS);
-  SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
+  SetStringValue(QUEST+REWARD_FAC_REP, "2", DB_VARS);
   SetStringValue(QUEST+LEVEL_RANGE, "02_06", DB_VARS);
   SetStringValue(QUEST+AREA_TAGS, "paronjarianshous", DB_VARS);
 

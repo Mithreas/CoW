@@ -282,7 +282,7 @@ void main()
     if (nDayTime != gsTIGetDayTime()) gsSEAdd("gs_run_ambience", oArea);
 
     //area flags
-    if (gsFLGetAreaFlag("EXPLORE_MAP", oEntering))         ExploreAreaForPlayer(OBJECT_SELF, oEntering);
+    if (gsFLGetAreaFlag("EXPLORE_MAP", oEntering) || GetLocalInt(oArea, "explore"))  ExploreAreaForPlayer(OBJECT_SELF, oEntering);
     if (gsFLGetAreaFlag("PVP", oEntering))                 sString += " [" + GS_T_16777291 + "]";
     if (gsFLGetAreaFlag("REST", oEntering))                sString += " [" + GS_T_16777292 + "]";
     if (! gsFLGetAreaFlag("OVERRIDE_MAGIC", oEntering))    sString += " [" + GS_T_16777446 + "]";
@@ -845,9 +845,6 @@ void main()
         // Touch the character file.  This ensures that when we portal, we use
         // the most recent file.
         ExportSingleCharacter(oEntering);
-
-        // Save off the character's spell list. We may need this later.
-        //SetLocalString(oEntering, "SP_SPELL_LIST", GetAllMemorizedSpells(oEntering));
 
         //load player location
         location lLocation;

@@ -1,9 +1,8 @@
 2DA V2.0                                                        
                                                                 
            LABEL         ReqType   ReqParam1        ReqParam2   
-0          Dwarf         RACE      0                ****     
-1          Base_Attack   BAB       3                ****        
-2          ScriptVar     VAR       X1_AllowDwDef    0           
+0          Base_Attack   BAB       3                ****        
+1          ScriptVar     VAR       X1_AllowBlkGrd   0           
                                                                 
                                                                 
                                                                 
