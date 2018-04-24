@@ -21,9 +21,9 @@ void main()
     // Thats all for this bit, go back to the read me file for the rest of the instructions.
     //
     ///////////////////////////////////////////////////
-    int iJourneyTime    = 10;               // Put number of turns journey will take here, 1 turn = 6 seconds.
-    string sDestination = "wp_default";    // Put the tag of the destination Waypoint here
-    string sNameToShout = "The City"; // This is the name the player will shout out announcing departure
+    int iJourneyTime    = 10;                     // Put number of turns journey will take here, 1 turn = 6 seconds.
+    string sDestination = "wp_city_from_sunrise"; // Put the tag of the destination Waypoint here
+    string sNameToShout = "The City";             // This is the name the player will shout out announcing departure
     ///////////////////////////////////////////////////
 
     object oCaptain     = GetObjectByTag("aas_captain");

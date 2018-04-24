@@ -37,6 +37,8 @@ lvl xp  /encounter
 
 void main()
 {
+  // Zeroing this out since creatures give XP now.
+/*
   int nCount = 1;
   object oPC = GetNearestObject (OBJECT_TYPE_CREATURE, OBJECT_SELF, nCount );
   float fDistance = GetDistanceBetween(oPC, OBJECT_SELF);
@@ -52,5 +54,5 @@ void main()
      oPC = GetNearestObject (OBJECT_TYPE_CREATURE, OBJECT_SELF, nCount );
      fDistance = GetDistanceBetween(oPC, OBJECT_SELF);
   }
-
+*/
 }

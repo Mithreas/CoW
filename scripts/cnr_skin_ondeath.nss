@@ -28,8 +28,9 @@ void main()
  
   location locDeath = GetLocation(OBJECT_SELF);
   object oCorpse = CreateObject(OBJECT_TYPE_PLACEABLE, "cnrcorpseskin", locDeath, FALSE);
-  object oBones = CreateObject(OBJECT_TYPE_PLACEABLE, "cnrcorpsebones", locDeath, FALSE);
-  SetLocalObject(oCorpse, "CnrCorpseBones", oBones);
+  // CoW - no bones - created by main death script.
+  //object oBones = CreateObject(OBJECT_TYPE_PLACEABLE, "cnrcorpsebones", locDeath, FALSE);
+  //SetLocalObject(oCorpse, "CnrCorpseBones", oBones);
   SetLocalString(oCorpse, "CnrCorpseType", GetTag(OBJECT_SELF));
 
   AssignCommand(oCorpse, DelayCommand(CNR_FLOAT_SKINNABLE_CORPSE_FADE_TIME_SECS, FadeCorpse()));

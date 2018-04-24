@@ -52,6 +52,12 @@ void main()
                 FALSE);
 	}
 	
+	// Effective level.
+	int nFLLevel = GetLocalInt(oHide, "FL_LEVEL");
+	if (!nFLLevel) nFLLevel = GetHitDice(oPC);
+	else         nFLLevel += 1;
+	SetLocalInt(oHide, "FL_LEVEL", nFLLevel);
+	
     //required level
     for (nNth = 1; !bStaticLevel && nNth <= 3; nNth++)
     {

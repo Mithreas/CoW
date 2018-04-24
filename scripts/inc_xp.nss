@@ -137,6 +137,8 @@ void gsXPRewardKill(object oVictim = OBJECT_SELF, float fRange = 40.0)
     {
         fRatingVictim = GetChallengeRating(oVictim);
     }
+	
+	if (fRatingVictim < 1.0f) fRatingVictim = 1.0f;
 
     //compute rating
     if(oVictim == OBJECT_SELF) party = _CountParty(party, GetLastKiller(), fRange, oVictim);
@@ -336,9 +338,8 @@ void gsXPGiveExperience(object oCreature, int nAmount, int nFloat = TRUE, int nK
 
         if (nXP >= nXPLevel)
         {
-            // Edit by Mithreas: don't spam XP-capped level 30s. --[
-            if (nLevel == 30) return;
-            if (GetLocalInt(GetModule(), "STATIC_LEVEL") == nLevel) return;
+            // Edit by Mithreas: don't spam XP-capped level 15s. --[
+            if (nLevel == 15) return;
             // ]-- End edit
             SendMessageToPC(oCreature, GS_T_16777341);
             return;

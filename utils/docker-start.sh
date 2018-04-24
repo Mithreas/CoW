@@ -23,6 +23,10 @@
 # - installing Docker CE (https://docs.docker.com/install/linux/docker-ce/debian/)
 # - running the script below to start the server. 
 #
+# - Other useful utilities
+#   - apt-get install dos2unix (for converting dos line endings to unix)
+#   - apt-get install php php-mbstring php-xml php-mysql(for running PHP enabled websites)
+#
 cd /nwn/server
 sudo docker stop CoWTest
 sudo docker rm CoWTest
@@ -39,6 +43,7 @@ sudo docker run --restart unless-stopped -dit \
     -e NWN_ILR=0 \
     -e NWN_MAXLEVEL=15 \
     -e NWN_GAMETYPE=10 \
+    -e NWN_PAUSEANDPLAY=0 \
     -e NWNX_ADMINISTRATION_SKIP=n \
     -e NWNX_BEHAVIOURTREE_SKIP=y \
     -e NWNX_CHAT_SKIP=n \

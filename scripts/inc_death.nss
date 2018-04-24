@@ -48,6 +48,7 @@ void DoDeath(object oDied, object oKiller)
 	  
     if (!GetLocalInt(GetModule(), "ZOMBIE_MODE")) {
       AssignCommand(oDied, gsDeath());
+	  SetCommandable(FALSE, oDied);
     } else {
 
       fbZDied(oDied);
@@ -61,6 +62,13 @@ void DoDeath(object oDied, object oKiller)
       StopFade(oDied);
       return;
     }
+	
+	// Plot death.
+	if (GetLocalInt(oKiller, "PLOT_KILLER"))
+	{
+	  SetLocalInt(oDied, "PLOT_KILLED", TRUE);
+      ApplyEffectAtLocation(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_FNF_PWKILL), GetLocation(oDied));
+	}
 }
 
 void gsDeath()
@@ -69,6 +77,9 @@ void gsDeath()
   int nPVP        = FALSE;
   int nSuicide    = FALSE;
   int nKiller_RPR = FALSE;
+  
+  // PC was set non-commandable above to avoid interruptions
+  SetCommandable(TRUE, OBJECT_SELF);
 
   //state
   gsSTSetInitialState(TRUE);
@@ -244,6 +255,19 @@ void gsDeath()
             SetLocalInt(oObject1, "GS_GOLD", nGold);
         }
   }
+  
+  // City of Winds - plot death
+  if (GetLocalInt(oSelf, "PLOT_KILLED"))
+  {
+    // The PC was killed by a plot NPC, so is permadead.
+	
+    // rewards
+    gvd_DoRewards(oSelf);
+
+    // Delete character.
+    fbEXDeletePC(oSelf);
+  }
+  
 
   // Addition by Mithreas - Mark of Despair
   object oMark = GetItemPossessedBy(oSelf, "mi_mark_despair");

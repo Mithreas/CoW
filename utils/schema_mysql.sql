@@ -30,7 +30,7 @@ CREATE TABLE `fb_ban_groups` (
   `bg_lock` varchar(64) DEFAULT NULL,
   `bg_description` text,
   PRIMARY KEY (`bg_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=965 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -62,7 +62,7 @@ CREATE TABLE `fb_ban_nodes` (
   `bn_type` tinyint(1) DEFAULT NULL,
   `bn_data` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`bn_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3670 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,7 +99,7 @@ CREATE TABLE `forum_acl_options` (
   `founder_only` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`auth_option_id`),
   UNIQUE KEY `auth_option` (`auth_option`)
-) ENGINE=MyISAM AUTO_INCREMENT=127 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -118,7 +118,7 @@ CREATE TABLE `forum_acl_roles` (
   PRIMARY KEY (`role_id`),
   KEY `role_type` (`role_type`),
   KEY `role_order` (`role_order`)
-) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -185,7 +185,7 @@ CREATE TABLE `forum_attachments` (
   KEY `topic_id` (`topic_id`),
   KEY `poster_id` (`poster_id`),
   KEY `is_orphan` (`is_orphan`)
-) ENGINE=MyISAM AUTO_INCREMENT=584 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -210,7 +210,7 @@ CREATE TABLE `forum_banlist` (
   KEY `ban_user` (`ban_userid`,`ban_exclude`),
   KEY `ban_email` (`ban_email`,`ban_exclude`),
   KEY `ban_ip` (`ban_ip`,`ban_exclude`)
-) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -266,7 +266,7 @@ CREATE TABLE `forum_bots` (
   `bot_ip` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
   PRIMARY KEY (`bot_id`),
   KEY `bot_active` (`bot_active`)
-) ENGINE=MyISAM AUTO_INCREMENT=46 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -349,7 +349,7 @@ CREATE TABLE `forum_drafts` (
   `draft_message` mediumtext COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`draft_id`),
   KEY `save_time` (`save_time`)
-) ENGINE=MyISAM AUTO_INCREMENT=382 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -385,7 +385,7 @@ CREATE TABLE `forum_extension_groups` (
   `allowed_forums` text COLLATE utf8_bin NOT NULL,
   `allow_in_pm` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`group_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -400,7 +400,7 @@ CREATE TABLE `forum_extensions` (
   `group_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
   `extension` varchar(100) COLLATE utf8_bin NOT NULL DEFAULT '',
   PRIMARY KEY (`extension_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=67 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -463,7 +463,7 @@ CREATE TABLE `forum_forums` (
   PRIMARY KEY (`forum_id`),
   KEY `left_right_id` (`left_id`,`right_id`),
   KEY `forum_lastpost_id` (`forum_last_post_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=48 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -544,7 +544,7 @@ CREATE TABLE `forum_groups` (
   `group_legend` mediumint(8) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`group_id`),
   KEY `group_legend_name` (`group_legend`,`group_name`)
-) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -564,7 +564,7 @@ CREATE TABLE `forum_icons` (
   `display_on_posting` tinyint(1) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`icons_id`),
   KEY `display_on_posting` (`display_on_posting`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -583,7 +583,7 @@ CREATE TABLE `forum_lang` (
   `lang_author` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
   PRIMARY KEY (`lang_id`),
   KEY `lang_iso` (`lang_iso`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -612,7 +612,7 @@ CREATE TABLE `forum_log` (
   KEY `reportee_id` (`reportee_id`),
   KEY `user_id` (`user_id`),
   KEY `log_time` (`log_time`)
-) ENGINE=MyISAM AUTO_INCREMENT=10484 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -698,7 +698,7 @@ CREATE TABLE `forum_modules` (
   KEY `left_right_id` (`left_id`,`right_id`),
   KEY `module_enabled` (`module_enabled`),
   KEY `class_left_id` (`module_class`,`left_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=221 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -714,7 +714,7 @@ CREATE TABLE `forum_notification_types` (
   `notification_type_enabled` tinyint(1) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`notification_type_id`),
   UNIQUE KEY `type` (`notification_type_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -736,7 +736,7 @@ CREATE TABLE `forum_notifications` (
   PRIMARY KEY (`notification_id`),
   KEY `item_ident` (`notification_type_id`,`item_id`),
   KEY `user` (`user_id`,`notification_read`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -868,7 +868,7 @@ CREATE TABLE `forum_posts` (
   KEY `post_username` (`post_username`),
   KEY `tid_post_time` (`topic_id`,`post_time`),
   KEY `post_visibility` (`post_visibility`)
-) ENGINE=MyISAM AUTO_INCREMENT=146098 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -906,7 +906,7 @@ CREATE TABLE `forum_privmsgs` (
   KEY `message_time` (`message_time`),
   KEY `author_id` (`author_id`),
   KEY `root_level` (`root_level`)
-) ENGINE=MyISAM AUTO_INCREMENT=42275 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -923,7 +923,7 @@ CREATE TABLE `forum_privmsgs_folder` (
   `pm_count` mediumint(8) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`folder_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -945,7 +945,7 @@ CREATE TABLE `forum_privmsgs_rules` (
   `rule_folder_id` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`rule_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1007,7 +1007,7 @@ CREATE TABLE `forum_profile_fields` (
   PRIMARY KEY (`field_id`),
   KEY `fld_type` (`field_type`),
   KEY `fld_ordr` (`field_order`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1083,7 +1083,7 @@ CREATE TABLE `forum_ranks` (
   `rank_special` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `rank_image` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
   PRIMARY KEY (`rank_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1112,7 +1112,7 @@ CREATE TABLE `forum_reports` (
   PRIMARY KEY (`report_id`),
   KEY `post_id` (`post_id`),
   KEY `pm_id` (`pm_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=297 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1128,7 +1128,7 @@ CREATE TABLE `forum_reports_reasons` (
   `reason_description` mediumtext COLLATE utf8_bin NOT NULL,
   `reason_order` smallint(4) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`reason_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1162,7 +1162,7 @@ CREATE TABLE `forum_search_wordlist` (
   PRIMARY KEY (`word_id`),
   UNIQUE KEY `wrd_txt` (`word_text`),
   KEY `wrd_cnt` (`word_count`)
-) ENGINE=MyISAM AUTO_INCREMENT=120282 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1262,7 +1262,7 @@ CREATE TABLE `forum_smilies` (
   `display_on_posting` tinyint(1) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`smiley_id`),
   KEY `display_on_post` (`display_on_posting`)
-) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1283,7 +1283,7 @@ CREATE TABLE `forum_styles` (
   `style_parent_tree` text COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`style_id`),
   UNIQUE KEY `style_name` (`style_name`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1300,7 +1300,7 @@ CREATE TABLE `forum_teampage` (
   `teampage_position` mediumint(8) unsigned NOT NULL DEFAULT '0',
   `teampage_parent` mediumint(8) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`teampage_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1357,7 +1357,7 @@ CREATE TABLE `forum_topics` (
   KEY `topic_visibility` (`topic_visibility`),
   KEY `forum_vis_last` (`forum_id`,`topic_visibility`,`topic_last_post_id`),
   KEY `latest_topics` (`forum_id`,`topic_last_post_time`,`topic_last_post_id`,`topic_moved_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=17449 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1527,7 +1527,7 @@ CREATE TABLE `forum_users` (
   KEY `user_birthday` (`user_birthday`),
   KEY `user_email_hash` (`user_email_hash`),
   KEY `user_type` (`user_type`)
-) ENGINE=MyISAM AUTO_INCREMENT=2471 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1544,7 +1544,7 @@ CREATE TABLE `forum_warnings` (
   `log_id` int(10) unsigned NOT NULL DEFAULT '0',
   `warning_time` int(11) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`warning_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1559,7 +1559,7 @@ CREATE TABLE `forum_words` (
   `word` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
   `replacement` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
   PRIMARY KEY (`word_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1593,7 +1593,7 @@ CREATE TABLE `gs_account_data` (
   UNIQUE KEY `playername_UNIQUE` (`playername`),
   KEY `gs_account_data_FK1_idx` (`cdkey_id`),
   CONSTRAINT `gs_account_data_FK1` FOREIGN KEY (`cdkey_id`) REFERENCES `gs_player_data` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=66534 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1631,7 +1631,7 @@ CREATE TABLE `gs_fixtures` (
   `description` text,
   PRIMARY KEY (`fixture_id`),
   UNIQUE KEY `LocIndex` (`location`)
-) ENGINE=InnoDB AUTO_INCREMENT=716846 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1649,7 +1649,7 @@ CREATE TABLE `gs_fx_vars` (
   PRIMARY KEY (`fv_id`),
   KEY `fk1` (`fixture_id`),
   CONSTRAINT `fk1` FOREIGN KEY (`fixture_id`) REFERENCES `gs_fixtures` (`fixture_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=507498 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1707,7 +1707,7 @@ CREATE TABLE `gs_pc_data` (
   KEY `gs_pc_data_IX_1` (`playername`),
   CONSTRAINT `gs_pc_data_FK_1` FOREIGN KEY (`keydata`) REFERENCES `gs_player_data` (`id`),
   CONSTRAINT `gs_pc_data_FK_2` FOREIGN KEY (`modified_server`) REFERENCES `web_server` (`sid`)
-) ENGINE=InnoDB AUTO_INCREMENT=233567 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1732,7 +1732,7 @@ CREATE TABLE `gs_player_data` (
   `cdkey169` varchar(8) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `gs_player_data_I_1` (`cdkey`)
-) ENGINE=InnoDB AUTO_INCREMENT=22141 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1804,7 +1804,7 @@ CREATE TABLE `gsfo_messages` (
   KEY `forumid` (`tag`),
   KEY `gsfo_messages_FI_1` (`owner`),
   CONSTRAINT `gsfo_messages_FK_1` FOREIGN KEY (`owner`) REFERENCES `gs_pc_data` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=270633 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1861,7 +1861,7 @@ CREATE TABLE `gvd_area_data` (
   `name` varchar(128) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `server_resref_UNIQUE` (`server`,`resref`)
-) ENGINE=InnoDB AUTO_INCREMENT=2032 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1918,7 +1918,7 @@ CREATE TABLE `gvd_encounter` (
   PRIMARY KEY (`id`),
   KEY `fk_encounter_area_idx` (`area_id`),
   CONSTRAINT `fk_encounter_area` FOREIGN KEY (`area_id`) REFERENCES `gvd_area_data` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7128 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1955,7 +1955,7 @@ CREATE TABLE `gvd_placeable` (
   PRIMARY KEY (`id`),
   KEY `fk_placeable_area_idx` (`area_id`),
   CONSTRAINT `fk_placeable_area` FOREIGN KEY (`area_id`) REFERENCES `gvd_area_data` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12600 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1971,7 +1971,7 @@ CREATE TABLE `md_cr_category` (
   `original` int(11) DEFAULT NULL,
   `tier` int(11) DEFAULT '50',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=138 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1988,7 +1988,7 @@ CREATE TABLE `md_cr_feats` (
   PRIMARY KEY (`ID`),
   UNIQUE KEY `md_cr_feats_U_1` (`Recipe_ID`,`Feat`),
   CONSTRAINT `md_cr_feats_FK_1` FOREIGN KEY (`Recipe_ID`) REFERENCES `md_cr_recipes` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=230 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2007,7 +2007,7 @@ CREATE TABLE `md_cr_input` (
   PRIMARY KEY (`ID`),
   UNIQUE KEY `md_cr_input_U_1` (`Recipe_ID`,`Resref`),
   CONSTRAINT `md_cr_input_FK_1` FOREIGN KEY (`Recipe_ID`) REFERENCES `md_cr_recipes` (`ID`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2918 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2026,7 +2026,7 @@ CREATE TABLE `md_cr_output` (
   PRIMARY KEY (`ID`),
   UNIQUE KEY `md_cr_output_U_1` (`Recipe_ID`,`Resref`),
   CONSTRAINT `md_cr_output_FK_1` FOREIGN KEY (`Recipe_ID`) REFERENCES `md_cr_recipes` (`ID`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1025 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2052,7 +2052,7 @@ CREATE TABLE `md_cr_recipes` (
   PRIMARY KEY (`ID`),
   KEY `FK_CatID` (`category`),
   CONSTRAINT `FK_CatID` FOREIGN KEY (`category`) REFERENCES `md_cr_category` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=992 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2097,7 +2097,7 @@ CREATE TABLE `md_fa_factions` (
   UNIQUE KEY `md_fa_factions_U_1` (`name`),
   KEY `md_fa_factions_FI_1` (`nation`),
   CONSTRAINT `md_fa_factions_FK_1` FOREIGN KEY (`nation`) REFERENCES `micz_nations` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5007 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2166,7 +2166,7 @@ CREATE TABLE `md_fa_ranks` (
   PRIMARY KEY (`id`,`faction_id`),
   KEY `md_fa_ranks_FI_1` (`faction_id`),
   CONSTRAINT `md_fa_ranks_FK_1` FOREIGN KEY (`faction_id`) REFERENCES `md_fa_factions` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8678 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2262,7 +2262,7 @@ CREATE TABLE `mi_az_contracts` (
   KEY `mi_az_contracts_FK1` (`customer`),
   CONSTRAINT `mi_az_contracts_FK1` FOREIGN KEY (`customer`) REFERENCES `gs_pc_data` (`id`) ON DELETE CASCADE,
   CONSTRAINT `mi_az_contracts_FK2` FOREIGN KEY (`victim`) REFERENCES `gs_pc_data` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=248 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2295,7 +2295,7 @@ CREATE TABLE `micr_messages` (
   `modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35191 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2355,7 +2355,7 @@ CREATE TABLE `micz_nations` (
   KEY `micz_nations_I_1` (`name`),
   KEY `micz_nations_FI_1` (`master`),
   CONSTRAINT `micz_nations_FK_1` FOREIGN KEY (`master`) REFERENCES `micz_nations` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2380,7 +2380,7 @@ CREATE TABLE `micz_positions` (
   CONSTRAINT `micz_positions_FK_1` FOREIGN KEY (`nation`) REFERENCES `micz_nations` (`id`),
   CONSTRAINT `micz_positions_FK_2` FOREIGN KEY (`master_rank`) REFERENCES `micz_positions` (`rank_id`),
   CONSTRAINT `micz_positions_FK_3` FOREIGN KEY (`master_holder`) REFERENCES `micz_rank` (`holder_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2515,7 +2515,7 @@ CREATE TABLE `mixf_messages` (
   CONSTRAINT `mixf_messages_FK_1` FOREIGN KEY (`pcid`) REFERENCES `gs_pc_data` (`id`),
   CONSTRAINT `mixf_messages_FK_2` FOREIGN KEY (`origin`) REFERENCES `gs_pc_data` (`id`),
   CONSTRAINT `mixf_messages_FK_3` FOREIGN KEY (`server`) REFERENCES `web_server` (`sid`)
-) ENGINE=InnoDB AUTO_INCREMENT=150345 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2539,7 +2539,7 @@ CREATE TABLE `procedural_loot` (
   PRIMARY KEY (`id`),
   KEY `perf_snapshots_FKIndex1` (`gs_pc_data_id`),
   CONSTRAINT `procedural_loot_ibfk_1` FOREIGN KEY (`gs_pc_data_id`) REFERENCES `gs_pc_data` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=177739 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2576,7 +2576,7 @@ CREATE TABLE `web_server` (
   KEY `web_server_FI_2` (`settings`),
   CONSTRAINT `web_server_FK_1` FOREIGN KEY (`ssh_profile`) REFERENCES `web_ssh_profile` (`id`),
   CONSTRAINT `web_server_FK_2` FOREIGN KEY (`settings`) REFERENCES `web_server_settings` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2605,7 +2605,7 @@ CREATE TABLE `web_server_settings` (
   `publicserver` tinyint(4) DEFAULT '1',
   `reloadwhenempty` tinyint(4) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 -- Dump completed on 2018-03-30 13:11:40
@@ -2615,45 +2615,45 @@ DROP TABLE IF EXISTS `pwdata`;
 CREATE TABLE `pwdata` (
         `player` varchar(32) default NULL,
         `tag` varchar(32) default NULL,
-        `name` varchar(32) default NULL,
+        `name` varchar(64) default NULL,
         `val` text,
         `expire` int(11) default NULL,
         `modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         KEY idx (player,tag,name)
-        ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+        ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 		
 DROP TABLE IF EXISTS `cnr_misc`;
 CREATE TABLE `cnr_misc` (
         `player` varchar(32) default NULL,
         `tag` varchar(32) default NULL,
-        `name` varchar(32) default NULL,
+        `name` varchar(64) default NULL,
         `val` text,
         `expire` int(11) default NULL,
         `modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         KEY idx (player,tag,name)
-        ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+        ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 		
 DROP TABLE IF EXISTS `pwpeopledata`;
 CREATE TABLE `pwpeopledata` (
         `player` varchar(32) default NULL,
         `tag` varchar(32) default NULL,
-        `name` varchar(32) default NULL,
+        `name` varchar(64) default NULL,
         `val` text,
         `expire` int(11) default NULL,
         `modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         KEY idx (player,tag,name)
-        ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+        ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 		
 DROP TABLE IF EXISTS `pwresourcedata`;
 CREATE TABLE `pwresourcedata` (
         `player` varchar(32) default NULL,
         `tag` varchar(32) default NULL,
-        `name` varchar(32) default NULL,
+        `name` varchar(64) default NULL,
         `val` text,
         `expire` int(11) default NULL,
         `modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         KEY idx (player,tag,name)
-        ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+        ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 		
 DROP TABLE IF EXISTS `renerrin_quests`;
 CREATE TABLE `renerrin_quests` (
@@ -2664,7 +2664,7 @@ CREATE TABLE `renerrin_quests` (
         `expire` int(11) default NULL,
         `modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         KEY idx (player,tag,name)
-        ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+        ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 		
 DROP TABLE IF EXISTS `renerrin_vars`;
 CREATE TABLE `renerrin_vars` (
@@ -2675,18 +2675,18 @@ CREATE TABLE `renerrin_vars` (
         `expire` int(11) default NULL,
         `modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         KEY idx (player,tag,name)
-        ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+        ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 		
 DROP TABLE IF EXISTS `drannis_quests`;
 CREATE TABLE `drannis_quests` (
         `player` varchar(32) default NULL,
         `tag` varchar(32) default NULL,
-        `name` varchar(32) default NULL,
+        `name` varchar(64) default NULL,
         `val` text,
         `expire` int(11) default NULL,
         `modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         KEY idx (player,tag,name)
-        ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+        ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 		
 DROP TABLE IF EXISTS `drannis_vars`;
 CREATE TABLE `drannis_vars` (
@@ -2697,18 +2697,18 @@ CREATE TABLE `drannis_vars` (
         `expire` int(11) default NULL,
         `modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         KEY idx (player,tag,name)
-        ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+        ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 		
 DROP TABLE IF EXISTS `erenia_quests`;
 CREATE TABLE `erenia_quests` (
         `player` varchar(32) default NULL,
         `tag` varchar(32) default NULL,
-        `name` varchar(32) default NULL,
+        `name` varchar(64) default NULL,
         `val` text,
         `expire` int(11) default NULL,
         `modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         KEY idx (player,tag,name)
-        ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+        ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 		
 DROP TABLE IF EXISTS `erenia_vars`;
 CREATE TABLE `erenia_vars` (
@@ -2719,29 +2719,40 @@ CREATE TABLE `erenia_vars` (
         `expire` int(11) default NULL,
         `modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         KEY idx (player,tag,name)
-        ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+        ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 		
 DROP TABLE IF EXISTS `rep_pcrep`;
 CREATE TABLE `rep_pcrep` (
         `player` varchar(32) default NULL,
         `tag` varchar(32) default NULL,
-        `name` varchar(32) default NULL,
+        `name` varchar(64) default NULL,
         `val` text,
         `expire` int(11) default NULL,
         `modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         KEY idx (player,tag,name)
-        ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+        ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 		
 DROP TABLE IF EXISTS `rep_factionrep`;
 CREATE TABLE `rep_factionrep` (
         `player` varchar(32) default NULL,
         `tag` varchar(32) default NULL,
-        `name` varchar(32) default NULL,
+        `name` varchar(64) default NULL,
         `val` text,
         `expire` int(11) default NULL,
         `modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         KEY idx (player,tag,name)
-        ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+        ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+		
+DROP TABLE IF EXISTS `misc_quest_db`;
+CREATE TABLE `misc_quest_db` (
+        `player` varchar(32) default NULL,
+        `tag` varchar(32) default NULL,
+        `name` varchar(64) default NULL,
+        `val` text,
+        `expire` int(11) default NULL,
+        `modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        KEY idx (player,tag,name)
+        ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 		
 -- Manually entered faction ranks table.
 -- faction, rank, score, name, expire, modified
@@ -2754,9 +2765,9 @@ CREATE TABLE `rep_pcranks` (
         `expire` int(11) default NULL,
         `modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         KEY idx (faction,score)
-        ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+        ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 		
--- Random quest table to mark whether a player has done a quest.
+-- Random quest table to mark whether a player has done a quest. 
 DROP TABLE IF EXISTS `rquest_player_data`;
 CREATE TABLE `rquest_player_data` (
         `pcid` varchar(32) default NULL,
@@ -2764,4 +2775,4 @@ CREATE TABLE `rquest_player_data` (
         `questset` varchar(64) default NULL,
         `modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         KEY idx (pcid,quest,questset)
-        ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+        ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;

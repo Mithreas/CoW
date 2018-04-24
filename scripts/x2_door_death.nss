@@ -33,7 +33,7 @@ void main()
     Trace(BOUNTY, "Door bashed. Found NPC: " + GetName(oNPC));
     float fDistance = GetDistanceBetween(OBJECT_SELF, oNPC);
 
-    while (fDistance < 20.0)
+    while (fDistance < 20.0 && GetIsObjectValid(oNPC))
     {
       Trace(BOUNTY, "NPC is close enough. Checking faction and visibility.");
       int nNation = CheckFactionNation(oNPC);

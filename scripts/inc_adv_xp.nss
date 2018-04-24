@@ -155,8 +155,6 @@ void gvd_AdventuringXP_ForObject(object oPC, string sObjectType, object oObject)
 
 }
 
-
-
 void gvd_AdventuringXP_XPBonus(object oPC) {
 
   // first check if PC isn't lvl 30 already or already has enough XP to gain a new lvl (taken from inc_xp)
@@ -166,7 +164,7 @@ void gvd_AdventuringXP_XPBonus(object oPC) {
   if (nXP >= nXPLevel) return;
 
   object oHide = gsPCGetCreatureHide(oPC);
-  int iMax = gsPCGetRolePlay(oPC) * 2;
+  int iMax = gsPCGetRolePlay(oPC) * 4;
   int iXPPool = GetLocalInt(oHide, "GVD_XP_POOL");
   int iXP;
 
@@ -183,7 +181,7 @@ void gvd_AdventuringXP_XPBonus(object oPC) {
   }  
   
   if (iXPPool > 0) {                        
-    // 10% will be drawn from pool minimum = 10, maximum = 2 * RPR
+    // 10% will be drawn from pool minimum = 10, maximum = 4 * RPR
     if (iXPPool < 150) {
       iXP = 10;
     } else {
@@ -211,7 +209,7 @@ void gvd_AdventuringXP_XPBonus(object oPC) {
     // feedback for PC
     SendMessageToPC(oPC, "<cªÕþ>You receive a little adventuring bonus (" + IntToString(iXPPool - iXP) + " remaining)");
 
-    if (GetLocalInt(GetModule(), "STATIC_LEVEL"))
+    if (GetHitDice(oPC) >= GetLocalInt(GetModule(), "STATIC_LEVEL"))
     {
       GiveGoldToCreature(oPC, iXP);
     }

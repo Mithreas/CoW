@@ -617,6 +617,13 @@ void main()
             }
           }
         }
+		
+		// CoW addition - sympathetic cleric magic
+		if (nSpellCastClass == CLASS_TYPE_CLERIC && GetIsObjectValid(GetSpellTargetObject()) && GetSpellTargetObject() != OBJECT_SELF)
+		{
+		  // "Cheat cast" an instant spell on ourselves that matches the spell we cast on someone else.
+		  ActionCastSpellAtObject(GetSpellId(), OBJECT_SELF, GetMetaMagicFeat(), TRUE, 0, 0, TRUE);
+		}
 
     } else {
       // cast from item

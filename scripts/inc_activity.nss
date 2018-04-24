@@ -4,16 +4,32 @@
   Date: 19/01/06
   Description:
   Include for "training scripts" - weapon training, researching and praying.
+  
+  22 Apr 18 - implemented research findings via external wiki.
+  - Articles are put into a MediaWiki pointed at the same database as the server.
+  - Articles are tagged with the category in RESEARCH_CATEGORY to be searched by
+    this system.
+  - Articles may be linked to the RESEARCH_CATEGORY_L10, RESEARCH_CATEGORY_L20 etc
+    categories to restrict them to PCs with 10+ base lore from base skill, feats and
+	base intelligence points (i.e. gear is excluded).
 
 */
 #include "inc_log"
 #include "inc_database"
 #include "inc_spells"
 #include "inc_xp"
-const string TRAINING = "TRAINING";
-const string IS_DOJO  = "is_dojo";
-const string IS_LIB   = "is_library";
-const string IS_TEMP  = "is_temple";
+
+// Database configuration
+const string WIKI_PREFIX             = "lorewiki";
+const string RESEARCH_CATEGORY       = "Human_Research";
+const string RESEARCH_CATEGORY_L10   = "Lore_10";
+const string RESEARCH_CATEGORY_L20   = "Lore_20";
+
+const string TRAINING      = "TRAINING";
+const string IS_DOJO       = "is_dojo";
+const string IS_LIB        = "is_library";
+const string IS_TEMP       = "is_temple";
+const string TEMPLATE_NOTE = "research_note";
 //------------------------------------------------------------------------------
 // Gives a small amount of XP to oPC. If InGoodArea for the task, give more xp.
 //------------------------------------------------------------------------------
@@ -56,6 +72,88 @@ int d40();
 int d40()
 {
   return (( (d4() - 1) * 10 ) + d10());
+}
+
+// Internal method to clean up MediaWiki formatting.
+// Replace "_" with " "
+// Remove anything inside [[ ]]
+// Options to do more (e.g. ''' etc.)
+//
+// This is a very expensive method, and would be better outsourced to Ruby. 
+string _Cleanup(string sText)
+{
+  string sOutput = "";
+  int nMax = GetStringLength(sText);
+  int nCount = 0;
+  int bSkip  = FALSE;
+  
+  for (nCount; nCount < nMax; nCount++)
+  {
+    string sChar = GetSubString(sText, nCount, 1);
+	
+	if (sChar == "_")
+    {
+      sChar = " ";
+	}
+	else if (sChar == "[")
+	{
+	  bSkip = TRUE;
+	}  
+	else if (sChar  == "]") 
+	{
+	  bSkip = FALSE;
+	  continue;
+	}
+	
+	if (!bSkip)
+	{
+	  sOutput += sChar;
+	}
+  }
+  
+  return sOutput;
+}
+
+void GiveResearchInformation(object oPC)
+{
+  Trace(TRAINING, "GiveResearchInformation called for PC: " + GetName(oPC));
+  
+  // TODO: support other races than humans.
+  
+  // Query that queries the category links table, and pulls in the page data table (for title) and page text table (for content)
+  SQLExecDirect("SELECT a.cl_from,b.page_title,c.old_text FROM " + WIKI_PREFIX + "categorylinks AS a INNER JOIN " + WIKI_PREFIX + 
+  "page AS b ON a.cl_from=b.page_id INNER JOIN " + WIKI_PREFIX + "text AS c ON a.cl_from=c.old_id WHERE a.cl_to = '" + RESEARCH_CATEGORY + 
+  "' " + SQLRandom());
+	
+  if (SQLFetch())
+  {
+    string sPage        = SQLGetData(1);
+	string sPageTitle   = _Cleanup(SQLGetData(2));
+	string sPageContent = _Cleanup(SQLGetData(3));
+	
+	int nLore = gsCMGetBaseSkillRank(SKILL_LORE, ABILITY_INTELLIGENCE, oPC);
+	
+	int bLore10 = SQLExecAndFetchSingleInt("SELECT cl_from FROM " + WIKI_PREFIX + "categorylinks WHERE cl_to = '" +
+	  RESEARCH_CATEGORY_L10 + "' AND cl_from = '" + sPage + "'");
+	int bLore20 = SQLExecAndFetchSingleInt("SELECT cl_from FROM " + WIKI_PREFIX + "categorylinks WHERE cl_to = '" +
+	  RESEARCH_CATEGORY_L20 + "' AND cl_from = '" + sPage + "'");
+	
+	if (nLore >= 20 ||
+	    nLore >= 10 && !bLore20 ||
+		!bLore10)
+	{
+	  // PC has enough lore to read this article.
+	  object oNote = CreateItemOnObject(TEMPLATE_NOTE, oPC, 1, "research_note_" + sPage);
+	  SetName(oNote, sPageTitle);
+	  SetDescription(oNote, sPageContent);
+	  
+	  SendMessageToPC(oPC, "You found an old document, called " + sPageTitle);
+	}
+	else
+	{
+	  SendMessageToPC(oPC, "You find an old document, but aren't able to interpret it.  A pity, it looked interesting.  More Lore might help in future.");
+	}
+  }
 }
 
 void GiveXP(object oPC, int InGoodArea = FALSE)
@@ -160,11 +258,6 @@ void GivePrayerBoon(object oPC)
       fDistance = GetDistanceBetween(oPC, oCorpse);
     }
   }
-}
-
-void GiveResearchInformation(object oPC)
-{
-  Trace(TRAINING, "GiveResearchInformation called for PC: " + GetName(oPC));
 }
 
 void TrainingDescription(object oPC)
@@ -322,7 +415,7 @@ void PrayerDescription(object oPC)
       sMessage = "You feel refreshed, content.";
       break;
     case 4:
-      sMessage = "You are in that special place where you can feel your god's closeness.";
+      sMessage = "You are in that special place where you can feel the gods' closeness.";
       break;
     case 5:
       sMessage = "Your troubles flow from you in a stream.";
@@ -451,7 +544,7 @@ void ResearchDescription(object oPC)
       sMessage = "You find an old book on gardening, and skim through it.";
       break;
     case 2:
-      sMessage = "An old map of the City of Winds from before the coming of the gods.";
+      sMessage = "An old map of the City of Winds from its founding.";
       break;
     case 3:
       sMessage = "";

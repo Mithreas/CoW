@@ -25,18 +25,15 @@ void main()
     // Play a description.
     ResearchDescription(oPC);
 
-    if (GetLocalInt(GetArea(oPC), IS_LIB))
+    if (!GetLocalInt(GetArea(oPC), IS_LIB))
     {
-      Trace(TRAINING, "In library.");
-      GiveXP(oPC, TRUE);
+	  Trace(TRAINING, "Researching but not in library.");
+      return;
     }
-    else
-    {
-      Trace(TRAINING, "Not in library.");
-      GiveXP(oPC);
-    }
+	
+    GiveXP(oPC, TRUE);
 
-    if (nTimeSoFar == 20) // 120 s, check whether they learn something
+    if (nTimeSoFar == 10) // 60 s, check whether they learn something
     {
       // Kill the script to prevent people alt-tabbing.
       DeleteLocalLocation(oPC, "research_location");
@@ -45,12 +42,19 @@ void main()
 	  	  
       // Humans are quicker to put information together than other 
       // races.	  
-      if ((GetRacialType(oPC) == RACIAL_TYPE_HUMAN && d3() == 3) ||
-	      (GetRacialType(oPC) != RACIAL_TYPE_HUMAN && d6() == 6))
+	  int nInt = GetAbilityModifier(ABILITY_INTELLIGENCE, oPC) + 
+	     (GetRacialType(oPC) == RACIAL_TYPE_HUMAN ? 4 : 0);
+		 
+	  if (d20() + nInt > 15)	 
       {
         Trace(TRAINING, "Giving information");
         GiveResearchInformation(oPC);
       }
+	  else
+	  {
+        Trace(TRAINING, "Not giving information");
+		SendMessageToPC(oPC, "You don't find anything especially interesting this time.");
+	  }
     }
     else
     {

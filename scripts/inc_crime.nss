@@ -429,21 +429,11 @@ int GetCanSeeParticularPC(object oPC, object oNPC = OBJECT_SELF)
 {
   Trace(BOUNTY, "Checking whether "+GetName(oNPC)+" can see "+GetName(oPC));
   int nCount = 1;
-  object oPCSeen = GetNearestCreature(CREATURE_TYPE_PLAYER_CHAR,
-                                      PLAYER_CHAR_IS_PC,
-                                      oNPC,
-                                      nCount,
-                                      CREATURE_TYPE_PERCEPTION,
-                                      PERCEPTION_SEEN);
-
-  while (GetIsObjectValid(oPCSeen))
+  if (GetObjectSeen(oPC, oNPC))
   {
-    if (oPCSeen == oPC)
-    {
-      Trace(BOUNTY, "NPC can see PC.");
-      return TRUE;
-    }
+    Trace(BOUNTY, "NPC can see PC.");
+    return TRUE;
   }
-
+  
   return FALSE;
 }

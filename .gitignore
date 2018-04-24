@@ -1,0 +1,9 @@
+# Files to keep out of the (public) repository.
+# Exclude files that have plot secrets in them. 
+scripts/ai_darklady.nss
+
+# Exclude ncs files that creep in. 
+scripts/*.ncs
+
+# Exclude any backed up files.
+*.backup

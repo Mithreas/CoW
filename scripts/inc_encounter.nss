@@ -152,6 +152,9 @@ void gsENSpawnAtLocation(float fChallenge, int nCount, location lLocation, float
     // Otherwise, use day time encounters.
     if (bNight && gsENGetCreatureTemplate(1, oArea, TRUE) == "") bNight = FALSE;
 
+	// City of Winds addition: award XP when an encounter triggers.
+	ExecuteScript("encounter_xp_ent", OBJECT_SELF);
+	
     //preselection
     for (nNth1 = 1; nNth1 <= GS_EN_LIMIT_SLOT; nNth1++)
     {

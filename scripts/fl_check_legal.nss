@@ -2,6 +2,8 @@
 //
 // Script to check that PCs are legally built according to the latest
 // class and feat restrictions etc.
+//
+// Not currently used, but keeping this around in case we need to do a similar rework
 #include "inc_pc"
 #include "nwnx_creature"
 #include "nwnx_object"

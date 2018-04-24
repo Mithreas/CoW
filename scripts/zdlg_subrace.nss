@@ -80,31 +80,36 @@ const int MI_SKIN_OGRE       = 4;
 const int MI_SKIN_HOBGOBLIN  = 5;
 const int MI_SKIN_IMP        = 6;
 
-string INTRO = "Welcome to Arelith, a role-play server set in 3rd Edition Forgotten Realms.  Adventure awaits in a dangerous archipelago hidden in the mists of the Trackless Sea.  Before entering the gameworld, you can" +
- " choose subraces, paths and gifts to further customize your character.  The following subraces are available for your character's chosen race and alignment.";
+string INTRO = "Welcome to the City of Winds!  This module is set up to support conflict roleplay, and plot discovery.  PCs will find themselves part of a well defined society, but anything or " +
+"everything taken commonly to be true may or may not be a lie.  The hope is that as players discover secrets, that knowledge will interact with the political landscape in fun ways. " +
+"\n\nAt present we only support a limited number of races and classes, but before entering the gameworld, you can choose 'gifts' and 'paths' that will give you some more variety in options. " +
+"Over time, more options will become available - we've limited options to make the world and setting more coherent and structured, and we hope that pays off in the roleplay experience you get!";
 
 string PATH_INTRO = "You may choose to follow a path.  A path modifies a class "+
   "giving you some unique benefits, but also some significant restrictions." +
   "\n\nAvailable paths:"+
-  "\nWarlock: Lose bard song, gain an eldritch blast and various other powers."+
-  "\nTotem druid: -4 to all physical stats, but gain a more powerful shifted form."+
-  // "\nKensai: One extra attack, +2 natural AC. May not take levels in wizard, sorcerer, druid or cleric, may not cast spellbook spells, may not use "+
-  // "bound spells, and are restricted to melee and throwing weapons."+
-  "\nTrue Fire: May cast unlimited spells per day but may only cast Evocation spells."+
-  "\nArcher: Lose dual wield feats but create a quiver of arrows 1/day." +
-  "\nSniper: Lose dual wield feats but gain point blank shot and rapid shot at level 1" +
+  "\nBarbarian - Tribesman: Rage loses its normal effects, but summons an NPC of your faction to fight " +
+  "with you.  You can have two followers at any point." +
+  "\nCleric - Healer: Become a more potent healer, but cannot gain proficiency in armors or weapons other than Simple weapons. " +
+  "\nCleric - Favoured Soul: Spontaneous casting of cleric spells, but lose Domains, Heavy Armour and Turn Undead. " +
+  "\nRanger - Archer: Lose dual wield feats but create a quiver of arrows 1/day." +
+  "\nRanger - Sniper: Lose dual wield feats but gain point blank shot and rapid shot at level 1" +
   " and called shot at level 9." +
-  "\nHealer: Become a more potent healer, but cannot gain proficiency in armors or weapons other than Simple weapons. " +
-  "\nFavoured Soul: Spontaneous casting of cleric spells, but lose Domains, Heavy Armour and Turn Undead. " +
-  "\nTribesman: Rage loses its normal effects, but summons an NPC of your tribe to fight " +
-  "with you.  You can have two tribesman at any point." +
+  "\nMelee Classes - Kensai: One extra attack, +2 natural AC. May not take levels in wizard, sorcerer, druid or cleric, may not cast spellbook spells, may not use "+
+  "bound spells, and are restricted to melee and throwing weapons.";
+  /*
+  "\n\nNot currently available paths:"+
+  "\nTotem druid: -4 to all physical stats, but gain a more powerful shifted form."+
+  "\nTrue Fire: May cast unlimited spells per day but may only cast Evocation spells."+
   "\nShadow Mage: (Experimental!) May not cast Evocation spells.  May take Shadowdancer without usual prerequisites.  Shadow Dancer gives " +
   "caster levels instead of Sneak Attack." +
+  "\nWarlock: Lose bard song, gain an eldritch blast and various other powers."+
   "\nWild Mage: A new Wizard School. Allows a chance for Wild Surges " +
   "to occur when casting Arcane Spells. Use with Extreme Caution!" +
   "\nSpellsword: (Experimental!) A new Wizard School. Improves the melee abilities of a wizard " +
   "in exchange for two prohibited spell schools (Conjuration + 1 choice)." +
   "Use with Extreme Caution!";
+  */
 
 string BACKGROUND_INTRO = "You may now choose a special background for your character. " +
   "Backgrounds have a significant effect on the starting location and career options on your character, and are recommended " +
@@ -932,9 +937,9 @@ void _SetUpAllowedPaths()
 
   object oPC = GetPcDlgSpeaker();
 
-  if (GetLevelByClass(CLASS_TYPE_BARD, oPC) && GetAlignmentGoodEvil(oPC) != ALIGNMENT_GOOD)
+  if (GetLevelByClass(CLASS_TYPE_BARBARIAN, oPC))
   {
-    AddStringElement(PATH_OF_WARLOCK, AVAILABLE_PATHS);
+    AddStringElement(PATH_OF_THE_TRIBESMAN, AVAILABLE_PATHS);
   }
 
   if (GetLevelByClass(CLASS_TYPE_CLERIC, oPC))
@@ -943,6 +948,21 @@ void _SetUpAllowedPaths()
     AddStringElement(PATH_OF_FAVOURED_SOUL, AVAILABLE_PATHS);
   }
 
+  if (GetLevelByClass(CLASS_TYPE_RANGER, oPC))
+  {
+    AddStringElement(PATH_OF_THE_ARCHER, AVAILABLE_PATHS);
+    AddStringElement(PATH_OF_THE_SNIPER, AVAILABLE_PATHS);
+  }
+
+  if (!GetLevelByClass(CLASS_TYPE_SORCERER, oPC) &&
+      !GetLevelByClass(CLASS_TYPE_DRUID, oPC) &&
+      !GetLevelByClass(CLASS_TYPE_CLERIC, oPC) &&
+      !GetLevelByClass(CLASS_TYPE_WIZARD, oPC))
+  {
+    AddStringElement(PATH_OF_THE_KENSAI, AVAILABLE_PATHS);
+  }
+  
+  /** Not currently available
   if (GetLevelByClass(CLASS_TYPE_DRUID, oPC))
   {
     AddStringElement(PATH_OF_TOTEM, AVAILABLE_PATHS);
@@ -953,25 +973,16 @@ void _SetUpAllowedPaths()
     AddStringElement(PATH_OF_TRUE_FIRE, AVAILABLE_PATHS);
     AddStringElement(PATH_OF_SHADOW, AVAILABLE_PATHS);
   }
-
-  if (GetLevelByClass(CLASS_TYPE_RANGER, oPC))
+  
+  if (GetLevelByClass(CLASS_TYPE_WIZARD, oPC)  && NWNX_Creature_GetWizardSpecialization(oPC) != SPELL_SCHOOL_EVOCATION)
   {
-    AddStringElement(PATH_OF_THE_ARCHER, AVAILABLE_PATHS);
-    AddStringElement(PATH_OF_THE_SNIPER, AVAILABLE_PATHS);
+    AddStringElement(PATH_OF_SHADOW, AVAILABLE_PATHS);
   }
 
-  if (GetLevelByClass(CLASS_TYPE_BARBARIAN, oPC))
+  if (GetLevelByClass(CLASS_TYPE_BARD, oPC) && GetAlignmentGoodEvil(oPC) != ALIGNMENT_GOOD)
   {
-    AddStringElement(PATH_OF_THE_TRIBESMAN, AVAILABLE_PATHS);
+    AddStringElement(PATH_OF_WARLOCK, AVAILABLE_PATHS);
   }
-
-  // if (!GetLevelByClass(CLASS_TYPE_SORCERER, oPC) &&
-  //    !GetLevelByClass(CLASS_TYPE_DRUID, oPC) &&
-  //    !GetLevelByClass(CLASS_TYPE_CLERIC, oPC) &&
-  //    !GetLevelByClass(CLASS_TYPE_WIZARD, oPC))
-  //{
-    // AddStringElement(PATH_OF_THE_KENSAI, AVAILABLE_PATHS);
-  // }
 
   //::  Wild Mage and Spellsword only for Non-Specialized (General) Wizards.
   if ( GetLevelByClass(CLASS_TYPE_WIZARD, oPC) && NWNX_Creature_GetWizardSpecialization(oPC) == SPELL_SCHOOL_GENERAL )
@@ -979,11 +990,7 @@ void _SetUpAllowedPaths()
     AddStringElement(PATH_OF_WILD_MAGE, AVAILABLE_PATHS);
     //AddStringElement(PATH_OF_SPELLSWORD, AVAILABLE_PATHS);
   }
-
-  if (GetLevelByClass(CLASS_TYPE_WIZARD, oPC)  && NWNX_Creature_GetWizardSpecialization(oPC) != SPELL_SCHOOL_EVOCATION)
-  {
-    AddStringElement(PATH_OF_SHADOW, AVAILABLE_PATHS);
-  }
+  */
 
   AddStringElement(PATH_NONE, AVAILABLE_PATHS);
 }
@@ -1381,7 +1388,7 @@ void PageInit()
     AddStringElement("Eagle (+8 spot, +2 cha)", TOTEM_OPTIONS);
     AddStringElement("Bear (+4 str/con)", TOTEM_OPTIONS);
     AddStringElement("Raven (+4 wis, +10 lore)", TOTEM_OPTIONS);
-    AddStringElement("Bat (true sight)", TOTEM_OPTIONS);
+    AddStringElement("Bat (+12 listen, Amplify 5x/day)", TOTEM_OPTIONS);
     AddStringElement("Rat (+4 int, immune to disease)", TOTEM_OPTIONS);
     AddStringElement("Snake (+2 cha/dex, immune to poison and disease)", TOTEM_OPTIONS);
     AddStringElement("Don't play a totem druid", TOTEM_OPTIONS);
@@ -1463,7 +1470,7 @@ void PageInit()
   else
   {
     SendMessageToPC(oPC,
-                    "You've found a bug. How embarassing. Please report it.");
+                    "You've found a bug. How embarrassing. Please report it.");
     EndDlg();
   }
 }

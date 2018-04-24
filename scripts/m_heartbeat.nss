@@ -1,5 +1,6 @@
 #include "ar_sys_ship"
 #include "inc_common"
+#include "inc_daynight"
 #include "inc_encounter"
 #include "inc_execute"
 #include "inc_flag"
@@ -195,7 +196,7 @@ void main()
                         int iRPR = gsPCGetRolePlay(oPC);
                         int nXP = iRPR + (GetIsObjectValid(GetItemPossessedBy(oPC, "mi_mark_destiny")) ? 20 : 0);
 
-                        if (GetLocalInt(GetModule(), "STATIC_LEVEL"))
+                        if (GetHitDice(oPC) >= GetLocalInt(GetModule(), "STATIC_LEVEL"))
                         {
                             CreateItemOnObject("ar_gem_" + IntToString(iRPR), oPC);
                         }
@@ -285,6 +286,16 @@ void main()
           iCount++;
           oWP = GetObjectByTag(RES_WP_TAG, iCount);
         }		
+		
+		// Dawn and dusk checks.
+		if (GetIsDusk())
+		{
+		  DN_SignalNPCs(SEP_EV_ON_NIGHTPOST);		
+		}
+		else if (GetIsDawn())
+		{
+		  DN_SignalNPCs(SEP_EV_ON_DAYPOST);
+		}
     }
 
     // Added by Mith - per RL minute (10 game minutes, 10 heartbeats)

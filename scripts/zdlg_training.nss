@@ -6,8 +6,10 @@
 // feat depends on how many they have purchased and is adjusted for ECL.
 // Pricing is based off xp - i.e. n/2*(n+1) * 1000.
 //
-// TODO: split conversation into arcane vs mundane trainers to make list
-// shorter!
+// Added 18 Apr 18 - 
+// - trainers can only train in class feats that they have.
+// - trainers must be epic level to train epic feats.
+// - trainers must have an arcane level to train spell feats. 
 #include "inc_zdlg"
 #include "inc_pc"
 #include "inc_iprop"
@@ -226,6 +228,8 @@ void add_group_list(string sName, int nGroupNumber, string sNewList)
 
 void init_feat_list (object oPC)
 {
+  object oNPC = OBJECT_SELF;
+
   DeleteList(LIST_1);
   DeleteList(LIST_1_IDS);
   DeleteList(LIST_2);
@@ -519,7 +523,7 @@ void init_feat_list (object oPC)
   // Epic feats.
   //---------------------------------
   SetLocalString(OBJECT_SELF, CURR_LIST, LIST_4);
-  if (nPCLevel > 30)
+  if (nPCLevel > 30 && GetHitDice(oNPC) > 20)
   {
     //add_feat_to_list(oPC, "Armor Skin", FEAT_EPIC_ARMOR_SKIN);
     add_feat_to_list(oPC, "Auto Quicken I", FEAT_EPIC_AUTOMATIC_QUICKEN_1);
@@ -697,15 +701,18 @@ void init_feat_list (object oPC)
         GetLevelByClass(CLASS_TYPE_SORCERER,oPC) ||
         GetLevelByClass(CLASS_TYPE_WIZARD,oPC))
     {
-      add_feat_to_list(oPC, "Epic Spell Focus: Abjuration", FEAT_EPIC_SPELL_FOCUS_ABJURATION);
-      add_feat_to_list(oPC, "Epic Spell Focus: Conjuration", FEAT_EPIC_SPELL_FOCUS_CONJURATION);
-      add_feat_to_list(oPC, "Epic Spell Focus: Divination", FEAT_EPIC_SPELL_FOCUS_DIVINATION);
-      add_feat_to_list(oPC, "Epic Spell Focus: Enchantment", FEAT_EPIC_SPELL_FOCUS_ENCHANTMENT);
-      add_feat_to_list(oPC, "Epic Spell Focus: Evocation", FEAT_EPIC_SPELL_FOCUS_EVOCATION);
-      add_feat_to_list(oPC, "Epic Spell Focus: Illusion", FEAT_EPIC_SPELL_FOCUS_ILLUSION);
-      add_feat_to_list(oPC, "Epic Spell Focus: Necromancy", FEAT_EPIC_SPELL_FOCUS_NECROMANCY);
-      add_feat_to_list(oPC, "Epic Spell Focus: Transmutation", FEAT_EPIC_SPELL_FOCUS_TRANSMUTATION);
-      add_feat_to_list(oPC, "Epic Spell Penetration", FEAT_EPIC_SPELL_PENETRATION);
+	  if (GetLevelByClass(CLASS_TYPE_WIZARD, oNPC) || GetLevelByClass(CLASS_TYPE_SORCERER, oNPC))
+	  {
+        add_feat_to_list(oPC, "Epic Spell Focus: Abjuration", FEAT_EPIC_SPELL_FOCUS_ABJURATION);
+        add_feat_to_list(oPC, "Epic Spell Focus: Conjuration", FEAT_EPIC_SPELL_FOCUS_CONJURATION);
+        add_feat_to_list(oPC, "Epic Spell Focus: Divination", FEAT_EPIC_SPELL_FOCUS_DIVINATION);
+        add_feat_to_list(oPC, "Epic Spell Focus: Enchantment", FEAT_EPIC_SPELL_FOCUS_ENCHANTMENT);
+        add_feat_to_list(oPC, "Epic Spell Focus: Evocation", FEAT_EPIC_SPELL_FOCUS_EVOCATION);
+        add_feat_to_list(oPC, "Epic Spell Focus: Illusion", FEAT_EPIC_SPELL_FOCUS_ILLUSION);
+        add_feat_to_list(oPC, "Epic Spell Focus: Necromancy", FEAT_EPIC_SPELL_FOCUS_NECROMANCY);
+        add_feat_to_list(oPC, "Epic Spell Focus: Transmutation", FEAT_EPIC_SPELL_FOCUS_TRANSMUTATION);
+        add_feat_to_list(oPC, "Epic Spell Penetration", FEAT_EPIC_SPELL_PENETRATION);
+	  }	
     }
 
     add_feat_to_list(oPC, "Superior Initiative", FEAT_EPIC_SUPERIOR_INITIATIVE);
@@ -760,7 +767,7 @@ void init_feat_list (object oPC)
     add_feat_to_list(oPC, "Epic Will", FEAT_EPIC_WILL);
     //add_feat_to_list(oPC, "Undead Shape", FEAT_EPIC_WILD_SHAPE_UNDEAD);
 
-    if (GetLevelByClass(CLASS_TYPE_FIGHTER, oPC))
+    if (GetLevelByClass(CLASS_TYPE_FIGHTER, oPC) && GetLevelByClass(CLASS_TYPE_FIGHTER, oNPC))
     {
       add_feat_to_list(oPC, "Epic Weapon Spec: Bastard Sword", FEAT_EPIC_WEAPON_SPECIALIZATION_BASTARDSWORD);
       add_feat_to_list(oPC, "Epic Weapon Spec: Battleaxe", FEAT_EPIC_WEAPON_SPECIALIZATION_BATTLEAXE);
@@ -836,23 +843,26 @@ void init_feat_list (object oPC)
      GetLevelByClass(CLASS_TYPE_RANGER, oPC) >=4 ||
      GetLevelByClass(CLASS_TYPE_PALADIN, oPC) >= 4)
   {
-    int nCasterLevelBonus = AR_GetCasterLevelBonus(oPC);
+    if (GetLevelByClass(CLASS_TYPE_WIZARD, oNPC) || GetLevelByClass(CLASS_TYPE_SORCERER, oNPC))
+	{
+      int nCasterLevelBonus = AR_GetCasterLevelBonus(oPC);
 
-    if (nCasterLevelBonus < 12)
-    {
-      add_feat_to_list(oPC, "Caster level increase +2 (New bonus: "+IntToString(nCasterLevelBonus + 2)+")", 10006, TRUE);
-    }
+      if (nCasterLevelBonus < 12)
+      {
+        add_feat_to_list(oPC, "Caster level increase +2 (New bonus: "+IntToString(nCasterLevelBonus + 2)+")", 10006, TRUE);
+      }
 
-    if (GetLevelByClass(CLASS_TYPE_BARD, oPC)) add_feat_to_list(oPC, "Bonus spell slot (Bard)", 10007, TRUE);
-    if (GetLevelByClass(CLASS_TYPE_CLERIC, oPC)) add_feat_to_list(oPC, "Bonus spell slot (Cleric)", 10008, TRUE);
-    if (GetLevelByClass(CLASS_TYPE_DRUID, oPC)) add_feat_to_list(oPC, "Bonus spell slot (Druid)", 10009, TRUE);
-    if (GetLevelByClass(CLASS_TYPE_PALADIN, oPC)) add_feat_to_list(oPC, "Bonus spell slot (Paladin)", 10010, TRUE);
-    if (GetLevelByClass(CLASS_TYPE_RANGER, oPC)) add_feat_to_list(oPC, "Bonus spell slot (Ranger)", 10011, TRUE);
-    if (GetLevelByClass(CLASS_TYPE_SORCERER, oPC)) add_feat_to_list(oPC, "Bonus spell slot (Sorcerer)", 10012, TRUE);
-    if (GetLevelByClass(CLASS_TYPE_WIZARD, oPC)) add_feat_to_list(oPC, "Bonus spell slot (Wizard)", 10013, TRUE);
+      if (GetLevelByClass(CLASS_TYPE_BARD, oPC)) add_feat_to_list(oPC, "Bonus spell slot (Bard)", 10007, TRUE);
+      if (GetLevelByClass(CLASS_TYPE_CLERIC, oPC)) add_feat_to_list(oPC, "Bonus spell slot (Cleric)", 10008, TRUE);
+      if (GetLevelByClass(CLASS_TYPE_DRUID, oPC)) add_feat_to_list(oPC, "Bonus spell slot (Druid)", 10009, TRUE);
+      if (GetLevelByClass(CLASS_TYPE_PALADIN, oPC)) add_feat_to_list(oPC, "Bonus spell slot (Paladin)", 10010, TRUE);
+      if (GetLevelByClass(CLASS_TYPE_RANGER, oPC)) add_feat_to_list(oPC, "Bonus spell slot (Ranger)", 10011, TRUE);
+      if (GetLevelByClass(CLASS_TYPE_SORCERER, oPC)) add_feat_to_list(oPC, "Bonus spell slot (Sorcerer)", 10012, TRUE);
+      if (GetLevelByClass(CLASS_TYPE_WIZARD, oPC)) add_feat_to_list(oPC, "Bonus spell slot (Wizard)", 10013, TRUE);
+	}  
   }
 
-  if (GetLevelByClass(CLASS_TYPE_BARD, oPC))
+  if (GetLevelByClass(CLASS_TYPE_BARD, oPC) && GetLevelByClass(CLASS_TYPE_BARD, oNPC))
   {
     if (miWAGetIsWarlock(oPC))
     {
@@ -878,7 +888,7 @@ void init_feat_list (object oPC)
     }
   }
 
-  if (GetLevelByClass(CLASS_TYPE_BARBARIAN, oPC))
+  if (GetLevelByClass(CLASS_TYPE_BARBARIAN, oPC) && GetLevelByClass(CLASS_TYPE_BARBARIAN, oNPC))
   {
     // Numbers taken direct from 2da file.
     add_feat_to_list(oPC, "Barbarian Rage II", 326, FALSE, CLASS_TYPE_BARBARIAN);
@@ -894,7 +904,7 @@ void init_feat_list (object oPC)
     if (nPCLevel > 19) add_feat_to_list(oPC, "Barbarian DR 4", 334, FALSE, CLASS_TYPE_BARBARIAN);
   }
 
-  if (GetLevelByClass(CLASS_TYPE_DRUID, oPC))
+  if (GetLevelByClass(CLASS_TYPE_DRUID, oPC) && GetLevelByClass(CLASS_TYPE_DRUID, oNPC))
   {
     add_feat_to_list(oPC, "Wildshape II", 335, FALSE, CLASS_TYPE_DRUID);
     add_feat_to_list(oPC, "Wildshape III", 336, FALSE, CLASS_TYPE_DRUID);
@@ -911,7 +921,7 @@ void init_feat_list (object oPC)
     add_feat_to_list(oPC, "+2 class levels for totem purposes", 10015, TRUE);
   }
 
-  if (GetLevelByClass(CLASS_TYPE_FIGHTER, oPC))
+  if (GetLevelByClass(CLASS_TYPE_FIGHTER, oPC) && GetLevelByClass(CLASS_TYPE_FIGHTER, oNPC))
   {
     add_feat_to_list(oPC, "Weapon Spec: Bastard Sword", FEAT_WEAPON_SPECIALIZATION_BASTARD_SWORD, FALSE, CLASS_TYPE_FIGHTER);
     add_feat_to_list(oPC, "Weapon Spec: Battleaxe", FEAT_WEAPON_SPECIALIZATION_BATTLE_AXE, FALSE, CLASS_TYPE_FIGHTER);
@@ -956,8 +966,8 @@ void init_feat_list (object oPC)
     add_feat_to_list(oPC, "Weapon Spec: Whip", FEAT_WEAPON_SPECIALIZATION_WHIP, FALSE, CLASS_TYPE_FIGHTER);
   }
 
-  if (GetLevelByClass(CLASS_TYPE_RANGER, oPC) ||
-      GetLevelByClass(CLASS_TYPE_HARPER, oPC))
+  if ((GetLevelByClass(CLASS_TYPE_RANGER, oPC) && GetLevelByClass(CLASS_TYPE_RANGER, oNPC)) ||
+      (GetLevelByClass(CLASS_TYPE_HARPER, oPC) && GetLevelByClass(CLASS_TYPE_HARPER, oNPC)))
   {
     add_group_list("Favored Enemy", GROUP_NUMBER_FE, LIST_FE);
     add_feat_to_list(oPC, "Favored Enemy: Aberration", FEAT_FAVORED_ENEMY_ABERRATION);
@@ -987,15 +997,15 @@ void init_feat_list (object oPC)
 
     SetLocalString(OBJECT_SELF, CURR_LIST, LIST_5);
 
-    if(GetLevelByClass(CLASS_TYPE_RANGER, oPC))
+    if(GetLevelByClass(CLASS_TYPE_RANGER, oPC) && GetLevelByClass(CLASS_TYPE_RANGER, oNPC))
     {
-      add_feat_to_list(oPC, "Summon Animal Companion (Badger)", FEAT_ANIMAL_COMPANION, FALSE, CLASS_TYPE_RANGER);
+      add_feat_to_list(oPC, "Summon Animal Companion (Wolf)", FEAT_ANIMAL_COMPANION, FALSE, CLASS_TYPE_RANGER);
       if (GetKnowsFeat(374, oPC) && !GetKnowsFeat(20, oPC)) add_feat_to_list(oPC, "Improved Dual Wield", FEAT_IMPROVED_TWO_WEAPON_FIGHTING, TRUE, CLASS_TYPE_RANGER); // Custom!
       add_feat_to_list(oPC, "+4 Ranger levels for nature checks, +4 Animal Empathy", 10014, TRUE);
     }
   }
 
-  if (GetLevelByClass(CLASS_TYPE_MONK, oPC))
+  if (GetLevelByClass(CLASS_TYPE_MONK, oPC) && GetLevelByClass(CLASS_TYPE_MONK, oNPC))
   {
     if (nPCLevel > 10) add_feat_to_list(oPC, "Diamond Body", FEAT_DIAMOND_BODY, FALSE, CLASS_TYPE_MONK);
     if (nPCLevel > 11) add_feat_to_list(oPC, "Diamond Soul", FEAT_DIAMOND_SOUL, FALSE, CLASS_TYPE_MONK);
@@ -1010,7 +1020,7 @@ void init_feat_list (object oPC)
     add_feat_to_list(oPC, "Wholeness of Body", FEAT_WHOLENESS_OF_BODY, FALSE, CLASS_TYPE_MONK);
   }
 
-  if (GetLevelByClass(CLASS_TYPE_PALADIN, oPC))
+  if (GetLevelByClass(CLASS_TYPE_PALADIN, oPC) && GetLevelByClass(CLASS_TYPE_PALADIN, oNPC))
   {
     add_feat_to_list(oPC, "Aura of Courage", FEAT_AURA_OF_COURAGE, FALSE, CLASS_TYPE_PALADIN);
     add_feat_to_list(oPC, "Smite Evil", FEAT_SMITE_EVIL, FALSE, CLASS_TYPE_PALADIN);
@@ -1021,7 +1031,7 @@ void init_feat_list (object oPC)
   }
 
   // Rogue special skills.  Requires 'level' 10.
-  if (nPCLevel > 10 && GetLevelByClass(CLASS_TYPE_ROGUE, oPC))
+  if (nPCLevel > 10 && GetLevelByClass(CLASS_TYPE_ROGUE, oPC) && GetLevelByClass(CLASS_TYPE_ROGUE, oNPC))
   {
     add_feat_to_list(oPC, "Crippling Strike", FEAT_CRIPPLING_STRIKE, FALSE, CLASS_TYPE_ROGUE);
     add_feat_to_list(oPC, "Defensive Roll", FEAT_DEFENSIVE_ROLL, FALSE, CLASS_TYPE_ROGUE);
@@ -1030,7 +1040,7 @@ void init_feat_list (object oPC)
     add_feat_to_list(oPC, "Slippery Mind", FEAT_SLIPPERY_MIND, FALSE, CLASS_TYPE_ROGUE);
   }
 
-  if (GetLevelByClass(CLASS_TYPE_ARCANE_ARCHER, oPC))
+  if (GetLevelByClass(CLASS_TYPE_ARCANE_ARCHER, oPC) && GetLevelByClass(CLASS_TYPE_ARCANE_ARCHER, oNPC))
   {
     add_feat_to_list(oPC, "Enchant Arrow 2", FEAT_PRESTIGE_ENCHANT_ARROW_2, FALSE, CLASS_TYPE_ARCANE_ARCHER);
     add_feat_to_list(oPC, "Enchant Arrow 3", FEAT_PRESTIGE_ENCHANT_ARROW_3, FALSE, CLASS_TYPE_ARCANE_ARCHER);
@@ -1044,7 +1054,7 @@ void init_feat_list (object oPC)
     if (nPCLevel > 16) add_feat_to_list(oPC, "Arrow of Death", FEAT_PRESTIGE_ARROW_OF_DEATH, FALSE, CLASS_TYPE_ARCANE_ARCHER);
   }
 
-  if (GetLevelByClass(CLASS_TYPE_ASSASSIN, oPC))
+  if (GetLevelByClass(CLASS_TYPE_ASSASSIN, oPC) && GetLevelByClass(CLASS_TYPE_ASSASSIN, oNPC))
   {
     add_feat_to_list(oPC, "Ghostly Visage", FEAT_PRESTIGE_SPELL_GHOSTLY_VISAGE, FALSE, CLASS_TYPE_ASSASSIN);
     add_feat_to_list(oPC, "Poison Save +5", FEAT_PRESTIGE_POISON_SAVE_5, FALSE, CLASS_TYPE_ASSASSIN);
@@ -1054,7 +1064,7 @@ void init_feat_list (object oPC)
       add_feat_to_list(oPC, "Improved Invisibility", FEAT_PRESTIGE_INVISIBILITY_2, FALSE, CLASS_TYPE_ASSASSIN);
   }
 
-  if (GetLevelByClass(CLASS_TYPE_BLACKGUARD, oPC))
+  if (GetLevelByClass(CLASS_TYPE_BLACKGUARD, oPC) && GetLevelByClass(CLASS_TYPE_BLACKGUARD, oNPC))
   {
     add_feat_to_list(oPC, "Dark Blessing", FEAT_PRESTIGE_DARK_BLESSING, FALSE, CLASS_TYPE_BLACKGUARD);
     add_feat_to_list(oPC, "Smite Good", FEAT_SMITE_GOOD, FALSE, CLASS_TYPE_BLACKGUARD);
@@ -1071,8 +1081,8 @@ void init_feat_list (object oPC)
        add_feat_to_list(oPC, "Improved Fiend", FEAT_EPIC_EPIC_FIEND, FALSE, CLASS_TYPE_BLACKGUARD);
   }
 
-  if (GetLevelByClass(CLASS_TYPE_DIVINE_CHAMPION, oPC) ||
-      GetLevelByClass(CLASS_TYPE_DIVINECHAMPION, oPC))
+  if (GetLevelByClass(CLASS_TYPE_DIVINE_CHAMPION, oPC) &&
+      GetLevelByClass(CLASS_TYPE_DIVINE_CHAMPION, oNPC))
   {
     add_feat_to_list(oPC, "Sacred Defense +1", FEAT_SACRED_DEFENSE_1, FALSE, CLASS_TYPE_DIVINECHAMPION);
     if (GetKnowsFeat(FEAT_SACRED_DEFENSE_1, oPC))
@@ -1087,8 +1097,8 @@ void init_feat_list (object oPC)
     add_feat_to_list(oPC, "Divine Wrath", FEAT_DIVINE_WRATH, CLASS_TYPE_DIVINECHAMPION);
   }
 
-  if (GetLevelByClass(CLASS_TYPE_DWARVEN_DEFENDER, oPC) ||
-      GetLevelByClass(CLASS_TYPE_DWARVENDEFENDER, oPC))
+  if (GetLevelByClass(CLASS_TYPE_DWARVEN_DEFENDER, oPC) &&
+      GetLevelByClass(CLASS_TYPE_DWARVEN_DEFENDER, oNPC))
   {
     add_feat_to_list(oPC, "Defensive Awareness", FEAT_PRESTIGE_DEFENSIVE_AWARENESS_1, FALSE, CLASS_TYPE_DWARVEN_DEFENDER);
     if (GetKnowsFeat(FEAT_PRESTIGE_DEFENSIVE_AWARENESS_1, oPC))
@@ -1100,8 +1110,8 @@ void init_feat_list (object oPC)
       add_feat_to_list(oPC, "Damage Reduction", 948, FALSE, CLASS_TYPE_DWARVEN_DEFENDER);
   }
 
-  if (GetLevelByClass(CLASS_TYPE_DRAGON_DISCIPLE, oPC) ||
-      GetLevelByClass(CLASS_TYPE_DRAGONDISCIPLE, oPC))
+  if (GetLevelByClass(CLASS_TYPE_DRAGON_DISCIPLE, oPC) &&
+      GetLevelByClass(CLASS_TYPE_DRAGON_DISCIPLE, oNPC))
   {
     add_feat_to_list(oPC, "Dragon strength", FEAT_DRAGON_ABILITIES, FALSE, CLASS_TYPE_DRAGON_DISCIPLE);
     add_feat_to_list(oPC, "Dragon breath", FEAT_DRAGON_DIS_BREATH, FALSE, CLASS_TYPE_DRAGON_DISCIPLE);
@@ -1111,7 +1121,7 @@ void init_feat_list (object oPC)
     if (nPCLevel > 20) add_feat_to_list(oPC, "Dragon paralysis immunity", FEAT_DRAGON_IMMUNE_PARALYSIS, FALSE, CLASS_TYPE_DRAGON_DISCIPLE);
   }
 
-  if (GetLevelByClass(CLASS_TYPE_HARPER, oPC))
+  if (GetLevelByClass(CLASS_TYPE_HARPER, oPC) && GetLevelByClass(CLASS_TYPE_HARPER, oNPC))
   {
     add_feat_to_list(oPC, "Sleep", FEAT_HARPER_SLEEP, FALSE, CLASS_TYPE_HARPER);
     add_feat_to_list(oPC, "Deneir's Eye", FEAT_DENEIRS_EYE, FALSE, CLASS_TYPE_HARPER);
@@ -1122,8 +1132,8 @@ void init_feat_list (object oPC)
     if (nPCLevel > 12) add_feat_to_list(oPC, "Invisibility", FEAT_HARPER_INVISIBILITY, FALSE, CLASS_TYPE_HARPER);
   }
 
-  if (GetLevelByClass(CLASS_TYPE_PALE_MASTER, oPC) ||
-      GetLevelByClass(CLASS_TYPE_PALEMASTER, oPC))
+  if (GetLevelByClass(CLASS_TYPE_PALE_MASTER, oPC) &&
+      GetLevelByClass(CLASS_TYPE_PALE_MASTER, oNPC))
   {
     add_feat_to_list(oPC, "Animate Dead", FEAT_ANIMATE_DEAD, FALSE, CLASS_TYPE_PALEMASTER);
     add_feat_to_list(oPC, "Darkvision", FEAT_DARKVISION, FALSE, CLASS_TYPE_PALEMASTER);
@@ -1135,7 +1145,7 @@ void init_feat_list (object oPC)
     if (nPCLevel > 15) add_feat_to_list(oPC, "Deathless Touch", FEAT_DEATHLESS_MASTER_TOUCH, FALSE, CLASS_TYPE_PALEMASTER);
   }
 
-  if (GetLevelByClass(CLASS_TYPE_SHADOWDANCER, oPC))
+  if (GetLevelByClass(CLASS_TYPE_SHADOWDANCER, oPC) && GetLevelByClass(CLASS_TYPE_SHADOWDANCER, oNPC))
   {
     add_feat_to_list(oPC, "Darkvision", FEAT_DARKVISION, FALSE, CLASS_TYPE_SHADOWDANCER);
     add_feat_to_list(oPC, "Shadow Daze", FEAT_SHADOW_DAZE, FALSE, CLASS_TYPE_SHADOWDANCER);
@@ -1146,7 +1156,7 @@ void init_feat_list (object oPC)
     if (nPCLevel > 20) add_feat_to_list(oPC, "Hide in Plain Sight", FEAT_HIDE_IN_PLAIN_SIGHT, FALSE, CLASS_TYPE_SHADOWDANCER);
   }
 
-  if (GetLevelByClass(CLASS_TYPE_SHIFTER, oPC))
+  if (GetLevelByClass(CLASS_TYPE_SHIFTER, oPC) && GetLevelByClass(CLASS_TYPE_SHIFTER, oNPC))
   {
     add_feat_to_list(oPC, "Greater Wildshape 2", FEAT_GREATER_WILDSHAPE_2, FALSE, CLASS_TYPE_SHIFTER);
     if (GetKnowsFeat(FEAT_GREATER_WILDSHAPE_2, oPC)) add_feat_to_list(oPC, "Infinite Wildshape 1", FEAT_EPIC_SHIFTER_INFINITE_WILDSHAPE_1, FALSE, CLASS_TYPE_SHIFTER);
@@ -1159,7 +1169,7 @@ void init_feat_list (object oPC)
     if (GetKnowsFeat(FEAT_EPIC_SHIFTER_INFINITE_WILDSHAPE_4, oPC)) add_feat_to_list(oPC, "Infinite Humanoid Shape", FEAT_EPIC_SHIFTER_INFINITE_HUMANOID_SHAPE, FALSE, CLASS_TYPE_SHIFTER);
   }
 
-  if (GetLevelByClass(CLASS_TYPE_WEAPON_MASTER, oPC))
+  if (GetLevelByClass(CLASS_TYPE_WEAPON_MASTER, oPC) && GetLevelByClass(CLASS_TYPE_WEAPON_MASTER, oNPC))
   {
     if (nPCLevel > 12) add_feat_to_list(oPC, "Increased Multiplier", FEAT_INCREASE_MULTIPLIER, FALSE, CLASS_TYPE_WEAPON_MASTER);
     if (nPCLevel > 15) add_feat_to_list(oPC, "Ki Critical", FEAT_KI_CRITICAL, FALSE, CLASS_TYPE_WEAPON_MASTER);
@@ -1230,7 +1240,8 @@ void init_feat_list (object oPC)
 
 void Init()
 {
-  object oPC = GetPCSpeaker();
+  object oPC  = GetPCSpeaker();
+  object oNPC = OBJECT_SELF;
 
   int nStaticLevel        = GetLocalInt(GetModule(), "STATIC_LEVEL");
 
@@ -1270,7 +1281,15 @@ void Init()
 
   // Build the main menu.
   DeleteList(CATEGORIES);
-  AddStringElement("<c  þ>Spell-related feats</c>", CATEGORIES);
+  if (GetLevelByClass(CLASS_TYPE_WIZARD, oNPC) || GetLevelByClass(CLASS_TYPE_SORCERER, oNPC))
+  {
+    AddStringElement("<c  þ>Spell-related feats</c>", CATEGORIES);
+  }
+  else
+  {
+    AddStringElement("<cþ  >Spell-related feats</c>", CATEGORIES);
+  }  
+  
   AddStringElement("<c  þ>Combat-related feats</c>", CATEGORIES);
   AddStringElement("<c  þ>Generic feats</c>", CATEGORIES);
   if (nPCLevel > 30)
@@ -1288,7 +1307,6 @@ void Init()
     AddStringElement("<c þ >[Yes]</c>", CONFIRM);
     AddStringElement("<cþ  >[No]</c>", CONFIRM);
   }
-
 
   // Calculate level and cost so we only do this once.
   if (fPCLevel == 0.0f)
@@ -1406,6 +1424,7 @@ void HandleSelection()
   // This method handles what happens when the player selects an option.
   int selection  = GetDlgSelection();
   object oPC     = GetPcDlgSpeaker();
+  object oNPC    = OBJECT_SELF;
   string sPage   = GetDlgPageString();
 
   if (sPage == "")
@@ -1415,7 +1434,15 @@ void HandleSelection()
     switch (selection)
     {
       case 0:
-       SetLocalString(OBJECT_SELF, CURR_LIST, LIST_1);
+        if (GetLevelByClass(CLASS_TYPE_WIZARD, oNPC) || GetLevelByClass(CLASS_TYPE_SORCERER, oNPC))
+        {
+          SetLocalString(OBJECT_SELF, CURR_LIST, LIST_1);
+		}
+		else
+		{
+		  // Do nothing - stay on this page. 
+          SetDlgPageString("");
+		}
        break;
       case 1:
        SetLocalString(OBJECT_SELF, CURR_LIST, LIST_2);

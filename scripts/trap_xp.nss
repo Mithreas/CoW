@@ -1,4 +1,4 @@
-// Calculate XP for trap. (DC - 20) * 25 - so dc 22 is 50xp, dc 32 is 400.
+// Calculate XP for trap. (DC - 20) * 5 - so dc 22 is 10xp, dc 32 is 60.
 #include "cow_createobject"
 void main()
 {
@@ -6,7 +6,7 @@ void main()
   string sResRef = GetResRef(OBJECT_SELF);
   location lLoc  = GetLocation(OBJECT_SELF);
   int nDisarmDC  = GetTrapDisarmDC(OBJECT_SELF);
-  float fXP      = IntToFloat((nDisarmDC - 20) * 25);
+  float fXP      = IntToFloat((nDisarmDC - 20) * 5);
 
   // Module-wide XP scale control.
   float fMultiplier = GetLocalFloat(GetModule(), "XP_RATIO");

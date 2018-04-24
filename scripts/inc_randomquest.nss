@@ -110,6 +110,7 @@
     dialog        - zdlg_questnpc
 */
 #include "pg_lists_i"
+#include "inc_common"
 #include "inc_pc";
 #include "inc_perspeople"
 #include "inc_reputation"
@@ -349,6 +350,11 @@ void ParseAreaList(string sAreaList)
                              GetStringLength(sAreaList) - nPos -1);
 
     nPos = FindSubString(sAreaList, ",");
+    if (nPos == -1)
+    {
+      nPos = GetStringLength(sAreaList);
+    }
+	
     sAreaTag = GetSubString(sAreaList, 0, nPos);
   }
 }
@@ -528,7 +534,7 @@ int QuestIsDone(object oPC, object oNPC)
     {
       if (GetTag(oItem) == sItemTag)
       {
-        nCount++;
+        nCount+= GetItemStackSize(oItem);
       }
 
       oItem = GetNextItemInInventory(oPC);
@@ -544,13 +550,18 @@ int QuestIsDone(object oPC, object oNPC)
 
       // Remove the items.
       nCount = 0;
-      while (nCount < nNum)
+	  
+	  oItem = GetFirstItemInInventory(oPC);
+      while (oItem != OBJECT_INVALID && nCount < nNum)
       {
-        // Delay so we don't delete the same object repeatedly.
-        DelayCommand(IntToFloat(nCount),
-                     DestroyObject(GetItemPossessedBy(oPC, sItemTag)));
-        nCount++;
-      }
+        if (GetTag(oItem) == sItemTag)
+        {
+          nCount += GetItemStackSize(oItem); // doesn't matter if we overshoot
+		  gsCMReduceItem(oItem, nNum);
+        }
+
+        oItem = GetNextItemInInventory(oPC);
+      }	  
     }
   }
   else if (sQuestType == KILL)
@@ -703,15 +714,22 @@ void TidyQuest(object oPC, object oNPC)
   {
     MarkQuestDone(oPC, sQuest);
   }	
+  else
+  {
+    // Put a flag on the PC hide so that they don't try the same quest again for 24 game hours.
+	SetLocalInt(gsPCGetCreatureHide(oPC), sQuest, gsTIGetActualTimestamp() + 3600 * 24);
+  }
 
-  // Remove the quest var from the PC.
+  // Remove the quest vars from the PC.
   DeletePersistentVariable(oPC, CURRENT_QUEST);
+  DeletePersistentVariable(oPC, sQuest);
 }
 
 void SetUpQuest(object oPC, object oNPC)
 {
   Trace (RQUEST, "Setting up new quest for " + GetName(oPC));
   // setup.
+  // Todo - tag the quest with the questtag so that PCs can have multiple.
   string sQuest = GetPersistentString(oPC, CURRENT_QUEST);
   if (sQuest == "") return; // Nothing to do, no quest active.
 
@@ -865,9 +883,11 @@ string GenerateNewQuest(object oPC, object oNPC)
   {
     // We found a valid quest. Save the new quest on the PC, and return.
     SetPersistentString(oPC, CURRENT_QUEST, sQuest);
+	
     // Save a var on the PC linking the quest to a quest set, in case we need
     // to look up details later.
     SetPersistentString(oPC, sQuest, sQuestSet);
+
     return sQuest;
   }
 }
@@ -875,12 +895,21 @@ string GenerateNewQuest(object oPC, object oNPC)
 int HasDoneRandomQuest(object oPC, string sQuest, object oQuestNPC = OBJECT_SELF)
 { 
   string sSQL = "SELECT pcid FROM " + QUEST_PLAYER_DB + " WHERE quest = '" + sQuest + "' AND pcid = '" + 
-   gsPCGetPlayerID(oPC) + "' + questset = '" + GetLocalString(oQuestNPC, QUEST_DB_NAME) + "'";
+   gsPCGetPlayerID(oPC) + "' AND questset = '" + GetLocalString(oQuestNPC, QUEST_DB_NAME) + "'";
    
   SQLExecDirect(sSQL);
   
   if (SQLFetch())
   {
+    Trace(RQUEST, "PC has already done non-repeatable quest " + sQuest);
+    return TRUE;
+  }
+  
+  // Check whether this is a repeatable quest that they have done in the last day.
+  
+  if (GetLocalInt(gsPCGetCreatureHide(oPC), sQuest) > gsTIGetActualTimestamp())
+  {
+    Trace(RQUEST, "PC has recently done repeatable quest " + sQuest);
     return TRUE;
   }
   

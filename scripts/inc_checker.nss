@@ -15,7 +15,7 @@ const int MAX_FEAT  = 426; // Very few after here, so do them by hand for perf
                            // reasons.
 const int MAX_SKILL = 26;
 
-const int GS_EXPERIENCE_BASE = 1000; //level 2
+const int GS_EXPERIENCE_BASE = 3000; //level 3
 
 // Bans the PC and boots them from the server with a "friendly" message.
 void miBootAndBanPC (object oPC);

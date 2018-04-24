@@ -3,6 +3,10 @@
   Author: Mithreas
   Date: Apr 9 2006
   Description: Random quest conversation script. Uses Z-Dialog.
+  
+  Apr 22 2018: added support for Conversation string variable on
+  NPC, which the PC can break out into if they ask for more 
+  information about the city.  
 */
 #include "inc_zdlg"
 #include "inc_randomquest"
@@ -89,7 +93,7 @@ void PageInit()
   {
     Trace(RQUEST, "No QUEST_DB_NAME var found on NPC!");
     SendMessageToPC(oPC,
-                    "You've found a bug. How embarassing. Please report it.");
+                    "You've found a bug. How embarrassing. Please report it.");
     EndDlg();
     return;
   }
@@ -300,6 +304,7 @@ void HandleSelection()
 {
   int selection  = GetDlgSelection();
   object oPC     = GetPcDlgSpeaker();
+  object oNPC    = OBJECT_SELF;
   string sResponseList   = GetDlgResponseList();
 
   if (sResponseList == GREETING)
@@ -313,9 +318,19 @@ void HandleSelection()
         EndDlg();
         break;
       case 2:
-        SpeakString("I'm afraid I don't have time to chat at the moment.");
-        EndDlg();
-        break;
+	    {
+		  string sConv = GetLocalString(oNPC, "Conversation");
+		  if (sConv == "")		  
+          {  
+		    SpeakString("I'm afraid I don't have time to chat at the moment.");
+		  }
+          else
+          {
+		    AssignCommand(oPC, ActionStartConversation(oNPC, sConv));
+		  }
+          EndDlg();
+          break;
+		}
     }
   }
   else if (sResponseList == MAIN_MENU)

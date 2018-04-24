@@ -95,5 +95,4 @@ case SEP_EV_ON_GUARD_RESOLVE:
 //................................................................
         break;
     }
-    RunSpecialBehaviors(GetUserDefinedEventNumber());
 }

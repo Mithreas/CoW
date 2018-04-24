@@ -9,13 +9,13 @@
 5	Server_Install	  ****
 6	Server_Vault	  ****
 7	Base_XP		  25
-8	XP_Variance	  0.35
+8	XP_Variance	  0.3
 9	XP_Multiplier	  1.5
-10	XP_Low_PC_Limit   6
+10	XP_Low_PC_Limit   5
 11	Debug		  1
 12	Database          MYSQL
-13      Static_Level      9
+13      Static_Level      10
 14      Vaultster         ****
-15      Welcome_msg       "Welcome to the Arelith Fixed Level Server."
-16      Use_Castes        0
+15      Welcome_msg       "Welcome to the City of Winds."
+16      Use_Castes        1
 17      Use_Alt_Magic     1

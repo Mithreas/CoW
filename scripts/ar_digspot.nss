@@ -7,7 +7,7 @@ void main() {
     object oPC   = GetLastUsedBy();
     object oArea = GetArea(OBJECT_SELF);
 
-    if (!GetIsPC(oPC) || !GetIsDM(oPC))  return;
+    if (!GetIsPC(oPC) && !GetIsDM(oPC))  return;
 
     location lLoc   = GetLocation(OBJECT_SELF);
     string sResRef  = GetLocalString(OBJECT_SELF, TREASURE_RESREF);

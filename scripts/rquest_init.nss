@@ -12,32 +12,44 @@ void SetStringValue(string sName, string sValue, string sDatabase)
   DelayCommand(fRand, SetPersistentString(OBJECT_INVALID, sName, sValue, 0, sDatabase));
 }
 
+void CleanDB(string sDatabase)
+{
+  Trace(RQUEST, "Cleaning database: " + sDatabase);
+  SQLExecDirect("DELETE FROM " + sDatabase);
+}
+
 
 void main()
 {
   string DB_QUEST;
   string DB_VARS;
   string QUEST;
+    
   /* Set database type. MYSQL or SQLITE supported. */
   SetLocalString(GetModule(), "DB_TYPE", "MYSQL");
 
+  //-------------------------------------------------------------------------------------------
   /* House Renerrin Quests */
   DB_QUEST = "renerrin_quests";
   DB_VARS  = "renerrin_vars";
+  
+  CleanDB(DB_QUEST);
+  CleanDB(DB_VARS);
 
   QUEST = "train";
   SetStringValue(QUEST, PATROL, DB_QUEST);
   SetStringValue(QUEST+DESCRIPTION,
    "You could use some experience, I think. Head over to the Market Square, and " +
    "see if there are any small tasks for the people there. Otherwise, head down " +
-   "to the Undercity Crypts. To get there, go to the Docks, head down into the " +
-   "Undercity, and head south. There are never enough people to keep all the " +
-   "dead at rest... and we suspect dark magic at play, too. Stay near the " +
+   "to the Undercity Crypts. To get there, head down into the Undercity via the " +
+   "Imperial University, and head northeast. There are never enough people to keep all " +
+   "the dead at rest... and we suspect dark magic at play, too. Stay near the " +
    "entrances to the tombs, and you should be fine. \n\n When you think you're " +
    "ready to do more for the House, come back to me.",
    DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "01_01", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "01_05", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
+  SetStringValue(QUEST+AREA_TAGS, "MarketSquare,UndercityAncestorsRest", DB_VARS);
 
   QUEST = "patrol_city";
   SetStringValue(QUEST, PATROL, DB_QUEST);
@@ -46,11 +58,11 @@ void main()
    DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "75", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "200", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "01_03", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "01_05", DB_VARS);
   SetStringValue(QUEST+AREA_TAGS, "southgates", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
 
-  QUEST="drarayne_rats";
+  QUEST = "drarayne_rats";
   SetStringValue(QUEST, HELP, DB_QUEST);
   SetStringValue(QUEST+DESCRIPTION,
    "A woman called Drarayne Thelas has appealed for help clearing out some " +
@@ -60,7 +72,7 @@ void main()
   SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "200", DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "10", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "01_03", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "01_05", DB_VARS);
   SetStringValue(QUEST+OTHER_NPC, "drarayne_thelas", DB_VARS);
 
   QUEST = "gather_gemstone";
@@ -70,16 +82,27 @@ void main()
    DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "50", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "150", DB_VARS);
-  SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
   SetStringValue(QUEST+LEVEL_RANGE, "01_15", DB_VARS);
   SetStringValue(QUEST+ITEM_TAG, "NW_IT_GEM004", DB_VARS);
   SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
 
+  QUEST = "badger_skin";
+  SetStringValue(QUEST, RETRIEVE, DB_QUEST);
+  SetStringValue(QUEST+DESCRIPTION,
+   "My wife got a badger skin muff, and now everyone wants one.  Please get me three skins.",
+   DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "75", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "25", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "01_15", DB_VARS);
+  SetStringValue(QUEST+ITEM_TAG, "cnrskinbadger", DB_VARS);
+  SetStringValue(QUEST+NUM_ITEMS, "2", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
   QUEST = "deliver_to_alian";
   SetStringValue(QUEST, MESSENGER, DB_QUEST);
   SetStringValue(QUEST+DESCRIPTION,
   "I've written a letter for an old friend, Alian. Will you take them to him? " +
-  "You'll find him in the Imperial City, probably near the bank.",
+  "You'll likely find him in the Imperial City, probably near the bank.",
   DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
   SetStringValue(QUEST+LEVEL_RANGE, "01_15", DB_VARS);
@@ -118,23 +141,28 @@ void main()
   SetStringValue(QUEST+LEVEL_RANGE, "02_05", DB_VARS);
   SetStringValue(QUEST+TARGET_TAG, "arin_meyo", DB_VARS);
 
+  //-------------------------------------------------------------------------------------------
   /* House Drannis Quests */
   DB_QUEST = "drannis_quests";
   DB_VARS  = "drannis_vars";
 
+  CleanDB(DB_QUEST);
+  CleanDB(DB_VARS);
+  
   QUEST = "train";
   SetStringValue(QUEST, PATROL, DB_QUEST);
   SetStringValue(QUEST+DESCRIPTION,
    "You could use some experience, I think. Head up to the Market Square, and " +
    "see if there are any small tasks for the people there. Otherwise, head down " +
-   "to the Undercity Crypts. To get there, go to the Docks, head down into the " +
-   "Undercity, and head south. There are never enough people to keep all the " +
+   "to the Undercity Crypts. To get there, take the entrance in our district, head down into the " +
+   "Undercity, and head north, east and north. There are never enough people to keep all the " +
    "dead at rest... and we suspect dark magic at play, too. Stay near the " +
    "entrances to the tombs, and you should be fine. \n\n When you think you're " +
    "ready to do more for the House, come back to me.",
    DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "01_01", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "01_05", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
+  SetStringValue(QUEST+AREA_TAGS, "MarketSquare,UndercityAncestorsRest", DB_VARS);
 
   QUEST = "patrol_city";
   SetStringValue(QUEST, PATROL, DB_QUEST);
@@ -146,6 +174,33 @@ void main()
   SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
   SetStringValue(QUEST+LEVEL_RANGE, "01_03", DB_VARS);
   SetStringValue(QUEST+AREA_TAGS, "southgates", DB_VARS);
+  
+  QUEST = "gather_wood";
+  SetStringValue(QUEST, RETRIEVE, DB_QUEST);
+  SetStringValue(QUEST+DESCRIPTION,
+   "Maintaining our outposts always takes more wood.  Fetch five Irl branches " +
+   "which our carpenters can use.",
+   DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "50", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "50", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "01_15", DB_VARS);
+  SetStringValue(QUEST+ITEM_TAG, "cnrbranch1", DB_VARS);
+  SetStringValue(QUEST+NUM_ITEMS, "2", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  QUEST = "gather_ond";
+  SetStringValue(QUEST, RETRIEVE, DB_QUEST);
+  SetStringValue(QUEST+DESCRIPTION,
+   "Ondaran does not make good weapons, but it makes excellent nails " +
+   "and braces.  Since I have nothing more pressing for you right now, " +
+   "bring back a couple of nuggets for our stores.",
+   DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "50", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "50", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "01_15", DB_VARS);
+  SetStringValue(QUEST+ITEM_TAG, "cnrnuggetond", DB_VARS);
+  SetStringValue(QUEST+NUM_ITEMS, "2", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
 
   QUEST = "guard_arin_meyo";
   SetStringValue(QUEST, HELP, DB_QUEST);
@@ -160,7 +215,7 @@ void main()
   SetStringValue(QUEST+LEVEL_RANGE, "02_05", DB_VARS);
   SetStringValue(QUEST+OTHER_NPC, "arin_meyo", DB_VARS);
 
-  QUEST="drarayne_rats";
+  QUEST = "drarayne_rats";
   SetStringValue(QUEST, HELP, DB_QUEST);
   SetStringValue(QUEST+DESCRIPTION,
    "A woman called Drarayne Thelas has appealed for help clearing out some " +
@@ -170,9 +225,34 @@ void main()
   SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "10", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "200", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "01_03", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "01_05", DB_VARS);
   SetStringValue(QUEST+OTHER_NPC, "drarayne_thelas", DB_VARS);
 
+  QUEST = "no_agents_allowed";
+  SetStringValue(QUEST, KILL, DB_QUEST);
+  SetStringValue(QUEST+DESCRIPTION,
+   "We've had reports of a Renerrin agent snooping around near our outpost in the " +
+   "southwest Undercity.  City law doesn't apply down there, so nothing stops you " +
+   "removing a rival the permanent way.  Just try not to be too obvious.", DB_VARS);
+  SetStringValue(QUEST+REWARD_FAC_REP, "2", DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "250", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "300", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "05_10", DB_VARS);
+  SetStringValue(QUEST+TARGET_TAG, "renerrin_agent", DB_VARS);
+  
+  QUEST = "guardposts";
+  SetStringValue(QUEST, PATROL, DB_QUEST);
+  SetStringValue(QUEST+DESCRIPTION,
+   "Visit our guard posts below and make sure that nothing untoward has happened. "+
+   "One is in the southwest Undercity, just West of our entrance.  The other is in " +
+   "the caves on the Second Level, below the North Undercity.", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
+  SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "04_10", DB_VARS);
+  SetStringValue(QUEST+AREA_TAGS,
+                 "UndercitySouthwest,av_DarkCave1",
+                 DB_VARS);
+				 
   QUEST = "laurisfetter";
   SetStringValue(QUEST, HELP, DB_QUEST);
   SetStringValue(QUEST+DESCRIPTION,
@@ -186,17 +266,16 @@ void main()
   SetStringValue(QUEST+LEVEL_RANGE, "06_10", DB_VARS);
   SetStringValue(QUEST+OTHER_NPC, "laurisfetter", DB_VARS);
 
-  // 10+
   QUEST = "patrol_darzun_entrance";
   SetStringValue(QUEST, PATROL, DB_QUEST);
   SetStringValue(QUEST+DESCRIPTION,
    "We've had reports of Orcish patrols moving in and out of Dar'zun. I want " +
    "you to go down there and report to me what's happening. Be well prepared - " +
    "the orcs aren't to be taken lightly. Got that?", DB_VARS);
-  SetStringValue(QUEST+REWARD_XP, "5000", DB_VARS);
-  SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "10_15", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "500", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "08_12", DB_VARS);
   SetStringValue(QUEST+AREA_TAGS, "plainsofdarkness", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
 
   QUEST = "patrol_fire_pits";
   SetStringValue(QUEST, PATROL, DB_QUEST);
@@ -204,30 +283,33 @@ void main()
    "There's a bridge deep in the depths, over the fire pits in the Fera Wastes. " +
    "I want you to go down there. Check the current status of the bridge, and " +
    "garrison it ", DB_VARS);
-  SetStringValue(QUEST+REWARD_XP, "15000", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "1000", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "15_20", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "10_15", DB_VARS);
   SetStringValue(QUEST+AREA_TAGS, "ferawastesfirepi", DB_VARS);
 
-
+  //-------------------------------------------------------------------------------------------
   /* House Erenia Quests */
   DB_QUEST = "erenia_quests";
   DB_VARS  = "erenia_vars";
 
-  // Level 1+
+  CleanDB(DB_QUEST);
+  CleanDB(DB_VARS);
+  
   QUEST = "train";
   SetStringValue(QUEST, PATROL, DB_QUEST);
   SetStringValue(QUEST+DESCRIPTION,
    "You could use some experience, I think. Head over to the Market Square in the City, and " +
    "see if there are any small tasks for the people there. Otherwise, head down " +
    "to the Undercity Crypts. To get there, go to the Docks, head down into the " +
-   "Undercity, and head south. There are never enough people to keep all the " +
+   "Undercity, and head north. There are never enough people to keep all the " +
    "dead at rest... and we suspect dark magic at play, too. Stay near the " +
    "entrances to the tombs, and you should be fine. \n\n When you think you're " +
    "ready to do more for the House, come back to me.",
    DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "01_01", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "01_05", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
+  SetStringValue(QUEST+AREA_TAGS, "MarketSquare,UndercityAncestorsRest", DB_VARS);
 
   QUEST = "gather_holywater";
   SetStringValue(QUEST, RETRIEVE, DB_QUEST);
@@ -249,12 +331,11 @@ void main()
    "Please can you fetch me some more?", DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "50", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "50", DB_VARS);
-  SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
   SetStringValue(QUEST+LEVEL_RANGE, "01_15", DB_VARS);
   SetStringValue(QUEST+ITEM_TAG, "X1_WMGRENADE005", DB_VARS); 
   SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
   
-  QUEST="drarayne_rats";
+  QUEST = "drarayne_rats";
   SetStringValue(QUEST, HELP, DB_QUEST);
   SetStringValue(QUEST+DESCRIPTION,
    "A woman called Drarayne Thelas has appealed for help clearing out some " +
@@ -263,11 +344,11 @@ void main()
    "Northeast corner of the Merchants' District.", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "10", DB_VARS);
-  SetStringValue(QUEST+REWARD_XP, "200", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "01_03", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "01_05", DB_VARS);
   SetStringValue(QUEST+OTHER_NPC, "drarayne_thelas", DB_VARS);
 
-  QUEST="pilgrimmage";
+  QUEST = "pilgrimmage";
   SetStringValue(QUEST, PATROL, DB_QUEST);
   SetStringValue(QUEST+DESCRIPTION,
    "You should visit the holy sites, to further your knowledge of the gods. " +
@@ -275,14 +356,13 @@ void main()
    "as well as the Temple to the Seven of our own House. Finally, you should " +
    "visit the Grove of the Gods, here on Sunrise Isle. It's not far from the " +
    "entrance to Sunrise Tower.", DB_VARS);
-  SetStringValue(QUEST+REWARD_XP, "200", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "2", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "01_20", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "01_15", DB_VARS);
   SetStringValue(QUEST+AREA_TAGS,
                  "groveofthegods,templeoftheseven,templetomorri001,templetosolkin",
                  DB_VARS);
 
-  // Level 2+
   QUEST = "kill_arin_meyo";
   SetStringValue(QUEST, KILL, DB_QUEST);
   SetStringValue(QUEST+DESCRIPTION,
@@ -297,18 +377,30 @@ void main()
   SetStringValue(QUEST+LEVEL_RANGE, "02_05", DB_VARS);
   SetStringValue(QUEST+TARGET_TAG, "arin_meyo", DB_VARS);
 
-  QUEST="paronjariandesk";
+  QUEST = "paronjariandesk";
   SetStringValue(QUEST, PATROL, DB_QUEST);
   SetStringValue(QUEST+DESCRIPTION,
    "I'd like you to go and check Cardinal Jarian's house. Due to his age and "+
    "station, he's often targetted by members of other Houses. Please check " +
    "his desk and make sure there's nothing untoward in it... his house is near "+
    "the docks, here on Sunrise Isle.", DB_VARS);
-  SetStringValue(QUEST+REWARD_FAC_REP, "2", DB_VARS);
+  SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
   SetStringValue(QUEST+LEVEL_RANGE, "02_06", DB_VARS);
   SetStringValue(QUEST+AREA_TAGS, "paronjarianshous", DB_VARS);
+  
+  QUEST = "patrolcrypts";
+  SetStringValue(QUEST, PATROL, DB_QUEST);
+  SetStringValue(QUEST+DESCRIPTION,
+  "Our brethren guarding the Undercity entrance report that the dead are stirring " +
+  "in Ancestors' Rest again.  Please visit the four crypts there and restore peace.",
+  DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "03_15", DB_VARS);
+  SetStringValue(QUEST+AREA_TAGS, "DarkenedCrypt,hauntedcrypt,OldCrypt,ShadowedCrypt", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "250", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
 
-  QUEST="paronjarian";
+  QUEST = "paronjarian";
   SetStringValue(QUEST, HELP, DB_QUEST);
   SetStringValue(QUEST+DESCRIPTION,
    "Go and see if Cardinal Jarian needs any help. He's usually found in " +
@@ -323,11 +415,13 @@ void main()
    "I'm low on incense. Please can you fetch me a couple of sticks? The temple "
    + "will have some.",
    DB_VARS);
-  SetStringValue(QUEST+REWARD_GOLD, "500", DB_VARS);
-  SetStringValue(QUEST+REWARD_XP, "150", DB_VARS);
-  SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "600", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "50", DB_VARS);
   SetStringValue(QUEST+LEVEL_RANGE, "02_20", DB_VARS);
   SetStringValue(QUEST+ITEM_TAG, "stickofincense", DB_VARS);
   SetStringValue(QUEST+NUM_ITEMS, "2", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  //-------------------------------------------------------------------------------------------
 
 }

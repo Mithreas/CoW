@@ -52,7 +52,7 @@ int GetModuleTime();
 // This value is set in module properties.  We can calculate it dynamically from
 // HoursToSeconds() etc, but having it as a constant makes it easier to follow
 // the code.
-const int MINUTES_PER_HOUR = 6;
+const int MINUTES_PER_HOUR = 15;
 
 int gsTIGetActualTimestamp()
 {

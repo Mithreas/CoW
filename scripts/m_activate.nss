@@ -1,3 +1,4 @@
+#include "cnr_recipe_utils"
 #include "inc_names"
 #include "inc_boss"
 #include "inc_common"
@@ -18,6 +19,7 @@
 #include "inc_class"
 #include "inc_divination"
 #include "inc_poison"
+#include "inc_stacking"
 #include "inc_warlock"
 #include "zzdlg_tools_inc"
 #include "inc_holders"
@@ -27,7 +29,6 @@
 #include "ar_sys_poison"
 #include "ki_wrapr_bldsgr"
 #include "ki_wrapr_thfglv"
-#include "inc_stacking"
 
 // Runs custom behaviors associated with the item, either via tag or variable.
 void ExecuteCustomItemBehaviors();
@@ -137,13 +138,26 @@ void main()
         AssignCommand(oActivator, ActionDoCommand(_dlgStart(oActivator, oItem, "zz_co_crafting", TRUE, TRUE)));
         return;
     }
-	
+		
 	// CNR variant crafting: recipe cards
-    if (GetStringLeft (GetTag(oItem), 6) == "rescar")
+    if (GetStringLeft (sTag, 6) == "RESCAR")
     {
       ExecuteScript ("cacrft_recipe", OBJECT_SELF);
+	  return;
     }
 
+	// CNR variant crafting: skill book
+
+    if (CnrRecipeBookOnActivateItem(oItem, oActivator))
+    {
+      return;
+    }
+
+    if (CnrJournalOnActivateItem(oItem, oActivator))
+    {
+      return;
+    }
+	
     //worship
     if (sTag == "GS_WO_SELECT")
     {

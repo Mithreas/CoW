@@ -50,21 +50,21 @@ void miRESetPCEventHandlers(object oPC)
 {
   if (!GetIsPC(oPC)) return;
 
-  if (NWNX_Object_GetEventHandler(oPC, CREATURE_EVENT_HEARTBEAT) == "ar_pc_heartbeat") return;
+  if (GetEventScript(oPC, EVENT_SCRIPT_CREATURE_ON_HEARTBEAT) == "ar_pc_heartbeat") return;
 
-  NWNX_Object_SetEventHandler(oPC, CREATURE_EVENT_HEARTBEAT, "ar_pc_heartbeat");
-  NWNX_Object_SetEventHandler(oPC, CREATURE_EVENT_PERCEPTION, "ar_pc_perception");
-  NWNX_Object_SetEventHandler(oPC, CREATURE_EVENT_SPELLCAST, "ar_pc_spell");
-  NWNX_Object_SetEventHandler(oPC, CREATURE_EVENT_ATTACKED, "ar_pc_attacked");
-  NWNX_Object_SetEventHandler(oPC, CREATURE_EVENT_DAMAGED, "ar_pc_damaged");
-  NWNX_Object_SetEventHandler(oPC, CREATURE_EVENT_DISTURBED, "ar_pc_disturbed");
-  NWNX_Object_SetEventHandler(oPC, CREATURE_EVENT_ENDCOMBAT, "ar_pc_endcombat");
-  NWNX_Object_SetEventHandler(oPC, CREATURE_EVENT_CONVERSATION, "ar_pc_conv");
-  NWNX_Object_SetEventHandler(oPC, CREATURE_EVENT_SPAWN, "ar_pc_spawn");
-  NWNX_Object_SetEventHandler(oPC, CREATURE_EVENT_RESTED, "ar_pc_rested");
-  NWNX_Object_SetEventHandler(oPC, CREATURE_EVENT_DEATH, "ar_pc_death");
-  NWNX_Object_SetEventHandler(oPC, CREATURE_EVENT_USERDEF, "ar_pc_userdef");
-  NWNX_Object_SetEventHandler(oPC, CREATURE_EVENT_BLOCKED, "ar_pc_blocked");
+  SetEventScript(oPC, EVENT_SCRIPT_CREATURE_ON_HEARTBEAT, "ar_pc_heartbeat");
+  SetEventScript(oPC, EVENT_SCRIPT_CREATURE_ON_NOTICE, "ar_pc_perception");
+  SetEventScript(oPC, EVENT_SCRIPT_CREATURE_ON_SPELLCASTAT, "ar_pc_spell");
+  SetEventScript(oPC, EVENT_SCRIPT_CREATURE_ON_MELEE_ATTACKED, "ar_pc_attacked");
+  SetEventScript(oPC, EVENT_SCRIPT_CREATURE_ON_DAMAGED, "ar_pc_damaged");
+  SetEventScript(oPC, EVENT_SCRIPT_CREATURE_ON_DISTURBED, "ar_pc_disturbed");
+  SetEventScript(oPC, EVENT_SCRIPT_CREATURE_ON_END_COMBATROUND, "ar_pc_endcombat");
+  SetEventScript(oPC, EVENT_SCRIPT_CREATURE_ON_DIALOGUE, "ar_pc_conv");
+  SetEventScript(oPC, EVENT_SCRIPT_CREATURE_ON_SPAWN_IN, "ar_pc_spawn");
+  SetEventScript(oPC, EVENT_SCRIPT_CREATURE_ON_RESTED, "ar_pc_rested");
+  SetEventScript(oPC, EVENT_SCRIPT_CREATURE_ON_DEATH, "ar_pc_death");
+  SetEventScript(oPC, EVENT_SCRIPT_CREATURE_ON_USER_DEFINED_EVENT, "ar_pc_userdef");
+  SetEventScript(oPC, EVENT_SCRIPT_CREATURE_ON_BLOCKED_BY_DOOR, "ar_pc_blocked");
 }
 
 void miRECreateRelationship(string sPCa, string sPCb)

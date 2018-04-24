@@ -338,6 +338,7 @@ void main()
             SetLocalInt(OBJECT_SELF, sName, TRUE);
 
         float fRating = pow (GetLocalFloat(OBJECT_SELF, "MI_EN_CR"), 2.0f);
+		if (fRating < 10.0f) fRating = 10.0f;
 
         int nGold = Random(FloatToInt(fRating));
 

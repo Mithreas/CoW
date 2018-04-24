@@ -26,7 +26,6 @@ void main()
   else
   {
     Trace(TRAINING, "Praying started");
-    object oPC = GetItemActivator();
 
     // If already praying, ignore this use.
     location lPrayLoc = GetLocalLocation(oPC, "pray_location");

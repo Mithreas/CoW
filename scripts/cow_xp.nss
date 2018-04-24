@@ -11,58 +11,35 @@ column. Most encounters will call this script when they fire and when they are
 completed, so the usual amount of XP per encounter will be the amount in the
 right column.
 
+18 Apr 18 - completely revised this.
+
 lvl xp  /encounter
-1   10   20
-2   20   40
-3   30   60
-4   40   80
-5   50   100
-6   59   118
-7   68   136
-8   77   154
-9   86   172
-10  95   190
-11  102  204
-12  109  218
-13  116  232
-14  123  246
-15  130  260
-16  135  270
-17  140  280
-18  145  290
-19  150  300
-20  155  310
+1-5 50 
+6-10 25
+11+ 10
 
 */
+#include "inc_xp"
 // Gives a level-based amount of XP to the PC.
 void GiveXPToPC(object oPC);
 void GiveXPToPC(object oPC)
 {
-  int nLevel = GetLevelByPosition(1, oPC) + GetLevelByPosition(2, oPC) +
-                    GetLevelByPosition(3, oPC);
+  int nLevel = GetHitDice(oPC);
 
   float fLevel = IntToFloat(nLevel);
   float fXP;
 
   if (nLevel < 6)
   {
-    // 10xp per level.
-    fXP = 10 * fLevel;
+    fXP = 50.0;
   }
   else if (nLevel < 11)
   {
-    // 10xp per level for the first 5 levels, plus 9xp per level for the next 5.
-    fXP = 50 + 9 * (fLevel - 5.0);
-  }
-  else if (nLevel < 16)
-  {
-    // 10xp for first 5, 9xp for next 5, 7xp for next 5...
-    fXP = 50 + 45 + 7 * (fLevel - 10.0);
+    fXP = 25.0;
   }
   else
   {
-    //... and 5xp for the last 5.
-    fXP = 50 + 45 + 35 + 5 * (fLevel - 15.0);
+    fXP = 10.0;
   }
 
   // Module-wide XP scale control.
@@ -72,5 +49,5 @@ void GiveXPToPC(object oPC)
 
   fXP *= fMultiplier;
 
-  GiveXPToCreature(oPC, FloatToInt(fXP));
+  gsXPGiveExperience(oPC, FloatToInt(fXP));
 }

@@ -5,13 +5,13 @@
   Description:
     OnUsed script for the research widget.
 */
+#include "inc_activity"
 #include "inc_chatutils"
 #include "inc_examine"
 #include "inc_log"
 #include "x2_inc_switches"
-const string TRAINING = "TRAINING";
 
-const string HELP = "Use this to study.  Doing so in an appropriate location will be more effective.";
+const string HELP = "Use this to study.  You have to be in a suitable location, such as the University.";
 
 void main()
 {
@@ -20,12 +20,18 @@ void main()
 
   if (chatGetParams(oPC) == "?")
   {
-    DisplayTextInExamineWindow("-meditate", HELP);
+    DisplayTextInExamineWindow("-research", HELP);
   }
   else
   {
+  
+    if (!GetLocalInt(GetArea(oPC), IS_LIB))
+    {
+      Trace(TRAINING, "Not in library => cannot research");
+	  FloatingTextStringOnCreature("You must be in a library to research.  Try the University?", oPC); 
+    }
+	
     Trace(TRAINING, "Research Widget Used");
-    object oPC = GetItemActivator();
 
     // If already praying, ignore this use.
     location lResLoc = GetLocalLocation(oPC, "research_location");

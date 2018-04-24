@@ -249,7 +249,7 @@ struct openStore md_DoAppraise(object oStore, object oMerchant, object oCustomer
   int nWinningAppraise;
   int nWinningMaxBuy;
   int x;
-  object oSpeaker = oCustomer;               //insure first run always gets an appraise check no matter distance
+  object oSpeaker = oCustomer;               //ensure first run always gets an appraise check no matter distance
   while(GetIsObjectValid(oCustomer) && (GetDistanceBetween(oCustomer, oMerchant) <= 5.0 || x==0))
   {
 

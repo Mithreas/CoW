@@ -319,7 +319,11 @@ void main()
 		
     // Hook into the quest scripts.
     CheckIfOnPatrol(oEntering, OBJECT_SELF);
-
+	
+	// CoW addition - reset reputation to 50 with the animal faction (faction 17)
+	object oNPC = GetObjectByTag("factionexample17");
+    AdjustReputation(oEntering, oNPC, 50-GetFactionAverageReputation(oNPC, oEntering));
+    
     UpdateRangerHiPS(oEntering);
 
     if (GetLocalInt(OBJECT_SELF, "MI_DEAD_PEOPLE")) DoDeadPeople();
@@ -391,8 +395,9 @@ void main()
                       }
                 }
 
-                //lock door
-                if (GetLockLockable(oObject))
+                //lock door, unless it's a haunted door that will lock when interacted with.
+                if (GetLockLockable(oObject) && 
+				    GetEventScript(oObject, EVENT_SCRIPT_DOOR_ON_OPEN)!= "cow_haunteddoor")
                 {
                     SetLocked(oObject, TRUE);
                 }
@@ -937,16 +942,8 @@ void main()
     }
 
     //give base experience
-    int nStaticLevel = GetLocalInt(GetModule(), "STATIC_LEVEL");
+    if (GetXP(oEntering) < GS_EXPERIENCE_BASE) GiveXPToCreature(oEntering, GS_EXPERIENCE_BASE);
 
-    if (!nStaticLevel)
-    {
-      if (GetXP(oEntering) < GS_EXPERIENCE_BASE) GiveXPToCreature(oEntering, GS_EXPERIENCE_BASE);
-    }
-    else
-    {
-      SetXP(oEntering, 500 * (nStaticLevel + 1) * nStaticLevel);
-    }
 
     //banishment
     string sNationName = GetLocalString(oArea, VAR_NATION);
