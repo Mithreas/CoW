@@ -9,19 +9,30 @@
 void main()
 {
   // Set the trade level caps for this PC
-  CnrSetTradeskillLevelCapByType(OBJECT_SELF, CNR_TRADESKILL_SMELTING, 20);
+  CnrSetTradeskillLevelCapByType(OBJECT_SELF, CNR_TRADESKILL_COOKING, 20);
   CnrSetTradeskillLevelCapByType(OBJECT_SELF, CNR_TRADESKILL_WEAPON_CRAFTING, 20);
   CnrSetTradeskillLevelCapByType(OBJECT_SELF, CNR_TRADESKILL_ARMOR_CRAFTING, 20);
-  CnrSetTradeskillLevelCapByType(OBJECT_SELF, CNR_TRADESKILL_ALCHEMY, 20);
-  CnrSetTradeskillLevelCapByType(OBJECT_SELF, CNR_TRADESKILL_SCRIBING, 20);
-  CnrSetTradeskillLevelCapByType(OBJECT_SELF, CNR_TRADESKILL_TINKERING, 20);
+  CnrSetTradeskillLevelCapByType(OBJECT_SELF, CNR_TRADESKILL_EXPLOSIVES, 20);
+  CnrSetTradeskillLevelCapByType(OBJECT_SELF, CNR_TRADESKILL_INVESTING, 20);
+  CnrSetTradeskillLevelCapByType(OBJECT_SELF, CNR_TRADESKILL_IMBUING, 20);
   CnrSetTradeskillLevelCapByType(OBJECT_SELF, CNR_TRADESKILL_WOOD_CRAFTING, 20);
   CnrSetTradeskillLevelCapByType(OBJECT_SELF, CNR_TRADESKILL_ENCHANTING, 20);
-  CnrSetTradeskillLevelCapByType(OBJECT_SELF, CNR_TRADESKILL_GEM_CRAFTING, 20);
+  CnrSetTradeskillLevelCapByType(OBJECT_SELF, CNR_TRADESKILL_JEWELRY, 20);
   CnrSetTradeskillLevelCapByType(OBJECT_SELF, CNR_TRADESKILL_TAILORING, 20);
-  CnrSetTradeskillLevelCapByType(OBJECT_SELF, CNR_TRADESKILL_FOOD_CRAFTING, 20);
 
   int nPrimaryClassType = GetClassByPosition(1, OBJECT_SELF);
   int nRacialType = GetRacialType(OBJECT_SELF);
+  
+  // Humans can handle explosives, but are less effective mages.
+  if (nRacialType != RACIAL_TYPE_HUMAN)
+  {
+    CnrSetTradeskillLevelCapByType(OBJECT_SELF, CNR_TRADESKILL_EXPLOSIVES, 5);
+  }
+  else
+  {
+    CnrSetTradeskillLevelCapByType(OBJECT_SELF, CNR_TRADESKILL_INVESTING, 10);
+    CnrSetTradeskillLevelCapByType(OBJECT_SELF, CNR_TRADESKILL_IMBUING, 10);
+    CnrSetTradeskillLevelCapByType(OBJECT_SELF, CNR_TRADESKILL_ENCHANTING, 10);
+  }
 
 }

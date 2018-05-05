@@ -21,7 +21,7 @@ void main()
   // Default CNR recipes made in cnrBrewersKeg
   /////////////////////////////////////////////////////////
   CnrRecipeSetDevicePreCraftingScript("cnrBrewersKeg", "cnr_brewkeg_anim");
-  CnrRecipeSetDeviceTradeskillType("cnrBrewersKeg", CNR_TRADESKILL_FOOD_CRAFTING);
+  CnrRecipeSetDeviceTradeskillType("cnrBrewersKeg", CNR_TRADESKILL_COOKING);
 
   sKeyToRecipe = CnrRecipeCreateRecipe("cnrBrewersKeg", "Iron Hammer Bock", "cnrbIronHammer", 4);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrBarleyWort", 1);

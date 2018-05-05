@@ -20,7 +20,7 @@ void main()
   /////////////////////////////////////////////////////////
   // Default CNR recipes made in cnrFarmersMill
   /////////////////////////////////////////////////////////
-  CnrRecipeSetDeviceTradeskillType("cnrFarmersMill", CNR_TRADESKILL_FOOD_CRAFTING);
+  CnrRecipeSetDeviceTradeskillType("cnrFarmersMill", CNR_TRADESKILL_COOKING);
 
   string sMenuMillMeals = CnrRecipeAddSubMenu("cnrFarmersMill", "Meals");
   string sMenuMillFlours = CnrRecipeAddSubMenu("cnrFarmersMill", "Flours");

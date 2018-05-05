@@ -25,8 +25,14 @@ const int GS_WO_NONE = -1;
 
 // TODO: add Halfling (Nature, Hearth and Home) and Elf (Nature/Magic and War/Magic) religions
 
-//const int GS_WO_DIVINES                =     1;
-//const int GS_WO_DARK_ONE               =     2;
+//const int GS_WO_EMPEROR                =     1;
+//const int GS_WO_MORRIAN                =     2;
+//const int GS_WO_SOLKIN                 =     3;
+//const int GS_WO_NOCTURNE               =     4;
+//const int GS_WO_TRANNIS                =     5;
+//const int GS_WO_SERRIAN                =     6;
+//const int GS_WO_VERRIA                 =     7;
+//const int GS_WO_DARK_ONE               =     8;
 
 string gsWOGetPortfolio(int nDeity)
 {
@@ -34,8 +40,14 @@ string gsWOGetPortfolio(int nDeity)
 
   switch (nDeity)
   {
-    case 1   : sPortfolio = "The Seven Divines\nThe Emperor, Morrian, Solkin, Nocturne, Trannis, Serrian and Verria\n\nThe official religion of the City of Winds, the Seven Divines are responsible for saving Humanity from extinction.  The Emperor still rules the City today."; break;
-    case 2   : sPortfolio = "The Dark One\n\nThe cancer below the City, the source of forbidden blood magics.  Those who desire the power to overthrow the rulers of the City sometimes seek it in the darkest of places."; break;
+    case 1   : sPortfolio = "The Emperor\n\nOne of the Seven Divines, responsible for saving Humanity from extinction.  The Emperor still rules the City today, though rarely shows himself in person.  Those involved in maintaining the city's law, guards and magistrates, are the most likely to worship the Emperor directly."; break;
+	case 2   : sPortfolio = "Morrian, Lady Moon\n\nOne of the Seven Divines, responsible for saving Humanity from extinction.  Morrian is the mother figure of the official pantheon, the soft light of the Moon governing the times when families are together under their own roof.  Many families have a small shrine to Morrian even if their primary devotion is to another of the Seven, while she is the most popular divine patron for members of House Renerrin." ; break;
+    case 3   : sPortfolio = "Solkin, Lord Sun\n\nOne of the Seven Divines, responsible for saving Humanity from extinction.  Solkin's primary sphere is that of war, and most of House Drannis grant him their primary devotion.  However, he is also the god of passion, worshipped by lovers and craftsmen alike."; break;
+    case 4   : sPortfolio = "Nocturne, Lady Night\n\nOne of the Seven Divines, responsible for saving Humanity from extinction.  Nocturne is a common choice for those involved in secretive matters, such as espionage or scouting.  Praying to Nocturne that your passage may not be noted by others is a common prayer, even for those who are not normal devotees of the Lady of Night."; break;
+    case 5   : sPortfolio = "Trannis, Lord Twilight\n\nOne of the Seven Divines, responsible for saving Humanity from extinction.  Trannis is the usual patron of scholars and those who seek to uncover mysteries.  For this reason, many craftsman prefer Trannis and his measured philosophy to the passion of Solkin."; break;
+    case 6	 : sPortfolio = "Serrian, Lord of Stars, Lord Starlight\n\nOne of the Seven Divines, responsible for saving Humanity from extinction.  The messenger and guide of the gods, Serrian is the usual patron of sailors and others whose life sees much travelling.  Those who follow another patron will often offer a prayer to Serrian before embarking on a journey."; break;
+	case 7   : sPortfolio = "Verria, Lady Void\n\nOne of the Seven Divines, responsible for saving Humanity from extinction.  Verria is often turned to by those dealing with loss or heartbreak; her devotees accept that the world is a hard place, but find solace in Her worship.  Devotees of Verria are often fatalists, praying to Verria to alter their fate."; break;
+    case 8   : sPortfolio = "The Dark One\n\nThe cancer below the City, the source of forbidden blood magics.  Those who desire the power to overthrow the rulers of the City sometimes seek it in the darkest of places.  Worship of the Dark One is strictly outlawed."; break;
     default  : sPortfolio = "No portfolio! Please report this bug."; break;
   }
 
@@ -172,8 +184,14 @@ int gsWOGetIsDeityAvailable(int nDeity, object oPlayer = OBJECT_SELF)
 int gsWOGetDeityByName(string sDeity)
 {
     if (sDeity == "")                  return GS_WO_NONE;
-    if (sDeity == "The Divines")             return 1;
-    if (sDeity == "The Dark One")            return 2;
+    if (sDeity == "The Emperor")             return 1;
+    if (sDeity == "Morrian")                 return 2;
+    if (sDeity == "Solkin")                  return 3;
+    if (sDeity == "Nocturne")                return 4;
+    if (sDeity == "Trannis")                 return 5;
+    if (sDeity == "Serrian")                 return 6;
+    if (sDeity == "Verria")                  return 7;
+    if (sDeity == "The Dark One")            return 8;
 
     return FALSE;
 }
@@ -182,8 +200,14 @@ string gsWOGetNameByDeity(int nDeity)
 {
     switch (nDeity)
     {
-        case 1:    return "The Divines";
-        case 2:    return "The Dark One";
+        case 1:    return "The Emperor";
+		case 2:    return "Morrian";
+		case 3:    return "Solkin";
+		case 4:    return "Nocturne";
+		case 5:    return "Trannis";
+		case 6:    return "Serrian";
+		case 7:    return "Verria";
+        case 8:    return "The Dark One";
     }
 
     return "";
@@ -748,8 +772,14 @@ void gsWOSetup()
     if (GetLocalInt(oWOCacheItem, "FB_WO_SETUP")) return;
 
     gsWOChangeCategory(FB_WO_CATEGORY_MAJOR);
-    gsWOAddDeity(1, "LG,LN,NG,NN,LE,NE", ASPECT_WAR_DESTRUCTION + ASPECT_KNOWLEDGE_INVENTION, RACIAL_TYPE_HUMAN); //Divines
-    gsWOAddDeity(2, "CG,CN,CE", ASPECT_TRICKERY_DECEIT + ASPECT_MAGIC, RACIAL_TYPE_HUMAN); //Dark One
+    gsWOAddDeity(1, "LG,LN,NG,NN,LE,NE", ASPECT_WAR_DESTRUCTION + ASPECT_KNOWLEDGE_INVENTION, RACIAL_TYPE_HUMAN); //Emperor
+    gsWOAddDeity(2, "LG,LN,NG,NN,LE,NE", ASPECT_HEARTH_HOME + ASPECT_KNOWLEDGE_INVENTION, RACIAL_TYPE_HUMAN); //Morrian
+    gsWOAddDeity(3, "LG,LN,NG,NN,LE,NE", ASPECT_WAR_DESTRUCTION + ASPECT_KNOWLEDGE_INVENTION, RACIAL_TYPE_HUMAN); //Solkin
+    gsWOAddDeity(4, "LG,LN,NG,NN,LE,NE", ASPECT_TRICKERY_DECEIT + ASPECT_KNOWLEDGE_INVENTION, RACIAL_TYPE_HUMAN); //Nocturne
+    gsWOAddDeity(5, "LG,LN,NG,NN,LE,NE", ASPECT_HEARTH_HOME + ASPECT_KNOWLEDGE_INVENTION, RACIAL_TYPE_HUMAN); //Trannis
+    gsWOAddDeity(6, "LG,LN,NG,NN,LE,NE", ASPECT_WAR_DESTRUCTION + ASPECT_KNOWLEDGE_INVENTION, RACIAL_TYPE_HUMAN); //Serrian
+    gsWOAddDeity(7, "LG,LN,NG,NN,LE,NE", ASPECT_HEARTH_HOME + ASPECT_KNOWLEDGE_INVENTION, RACIAL_TYPE_HUMAN); //Verria
+    gsWOAddDeity(8, "CG,CN,CE", ASPECT_TRICKERY_DECEIT + ASPECT_MAGIC, RACIAL_TYPE_HUMAN); //Dark One
 
     //gsWOChangeCategory(FB_WO_CATEGORY_INTERMEDIATE);
 

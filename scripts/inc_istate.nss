@@ -2,6 +2,7 @@
 
 //void main() {}
 
+#include "cnr_config_inc"
 #include "inc_craft"
 #include "inc_text"
 
@@ -125,7 +126,7 @@ int gsISGetItemCraftSkill(object oItem)
     switch (GetBaseItemType(oItem))
     {
     case BASE_ITEM_ARMOR:
-        return gsCMGetItemBaseAC(oItem) < 4 ? GS_CR_SKILL_SEW : GS_CR_SKILL_FORGE;
+        return CNR_TRADESKILL_ARMOR_CRAFTING;
 
     case BASE_ITEM_BASTARDSWORD:
     case BASE_ITEM_BATTLEAXE:
@@ -158,7 +159,7 @@ int gsISGetItemCraftSkill(object oItem)
     case BASE_ITEM_TRIDENT:
     case BASE_ITEM_TWOBLADEDSWORD:
     case BASE_ITEM_WARHAMMER:
-        return GS_CR_SKILL_FORGE;
+        return CNR_TRADESKILL_WEAPON_CRAFTING;
 
     case BASE_ITEM_BELT:
     case BASE_ITEM_BOOTS:
@@ -166,11 +167,11 @@ int gsISGetItemCraftSkill(object oItem)
     case BASE_ITEM_GLOVES:
     case BASE_ITEM_SLING:
     case BASE_ITEM_WHIP:
-        return GS_CR_SKILL_SEW;
+        return CNR_TRADESKILL_TAILORING;
 
     case BASE_ITEM_CLUB:
     case BASE_ITEM_QUARTERSTAFF:
-        return (GetLocalInt(GetModule(), "STATIC_LEVEL") ? GS_CR_SKILL_CRAFT_ART : GS_CR_SKILL_CARPENTER);
+        return CNR_TRADESKILL_WOOD_CRAFTING;
 
     case BASE_ITEM_LARGESHIELD:
     case BASE_ITEM_SMALLSHIELD:
@@ -180,9 +181,9 @@ int gsISGetItemCraftSkill(object oItem)
              gsIPGetMaterialType(oItem) == 38 || // ironwood
              gsIPGetMaterialType(oItem) == 39 || // duskwood
              gsIPGetMaterialType(oItem) == 40))  // Zalantar duskwood
-          return GS_CR_SKILL_CRAFT_ART;
+          return CNR_TRADESKILL_WOOD_CRAFTING;
         else
-          return GS_CR_SKILL_FORGE;
+          return CNR_TRADESKILL_ARMOR_CRAFTING;
     }
 
     return FALSE;
@@ -318,25 +319,25 @@ void gsISRepairItem(object oItem, object oPC, int nValue = 1)
 
     for (; nNth < nValue; nNth++)
     {
-        //check skill
-        if (gsCRGetIsSkillSuccessful(nSkill, nItemRepairDC, oPC))
-        {
+        //check skill - removed, using CNR
+        //if (gsCRGetIsSkillSuccessful(nSkill, nItemRepairDC, oPC))
+        //{
             gsISIncreaseItemState(oItem);
 
             //complete repair
             if (gsISGetItemState(oItem) >= nMaximumItemState)
             {
-                gsCRDecreaseCraftPoints(nNth + 1, oPC);
+                //gsCRDecreaseCraftPoints(nNth + 1, oPC);
 
                 FloatingTextStringOnCreature(GS_T_16777478, oPC, FALSE);
                 return;
             }
 
             nFlag = TRUE; //progress
-        }
+        //}
     }
 
-    gsCRDecreaseCraftPoints(nNth, oPC);
+    //gsCRDecreaseCraftPoints(nNth, oPC);
 
     if (nFlag) FloatingTextStringOnCreature(GS_T_16777434, oPC, FALSE);
     else       FloatingTextStringOnCreature(GS_T_16777435, oPC, FALSE);

@@ -29,7 +29,7 @@ void main()
 
   CnrRecipeSetDevicePreCraftingScript("cnrtinkersdevice", "cnr_tinker_anim");
   CnrRecipeSetDeviceInventoryTool("cnrtinkersdevice", "cnrTinkersTools", CNR_FLOAT_TINKERS_TOOLS_BREAKAGE_PERCENTAGE);
-  CnrRecipeSetDeviceTradeskillType("cnrtinkersdevice", CNR_TRADESKILL_TINKERING);
+  CnrRecipeSetDeviceTradeskillType("cnrtinkersdevice", CNR_TRADESKILL_EXPLOSIVES);
 
 
 ////////////////////////////////////////////////////////////////////////////////

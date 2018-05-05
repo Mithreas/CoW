@@ -23,7 +23,7 @@ void main()
   string sMenu3Ammo = CnrRecipeAddSubMenu("cnranvilwpnlir", "Lirium Bullets and Knives");
   string sMenu3Axes = CnrRecipeAddSubMenu("cnranvilwpnlir", "Lirium Axes");
   string sMenu3Bladed = CnrRecipeAddSubMenu("cnranvilwpnlir", "Lirium Bladed");
-  string sMenu3Blunts = CnrRecipeAddSubMenu("cnranvirwpnond", "Lirium Blunts");
+  string sMenu3Blunts = CnrRecipeAddSubMenu("cnranvirwpnlir", "Lirium Blunts");
   string sMenu3Double = CnrRecipeAddSubMenu("cnranvilwpnlir", "Lirium Double-Sided");
   string sMenu3Polearms = CnrRecipeAddSubMenu("cnranvilwpnlir", "Lirium Polearms");
   string sMenu3Subs = CnrRecipeAddSubMenu("cnranvilwpnlir", "Lirium Components");

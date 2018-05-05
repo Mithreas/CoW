@@ -21,7 +21,7 @@ void main()
   /////////////////////////////////////////////////////////
   // Default CNR recipes made in cnrBakersOven
   /////////////////////////////////////////////////////////
-  CnrRecipeSetDeviceTradeskillType("cnrBakersOven", CNR_TRADESKILL_FOOD_CRAFTING);
+  CnrRecipeSetDeviceTradeskillType("cnrBakersOven", CNR_TRADESKILL_COOKING);
 
   string sMenuBakeBreads = CnrRecipeAddSubMenu("cnrBakersOven", "Breads");
   string sMenuBakePies = CnrRecipeAddSubMenu("cnrBakersOven", "Pies");

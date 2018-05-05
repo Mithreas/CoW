@@ -199,9 +199,17 @@ void main()
     SendMessageToAllDMs(gsCMReplaceString(GS_T_16777598, sPlayer, sCDKey, sName));
     WriteTimestampedLogEntry(gsCMReplaceString(GS_T_16777441, sPlayer, sCDKey, sIP, sName));
 
-    // Journal entries all added in m_enter.  But flash the button here.
+    // Journal entries and button flash.
     SetPanelButtonFlash(oEntering, PANEL_BUTTON_JOURNAL, FALSE);
 
+	AddJournalQuestEntry("intro",1,oEntering, FALSE);
+	AddJournalQuestEntry("city",1,oEntering, FALSE);
+	AddJournalQuestEntry("houses",1,oEntering, FALSE);
+	AddJournalQuestEntry("greatwar",1,oEntering, FALSE);
+	AddJournalQuestEntry("perenor",1,oEntering, FALSE);
+	AddJournalQuestEntry("magic",1,oEntering, FALSE);
+	AddJournalQuestEntry("alignment",1,oEntering, FALSE);
+	
     if (GetHitDice(oEntering) == 1)
     {
       if (GetLocalInt(oEntering, "GS_ENABLED"))

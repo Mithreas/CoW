@@ -31,7 +31,7 @@ void main()
 
   CnrRecipeSetDevicePreCraftingScript("cnrtinkersetting", "cnr_tinker_anim");
   CnrRecipeSetDeviceInventoryTool("cnrtinkersetting", "cnrTinkersTools", CNR_FLOAT_TINKERS_TOOLS_BREAKAGE_PERCENTAGE);
-  CnrRecipeSetDeviceTradeskillType("cnrtinkersetting", CNR_TRADESKILL_TINKERING);
+  CnrRecipeSetDeviceTradeskillType("cnrtinkersetting", CNR_TRADESKILL_EXPLOSIVES);
 
   /////////////////////Bands for gemsetting////////////////////////
 
@@ -73,37 +73,37 @@ void main()
 
   /////////////////////Broches for gemsetting////////////////////////
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTinkerBroches, "Elfur Broch", "intca_1bro", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTinkerBroches, "Elfur Broach", "intca_1bro", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotelf", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 2);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 20, 20);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 0, 50, 0, 50, 0, 0);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTinkerBroches, "Lirium Broch", "intca_2bro", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTinkerBroches, "Lirium Broach", "intca_2bro", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotlir", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 0, 50, 0, 50, 0, 0);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTinkerBroches, "Demon's Bane Broch", "intca_3bro", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTinkerBroches, "Demon's Bane Broach", "intca_3bro", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotdem", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 6);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 60, 60);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 0, 50, 0, 50, 0, 0);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTinkerBroches, "Iolum Broch", "intca_4bro", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTinkerBroches, "Iolum Broach", "intca_4bro", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotiol", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 8);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 80, 80);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 0, 50, 0, 50, 0, 0);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTinkerBroches, "Adanium Broch", "intca_5bro", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTinkerBroches, "Adanium Broach", "intca_5bro", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotada", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 10);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 100, 100);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 0, 50, 0, 50, 0, 0);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTinkerBroches, "Stallix Broch", "intca_6bro", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTinkerBroches, "Stallix Broach", "intca_6bro", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotsta", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 12);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 120, 120);

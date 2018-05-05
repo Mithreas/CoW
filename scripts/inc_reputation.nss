@@ -349,6 +349,8 @@ void GiveRepPoints(object oPC, int nAmount, int nFaction = 0, int bParty = 0)
 
   string sCurrentRank = GetPCFactionRank(oPC);
   SendMessageToPC(oPC, "Your current rank is "+sCurrentRank);
+  
+  // TODO - give higher ranking keys to PCs who achieve relevant ranks.
 }
 
 void GivePointsToFaction(int nAmount, int nFaction)

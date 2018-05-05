@@ -19,43 +19,36 @@ void InitIngotRecyclerMangled()
   sKeyToRecipe = CnrRecipeCreateRecipe("cnrIngotRecycler", "Copper Ingot", "cnrIngotCopp", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrMangledCopp", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 5, 5);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 20, 20, 20, 20, 20, 0);
 
   sKeyToRecipe = CnrRecipeCreateRecipe("cnrIngotRecycler", "Bronze Ingot", "cnrIngotBron", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrMangledBron", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 5, 5);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 20, 20, 20, 20, 20, 0);
 
   sKeyToRecipe = CnrRecipeCreateRecipe("cnrIngotRecycler", "Iron Ingot", "cnrIngotIron", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrMangledIron", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 5, 5);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 20, 20, 20, 20, 20, 0);
 
   sKeyToRecipe = CnrRecipeCreateRecipe("cnrIngotRecycler", "Platinum Ingot", "cnrIngotPlat", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrMangledPlat", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 5, 5);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 20, 20, 20, 20, 20, 0);
 
   sKeyToRecipe = CnrRecipeCreateRecipe("cnrIngotRecycler", "Adamantium Ingot", "cnrIngotAdam", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrMangledAdam", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 5, 5);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 20, 20, 20, 20, 20, 0);
 
   sKeyToRecipe = CnrRecipeCreateRecipe("cnrIngotRecycler", "Cobalt Ingot", "cnrIngotCoba", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrMangledCoba", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 5, 5);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 20, 20, 20, 20, 20, 0);
 
   sKeyToRecipe = CnrRecipeCreateRecipe("cnrIngotRecycler", "Mithril Ingot", "cnrIngotMith", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrMangledMith", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 5, 5);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 20, 20, 20, 20, 20, 0);
 
   CnrDecrementStackCount(OBJECT_SELF);
@@ -1214,8 +1207,8 @@ void main()
   /////////////////////////////////////////////////////////
   // CNR recipes made by cnrIngotRecycler
   /////////////////////////////////////////////////////////
+  // TODO: limit this to ingots only (no crafting skill requirements, no xp). 
   CnrRecipeSetDevicePreCraftingScript("cnrIngotRecycler", "cnr_recycle_anim");
-  CnrRecipeSetDeviceTradeskillType("cnrIngotRecycler", CNR_TRADESKILL_SMELTING);
 
   CnrIncrementStackCount(OBJECT_SELF);
   AssignCommand(OBJECT_SELF, InitIngotRecyclerMangled());

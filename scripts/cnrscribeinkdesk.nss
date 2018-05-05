@@ -26,7 +26,7 @@ void main()
 
   CnrRecipeSetDevicePreCraftingScript("cnrScribeInkDesk", "cnr_scribe_anim");
   //CnrRecipeSetDeviceInventoryTool("cnrScribeInkDesk", "");
-  CnrRecipeSetDeviceTradeskillType("cnrScribeInkDesk", CNR_TRADESKILL_SCRIBING);
+  CnrRecipeSetDeviceTradeskillType("cnrScribeInkDesk", CNR_TRADESKILL_INVESTING);
 
   //Lesser Inks (Used for Level 1 through Level 5 Scrolls)
 

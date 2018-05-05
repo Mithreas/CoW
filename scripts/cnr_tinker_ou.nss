@@ -28,7 +28,8 @@ void TestIfRecipesHaveBeenCollected(object oUser)
   }
   else
   {
-    ActionStartConversation(oUser, "", TRUE);
+    SetLocalString(OBJECT_SELF, "dialog", "zz_co_crafting");
+    ActionStartConversation(oUser, "zzdlg_conv", TRUE);
   }
 }
 

@@ -202,7 +202,7 @@ void main()
                         }
                         else
                         {
-                            gsXPApply(oPC, nXP);
+                            gsXPApply(oPC, 2 * nXP);
                         }
 
                         // Dunshine: handle the exploration XP pool here
@@ -260,32 +260,7 @@ void main()
           case 18:
             DelayCommand(0.5, miCADoDepartures());
             break;
-        }
-		
-        Trace(RESOURCE, "Assigning resources.");
-        // Clear the faction resource chests.
-        ClearAllFactionResourceChests();
-
-        // Determine who owns each area. Give them rep points and resources.
-        int iCount = 0;
-        object oWP = GetObjectByTag(RES_WP_TAG, iCount);
-
-        while (GetIsObjectValid(oWP))
-        {
-          int nOwner = GetOwningFaction(GetArea(oWP));
-          GivePointsToFaction(1, nOwner);
-          GiveResourcesToOwningFaction(oWP);
-
-          // Store the current owner.
-          SetPersistentString(OBJECT_INVALID,
-                              GetName(GetArea(oWP)),
-                              GetFactionName(nOwner),
-                              0,
-                              AREA_DB);
-
-          iCount++;
-          oWP = GetObjectByTag(RES_WP_TAG, iCount);
-        }		
+        }	
 		
 		// Dawn and dusk checks.
 		if (GetIsDusk())
@@ -333,6 +308,33 @@ void main()
 
       //::  Added by ActionReplay - Update Guild Ships every RL Minute for more frequent sea encounters.
       ar_UpdateShips();
+	  
+	  // Refill faction resource chests every minute. 
+		
+      Trace(RESOURCE, "Assigning resources.");
+      // Clear the faction resource chests.
+      ClearAllFactionResourceChests();
+
+      // Determine who owns each area. Give them rep points and resources.
+      int iCount = 0;
+      object oWP = GetObjectByTag(RES_WP_TAG, iCount);
+
+      while (GetIsObjectValid(oWP))
+      {
+        int nOwner = GetOwningFaction(GetArea(oWP));
+        GivePointsToFaction(1, nOwner);
+        GiveResourcesToOwningFaction(oWP);
+
+        // Store the current owner.
+        SetPersistentString(OBJECT_INVALID,
+                            GetName(GetArea(oWP)),
+                            GetFactionName(nOwner),
+                            0,
+                            AREA_DB);
+
+        iCount++;
+        oWP = GetObjectByTag(RES_WP_TAG, iCount);
+      }	
     }
 
     SetLocalInt(OBJECT_SELF, "MI_COUNT", nCount);

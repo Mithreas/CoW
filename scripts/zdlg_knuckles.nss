@@ -18,15 +18,13 @@ const string END = "end";
 void Init()
 {
   // Responses to greeting.
-  if (GetElementCount(MAIN_MENU) == 0)
+  DeleteList(MAIN_MENU);
+  AddStringElement("Why do you want bones?", MAIN_MENU);
+  AddStringElement("None, sorry.", MAIN_MENU);
+  if (GetItemPossessedBy(GetPcDlgSpeaker(), "NW_IT_MSMLMISC13") != OBJECT_INVALID)
   {
-    AddStringElement("Why do you want bones?", MAIN_MENU);
-    AddStringElement("None, sorry.", MAIN_MENU);
-	if (GetItemPossessedBy(GetPcDlgSpeaker(), "NW_IT_MSMLMISC13") != OBJECT_INVALID)
-	{
-      AddStringElement("Yes, I have some. Here you are!", MAIN_MENU);
-	}  
-  }
+    AddStringElement("Yes, I have some. Here you are!", MAIN_MENU);
+  }  
 
   // Responses to being told why he wants them.
   if (GetElementCount(PAGE_2) == 0)
@@ -39,7 +37,6 @@ void Init()
   {
     AddStringElement("Oh, I see... Goodbye...", PAGE_4);
   }
-
 
   // End of conversation
   if (GetElementCount(END) == 0)

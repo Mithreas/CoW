@@ -23,7 +23,7 @@ void main()
   string sMenu5Ammo = CnrRecipeAddSubMenu("cnranvilwpniol", "Iolum Bullets and Knives");
   string sMenu5Axes = CnrRecipeAddSubMenu("cnranvilwpniol", "Iolum Axes");
   string sMenu5Bladed = CnrRecipeAddSubMenu("cnranvilwpniol", "Iolum Bladed");
-  string sMenu5Blunts = CnrRecipeAddSubMenu("cnranvirwpnond", "Iolum Blunts");
+  string sMenu5Blunts = CnrRecipeAddSubMenu("cnranvirwpniol", "Iolum Blunts");
   string sMenu5Double = CnrRecipeAddSubMenu("cnranvilwpniol", "Iolum Double-Sided");
   string sMenu5Polearms = CnrRecipeAddSubMenu("cnranvilwpniol", "Iolum Polearms");
   string sMenu5Subs = CnrRecipeAddSubMenu("cnranvilwpniol", "Iolum Components");

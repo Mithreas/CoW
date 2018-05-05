@@ -12,11 +12,11 @@
 # - installing MariaDB (MySQL): apt-get -y install mariadb-server mariadb-client
 # - configuring the database as follows
 #   - mysql
-#   - create user 'nwn'@'localhost' identified by 'C10udyP4$$w0rd'; [same PW below]
-#   - create database nwn;
-#   - grant all privileges on nwn.* to 'nwn'@'localhost'
+#   - create user 'YOUR_DB_USER'@'localhost' identified by 'YOUR_DB_PASSWORD'; [same PW below]
+#   - create database YOUR_DB;
+#   - grant all privileges on YOUR_DB.* to 'YOUR_DB_USER'@'localhost'
 #   - \q
-#   - mysql nwn < schema_mysql.sql
+#   - mysql YOUR_DB < schema_mysql.sql
 # - installing ruby/rubygems: apt-get install ruby
 # - installing the NWN library for ruby: gem install nwn-lib (may take a while)
 # NOTE: need to get this working within the container!
@@ -28,20 +28,20 @@
 #   - apt-get install php php-mbstring php-xml php-mysql(for running PHP enabled websites)
 #
 cd /nwn/server
-sudo docker stop CoWTest
-sudo docker rm CoWTest
+sudo docker stop DockerNWNTest
+sudo docker rm DockerNWNTest
 sudo docker run --restart unless-stopped -dit \
     --net host -e NWN_PORT=5121 \
-    --name CoWTest \
+    --name DockerNWNTest \
     -v $(pwd):/nwn/home \
-    -e NWN_MODULE='City of Winds' \
+    -e NWN_MODULE='YOUR_MODULE_NAME' \
     -e NWN_PUBLICSERVER=1 \
-    -e NWN_SERVERNAME='City of Winds Test' \
-    -e NWN_PLAYERPASSWORD='T3st925#' \
-    -e NWN_DMPASSWORD='DMT3st925#' \
+    -e NWN_SERVERNAME='YOUR_SERVERNAME' \
+    -e NWN_PLAYERPASSWORD='YOUR_PLAYER_PASS' \
+    -e NWN_DMPASSWORD='YOUR_DM_PASS' \
     -e NWN_ELC=0 \
     -e NWN_ILR=0 \
-    -e NWN_MAXLEVEL=15 \
+    -e NWN_MAXLEVEL=40 \
     -e NWN_GAMETYPE=10 \
     -e NWN_PAUSEANDPLAY=0 \
     -e NWNX_ADMINISTRATION_SKIP=n \
@@ -60,11 +60,9 @@ sudo docker run --restart unless-stopped -dit \
     -e NWNX_TRACKING_SKIP=n \
     -e NWNX_SQL_TYPE=mysql \
     -e NWNX_SQL_HOST=127.0.0.1 \
-    -e NWNX_SQL_USERNAME=nwn \
-    -e NWNX_SQL_PASSWORD='C10udyP4$$w0rd' \
-    -e NWNX_SQL_DATABASE=nwn \
+    -e NWNX_SQL_USERNAME=YOUR_DB_USER \
+    -e NWNX_SQL_PASSWORD='YOUR_DB_PASSWORD' \
+    -e NWNX_SQL_DATABASE=YOUR_DB \
     -e NWNX_SQL_QUERY_METRICS=true \
-    -e NWNX_RUBY_PRELOAD_SCRIPT=/nwn/home/hak/ruby/extern.rb \
-    -e NWNX_RUBY_EVALUATE_METRICS=true \
     -e NWNX_CORE_LOG_LEVEL=7 \
     nwnxee/nwserver:8166

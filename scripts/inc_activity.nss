@@ -143,7 +143,11 @@ void GiveResearchInformation(object oPC)
 		!bLore10)
 	{
 	  // PC has enough lore to read this article.
-	  object oNote = CreateItemOnObject(TEMPLATE_NOTE, oPC, 1, "research_note_" + sPage);
+	  object oNote = CreateItemOnObject(TEMPLATE_NOTE, oPC);
+	  
+	  // Prevent stacking.
+      SetLocalInt(oNote, "_" + "research_note_" + sPage, 1);
+	  
 	  SetName(oNote, sPageTitle);
 	  SetDescription(oNote, sPageContent);
 	  

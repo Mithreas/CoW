@@ -1,13 +1,11 @@
 #include "inc_common"
 #include "inc_craft"
 #include "inc_iprop"
-#include "inc_language"
 #include "inc_text"
 #include "inc_worship"
 #include "inc_xp"
 
 const int GS_LIMIT_COST = 10000;
-
 
 int GetIsEnchantable(object oItem)
 {
@@ -33,12 +31,7 @@ int StartingConditional()
         int nSubTypeID  = GetLocalInt(OBJECT_SELF, "GS_SUBTYPE_ID");
         int nCostID     = GetLocalInt(OBJECT_SELF, "GS_COST_ID");
         int nParamID    = GetLocalInt(OBJECT_SELF, "GS_PARAM_ID");
-
-        //::   Disable Appraise enchanting for now
-        if ( nPropertyID == 52 && nSubTypeID == 20 ) {
-            SendMessageToPC(GetPCSpeaker(), "Huh... Something is amiss with the Basin.");
-            return FALSE;
-        }
+        int bStaticLevel = GetLocalInt(GetModule(), "STATIC_LEVEL");
 
         itemproperty ipProperty = gsIPGetItemProperty(nPropertyID, nSubTypeID, nCostID, nParamID);
         int bMundane = gsIPGetIsMundaneProperty(ipProperty);
@@ -50,17 +43,33 @@ int StartingConditional()
             int nCost       = nDM ? 0 : gsIPGetCost(oItem, ipProperty);
             int nBaseCost   = nCost;
 
-            if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_ENCHANTMENT, oSpeaker))
+            if (bStaticLevel)
             {
-             nCost = FloatToInt(IntToFloat(nCost) * 0.65); // 35% discount
+              if (gsCMGetItemValue(oItem) + nBaseCost - gsCRGetMaterialBaseValue(oItem) > GS_CR_FL_MAX_ITEM_VALUE)
+              {
+                // Max item value reached.
+                SetCustomToken(100, "This item is too powerful to enchant.");
+                return TRUE;
+              }
+
+              nCost = FloatToInt(IntToFloat(nCost) * gsCRGetCraftingCostMultiplier(oSpeaker, oItem, ipProperty));
             }
-            else if (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_ENCHANTMENT, oSpeaker))
+            else
             {
-              nCost = FloatToInt(IntToFloat(nCost) * 0.80); // 20% discount
-            }
-            else if (GetHasFeat(FEAT_SPELL_FOCUS_ENCHANTMENT, oSpeaker))
-            {
-              nCost = FloatToInt(IntToFloat(nCost) * 0.90); // 10% discount
+              // Addition by Mithreas. Enchanters are better at enchanting. --[
+              if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_ENCHANTMENT, oSpeaker))
+              {
+                nCost = FloatToInt(IntToFloat(nCost) * 0.65); // 35% discount
+              }
+              else if (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_ENCHANTMENT, oSpeaker))
+              {
+                nCost = FloatToInt(IntToFloat(nCost) * 0.80); // 20% discount
+              }
+              else if (GetHasFeat(FEAT_SPELL_FOCUS_ENCHANTMENT, oSpeaker))
+              {
+                nCost = FloatToInt(IntToFloat(nCost) * 0.90); // 10% discount
+              }
+              // ]-- End addition.
             }
 
             if (! nDM && nCost > GetGold(oSpeaker))
@@ -95,55 +104,10 @@ int StartingConditional()
                         TakeGoldFromCreature(nCost, oSpeaker, TRUE);
                     }
 
-                    if (nImpossible && GetXP(oSpeaker) < nCost/10)
+                    if (!bStaticLevel && GetXP(oSpeaker) < nCost/10)
                     {
                       SetCustomToken(100, "You don't have enough XP.");
                       return TRUE;
-                    }
-
-                    int runic = GetLocalInt(oItem, "RUNIC");
-
-                    if (runic)
-                    {
-                      int permittedRace = GetLocalInt(oItem, "RUNIC_TYPE");
-                      int runicLang = GetLocalInt(oItem, "RUNIC_LANGUAGE") - 1;
-                      int runicLang2 = -1;
-                      int actualRace = GetRacialType(oSpeaker);
-                      if(runicLang == -1)
-                      {
-                        if(permittedRace == RACIAL_TYPE_DWARF)
-                            runicLang = GS_LA_LANGUAGE_DWARVEN;
-                        else if(permittedRace == RACIAL_TYPE_ELF)
-                          runicLang = GS_LA_LANGUAGE_ELVEN;
-
-                      }
-                      if(runicLang == GS_LA_LANGUAGE_ELVEN)
-                        runicLang2 = GS_LA_LANGUAGE_XANALRESS;
-                      else if(runicLang == GS_LA_LANGUAGE_XANALRESS)
-                        runicLang2 = GS_LA_LANGUAGE_ELVEN;
-
-                      object oHide = gsPCGetCreatureHide(oSpeaker);
-                                                            // 2 has been used to mean all races
-                      if (permittedRace == RACIAL_TYPE_ALL || permittedRace == 2 || runicLang == GS_LA_LANGUAGE_COMMON || (runicLang != -1 && GetLocalInt(oHide, "GS_LA_LANGUAGE_"+IntToString(runicLang))) || (runicLang2 != -1 && GetLocalInt(oHide, "GS_LA_LANGUAGE_"+IntToString(runicLang2))))
-                      {
-                        int extraChance = 0;
-
-                        if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_ENCHANTMENT, oSpeaker))
-                        {
-                          extraChance = 100;
-                        }
-                        else if (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_ENCHANTMENT, oSpeaker))
-                        {
-                          extraChance = 66;
-                        }
-                        else if (GetHasFeat(FEAT_SPELL_FOCUS_ENCHANTMENT, oSpeaker))
-                        {
-                          extraChance = 33;
-                        }
-
-                        // This might bring the chance of failure below 0, but that's fine, the code below will cope with it.
-                        nChance -= extraChance;
-                      }
                     }
 
                     if (Random(100) < nChance)
@@ -151,37 +115,26 @@ int StartingConditional()
                         // divine invervention
                         string sDeity = GetDeity(oSpeaker);
                         int nAspect = ASPECT_MAGIC;
+                        if (bStaticLevel && bMundane) nAspect = ASPECT_KNOWLEDGE_INVENTION;
 
                         if (!nImpossible &&
                             gsWOGetDeityAspect(oSpeaker) & nAspect &&
                             d2() == 2 &&
                             gsWOGrantBoon(oSpeaker) )
                         {
-                            SendMessageToPC(oSpeaker,sDeity + " augments your skill and grants you success.");
+                          FloatingTextStringOnCreature(sDeity + " augments your skill and grants you success.", oSpeaker);
                         }
                         else
                         {
                           nCost   /= 10;
-                          int xpLoss = nImpossible ? nCost : 0;
-                          SetCustomToken(100, gsCMReplaceString(GS_T_16777239, IntToString(xpLoss)));
+                          SetCustomToken(100, gsCMReplaceString(GS_T_16777239, bStaticLevel ? "0" : IntToString(nCost)));
                           DestroyObject(oItem);
-                          if (xpLoss) gsXPGiveExperience(oSpeaker, -xpLoss);
+                          if (!bStaticLevel) gsXPGiveExperience(oSpeaker, -nCost);
                           ApplyEffectToObject(DURATION_TYPE_INSTANT,
                                               EffectVisualEffect(VFX_IMP_DEATH),
                                               OBJECT_SELF);
                           return TRUE;
                         }
-                    }
-
-                    if (runic)
-                    {
-                      DeleteLocalInt(oItem, "RUNIC");
-                      DeleteLocalInt(oItem, "RUNIC_TYPE");
-                      DeleteLocalInt(oItem, "RUNIC_LANGUAGE");
-                      // Remove the name color.
-                      string name = GetName(oItem);
-                      name = GetSubString(name, 6, GetStringLength(name) - 10);
-                      SetName(oItem, name);
                     }
                 }
 
@@ -204,3 +157,4 @@ int StartingConditional()
 
     return FALSE;
 }
+

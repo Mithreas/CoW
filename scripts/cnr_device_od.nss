@@ -15,5 +15,7 @@
 /////////////////////////////////////////////////////////
 void main()
 {
-  SetLocalInt(OBJECT_SELF, "bCnrDisturbed", TRUE);
+  // We only want to start crafting if the PC added stuff. 
+  if (GetInventoryDisturbType() == INVENTORY_DISTURB_TYPE_ADDED)
+    SetLocalInt(OBJECT_SELF, "bCnrDisturbed", TRUE);
 }

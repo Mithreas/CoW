@@ -31,6 +31,7 @@ void main()
   // can be dug with a shovel to provide an item.
   CnrShoveledDepositInitialize("cnrdepositclay", "cnrlumpofclay");
   CnrShoveledDepositInitialize("cnrdepositsand", "cnrbagofsand");
+  CnrShoveledDepositInitialize("cnrdepositsulphu", "sulphur");
 
   // This section (new to V3.00) allows for easy setup of mineral deposits that
   // can be excavated with a chisel to provide an item.

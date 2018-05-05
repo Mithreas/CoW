@@ -29,7 +29,7 @@ void main()
 
   //CnrRecipeSetDevicePreCraftingScript("cnrTinkerToolbox", "cnr_tinker_anim");
   CnrRecipeSetDeviceInventoryTool("cnrtinkertoolbox", "cnrTinkersTools", CNR_FLOAT_TINKERS_TOOLS_BREAKAGE_PERCENTAGE);
-  CnrRecipeSetDeviceTradeskillType("cnrtinkertoolbox", CNR_TRADESKILL_TINKERING);
+  CnrRecipeSetDeviceTradeskillType("cnrtinkertoolbox", CNR_TRADESKILL_EXPLOSIVES);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTinkerTools, "Shovel", "cnrShovel", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrIngotIron", 2);

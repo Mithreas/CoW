@@ -9,6 +9,7 @@
 #include "inc_sumstream"
 #include "inc_log"
 #include "inc_favsoul"
+#include "inc_rogue"
 #include "inc_warlock"
 #include "nwnx_creature"
 #include "nwnx_object"
@@ -426,19 +427,15 @@ void miCLApplyClassChanges(object oPC)
           AddAssassinFeats(oPC);
           break;
       }
-      // case CLASS_TYPE_DIVINECHAMPION:
-      // {
-      //  int nCOTLevel = GetLevelByClass(CLASS_TYPE_DIVINECHAMPION, oPC);
-      //  if (nCOTLevel >= 6)
-      //      _addFeatIfNotKnown(294, oPC); // Turn Undead
-      //  if (nCOTLevel >= 8)
-      //      _addFeatIfNotKnown(414, oPC); // Divine Shield
-      //  if (nCOTLevel >= 10)
-      //      _addFeatIfNotKnown(413, oPC); // Divine Might
-        // Run script for de-leveling removal
-      //  UpdateLevelBonuses(oPC, CLASS_TYPE_DIVINECHAMPION, "cot_turn");
-      //  break;
-      // }
+      case CLASS_TYPE_ROGUE:
+      {
+          RogueBonusHP(oPC, TRUE);
+          RogueSkillBonus(oPC);
+          RogueFeatBonus(oPC);
+          RogueUpdateLightArmorAC(oPC);
+          break;
+      }
+	  
       default:
         break;
     }
@@ -569,9 +566,8 @@ void miCLApplyPathChanges(object oPC, int bReapplySpecialAbilities, int bUpdateN
    }
 
    // Bat totem
-   if (nTotem == 9) {
-     // here's a silly work-around to prevent compiler crash maybe
-     if ((bReapplySpecialAbilities) || (1 == 1))
+   if (nTotem == 8) {
+     if (bReapplySpecialAbilities)
        AddItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyCastSpell(IP_CONST_CASTSPELL_AMPLIFY_5, IP_CONST_CASTSPELL_NUMUSES_5_USES_PER_DAY), oAbility);
    }
  

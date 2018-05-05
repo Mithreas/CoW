@@ -17,15 +17,13 @@ const string END = "end";
 void Init()
 {
   // Responses to greeting.
-  if (GetElementCount(MAIN_MENU) == 0)
+  DeleteList(MAIN_MENU);
+  AddStringElement("None, sorry.", MAIN_MENU);
+  AddStringElement("Why do you want bat skins?", MAIN_MENU);
+  if (GetItemPossessedBy(GetPcDlgSpeaker(), "cnrSkinBat") != OBJECT_INVALID) 
   {
-    AddStringElement("None, sorry.", MAIN_MENU);
-    AddStringElement("Why do you want bat skins?", MAIN_MENU);
-    if (GetItemPossessedBy(GetPcDlgSpeaker(), "cnrSkinBat") != OBJECT_INVALID) 
-	{
-      AddStringElement("Yes, I have some. Here you are!", MAIN_MENU);
-	}  
-  }
+    AddStringElement("Yes, I have some. Here you are!", MAIN_MENU);
+  }  
 
   // Responses to being told why she wants them.
   if (GetElementCount(PAGE_2) == 0)

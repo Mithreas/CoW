@@ -39,17 +39,16 @@ void main()
   SetLocalInt(oModule, "CnrTradeXPLevel19", 38400);
   SetLocalInt(oModule, "CnrTradeXPLevel20", 43000);
 
-  CnrAddTradeskill(CNR_TRADESKILL_SMELTING, "Smelting");
+  CnrAddTradeskill(CNR_TRADESKILL_COOKING, "Cooking");
   CnrAddTradeskill(CNR_TRADESKILL_WEAPON_CRAFTING, "Weapon Crafting");
   CnrAddTradeskill(CNR_TRADESKILL_ARMOR_CRAFTING, "Armor Crafting");
-  CnrAddTradeskill(CNR_TRADESKILL_ALCHEMY, "Alchemy");
-  CnrAddTradeskill(CNR_TRADESKILL_SCRIBING, "Scribing");
-  CnrAddTradeskill(CNR_TRADESKILL_TINKERING, "Tinkering");
-  CnrAddTradeskill(CNR_TRADESKILL_WOOD_CRAFTING, "Wood Crafting"); // includes BOWERING, FLETCHING, CARPENTRY
-  CnrAddTradeskill(CNR_TRADESKILL_ENCHANTING, "Enchanting");   // includes IMBUING
-  CnrAddTradeskill(CNR_TRADESKILL_GEM_CRAFTING, "Gem Crafting");
+  CnrAddTradeskill(CNR_TRADESKILL_EXPLOSIVES, "Explosives");
+  CnrAddTradeskill(CNR_TRADESKILL_INVESTING, "Investing");
+  CnrAddTradeskill(CNR_TRADESKILL_IMBUING, "Imbuing");
+  CnrAddTradeskill(CNR_TRADESKILL_WOOD_CRAFTING, "Carpentry");
+  CnrAddTradeskill(CNR_TRADESKILL_ENCHANTING, "Enchanting"); 
+  CnrAddTradeskill(CNR_TRADESKILL_JEWELRY, "Jewelry");
   CnrAddTradeskill(CNR_TRADESKILL_TAILORING, "Tailoring");
-  CnrAddTradeskill(CNR_TRADESKILL_FOOD_CRAFTING, "Food Crafting");
 
   // Module builders: You should add your trade skills to the
   // file "user_trade_init" so that future versions of

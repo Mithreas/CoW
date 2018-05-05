@@ -53,7 +53,7 @@ void main()
 
   CnrRecipeSetDevicePreCraftingScript("cnrEnchantPool", "cnr_enchant_anim");
   //CnrRecipeSetDeviceInventoryTool("cnrEnchantPool", "cnrXXX");
-  CnrRecipeSetDeviceTradeskillType("cnrEnchantPool", CNR_TRADESKILL_ENCHANTING);
+  CnrRecipeSetDeviceTradeskillType("cnrEnchantPool", CNR_TRADESKILL_IMBUING);
 
   /////////////////////////////////////////////////////////
   //  CNR Crafting Device "cnrEnchantPool"

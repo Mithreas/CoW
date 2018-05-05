@@ -34,18 +34,17 @@ float cnr_d100(int nDice)
 // you should add a unique ID for it here. ID's in the
 // range of 0 thru 99 are reserved for future updates to
 // CNR. Builders should assign ID's starting at 101.
-int CNR_TRADESKILL_NONE = 0;
-int CNR_TRADESKILL_SMELTING = 1;
-int CNR_TRADESKILL_WEAPON_CRAFTING = 2;
-int CNR_TRADESKILL_ARMOR_CRAFTING = 3;
-int CNR_TRADESKILL_ALCHEMY = 4;
-int CNR_TRADESKILL_SCRIBING = 5;
-int CNR_TRADESKILL_TINKERING = 6;
-int CNR_TRADESKILL_WOOD_CRAFTING = 7; // includes BOWERING, FLETCHING, CARPENTRY
-int CNR_TRADESKILL_ENCHANTING = 8;    // includes IMBUING
-int CNR_TRADESKILL_GEM_CRAFTING = 9;
-int CNR_TRADESKILL_TAILORING = 10;
-int CNR_TRADESKILL_FOOD_CRAFTING = 11;
+const int CNR_TRADESKILL_NONE            = 0;
+const int CNR_TRADESKILL_COOKING         = 1;
+const int CNR_TRADESKILL_WEAPON_CRAFTING = 2;
+const int CNR_TRADESKILL_ARMOR_CRAFTING  = 3;
+const int CNR_TRADESKILL_EXPLOSIVES      = 4;
+const int CNR_TRADESKILL_INVESTING       = 5;
+const int CNR_TRADESKILL_IMBUING         = 6;
+const int CNR_TRADESKILL_WOOD_CRAFTING   = 7;
+const int CNR_TRADESKILL_ENCHANTING      = 8;
+const int CNR_TRADESKILL_JEWELRY         = 9;
+const int CNR_TRADESKILL_TAILORING       = 10;
 
 // Define your tradeskills here starting at 101. Also define
 // the display text for you tradeskills per instructions in
@@ -104,7 +103,7 @@ float CNR_FLOAT_DEFAULT_PLANT_RESPAWN_TIME_SECS = 300.0; // 5 mins real time
 int CNR_BOOL_RESPAWN_PLANTS_NOT_FRUIT = FALSE;
 
 // game XP (not trade XP) awarded on recipe success
-int CNR_BOOL_GAME_XP_SCALAR_ENABLED = FALSE;
+int CNR_BOOL_GAME_XP_SCALAR_ENABLED = TRUE;
 float CNR_FLOAT_GAME_XP_SCALAR = 0.2 * GetLocalFloat(GetModule(), "XP_RATIO");
 
 // To enable the crafting of HCR items, set this flag to TRUE.

@@ -1243,14 +1243,6 @@ void Init()
   object oPC  = GetPCSpeaker();
   object oNPC = OBJECT_SELF;
 
-  int nStaticLevel        = GetLocalInt(GetModule(), "STATIC_LEVEL");
-
-  if (GetHitDice(oPC) < nStaticLevel)
-  {
-    SendMessageToPC(oPC, "Please level up before training.");
-    return;
-  }
-
   int nPCLevel = GetLocalInt(gsPCGetCreatureHide(oPC), "FL_LEVEL") + 1;
 
   float fPCLevel = IntToFloat(GetLocalInt(gsPCGetCreatureHide(oPC), "FL_LEVEL"));
@@ -1322,7 +1314,7 @@ void Init()
 
   fPCLevel += fCurrentECL;
   if (fPCLevel < 1.0f) fPCLevel = 1.0f;
-  int nGoldCost = FloatToInt(fPCLevel * 1000.0f) - 5000;
+  int nGoldCost = FloatToInt(fPCLevel * 500.0f);
 
   SetLocalFloat(oPC, CURR_LVL, fPCLevel);
   SetLocalInt(oPC, CURR_COST, nGoldCost);
@@ -1340,13 +1332,13 @@ void PageInit()
   int nSystemLevel = GetLocalInt(gsPCGetCreatureHide(oPC), "FL_LEVEL");
   int nGold = GetLocalInt(oPC, CURR_COST);
 
-  int nStaticLevel        = GetLocalInt(GetModule(), "STATIC_LEVEL");
+  //int nStaticLevel        = GetLocalInt(GetModule(), "STATIC_LEVEL");
 
-  if (GetHitDice(oPC) < nStaticLevel)
-  {
-    SetDlgPrompt("Please level up before training.");
-    return;
-  }
+  //if (GetHitDice(oPC) < nStaticLevel)
+  //{
+  //  SetDlgPrompt("Please level up before training.");
+  //  return;
+  //}
 
   if(sPage == LIST_SKILLS || sPage == "" && GetLocalInt(gsPCGetCreatureHide(oPC), "T_UNCON_SKILL"))
   {

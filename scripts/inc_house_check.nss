@@ -7,6 +7,8 @@ int isErenia(object oPC);
 int isRenerrin(object oPC);
 // Returns TRUE if PC is an Imperial
 int isImperial(object oPC);
+// Returns TRUE if the PC has no faction assigned.
+int isUnaligned(object oPC);
 
 int isDrannis(object oPC)
 {
@@ -31,4 +33,9 @@ int isImperial(object oPC)
 int isShadow(object oPC)
 {
     return (GetSubRace(oPC) == "Shadow");
+}
+
+int isUnaligned(object oPC)
+{
+    return (GetSubRace(oPC) == "");
 }

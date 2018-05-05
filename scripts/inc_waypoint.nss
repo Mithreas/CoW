@@ -32,10 +32,41 @@ void gsWPWalkWaypoint()
     {
         oWaypoint = GetWaypointByTag("GS_WP_DPOST_" + sTag);
     }
-
+	
+	//----------------------------------------------------------------------
+	// NPCs crossing multiple areas behave oddly.  They will initially
+	// walk to the *position* of their final waypoint in the *first* area
+	// they transition to.  After that, they will then walk on to the next 
+	// area correctly.  However, if the position they are trying to get to
+	// is not walkable, they may never reach their final destination.
+	//----------------------------------------------------------------------
     if (GetIsObjectValid(oWaypoint))
     {
-        ActionForceMoveToLocation(GetLocation(oWaypoint));
+	/*
+	    // NPCs seem to need some help using doors. 
+	    // Check whether the waypoint is in an area connected to this
+	    // location by a door.  If so, get the NPC through the door.
+	    if (GetArea(oWaypoint) != GetArea(OBJECT_SELF))
+	    {
+	        object oDoor = GetNearestObject(OBJECT_TYPE_DOOR);
+	        int nNth = 1;
+	  
+	        while (GetIsObjectValid(oDoor))
+	        {
+	            if (GetLocation(GetTransitionTarget(oDoor)) == GetLocation(oWaypoint))
+		        {
+		            ActionForceMoveToLocation(GetLocation(oWaypoint));
+		            ActionJumpToObject(GetTransitionTarget(oDoor));
+			        // Then queue the normal move actions. 
+		            break;
+		        }
+			
+	            oDoor = GetNearestObject(OBJECT_TYPE_DOOR, OBJECT_SELF, ++nNth);
+	        }		
+	    }
+		*/
+		
+		ActionForceMoveToLocation(GetLocation(oWaypoint));
         ActionDoCommand(SetFacing(GetFacing(oWaypoint)));
         return;
     }
@@ -92,7 +123,7 @@ int gsWPIsPosted(object oCreature = OBJECT_SELF)
     // a daypost, or it's daytime and we have a daypost, return true.
     if ( ( (GetIsNight() || GetIsDusk()) &&
              (  GetIsObjectValid(GetWaypointByTag("GS_WP_NPOST_" + sTag)) ||
-                (  !GetIsObjectValid(GetWaypointByTag("GS_WP_DWALK_" + sTag + "_01")) &&
+                (  !GetIsObjectValid(GetWaypointByTag("GS_WP_NWALK_" + sTag + "_01")) &&
                    GetIsObjectValid(GetWaypointByTag("GS_WP_DPOST_" + sTag))
                 )
              )

@@ -28,7 +28,7 @@ void main()
 
   CnrRecipeSetDevicePreCraftingScript("cnrScribeGreater", "cnr_scribe_anim");
   //CnrRecipeSetDeviceInventoryTool("cnrScribeGreater", "");
-  CnrRecipeSetDeviceTradeskillType("cnrScribeGreater", CNR_TRADESKILL_SCRIBING);
+  CnrRecipeSetDeviceTradeskillType("cnrScribeGreater", CNR_TRADESKILL_INVESTING);
 
 //Level 11 Scrolls
 

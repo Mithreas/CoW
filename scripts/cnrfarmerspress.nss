@@ -21,7 +21,7 @@ void main()
   /////////////////////////////////////////////////////////
   // Default CNR recipes made in cnrFarmersPress
   /////////////////////////////////////////////////////////
-  CnrRecipeSetDeviceTradeskillType("cnrFarmersPress", CNR_TRADESKILL_FOOD_CRAFTING);
+  CnrRecipeSetDeviceTradeskillType("cnrFarmersPress", CNR_TRADESKILL_COOKING);
 
   string sMenuPressOils = CnrRecipeAddSubMenu("cnrFarmersPress", "Oils");
   string sMenuPressJuices = CnrRecipeAddSubMenu("cnrFarmersPress", "Juices");

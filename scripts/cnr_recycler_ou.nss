@@ -96,11 +96,6 @@ void TestIfRecipesHaveBeenInitialized(object oUser)
   {
     // Note: A placeable will receive events in the following order...
     // OnOpen, OnUsed, OnDisturbed, OnClose, OnUsed.
-    if (GetLocalInt(OBJECT_SELF, "bCnrDisturbed") != TRUE)
-    {
-      // Skip if the contents have not been altered.
-      return;
-    }
 
     SetLocalInt(OBJECT_SELF, "bCnrDisturbed", FALSE);
 

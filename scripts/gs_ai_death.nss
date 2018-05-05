@@ -23,11 +23,15 @@
 #include "inc_stacking"
 
 const string GS_TEMPLATE_CORPSE  = "gs_placeable016";
-const string GS_BOSS_HEAD_MEGA   = "gs_item393";
-const string GS_BOSS_HEAD_HIGH   = "gs_item386";
-const string GS_BOSS_HEAD_MEDIUM = "gs_item390";
-const string GS_BOSS_HEAD_LOW    = "gs_item391";
-const string GS_BOSS_HEAD_MINI   = "gs_item392";
+const string GS_BOSS_HEAD_MEGA   = "monst_head_mega";
+const string GS_BOSS_HEAD_HIGH   = "monst_head_high";
+const string GS_BOSS_HEAD_MEDIUM = "monst_head_med";
+const string GS_BOSS_HEAD_LOW    = "monst_head_low";
+const string GS_BOSS_HEAD_MINI   = "monst_head_mini";
+// Use the humanoid head appearance for player races.
+const string GS_BOSS_HEAD_HHIGH  = "hum_head_high";
+const string GS_BOSS_HEAD_HMED   = "hum_head_med";
+const string GS_BOSS_HEAD_HLOW   = "hum_head_low";
 const int GS_TIMEOUT             = 21600; //6 hours
 const int GS_LIMIT_VALUE         = 10000;
 
@@ -143,22 +147,23 @@ void main()
   int bHasLoot   = TRUE; //GetAbilityScore(oSelf, ABILITY_INTELLIGENCE) >= 6;
 
   // Log NPC death if they're not hostile.
-  if (GetIsPC(oKiller))
+  if (GetIsPC(oKiller) || GetIsPC(GetMaster(oKiller)))
   {
+    object oResponsiblePC = (GetIsObjectValid(GetMaster(oKiller)) ? GetMaster(oKiller) : oKiller);
     object oPC = GetFirstPC();
-    while (GetIsObjectValid(oPC) && (GetIsDM(oPC) || oPC == oKiller)) oPC = GetNextPC();
+    while (GetIsObjectValid(oPC) && (GetIsDM(oPC) || oPC == oResponsiblePC)) oPC = GetNextPC();
     if (!GetIsReactionTypeHostile(oSelf, oPC))
     {
-      SendMessageToAllDMs(GetName(oKiller) + " just killed " + GetName(oSelf) +
+      SendMessageToAllDMs(GetName(oResponsiblePC) + " just killed " + GetName(oSelf) +
        " in " + GetName(GetArea(oSelf)));
-      Log("DEATH", GetName(oKiller) + " just killed " + GetName(oSelf) +
+      Log("DEATH", GetName(oResponsiblePC) + " just killed " + GetName(oSelf) +
        " in " + GetName(GetArea(oSelf)));
     }
 	
 	// Random quests hook - have we completed an assassin mission?
-	if (GetIsPlayerActive(oKiller, GetTag(oSelf)))
+	if (GetIsPlayerActive(oResponsiblePC, GetTag(oSelf)))
 	{
-	  PlayerNoLongerActive(oKiller, GetTag(oSelf));
+	  PlayerNoLongerActive(oResponsiblePC, GetTag(oSelf));
 	}
   }
 
@@ -269,13 +274,28 @@ void main()
         if (isBoss)
         {
           string sTemplate       = "";
-
-          if (fChallengeRating >= 20.0)      sTemplate = GS_BOSS_HEAD_MEGA;
-          else if (fChallengeRating >= 15.0) sTemplate = GS_BOSS_HEAD_HIGH;
-          else if (fChallengeRating >= 10.0) sTemplate = GS_BOSS_HEAD_MEDIUM;
-          else if (fChallengeRating >= 5.0)  sTemplate = GS_BOSS_HEAD_LOW;
-          else                               sTemplate = GS_BOSS_HEAD_MINI;
-
+		  
+		  if (GetRacialType(OBJECT_SELF) == RACIAL_TYPE_HUMAN ||
+		      GetRacialType(OBJECT_SELF) == RACIAL_TYPE_HALFLING ||
+		      GetRacialType(OBJECT_SELF) == RACIAL_TYPE_GNOME ||
+		      GetRacialType(OBJECT_SELF) == RACIAL_TYPE_ELF ||
+		      GetRacialType(OBJECT_SELF) == RACIAL_TYPE_DWARF ||
+		      GetRacialType(OBJECT_SELF) == RACIAL_TYPE_HALFELF ||
+		      GetRacialType(OBJECT_SELF) == RACIAL_TYPE_HALFORC)
+		  {
+            if (fChallengeRating >= 15.0)      sTemplate = GS_BOSS_HEAD_HHIGH;
+            else if (fChallengeRating >= 10.0) sTemplate = GS_BOSS_HEAD_HMED;
+            else                               sTemplate = GS_BOSS_HEAD_HLOW;       
+		  }
+		  else
+          {		  
+            if (fChallengeRating >= 20.0)      sTemplate = GS_BOSS_HEAD_MEGA;
+            else if (fChallengeRating >= 15.0) sTemplate = GS_BOSS_HEAD_HIGH;
+            else if (fChallengeRating >= 10.0) sTemplate = GS_BOSS_HEAD_MEDIUM;
+            else if (fChallengeRating >= 5.0)  sTemplate = GS_BOSS_HEAD_LOW;
+            else                               sTemplate = GS_BOSS_HEAD_MINI;
+          }
+		   
           // addition Dunshine, store head in object
           oLeaderHead = CreateItemOnObject(sTemplate);
         }

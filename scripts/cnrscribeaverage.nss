@@ -28,7 +28,7 @@ void main()
 
   CnrRecipeSetDevicePreCraftingScript("cnrScribeAverage", "cnr_scribe_anim");
   //CnrRecipeSetDeviceInventoryTool("cnrScribeAverage", "");
-  CnrRecipeSetDeviceTradeskillType("cnrScribeAverage", CNR_TRADESKILL_SCRIBING);
+  CnrRecipeSetDeviceTradeskillType("cnrScribeAverage", CNR_TRADESKILL_INVESTING);
 
 //Level 6 Scrolls
 

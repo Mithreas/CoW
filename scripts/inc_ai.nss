@@ -301,7 +301,7 @@ int gsAIGetDefaultActionMatrix(object oCreature = OBJECT_SELF)
 	
 	// Don't set a trap if any of the following is true.
 	if (!gsENGetIsEncounterCreature() ||
-	    GetChallengeRating(OBJECT_SELF) < 8.0f ||
+	    GetChallengeRating(OBJECT_SELF) < 6.0f ||
 	    !(GetLevelByClass(CLASS_TYPE_RANGER) || GetLevelByClass(CLASS_TYPE_ROGUE)) ||
 	    d6() < 6) 
 	  nMatrix &= ~GS_AI_ACTION_TYPE_TRAP;
@@ -429,7 +429,7 @@ void _gsAIActionNone()
         break;
 
     case 6:
-        if (d6() == 6) SpeakOneLinerConversation();
+        if (d10() == 10) SpeakOneLinerConversation();
         break;
     }
 }

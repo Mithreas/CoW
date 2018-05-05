@@ -23,7 +23,7 @@ void main()
   //  CNR Crafting Device "cnrleathertable"
   /////////////////////////////////////////////////////////
 
-  string sMenuLeatherBags = CnrRecipeAddSubMenu("cnrleathertable", "Bags");
+  //string sMenuLeatherBags = CnrRecipeAddSubMenu("cnrleathertable", "Bags");
   string sMenuLeatherHideArmor = CnrRecipeAddSubMenu("cnrleathertable", "Hide Armour");
   string sMenuLeatherLeathArmor = CnrRecipeAddSubMenu("cnrleathertable", "Leather Armour");
   string sMenuLeatherStdLthArmor = CnrRecipeAddSubMenu("cnrleathertable", "Studded Armour");
@@ -63,7 +63,7 @@ void main()
 
 ///////////////////////////////////////Bags///////////////////////////////////////////////
 
-
+/* Removed - no need for bags.
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuLeatherBags, "Badger Hide Bag", "cnrbagbadg", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrleathbadg", 1, 0);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 2);
@@ -81,7 +81,7 @@ void main()
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 6);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 60, 60);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 0, 65, 0, 35, 0, 0);
-
+*/
 
 ///////////////////////////////////////// LEATHER ARMOR/////////////////////////////////////////////
 

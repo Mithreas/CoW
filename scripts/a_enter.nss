@@ -320,10 +320,13 @@ void main()
     // Hook into the quest scripts.
     CheckIfOnPatrol(oEntering, OBJECT_SELF);
 	
-	// CoW addition - reset reputation to 50 with the animal faction (faction 17)
+	// CoW addition - reset reputation to 50 with the animal faction (faction 17) and
+	// the plot faction (faction 12).
 	object oNPC = GetObjectByTag("factionexample17");
     AdjustReputation(oEntering, oNPC, 50-GetFactionAverageReputation(oNPC, oEntering));
-    
+    oNPC        = GetObjectByTag("factionexample12");
+    AdjustReputation(oEntering, oNPC, 50-GetFactionAverageReputation(oNPC, oEntering));
+	
     UpdateRangerHiPS(oEntering);
 
     if (GetLocalInt(OBJECT_SELF, "MI_DEAD_PEOPLE")) DoDeadPeople();

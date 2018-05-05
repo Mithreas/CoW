@@ -22,7 +22,7 @@ void main()
   /////////////////////////////////////////////////////////
   CnrRecipeSetDevicePreCraftingScript("cnrGemTable", "cnr_gempol_anim");
   CnrRecipeSetDeviceInventoryTool("cnrGemTable", "cnrGemTools", CNR_FLOAT_GEM_CRAFTERS_TOOLS_BREAKAGE_PERCENTAGE);
-  CnrRecipeSetDeviceTradeskillType("cnrGemTable", CNR_TRADESKILL_GEM_CRAFTING);
+  CnrRecipeSetDeviceTradeskillType("cnrGemTable", CNR_TRADESKILL_JEWELRY);
 
   sKeyToRecipe = CnrRecipeCreateRecipe("cnrGemTable", "Fine Greenstone", "cnrGemFine001", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrGemCut001", 1);

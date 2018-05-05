@@ -20,7 +20,7 @@ void main()
   /////////////////////////////////////////////////////////
   // Default CNR recipes made in cnrBrewersKettle
   /////////////////////////////////////////////////////////
-  CnrRecipeSetDeviceTradeskillType("cnrBrewersKettle", CNR_TRADESKILL_FOOD_CRAFTING);
+  CnrRecipeSetDeviceTradeskillType("cnrBrewersKettle", CNR_TRADESKILL_COOKING);
 
   sKeyToRecipe = CnrRecipeCreateRecipe("cnrBrewersKettle", "Barley Wort", "cnrBarleyWort", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrBarleyMalt", 1);

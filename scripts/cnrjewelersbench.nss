@@ -27,7 +27,7 @@ void main()
 
   CnrRecipeSetDevicePreCraftingScript("cnrJewelersBench", "cnr_jeweler_anim");
   CnrRecipeSetDeviceInventoryTool("cnrJewelersBench", "cnrGemTools", CNR_FLOAT_GEM_CRAFTERS_TOOLS_BREAKAGE_PERCENTAGE);
-  CnrRecipeSetDeviceTradeskillType("cnrJewelersBench", CNR_TRADESKILL_GEM_CRAFTING);
+  CnrRecipeSetDeviceTradeskillType("cnrJewelersBench", CNR_TRADESKILL_JEWELRY);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuRings, "Copper Greenstone Ring", "cnrCopGreenRing", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrMoldRing", 1, 0);

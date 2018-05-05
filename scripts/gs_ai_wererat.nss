@@ -1,3 +1,5 @@
+// Wererat shapechanger userdefined AI script.
+// If one wererat is brought below 50% health, the whole pack should shift. 
 #include "inc_event"
 
 void gsPolymorph()
@@ -26,6 +28,11 @@ void main()
 
     case GS_EV_ON_CONVERSATION:
 //................................................................
+        if (GetListenPatternNumber() == 10005 && ! GetLocalInt(OBJECT_SELF, "GS_POLYMORPH"))
+		{
+            DelayCommand(1.0, gsPolymorph());
+            SetLocalInt(OBJECT_SELF, "GS_POLYMORPH", TRUE);
+		}
 
         break;
 
@@ -57,10 +64,11 @@ void main()
 
     case GS_EV_ON_PHYSICAL_ATTACKED:
 //................................................................
-        if (! GetLocalInt(OBJECT_SELF, "GS_POLYMORPH"))
+        if (! GetLocalInt(OBJECT_SELF, "GS_POLYMORPH") && GetCurrentHitPoints() < GetMaxHitPoints()/2)
         {
             DelayCommand(1.0, gsPolymorph());
             SetLocalInt(OBJECT_SELF, "GS_POLYMORPH", TRUE);
+			SpeakString("WERERAT_SHIFT", TALKVOLUME_SILENT_TALK);
         }
 
         break;
@@ -72,6 +80,7 @@ void main()
 
     case GS_EV_ON_SPAWN:
 //................................................................
+        SetListenPattern(OBJECT_SELF, "WERERAT_SHIFT", 10005);
 
         break;
 

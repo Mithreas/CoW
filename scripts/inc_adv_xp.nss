@@ -164,7 +164,7 @@ void gvd_AdventuringXP_XPBonus(object oPC) {
   if (nXP >= nXPLevel) return;
 
   object oHide = gsPCGetCreatureHide(oPC);
-  int iMax = gsPCGetRolePlay(oPC) * 4;
+  int iMax = 100;
   int iXPPool = GetLocalInt(oHide, "GVD_XP_POOL");
   int iXP;
 
@@ -175,13 +175,13 @@ void gvd_AdventuringXP_XPBonus(object oPC) {
 
   // Improve max if the player is in a Tavern area.
   object oArea = GetArea(oPC);
-  if (oArea != OBJECT_INVALID && GetLocalInt(oArea, "TAVERN_SUSTAIN")) {
-    if (gsPCGetRolePlay(oPC) == 10) iMax += 5;
-    else if (gsPCGetRolePlay(oPC) > 0) iMax += 10;
+  if (oArea != OBJECT_INVALID && GetLocalInt(oArea, "TAVERN_SUSTAIN")) 
+  {
+    iMax += 100;
   }  
   
   if (iXPPool > 0) {                        
-    // 10% will be drawn from pool minimum = 10, maximum = 4 * RPR
+    // 10% will be drawn from pool minimum = 10, maximum = 100
     if (iXPPool < 150) {
       iXP = 10;
     } else {

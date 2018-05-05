@@ -188,15 +188,13 @@ void main()
         !bIsMundaneAbility &&
         GetIsObjectValid(GetSpellCastItem()) &&
         GetSpellCastItem() != GetItemPossessedBy(OBJECT_SELF, "GS_SU_ABILITY") &&
-        GetBaseItemType(GetSpellCastItem()) != BASE_ITEM_ENCHANTED_POTION &&
-        GetBaseItemType(GetSpellCastItem()) != BASE_ITEM_POTIONS &&
         nSpell != SPELL_RAISE_DEAD &&
         nSpell != SPELL_RESURRECTION &&
         nSpell != SPELL_LESSER_RESTORATION &&
         nSpell != SPELL_GREATER_RESTORATION &&
         nSpell != SPELL_RESTORATION)
     {
-      SendMessageToPC (OBJECT_SELF, "A kensai cannot use magic except for potions, Raise Dead, Resurrection, and Restoration. Spell-like feats and innate abilities will function normally.");
+      SendMessageToPC (OBJECT_SELF, "A kensai cannot use magic except for Raise Dead, Resurrection, and Restoration. Spell-like feats and innate abilities will function normally.");
       gsSPSetOverrideSpell();
       SetModuleOverrideSpellScriptFinished();
       return;
@@ -243,9 +241,9 @@ void main()
     }
 
     // Unfaithful shadow mages can't cast any arcane spells.
-    if (GetIsShadowMage(OBJECT_SELF) && !bIsMundaneAbility && gsWOGetDeityByName(GetDeity(OBJECT_SELF)) != 39 && miSPGetLastSpellArcane(OBJECT_SELF))
+    if (GetIsShadowMage(OBJECT_SELF) && !bIsMundaneAbility && gsWOGetDeityByName(GetDeity(OBJECT_SELF)) != 2 && miSPGetLastSpellArcane(OBJECT_SELF))
     {
-      SendMessageToPC (OBJECT_SELF, "In her wrath, Shar has forbidden you use of the Shadow Weave.");
+      SendMessageToPC (OBJECT_SELF, "Only servants of the Dark One can use shadow magic.");
       gsSPSetOverrideSpell();
       SetModuleOverrideSpellScriptFinished();
       return;
@@ -619,10 +617,20 @@ void main()
         }
 		
 		// CoW addition - sympathetic cleric magic
-		if (nSpellCastClass == CLASS_TYPE_CLERIC && GetIsObjectValid(GetSpellTargetObject()) && GetSpellTargetObject() != OBJECT_SELF)
+		if (nSpellCastClass == CLASS_TYPE_CLERIC && 
+		    GetIsObjectValid(GetSpellTargetObject()) && 
+			GetSpellTargetObject() != OBJECT_SELF &&
+			GetObjectType(GetSpellTargetObject()) == OBJECT_TYPE_CREATURE)
 		{
-		  // "Cheat cast" an instant spell on ourselves that matches the spell we cast on someone else.
+		  // "Cheat cast" an instant spell on ourselves that matches the spell we cast on someone else.  
+		  // This goes on the action queue.  If someone has queued several actions they could cancel a hostile spell
+		  // before it hits them, so use SetCommandable(FALSE).  Of course, to make the *second* queued spell reflect,
+		  // need to ensure we are commandable first.  
+	      SetCommandable(TRUE, OBJECT_SELF);	
 		  ActionCastSpellAtObject(GetSpellId(), OBJECT_SELF, GetMetaMagicFeat(), TRUE, 0, 0, TRUE);
+		  
+	      ActionDoCommand(SetCommandable(TRUE));  
+	      SetCommandable(FALSE, OBJECT_SELF);		  
 		}
 
     } else {

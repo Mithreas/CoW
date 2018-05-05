@@ -80,7 +80,7 @@ const int MI_SKIN_OGRE       = 4;
 const int MI_SKIN_HOBGOBLIN  = 5;
 const int MI_SKIN_IMP        = 6;
 
-string INTRO = "Welcome to the City of Winds!  This module is set up to support conflict roleplay, and plot discovery.  PCs will find themselves part of a well defined society, but anything or " +
+string INTRO = "Welcome to Anemoi: Fall of Man(?)!  This module is set up to support conflict roleplay, and plot discovery.  PCs will find themselves part of a well defined society, but anything or " +
 "everything taken commonly to be true may or may not be a lie.  The hope is that as players discover secrets, that knowledge will interact with the political landscape in fun ways. " +
 "\n\nAt present we only support a limited number of races and classes, but before entering the gameworld, you can choose 'gifts' and 'paths' that will give you some more variety in options. " +
 "Over time, more options will become available - we've limited options to make the world and setting more coherent and structured, and we hope that pays off in the roleplay experience you get!";

@@ -108,7 +108,12 @@ int _gsCBTalentProtectBySpell(int nSpell, int nInstant = FALSE);
 int gsCBTalentDispelMagic(object oTarget);
 //return TRUE if caller takes action to evade darkness effect
 int gsCBTalentEvadeDarkness();
-
+// If the NPC has Skill Focus: Taunt they may use Taunt.
+int gsCBTalentTaunt(object oTarget);
+// If the NPC has Skill Focus: Hide they may attempt a feint.
+int gsCBTalentFeint(object oTarget);
+// If the NPC has Skill Focus: Parry they may enter parry mode.
+int gsCBTalentParry(object oTarget);
 // added by Dunshine, Gonne NPC functions
 int gsCBTalentGonne(object oTarget);
 
@@ -817,6 +822,7 @@ void gsCBDetermineCombatRound(object oTarget = OBJECT_INVALID)
     if (nBehavior == GS_CB_BEHAVIOR_DEFENSIVE)
     {
         nAttack  = 100;
+		SetActionMode(OBJECT_SELF, ACTION_MODE_PARRY, FALSE);
     }
 
     //primary
@@ -836,6 +842,7 @@ void gsCBDetermineCombatRound(object oTarget = OBJECT_INVALID)
         if (Random(100) >= 25 && gsCBTalentEnhanceSelf())          return;
         if (Random(100) >= 25 && gsCBTalentEnhanceOthers())        return;
         if (Random(100) >= 25 && gsCBTalentSummonAlly(oTarget))    return;
+        if (Random(100) >= 25 && gsCBTalentParry(oTarget))         return;
     }
 
     //spell
@@ -852,6 +859,12 @@ void gsCBDetermineCombatRound(object oTarget = OBJECT_INVALID)
 
     //offensive
     SetLocalInt(OBJECT_SELF, "GS_CB_BEHAVIOR", GS_CB_BEHAVIOR_ATTACK_PHYSICAL);
+	
+	// Taunt?
+	if (Random(100) >= 80 && gsCBTalentTaunt(oTarget)) return;
+	
+	// Feint? NB - this will always return FALSE even if a feint is attempted.
+	if (Random(100) >= 80 && gsCBTalentFeint(oTarget)) return;
 
     if (Random(100) >= 80 && gsCBTalentDragonWing(oTarget)) return;
     gsCBTalentAttack(oTarget);
@@ -876,11 +889,12 @@ int gsCBUseTalentOnObject(talent tTalent, object oTarget = OBJECT_SELF)
           if (nType == TALENT_TYPE_SKILL)
           {
             // When we call this method we've done ClearAllActions(), so we won't be attacking.
-            // This makes parry not very useful.
+            // See gsCBTalentParry instead.
             if (nID == SKILL_PARRY) return FALSE;
-
-            // Creatures also seem to select Taunt, but without a target?  Disable it for now.
-            if (nID == SKILL_TAUNT) return FALSE;
+			
+            // Only try to taunt if (a) we have a valid target and (b) we're good at it...
+			// Turns out taunt is never called in a useful context.  Created gsCBTalentTaunt for it instead.
+            if (nID == SKILL_TAUNT && (!GetHasFeat(FEAT_SKILL_FOCUS_TAUNT, OBJECT_SELF) || oTarget == OBJECT_SELF || !GetIsEnemy(oTarget, OBJECT_SELF))) return FALSE;
           }
         }
 
@@ -892,6 +906,34 @@ int gsCBUseTalentOnObject(talent tTalent, object oTarget = OBJECT_SELF)
         case TALENT_TYPE_SKILL:
             if (GetHasSkill(nID))
             {
+			    if (nID == SKILL_HEAL)
+				{
+                  object oKit = GetFirstItemInInventory();
+ 
+                  while(GetIsObjectValid(oKit))
+                  {
+                    // Get if healers kit
+                    if(GetBaseItemType(oKit) == BASE_ITEM_HEALERSKIT)
+                    {
+                      break;
+                    }
+					
+                    oKit = GetNextItemInInventory();
+                  }
+ 
+                  // Check oKit
+                  if(GetIsObjectValid(oKit))
+                  {
+                    // Use our heal skill.
+                    ActionUseSkill(SKILL_HEAL, OBJECT_SELF, 0, oKit);
+                  }
+                  else
+                  {
+				    // No healing kit - cannot heal. 
+				    return FALSE;
+                  }				  
+				}
+				
                 ActionUseSkill(nID, oTarget);
                 return TRUE;
             }
@@ -1373,6 +1415,85 @@ int gsCBTalentDragonBreath(object oTarget)
 
     DeleteLocalInt(OBJECT_SELF, "GS_CB_TALENT_BREATH");
     return FALSE;
+}
+//----------------------------------------------------------------
+int gsCBTalentTaunt(object oTarget)
+{
+  int nDistance = GetDistanceToObject(oTarget) > 2.5;
+	
+  if (nDistance ||
+      !GetHasFeat(FEAT_SKILL_FOCUS_TAUNT, OBJECT_SELF) || 
+      oTarget == OBJECT_SELF || 
+	  !GetIsEnemy(oTarget, OBJECT_SELF))
+  {
+    return FALSE;
+  }
+
+  FloatingTextStringOnCreature(GetName(OBJECT_SELF) + " taunts you!", oTarget);
+  ActionUseSkill(SKILL_TAUNT, oTarget);
+  return TRUE;
+}
+//----------------------------------------------------------------
+int gsCBTalentFeint(object oTarget)
+{
+  if (!GetHasFeat(FEAT_SKILL_FOCUS_HIDE, OBJECT_SELF)) return FALSE;
+  
+  if (GetDistanceToObject(oTarget) > 2.) return FALSE;
+	
+  //--------------------------------------------------------------
+  // Mimic the effect of Taunt, but for attack bonus.  5 rounds. 
+  // Hide vs Discipline, penalty of the amount the feinter wins by, 
+  // up to 5.  Tag the effect so multiples don't stack.  
+  // NB: we want to use INT not DEX here, so adjust accordingly.
+  //--------------------------------------------------------------
+  int nCheck = (d20() + GetSkillRank(SKILL_HIDE, OBJECT_SELF)) +
+               (GetAbilityModifier(ABILITY_INTELLIGENCE) - GetAbilityModifier(ABILITY_DEXTERITY)) -
+               (d20() + GetSkillRank(SKILL_DISCIPLINE, oTarget));
+			   
+  FloatingTextStringOnCreature(GetName(OBJECT_SELF) + " feints!", oTarget);
+	
+  if (nCheck <= 0)
+  {
+    // Nothing happens.
+  }
+  else
+  {
+    if (nCheck > 6) nCheck = 6;
+    effect eFeint = TagEffect(ExtraordinaryEffect(EffectAttackDecrease(nCheck)), "FEINT");
+	
+	effect eEffect = GetFirstEffect(oTarget);
+	while (GetIsEffectValid(eEffect))
+	{
+	  if (GetEffectTag(eEffect) == "FEINT")
+	  {
+	    RemoveEffect(oTarget, eEffect);
+		break;
+	  }
+	  
+	  eEffect = GetNextEffect(oTarget);
+	}
+	
+	ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eFeint, oTarget, 30.0f);
+  }
+  
+  // Feint is a free action.  Carry on with other parts of the action queue.
+  return FALSE;  
+}
+//----------------------------------------------------------------
+int gsCBTalentParry(object oTarget)
+{
+    int nDistance = GetDistanceToObject(oTarget) > 2.5;
+
+    if (!nDistance && GetHasFeat(FEAT_SKILL_FOCUS_PARRY, OBJECT_SELF))
+	{
+        FloatingTextStringOnCreature(GetName(OBJECT_SELF) + " parries!", oTarget);
+		SetActionMode(OBJECT_SELF, ACTION_MODE_PARRY, TRUE);
+		gsCBEquipMeleeWeapon(oTarget);
+		ActionAttack(oTarget);
+		return TRUE;
+	}	
+	
+	return FALSE;
 }
 //----------------------------------------------------------------
 int gsCBTalentDragonWing(object oTarget, int nFly = FALSE)

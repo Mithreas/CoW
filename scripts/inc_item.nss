@@ -1266,8 +1266,9 @@ void StoreLastItemUsed()
 //:://////////////////////////////////////////////
 void SetItemILR(object oItem)
 {
-  if (GetLocalInt(oItem, "ILR")) return;
-  
+  if (GetLocalInt(GetModule(), "STATIC_LEVEL")) return; // Allows us to fix this later.
+  if (GetLocalInt(oItem, "ILR")) return; 
+ 
   // For now, apply ILR to weapons only.
   if (GetEquipmentType(oItem) != EQUIPMENT_TYPE_WEAPON) return;
   
@@ -1275,11 +1276,10 @@ void SetItemILR(object oItem)
   int nILR = 0;
   
   if (nValue < 2000) nILR = 1;
-  else if (nValue < 4000) nILR = 4;
+  else if (nValue < 4000) nILR = 5;
   else if (nValue < 7000) nILR = 7;
-  else if (nValue < 15000) nILR = 10;
-  else if (nValue < 30000) nILR = 13;
-  else nILR = 16;
+  else if (nValue < 15000) nILR = 9;
+  else nILR = 11;
 
   SetLocalInt(oItem, "ILR", nILR);  
 }

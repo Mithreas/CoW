@@ -15,54 +15,50 @@
 #include "cnr_persist_inc"
 #include "cnr_language_inc"
 #include "inc_reputation"
+#include "inc_worship"
+#include "inc_xp"
 
 int CNR_SELECTIONS_PER_PAGE = 6;
 int CNR_CONVO_CRAFTING = TRUE;
 int CNR_SILENT_CRAFTING = FALSE;
 
-// These old tradeskill indexes retained so old
-// journals can be converted to new journals
-int CNR_OLD_TRADESKILL_SMELTING = 1;
-int CNR_OLD_TRADESKILL_WEAPON_CRAFTING = 2;
-int CNR_OLD_TRADESKILL_ARMOR_CRAFTING = 3;
-int CNR_OLD_TRADESKILL_ALCHEMY = 4;
-int CNR_OLD_TRADESKILL_SCRIBING = 5;
-int CNR_OLD_TRADESKILL_TINKERING = 6;
-int CNR_OLD_TRADESKILL_WOOD_CRAFTING = 7;
-int CNR_OLD_TRADESKILL_ENCHANTING = 8;
-int CNR_OLD_TRADESKILL_GEM_CRAFTING = 9;
-int CNR_OLD_TRADESKILL_TAILORING = 10;
+void CnrRecipePlaySound(int nSkill);
+void CnrRecipeDoAnimation(object oPC, object oDevice, int bSuccess);
 
-//://////////////////////////////////////////////////////
-//: This function decodes a 3-character
-//: base 52 value string into an integer.
-//: Used when converting old journal to new.
-//://////////////////////////////////////////////////////
-int CnrDecodeOldTradeskillXP(string sXP)
+// Plays an appropriate sound for the skill in question.
+void CnrRecipePlaySound(int nSkill)
 {
-  string sLookup = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-  string sLeft = GetStringLeft(sXP, 1);
-  string sTemp = GetStringLeft(sXP, 2);
-  string sMid = GetStringRight(sTemp, 1);
-  string sRight = GetStringRight(sXP, 1);
-  int nLeftValue = FindSubString(sLookup, sLeft);
-  int nMidValue = FindSubString(sLookup, sMid);
-  int nRightValue = FindSubString(sLookup, sRight);
-  int nValue = (nLeftValue * 2704) + (nMidValue * 52) + nRightValue;
-  return nValue;
-}
+    switch (nSkill)
+    {
+    case CNR_TRADESKILL_COOKING:
+        PlaySound("as_cv_shopjugs1");
+        break;
+		
+    case CNR_TRADESKILL_WOOD_CRAFTING:
+        PlaySound("as_cv_sawing1");
+        break;
 
-//://////////////////////////////////////////////////////
-//: This function gets a single tradeskill XP value
-//: from the old Tradeskill Journal.
-//: Used when converting old journal to new.
-//://////////////////////////////////////////////////////
-int CnrGetOldTradeskillXP(object oJournal, int nTradeskill)
-{
-  if (!GetIsObjectValid(oJournal)) return 0;
-  string sTag = GetTag(oJournal);
-  string sXP = GetSubString(sTag, (nTradeskill-1)*3, 3);
-  return CnrDecodeOldTradeskillXP(sXP);
+
+    case CNR_TRADESKILL_INVESTING:
+    case CNR_TRADESKILL_JEWELRY:
+    case CNR_TRADESKILL_ENCHANTING:
+        PlaySound("as_cv_chiseling2");
+        break;
+
+    case CNR_TRADESKILL_WEAPON_CRAFTING:
+	case CNR_TRADESKILL_ARMOR_CRAFTING:
+        PlaySound("as_cv_smithhamr1");
+        break;
+
+    case CNR_TRADESKILL_EXPLOSIVES:
+	case CNR_TRADESKILL_IMBUING:
+        PlaySound("al_mg_beaker1");
+        break;
+
+    case CNR_TRADESKILL_TAILORING:
+        PlaySound("as_na_leafmove1");
+        break;
+    }
 }
 
 /////////////////////////////////////////////////////////
@@ -460,16 +456,7 @@ void CnrSetTradeskillLevelCapByIndex(object oPC, int nTradeskillIndex, int nLeve
 /////////////////////////////////////////////////////////
 void CnrConvertOldJournalXPToNewFormat(object oJournal, object oPC)
 {
-  CnrSetTradeskillXPByType(oPC, CNR_TRADESKILL_SMELTING, CnrGetOldTradeskillXP(oJournal, CNR_OLD_TRADESKILL_SMELTING));
-  CnrSetTradeskillXPByType(oPC, CNR_TRADESKILL_WEAPON_CRAFTING, CnrGetOldTradeskillXP(oJournal, CNR_OLD_TRADESKILL_WEAPON_CRAFTING));
-  CnrSetTradeskillXPByType(oPC, CNR_TRADESKILL_ARMOR_CRAFTING, CnrGetOldTradeskillXP(oJournal, CNR_OLD_TRADESKILL_ARMOR_CRAFTING));
-  CnrSetTradeskillXPByType(oPC, CNR_TRADESKILL_ALCHEMY, CnrGetOldTradeskillXP(oJournal, CNR_OLD_TRADESKILL_ALCHEMY));
-  CnrSetTradeskillXPByType(oPC, CNR_TRADESKILL_SCRIBING, CnrGetOldTradeskillXP(oJournal, CNR_OLD_TRADESKILL_SCRIBING));
-  CnrSetTradeskillXPByType(oPC, CNR_TRADESKILL_TINKERING, CnrGetOldTradeskillXP(oJournal, CNR_OLD_TRADESKILL_TINKERING));
-  CnrSetTradeskillXPByType(oPC, CNR_TRADESKILL_WOOD_CRAFTING, CnrGetOldTradeskillXP(oJournal, CNR_OLD_TRADESKILL_WOOD_CRAFTING));
-  CnrSetTradeskillXPByType(oPC, CNR_TRADESKILL_ENCHANTING, CnrGetOldTradeskillXP(oJournal, CNR_OLD_TRADESKILL_ENCHANTING));
-  CnrSetTradeskillXPByType(oPC, CNR_TRADESKILL_GEM_CRAFTING, CnrGetOldTradeskillXP(oJournal, CNR_OLD_TRADESKILL_GEM_CRAFTING));
-  CnrSetTradeskillXPByType(oPC, CNR_TRADESKILL_TAILORING, CnrGetOldTradeskillXP(oJournal, CNR_OLD_TRADESKILL_TAILORING));
+  // Retired.
 }
 
 /////////////////////////////////////////////////////////
@@ -479,7 +466,8 @@ int CnrGetPlayerLevel(object oPC, string sDeviceTag)
   int nDeviceTradeskillType = GetLocalInt(GetModule(), sDeviceTag + "_TradeskillType");
   if (nDeviceTradeskillType == CNR_TRADESKILL_NONE)
   {
-    nPlayerLevel = GetHitDice(oPC);
+    // If no tradeskill is set, return -1.  Success should be automatic. 
+    nPlayerLevel = -1;
   }
   else
   {
@@ -635,7 +623,8 @@ void CnrRecipeSetRecipeFilter(string sKeyToRecipe, string sFilter)
 }
 
 /////////////////////////////////////////////////////////
-//  sKeyToRecipe = the string returned from CnrRecipeCreateRecipe()
+//  sKeyToRecipe = the tag of the crafting placeable, or the
+// string returned from CnrRecipeCreateRecipe() to override.
 //  nXXX = the weighted percentage of the particular ability.
 //  Note: The sum of all weighted ability percentages should equal 100.
 /////////////////////////////////////////////////////////
@@ -916,13 +905,6 @@ int CnrRecipeGetRecipeAbilityPercentageByKey(string sKeyToRecipe, int nAbilityTy
   }
 
   return nPercentage;
-}
-
-/////////////////////////////////////////////////////////
-int CnrRecipeGetRecipeAbilityPercentage(string sKeyToMenu, int nRecipeIndex, int nAbilityType)
-{
-  string sKeyToRecipe = CnrRecipeGetKeyToRecipe(sKeyToMenu, nRecipeIndex);
-  return CnrRecipeGetRecipeAbilityPercentageByKey(sKeyToRecipe, nAbilityType);
 }
 
 /////////////////////////////////////////////////////////
@@ -1268,18 +1250,29 @@ string CnrRecipeBuildRecipeStringCommon(object oPC, object oContainer, string sK
 }
 
 /////////////////////////////////////////////////////////
-string CnrRecipeGetAbilityString(string sKeyToRecipe, int bIncludeLevel)
+int CnrRecipeGetRecipeAbilityPercentage(string sDeviceTag, string sKeyToRecipe, int nAbilityType)
+{ 
+  // If there is a value specified for the recipe, use that.  Otherwise use the menu 
+  // (tag of the placeable).  
+  int nPercent = CnrRecipeGetRecipeAbilityPercentageByKey(sKeyToRecipe, nAbilityType);
+  
+  if (nPercent) return nPercent;
+  else return CnrRecipeGetRecipeAbilityPercentageByKey(sDeviceTag, nAbilityType);
+}
+
+/////////////////////////////////////////////////////////
+string CnrRecipeGetAbilityString(string sDeviceTag, string sKeyToRecipe, int bIncludeLevel)
 {
   if (sKeyToRecipe == "RECIPE_INVALID") return CNR_TEXT_INTELLIGENCE;
 
   object oModule = GetModule();
 
-  float fRecipeStr = IntToFloat(GetLocalInt(oModule, sKeyToRecipe + "_RecipeStr"));
-  float fRecipeDex = IntToFloat(GetLocalInt(oModule, sKeyToRecipe + "_RecipeDex"));
-  float fRecipeCon = IntToFloat(GetLocalInt(oModule, sKeyToRecipe + "_RecipeCon"));
-  float fRecipeInt = IntToFloat(GetLocalInt(oModule, sKeyToRecipe + "_RecipeInt"));
-  float fRecipeWis = IntToFloat(GetLocalInt(oModule, sKeyToRecipe + "_RecipeWis"));
-  float fRecipeCha = IntToFloat(GetLocalInt(oModule, sKeyToRecipe + "_RecipeCha"));
+  float fRecipeStr = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTag, sKeyToRecipe, ABILITY_STRENGTH));
+  float fRecipeDex = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTag, sKeyToRecipe, ABILITY_DEXTERITY));
+  float fRecipeCon = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTag, sKeyToRecipe, ABILITY_CONSTITUTION));
+  float fRecipeInt = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTag, sKeyToRecipe, ABILITY_INTELLIGENCE));
+  float fRecipeWis = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTag, sKeyToRecipe, ABILITY_WISDOM));
+  float fRecipeCha = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTag, sKeyToRecipe, ABILITY_CHARISMA));
 
   int nAbilityCount = 0;
   if (fRecipeStr > 0.0) { nAbilityCount++; }
@@ -1348,19 +1341,19 @@ string CnrRecipeGetAbilityString(string sKeyToRecipe, int bIncludeLevel)
 }
 
 /////////////////////////////////////////////////////////
-float CnrRecipeGetWeightedPcAbility(object oPC, string sKeyToRecipe)
+float CnrRecipeGetWeightedPcAbility(object oPC, string sDeviceTag, string sKeyToRecipe)
 {
   if (!GetIsPC(oPC)) return 14.0;
   if (sKeyToRecipe == "RECIPE_INVALID") return 14.0;
 
   object oModule = GetModule();
-
-  float fRecipeStr = IntToFloat(GetLocalInt(oModule, sKeyToRecipe + "_RecipeStr"));
-  float fRecipeDex = IntToFloat(GetLocalInt(oModule, sKeyToRecipe + "_RecipeDex"));
-  float fRecipeCon = IntToFloat(GetLocalInt(oModule, sKeyToRecipe + "_RecipeCon"));
-  float fRecipeInt = IntToFloat(GetLocalInt(oModule, sKeyToRecipe + "_RecipeInt"));
-  float fRecipeWis = IntToFloat(GetLocalInt(oModule, sKeyToRecipe + "_RecipeWis"));
-  float fRecipeCha = IntToFloat(GetLocalInt(oModule, sKeyToRecipe + "_RecipeCha"));
+  
+  float fRecipeStr = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTag, sKeyToRecipe, ABILITY_STRENGTH));
+  float fRecipeDex = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTag, sKeyToRecipe, ABILITY_DEXTERITY));
+  float fRecipeCon = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTag, sKeyToRecipe, ABILITY_CONSTITUTION));
+  float fRecipeInt = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTag, sKeyToRecipe, ABILITY_INTELLIGENCE));
+  float fRecipeWis = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTag, sKeyToRecipe, ABILITY_WISDOM));
+  float fRecipeCha = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTag, sKeyToRecipe, ABILITY_CHARISMA));
 
   float fPcStr = IntToFloat(GetAbilityScore(oPC, ABILITY_STRENGTH) + GetAbilityModifier(ABILITY_STRENGTH, oPC));
   float fPcDex = IntToFloat(GetAbilityScore(oPC, ABILITY_DEXTERITY) + GetAbilityModifier(ABILITY_DEXTERITY, oPC));
@@ -1414,7 +1407,14 @@ int CnrRecipeCalculateEffectiveDC(object oPC, string sDeviceTag, string sKeyToRe
 {
   int nRecipeLevel = CnrRecipeGetRecipeLevelByKey(sKeyToRecipe);
   int nPcLevel = CnrGetPlayerLevel(oPC, sDeviceTag);
-  float fPcAbility = CnrRecipeGetWeightedPcAbility(oPC, sKeyToRecipe);
+  
+  if (nPcLevel == -1) 
+  {
+    // this device does not need skill checks. 
+	return 0;
+  }
+  
+  float fPcAbility = CnrRecipeGetWeightedPcAbility(oPC, sDeviceTag, sKeyToRecipe);
 
   // Formula: DC = (((11 - (PL*2)) - (A/2)) + 27) - ((10-RL)*2)
   int nEffDC = (((11 - (nPcLevel*2)) - FloatToInt(fPcAbility/2.0)) + 27) - ((10-nRecipeLevel) * 2);
@@ -1429,8 +1429,7 @@ int CnrRecipeCalculateEffectiveDC(object oPC, string sDeviceTag, string sKeyToRe
 int CnrRecipeCalculateMinimumPcLevel(object oPC, string sDeviceTag, string sKeyToRecipe)
 {
   int nRecipeLevel = CnrRecipeGetRecipeLevelByKey(sKeyToRecipe);
-  int nPcLevel = CnrGetPlayerLevel(oPC, sDeviceTag);
-  float fPcAbility = CnrRecipeGetWeightedPcAbility(oPC, sKeyToRecipe);
+  float fPcAbility = CnrRecipeGetWeightedPcAbility(oPC, sDeviceTag, sKeyToRecipe);
 
   // Get a builder supplied DC adjustment
   int nAdjustment = GetBuildersAdjustmentToRecipeDC(oPC, sDeviceTag, sKeyToRecipe);
@@ -1486,7 +1485,7 @@ string CnrRecipeBuildRecipeString(object oDevice, int nRecipeIndex)
     // the PC needs to be to have any chance of success crafting this recipe.
     int nMinPcLevel = CnrRecipeCalculateMinimumPcLevel(oPC, sDeviceTag, sKeyToRecipe);
     sRecipe += "\n" + CNR_TEXT_GIVEN_YOUR;
-    string sAbilityString = CnrRecipeGetAbilityString(sKeyToRecipe, FALSE);
+    string sAbilityString = CnrRecipeGetAbilityString(sDeviceTag, sKeyToRecipe, FALSE);
     sRecipe += sAbilityString;
     sRecipe += CNR_TEXT_THIS_RECIPE_IS_IMPOSSIBLE + " ";
     sRecipe += CNR_TEXT_YOU_WILL_NEED_TO_REACH_LEVEL + IntToString(nMinPcLevel);
@@ -1495,7 +1494,7 @@ string CnrRecipeBuildRecipeString(object oDevice, int nRecipeIndex)
   else
   {
     sRecipe += "\n" + CNR_TEXT_GIVEN_YOUR;
-    string sAbilityString = CnrRecipeGetAbilityString(sKeyToRecipe, TRUE);
+    string sAbilityString = CnrRecipeGetAbilityString(sDeviceTag, sKeyToRecipe, TRUE);
     sRecipe += sAbilityString;
     sRecipe += CNR_TEXT_YOU_HAVE_A + IntToString(100-((nEffDC-1)*5)) + CNR_TEXT_PERCENT_CHANCE_OF_SUCCESS;
   }
@@ -1518,7 +1517,17 @@ void CnrRecipeDisplayCraftingResult(object oPC, object oDevice, string sKeyToRec
     return;
   }
 
+  // Slow this down as a check on grinding.
   int nBatchCount = CnrRecipeCheckComponentAvailability(oPC, oDevice, sKeyToRecipe);
+  if (nBatchCount > 1)
+  {
+    nBatchCount = 1;
+	
+	// Set the "disturbed" flag so that the PC can craft more copies
+	// without needing to manipulate the inventory. 
+	SetLocalInt(OBJECT_SELF, "bCnrDisturbed", TRUE);
+  }
+  
   if (GetIsPC(oDevice))
   {
     // only build 1 batch when using a recipe book
@@ -1526,6 +1535,9 @@ void CnrRecipeDisplayCraftingResult(object oPC, object oDevice, string sKeyToRec
   }
 
   int nItemCount = 0;
+
+  string sInfo1;
+  string sInfo2;
 
   // Destroy the components required for the recipe (success or failure)
   int nComponentCount = CnrRecipeGetComponentCountByKey(sKeyToRecipe);
@@ -1593,18 +1605,26 @@ void CnrRecipeDisplayCraftingResult(object oPC, object oDevice, string sKeyToRec
       }
     }
   }
+  
+  
+  // Worship hook - increase Piety by number of batches * 0.2 %
+  int nAspect = gsWOGetDeityAspect(oPC);
+  if (nAspect & ASPECT_KNOWLEDGE_INVENTION)
+  {
+    gsWOAdjustPiety(oPC, nBatchCount * 0.2f);
+  }
 
   string sRecipeBiTag = CnrRecipeGetRecipeBiproductTagByKey(sKeyToRecipe);
   int nRecipeBiQty = CnrRecipeGetRecipeBiproductQtyByKey(sKeyToRecipe);
   int nOnFailBiQty = CnrRecipeGetRecipeOnFailBiproductQtyByKey(sKeyToRecipe);
-  int bSpawnItemInDevice = FALSE;
-  if (!GetIsPC(oDevice))
-  {
-    if (GetLocalInt(GetModule(), GetTag(oDevice) + "_SpawnItemInDevice"))
-    {
-      bSpawnItemInDevice = TRUE;
-    }
-  }
+  int bSpawnItemInDevice = TRUE;
+  //if (!GetIsPC(oDevice))
+  //{
+  //  if (GetLocalInt(GetModule(), GetTag(oDevice) + "_SpawnItemInDevice"))
+  //  {
+  //    bSpawnItemInDevice = TRUE;
+  //  }
+  //}
 
   // Create the recipe biproduct (if assigned)
   if (sRecipeBiTag != "BIPRODUCT_INVALID")
@@ -1657,16 +1677,19 @@ void CnrRecipeDisplayCraftingResult(object oPC, object oDevice, string sKeyToRec
           AssignCommand(oPC, CnrRecipeCreateItemOnObject(sRecipeTag, oPC, 1));
         }
       }
+	  
+      sResult = "You successfully made " + IntToString(nBatchCount*nRecipeQty);
+      if ((nBatchCount*nRecipeQty) > 1)
+      {
+        sResult += " items.";
+      }
+      else
+      {
+        sResult += " item.";
+      }
     }
 
-    string sInfo1;
-    string sInfo2;
-
-    // Give the PC the assigned game and trade XP
-    int nGameXP = CnrRecipeGetRecipeGameXPByKey(sKeyToRecipe);
-    int nTradeXP = CnrRecipeGetRecipeTradeXPByKey(sKeyToRecipe);
-
-    // @@@ City of Winds add-on
+    // @City of Winds add-on
     // Give 1 rep point for every 10 recipes successfully crafted.
     int nItemsCrafted = GetPersistentInt(oPC, "items_crafted", "cnr_misc");
     nItemsCrafted++;
@@ -1680,125 +1703,116 @@ void CnrRecipeDisplayCraftingResult(object oPC, object oDevice, string sKeyToRec
       SetPersistentInt(oPC, "items_crafted", nItemsCrafted, 0, "cnr_misc");
     }
     // End City of Winds addon.
+  }
+  
+  string sDeviceTag = GetTag(oDevice);
+  if (GetIsPC(oDevice))
+  {
+    sDeviceTag = GetLocalString(oDevice, "cnrRecipeBookDevice");
+  }
+  int nDeviceTradeskillType = GetLocalInt(GetModule(), sDeviceTag + "_TradeskillType");
 
-    string sDeviceTag = GetTag(oDevice);
-    if (GetIsPC(oDevice))
+  // don't calculate a negative value for XP
+  if (nEffDC < 1) nEffDC = 1;
+  int nGameXP = CnrRecipeGetRecipeGameXPByKey(sKeyToRecipe);
+  int nTradeXP = CnrRecipeGetRecipeTradeXPByKey(sKeyToRecipe);
+
+  // XP is scaled as follows...
+  // a 5% success chance yields 95% of 2*RecipeXP
+  // a 50% success chance yields 50% of 2*RecipeXP
+  // a 95% success chance yields 5% of 2*RecipeXP
+  // A failure always counts for 35%.
+  float fScale = (bSuccess ? IntToFloat(nEffDC-1) / 10.0f : 0.7f);
+  int nScaledGameXP = FloatToInt(fScale * IntToFloat(nGameXP));
+  int nScaledTradeXP = FloatToInt(fScale * IntToFloat(nTradeXP));
+
+  int nOldXP = GetXP(oPC);
+  int nNewXP = nOldXP + (nScaledGameXP*nBatchCount);
+
+  if (nScaledGameXP > 0)
+  {
+    sInfo1 = CNR_TEXT_YOUR_ADVENTURING_XP_INCREASED_BY + IntToString(nScaledGameXP*nBatchCount) + ".\n";
+  }
+  else if (nScaledGameXP < 0)
+  {
+    sInfo1 = CNR_TEXT_YOUR_ADVENTURING_XP_DECREASED_BY + IntToString(nScaledGameXP*nBatchCount) + ".\n";
+  }
+  
+  gsXPGiveExperience(oPC, nScaledGameXP*nBatchCount);
+
+  if (nDeviceTradeskillType != CNR_TRADESKILL_NONE)
+  {
+    nOldXP = CnrGetTradeskillXPByType(oPC, nDeviceTradeskillType);
+    nNewXP = nOldXP + (nScaledTradeXP*nBatchCount);
+
+    int bUpdateJournal = FALSE;
+    string sTradeName = CnrGetTradeskillNameByType(nDeviceTradeskillType);
+    if (nScaledTradeXP > 0)
     {
-      sDeviceTag = GetLocalString(oDevice, "cnrRecipeBookDevice");
+      sInfo2 = CNR_TEXT_YOUR + sTradeName + CNR_TEXT_XP_INCREASED_BY + IntToString(nScaledTradeXP*nBatchCount) + ".\n\n";
+      bUpdateJournal = TRUE;
     }
-    int nDeviceTradeskillType = GetLocalInt(GetModule(), sDeviceTag + "_TradeskillType");
-
-    // don't calculate a negative value for XP
-    if (nEffDC < 1) nEffDC = 1;
-
-    // XP is scaled as follows...
-    // a 5% success chance yields 95% of 2*RecipeXP
-    // a 50% success chance yields 50% of 2*RecipeXP
-    // a 95% success chance yields 5% of 2*RecipeXP
-    int nScaledGameXP = FloatToInt((IntToFloat(nEffDC-1) / 10.0) * IntToFloat(nGameXP));
-    int nScaledTradeXP = FloatToInt((IntToFloat(nEffDC-1) / 10.0) * IntToFloat(nTradeXP));
-
-    int nOldXP = GetXP(oPC);
-    int nNewXP = nOldXP + (nScaledGameXP*nBatchCount);
-
-    if (nScaledGameXP > 0)
+    else if (nScaledTradeXP < 0)
     {
-      sInfo1 = CNR_TEXT_YOUR_ADVENTURING_XP_INCREASED_BY + IntToString(nScaledGameXP*nBatchCount) + ".\n";
-    }
-    else if (nScaledGameXP < 0)
-    {
-      sInfo1 = CNR_TEXT_YOUR_ADVENTURING_XP_DECREASED_BY + IntToString(nScaledGameXP*nBatchCount) + ".\n";
+      sInfo2 = CNR_TEXT_YOUR + sTradeName + CNR_TEXT_XP_DECREASED_BY + IntToString(nScaledTradeXP*nBatchCount) + ".\n\n";
+      bUpdateJournal = TRUE;
     }
 
-    if (nNewXP != nOldXP)
+    int bLevelDenied = FALSE;
+    if (bUpdateJournal)
     {
-      SetXP(oPC, nNewXP);
-    }
-
-    if (nDeviceTradeskillType != CNR_TRADESKILL_NONE)
-    {
-      nOldXP = CnrGetTradeskillXPByType(oPC, nDeviceTradeskillType);
-      nNewXP = nOldXP + (nScaledTradeXP*nBatchCount);
-
-      int bUpdateJournal = FALSE;
-      string sTradeName = CnrGetTradeskillNameByType(nDeviceTradeskillType);
-      if (nScaledTradeXP > 0)
+      int nOldLevel = CnrDetermineTradeskillLevel(nOldXP);
+      int nNewLevel = CnrDetermineTradeskillLevel(nNewXP);
+      if (nNewLevel > nOldLevel)
       {
-        sInfo2 = CNR_TEXT_YOUR + sTradeName + CNR_TEXT_XP_INCREASED_BY + IntToString(nScaledTradeXP*nBatchCount) + ".\n\n";
-        bUpdateJournal = TRUE;
-      }
-      else if (nScaledTradeXP < 0)
-      {
-        sInfo2 = CNR_TEXT_YOUR + sTradeName + CNR_TEXT_XP_DECREASED_BY + IntToString(nScaledTradeXP*nBatchCount) + ".\n\n";
-        bUpdateJournal = TRUE;
-      }
+        // prep for hook script
+        SetLocalInt(oPC, "CnrHookHelperTradeskillType", nDeviceTradeskillType);
+        SetLocalInt(oPC, "CnrHookHelperNextLevel", nNewLevel);
+        SetLocalInt(oPC, "CnrHookHelperLevelUpDenied", FALSE);
+        DeleteLocalString(oPC, "CnrHookHelperLevelUpDeniedText");
 
-      int bLevelDenied = FALSE;
-      if (bUpdateJournal)
-      {
-        int nOldLevel = CnrDetermineTradeskillLevel(nOldXP);
-        int nNewLevel = CnrDetermineTradeskillLevel(nNewXP);
-        if (nNewLevel > nOldLevel)
-        {
-          // prep for hook script
-          SetLocalInt(oPC, "CnrHookHelperTradeskillType", nDeviceTradeskillType);
-          SetLocalInt(oPC, "CnrHookHelperNextLevel", nNewLevel);
-          SetLocalInt(oPC, "CnrHookHelperLevelUpDenied", FALSE);
-          DeleteLocalString(oPC, "CnrHookHelperLevelUpDeniedText");
+        // execute hook script
+        ExecuteScript("hook_ok_to_level", oPC);
 
-          // execute hook script
-          ExecuteScript("hook_ok_to_level", oPC);
-
-          // check results
-          bLevelDenied = GetLocalInt(oPC, "CnrHookHelperLevelUpDenied");
-          if (!bLevelDenied)
-          {
-            string sNewLevel = CNR_TEXT_YOU_HAVE_REACHED_LEVEL + IntToString(nNewLevel) + CNR_TEXT_IN + sTradeName + "!";
-            AssignCommand(oPC, DelayCommand(0.6, SendMessageToPC(oPC, sNewLevel)));
-          }
-          else
-          {
-            sInfo2 = GetLocalString(oPC, "CnrHookHelperLevelUpDeniedText");
-
-            // set the PC's XP to one point below making the level
-            nNewXP = GetLocalInt(GetModule(), "CnrTradeXPLevel" + IntToString(nNewLevel)) - 1;
-          }
-
-          // clean up
-          DeleteLocalInt(oPC, "CnrHookHelperTradeskillType");
-          DeleteLocalInt(oPC, "CnrHookHelperNextLevel");
-          DeleteLocalString(oPC, "CnrHookHelperLevelUpDeniedText");
-
-        }
-
-        CnrSetTradeskillXPByType(oPC, nDeviceTradeskillType, nNewXP);
-
+        // check results
+        bLevelDenied = GetLocalInt(oPC, "CnrHookHelperLevelUpDenied");
         if (!bLevelDenied)
         {
-          if (nNewLevel < 20)
-          {
-            int nLevelXP = GetLocalInt(GetModule(), "CnrTradeXPLevel" + IntToString(nNewLevel+1));
-            nLevelXP -= nNewXP;
-            sInfo2 += CNR_TEXT_YOU_NEED + IntToString(nLevelXP) + CNR_TEXT_XP_TO_REACH_THE_NEXT_LEVEL_IN + sTradeName + ".";
-          }
-          sInfo2 += CNR_TEXT_YOU_ARE_CURRENTLY_AT_LEVEL + IntToString(nNewLevel) + ".\n";
+          string sNewLevel = CNR_TEXT_YOU_HAVE_REACHED_LEVEL + IntToString(nNewLevel) + CNR_TEXT_IN + sTradeName + "!";
+          AssignCommand(oPC, DelayCommand(0.6, SendMessageToPC(oPC, sNewLevel)));
         }
+        else
+        {
+          sInfo2 = GetLocalString(oPC, "CnrHookHelperLevelUpDeniedText");
+
+          // set the PC's XP to one point below making the level
+          nNewXP = GetLocalInt(GetModule(), "CnrTradeXPLevel" + IntToString(nNewLevel)) - 1;
+        }
+
+        // clean up
+        DeleteLocalInt(oPC, "CnrHookHelperTradeskillType");
+        DeleteLocalInt(oPC, "CnrHookHelperNextLevel");
+        DeleteLocalString(oPC, "CnrHookHelperLevelUpDeniedText");
+
+      }
+
+      CnrSetTradeskillXPByType(oPC, nDeviceTradeskillType, nNewXP);
+
+      if (!bLevelDenied)
+      {
+        if (nNewLevel < 20)
+        {
+          int nLevelXP = GetLocalInt(GetModule(), "CnrTradeXPLevel" + IntToString(nNewLevel+1));
+          nLevelXP -= nNewXP;
+          sInfo2 += CNR_TEXT_YOU_NEED + IntToString(nLevelXP) + CNR_TEXT_XP_TO_REACH_THE_NEXT_LEVEL_IN + sTradeName + ".";
+        }
+        sInfo2 += CNR_TEXT_YOU_ARE_CURRENTLY_AT_LEVEL + IntToString(nNewLevel) + ".\n";
       }
     }
-
+    
     if (bWithConvo != TRUE)
     {
       return;
-    }
-
-    sResult = "You successfully made " + IntToString(nBatchCount*nRecipeQty);
-    if ((nBatchCount*nRecipeQty) > 1)
-    {
-      sResult += " items.";
-    }
-    else
-    {
-      sResult += " item.";
     }
 
     sResult += "\n\n" + sInfo1 + sInfo2;
@@ -1850,6 +1864,11 @@ int CnrRecipeAttemptToCraftNoCheck(object oPC, object oDevice, int nRecipeIndex)
   if (nBatchCount == 0)
   {
     return FALSE;
+  }
+  else
+  {
+    // Slow crafting down.
+    nBatchCount = 1;
   }
 
   if (GetIsPC(oDevice))
@@ -1920,14 +1939,14 @@ int CnrRecipeAttemptToCraftNoCheck(object oPC, object oDevice, int nRecipeIndex)
   string sRecipeBiTag = CnrRecipeGetRecipeBiproductTagByKey(sKeyToRecipe);
   int nRecipeBiQty = CnrRecipeGetRecipeBiproductQtyByKey(sKeyToRecipe);
   int nOnFailBiQty = CnrRecipeGetRecipeOnFailBiproductQtyByKey(sKeyToRecipe);
-  int bSpawnItemInDevice = FALSE;
-  if (!GetIsPC(oDevice))
-  {
-    if (GetLocalInt(GetModule(), GetTag(oDevice) + "_SpawnItemInDevice"))
-    {
-      bSpawnItemInDevice = TRUE;
-    }
-  }
+  int bSpawnItemInDevice = TRUE;
+  //if (!GetIsPC(oDevice))
+  //{
+  //  if (GetLocalInt(GetModule(), GetTag(oDevice) + "_SpawnItemInDevice"))
+  //  {
+  //    bSpawnItemInDevice = TRUE;
+  //  }
+  //}
 
   // Create the recipe biproduct (if assigned)
   if (sRecipeBiTag != "BIPRODUCT_INVALID")
@@ -2021,17 +2040,23 @@ int CnrRecipeAttemptToCraft(object oPC, object oDevice, int nRecipeIndex, int bW
   {
     return 0;
   }
+  else
+  {
+    // Slow crafting down.
+    nBatchCount = 1;
+  }
 
   int nRoll = d20(1);
   int nEffDC = CnrRecipeCalculateEffectiveDC(oPC, sDeviceTag, sKeyToRecipe);
 
   int bSuccess = TRUE;
   string sResult;
+  
   if (nEffDC > 20)
   {
     int nMinPcLevel = CnrRecipeCalculateMinimumPcLevel(oPC, sDeviceTag, sKeyToRecipe);
     sResult += "Failure." + "\n\n" + CNR_TEXT_GIVEN_YOUR;
-    string sAbilityString = CnrRecipeGetAbilityString(sKeyToRecipe, FALSE);
+    string sAbilityString = CnrRecipeGetAbilityString(sDeviceTag, sKeyToRecipe, FALSE);
     sResult += sAbilityString;
     sResult += CNR_TEXT_THIS_RECIPE_IS_IMPOSSIBLE + " ";
     sResult += CNR_TEXT_YOU_WILL_NEED_TO_REACH_LEVEL + IntToString(nMinPcLevel);
@@ -2040,10 +2065,21 @@ int CnrRecipeAttemptToCraft(object oPC, object oDevice, int nRecipeIndex, int bW
   }
   else if (nRoll < nEffDC)
   {
-    // failure
-    sResult = CNR_TEXT_FAILURE + "  " + CNR_TEXT_YOU_ROLLED_A + IntToString(nRoll) + ".\n";
-    sResult = sResult + "\n" + CNR_TEXT_YOU_NEEDED_TO_ROLL_A + IntToString(nEffDC) + CNR_TEXT_OR_BETTER + "\n";
-    bSuccess = FALSE;
+    // Deity insert.  Check whether the crafter's patron deity intercedes to
+    // rescue the production.
+    string sDeity = GetDeity(oPC);
+    if (gsWOGetDeityAspect(oPC) & ASPECT_KNOWLEDGE_INVENTION &&
+        gsWOGrantBoon(oPC) )
+    {
+      FloatingTextStringOnCreature(sDeity + " intercedes to aid your work.", oPC);
+    }
+    else
+    {
+     // failure
+      sResult = CNR_TEXT_FAILURE + "  " + CNR_TEXT_YOU_ROLLED_A + IntToString(nRoll) + ".\n";
+      sResult = sResult + "\n" + CNR_TEXT_YOU_NEEDED_TO_ROLL_A + IntToString(nEffDC) + CNR_TEXT_OR_BETTER + "\n";
+      bSuccess = FALSE;
+    }
   }
 
   float fAnimationDelay = 0.0;
@@ -2057,27 +2093,9 @@ int CnrRecipeAttemptToCraft(object oPC, object oDevice, int nRecipeIndex, int bW
   }
   else
   {
-    // set this for the animation script to use
-    SetLocalObject(oDevice, "oCnrCraftingPC", oPC);
+    CnrRecipeDoAnimation(oPC, oDevice, bSuccess);
 
-    // set this for the animation script to use
-    SetLocalInt(oPC, "bCnrCraftingResult", bSuccess);
-
-    // The animation delay should be set by the animation script.
-    // It is preset to zero in case no anim script is defined or found.
-    SetLocalFloat(oPC, "fCnrAnimationDelay", 0.0);
-
-    // The recipe's pre-crafting script has priority (it replaces the device's script)
-    string sScript = CnrRecipeGetRecipePreCraftingScriptByKey(sKeyToRecipe);
-    ExecuteScript(sScript, oDevice);
-    if (sScript == "")
-    {
-      // The device's script acts like the default script
-      sScript = GetLocalString(GetModule(), sDeviceTag + "_RecipePreScript");
-      ExecuteScript(sScript, oDevice);
-    }
-
-    fAnimationDelay = GetLocalFloat(oPC, "fCnrAnimationDelay");
+    fAnimationDelay = GetLocalFloat(oPC, "fCnrAnimationDelay"); // Set by the animation script.
     DelayCommand(fAnimationDelay, CnrRecipeDisplayCraftingResult(oPC, oDevice, sKeyToRecipe, bSuccess, sResult, nEffDC, locPC, bWithConvo));
   }
 
@@ -2091,6 +2109,24 @@ int CnrRecipeAttemptToCraft(object oPC, object oDevice, int nRecipeIndex, int bW
     // make sure we return a negative value
     return -1;
   }
+}
+
+/////////////////////////////////////////////////////////
+void CnrRecipeDoAnimation(object oPC, object oDevice, int bSuccess)
+{
+    // set this for the animation script to use
+    SetLocalObject(oDevice, "oCnrCraftingPC", oPC);
+
+    // set this for the animation script to use
+    SetLocalInt(oPC, "bCnrCraftingResult", bSuccess);
+
+    // The animation delay should be set by the animation script.
+    // It is preset to zero in case no anim script is defined or found.
+    SetLocalFloat(oPC, "fCnrAnimationDelay", 0.0);
+
+    // The device's script acts like the default script
+    string sScript = GetLocalString(GetModule(), GetTag(oDevice) + "_RecipePreScript");
+    ExecuteScript(sScript, oDevice);
 }
 
 /////////////////////////////////////////////////////////
@@ -2544,7 +2580,7 @@ string CnrRecipeBookBuildRecipeString(object oPC, int nRecipeIndex)
     // the PC needs to be to have any chance of success crafting this recipe.
     int nMinPcLevel = CnrRecipeCalculateMinimumPcLevel(oPC, sDeviceTag, sKeyToRecipe);
     sRecipe += "\n" + CNR_TEXT_GIVEN_YOUR;
-    string sAbilityString = CnrRecipeGetAbilityString(sKeyToRecipe, FALSE);
+    string sAbilityString = CnrRecipeGetAbilityString(sDeviceTag, sKeyToRecipe, FALSE);
     sRecipe += sAbilityString;
     sRecipe += CNR_TEXT_THIS_RECIPE_IS_IMPOSSIBLE + " ";
     sRecipe += CNR_TEXT_YOU_WILL_NEED_TO_REACH_LEVEL + IntToString(nMinPcLevel);
@@ -2553,7 +2589,7 @@ string CnrRecipeBookBuildRecipeString(object oPC, int nRecipeIndex)
   else
   {
     sRecipe += "\n" + CNR_TEXT_GIVEN_YOUR;
-    string sAbilityString = CnrRecipeGetAbilityString(sKeyToRecipe, TRUE);
+    string sAbilityString = CnrRecipeGetAbilityString(sDeviceTag, sKeyToRecipe, TRUE);
     sRecipe += sAbilityString;
     sRecipe = sRecipe + CNR_TEXT_YOU_HAVE_A + IntToString(100-((nEffDC-1)*5)) + CNR_TEXT_PERCENT_CHANCE_OF_SUCCESS;
   }

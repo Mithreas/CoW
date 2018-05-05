@@ -4,12 +4,12 @@
 0	Server_IP	  ****
 1	Server_Password	  ****
 2	Server_DM_Passwd  ****
-3	Server_Name       4
+3	Server_Name       1
 4	Zombie_Mode	  0
 5	Server_Install	  ****
 6	Server_Vault	  ****
-7	Base_XP		  25
-8	XP_Variance	  0.3
+7	Base_XP		  20
+8	XP_Variance	  0.35
 9	XP_Multiplier	  1.5
 10	XP_Low_PC_Limit   5
 11	Debug		  1

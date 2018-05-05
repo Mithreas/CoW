@@ -21,6 +21,7 @@ zz_co_crafting for it to work (to change this, do a find+replace on all the plac
 where zz_co_crafting is mentioned).
 */
 
+#include "cnr_recipe_utils"
 #include "inc_chatutils"
 #include "inc_class"
 #include "inc_istate"
@@ -428,19 +429,21 @@ void Init6()
 void Init7()
 {
     // 3 possible prompts: proceed, repair or standard.
+	// CNR integration: only repair or create/improve options will show up
     object oSpeaker   = dlgGetSpeakingPC();
     object oItem      = GetFirstItemInInventory();
-    int nSkill        = dlgGetSpeakeeDataInt(FB_VAR_SKILL);
-    int nRank         = gsCRGetSkillRank(nSkill, oSpeaker);
+	string sCraftMenu = GetTag(OBJECT_SELF);
+    int nSkill        = GetLocalInt(GetModule(), sCraftMenu + "_TradeskillType");;
+    int nRank         = CnrGetPlayerLevel(oSpeaker, sCraftMenu);
     string sRank      = IntToString(nRank);
-    int nPoints       = gsCRGetCraftPoints(oSpeaker);
+    int nPoints       = 1; // CNR override.
     string sPoints    = IntToString(nPoints);
     string sString    = "GS_CR_" + IntToString(nSkill) + "_";
     int nCount        = GetStringLength(sString);
     int nState        = 0;
     int nStateMaximum = 0;
     int bProgress     = dlgGetPlayerDataInt(FB_VAR_WORK_PROGRESS);
-
+	
     // dunshine: check to see if this is the remains of a fixture, in that case we won't have an item, but still want to be able to repair
     // status 1 means the materials are still required to start reparations
     // status 2 means the materials are already used and repairment is underway
@@ -517,7 +520,8 @@ void Init7()
     // No candidate found, use response 3
     if (!GetIsObjectValid(oItem) && (iRemains != 2))
     {
-        dlgSetPrompt(txtBlue+"[Select action]</c>\n\nYour skill rank: "+sRank+"\nRemaining daily crafting points: "+sPoints);
+        if (nRank > -1) dlgSetPrompt(txtBlue+"[Select action]</c>\n\nYour skill rank: "+sRank);
+		else dlgSetPrompt(txtBlue + "[Select action]</c>\n\nNo particular craft skill needed.");
     }
 
     // Display work options
@@ -525,11 +529,11 @@ void Init7()
     {
         if (nRank > 0)
         {
-            fbResponse("[Use 1 crafting point]", TRUE);
-            fbResponse("[Use 5 crafting points]", TRUE);
-            fbResponse("[Use 10 crafting points]", TRUE);
-            fbResponse("[Use 25 crafting points]", TRUE);
-            fbResponse("[Use required crafting points]", TRUE);
+            fbResponse("[Repair 1 point]", TRUE);
+            //fbResponse("[Use 5 crafting points]", TRUE);
+            //fbResponse("[Use 10 crafting points]", TRUE);
+            //fbResponse("[Use 25 crafting points]", TRUE);
+            //fbResponse("[Use required crafting points]", TRUE);
         }
         if (iRemains == 0) {
           dlgActivateResetResponse("[Back]", txtLime);
@@ -539,8 +543,8 @@ void Init7()
     else
     {
         if (iRemains == 0) {
-          if (nRank > 0) fbResponse("[Create new production]", TRUE);
-          if (nRank > 0) fbResponse("[Create new production by ID. Enter ID before selecting]", TRUE);
+          if (nRank == -1 || nRank > 0) fbResponse("[Create new production]", TRUE); 
+          //if (nRank > 0) fbResponse("[Create new production by ID. Enter ID before selecting]", TRUE);
           if (nRank > 0) fbResponse("[Improve Item]", TRUE);
           fbOpen();
         } else if (iRemains == 1) {
@@ -989,36 +993,24 @@ void Sel6()
 void Sel7()
 {
     object oSpeaker = dlgGetSpeakingPC();
+    object oSelf = OBJECT_SELF;
+	
     if (!dlgGetPlayerDataInt(FB_VAR_WORK_PROGRESS))
     {
         string sName = dlgGetSelectionName();
-        if (sName == "[Create new production]") dlgChangePage("2");
+        if (sName == "[Create new production]") 
+		{
+		    // Hook into CNR here.  
+            Cleanup();
+            AssignCommand(oSpeaker, ActionStartConversation(oSelf,"cnr_c_recipe", TRUE, FALSE));
+		  
+		}
         else if (sName == "[Improve Item]")
         {
             Cleanup();
-            object oSelf = OBJECT_SELF;
             AssignCommand(oSpeaker, ActionStartConversation(oSelf,"gs_ip_add", TRUE, FALSE));
         }
         else if (sName == "[Open inventory]") fbOpenAction();
-        else if (sName == "[Create new production by ID. Enter ID before selecting]")
-        {
-            struct gsCRRecipe stRecipe;
-            int nSkill = dlgGetSpeakeeDataInt(FB_VAR_SKILL);
-
-            string sID = chatGetLastMessage(oSpeaker);
-            stRecipe = gsCRGetRecipeByID(nSkill, sID);
-            //check if recipe exists
-            if(stRecipe.sName == "" || !mdCRShowRecipe(stRecipe, oSpeaker))
-                SendMessageToPC(oSpeaker, "That recipe does not exist.");
-            else
-            {
-                dlgSetPlayerDataInt(FB_VAR_CHOSEN_PRODUCT, StringToInt(stRecipe.sSlot));
-                dlgSetPlayerDataInt(FB_VAR_CHOSEN_CATEGORY, stRecipe.nCategory);
-                dlgSetPlayerDataString("MD_CR_ALT_PAGE", "7");
-                dlgChangePage("4");
-            }
-
-        }
         else if (sName == "[Repair this fixture]")
         {
             // jump to the creation page for this fixture immediately
@@ -1046,6 +1038,7 @@ void Sel7()
             case 3: nValue = 25;    break;
             case 4: nValue = FALSE; break;
         }
+		
         object oSelf = OBJECT_SELF;
         int nSkill   = dlgGetSpeakeeDataInt(FB_VAR_SKILL);
 
@@ -1070,12 +1063,21 @@ void Sel7()
           if (GetStringLeft(ConvertedStackTag(oItem), nCount) == sString)
               gsCRProduce(oItem, oSpeaker, nValue);
           else
-              gsISRepairItem(oItem, oSpeaker, nValue);
+		  {
+		      // Play fixture animation
+			  CnrRecipeDoAnimation(oSpeaker, oSelf, TRUE);
+              // use the action queue so the object message shows
+              // after the animation script completes
+              AssignCommand(oSpeaker, ActionDoCommand(gsISRepairItem(oItem, oSpeaker, 1)));
+			  // Mark ourselves as "disturbed" so that the PC can carry on repairing without
+			  // needing to mess with the inventory.
+			  SetLocalInt(oSelf, "bCnrDisturbed", TRUE);
+		  }	  
         }
 
-        // Play an appropriate sound and animation
-        gsCRPlaySound(nSkill);
-        AssignCommand(oSpeaker, _Sel(oSelf));
+        // Play an appropriate sound (no animation - covered above)
+        CnrRecipePlaySound(nSkill);
+        // AssignCommand(oSpeaker, _Sel(oSelf));
 
         // End the dialog - it'll come straight back up afterwards.
         dlgEndDialog();

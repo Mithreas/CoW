@@ -4,18 +4,17 @@ void main()
   int nTrade = 0;
   string sTradeName = GetName(OBJECT_SELF);
   sTradeName = GetStringRight(sTradeName, GetStringLength(sTradeName)-7);
-  if (sTradeName == "Smelting")  { nTrade = CNR_TRADESKILL_SMELTING; }
+  if (sTradeName == "Cooking")  { nTrade = CNR_TRADESKILL_COOKING; }
   else if (sTradeName == "Weapon Crafting")  { nTrade = CNR_TRADESKILL_WEAPON_CRAFTING; }
   else if (sTradeName == "Armor Crafting")  { nTrade = CNR_TRADESKILL_ARMOR_CRAFTING; }
-  else if (sTradeName == "Alchemy")  { nTrade = CNR_TRADESKILL_ALCHEMY; }
-  else if (sTradeName == "Scribing")  { nTrade = CNR_TRADESKILL_SCRIBING; }
-  else if (sTradeName == "Tinkering")  { nTrade = CNR_TRADESKILL_TINKERING; }
-  else if (sTradeName == "Wood Crafting")  { nTrade = CNR_TRADESKILL_WOOD_CRAFTING; }
+  else if (sTradeName == "Explosives")  { nTrade = CNR_TRADESKILL_EXPLOSIVES; }
+  else if (sTradeName == "Investing")  { nTrade = CNR_TRADESKILL_INVESTING; }
+  else if (sTradeName == "Imbuing")  { nTrade = CNR_TRADESKILL_IMBUING; }
+  else if (sTradeName == "Carpentry")  { nTrade = CNR_TRADESKILL_WOOD_CRAFTING; }
   else if (sTradeName == "Enchanting")  { nTrade = CNR_TRADESKILL_ENCHANTING; }
-  else if (sTradeName == "Gem Crafting")  { nTrade = CNR_TRADESKILL_GEM_CRAFTING; }
+  else if (sTradeName == "Jewelry")  { nTrade = CNR_TRADESKILL_JEWELRY; }
   else if (sTradeName == "Tailoring")  { nTrade = CNR_TRADESKILL_TAILORING; }
-  else if (sTradeName == "Food Crafting")  { nTrade = CNR_TRADESKILL_FOOD_CRAFTING; }
-
+  
   if (nTrade > 0)
   {
     object oUser = GetLastUsedBy();

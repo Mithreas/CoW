@@ -20,7 +20,7 @@ void main()
   /////////////////////////////////////////////////////////
   // Default CNR recipes made in cnrBrewersOven
   /////////////////////////////////////////////////////////
-  CnrRecipeSetDeviceTradeskillType("cnrBrewersOven", CNR_TRADESKILL_FOOD_CRAFTING);
+  CnrRecipeSetDeviceTradeskillType("cnrBrewersOven", CNR_TRADESKILL_COOKING);
 
   sKeyToRecipe = CnrRecipeCreateRecipe("cnrBrewersOven", "Roasted Barley", "cnrBarleyRoasted", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrBarleyRaw", 1);

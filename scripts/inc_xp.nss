@@ -282,9 +282,7 @@ void gsXPGiveExperience(object oCreature, int nAmount, int nFloat = TRUE, int nK
 
     if (GetIsPossessedFamiliar(oCreature))
     {
-      // Uncomment the following line to allow masters to gain XP when
-      // possessing familiars.
-      //oCreatureToReward = GetMaster(oCreature);
+      oCreatureToReward = GetMaster(oCreature);
     }
     // ]-- See other refs to oCreatureToReward below.
 
@@ -327,13 +325,21 @@ void gsXPGiveExperience(object oCreature, int nAmount, int nFloat = TRUE, int nK
 
             if (nAmount <= 0) nAmount = 1;
 
+			
+			// Check for PCs over the "soft cap"
+			// @@@ This probably needs further thought.  But it will do for now.
+			if (GetHitDice(oCreatureToReward) >= GetLocalInt(GetModule(), "STATIC_LEVEL"))
+			{
+			  // Cap all XP gains at 5.
+			  if (nAmount > 5) nAmount = 5;
+			}
+			
             // check for adventure mode
             if (gvd_GetAdventureMode(oCreatureToReward) == 1) {
               // adventure mode is on, give 50% directly, 100% to adv pool
               gvd_AdventuringXP_GiveXP(oCreatureToReward, nAmount, "Adventure Mode");
               nAmount = nAmount / 2;
             }
-
         }
 
         if (nXP >= nXPLevel)

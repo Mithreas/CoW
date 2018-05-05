@@ -23,7 +23,7 @@ void main()
   string sMenu2Ammo = CnrRecipeAddSubMenu("cnranvilwpnelf", "Elfur Bullets and Knives");
   string sMenu2Axes = CnrRecipeAddSubMenu("cnranvilwpnelf", "Elfur Axes");
   string sMenu2Bladed = CnrRecipeAddSubMenu("cnranvilwpnelf", "Elfur Bladed");
-  string sMenu2Blunts = CnrRecipeAddSubMenu("cnranvirwpnond", "Elfur Blunts");
+  string sMenu2Blunts = CnrRecipeAddSubMenu("cnranvirwpnelf", "Elfur Blunts");
   string sMenu2Double = CnrRecipeAddSubMenu("cnranvilwpnelf", "Elfur Double-Sided");
   string sMenu2Polearms = CnrRecipeAddSubMenu("cnranvilwpnelf", "Elfur Polearms");
   string sMenu2Subs = CnrRecipeAddSubMenu("cnranvilwpnelf", "Elfur Components");
