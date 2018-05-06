@@ -1,5 +1,6 @@
 #include "inc_combat"
 #include "inc_combat2"
+#include "inc_crime"
 #include "inc_effect"
 #include "inc_event"
 #include "inc_state"

@@ -5,7 +5,7 @@
 #include "inc_bloodstains"
 #include "inc_craft"
 
-const string HELP = "-investigate lets you study a bloodstain or fixture remains and work out details of the encounter that caused it.  It keys off Search and Lore.";
+const string HELP = "-investigate lets you study a bloodstain or fixture remains and work out details of the encounter that caused it.  A few areas of the module can also give you additional information from using this command.  It keys off Search and Lore.";
 const int INVEST_BLOOD = 1;
 const int INVEST_SECRET = 2;
 const int INVEST_REMAINS = 3;
@@ -23,7 +23,7 @@ void main()
   {
     object oBlood = BMGetNearestBloodStain(oSpeaker);
     object oNPC = GetNearestCreature(CREATURE_TYPE_PLAYER_CHAR, PLAYER_CHAR_NOT_PC, oSpeaker);
-    object oInvestigation = GetNearestObjectByTag("mi_investigation", oSpeaker);
+    object oInvestigation = GetNearestObjectByTag("Investigation", oSpeaker);
     object oRemains = GetNearestObjectByTag("GS_FX_gvd_it_remains", oSpeaker);
 
     // determine which investigate target is closest to the PC first, so people have more control over what to investigate
@@ -238,7 +238,7 @@ void main()
     }
     else
     {
-      SendMessageToPC(oSpeaker, "No nearby bloodstain or remains to investigate and no NPC to question.");
+      SendMessageToPC(oSpeaker, "No nearby bloodstain or remains to investigate, no NPC to question, and no nearby point of interest.");
     }
   }
 }

@@ -4,9 +4,9 @@
 #include "inc_area"
 #include "X0_i0_stringlib"
 
-const int DEFAULT_AREA_XP = 50;
+const int DEFAULT_AREA_XP = 25;
 const int DEFAULT_PORTAL_XP = 200;
-const int DEFAULT_CREATURE_TYPE_XP = 25;
+const int DEFAULT_CREATURE_TYPE_XP = 150;
 const int DEFAULT_TRIGGER_XP = 100;
 const int DEFAULT_LASSO_XP = 250;
 

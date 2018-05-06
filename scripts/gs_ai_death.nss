@@ -23,11 +23,11 @@
 #include "inc_stacking"
 
 const string GS_TEMPLATE_CORPSE  = "gs_placeable016";
-const string GS_BOSS_HEAD_MEGA   = "monst_head_mega";
-const string GS_BOSS_HEAD_HIGH   = "monst_head_high";
-const string GS_BOSS_HEAD_MEDIUM = "monst_head_med";
-const string GS_BOSS_HEAD_LOW    = "monst_head_low";
-const string GS_BOSS_HEAD_MINI   = "monst_head_mini";
+const string GS_BOSS_HEAD_MEGA   = "mon_head_mega";
+const string GS_BOSS_HEAD_HIGH   = "mon_head_high";
+const string GS_BOSS_HEAD_MEDIUM = "mon_head_med";
+const string GS_BOSS_HEAD_LOW    = "mon_head_low";
+const string GS_BOSS_HEAD_MINI   = "mon_head_mini";
 // Use the humanoid head appearance for player races.
 const string GS_BOSS_HEAD_HHIGH  = "hum_head_high";
 const string GS_BOSS_HEAD_HMED   = "hum_head_med";

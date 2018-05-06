@@ -831,31 +831,25 @@ string GenerateNewQuest(object oPC, object oNPC)
 
   int nCount = 0;
   int nCountsMax = 10;
-  while (nCount < nCountsMax)
+
+  string sSQL = "SELECT name FROM " + sQuestDB + " ORDER BY RAND() LIMIT 10";;
+  SQLExecDirect(sSQL);
+  string sQuestToTry = "";
+
+  while (SQLFetch() == SQL_SUCCESS)
   {
-    string sSQL = "SELECT name FROM " + sQuestDB + SQLRandom();
-    SQLExecDirect(sSQL);
-
-    if (SQLFetch() == SQL_SUCCESS)
-    {
-      sQuest = SQLGetData(1);
-    }
-    else
-    {
-      return sQuest;
-    }
-
-    Trace(RQUEST, "Got quest: " + sQuest);
+    sQuestToTry = SQLGetData(1);
+    Trace(RQUEST, "Got quest: " + sQuestToTry);
 
     // Is this quest suitable for this PC?
     // Has the PC done it?
-    if (!HasDoneRandomQuest(oPC, sQuest))
+    if (!HasDoneRandomQuest(oPC, sQuestToTry))
     {
       // PC hasn't already done this quest.
       Trace (RQUEST, "PC hasn't already done quest.");
 
       // Is this quest in the PC's level range?
-      string sLevelRange = GetPersistentString(OBJECT_INVALID, sQuest+LEVEL_RANGE, sVarsDB);
+      string sLevelRange = GetPersistentString(OBJECT_INVALID, sQuestToTry+LEVEL_RANGE, sVarsDB);
       Trace (RQUEST, "Level range for quest: " + sLevelRange);
 
       if ((sLevelRange == "") || (sLevelRange == "any" )) break; // No limits.
@@ -867,14 +861,15 @@ string GenerateNewQuest(object oPC, object oNPC)
       Trace(RQUEST, "Max level: " + IntToString(nMaxLevel));
       int nPCLevel = GetLevelByPosition(1, oPC) + GetLevelByPosition(2, oPC) +
                      GetLevelByPosition(3, oPC);
-      if ((nMinLevel <= nPCLevel) && (nPCLevel <= nMaxLevel)) break; // PC is within level range.
+      if ((nMinLevel <= nPCLevel) && (nPCLevel <= nMaxLevel))
+      {
+	    sQuest = sQuestToTry;
+        break; // PC is within level range.
+      }
     }
+  }	
 
-    // Loop and try again, unless we've tried 10 times already.
-    nCount++;
-  }
-
-  if (nCount == nCountsMax)
+  if (sQuest == "")
   {
      // No valid quest found.
      return "";

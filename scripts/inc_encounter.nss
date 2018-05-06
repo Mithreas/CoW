@@ -151,9 +151,6 @@ void gsENSpawnAtLocation(float fChallenge, int nCount, location lLocation, float
     // If night time, check whether we have any night time encounters set up.
     // Otherwise, use day time encounters.
     if (bNight && gsENGetCreatureTemplate(1, oArea, TRUE) == "") bNight = FALSE;
-
-	// City of Winds addition: award XP when an encounter triggers.
-	ExecuteScript("encounter_xp_ent", OBJECT_SELF);
 	
     //preselection
     for (nNth1 = 1; nNth1 <= GS_EN_LIMIT_SLOT; nNth1++)
@@ -218,6 +215,10 @@ void gsENSpawnAtLocation(float fChallenge, int nCount, location lLocation, float
             }
         }
     }
+	
+	// City of Winds addition: award XP when an encounter triggers.
+	// This method can be assigned to the area, so use one of the creatures as the center point.
+	if (GetIsObjectValid(oCreature)) ExecuteScript("encounter_xp_ent", oCreature);
 
     // Spawn loot item.  This is an item that will give a scaled amount of gold
     // to each member of a party once.
