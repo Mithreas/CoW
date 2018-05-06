@@ -148,6 +148,12 @@ void MarkAllItemsAsStolen(object oContainer);
 // Returns true if oNPC can see oPC.
 //------------------------------------------------------------------------------
 int GetCanSeeParticularPC(object oPC, object oNPC = OBJECT_SELF);
+
+//------------------------------------------------------------------------------
+// Adds to oAttacker's bounty if oNPC is from a nation that gives bounties and 
+// oAttacker is a PC.
+//------------------------------------------------------------------------------
+void IWasAttacked(object oNPC, object oAttacker);
 /* End prototypes. */
 
 /*
@@ -436,4 +442,26 @@ int GetCanSeeParticularPC(object oPC, object oNPC = OBJECT_SELF)
   }
   
   return FALSE;
+}
+
+void IWasAttacked(object oNPC, object oAttacker)
+{
+  Trace(BOUNTY, "Checking attack");
+  int nNation = CheckFactionNation(oNPC);
+  if (nNation != NATION_INVALID)
+  {
+    Trace(BOUNTY, "NPC is from a nation that gives bounties.");
+    // Only add to bounty if the spell is harmful :)
+    if (GetIsPC(oAttacker))
+    {
+      Trace(BOUNTY, "PC attacked faction NPC - add to their bounty!");
+      AddToBounty(nNation, FINE_ASSAULT, GetLastSpellCaster());
+    }
+    else if ((GetAssociateType(oAttacker) != ASSOCIATE_TYPE_NONE) &&
+             GetIsPC(GetMaster(oAttacker)))
+    {
+      Trace(BOUNTY, "Adding to master's bounty");
+      AddToBounty(nNation, FINE_ASSAULT, GetMaster(oAttacker));
+    }
+  }
 }

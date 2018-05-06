@@ -40,6 +40,9 @@ void main()
 
     _teleportSummonsToAttacker(oLastDamager, OBJECT_SELF);
     _resolveVampireBiteAttacks(oLastDamager, OBJECT_SELF);
+	
+	// Crime system hook
+	IWasAttacked(OBJECT_SELF, oLastDamager);
 }
 
 void _teleportSummonsToAttacker(object attacker, object attacked)

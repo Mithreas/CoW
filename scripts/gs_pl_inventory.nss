@@ -66,8 +66,8 @@ void main()
         else
         {
             string sTagInventory = sTag;
-            int nLimitValue      = 0;
-            int nLimitItem       = 0;
+            int nLimitValue      = GS_LIMIT_VALUE_HIGH;
+            int nLimitItem       = GS_LIMIT_ITEM_LOW;
             int nNth             = GetStringLength(sTag);
 
             //determine item value range

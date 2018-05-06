@@ -19,8 +19,8 @@ void Init()
 {
   // Responses to greeting.
   DeleteList(MAIN_MENU);
-  AddStringElement("Why do you want bones?", MAIN_MENU);
   AddStringElement("None, sorry.", MAIN_MENU);
+  AddStringElement("Why do you want bones?", MAIN_MENU);
   if (GetItemPossessedBy(GetPcDlgSpeaker(), "NW_IT_MSMLMISC13") != OBJECT_INVALID)
   {
     AddStringElement("Yes, I have some. Here you are!", MAIN_MENU);
@@ -148,7 +148,7 @@ void HandleSelection()
   else
   {
     SendMessageToPC(oPC,
-                    "You've found a bug. How embarassing. Please report it.");
+                    "You've found a bug. How embarrassing. Please report it.");
     EndDlg();
   }
 }

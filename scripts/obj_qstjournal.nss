@@ -8,11 +8,8 @@
 #include "x2_inc_switches"
 void main()
 {
-  // If this script was called in an acquire routine, run away.
-  if (GetUserDefinedItemEventNumber() != X2_ITEM_EVENT_ACTIVATE)
-  { Trace(RQUEST, "journal object not activated"); return; }
-
-  object oPC = GetItemActivator();
+  object oItem   = GetSpellCastItem();
+  object oPC     = GetItemPossessor(oItem);
 
   string sCurrentQuest = GetPersistentString(oPC, CURRENT_QUEST);
   string sCurrentQuestSet = GetPersistentString(oPC, sCurrentQuest);

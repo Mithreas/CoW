@@ -115,7 +115,7 @@ void main()
     int nNth            = 0;
 
     // temporary logging of timestamp to see when the differences between servers start happening
-    WriteTimestampedLogEntry("Current Timestamp (Server " + GetLocalString(GetModule(), VAR_SERVER_NAME) + "): " + IntToString(nTimestamp));
+    //WriteTimestampedLogEntry("Current Timestamp (Server " + GetLocalString(GetModule(), VAR_SERVER_NAME) + "): " + IntToString(nTimestamp));
 
     //reboot
     if (nRestartTimeout &&
