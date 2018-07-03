@@ -24,7 +24,7 @@ void main()
   string sMenuTinkerGlass = CnrRecipeAddSubMenu("cnrtinkerfurnace", "Glass and Charcoal");
 
   CnrRecipeSetDevicePreCraftingScript("cnrtinkerfurnace", "cnr_forge_anim");
-  CnrRecipeSetDeviceTradeskillType("cnrtinkerfurnace", CNR_TRADESKILL_EXPLOSIVES);
+  CnrRecipeSetDeviceTradeskillType("cnrtinkerfurnace", CNR_TRADESKILL_CHEMISTRY);
   CnrRecipeSetRecipeAbilityPercentages("cnrtinkerfurnace", 0, 0, 50, 50, 0, 0); // Con and Int
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTinkerGlass, "Ingot of Glass", "cnringotglass", 1);

@@ -1098,10 +1098,10 @@ void Init()
   }
   else if (nRace == RACIAL_TYPE_HALFLING)
   {
-    // Halfling subraces
-    _AddSubraceAsOption(GS_SU_HALFLING_GHOSTWISE);
-    _AddSubraceAsOption(GS_SU_HALFLING_LIGHTFOOT);
-    _AddSubraceAsOption(GS_SU_HALFLING_STRONGHEART);
+    // Halfling subraces - disabled for now.
+    //_AddSubraceAsOption(GS_SU_HALFLING_GHOSTWISE);
+    //_AddSubraceAsOption(GS_SU_HALFLING_LIGHTFOOT);
+    //_AddSubraceAsOption(GS_SU_HALFLING_STRONGHEART);
   }
   else if (nRace == RACIAL_TYPE_HALFORC)
   {
@@ -1353,7 +1353,7 @@ void PageInit()
   }
   else if (sPage == ALIGNMENT_PAGE)
   {
-    SetDlgPrompt("On Arelith, Bards can be Lawful.  Do you want your alignment changed to Lawful?");
+    SetDlgPrompt("On this server, Bards can be Lawful.  Do you want your alignment changed to Lawful?");
     SetDlgResponseList(ALIGNMENT_OPTIONS);
   }
   else if (sPage == PACT_SELECT)

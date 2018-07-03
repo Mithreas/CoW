@@ -61,10 +61,11 @@ void main()
   {
     if (GetTag(oItem) == "cnrLumpOfCoal")
     {
+	  int nStackSize = GetItemStackSize(oItem);
       DestroyObject(oItem);
-      int nCoalCount = GetLocalInt(OBJECT_SELF, "CnrCoalCount") + 1;
-      SetLocalInt(OBJECT_SELF, "CnrCoalCount", nCoalCount);
-      if (nCoalCount == 1)
+      int nCoalCount = GetLocalInt(OBJECT_SELF, "CnrCoalCount");
+      SetLocalInt(OBJECT_SELF, "CnrCoalCount", nCoalCount + nStackSize);
+      if (nCoalCount == 0)
       {
         // Create and position the fire
         location locForge = GetLocation(OBJECT_SELF);

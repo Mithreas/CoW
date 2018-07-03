@@ -11,7 +11,7 @@
 #include "inc_quarter"
 #include "inc_zdlg"
 #include "inc_holders"
-#include "inc_factions"
+#include "inc_reputation"
 
 void main()
 {
@@ -23,6 +23,7 @@ void main()
 
     if (gsQUGetIsPublic(oQuarter) ||
         nOwner ||
+		(nOverrideSubrace && nOverrideSubrace == GetPCFaction(oPC)) ||
         (nOverrideSubrace && nOverrideSubrace == gsSUGetSubRaceByName(GetSubRace(oPC))) ||
         (! nOwner && gsQUGetIsAvailable(oQuarter)) ||
         GetIsDM(oPC) ||

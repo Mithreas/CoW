@@ -31,7 +31,7 @@ void main()
   // can be dug with a shovel to provide an item.
   CnrShoveledDepositInitialize("cnrdepositclay", "cnrlumpofclay");
   CnrShoveledDepositInitialize("cnrdepositsand", "cnrbagofsand");
-  CnrShoveledDepositInitialize("cnrdepositsulphu", "sulphur");
+  CnrShoveledDepositInitialize("cnrDepositSulphu", "sulphur");
 
   // This section (new to V3.00) allows for easy setup of mineral deposits that
   // can be excavated with a chisel to provide an item.
@@ -40,6 +40,8 @@ void main()
   // This section (new to V3.00) allows for easy setup of ore deposits that
   // can be bashed with a pickaxe to provide an item.
   CnrMinableRockInitialize("cnrrockond", "cnrnuggetond");
+  CnrMinableRockInitialize("cnrrockiro", "cnrnuggetiro");
+  CnrMinableRockInitialize("cnrrocksil", "cnrnuggetsil");
   CnrMinableRockInitialize("cnrrockelf", "cnrnuggetelf");
   CnrMinableRockInitialize("cnrrocklir", "cnrnuggetlir");
   CnrMinableRockInitialize("cnrrockdem", "cnrnuggetdem");

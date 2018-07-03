@@ -400,6 +400,7 @@ void main()
 
                 //lock door, unless it's a haunted door that will lock when interacted with.
                 if (GetLockLockable(oObject) && 
+				    !GetLocalInt(oObject, "GVD_NO_AUTO_LOCK") && 
 				    GetEventScript(oObject, EVENT_SCRIPT_DOOR_ON_OPEN)!= "cow_haunteddoor")
                 {
                     SetLocked(oObject, TRUE);

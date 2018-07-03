@@ -1,24 +1,32 @@
 /*
-  Name: mi_hasq2item1
+  Name: mi_hasq1item1
   Author: Mithreas
-  Date: 10 Sep 05
-  Version: 1.0
+  Date: 30 May 06
+  Version: 1.2
 
   Checks for the existence of an item with a tag stored on the speaking NPC
-  under the variable name "quest1item1"/
+  under the variable name "quest2item1"
 */
 #include "inc_log"
-#include "inc_quest"
 int StartingConditional()
 {
   string sItemTag = GetLocalString(OBJECT_SELF, "quest2item1");
-  object sItem = GetItemPossessedBy(GetPCSpeaker(), sItemTag);
-  int nRetVal = 0;
-   if (sItem != OBJECT_INVALID)
+  object oItem = GetFirstItemInInventory(GetPCSpeaker());
+  int nNum = GetLocalInt(OBJECT_SELF, "quest2item1num");
+  int nCount = 0;
+
+  if (nNum == 0) nNum = 1;
+
+  while ((nCount < nNum) && GetIsObjectValid(oItem))
   {
-    nRetVal = 1;
-    Trace(QUESTS, "Found item: " + GetName(sItem));
+    if (GetTag(oItem) == sItemTag)
+    {
+      nCount += GetItemStackSize(oItem);
+      Trace("QUESTS","Destroyed " + GetName(oItem));
+    }
+
+    oItem = GetNextItemInInventory(GetPCSpeaker());
   }
 
-  return nRetVal;
+  return (nCount >= nNum);
 }

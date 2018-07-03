@@ -36,8 +36,18 @@ int StartingConditional()
     {
       SetLocalInt(GetModule(), "ZDLG_TOKEN_SET", nTokenSet);
       Trace(ZDIALOG, "Starting conversation: zdlg_converse_" + IntToString(nTokenSet));
-      ActionStartConversation(oSpeaker, "zdlg_converse_" + IntToString(nTokenSet),
-                                                                     TRUE, FALSE);
+	  
+	  if (GetObjectType(OBJECT_SELF) == OBJECT_TYPE_CREATURE && oSpeaker != OBJECT_SELF)
+	  {
+	    // Public conversation
+        ActionStartConversation(oSpeaker, "zdlg_converse_" + IntToString(nTokenSet), FALSE, FALSE);   
+	  }
+	  else
+	  {
+	    // Private conversation
+        ActionStartConversation(oSpeaker, "zdlg_converse_" + IntToString(nTokenSet), TRUE, FALSE);                    
+	  }     
+	  
       return FALSE;
     }
 

@@ -13,9 +13,11 @@
     qst_bes_3 needs to be the OnExit script for the area the handler is in.
     Bessy needs to have the variable "quest1name" set with the name of the
       quest, as used by the standard quest scripts.
+	The trigger needs the same quest1name variable. 
     Bessy needs the tag "qst_bessy".
     A meat object needs to exist with tag "cnrAnimalMeat".
 */
+#include "inc_quest"
 void main()
 {
   object oBessy = GetEnteringObject();
@@ -23,10 +25,9 @@ void main()
   {
     object oPC = GetMaster(oBessy);
     RemoveHenchman(oPC, oBessy);
-
-    string sQuestVarName = GetLocalString(oBessy, "quest1name");
-    int nQuestVal = GetLocalInt(oPC, sQuestVarName);
-    nQuestVal++;
-    SetLocalInt(oPC, sQuestVarName, nQuestVal);
+	AssignCommand(oBessy, ClearAllActions());
+	
+	int nQuestInt = GetQuestInt(1, oPC);
+	if (nQuestInt == 2) SetQuestInt(1, 3, oPC);
   }
 }

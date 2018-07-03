@@ -15,8 +15,9 @@ void main()
   string sCurrentQuestSet = GetPersistentString(oPC, sCurrentQuest);
 
   string sVarsDB = sCurrentQuestSet + QUEST_VAR_DB;
+  object oCache = miDAGetCacheObject(sVarsDB);
 
-  string sDescription = GetPersistentString(OBJECT_INVALID, sCurrentQuest+DESCRIPTION, sVarsDB);
+  string sDescription = GetLocalString(oCache, sCurrentQuest+DESCRIPTION);
 
   if (sDescription == "")
   {

@@ -50,7 +50,7 @@ void CnrRecipePlaySound(int nSkill)
         PlaySound("as_cv_smithhamr1");
         break;
 
-    case CNR_TRADESKILL_EXPLOSIVES:
+    case CNR_TRADESKILL_CHEMISTRY:
 	case CNR_TRADESKILL_IMBUING:
         PlaySound("al_mg_beaker1");
         break;

@@ -29,11 +29,12 @@ const string DB_RANKS      = "rep_pcranks";
 
 /* Faction definitions */
 const int FACTION_GLOBAL   = 0;   // Global reputation
-const int FACTION_IMPERIAL = NATION_DEFAULT; // 1
-const int FACTION_MIGHT    = NATION_DRANNIS; // 2
-const int FACTION_SPIRIT   = NATION_ERENIA;  // 3
+const int FACTION_IMPERIAL = NATION_DEFAULT;  // 1
+const int FACTION_MIGHT    = NATION_DRANNIS;  // 2
+const int FACTION_SPIRIT   = NATION_ERENIA;   // 3
 const int FACTION_VOICE    = NATION_RENERRIN; // 4
-const int FACTION_SHADOW   = NATION_SHADOW;  // 5
+const int FACTION_SHADOW   = NATION_SHADOW;   // 5
+const int FACTION_WARDENS  = NATION_VYVIAN;   // 6
 
 /* function prototypes */
 // Get the name of this faction from its number.
@@ -213,6 +214,8 @@ string GetFactionName(int nFaction)
       return "House Renerrin";
     case FACTION_SHADOW:
       return "The Shadow";
+	case FACTION_WARDENS:
+	  return "Wardens";
   }
 
   return "";
@@ -232,6 +235,8 @@ int GetFactionFromName(string sFactionName)
       return FACTION_VOICE;
   else if (sFactionName == "The Shadow")
       return FACTION_SHADOW;
+  else if (sFactionName == "Wardens")
+      return FACTION_WARDENS;
 
   return FACTION_GLOBAL;
 }

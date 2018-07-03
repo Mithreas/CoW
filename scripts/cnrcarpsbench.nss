@@ -164,10 +164,10 @@ void main()
   CnrRecipeSetRecipeXP(sKeyToRecipe, 20, 20);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 70, 30, 0, 0, 0, 0);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpArrows, "Elfur Arrows", "cnrarrow2", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnringotelf", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrbranch1", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrfeather", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpArrows, "Iron Arrows", "ca_gen_arrow_iro", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotiro", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrbranch1", 3);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrfeather", 5);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 70, 30, 0, 0, 0, 0);
@@ -198,10 +198,10 @@ void main()
   CnrRecipeSetRecipeXP(sKeyToRecipe, 20, 20);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 70, 30, 0, 0, 0, 0);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpBolts, "Elfur Bolts", "cnrbolt2", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnringotelf", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrbranch1", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrfeather", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpBolts, "Iron Bolts", "ca_gen_bolt_iro", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotiro", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrbranch1", 3);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrfeather", 5);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 70, 30, 0, 0, 0, 0);

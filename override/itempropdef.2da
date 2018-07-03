@@ -2,14 +2,14 @@
 
            Name    Label                            SubTypeResRef      Cost    CostTableResRef   Param1ResRef   GameStrRef   Description   GS_IP_DISABLED
 0          649     Ability                          IPRP_ABILITIES     1.2     1                 ****           5476         ****          ****
-1          652     Armor                            ****               0.9     2                 ****           5477         ****          ****
-2          653     ArmorAlignmentGroup              IPRP_ALIGNGRP      0.5     2                 ****           5478         1077          TRUE
-3          654     ArmorDamageType                  IPRP_COMBATDAM     0.5     2                 ****           5478         ****          TRUE
-4          651     ArmorRacialGroup                 racialtypes        0.5     2                 ****           5478         ****          TRUE
-5          655     ArmorSpecificAlignment           IPRP_ALIGNMENT     0.3     2                 ****           5478         ****          TRUE
+1          652     Armor                            ****               0.9     31                ****           5477         ****          ****
+2          653     ArmorAlignmentGroup              IPRP_ALIGNGRP      0.5     31                ****           5478         1077          TRUE
+3          654     ArmorDamageType                  IPRP_COMBATDAM     0.5     31                ****           5478         ****          ****
+4          651     ArmorRacialGroup                 racialtypes        0.5     31                ****           5478         ****          ****
+5          655     ArmorSpecificAlignment           IPRP_ALIGNMENT     0.3     31                ****           5478         ****          TRUE
 6          659     Enhancement                      ****               1       2                 ****           5479         1080          ****
 7          656     EnhancementAlignmentGroup        IPRP_ALIGNGRP      0.6     2                 ****           5480         1084          TRUE
-8          657     EnhancementRacialGroup           racialtypes        0.35    2                 ****           5480         1081          TRUE
+8          657     EnhancementRacialGroup           racialtypes        0.35    2                 ****           5480         1081          ****
 9          658     EnhancementSpecificAlignment     IPRP_ALIGNMENT     0.35    2                 ****           5480         1083          TRUE
 10         660     AttackPenalty                    ****               0       20                ****           5481         1460          TRUE
 11         661     WeightReduction                  ****               1       10                ****           5482         1442          ****
@@ -19,7 +19,7 @@
 15         668     CastSpell                        IPRP_SPELLS        ****    3                 ****           5485         1078          TRUE
 16         650     Damage                           IPRP_DAMAGETYPE    3.5     4                 ****           5486         1089          ****
 17         670     DamageAlignmentGroup             IPRP_ALIGNGRP      1.5     4                 0              5487         1092          TRUE
-18         673     DamageRacialGroup                racialtypes        0.75    4                 0              5487         1090          TRUE
+18         673     DamageRacialGroup                racialtypes        0.75    4                 0              5487         1090          ****
 19         675     DamageSpecificAlignment          IPRP_ALIGNMENT     0.75    4                 0              5487         1091          TRUE
 20         680     DamageImmunity                   IPRP_DAMAGETYPE    2.3     5                 ****           5488         1093          ****
 21         672     DamagePenalty                    ****               0       20                ****           5489         1459          TRUE
@@ -34,15 +34,15 @@
 30         676     DoubleStack                      ****               1       0                 ****           5497         1423          TRUE
 31         ****    EnhancedContainer_BonusSlot      ****               ****    ****              ****           ****         1438          ****
 32         728     EnhancedContainer_Weight         ****               1       15                ****           5498         1439          ****
-33         669     DamageMelee                      IPRP_COMBATDAM     0.5     0                 ****           5499         1420          TRUE
-34         671     DamageRanged                     IPRP_COMBATDAM     0.5     0                 ****           5500         1421          TRUE
+33         669     DamageMelee                      IPRP_COMBATDAM     0.5     0                 ****           5499         1420          ****
+34         671     DamageRanged                     IPRP_COMBATDAM     0.5     0                 ****           5500         1421          ****
 35         704     Haste                            ****               3.5     0                 ****           5501         1426          TRUE
 36         1023    HolyAvenger                      ****               1.5     0                 ****           5502         1436          TRUE
 37         1022    Immunity                         IPRP_IMMUNITY      ****    0                 ****           5503         1449          TRUE
 38         710     ImprovedEvasion                  ****               3       0                 ****           5504         1429          TRUE
 39         666     ImprovedMagicResist              ****               2       11                ****           5505         1422          ****
-40         711     ImprovedSavingThrows             IPRP_SAVEELEMENT   ****    2                 ****           5506         1440          ****
-41         712     ImprovedSavingThrowsSpecific     IPRP_SAVINGTHROW   0.65    2                 ****           5506         1441          ****
+40         711     ImprovedSavingThrows             IPRP_SAVEELEMENT   ****    31                ****           5506         1440          ****
+41         712     ImprovedSavingThrowsSpecific     IPRP_SAVINGTHROW   0.65    31                ****           5506         1441          ****
 42         ****    ****                             ****               ****    ****              ****           ****         ****          ****
 43         713     Keen                             ****               1       0                 ****           5507         1079          ****
 44         714     Light                            ****               1       18                9              5508         1431          ****
@@ -59,7 +59,7 @@
 55         1492    ThievesTools                     ****               0.25    25                ****           5518         ****          ****
 56         735     AttackBonus                      ****               0.5     2                 ****           5519         1085          ****
 57         734     AttackBonusAlignmentGroup        IPRP_ALIGNGRP      0.4     2                 ****           5520         1088          TRUE
-58         737     AttackBonusRacialGroup           racialtypes        0.15    2                 ****           5520         1086          TRUE
+58         737     AttackBonusRacialGroup           racialtypes        0.15    2                 ****           5520         1086          ****
 59         738     AttackBonusSpecificAlignment     IPRP_ALIGNMENT     0.15    2                 ****           5520         1087          TRUE
 60         736     ToHitPenalty                     ****               0       20                ****           5521         1458          TRUE
 61         739     UnlimitedAmmo                    IPRP_AMMOTYPE      1       14                ****           5522         1452          TRUE
@@ -86,3 +86,6 @@
 82         83400   OnHitCastSpell                   IPRP_ONHITSPELL    ****    26                ****           5512         1450          TRUE
 83         83392   VisualEffect                     IPRP_VISUALFX      ****    ****              ****           5512         1450          TRUE
 84         84321   ArcaneSpellFailure               ****               2       27                ****           84346        84347         TRUE
+85         111772  Material                         ****               ****    28                ****           111773       111774        TRUE
+86         111853  Quality                          ****               ****    29                ****           111854       111855        TRUE
+87         111871  Additional_Property              ****               ****    30                ****           111872       111873        TRUE

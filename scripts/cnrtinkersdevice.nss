@@ -29,20 +29,20 @@ void main()
 
   CnrRecipeSetDevicePreCraftingScript("cnrtinkersdevice", "cnr_tinker_anim");
   CnrRecipeSetDeviceInventoryTool("cnrtinkersdevice", "cnrTinkersTools", CNR_FLOAT_TINKERS_TOOLS_BREAKAGE_PERCENTAGE);
-  CnrRecipeSetDeviceTradeskillType("cnrtinkersdevice", CNR_TRADESKILL_EXPLOSIVES);
+  CnrRecipeSetDeviceTradeskillType("cnrtinkersdevice", CNR_TRADESKILL_CHEMISTRY);
 
 
 ////////////////////////////////////////////////////////////////////////////////
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTinkerMisc, "Compound Bow Cam", "cnrbowcam", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnringotelf", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotiro", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 0, 50, 0, 50, 0, 0);
 
   /////////////////////Belts for gemsetting////////////////////////
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTinkerBelts, "Elfur Buckled Belt", "ca_1belt", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTinkerBelts, "Iron Buckled Belt", "ca_1belt", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "intca_1buc", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrbelt", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 2);
@@ -86,7 +86,7 @@ void main()
 
   /////////////////////Bracers for gemsetting////////////////////////
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTinkerBracers, "Elfur Banded Bracers", "ca_1bracers", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTinkerBracers, "Iron Banded Bracers", "ca_1bracers", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "intca_1ban", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrbrac", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 2);
@@ -130,7 +130,7 @@ void main()
 
   /////////////////////Cloaks for gemsetting////////////////////////
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTinkerBracers, "Cloak with an Elfur Brooch", "ca_1cloak", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTinkerBracers, "Cloak with an Iron Brooch", "ca_1cloak", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "intca_1bro", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrcloak", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 2);

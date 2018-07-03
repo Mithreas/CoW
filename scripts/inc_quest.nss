@@ -76,25 +76,28 @@ string GetQuestVariableName(int nQuestNum)
   Gets the current value of the quest integer for the speaking PC for the
   nQuestNum'th quest this NPC gives.
 */
-int GetQuestInt (int nQuestNum)
+int GetQuestInt (int nQuestNum, object oPC = OBJECT_INVALID)
 {
-  int nQuestInt = GetPersistentInt(GetPCSpeaker(),
+  if (!GetIsObjectValid(oPC)) oPC = GetPCSpeaker();
+  
+  int nQuestInt = GetPersistentInt(oPC,
                                    GetQuestVariableName(nQuestNum),
                                    DB_MISC_QUESTS);
-  Trace(QUESTS,"Returned quest value for " + GetName(OBJECT_SELF) + " of " +
+  Trace(QUESTS,"Returned quest value for " + GetName(oPC) + " of " +
       IntToString(nQuestInt));
   return nQuestInt;
 }
 
 /* Sets the quest integer. */
-void SetQuestInt(int nQuestNum, int nNewValue)
+void SetQuestInt(int nQuestNum, int nNewValue, object oPC = OBJECT_INVALID)
 {
-  SetPersistentInt(GetPCSpeaker(),
+  if (!GetIsObjectValid(oPC)) oPC = GetPCSpeaker();
+  SetPersistentInt(oPC,
                    GetQuestVariableName(nQuestNum),
                    nNewValue,
                    0,
                    DB_MISC_QUESTS);
-  Trace(QUESTS, "Set quest value for " + GetName(OBJECT_SELF) + " to " +
+  Trace(QUESTS, "Set quest value for " + GetName(oPC) + " to " +
       IntToString(nNewValue));
 }
 

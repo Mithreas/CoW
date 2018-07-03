@@ -191,6 +191,7 @@ void main()
     nMaxGem = 1;
     nHaveBase++;
     Trace(GEMCRAFT, "Added copper base");
+	oBase = oItem;
   }
 
   else if(GetStringLeft(sTag, 4) == "ca_2")
@@ -198,6 +199,7 @@ void main()
     nMaxGem = 2;
     nHaveBase++;
     Trace(GEMCRAFT, "Added bronze base");
+	oBase = oItem;
   }
 
   else if(GetStringLeft(sTag, 4) == "ca_3")
@@ -205,6 +207,7 @@ void main()
     nMaxGem = 3;
     nHaveBase++;
     Trace(GEMCRAFT, "Added iron base");
+	oBase = oItem;
   }
 
   else if(GetStringLeft(sTag, 4) == "ca_4")
@@ -212,6 +215,7 @@ void main()
     nMaxGem = 4;
     nHaveBase++;
     Trace(GEMCRAFT, "Added silver base");
+	oBase = oItem;
   }
 
   else if(GetStringLeft(sTag, 4) == "ca_5")
@@ -219,6 +223,7 @@ void main()
     nMaxGem = 5;
     nHaveBase++;
     Trace(GEMCRAFT, "Added gold base");
+	oBase = oItem;
   }
 
   else if(GetStringLeft(sTag, 4) == "ca_6")
@@ -226,6 +231,7 @@ void main()
     nMaxGem = 6;
     nHaveBase++;
     Trace(GEMCRAFT, "Added mithril base");
+	oBase = oItem;
   }
 
   //If it's not tagged ca_ then we've found junk, stop and return
@@ -247,157 +253,6 @@ void main()
     break;
   }
 
-  //Check if we have one base, if so start counting properties and add
-  //virtual gems so the new item will have those properties plus whatever
-  //you're adding from the other gems
-
-  if ((nHaveBase == 1) && (nBaseItemFound == 0))
-  {
-    Trace(GEMCRAFT, "You have one base, proceed!");
-    itemproperty iprop = GetFirstItemProperty(oItem);
-    while (GetIsItemPropertyValid(iprop))
-    {
-      //If there's a saves bonus on it, count how much and add that to the number of
-      //large diamonds you have
-      if (GetItemPropertyType(iprop) == ITEM_PROPERTY_AC_BONUS)
-      {
-        int nUS = GetItemPropertyCostTableValue(iprop);
-        nDiaLrg += nUS; //nDiaLrg +nUS
-        Trace(GEMCRAFT, "Added " +IntToString (nUS) + " large virtual diamonds");
-      }
-
-      //Repeat many, many times for the other properties possible
-
-      else if (GetItemPropertyType(iprop) == ITEM_PROPERTY_ABILITY_BONUS)
-      {
-
-        if (GetItemPropertySubType(iprop) == ABILITY_CHARISMA)
-        {
-          int nCHA = GetItemPropertyCostTableValue(iprop);
-          nStaLrg += nCHA;
-          Trace(GEMCRAFT, "Added " +IntToString (nCHA) + " large virtual starstones");
-        }
-
-        else if (GetItemPropertySubType(iprop) == ABILITY_CONSTITUTION)
-        {
-          int nCON = GetItemPropertyCostTableValue(iprop);
-          nSkyLrg += nCON;
-          Trace(GEMCRAFT, "Added " +IntToString (nCON) + " large virtual skystones");
-        }
-
-        else if (GetItemPropertySubType(iprop) == ABILITY_DEXTERITY)
-        {
-          int nDEX = GetItemPropertyCostTableValue(iprop);
-          nDarLrg += nDEX;
-          Trace(GEMCRAFT, "Added " +IntToString (nDEX) + " large virtual darkstones");
-        }
-
-        else if (GetItemPropertySubType(iprop) == ABILITY_INTELLIGENCE)
-        {
-          int nINT = GetItemPropertyCostTableValue(iprop);
-          nObsLrg += nINT;
-          Trace(GEMCRAFT, "Added " +IntToString (nINT) + " large virtual obsidians");
-        }
-
-        else if (GetItemPropertySubType(iprop) == ABILITY_STRENGTH)
-        {
-          int nSTR = GetItemPropertyCostTableValue(iprop);
-          nSunLrg += nSTR;
-          Trace(GEMCRAFT, "Added " +IntToString (nSTR) + " large virtual sunstones");
-        }
-
-        else if (GetItemPropertySubType(iprop) == ABILITY_WISDOM)
-        {
-          int nWIS = GetItemPropertyCostTableValue(iprop);
-          nMooLrg += nWIS;
-          Trace(GEMCRAFT, "Added " +IntToString (nWIS) + " large virtual moonstones");
-        }
-      }
-
-      else if (GetItemPropertyType(iprop) == ITEM_PROPERTY_SKILL_BONUS)
-      {
-
-        if (GetItemPropertySubType(iprop) == SKILL_CONCENTRATION)
-        {
-          float fCONC = IntToFloat(GetItemPropertyCostTableValue(iprop))/3;
-          int nCONC = FloatToInt(fCONC);
-          nMooSml += nCONC;
-          Trace(GEMCRAFT, "Added " +IntToString (nCONC) + " small virtual moonstones");
-        }
-
-        else if (GetItemPropertySubType(iprop) == SKILL_DISCIPLINE)
-        {
-          float fDISC = IntToFloat(GetItemPropertyCostTableValue(iprop))/3;
-          int nDISC = FloatToInt(fDISC);
-          nDiaSml += nDISC;
-          Trace(GEMCRAFT, "Added " +IntToString (nDISC) + " small virtual diamonds");
-        }
-
-        else if (GetItemPropertySubType(iprop) == SKILL_HEAL)
-        {
-          float fHEAL = IntToFloat(GetItemPropertyCostTableValue(iprop))/3;
-          int nHEAL = FloatToInt(fHEAL);
-          nSkySml += nHEAL;
-          Trace(GEMCRAFT, "Added " +IntToString (nHEAL) + " small virtual skystones");
-        }
-
-        else if (GetItemPropertySubType(iprop) == SKILL_HIDE)
-        {
-          float fHIDE = IntToFloat(GetItemPropertyCostTableValue(iprop))/3;
-          int nHIDE = FloatToInt(fHIDE);
-          nDarSml += nHIDE;
-          Trace(GEMCRAFT, "Added " +IntToString (nHIDE) + " small virtual darkstones");
-        }
-
-        else if (GetItemPropertySubType(iprop) == SKILL_SEARCH)
-        {
-          float fSEAR = IntToFloat(GetItemPropertyCostTableValue(iprop))/3;
-          int nSEAR = FloatToInt(fSEAR);
-          nObsSml += nSEAR;
-          Trace(GEMCRAFT, "Added " +IntToString (nSEAR) + " small virtual obsidians");
-        }
-
-        else if (GetItemPropertySubType(iprop) == SKILL_SPELLCRAFT)
-        {
-          float fSPEL = IntToFloat(GetItemPropertyCostTableValue(iprop))/3;
-          int nSPEL = FloatToInt(fSPEL);
-          nStaSml += nSPEL;
-          Trace(GEMCRAFT, "Added " +IntToString (nSPEL) + " small virtual skystones");
-        }
-
-        else if (GetItemPropertySubType(iprop) == SKILL_SPOT)
-        {
-          float fSPOT = IntToFloat(GetItemPropertyCostTableValue(iprop))/3;
-          int nSPOT = FloatToInt(fSPOT);
-          nSunSml += nSPOT;
-          Trace(GEMCRAFT, "Added " +IntToString (nSPOT) + " small virtual sunstones");
-        }
-      }
-
-      //The first property has been counted
-
-      RemoveItemProperty(oItem, iprop);
-
-      //And removed
-
-      //Now count the next one
-
-      iprop = GetNextItemProperty(oItem);
-
-    }
-
-    //Now everything should have been counted on that item
-
-    nBaseItemFound = 1;
-
-    //So we never do this again
-
-    oBase = oItem;
-
-    //So when we come to put the properties back on, we do it to this item
-
-  }
-
   oItem = GetNextItemInInventory();
   }
 
@@ -413,6 +268,8 @@ void main()
     nNoBases =1;
   }
 
+  nMaxGem -= GetLocalInt(oBase, "NUM_GEMS");
+	
   if(nGems > nMaxGem)
   {
   nTooManyGems = 1;
@@ -484,6 +341,7 @@ void main()
       AddItemProperty(DURATION_TYPE_PERMANENT,
       ItemPropertyACBonus(nDiaLrg), oBase);
       Trace(GEMCRAFT, "Added " +IntToString (nDiaLrg) + " to Universal saves");
+	  SetDescription(oBase, GetDescription(oBase) + "\n\nA large clearstone occupies one socket.");
     }
 
     if(nSunLrg > 0)
@@ -491,6 +349,7 @@ void main()
       AddItemProperty(DURATION_TYPE_PERMANENT,
       ItemPropertyAbilityBonus(ABILITY_STRENGTH, nSunLrg), oBase);
       Trace(GEMCRAFT, "Added " +IntToString (nSunLrg) + " to STR");
+	  SetDescription(oBase, GetDescription(oBase) + "\n\nA large sunstone occupies one socket.");
     }
 
     if(nMooLrg > 0)
@@ -498,6 +357,7 @@ void main()
       AddItemProperty(DURATION_TYPE_PERMANENT,
       ItemPropertyAbilityBonus(ABILITY_WISDOM, nMooLrg), oBase);
       Trace(GEMCRAFT, "Added " +IntToString (nMooLrg) + " to WIS");
+	  SetDescription(oBase, GetDescription(oBase) + "\n\nA large moonstone occupies one socket.");
     }
 
     if(nSkyLrg > 0)
@@ -505,6 +365,7 @@ void main()
       AddItemProperty(DURATION_TYPE_PERMANENT,
       ItemPropertyAbilityBonus(ABILITY_CONSTITUTION, nSkyLrg), oBase);
       Trace(GEMCRAFT, "Added " +IntToString (nSkyLrg) + " to CON");
+	  SetDescription(oBase, GetDescription(oBase) + "\n\nA large skystone occupies one socket.");
     }
 
     if(nDarLrg > 0)
@@ -512,6 +373,7 @@ void main()
       AddItemProperty(DURATION_TYPE_PERMANENT,
       ItemPropertyAbilityBonus(ABILITY_DEXTERITY, nDarLrg), oBase);
       Trace(GEMCRAFT, "Added " +IntToString (nDarLrg) + " to DEX");
+	  SetDescription(oBase, GetDescription(oBase) + "\n\nA large nightstone occupies one socket.");
     }
 
     if(nStaLrg > 0)
@@ -519,6 +381,7 @@ void main()
       AddItemProperty(DURATION_TYPE_PERMANENT,
       ItemPropertyAbilityBonus(ABILITY_CHARISMA, nStaLrg), oBase);
       Trace(GEMCRAFT, "Added " +IntToString (nStaLrg) + " to CHA");
+	  SetDescription(oBase, GetDescription(oBase) + "\n\nA large starstone occupies one socket.");
     }
 
     if(nObsLrg > 0)
@@ -526,6 +389,7 @@ void main()
       AddItemProperty(DURATION_TYPE_PERMANENT,
       ItemPropertyAbilityBonus(ABILITY_INTELLIGENCE, nObsLrg), oBase);
       Trace(GEMCRAFT, "Added " +IntToString (nObsLrg) + " to INT");
+	  SetDescription(oBase, GetDescription(oBase) + "\n\nA large firestone occupies one socket.");
     }
 
     if(nDiaSml > 0)
@@ -533,6 +397,7 @@ void main()
       AddItemProperty(DURATION_TYPE_PERMANENT,
       ItemPropertySkillBonus(SKILL_DISCIPLINE, 3*nDiaSml), oBase);
       Trace(GEMCRAFT, "Added " +IntToString (3*nDiaSml) + " to disc");
+	  SetDescription(oBase, GetDescription(oBase) + "\n\nA small clearstone occupies one socket.");
     }
 
     if(nSunSml > 0)
@@ -540,6 +405,7 @@ void main()
       AddItemProperty(DURATION_TYPE_PERMANENT,
       ItemPropertySkillBonus(SKILL_SPOT, 3*nSunSml), oBase);
       Trace(GEMCRAFT, "Added " +IntToString (3*nSunSml) + " to spot");
+	  SetDescription(oBase, GetDescription(oBase) + "\n\nA small sunstone occupies one socket.");
     }
 
     if(nMooSml > 0)
@@ -547,6 +413,7 @@ void main()
       AddItemProperty(DURATION_TYPE_PERMANENT,
       ItemPropertySkillBonus(SKILL_CONCENTRATION, 3*nMooSml), oBase);
       Trace(GEMCRAFT, "Added " +IntToString (3*nMooSml) + " to conc");
+	  SetDescription(oBase, GetDescription(oBase) + "\n\nA small moonstone occupies one socket.");
     }
 
     if(nSkySml > 0)
@@ -554,6 +421,7 @@ void main()
       AddItemProperty(DURATION_TYPE_PERMANENT,
       ItemPropertySkillBonus(SKILL_HEAL, 3*nSkySml), oBase);
       Trace(GEMCRAFT, "Added " +IntToString (3*nSkySml) + " to heal");
+	  SetDescription(oBase, GetDescription(oBase) + "\n\nA small skystone occupies one socket.");
     }
 
     if(nDarSml > 0)
@@ -561,6 +429,7 @@ void main()
       AddItemProperty(DURATION_TYPE_PERMANENT,
       ItemPropertySkillBonus(SKILL_HIDE, 3*nDarSml), oBase);
       Trace(GEMCRAFT, "Added " +IntToString (3*nDarSml) + " to hide");
+	  SetDescription(oBase, GetDescription(oBase) + "\n\nA small nightstone occupies one socket.");
     }
 
     if(nStaSml > 0)
@@ -568,6 +437,7 @@ void main()
       AddItemProperty(DURATION_TYPE_PERMANENT,
       ItemPropertySkillBonus(SKILL_SPELLCRAFT, 3*nStaSml), oBase);
       Trace(GEMCRAFT, "Added " +IntToString (3*nStaSml) + " to spell");
+	  SetDescription(oBase, GetDescription(oBase) + "\n\nA small starstone occupies one socket.");
     }
 
     if(nObsSml > 0)
@@ -575,6 +445,7 @@ void main()
       AddItemProperty(DURATION_TYPE_PERMANENT,
       ItemPropertySkillBonus(SKILL_SEARCH, 3*nObsSml), oBase);
       Trace(GEMCRAFT, "Added " +IntToString (3*nObsSml) + " to search");
+	  SetDescription(oBase, GetDescription(oBase) + "\n\nA small firestone occupies one socket.");
     }
 
     //The item should now be done!
@@ -661,7 +532,10 @@ void main()
     //If the item was a gemstone it is now destroyed
     oItem = GetNextItemInInventory();
     }
-
+	
+	// Store the number of gems set.
+	nGems += GetLocalInt(oBase, "NUM_GEMS");
+	SetLocalInt(oBase, "NUM_GEMS", nGems);
   }
 
 }

@@ -356,7 +356,7 @@ void main()
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuHouse, "Drannis: Armour of the Tunnels", "dratunarm", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrfullplate5", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotlir", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnringotelf", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotiro", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "rescardraarmtun", 1, 1);
   CnrRecipeSetRecipeBiproduct(sKeyToRecipe, "rescardraarmtun", 1, 0);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 11);

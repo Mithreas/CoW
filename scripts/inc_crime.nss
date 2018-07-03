@@ -37,8 +37,9 @@ const int NATION_DRANNIS           = 2;
 const int NATION_ERENIA            = 3;
 const int NATION_RENERRIN          = 4;
 const int NATION_SHADOW            = 5;
+const int NATION_VYVIAN            = 6;
 
-const int NUM_NATIONS              = 6;
+const int NUM_NATIONS              = 7;
 
 /* Tags for nation wanted tokens are root + nation number. */
 
@@ -73,7 +74,12 @@ const int FACTION_SHADOW_MERCS         = 16;
 const int FACTION_ANIMAL               = 17;
 const int FACTION_UNALIGNED_MERCS      = 18;
 
-const int NUM_FACTIONS                 = 19;
+const int FACTION_VYVIAN_COMMONER      = 19;
+const int FACTION_VYVIAN_DEFENDER      = 20;
+
+const int FACTION_FEY                  = 21;
+
+const int NUM_FACTIONS                 = 22;
 
 /* Bounty values for crimes. */
 
@@ -333,6 +339,12 @@ int CheckFactionNation(object oNPC, int nCountMercenaries = FALSE)
        nNation = NATION_SHADOW;
        break;
      }
+	 case FACTION_VYVIAN_COMMONER:
+	 case FACTION_VYVIAN_DEFENDER:
+	 {
+	    nNation = NATION_VYVIAN;
+		break;
+	 }
      default:
      {
        nNation = NATION_INVALID;
@@ -385,6 +397,7 @@ int GetIsDefender(object oNPC)
     case FACTION_ERENIA_DEFENDER:
     case FACTION_RENERRIN_DEFENDER:
     case FACTION_SHADOW_DEFENDER:
+	case FACTION_VYVIAN_DEFENDER:
       Trace(BOUNTY, "GetIsDefender returning 1");
       return 1;
   }

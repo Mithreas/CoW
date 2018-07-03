@@ -35,6 +35,11 @@ int isShadow(object oPC)
     return (GetSubRace(oPC) == "Shadow");
 }
 
+int isWarden(object oPC)
+{
+	return (GetSubRace(oPC) == "Wardens");
+}
+
 int isUnaligned(object oPC)
 {
     return (GetSubRace(oPC) == "");

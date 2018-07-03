@@ -151,6 +151,13 @@ void NWNX_Creature_RemoveKnownSpell(object creature, int class, int level, int s
 // Add a new spell to creature's spellbook for class.
 void NWNX_Creature_AddKnownSpell(object creature, int class, int level, int spellId);
 
+// Clear a specific spell from the creature's spellbook for class
+void NWNX_Creature_ClearMemorisedKnownSpells(object creature, int class, int spellId);
+
+// Clear the memorised spell of the provided creature for the provided class, level and index. */
+// Index bounds: 0 <= index < NWNX_Creature_GetMemorisedSpellCountByLevel(creature, class, level).
+void NWNX_Creature_ClearMemorisedSpell(object creature, int class, int level, int index);
+
 // Gets the maximum hit points for creature for level.
 int NWNX_Creature_GetMaxHitPointsByLevel(object creature, int level);
 
@@ -196,6 +203,8 @@ void NWNX_Creature_SetClassByPosition(object creature, int position, int classID
 // Modifying the BAB will also affect the creature's attacks per round and its
 // eligability for feats, prestige classes, etc.
 // The BAB value should be between 0 and 254.
+// Setting BAB to 0 will cause the creature to revert to its original BAB based
+// on its classes and levels. A creature can never have an actual BAB of zero.
 // NOTE: The base game has a function SetBaseAttackBonus(), which actually sets
 //       the bonus attacks per round for a creature, not the BAB.
 void NWNX_Creature_SetBaseAttackBonus(object creature, int bab);
@@ -243,8 +252,19 @@ int NWNX_Creature_GetMovementType(object creature);
 // Default value is 2000.0, which is the base human walk speed.
 void NWNX_Creature_SetWalkRateCap(object creature, float fWalkRate = 2000.0f);
 
-const string NWNX_Creature = "NWNX_Creature";
+// Sets the creature's gold without sending a feedback message
+void NWNX_Creature_SetGold(object creature, int gold);
 
+// Sets corpse decay time in milliseconds
+void NWNX_Creature_SetCorpseDecayTime(object creature, int nDecayTime);
+
+// Returns the creature's base save and any modifiers set in the toolset
+int NWNX_Creature_GetBaseSavingThrow(object creature, int which);
+
+// Sets the base saving throw of the creature
+void NWNX_Creature_SetBaseSavingThrow(object creature, int which, int value);
+
+const string NWNX_Creature = "NWNX_Creature";
 
 
 void NWNX_Creature_AddFeat(object creature, int feat)
@@ -399,6 +419,7 @@ void NWNX_Creature_SetSpecialAbility(object creature, int index, struct NWNX_Cre
     NWNX_PushArgumentInt(NWNX_Creature, sFunc, ability.id);
     NWNX_PushArgumentInt(NWNX_Creature, sFunc, ability.ready);
     NWNX_PushArgumentInt(NWNX_Creature, sFunc, ability.level);
+    NWNX_PushArgumentInt(NWNX_Creature, sFunc, index);
     NWNX_PushArgumentObject(NWNX_Creature, sFunc, creature);
 
     NWNX_CallFunction(NWNX_Creature, sFunc);
@@ -588,6 +609,29 @@ void NWNX_Creature_AddKnownSpell(object creature, int class, int level, int spel
     string sFunc = "AddKnownSpell";
 
     NWNX_PushArgumentInt(NWNX_Creature, sFunc, spellId);
+    NWNX_PushArgumentInt(NWNX_Creature, sFunc, level);
+    NWNX_PushArgumentInt(NWNX_Creature, sFunc, class);
+    NWNX_PushArgumentObject(NWNX_Creature, sFunc, creature);
+
+    NWNX_CallFunction(NWNX_Creature, sFunc);
+}
+
+void NWNX_Creature_ClearMemorisedKnownSpells(object creature, int class, int spellId)
+{
+    string sFunc = "ClearMemorisedKnownSpells";
+
+    NWNX_PushArgumentInt(NWNX_Creature, sFunc, spellId);
+    NWNX_PushArgumentInt(NWNX_Creature, sFunc, class);
+    NWNX_PushArgumentObject(NWNX_Creature, sFunc, creature);
+
+    NWNX_CallFunction(NWNX_Creature, sFunc);
+}
+
+void NWNX_Creature_ClearMemorisedSpell(object creature, int class, int level, int index)
+{
+    string sFunc = "ClearMemorisedSpell";
+
+    NWNX_PushArgumentInt(NWNX_Creature, sFunc, index);
     NWNX_PushArgumentInt(NWNX_Creature, sFunc, level);
     NWNX_PushArgumentInt(NWNX_Creature, sFunc, class);
     NWNX_PushArgumentObject(NWNX_Creature, sFunc, creature);
@@ -852,6 +896,45 @@ void NWNX_Creature_SetWalkRateCap(object creature, float fWalkRate = 2000.0f)
 {
     string sFunc = "SetWalkRateCap";
     NWNX_PushArgumentFloat(NWNX_Creature, sFunc, fWalkRate);
+    NWNX_PushArgumentObject(NWNX_Creature, sFunc, creature);
+
+    NWNX_CallFunction(NWNX_Creature, sFunc);
+}
+
+void NWNX_Creature_SetGold(object creature, int gold)
+{
+    string sFunc = "SetGold";
+    NWNX_PushArgumentInt(NWNX_Creature, sFunc, gold);
+    NWNX_PushArgumentObject(NWNX_Creature, sFunc, creature);
+
+    NWNX_CallFunction(NWNX_Creature, sFunc);
+}
+
+void NWNX_Creature_SetCorpseDecayTime(object creature, int nDecayTime)
+{
+    string sFunc = "SetCorpseDecayTime";
+    NWNX_PushArgumentInt(NWNX_Creature, sFunc, nDecayTime);
+    NWNX_PushArgumentObject(NWNX_Creature, sFunc, creature);
+
+    NWNX_CallFunction(NWNX_Creature, sFunc);
+}
+
+
+int NWNX_Creature_GetBaseSavingThrow(object creature, int which)
+{
+    string sFunc = "GetBaseSavingThrow";
+    NWNX_PushArgumentInt(NWNX_Creature, sFunc, which);
+    NWNX_PushArgumentObject(NWNX_Creature, sFunc, creature);
+
+    NWNX_CallFunction(NWNX_Creature, sFunc);
+    return NWNX_GetReturnValueInt(NWNX_Creature, sFunc);
+}
+
+void NWNX_Creature_SetBaseSavingThrow(object creature, int which, int value)
+{
+    string sFunc = "SetBaseSavingThrow";
+    NWNX_PushArgumentInt(NWNX_Creature, sFunc, value);
+    NWNX_PushArgumentInt(NWNX_Creature, sFunc, which);
     NWNX_PushArgumentObject(NWNX_Creature, sFunc, creature);
 
     NWNX_CallFunction(NWNX_Creature, sFunc);

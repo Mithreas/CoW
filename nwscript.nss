@@ -5878,6 +5878,15 @@ int EVENT_SCRIPT_ENCOUNTER_ON_USER_DEFINED_EVENT         = 13004;
 int EVENT_SCRIPT_STORE_ON_OPEN                           = 14000;
 int EVENT_SCRIPT_STORE_ON_CLOSE                          = 14001;
 
+int OBJECT_VISUAL_TRANSFORM_SCALE                        = 10;
+int OBJECT_VISUAL_TRANSFORM_ROTATE_X                     = 21;
+int OBJECT_VISUAL_TRANSFORM_ROTATE_Y                     = 22;
+int OBJECT_VISUAL_TRANSFORM_ROTATE_Z                     = 23;
+int OBJECT_VISUAL_TRANSFORM_TRANSLATE_X                  = 31;
+int OBJECT_VISUAL_TRANSFORM_TRANSLATE_Y                  = 32;
+int OBJECT_VISUAL_TRANSFORM_TRANSLATE_Z                  = 33;
+int OBJECT_VISUAL_TRANSFORM_ANIMATION_SPEED              = 40;
+
 string sLanguage = "nwscript";
 
 // Get an integer between 0 and nMaxInteger-1.
@@ -11109,3 +11118,33 @@ string GetEventScript(object oObject, int nHandler);
 // Returns 1 on success, 0 on failure.
 // Will fail if oObject is invalid or does not have the requested handler.
 int SetEventScript(object oObject, int nHandler, string sScript);
+
+// Gets a visual transform on the given object.
+// - oObject can be any valid Creature, Placeable, Item or Door.
+// - nTransform is one of OBJECT_VISUAL_TRANSFORM_*
+// Returns the current (or default) value.
+float GetObjectVisualTransform(object oObject, int nTransform);
+
+// Sets a visual transform on the given object.
+// - oObject can be any valid Creature, Placeable, Item or Door.
+// - nTransform is one of OBJECT_VISUAL_TRANSFORM_*
+// - fValue depends on the transformation to apply.
+// Returns the old/previous value.
+float SetObjectVisualTransform(object oObject, int nTransform, float fValue);
+
+// Sets an integer material shader uniform override.
+// - sMaterial needs to be a material on that object.
+// - sParam needs to be a valid shader parameter already defined on the material.
+void SetMaterialShaderUniformInt(object oObject, string sMaterial, string sParam, int nValue);
+
+// Sets a vec4 material shader uniform override.
+// - sMaterial needs to be a material on that object.
+// - sParam needs to be a valid shader parameter already defined on the material.
+// - You can specify a single float value to set just a float, instead of a vec4.
+void SetMaterialShaderUniformVec4(object oObject, string sMaterial, string sParam, float fValue1, float fValue2 = 0.0, float fValue3 = 0.0, float fValue4 = 0.0);
+
+// Resets material shader parameters on the given object:
+// - Supply a material to only reset shader uniforms for meshes with that material.
+// - Supply a parameter to only reset shader uniforms of that name.
+// - Supply both to only reset shader uniforms of that name on meshes with that material.
+void ResetMaterialShaderUniforms(object oObject, string sMaterial = "", string sParam = "");

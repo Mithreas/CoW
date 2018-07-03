@@ -25,7 +25,7 @@ void main()
   /////////////////////////////////////////////////////////
   CnrRecipeSetDevicePreCraftingScript("cnrexplodebench", "cnr_alchemy_anim");
   //CnrRecipeSetDeviceInventoryTool("cnrexplodebench", "");
-  CnrRecipeSetDeviceTradeskillType("cnrexplodebench", CNR_TRADESKILL_EXPLOSIVES);
+  CnrRecipeSetDeviceTradeskillType("cnrexplodebench", CNR_TRADESKILL_CHEMISTRY);
   CnrRecipeSetRecipeAbilityPercentages("cnrexplodebench", 0, 0, 50, 50, 0, 0); // CON and INT
   
   string sMenuExplodeBenchExplosives = CnrRecipeAddSubMenu("cnrexplodebench", "Explosive Mixtures");
@@ -34,9 +34,9 @@ void main()
   // -- Explosive Mixtures -- 
   
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuExplodeBenchExplosives, "Black Powder", "blackpowder", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "guano", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "sulphur", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "charcoal", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "Guano", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "Sulphur", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "Charcoal", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 2);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 20, 20);
   
@@ -48,8 +48,7 @@ void main()
   
   //x1_wmgrenade002
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuExplodeBenchExplosives, "Alchemist's Fire", "x1_wmgrenade002", 5);
-  CnrRecipeAddComponent(sKeyToRecipe, "blackpowder", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnringotond", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "volatileoil", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
   

@@ -186,6 +186,20 @@ int CoW_HasAllowedClasses(object oPC)
 	    return TRUE;
 	  }
 	}
+	case RACIAL_TYPE_HALFLING:
+	{
+	  if (GetLevelByClass(CLASS_TYPE_WIZARD, oPC) ||
+	      GetLevelByClass(CLASS_TYPE_SORCERER, oPC) ||
+		  GetLevelByClass(CLASS_TYPE_CLERIC, oPC) ||
+		  GetLevelByClass(CLASS_TYPE_PALADIN, oPC))
+      {
+	    return FALSE;
+	  }
+	  else
+	  {
+	    return TRUE;
+	  }
+	}
 	default:
 	  return FALSE;
   }

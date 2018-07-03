@@ -42,6 +42,11 @@ void InitialiseLootSystem();
 // This function may create one loot item, many loot items, or no loot items.
 void CreateLoot(int context, object container, object creature);
 
+// Generates a loot item in container for creature's party.  If override is true, 
+// bypasses % chances, always uses creature (not another of their party members)
+// and always generates a tailored item.
+void CreateProceduralLoot(string template, int context, object container, object creature, int override = FALSE);
+
 // ----- INTERNAL API ------
 
 // These postfixes combine to form the loot template name passed to inc_lootgen.
@@ -54,7 +59,6 @@ const string INTERNAL_LOOT_BUCKET_MOB = "mob";
 const string INTERNAL_LOOT_BUCKET_BOSS = "boss";
 const string INTERNAL_LOOT_BUCKET_CHEST = "chest";
 
-void INTERNAL_CreateProceduralLoot(string template, int context, object container, object creature);
 string INTERNAL_LootBucketFromContext(int context);
 string INTERNAL_GetPostfixFromContext(int context);
 
@@ -66,7 +70,7 @@ void InitialiseLootSystem()
 {
     // Set up the resref arrays. We select one of these based on what we want to spawn.
     // These use the expanded base item set in inc_baseitem.
-    AddBaseItemResRef(BASE_ITEM_AMULET, "gs_item209");
+    AddBaseItemResRef(BASE_ITEM_AMULET, "nw_it_mneck020");
     //TODO: AddBaseItemResRef(BASE_ITEM_ARMOR_AC0, "TODO");
     //TODO: AddBaseItemResRef(BASE_ITEM_ARMOR_AC1, "TODO");
     //TODO: AddBaseItemResRef(BASE_ITEM_ARMOR_AC2, "TODO");
@@ -78,16 +82,16 @@ void InitialiseLootSystem()
     //TODO: AddBaseItemResRef(BASE_ITEM_ARMOR_AC8, "TODO");
     AddBaseItemResRef(BASE_ITEM_BASTARDSWORD, "nw_wswbs001");
     AddBaseItemResRef(BASE_ITEM_BATTLEAXE, "nw_waxbt001");
-    AddBaseItemResRef(BASE_ITEM_BELT, "gs_item258");
-    AddBaseItemResRef(BASE_ITEM_BOOTS, "gs_item311");
-    AddBaseItemResRef(BASE_ITEM_BRACER, "gs_item270");
-    AddBaseItemResRef(BASE_ITEM_CLOAK, "gs_item284");
+    AddBaseItemResRef(BASE_ITEM_BELT, "cnrbelt");
+    AddBaseItemResRef(BASE_ITEM_BOOTS, "cnrboots");
+    AddBaseItemResRef(BASE_ITEM_BRACER, "cnrbrac");
+    AddBaseItemResRef(BASE_ITEM_CLOAK, "cnrcloak");
     AddBaseItemResRef(BASE_ITEM_CLUB, "nw_wblcl001");
     AddBaseItemResRef(BASE_ITEM_DAGGER, "nw_wswdg001");
     AddBaseItemResRef(BASE_ITEM_DIREMACE, "nw_wdbma001");
     AddBaseItemResRef(BASE_ITEM_DOUBLEAXE, "nw_wdbax001");
     AddBaseItemResRef(BASE_ITEM_DWARVENWARAXE, "x2_wdwraxe001");
-    AddBaseItemResRef(BASE_ITEM_GLOVES, "gs_item294");
+    AddBaseItemResRef(BASE_ITEM_GLOVES, "cnrglovecloth");
     AddBaseItemResRef(BASE_ITEM_GREATAXE, "nw_waxgr001");
     AddBaseItemResRef(BASE_ITEM_GREATSWORD, "nw_wswgs001");
     AddBaseItemResRef(BASE_ITEM_HALBERD, "nw_wplhb001");
@@ -108,7 +112,7 @@ void InitialiseLootSystem()
     AddBaseItemResRef(BASE_ITEM_MORNINGSTAR, "nw_wblms001");
     AddBaseItemResRef(BASE_ITEM_QUARTERSTAFF, "nw_wdbqs001");
     AddBaseItemResRef(BASE_ITEM_RAPIER, "nw_wswrp001");
-    AddBaseItemResRef(BASE_ITEM_RING, "gs_item252");
+    AddBaseItemResRef(BASE_ITEM_RING, "nw_it_mring021");
     AddBaseItemResRef(BASE_ITEM_SCIMITAR, "nw_wswsc001");
     AddBaseItemResRef(BASE_ITEM_SCYTHE, "nw_wplsc001");
     AddBaseItemResRef(BASE_ITEM_SHORTBOW, "nw_wbwsh001");
@@ -170,11 +174,11 @@ void CreateLoot(int context, object container, object creature)
         return;
     }
 
-    INTERNAL_CreateProceduralLoot(LOOT_TEMPLATE_TIER_1, context, container, creature);
-    INTERNAL_CreateProceduralLoot(LOOT_TEMPLATE_TIER_2, context, container, creature);
+    CreateProceduralLoot(LOOT_TEMPLATE_TIER_1, context, container, creature);
+    CreateProceduralLoot(LOOT_TEMPLATE_TIER_2, context, container, creature);
 }
 
-void INTERNAL_CreateProceduralLoot(string template, int context, object container, object creature)
+void CreateProceduralLoot(string template, int context, object container, object creature, int override = FALSE)
 {
     int bestChanceTimestamp = -1;
     int bestChanceDrops = 0;
@@ -199,11 +203,13 @@ void INTERNAL_CreateProceduralLoot(string template, int context, object containe
 
         partyMember = GetNextFactionMember(creature);
     }
+	
+	if (override) bestChanceObject = creature;
 
     string bucket = INTERNAL_LootBucketFromContext(context);
     struct LootDistrbutionResults results = GetLootDistributionResults(bestChanceObjectHide, template, bucket);
 
-    if (results.createDrop)
+    if (results.createDrop || override)
     {
         object generatedLoot = OBJECT_INVALID;
 
@@ -215,7 +221,7 @@ void INTERNAL_CreateProceduralLoot(string template, int context, object containe
         // generation script, so we add the postfix to the template name here.
         string postfixedTemplate = template + INTERNAL_GetPostfixFromContext(context);
 
-        if (results.acceleratedDrop)
+        if (results.acceleratedDrop || override)
         {
             generatedLoot = GenerateTailoredLootInContainer(container, bestChanceObject, postfixedTemplate, resref);
         }

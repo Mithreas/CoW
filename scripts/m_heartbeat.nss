@@ -310,31 +310,8 @@ void main()
       ar_UpdateShips();
 	  
 	  // Refill faction resource chests every minute. 
-		
-      Trace(RESOURCE, "Assigning resources.");
-      // Clear the faction resource chests.
-      ClearAllFactionResourceChests();
-
-      // Determine who owns each area. Give them rep points and resources.
-      int iCount = 0;
-      object oWP = GetObjectByTag(RES_WP_TAG, iCount);
-
-      while (GetIsObjectValid(oWP))
-      {
-        int nOwner = GetOwningFaction(GetArea(oWP));
-        GivePointsToFaction(1, nOwner);
-        GiveResourcesToOwningFaction(oWP);
-
-        // Store the current owner.
-        SetPersistentString(OBJECT_INVALID,
-                            GetName(GetArea(oWP)),
-                            GetFactionName(nOwner),
-                            0,
-                            AREA_DB);
-
-        iCount++;
-        oWP = GetObjectByTag(RES_WP_TAG, iCount);
-      }	
+	  // On a delay to avoid TMI.
+      DelayCommand(0.0, DistributeResources());
     }
 
     SetLocalInt(OBJECT_SELF, "MI_COUNT", nCount);

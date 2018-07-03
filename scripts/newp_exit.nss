@@ -6,8 +6,6 @@
 void main()
 {
   object oPC = GetPCSpeaker();
-  // Set var so as note we've initialised.
-  SetPersistentInt(oPC, "INITIALIZED", 1);
 
   if (isRenerrin(oPC))
   {
@@ -24,10 +22,15 @@ void main()
     JumpAllToLocation(oPC,
                       GetLocation(GetObjectByTag("erenia_start")));
   }
+  else if (isWarden(oPC))
+  {
+    JumpAllToLocation(oPC,
+                      GetLocation(GetObjectByTag("warden_start")));  
+  }
   else
   {
     JumpAllToLocation(oPC,
-                      GetLocation(GetObjectByTag("gen_start")));
+                      GetLocation(GetObjectByTag("gen_start" + IntToString(GetRacialType(oPC)))));
   }
 
     AssignCommand(oPC, ActionDoCommand(gsRESetRespawnLocation()));

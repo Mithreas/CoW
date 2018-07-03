@@ -27,12 +27,12 @@ void main()
   CnrRecipeAddComponent(sKeyToRecipe, "cnrnuggetond", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe("cnrforgepublic", "Elfur Ingot(s)", "cnringotelf", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrnuggetelf", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe("cnrforgepublic", "Iron Ingot(s)", "cnringotiro", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrnuggetiro", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe("cnrforgepublic", "Lirium Ingot(s)", "cnringotlir", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrnuggetlir", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe("cnrforgepublic", "Silver Ingot(s)", "cnringotsil", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrnuggetsil", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
 
   sKeyToRecipe = CnrRecipeCreateRecipe("cnrforgepublic", "Demon's Bane Ingot(s)", "cnringotdem", 1);

@@ -42,7 +42,7 @@ void main()
   CnrAddTradeskill(CNR_TRADESKILL_COOKING, "Cooking");
   CnrAddTradeskill(CNR_TRADESKILL_WEAPON_CRAFTING, "Weapon Crafting");
   CnrAddTradeskill(CNR_TRADESKILL_ARMOR_CRAFTING, "Armor Crafting");
-  CnrAddTradeskill(CNR_TRADESKILL_EXPLOSIVES, "Explosives");
+  CnrAddTradeskill(CNR_TRADESKILL_CHEMISTRY, "Chemistry");
   CnrAddTradeskill(CNR_TRADESKILL_INVESTING, "Investing");
   CnrAddTradeskill(CNR_TRADESKILL_IMBUING, "Imbuing");
   CnrAddTradeskill(CNR_TRADESKILL_WOOD_CRAFTING, "Carpentry");

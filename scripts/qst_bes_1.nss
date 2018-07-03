@@ -25,12 +25,13 @@ void main()
 
   if (oMeat == OBJECT_INVALID)
   {
-    FloatingTextStringOnCreature("Bessy sniffs at you a bit, then wanders off.", oBessy, FALSE);
+    FloatingTextStringOnCreature("Bessy sniffs at you a bit, then wanders off.", oPC, FALSE);
   }
   else
   {
-    FloatingTextStringOnCreature("Bessy sniffs at you a bit, then starts following you!", oBessy, FALSE);
+    FloatingTextStringOnCreature("Bessy sniffs at you a bit, then starts following you!", oPC, FALSE);
 
     AddHenchman(oPC);
+	ActionForceFollowObject(oPC);
   }
 }

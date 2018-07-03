@@ -32,6 +32,7 @@ const string DONE            = "mica_done";
 void Init()
 {
   // This method is called once, at the start of the conversation.
+  int bType = GetLocalInt(OBJECT_SELF, "TRAVEL_TYPE");
 
   // Options for confirming or cancelling. These are static so we can set them
   // up once.
@@ -64,7 +65,8 @@ void Init()
   if (GetElementCount(TRAVEL_OPTIONS) == 0)
   {
     AddStringElement("<c þ >[Continue journey now]</c>", TRAVEL_OPTIONS);
-    AddStringElement("<c þ >[Wait for next caravan]</c>", TRAVEL_OPTIONS);
+    if (bType == TRAVEL_TYPE_LAND) AddStringElement("<c þ >[Wait for next caravan]</c>", TRAVEL_OPTIONS);
+	if (bType == TRAVEL_TYPE_SEA) AddStringElement("<c þ >[Wait for next ship]</c>", TRAVEL_OPTIONS);
   }
 }
 
@@ -76,6 +78,8 @@ void PageInit()
   string sDestTag = GetLocalString(oPC, MICA_DESTINATION);
   object oArea    = GetLocalObject(oPC, MICA_AREA);
   string sDest    = GetName(GetArea(GetWaypointByTag(sDestTag)));
+  int bType       = GetLocalInt(OBJECT_SELF, "TRAVEL_TYPE");
+  string sType    = (bType ? "ship" : "caravan");
 
   if (sPage == "")
   {
@@ -116,8 +120,8 @@ void PageInit()
           sNextDept = "at the sixth hour";
           break;
       }
-
-      SetDlgPrompt("Next caravan ta " + sDest + " leaves " + sNextDept + ".  Jus' " +
+       
+      SetDlgPrompt("Next " + sType + " ta " + sDest + " leaves " + sNextDept + ".  Jus' " +
       "be back 'ere afore then, aye?");
       SetDlgResponseList(DONE);
     }
@@ -128,10 +132,20 @@ void PageInit()
     }
     else
     {
-      SetDlgPrompt("'ullo there!  Ya be wantin' ta travel? I'll be takin' " +
+	  if (bType == TRAVEL_TYPE_LAND)
+	  {
+        SetDlgPrompt("'ullo there!  Ya be wantin' ta travel? I'll be takin' " +
       "ye along yer way fer jus' twenty five coins, aye?  Where ye be wantin' "+
       "ta go?\n\nWe go at six an' nine in th'mornin', or noon, or three or six"+
       " in th'evenin', reg'lar.  No sense in bein' out at night, aye.");
+	  }
+	  else if (bType == TRAVEL_TYPE_SEA)
+	  {
+	    SetDlgPrompt("Lookin' ta travel 'cross the sea?  Ye can book passage " +
+		"wi'me fer jus' twenty five coins.  Don't even have ta work, aye?\n\n" +
+		"We go at six an' nine in th'mornin', or noon, or three or six"+
+        " in th'evenin', reg'lar.");
+	  }
       SetDlgResponseList(DESTINATIONS);
     }
   }
@@ -160,7 +174,7 @@ void PageInit()
   else
   {
     SendMessageToPC(oPC,
-                    "You've found a bug. How embarassing. Please report it.");
+                    "You've found a bug. How embarrassing. Please report it.");
     EndDlg();
   }
 }
@@ -171,6 +185,7 @@ void HandleSelection()
   int selection  = GetDlgSelection();
   object oPC     = GetPcDlgSpeaker();
   string sPage   = GetDlgPageString();
+  int bType      = GetLocalInt(OBJECT_SELF, "TRAVEL_TYPE");
 
   if (GetDlgResponseList() == DONE)
   {
@@ -199,6 +214,7 @@ void HandleSelection()
         Trace(CARAVANS, GetName(oPC) + " has paid to travel to " + sTag);
         SetLocalString(oPC, MICA_DESTINATION, sTag);
         SetLocalObject(oPC, MICA_AREA, GetArea(OBJECT_SELF));
+		SetLocalInt(oPC, MICA_TYPE, bType);
         TakeGoldFromCreature(25, oPC, TRUE);
 
         if (GetLocalInt(oPC, MICA_TRAVELLING))
@@ -222,7 +238,7 @@ void HandleSelection()
     {
       case 0:  // Go now
         EndDlg();
-        AssignCommand(oPC, miCADoJourney(GetLocalString(oPC, MICA_DESTINATION)));
+        AssignCommand(oPC, miCADoJourney(GetLocalString(oPC, MICA_DESTINATION), bType));
       case 1:  // Wait
         EndDlg();
         break;

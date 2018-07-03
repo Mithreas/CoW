@@ -10,8 +10,11 @@
 
 const string CARAVANS = "CARAVANS"; // for tracing
 
+const int TRAVEL_TYPE_LAND   = 0;
+const int TRAVEL_TYPE_SEA    = 1;
+
 // Sends the caller to sDestinationTag via a cutscene.
-void miCADoJourney(string sDestinationTag);
+void miCADoJourney(string sDestinationTag, int bType = TRAVEL_TYPE_LAND);
 // Handles departures for all PCs with tickets in oCaravan's area.
 void miCADepart(object oCaravan);
 // Runs through all the caravans in the module, and handles departures for each
@@ -29,6 +32,8 @@ void miCAArrive(string sDestinationTag);
 const string MICA_DESTINATION = "mica_destination";
 // Variable name - where is the PC departing from.  Ticket only valid from here.
 const string MICA_AREA        = "mica_area";
+// Variable name - is this a land (0) or sea (1) trip? [Future: flying??]
+const string MICA_TYPE        = "mica_type";
 // Variable name - is the PC currently in transit (& so can move on at once)
 const string MICA_TRAVELLING  = "mica_travelling";
 
@@ -74,16 +79,25 @@ void miCARegisterCaravan(object oCaravan)
   SetLocalInt(oModule, "MI_CA_COUNT", nIndex + 1);
 }
 //------------------------------------------------------------------------------
-void miCADoJourney(string sDestinationTag)
+void miCADoJourney(string sDestinationTag, int bType = TRAVEL_TYPE_LAND)
 {
   object oPC = OBJECT_SELF;
-  SpeakString("*departs with the caravan*");
   Trace(CARAVANS, GetName(oPC) + " is departing to " + sDestinationTag);
+	
+  if (bType == TRAVEL_TYPE_SEA) 
+  {
+    SpeakString("*departs with the ship*");
+	// Todo: travel duration and ship.
+  }	
+  else 
+  {
+    SpeakString("*departs with the caravan*");
 
-  object oCaravan = GetObjectByTag("MICA_CAMERA");
-  miSCDoScrying(oPC, oCaravan, FALSE);
+    object oCaravan = GetObjectByTag("MICA_CAMERA");  
+    miSCDoScrying(oPC, oCaravan, FALSE);
 
-  AssignCommand(oPC, DelayCommand(60.0, miCAArrive(sDestinationTag)));
+    AssignCommand(oPC, DelayCommand(60.0, miCAArrive(sDestinationTag)));
+  }	
 }
 //------------------------------------------------------------------------------
 void miCADepart(object oCaravan)
@@ -101,14 +115,16 @@ void miCADepart(object oCaravan)
       // Check they have a valid ticket.
       string sDestinationTag = GetLocalString(oPC, MICA_DESTINATION);
       object oArea           = GetLocalObject(oPC, MICA_AREA);
+	  int    bType           = GetLocalInt(oPC, MICA_TYPE);
 
       if (sDestinationTag != "" && GetArea(oPC) == oArea)
       {
         // Go!
         Trace(CARAVANS, GetName(oPC) + " has destination " + sDestinationTag);
         AssignCommand(oPC, ClearAllActions(TRUE));
-        AssignCommand(oPC, miCADoJourney(sDestinationTag));
+        AssignCommand(oPC, miCADoJourney(sDestinationTag, bType));
         DeleteLocalString(oPC, MICA_DESTINATION);
+        DeleteLocalString(oPC, MICA_TYPE);
       }
     }
 

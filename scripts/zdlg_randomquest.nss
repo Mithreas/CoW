@@ -36,7 +36,7 @@ void Init()
   {
     AddStringElement("I'm here to offer my services. Can I help you with anything?", GREETING);
     AddStringElement("Unfortunately, I'm needed elsewhere. Farewell.", GREETING);
-    AddStringElement("Can you tell me more about the City?", GREETING);
+    AddStringElement("Can you tell me more about the local area?", GREETING);
   }
 
   // PC responses to task briefing.
@@ -103,7 +103,8 @@ void PageInit()
   string sVarsDB   = sQuestSet + QUEST_VAR_DB;
   string sPlayerDB = sQuestSet + QUEST_PLAYER_DB;
 
-  string sCurrentQuest = GetPersistentString(oPC, CURRENT_QUEST);
+  string sCurrentQuest = GetPersistentString(oPC, CURRENT_QUEST); 
+  object oCache        = miDAGetCacheObject(sVarsDB);
   Trace(RQUEST, "Got current quest for PC " + GetName(oPC) + ": " + sCurrentQuest);
 
   if (sPage == "")
@@ -121,9 +122,16 @@ void PageInit()
       {
         // Greet the PC
         string sCurrentRank = GetPCFactionRank(oPC);
-        SetDlgPrompt("Welcome in the names of the Seven Divines, "+sCurrentRank+" "+
-        GetName(oPC)+". Are you here to talk about the City of Winds? Or perhaps to "+
-        "offer your services?");
+		if (GetRacialType(OBJECT_SELF) == RACIAL_TYPE_HUMAN)
+		{
+          SetDlgPrompt("Welcome in the names of the Seven Divines, "+sCurrentRank+" "+
+          GetName(oPC)+". Are you here to talk about the City of Winds? Or perhaps to "+
+          "offer your services?");
+		}
+        else if (GetRacialType(OBJECT_SELF) == RACIAL_TYPE_HALFLING)
+        {
+		  SetDlgPrompt("Ah, a Warden come to see me.  Excellent.  Do you want a task?"); 
+        }		
         SetDlgResponseList(GREETING, OBJECT_SELF);
       }
       else
@@ -197,7 +205,7 @@ void PageInit()
         else
         {
           SendMessageToPC(oPC,
-                      "You've found a bug. How embarassing. Please report it.");
+                      "You've found a bug. How embarrassing. Please report it.");
           Trace(RQUEST, "!!!Invalid quest type!");
           EndDlg();
         }
@@ -228,18 +236,14 @@ void PageInit()
     {
       Trace(RQUEST, "Got new quest: " + sNewQuest);
       SetDlgPrompt("Here's a task you should be able to do. " +
-                   GetPersistentString(OBJECT_INVALID,
-                                       sNewQuest + DESCRIPTION,
-                                       sVarsDB));
+                   GetLocalString(oCache, sNewQuest + DESCRIPTION));
       SetDlgResponseList(MAIN_MENU, OBJECT_SELF);
     }
   }
   else if (sPage == BRIEFING)
   {
     Trace(RQUEST, "Playing briefing.");
-    SetDlgPrompt(GetPersistentString(OBJECT_INVALID,
-                                     sCurrentQuest + DESCRIPTION,
-                                     sVarsDB));
+    SetDlgPrompt(GetLocalString(oCache, sCurrentQuest + DESCRIPTION));
     SetDlgResponseList(REPLY2, OBJECT_SELF);
   }
   else if (sPage == REFUSED)

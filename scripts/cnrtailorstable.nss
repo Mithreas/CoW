@@ -53,9 +53,9 @@ void main()
   CnrRecipeSetRecipeXP(sKeyToRecipe, 10, 10);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 0, 65, 0, 35, 0, 0);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorCloths, "Elfur-Silk", "cnrcloth2", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorCloths, "Iron-Silk", "cnrcloth2", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrspidersilk", 1, 0);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnringotelf", 1, 0);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotiro", 1, 0);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 0, 65, 0, 35, 0, 0);
@@ -141,7 +141,7 @@ void main()
   CnrRecipeSetRecipeXP(sKeyToRecipe, 20, 20);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 0, 65, 0, 35, 0, 0);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorClothing, "Elfur-Silk Clothes", "cnrclothes2", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorClothing, "Iron-Silk Clothes", "cnrclothes2", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrcloth2", 2, 0);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
@@ -187,7 +187,7 @@ void main()
   CnrRecipeSetRecipeXP(sKeyToRecipe, 20, 20);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 0, 65, 0, 35, 0, 0);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorPaddArm, "Elfur-Silk Padded Armour", "cnrarmpad2", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorPaddArm, "Iron-Silk Padded Armour", "cnrarmpad2", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrcloth2", 2, 0);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrpadding", 1, 0);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
@@ -283,9 +283,9 @@ void main()
   CnrRecipeSetRecipeXP(sKeyToRecipe, 20, 20);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 0, 65, 0, 35, 0, 0);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorGloves, "Elfur Reinforced Gloves", "cnrglove2", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorGloves, "Iron Reinforced Gloves", "cnrglove2", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrglovecloth", 1, 0);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnringotelf", 1, 0);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotiro", 1, 0);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 40);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 0, 65, 0, 35, 0, 0);

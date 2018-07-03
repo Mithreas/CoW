@@ -57,6 +57,13 @@ const int NWNX_OBJECT_SCRIPT_PLACEABLE_ON_USED                = 12;
 const int NWNX_OBJECT_SCRIPT_PLACEABLE_ON_USER_DEFINED_EVENT  = 13;
 const int NWNX_OBJECT_SCRIPT_PLACEABLE_ON_DIALOGUE            = 14;
 
+
+const int NWNX_OBJECT_LOCALVAR_TYPE_INT      = 1;
+const int NWNX_OBJECT_LOCALVAR_TYPE_FLOAT    = 2;
+const int NWNX_OBJECT_LOCALVAR_TYPE_STRING   = 3;
+const int NWNX_OBJECT_LOCALVAR_TYPE_OBJECT   = 4;
+const int NWNX_OBJECT_LOCALVAR_TYPE_LOCATION = 5;
+
 struct NWNX_Object_LocalVariable
 {
     int type;
@@ -110,6 +117,9 @@ object NWNX_Object_Deserialize(string serialized);
 
 // Returns the dialog resref of the object.
 string NWNX_Object_GetDialogResref(object obj);
+
+// Sets the dialog resref of the object.
+void NWNX_Object_SetDialogResref(object obj, string dialog);
 
 // Set obj's appearance. Will not update for PCs until they
 // re-enter the area.
@@ -282,6 +292,16 @@ string NWNX_Object_GetDialogResref(object obj)
 
     NWNX_CallFunction(NWNX_Object, sFunc);
     return NWNX_GetReturnValueString(NWNX_Object, sFunc);
+}
+
+void NWNX_Object_SetDialogResref(object obj, string dialog)
+{
+    string sFunc = "SetDialogResref";
+
+    NWNX_PushArgumentString(NWNX_Object, sFunc, dialog);
+    NWNX_PushArgumentObject(NWNX_Object, sFunc, obj);
+
+    NWNX_CallFunction(NWNX_Object, sFunc);
 }
 
 void NWNX_Object_SetAppearance(object obj, int app)

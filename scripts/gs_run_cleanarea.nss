@@ -126,8 +126,8 @@ void main()
                 }
             case OBJECT_TYPE_PLACEABLE:
 
-                //dynamic
-                if (! GetLocalInt(oObject, "GS_STATIC"))
+                //dynamic - exclude CNR objects that are frequently recreated.
+                if (! (GetLocalInt(oObject, "GS_STATIC")) && ! (GetStringLeft(GetTag(oObject), 3) == "cnr"))
                 {
                     //destroy placeable
                     if (nTimeout)

@@ -33,6 +33,7 @@ const int GS_WO_NONE = -1;
 //const int GS_WO_SERRIAN                =     6;
 //const int GS_WO_VERRIA                 =     7;
 //const int GS_WO_DARK_ONE               =     8;
+//const int GS_WO_BALANCE                =     9;
 
 string gsWOGetPortfolio(int nDeity)
 {
@@ -48,6 +49,7 @@ string gsWOGetPortfolio(int nDeity)
     case 6	 : sPortfolio = "Serrian, Lord of Stars, Lord Starlight\n\nOne of the Seven Divines, responsible for saving Humanity from extinction.  The messenger and guide of the gods, Serrian is the usual patron of sailors and others whose life sees much travelling.  Those who follow another patron will often offer a prayer to Serrian before embarking on a journey."; break;
 	case 7   : sPortfolio = "Verria, Lady Void\n\nOne of the Seven Divines, responsible for saving Humanity from extinction.  Verria is often turned to by those dealing with loss or heartbreak; her devotees accept that the world is a hard place, but find solace in Her worship.  Devotees of Verria are often fatalists, praying to Verria to alter their fate."; break;
     case 8   : sPortfolio = "The Dark One\n\nThe cancer below the City, the source of forbidden blood magics.  Those who desire the power to overthrow the rulers of the City sometimes seek it in the darkest of places.  Worship of the Dark One is strictly outlawed."; break;
+	case 9   : sPortfolio = "The Balance\n\nHalflings, and occasional others, revere the Balance above all.  By making pacts with the elemental spirits of land, sky, river and flame, druidic servants of the Balance can direct natural power.  However, elemental spirits do not all think alike; some may refuse pacts, or may feel that serving the Balance requires a cull..."; break;
     default  : sPortfolio = "No portfolio! Please report this bug."; break;
   }
 
@@ -192,6 +194,7 @@ int gsWOGetDeityByName(string sDeity)
     if (sDeity == "Serrian")                 return 6;
     if (sDeity == "Verria")                  return 7;
     if (sDeity == "The Dark One")            return 8;
+	if (sDeity == "The Balance")             return 9;
 
     return FALSE;
 }
@@ -208,6 +211,7 @@ string gsWOGetNameByDeity(int nDeity)
 		case 6:    return "Serrian";
 		case 7:    return "Verria";
         case 8:    return "The Dark One";
+		case 9:    return "The Balance";
     }
 
     return "";
@@ -780,6 +784,7 @@ void gsWOSetup()
     gsWOAddDeity(6, "LG,LN,NG,NN,LE,NE", ASPECT_WAR_DESTRUCTION + ASPECT_KNOWLEDGE_INVENTION, RACIAL_TYPE_HUMAN); //Serrian
     gsWOAddDeity(7, "LG,LN,NG,NN,LE,NE", ASPECT_HEARTH_HOME + ASPECT_KNOWLEDGE_INVENTION, RACIAL_TYPE_HUMAN); //Verria
     gsWOAddDeity(8, "CG,CN,CE", ASPECT_TRICKERY_DECEIT + ASPECT_MAGIC, RACIAL_TYPE_HUMAN); //Dark One
+	gsWOAddDeity(9, "NG,LN,NN,CN,NE", ASPECT_NATURE + ASPECT_HEARTH_HOME, RACIAL_TYPE_HALFLING); // The Balance
 
     //gsWOChangeCategory(FB_WO_CATEGORY_INTERMEDIATE);
 

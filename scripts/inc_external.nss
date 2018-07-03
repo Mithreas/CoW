@@ -185,7 +185,7 @@ void fbEXDeletePC(object oPC)
   SendMessageToPC(oPC, "<cþþ >Deleting character. You will be "+
     "sent to the character selection screen, hold tight!");
 
-  //fbEXDoAndPortal(fbEXPrepareStatement("Bic.remove(?, ?)", GetPCPlayerName(oPC),
+  //fbEXDoAndPortal(fbEXPrepareStatement("Bic.remove(?, ?)", GetPCPublicCDKey(oPC),
    // GetName(oPC)), oPC);
   DelayCommand(2.5, _Delete(oPC));
   miDASetKeyedValue("gs_pc_data", gsPCGetPlayerID(oPC), "deleted", "1");
@@ -209,7 +209,7 @@ void fbEXChangeName(object oPC, string sNewName)
 
     SendMessageToPC(oPC, "<c þ >Renaming your character. You will be logged out and back in again, hold tight!");
 
-    fbEXDoAndPortal(fbEXPrepareStatement("Bic.change_name(?, ?, ?)",GetPCPlayerName(oPC), GetName(oPC), sNewName), oPC);
+    fbEXDoAndPortal(fbEXPrepareStatement("Bic.change_name(?, ?, ?)",GetPCPublicCDKey(oPC), GetName(oPC), sNewName), oPC);
     miDASetKeyedValue("gs_pc_data", gsPCGetPlayerID(oPC), "name", sNewName);
 
   } else {
@@ -230,7 +230,7 @@ void fbEXFixMovement(object oPC)
   SendMessageToPC(oPC, "<c þ >Fixing your movement rate. You will be logged " +
     "out and back in again, hold tight!");
 
-  fbEXDoAndPortal(fbEXPrepareStatement("Bic.fix_walk(?, ?)", GetPCPlayerName(oPC),
+  fbEXDoAndPortal(fbEXPrepareStatement("Bic.fix_walk(?, ?)", GetPCPublicCDKey(oPC),
     GetName(oPC)), oPC);
 }
 

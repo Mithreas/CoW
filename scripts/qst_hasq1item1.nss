@@ -21,12 +21,12 @@ int StartingConditional()
   {
     if (GetTag(oItem) == sItemTag)
     {
-      nCount++;
+      nCount += GetItemStackSize(oItem);
       Trace("QUESTS","Destroyed " + GetName(oItem));
     }
 
     oItem = GetNextItemInInventory(GetPCSpeaker());
   }
 
-  return (nCount == nNum);
+  return (nCount >= nNum);
 }

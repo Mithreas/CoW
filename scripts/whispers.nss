@@ -27,7 +27,7 @@ else if (d100()<=10)
    }
 else if (d100()<=5)
    {
-   SendMessageToPC(oPC, "You smell bad!");
+   SendMessageToPC(oPC, "Danger...");
 
    }
 else if (d100()<=15)

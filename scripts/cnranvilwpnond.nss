@@ -23,7 +23,7 @@ void main()
   string sMenu1Ammo = CnrRecipeAddSubMenu("cnranvilwpnond", "Ondaran Bullets and Knives");
   string sMenu1Axes = CnrRecipeAddSubMenu("cnranvilwpnond", "Ondaran Axes");
   string sMenu1Bladed = CnrRecipeAddSubMenu("cnranvilwpnond", "Ondaran Bladed");
-  string sMenu1Blunts = CnrRecipeAddSubMenu("cnranvirwpnond", "Ondaran Blunts");
+  string sMenu1Blunts = CnrRecipeAddSubMenu("cnranvilwpnond", "Ondaran Blunts");
   string sMenu1Double = CnrRecipeAddSubMenu("cnranvilwpnond", "Ondaran Double-Sided");
   string sMenu1Polearms = CnrRecipeAddSubMenu("cnranvilwpnond", "Ondaran Polearms");
   string sMenu1Subs = CnrRecipeAddSubMenu("cnranvilwpnond", "Ondaran Components");

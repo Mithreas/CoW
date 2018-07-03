@@ -7,7 +7,7 @@ void main()
   if (sTradeName == "Cooking")  { nTrade = CNR_TRADESKILL_COOKING; }
   else if (sTradeName == "Weapon Crafting")  { nTrade = CNR_TRADESKILL_WEAPON_CRAFTING; }
   else if (sTradeName == "Armor Crafting")  { nTrade = CNR_TRADESKILL_ARMOR_CRAFTING; }
-  else if (sTradeName == "Explosives")  { nTrade = CNR_TRADESKILL_EXPLOSIVES; }
+  else if (sTradeName == "Chemistry")  { nTrade = CNR_TRADESKILL_CHEMISTRY; }
   else if (sTradeName == "Investing")  { nTrade = CNR_TRADESKILL_INVESTING; }
   else if (sTradeName == "Imbuing")  { nTrade = CNR_TRADESKILL_IMBUING; }
   else if (sTradeName == "Carpentry")  { nTrade = CNR_TRADESKILL_WOOD_CRAFTING; }

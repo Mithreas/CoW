@@ -218,18 +218,8 @@ void gsENSpawnAtLocation(float fChallenge, int nCount, location lLocation, float
 	
 	// City of Winds addition: award XP when an encounter triggers.
 	// This method can be assigned to the area, so use one of the creatures as the center point.
-	if (GetIsObjectValid(oCreature)) ExecuteScript("encounter_xp_ent", oCreature);
-
-    // Spawn loot item.  This is an item that will give a scaled amount of gold
-    // to each member of a party once.
-    // -- Removed and replaced by equivalent function on the standard Carcass
-    // object.
-    //if (GetIsObjectValid(oCreature) && GetIsReactionTypeHostile(GetFirstPC(), oCreature))
-    //{
-    //  object oTreasure = CreateObject(OBJECT_TYPE_PLACEABLE, "mi_en_tres", lLocation);
-    //
-    //  SetLocalFloat(oTreasure, "MI_EN_CR", fBaseChallenge);
-    //}
+	if (GetIsObjectValid(oCreature) && GetIsReactionTypeHostile(GetFirstPC(), oCreature)) 
+	    ExecuteScript("encounter_xp_ent", oCreature);
 }
 //----------------------------------------------------------------
 object _gsENSpawnAtLocation(string sTemplate, location lLocation, int nEffect = FALSE)

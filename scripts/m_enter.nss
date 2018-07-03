@@ -209,6 +209,7 @@ void main()
 	AddJournalQuestEntry("perenor",1,oEntering, FALSE);
 	AddJournalQuestEntry("magic",1,oEntering, FALSE);
 	AddJournalQuestEntry("alignment",1,oEntering, FALSE);
+	AddJournalQuestEntry("honour",1,oEntering, FALSE);
 	
     if (GetHitDice(oEntering) == 1)
     {

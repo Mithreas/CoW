@@ -27,27 +27,27 @@ void main()
   string sMenuSubs = CnrRecipeAddSubMenu("cnranvilarmor1", "Components");
 
   string sMenuShield1 = CnrRecipeAddSubMenu(sMenuShields, "Ondaran Shields");
-  string sMenuShield2 = CnrRecipeAddSubMenu(sMenuShields, "Elfur Shields");
-  string sMenuShield3 = CnrRecipeAddSubMenu(sMenuShields, "Lirium Shields");
+  string sMenuShield2 = CnrRecipeAddSubMenu(sMenuShields, "Iron Shields");
+  string sMenuShield3 = CnrRecipeAddSubMenu(sMenuShields, "Silver Shields");
 
 
   string sMenuSubs1 = CnrRecipeAddSubMenu(sMenuSubs, "Ondaran Components");
-  string sMenuSubs2 = CnrRecipeAddSubMenu(sMenuSubs, "Elfur Components");
-  string sMenuSubs3 = CnrRecipeAddSubMenu(sMenuSubs, "Lirium Components");
+  string sMenuSubs2 = CnrRecipeAddSubMenu(sMenuSubs, "Iron Components");
+  string sMenuSubs3 = CnrRecipeAddSubMenu(sMenuSubs, "Silver Components");
 
   string sMenuArmor1 = CnrRecipeAddSubMenu(sMenuArmor, "Ondaran Armour");
-  string sMenuArmor2 = CnrRecipeAddSubMenu(sMenuArmor, "Elfur Armour");
-  string sMenuArmor3 = CnrRecipeAddSubMenu(sMenuArmor, "Lirium Armour");
+  string sMenuArmor2 = CnrRecipeAddSubMenu(sMenuArmor, "Iron Armour");
+  string sMenuArmor3 = CnrRecipeAddSubMenu(sMenuArmor, "Silver Armour");
 
 
   string sMenu1Medium = CnrRecipeAddSubMenu(sMenuArmor1, "Medium Ondaran");
   string sMenu1Heavy = CnrRecipeAddSubMenu(sMenuArmor1, "Heavy Ondaran");
 
-  string sMenu2Medium = CnrRecipeAddSubMenu(sMenuArmor2, "Medium Elfur");
-  string sMenu2Heavy = CnrRecipeAddSubMenu(sMenuArmor2, "Heavy Elfur");
+  string sMenu2Medium = CnrRecipeAddSubMenu(sMenuArmor2, "Medium Iron");
+  string sMenu2Heavy = CnrRecipeAddSubMenu(sMenuArmor2, "Heavy Iron");
 
-  string sMenu3Medium = CnrRecipeAddSubMenu(sMenuArmor3, "Medium Lirium");
-  string sMenu3Heavy = CnrRecipeAddSubMenu(sMenuArmor3, "Heavy Lirium");
+  string sMenu3Medium = CnrRecipeAddSubMenu(sMenuArmor3, "Medium Silver");
+  string sMenu3Heavy = CnrRecipeAddSubMenu(sMenuArmor3, "Heavy Silver");
 
   CnrRecipeSetDevicePreCraftingScript("cnranvilarmor1", "cnr_anvil_anim");
   CnrRecipeSetDeviceEquippedTool("cnranvilarmor1", "cnrSmithsHammer", CNR_FLOAT_SMITH_HAMMER_BREAKAGE_PERCENTAGE);
@@ -168,43 +168,43 @@ void main()
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 70, 30, 0, 0, 0, 0);
 
 
-  /////////////////////Elfur Subcomponents////////////////////////
+  /////////////////////Iron Subcomponents////////////////////////
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuSubs2, "Small Elfur Plates", "cnrsmlplt2", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnringotelf", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuSubs2, "Small Iron Plates", "cnrsmlplt2", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotiro", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 70, 30, 0, 0, 0, 0);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuSubs2, "Medium Elfur Plates", "cnrmedplt2", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnringotelf", 2);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuSubs2, "Medium Iron Plates", "cnrmedplt2", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotiro", 2);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 70, 30, 0, 0, 0, 0);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuSubs2, "Large Elfur Plates", "cnrlrgplt2", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnringotelf", 3);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuSubs2, "Large Iron Plates", "cnrlrgplt2", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotiro", 3);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 70, 30, 0, 0, 0, 0);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuSubs2, "Elfur Chain Rings", "cnrchain2", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnringotelf", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuSubs2, "Iron Chain Rings", "cnrchain2", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotiro", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 70, 30, 0, 0, 0, 0);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuSubs2, "Studs", "cnrstuds", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnringotelf", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotiro", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 10, 10);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 70, 30, 0, 0, 0, 0);
 
 
 
-  //----------------- Elfur shields -----------------------
+  //----------------- Iron shields -----------------------
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuShield2, "Elfur Buckler", "cnrshldbuck2", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuShield2, "Iron Buckler", "ashsw003", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrsmlplt2", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrshldbuck", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
@@ -212,14 +212,14 @@ void main()
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 70, 30, 0, 0, 0, 0);
 
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuShield2, "Large Elfur Shield", "cnrshldlarg2", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuShield2, "Large Iron Shield", "ashlw003", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrmedplt2", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrshldlarg", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 70, 30, 0, 0, 0, 0);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuShield2, "Elfur Tower Shield", "cnrshldtowr2", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuShield2, "Iron Tower Shield", "ashto003", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrlrgplt2", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrshldtowr", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
@@ -227,23 +227,23 @@ void main()
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 70, 30, 0, 0, 0, 0);
 
 
-  //----------------- Elfur helm -----------------------
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuHelms, "Elfur Helmet", "cnrhelm2", 1);
+  //----------------- Iron helm -----------------------
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuHelms, "Iron Helmet", "cnrhelm2", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrsmlplt2", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 70, 30, 0, 0, 0, 0);
 
 
-  //----------------- Elfur armors -----------------------
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Medium, "Elfur Chain Shirt", "cnrchainshirt2", 1);
+  //----------------- Iron armors -----------------------
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Medium, "Iron Chain Mail", "aarcl016", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrchain2", 2);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrpadding", 2);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 70, 30, 0, 0, 0, 0);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Medium, "Elfur Scale Mail", "cnrscalemail2", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Medium, "Iron Scale Mail", "aarcl017", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrchain2", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrsmlplt2", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrpadding", 2);
@@ -251,36 +251,21 @@ void main()
   CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 70, 30, 0, 0, 0, 0);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Medium, "Elfur Chain Mail", "cnrchainmail2", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrchain2", 2);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrpadding", 2);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
-  CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 70, 30, 0, 0, 0, 0);
-
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Heavy, "Elfur Banded Mail", "cnrbandedmail2", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Heavy, "Iron Banded Mail", "aarcl015", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrsmlplt1", 2);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrpadding", 2);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 70, 30, 0, 0, 0, 0);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Heavy, "Elfur Splint Mail", "cnrsplintmail2", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrchain2", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrsmlplt2", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrpadding", 2);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
-  CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 70, 30, 0, 0, 0, 0);
-
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Heavy, "Elfur Half Plate", "cnrhalfplate2", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Heavy, "Iron Half Plate", "aarcl014", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrlrgplt2", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrpadding", 2);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 70, 30, 0, 0, 0, 0);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Heavy, "Elfur Full Plate", "cnrfullplate2", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Heavy, "Iron Full Plate", "aarcl008", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrlrgplt2", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrsmlplt2", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrpadding", 2);
@@ -289,37 +274,37 @@ void main()
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 70, 30, 0, 0, 0, 0);
 
 
-  /////////////////////Lirium Subcomponents////////////////////////
+  /////////////////////Silver Subcomponents////////////////////////
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuSubs3, "Small Lirium Plates", "cnrsmlplt3", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnringotlir", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuSubs3, "Small Silver Plates", "cnrsmlplt3", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotsil", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 70, 30, 0, 0, 0, 0);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuSubs3, "Medium Lirium Plates", "cnrmedplt3", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnringotlir", 2);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuSubs3, "Medium Silver Plates", "cnrmedplt3", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotsil", 2);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 70, 30, 0, 0, 0, 0);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuSubs3, "Large Lirium Plates", "cnrlrgplt3", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnringotlir", 3);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuSubs3, "Large Silver Plates", "cnrlrgplt3", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotsil", 3);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 70, 30, 0, 0, 0, 0);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuSubs3, "Lirium Chain Rings", "cnrchain3", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnringotlir", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuSubs3, "Silver Chain Rings", "cnrchain3", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotsil", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 70, 30, 0, 0, 0, 0);
 
 
 
-  //----------------- Lirium shields -----------------------
+  //----------------- Silver shields -----------------------
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuShield3, "Lirium Buckler", "cnrshldbuck3", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuShield3, "Silver Buckler", "ashsw005", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrsmlplt3", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrshldbuck", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
@@ -327,14 +312,14 @@ void main()
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 70, 30, 0, 0, 0, 0);
 
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuShield3, "Large Lirium Shield", "cnrshldlarg3", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuShield3, "Large Silver Shield", "ashlw005", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrmedplt3", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrshldlarg", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 6);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 60, 60);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 70, 30, 0, 0, 0, 0);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuShield3, "Lirium Tower Shield", "cnrshldtowr3", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuShield3, "Silver Tower Shield", "ashto005", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrlrgplt3", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrshldtowr", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 7);
@@ -342,23 +327,23 @@ void main()
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 70, 30, 0, 0, 0, 0);
 
 
-  //----------------- Lirium helm -----------------------
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuHelms, "Lirium Helmet", "cnrhelm3", 1);
+  //----------------- Silver helm -----------------------
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuHelms, "Silver Helmet", "cnrhelm3", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrsmlplt3", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 6);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 60, 60);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 70, 30, 0, 0, 0, 0);
 
 
-  //----------------- Lirium armors -----------------------
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu3Medium, "Lirium Chain Shirt", "cnrchainshirt3", 1);
+  //----------------- Silver armors -----------------------
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu3Medium, "Silver Chain Mail", "aarcl026", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrchain3", 2);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrpadding", 2);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 6);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 60, 60);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 70, 30, 0, 0, 0, 0);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu3Medium, "Lirium Scale Mail", "cnrscalemail3", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu3Medium, "Silver Scale Mail", "aarcl027", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrchain3", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrsmlplt3", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrpadding", 2);
@@ -366,36 +351,21 @@ void main()
   CnrRecipeSetRecipeXP(sKeyToRecipe, 60, 60);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 70, 30, 0, 0, 0, 0);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu3Medium, "Lirium Chain Mail", "cnrchainmail3", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrchain3", 2);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrpadding", 2);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 6);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 60, 60);
-  CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 70, 30, 0, 0, 0, 0);
-
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu3Heavy, "Lirium Banded Mail", "cnrbandedmail3", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu3Heavy, "Silver Banded Mail", "aarcl024", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrsmlplt1", 2);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrpadding", 2);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 7);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 70, 70);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 70, 30, 0, 0, 0, 0);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu3Heavy, "Lirium Splint Mail", "cnrsplintmail3", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrchain3", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrsmlplt3", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrpadding", 2);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 7);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 70, 70);
-  CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 70, 30, 0, 0, 0, 0);
-
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu3Heavy, "Lirium Half Plate", "cnrhalfplate3", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu3Heavy, "Silver Half Plate", "aarcl025", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrlrgplt3", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrpadding", 2);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 7);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 70, 70);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 70, 30, 0, 0, 0, 0);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu3Heavy, "Lirium Full Plate", "cnrfullplate3", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu3Heavy, "Silver Full Plate", "aarcl023", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrlrgplt3", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrsmlplt3", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrpadding", 2);

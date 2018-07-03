@@ -25,6 +25,8 @@ int GetOwningFaction(object oArea);
 void ClearAllFactionResourceChests();
 // Sends resources to the owning faction's chest.
 void GiveResourcesToOwningFaction(object oWP);
+// Cycle through all resource areas, and distribute resources to their owners.
+void DistributeResources();
 
 int GetPCFactionOwnsArea(object oPC, object oArea)
 {
@@ -192,4 +194,35 @@ void GiveResourcesToOwningFaction(object oWP)
     CreateItemOnObject(sMinorResource, oChest);
     CreateItemOnObject(sMinorResource, oChest);
   }
+}
+
+void DistributeResources()
+{		
+    Trace(RESOURCE, "Assigning resources.");
+    // Clear the faction resource chests.
+	// The delete command won't be sent until after the
+	// script ends, so delay creation to avoid stacks being
+	// added to and then deleted.
+    ClearAllFactionResourceChests();
+
+    // Determine who owns each area. Give them rep points and resources.
+    int iCount = 0;
+    object oWP = GetObjectByTag(RES_WP_TAG, iCount);
+
+    while (GetIsObjectValid(oWP))
+    {
+        int nOwner = GetOwningFaction(GetArea(oWP));
+        GivePointsToFaction(1, nOwner);
+        DelayCommand(0.1, GiveResourcesToOwningFaction(oWP));
+
+        // Store the current owner.
+        SetPersistentString(OBJECT_INVALID,
+                            GetName(GetArea(oWP)),
+                            GetFactionName(nOwner),
+                            0,
+                            AREA_DB);
+
+        iCount++;
+        oWP = GetObjectByTag(RES_WP_TAG, iCount);
+    }	
 }

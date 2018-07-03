@@ -411,8 +411,10 @@ void CheckIfOnPatrol(object oPC, object oArea)
 
   string sQuestDB  = sQuestSet + QUEST_DB;
   string sVarsDB   = sQuestSet + QUEST_VAR_DB;
+  
+  object oCache = miDAGetCacheObject(sVarsDB);
 
-  string sAreaList = GetPersistentString(OBJECT_INVALID, sQuest+AREA_TAGS, sVarsDB);
+  string sAreaList = GetLocalString(oCache, sQuest+AREA_TAGS);
   Trace(RQUEST, "PC's list of areas to patrol is: " + sAreaList);
 
   if (sAreaList != "")
@@ -446,15 +448,17 @@ void RewardPC(object oPC, object oNPC)
   // Databases.
   string sQuestDB  = sQuestSet + QUEST_DB;
   string sVarsDB   = sQuestSet + QUEST_VAR_DB;
+  
+  object oCache = miDAGetCacheObject(sVarsDB);
   // end setup.
 
-  int nGold = GetPersistentInt(OBJECT_INVALID, sQuest+REWARD_GOLD, sVarsDB);
+  int nGold = StringToInt(GetLocalString(oCache, sQuest+REWARD_GOLD));
   if (nGold > 0)
   {
     GiveGoldToCreature(oPC, nGold);
   }
 
-  int nXP = GetPersistentInt(OBJECT_INVALID, sQuest+REWARD_XP, sVarsDB);
+  int nXP = StringToInt(GetLocalString(oCache, sQuest+REWARD_XP));
   if (nXP > 0)
   {
     float fXP = IntToFloat(nXP);
@@ -467,20 +471,20 @@ void RewardPC(object oPC, object oNPC)
     GiveXPToCreature(oPC, FloatToInt(fXP));
   }
 
-  int nFacRep = GetPersistentInt(OBJECT_INVALID, sQuest+REWARD_FAC_REP, sVarsDB);
+  int nFacRep = StringToInt(GetLocalString(oCache, sQuest+REWARD_FAC_REP));
   if (nFacRep > 0)
   {
     // Give rep points with the House to everyone in the party.
     GiveRepPoints(oPC, nFacRep, CheckFactionNation(oNPC), TRUE);
   }
 
-  int nGloRep = GetPersistentInt(OBJECT_INVALID, sQuest+REWARD_GLO_REP, sVarsDB);
+  int nGloRep = StringToInt(GetLocalString(oCache, sQuest+REWARD_GLO_REP));
   if (nGloRep > 0)
   {
     GiveRepPoints(oPC, nGloRep);
   }
 
-  string sItemTag = GetPersistentString(OBJECT_INVALID, sQuest+REWARD_ITEM, sVarsDB);
+  string sItemTag = GetLocalString(oCache, sQuest+REWARD_ITEM);
   if (sItemTag != "")
   {
     CreateItemOnObject(sItemTag, oPC);
@@ -510,6 +514,8 @@ int QuestIsDone(object oPC, object oNPC)
   // Databases.
   string sQuestDB  = sQuestSet + QUEST_DB;
   string sVarsDB   = sQuestSet + QUEST_VAR_DB;
+  
+  object oCache = miDAGetCacheObject(sVarsDB);
   // end setup.
 
   int nDone = 0;
@@ -519,8 +525,8 @@ int QuestIsDone(object oPC, object oNPC)
 
   if (sQuestType == RETRIEVE)
   {
-    string sItemTag = GetPersistentString(OBJECT_INVALID, sQuest+ITEM_TAG, sVarsDB);
-    int nNum = GetPersistentInt(OBJECT_INVALID, sQuest+NUM_ITEMS, sVarsDB);
+    string sItemTag = GetLocalString(oCache, sQuest+ITEM_TAG);
+    int nNum = StringToInt(GetLocalString(oCache, sQuest+NUM_ITEMS));
     if (nNum == 0)
     {
       Trace(RQUEST, "Number not specified, default to 1.");
@@ -566,7 +572,7 @@ int QuestIsDone(object oPC, object oNPC)
   }
   else if (sQuestType == KILL)
   {
-    string sNPC = GetPersistentString(OBJECT_INVALID, sQuest+TARGET_TAG, sVarsDB);
+    string sNPC = GetLocalString(oCache, sQuest+TARGET_TAG);
     object oTarget = GetObjectByTag(sNPC);
     if (!GetIsObjectValid(oTarget) || !GetIsPlayerActive(oPC, sNPC))
     {
@@ -575,9 +581,7 @@ int QuestIsDone(object oPC, object oNPC)
   }
   else if (sQuestType == MESSENGER)
   {
-    string sItemToBring = GetPersistentString(OBJECT_INVALID,
-                                              sQuest+ITEM_TO_BRING,
-                                              sVarsDB);
+    string sItemToBring = GetLocalString(oCache, sQuest+ITEM_TO_BRING);
 
     if (sItemToBring != "")
     {
@@ -593,9 +597,7 @@ int QuestIsDone(object oPC, object oNPC)
     else
     {
       // If the PC hasn't got the item they left with, they're done.
-      string sItemToGive = GetPersistentString(OBJECT_INVALID,
-                                            sQuest+ITEM_TO_GIVE,
-                                            sVarsDB);
+      string sItemToGive = GetLocalString(oCache, sQuest+ITEM_TO_GIVE);
       object oItem = GetItemPossessedBy(oPC, sItemToGive);
 
       if (!GetIsObjectValid(oItem))
@@ -670,10 +672,12 @@ void TidyQuest(object oPC, object oNPC)
   // Databases.
   string sQuestDB  = sQuestSet + QUEST_DB;
   string sVarsDB   = sQuestSet + QUEST_VAR_DB;
+  
+  object oCache = miDAGetCacheObject(sVarsDB);
   // end setup.
 
   // Remove NPCs spawned, if they exist and are not in use by another PC.
-  string sNPC = GetPersistentString(OBJECT_INVALID, sQuest+OTHER_NPC, sVarsDB);
+  string sNPC = GetLocalString(oCache, sQuest+OTHER_NPC);
   if (sNPC != "")
   {
     // Check that no other players are using the NPC and delete if not..
@@ -681,7 +685,7 @@ void TidyQuest(object oPC, object oNPC)
     DestroyNPCIfInactive(sNPC);
   }
 
-  sNPC = GetPersistentString(OBJECT_INVALID, sQuest+TARGET_TAG, sVarsDB);
+  sNPC = GetLocalString(oCache, sQuest+TARGET_TAG);
   if (sNPC != "")
   {
     // Check that no other players are using the NPC and delete if not..
@@ -690,9 +694,7 @@ void TidyQuest(object oPC, object oNPC)
   }
 
   // Remove item from PC if they were given one.
-  string sItemGiven = GetPersistentString(OBJECT_INVALID,
-                                          sQuest+ITEM_TO_GIVE,
-                                          sVarsDB);
+  string sItemGiven = GetLocalString(oCache, sQuest+ITEM_TO_GIVE);
   if  (sItemGiven != "")
   {
     object oItem = GetItemPossessedBy (oPC, sItemGiven);
@@ -700,9 +702,7 @@ void TidyQuest(object oPC, object oNPC)
   }
 
   // Tell areas not to expect a visit from this PC.
-  string sAreaList = GetPersistentString(OBJECT_INVALID,
-                                         sQuest+AREA_TAGS,
-                                         sVarsDB);
+  string sAreaList = GetLocalString(oCache, sQuest+AREA_TAGS);
   if (sAreaList != "")
   {
     DontWaitForPC(oPC, sAreaList);
@@ -710,7 +710,7 @@ void TidyQuest(object oPC, object oNPC)
   }
 
   // Mark quest as done for this PC, if it's not a repeatable one. 
-  if (GetPersistentString(OBJECT_INVALID, sQuest + IS_REPEATABLE, sVarsDB) == "")
+  if (GetLocalString(oCache, sQuest + IS_REPEATABLE) == "")
   {
     MarkQuestDone(oPC, sQuest);
   }	
@@ -746,19 +746,19 @@ void SetUpQuest(object oPC, object oNPC)
   // Databases.
   string sQuestDB  = sQuestSet + QUEST_DB;
   string sVarsDB   = sQuestSet + QUEST_VAR_DB;
+  
+  object oCache = miDAGetCacheObject(sVarsDB);
   // end setup.
 
   // Give item to PC if needed
-  string sItemGiven = GetPersistentString(OBJECT_INVALID,
-                                          sQuest+ITEM_TO_GIVE,
-                                          sVarsDB);
+  string sItemGiven = GetLocalString(oCache, sQuest+ITEM_TO_GIVE);
   if  (sItemGiven != "")
   {
     CreateItemOnObject (sItemGiven, oPC);
   }
 
   // Create NPCs if any
-  string sNPC = GetPersistentString(OBJECT_INVALID, sQuest+OTHER_NPC, sVarsDB);
+  string sNPC = GetLocalString(oCache, sQuest+OTHER_NPC);
   if (sNPC != "")
   {
     //Tell the NPC to hang around for the PC.
@@ -773,7 +773,7 @@ void SetUpQuest(object oPC, object oNPC)
       SetPersistentString(GetObjectByTag(sNPC), "quest1item1", sItemGiven);
     }
 
-    string sItemToBring = GetPersistentString(OBJECT_INVALID, sQuest+ITEM_TO_BRING, sVarsDB);
+    string sItemToBring = GetLocalString(oCache, sQuest+ITEM_TO_BRING);
     if (sItemToBring != "")
     {
       // Add a variable to the NPC we've just created.
@@ -782,7 +782,7 @@ void SetUpQuest(object oPC, object oNPC)
   }
 
   // Victim?
-  sNPC = GetPersistentString(OBJECT_INVALID, sQuest+TARGET_TAG, sVarsDB);
+  sNPC = GetLocalString(oCache, sQuest+TARGET_TAG);
   if (sNPC != "")
   {
     //Tell the NPC to hang around for the PC.
@@ -793,9 +793,7 @@ void SetUpQuest(object oPC, object oNPC)
   }
 
   // Tell areas to wait for PC if needed
-  string sAreaList = GetPersistentString(OBJECT_INVALID,
-                                         sQuest+AREA_TAGS,
-                                         sVarsDB);
+  string sAreaList = GetLocalString(oCache, sQuest+AREA_TAGS);
   if (sAreaList != "")
   {
     WaitForPC(oPC, sAreaList);
@@ -828,17 +826,26 @@ string GenerateNewQuest(object oPC, object oNPC)
   // Databases.
   string sQuestDB  = sQuestSet + QUEST_DB;
   string sVarsDB   = sQuestSet + QUEST_VAR_DB;
+  
+  object oCache = miDAGetCacheObject(sVarsDB);
 
-  int nCount = 0;
-  int nCountsMax = 10;
+  int nCount = 1;
 
-  string sSQL = "SELECT name FROM " + sQuestDB + " ORDER BY RAND() LIMIT 10";;
+  string sSQL = "SELECT name FROM " + sQuestDB + " ORDER BY RAND() LIMIT 15";
   SQLExecDirect(sSQL);
-  string sQuestToTry = "";
 
+  DeleteList(sQuestDB);
   while (SQLFetch() == SQL_SUCCESS)
   {
-    sQuestToTry = SQLGetData(1);
+    // Store the list of quests.  We'll make other SQL queries that will
+	// interfere with SQLFetch().
+	AddStringElement(SQLGetData(1), sQuestDB);
+  }
+  
+  string sQuestToTry = GetFirstStringElement(sQuestDB);
+  
+  while (sQuestToTry != "")
+  {
     Trace(RQUEST, "Got quest: " + sQuestToTry);
 
     // Is this quest suitable for this PC?
@@ -849,10 +856,8 @@ string GenerateNewQuest(object oPC, object oNPC)
       Trace (RQUEST, "PC hasn't already done quest.");
 
       // Is this quest in the PC's level range?
-      string sLevelRange = GetPersistentString(OBJECT_INVALID, sQuestToTry+LEVEL_RANGE, sVarsDB);
+      string sLevelRange = GetLocalString(oCache, sQuestToTry+LEVEL_RANGE);
       Trace (RQUEST, "Level range for quest: " + sLevelRange);
-
-      if ((sLevelRange == "") || (sLevelRange == "any" )) break; // No limits.
 
       // Level range will be something like '01-04'
       int nMinLevel = StringToInt(GetStringLeft(sLevelRange, 2));
@@ -861,17 +866,23 @@ string GenerateNewQuest(object oPC, object oNPC)
       Trace(RQUEST, "Max level: " + IntToString(nMaxLevel));
       int nPCLevel = GetLevelByPosition(1, oPC) + GetLevelByPosition(2, oPC) +
                      GetLevelByPosition(3, oPC);
-      if ((nMinLevel <= nPCLevel) && (nPCLevel <= nMaxLevel))
+      if ((sLevelRange == "") || (sLevelRange == "any" ) ||
+	      ((nMinLevel <= nPCLevel) && (nPCLevel <= nMaxLevel)))
       {
+        Trace(RQUEST, "Selecting quest.");
 	    sQuest = sQuestToTry;
         break; // PC is within level range.
       }
     }
+	
+	nCount++;
+	sQuestToTry = GetStringElement(nCount, sQuestDB);
   }	
 
   if (sQuest == "")
   {
      // No valid quest found.
+     Trace(RQUEST, "Found no available quests.");
      return "";
   }
   else

@@ -31,12 +31,12 @@ void main()
 
   CnrRecipeSetDevicePreCraftingScript("cnrtinkersetting", "cnr_tinker_anim");
   CnrRecipeSetDeviceInventoryTool("cnrtinkersetting", "cnrTinkersTools", CNR_FLOAT_TINKERS_TOOLS_BREAKAGE_PERCENTAGE);
-  CnrRecipeSetDeviceTradeskillType("cnrtinkersetting", CNR_TRADESKILL_EXPLOSIVES);
+  CnrRecipeSetDeviceTradeskillType("cnrtinkersetting", CNR_TRADESKILL_JEWELRY);
 
   /////////////////////Bands for gemsetting////////////////////////
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTinkerBands, "Elfur Bands", "intca_1ban", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnringotelf", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTinkerBands, "Iron Bands", "intca_1ban", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotiro", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 2);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 20, 20);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 0, 50, 0, 50, 0, 0);
@@ -73,8 +73,8 @@ void main()
 
   /////////////////////Broches for gemsetting////////////////////////
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTinkerBroches, "Elfur Broach", "intca_1bro", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnringotelf", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTinkerBroches, "Iron Broach", "intca_1bro", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotiro", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 2);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 20, 20);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 0, 50, 0, 50, 0, 0);
@@ -111,8 +111,8 @@ void main()
 
   /////////////////////Buckles for gemsetting////////////////////////
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTinkerBuckles, "Elfur Buckle", "intca_1buc", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnringotelf", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTinkerBuckles, "Iron Buckle", "intca_1buc", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotiro", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 2);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 20, 20);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 0, 50, 0, 50, 0, 0);
@@ -149,8 +149,8 @@ void main()
 
   /////////////////////Rings for gemsetting////////////////////////
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTinkerRings, "Elfur Ring", "ca_1ring", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnringotelf", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTinkerRings, "Iron Ring", "ca_1ring", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotiro", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 2);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 20, 20);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 0, 50, 0, 50, 0, 0);
@@ -187,8 +187,8 @@ void main()
 
   /////////////////////Amulets for gemsetting////////////////////////
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTinkerAmulets, "Elfur Amulet", "ca_1amulet", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnringotelf", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTinkerAmulets, "Iron Amulet", "ca_1amulet", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotiro", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 2);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 20, 20);
   CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 0, 50, 0, 50, 0, 0);
@@ -236,7 +236,7 @@ void main()
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTinkerHouse, "Erenia: Prayer Beads", "ereprabea", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotond", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnringotelf", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotiro", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotlir", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotdem", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotiol", 1);
