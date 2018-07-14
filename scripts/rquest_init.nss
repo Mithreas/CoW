@@ -791,4 +791,14 @@ void main()
   SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "200", DB_VARS);
   SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  QUEST = "pixie_command";
+  AddQuest(QUEST, RETRIEVE, DB_QUEST);
+  SetStringValue(QUEST+DESCRIPTION,
+    "The Sprites in the borderlands are a constant threat.  They are surprisingly well organised, too... there must be some " +
+	"leaders among them.  Please find out where their command lurks, and bring me back one of their leaders.  Dead or alive.", DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "250", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "400", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "04_05", DB_VARS);
+  SetStringValue(QUEST+ITEM_TAG, "qst_spritecmd", DB_VARS);
 }

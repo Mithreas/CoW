@@ -88,6 +88,7 @@ void miCADoJourney(string sDestinationTag, int bType = TRAVEL_TYPE_LAND)
   {
     SpeakString("*departs with the ship*");
 	// Todo: travel duration and ship.
+	AssignCommand(oPC, ActionJumpToObject(GetObjectByTag(sDestinationTag)));
   }	
   else 
   {

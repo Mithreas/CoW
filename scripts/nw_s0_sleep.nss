@@ -4,8 +4,13 @@
 //:: Copyright (c) 2001 Bioware Corp.
 //:://////////////////////////////////////////////
 /*
-    Goes through the area and sleeps the lowest 2d4
-    HD of creatures first.
+    Sleeps 1d4+CL hit dice of enemy creatures for 
+	3 rounds + 1 per CL.
+	
+	If CL < 4 CL is treated as 4.
+	
+	Max hit dice affected is the CL of the caster 
+	(changed from default 5). 
 */
 //:://////////////////////////////////////////////
 //:: Created By: Preston Watamaniuk
@@ -48,6 +53,8 @@ void main()
     effect eDur = EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE);
     effect eVis = EffectVisualEffect(VFX_IMP_SLEEP);
     int nCasterLevel = AR_GetCasterLevel(OBJECT_SELF);
+	
+	if (nCasterLevel < 4) nCasterLevel = 4;
 
     effect eLink = EffectLinkEffects(eSleep, eMind);
     eLink = EffectLinkEffects(eLink, eDur);
@@ -65,7 +72,7 @@ void main()
     int nDuration = AR_GetCasterLevel(OBJECT_SELF);
     int nScaledDuration;
     nDuration = 3 + nDuration;
-	
+		
 	if (GetIsObjectValid(oTarget) && !GetIsReactionTypeFriendly(oTarget))
 	{
 	  if (!miWADoWarlockAttack(OBJECT_SELF, oTarget, GetSpellId())) return; 

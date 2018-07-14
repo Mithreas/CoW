@@ -13,6 +13,7 @@ void main()
   if (!bMaster) return;
 
   SetLocalObject(GetModule(), sTag, GetArea(OBJECT_SELF));
+  gvd_LoadAreaVars(GetArea(OBJECT_SELF));
   gsENLoadArea(GetArea(OBJECT_SELF));
 
   SQLExecStatement("SELECT rate FROM mipo_populations WHERE tag=?", sTag);

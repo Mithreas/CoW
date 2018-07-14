@@ -63,7 +63,8 @@ void PageInit()
     while (GetIsObjectValid(oItem))
     {
       sTag = GetTag(oItem);
-      if (GetStringLeft(sTag, 7) == "cnrSkin")
+      if (sTag != "cnrSkinningKnife" && 
+	      GetStringLeft(sTag, 7) == "cnrSkin")
       {
         nGold += gsCMGetItemValue(oItem);
 		nCount++;

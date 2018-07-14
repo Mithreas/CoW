@@ -107,8 +107,9 @@ void miPORepopulate()
 {
   string sQuery = "UPDATE mipo_populations SET pop=pop+rate";
 
-  if (miXFGetCurrentServer() == SERVER_CORDOR || miXFGetCurrentServer() == SERVER_PREHISTORY) // Only update the database once!
-      SQLExecDirect(sQuery);
+  // If running multiple servers, edit the following line to ensure you only update once.
+  //if (miXFGetCurrentServer() == SERVER_CORDOR || miXFGetCurrentServer() == SERVER_PREHISTORY)
+  SQLExecDirect(sQuery);
 
   SQLExecDirect("SELECT tag FROM mipo_populations");
 
