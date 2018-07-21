@@ -370,6 +370,11 @@ void main()
         eFX = EffectVisualEffect(GetLocalInt(OBJECT_SELF, "AR_VFX"));
         ApplyEffectToObject(DURATION_TYPE_PERMANENT, eFX, OBJECT_SELF);
     }
+	
+	if (GetLocalFloat(OBJECT_SELF, "AR_SCALE") > 0.0f)
+	{
+	    SetObjectVisualTransform(OBJECT_SELF, OBJECT_VISUAL_TRANSFORM_SCALE, GetLocalFloat(OBJECT_SELF, "AR_SCALE"));
+	}
 
     if ( GetLocalInt(OBJECT_SELF, "AR_BOSS") ) {    //::  Flag as Boss!
         gsFLSetFlag(GS_FL_BOSS, OBJECT_SELF);

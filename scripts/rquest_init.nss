@@ -353,7 +353,7 @@ void main()
   SetStringValue(QUEST+DESCRIPTION,
    "Arin Meyo is one of our more effective traders. Unfortunately, this means "+
    "that the other Houses don't like him much. Go and see if there's anything "+
-   "you can do to make his life easier.",
+   "you can do to make his life easier, his house is in our District.",
    DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "100", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "200", DB_VARS);
@@ -623,7 +623,7 @@ void main()
   AddQuest(QUEST, PATROL, DB_QUEST);
   SetStringValue(QUEST+DESCRIPTION,
    "I'd like you to go and check Cardinal Jarian's house. Due to his age and "+
-   "station, he's often targetted by members of other Houses. Please check " +
+   "station, he's often targeted by members of other Houses. Please check " +
    "his desk and make sure there's nothing untoward in it... his house is near "+
    "the docks, here on Sunrise Isle.", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);

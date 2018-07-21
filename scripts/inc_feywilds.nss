@@ -77,18 +77,23 @@ void FW_Init()
   // Fairy ring.
   
   DeleteList(FW_PATH_PFWF + ENDS, oMod);
-  // Endings: White stag.  Tree of Life (world tree?).  Treehouse. 
+  // Endings: White stag. Weatherstone. Treehouse. 
   AddStringElement("PerFeyAbaGrove", FW_PATH_PFWF + ENDS, oMod); // Abandoned grove
   AddStringElement("PerFeyWhiStag", FW_PATH_PFWF + ENDS, oMod); // White Stag grove
   
   DeleteList(FW_PATH_PFWD, oMod);
   // Transitions: 
-  // Satyr pipers.  Water elemental stream.  Earth elemental mound.  Air elemental canyon.  Trolls.
-  // Old bear.  Emerald Dreamings.  Satyr warcamp.  Medusa and snakes.  Giant spiders.
+  // Satyr pipers.  Earth elemental mound. Trolls.
+  // Emerald Dreamings.  Satyr warcamp.  Medusa and snakes.
+  AddStringElement("perfeydwetlands", FW_PATH_PFWD, oMod); // Water elementals
+  AddStringElement("perfeydcanyon", FW_PATH_PFWD, oMod);   // Air elementals
+  AddStringElement("perfeydmistwoods", FW_PATH_PFWD, oMod);   // Old bear
+  AddStringElement("perfeydmistwoods2", FW_PATH_PFWD, oMod);  // Giant Spiders
   
   // Endings:
-  // Stirge boss.  Fairy Queen.  Weatherstone.  Y'sera. 
+  // Stirge boss.  Fairy Queen.  Tree of Life (world tree?). Y'sera. 
   DeleteList(FW_PATH_PFWD + ENDS, oMod);
+  AddStringElement("perfeydlifetree", FW_PATH_PFWD + ENDS, oMod); // Tree of Life
 }
 
 void FW_GeneratePath(object oTrigger)

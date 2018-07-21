@@ -1,6 +1,7 @@
 # Files to keep out of the (public) repository.
 # Exclude files that have plot secrets in them. 
 scripts/ai_darklady.nss
+scripts/ai_fairyqueen.nss
 scripts/ai_nymphtalk.nss
 
 # Exclude ncs files that creep in. 
