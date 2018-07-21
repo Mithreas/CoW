@@ -1936,7 +1936,7 @@ void HandleSelection()
     if (!selection || bStaticLevel)
     {
       if (bStaticLevel) {
-        SendMessageToPC(oPC, "On the Fixed Level server all PCs have a mark of destiny. "
+        SendMessageToPC(oPC, "On this server all PCs have a mark of destiny. "
          + "However, only PvP deaths count towards your life total - you can die to "
          + "monsters as often as you want.");
 

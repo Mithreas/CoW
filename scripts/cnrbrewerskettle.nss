@@ -11,6 +11,15 @@
 /////////////////////////////////////////////////////////
 #include "cnr_recipe_utils"
 
+// Placeholder thoughts
+// Beer, spirits - alcohol - reduce rest  (barley)
+// Wine - alcohol - reduce rest (grapes)
+// Coffee - increase rest (coffee beans)
+// Food/drink - temp HP & fort save - only if don't have temp HP
+// Food - lesser restoration
+// Food - animal charm?
+// Salve - very minor healing
+
 void main()
 {
   string sKeyToRecipe;
