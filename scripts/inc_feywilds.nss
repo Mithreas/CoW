@@ -86,16 +86,19 @@ void FW_Init()
   DeleteList(FW_PATH_PFWD, oMod);
   // Transitions: 
   // Satyr pipers.  Earth elemental mound. Trolls.
-  // Emerald Dreamings.  Satyr warcamp.  Medusa and snakes.
+  // Satyr warcamp.  Medusa and snakes.
   AddStringElement("perfeydwetlands", FW_PATH_PFWD, oMod); // Water elementals
   AddStringElement("perfeydcanyon", FW_PATH_PFWD, oMod);   // Air elementals
   AddStringElement("perfeydmistwoods", FW_PATH_PFWD, oMod);   // Old bear
-  AddStringElement("perfeydmistwoods2", FW_PATH_PFWD, oMod);  // Giant Spiders
+  AddStringElement("perfeydmistwo001", FW_PATH_PFWD, oMod);  // Giant Spiders
+  AddStringElement("perfeyddreamscap", FW_PATH_PFWD, oMod);  // Emerald Dreamings
+  AddStringElement("perfeyddreamsca2", FW_PATH_PFWD, oMod);  // Emerald Dreamings
   
   // Endings:
-  // Stirge boss.  Fairy Queen.  Tree of Life (world tree?). Y'sera. 
+  // Stirge boss.  Fairy Queen.  Ysera. 
   DeleteList(FW_PATH_PFWD + ENDS, oMod);
   AddStringElement("perfeydlifetree", FW_PATH_PFWD + ENDS, oMod); // Tree of Life
+  AddStringElement("perfeyddreamend", FW_PATH_PFWD + ENDS, oMod); // Ysera
 }
 
 void FW_GeneratePath(object oTrigger)
@@ -199,7 +202,7 @@ void FW_GeneratePath(object oTrigger)
 	  {
 	    // Set up transition to the final area.
 		oDest = GetObjectByTag("WP_" + sEndArea + "_N");
-		SetTransitionTarget(oObject, oDest);
+		SetTransitionTarget(oObject, oDest);		
 	  }
 	  else
 	  {
@@ -216,7 +219,7 @@ void FW_GeneratePath(object oTrigger)
 	  SetTag(oObject, "WP_" + sNextTag + sLeaveBy);
 	  if (sEndArea != "")
 	  {
-	    // Set up transition to the final area.
+	    // Set up transition back from the final area.
 		oDest = GetObjectByTag(sEndArea + "_N");
 		SetTransitionTarget(oDest, oObject);
 	  }

@@ -38,6 +38,13 @@ void main()
 
     case GS_EV_ON_DAMAGED:
 //................................................................
+        if (! GetLocalInt(OBJECT_SELF, "GS_POLYMORPH") && GetCurrentHitPoints() < GetMaxHitPoints()/2)
+        {
+            DelayCommand(1.0, gsPolymorph());
+            SetLocalInt(OBJECT_SELF, "GS_POLYMORPH", TRUE);
+			SpeakString("WERERAT_SHIFT", TALKVOLUME_SILENT_TALK);
+        }
+
 
         break;
 
@@ -64,13 +71,6 @@ void main()
 
     case GS_EV_ON_PHYSICAL_ATTACKED:
 //................................................................
-        if (! GetLocalInt(OBJECT_SELF, "GS_POLYMORPH") && GetCurrentHitPoints() < GetMaxHitPoints()/2)
-        {
-            DelayCommand(1.0, gsPolymorph());
-            SetLocalInt(OBJECT_SELF, "GS_POLYMORPH", TRUE);
-			SpeakString("WERERAT_SHIFT", TALKVOLUME_SILENT_TALK);
-        }
-
         break;
 
     case GS_EV_ON_RESTED:

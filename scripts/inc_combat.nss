@@ -1438,7 +1438,7 @@ int gsCBTalentFeint(object oTarget)
 {
   if (!GetHasFeat(FEAT_SKILL_FOCUS_HIDE, OBJECT_SELF)) return FALSE;
   
-  if (GetDistanceToObject(oTarget) > 2.) return FALSE;
+  if (GetDistanceToObject(oTarget) > 2.5) return FALSE;
 	
   //--------------------------------------------------------------
   // Mimic the effect of Taunt, but for attack bonus.  5 rounds. 
@@ -2166,8 +2166,8 @@ int gsCBTalentGonne(object oTarget)
     } else {
       return FALSE;
     }
-
 }
+
 // TO DO:
 // * Use constant string values for feedback and tie into -guard command.
 // * Turn guard into a prioritized list, so that separate PC and associate
