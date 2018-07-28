@@ -27,4 +27,10 @@ void main()
   {
     SendMessageToPC(oPC, "Your current quest is: " + sDescription);
   }
+  
+  // Is the quest complete?
+  if (IsQuestComplete(oPC))
+  {
+    SendMessageToPC(oPC, "You have done everything you need to - return for your reward."); 
+  }  
 }

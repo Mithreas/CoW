@@ -1,5 +1,6 @@
 /* CRAFT library by Gigaschatten */
 
+#include "cnr_recipe_utils"
 #include "inc_time"
 #include "inc_worship"
 #include "inc_backgrounds"
@@ -219,13 +220,17 @@ void _gsCRProduce(int nCount, string sResRef, object oContainer, struct gsCRReci
 void gsCRPlaySound(int nSkill);
 // returns the racial crafting bonus for this character's race.
 int gsCRGetRacialCraftingBonus(object oPC, int nSkill);
-// Uses item base type and material to return the appropriate craft skill
+// Uses item base type, material and property type to return the appropriate craft skill
 // NB: currently set up for FL only.
-int gsCRGetCraftSkillByItemType(object oItem);
+int gsCRGetCraftSkillByItemType(object oItem, int bMundaneProperty);
 // Get the multiplier for nMaterial.  Materials have a mundane and a magical
 // multiplier that determine how easy they are to improve by mundane or magical
 // means.
 int gsCRGetMaterialMultiplier(int nMaterial, int bMundaneProperty = TRUE);
+// Return the skill bonus for any bonus (gem) properties on the item.  e.g.
+// an amethyst ring gives you +3 to your effective skill while adding properties
+// to the ring. 
+int gsCRGetMaterialSkillBonus(object oItem);
 // Used to adjust the actual value of an item based on the PC's craft skill,
 // and the item's material.
 float gsCRGetCraftingCostMultiplier(object oPC, object oItem, itemproperty ip);
@@ -1681,49 +1686,21 @@ int gsCRGetRacialCraftingBonus(object oPC, int nSkill)
   return 0;
 }
 //------------------------------------------------------------------------------
-int gsCRGetCraftSkillByItemType(object oItem)
+int gsCRGetCraftSkillByItemType(object oItem, int bMundaneProperty)
 {
   int nType = GetBaseItemType(oItem);
-  int nRetVal = GS_CR_SKILL_MELD; // Default to alchemy
+  int nRetVal = CNR_TRADESKILL_JEWELRY; // Default to jewelry
 
   switch (nType)
   {
     case BASE_ITEM_ARMOR:
-    {
-      if (gsCMGetItemBaseAC(oItem) < 4)
-        nRetVal = GS_CR_SKILL_SEW;
-      else
-        nRetVal = GS_CR_SKILL_FORGE;
-
+      nRetVal = CNR_TRADESKILL_ARMOR_CRAFTING;
       break;
-    }
     case BASE_ITEM_LARGESHIELD:
     case BASE_ITEM_TOWERSHIELD:
     case BASE_ITEM_SMALLSHIELD:
-    {
-
-      nRetVal = GS_CR_SKILL_FORGE;
-      int nMaterial = gsIPGetMaterialType(oItem);
-
-      // iprp_materials.2da - values below are the wood values.
-      switch (nMaterial)
-      {
-             case 37:
-             case 38:
-             case 39:
-             case 40:
-             case 41:
-             case 42:
-             case 43:
-             case 44:
-             case 45:
-               nRetVal = GS_CR_SKILL_CRAFT_ART;
-               break;
-      }
-
-      break;
-    }
-
+      nRetVal = (bMundaneProperty ? CNR_TRADESKILL_ARMOR_CRAFTING : CNR_TRADESKILL_INVESTING);
+	  break;
     case BASE_ITEM_ARROW:
     case BASE_ITEM_BOLT:
     case BASE_ITEM_HEAVYCROSSBOW:
@@ -1732,7 +1709,7 @@ int gsCRGetCraftSkillByItemType(object oItem)
     case BASE_ITEM_MAGICSTAFF:
     case BASE_ITEM_QUARTERSTAFF:
     case BASE_ITEM_SHORTBOW:
-      nRetVal = GS_CR_SKILL_CRAFT_ART;
+      nRetVal = (bMundaneProperty ? CNR_TRADESKILL_WOOD_CRAFTING : CNR_TRADESKILL_IMBUING);
       break;
     case BASE_ITEM_BASTARDSWORD:
     case BASE_ITEM_BATTLEAXE:
@@ -1769,7 +1746,7 @@ int gsCRGetCraftSkillByItemType(object oItem)
     case BASE_ITEM_TRIDENT:
     case BASE_ITEM_TWOBLADEDSWORD:
     case BASE_ITEM_WARHAMMER:
-      nRetVal = GS_CR_SKILL_FORGE;
+      nRetVal = (bMundaneProperty ? CNR_TRADESKILL_WEAPON_CRAFTING : CNR_TRADESKILL_IMBUING);
       break;
     case BASE_ITEM_BELT:
     case BASE_ITEM_BOOTS:
@@ -1777,8 +1754,12 @@ int gsCRGetCraftSkillByItemType(object oItem)
     case BASE_ITEM_GLOVES:
     case BASE_ITEM_SLING:
     case BASE_ITEM_WHIP:
-      nRetVal = GS_CR_SKILL_SEW;
+      nRetVal = (bMundaneProperty ? CNR_TRADESKILL_TAILORING: CNR_TRADESKILL_INVESTING);
       break;
+	case BASE_ITEM_RING:
+	case BASE_ITEM_AMULET:
+	  nRetVal = (bMundaneProperty ? CNR_TRADESKILL_JEWELRY : CNR_TRADESKILL_INVESTING);
+	  break;
   }
 
   return nRetVal;
@@ -1795,6 +1776,7 @@ int gsCRGetMaterialMultiplier(int nMaterial, int bMundaneProperty = TRUE)
       case 3: // bronze
       case 13: // silver
       case 17: // hide
+      case 36: // wool
       case 38: // ironwood
         nMaterialBonus = 2;
         break;
@@ -1857,70 +1839,113 @@ int gsCRGetMaterialMultiplier(int nMaterial, int bMundaneProperty = TRUE)
   return nMaterialBonus;
 }
 //------------------------------------------------------------------------------
+int gsCRGetMaterialSkillBonus(object oItem)
+{
+  int nMaterial = gsIPGetBonusMaterialType(oItem);
+  int nBonus    = 0;
+  
+  switch (nMaterial)
+  {
+    case 61: // Fire Agate
+	case 65: // Greenstone
+	case 68: // Malachite
+	  nBonus = 1;
+	  break;
+	case 54: // Aventurine
+	case 70: // Phenalope
+	  nBonus = 2;
+	  break;
+	case 53: // Amethyst
+	case 63: // Fluorspar
+	  nBonus = 3;
+	  break;
+	case 52: // Alexandrite
+	case 64: // Garnet
+	  nBonus = 4;
+	  break;
+	case 75: // Topaz
+	  nBonus = 5; 
+	  break;
+	case 73: // Sapphire
+	  nBonus = 6;
+	  break;
+	case 62: // Fire Opal
+	  nBonus = 7;
+	  break;
+	case 59: // Diamond
+	  nBonus = 8;
+	  break;
+	case 72: // Ruby
+	  nBonus = 9;
+	  break;
+	case 60: // Emerald
+	  nBonus = 6;
+	  break;
+  }
+  
+  return nBonus;
+}
+
+//------------------------------------------------------------------------------
 float gsCRGetCraftingCostMultiplier(object oPC, object oItem, itemproperty ip)
 {
   if (!GetLocalInt(GetModule(), "STATIC_LEVEL")) return 1.0f;
-
-  // Scale cost by craft skill level and item type.
-  int nSkill = gsCRGetSkillRank(gsCRGetCraftSkillByItemType(oItem), oPC);
-  if (nSkill < 10) nSkill = 10;
+  
   int nMaterial = gsIPGetMaterialType(oItem);
-  int nMundaneProperty = gsIPGetIsMundaneProperty(ip);
+  int nMundaneProperty = gsIPGetIsMundaneProperty(GetItemPropertyType(ip), GetItemPropertySubType(ip));
   int nMaterialBonus = gsCRGetMaterialMultiplier(nMaterial, nMundaneProperty);
 
-  float fEnchantBonus = 1.0f;
+  // Scale cost by craft skill level and item type.
+  int nXP = CnrGetTradeskillXPByType(oPC, gsCRGetCraftSkillByItemType(oItem, nMundaneProperty));
+  int nSkill = CnrDetermineTradeskillLevel(nXP);
+  if (nSkill < 3) nSkill = 3;
+  
+  // Bonus material.
+  nSkill += gsCRGetMaterialSkillBonus(oItem);
 
-  int nEpicFocusFeat = nMundaneProperty ? FEAT_EPIC_SPELL_FOCUS_TRANSMUTATION : FEAT_EPIC_SPELL_FOCUS_ENCHANTMENT;
-  int nGrFocusFeat = nMundaneProperty ? FEAT_GREATER_SPELL_FOCUS_TRANSMUTATION : FEAT_GREATER_SPELL_FOCUS_ENCHANTMENT;
-  int nSpFocusFeat = nMundaneProperty ? FEAT_SPELL_FOCUS_TRANSMUTATION : FEAT_SPELL_FOCUS_ENCHANTMENT;
+  float fMiscBonus = 1.0f;
 
-  if (GetHasFeat(nEpicFocusFeat, oPC))
+  if (nMaterial == 7 && nMundaneProperty)  // Darksteel, Ondaran
   {
-    fEnchantBonus = 1.35; // 35% discount
+    fMiscBonus = 0.5f;  // Make mundane work twice as expensive.  
   }
-  else if (GetHasFeat(nGrFocusFeat, oPC))
-  {
-    fEnchantBonus = 1.20; // 20% discount
-  }
-  else if (GetHasFeat(nSpFocusFeat, oPC))
-  {
-    fEnchantBonus = 1.10; // 10% discount
-  }
-
+ 
   // Higher grade materials can be improved more easily.  Higher skill PCs
-  // can improve items more easily.  With 60 skill and a master quality item
+  // can improve items more easily.  With 15 skill and a master quality item
   // (x4) you can get to 120,000gp value rather than the usual 10,000.
-  // With 20 skill and item quality 1, your value is unchanged.
-  return (20.0 / (IntToFloat(nMaterialBonus) * IntToFloat(nSkill) * fEnchantBonus));
-
+  // With 5 skill and item quality 1, your value is unchanged.
+  return (5.0 / (IntToFloat(nMaterialBonus) * IntToFloat(nSkill) * fMiscBonus));
 }
+
 int gsCRGetIsValid(object oItem, int nProperty)
 {
   if (GetLocalInt(GetModule(), "STATIC_LEVEL"))
   {
-    int nCraftSkill = gsCRGetCraftSkillByItemType(oItem);
+    int nCraftSkill = gsCRGetCraftSkillByItemType(oItem, gsIPGetIsMundaneProperty(nProperty, 0));
     int nRestriction = gsIPGetIsValid(oItem, nProperty);
 
     // The restriction in the 2da file is a bitwise flag.
     int nFlag = 0;
     switch (nCraftSkill)
     {
-      case GS_CR_SKILL_CARPENTER:
-        nFlag = 0; // Not used on FL
-        break;
-      case GS_CR_SKILL_COOK:
+      case CNR_TRADESKILL_COOKING:
+	  case CNR_TRADESKILL_CHEMISTRY:
         nFlag = 1;
         break;
-      case GS_CR_SKILL_CRAFT_ART:
+      case CNR_TRADESKILL_WOOD_CRAFTING:
+      case CNR_TRADESKILL_JEWELRY:
         nFlag = 2;
         break;
-      case GS_CR_SKILL_FORGE:
+      case CNR_TRADESKILL_WEAPON_CRAFTING:
+      case CNR_TRADESKILL_ARMOR_CRAFTING:
         nFlag = 4;
         break;
-      case GS_CR_SKILL_MELD:
+      case CNR_TRADESKILL_ENCHANTING:
+	  case CNR_TRADESKILL_IMBUING:
+	  case CNR_TRADESKILL_INVESTING:
         nFlag = 8;
         break;
-      case GS_CR_SKILL_SEW:
+      case CNR_TRADESKILL_TAILORING:
         nFlag = 16;
         break;
     }

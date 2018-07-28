@@ -57,4 +57,9 @@ void main()
   Add(sFac, 9, 80,  "Primate of the Fourth Circle");
   Add(sFac, 10, 90,  "Sacred Voice of the Fourth Circle");
   Add(sFac, 11, 100, "Cardinal of the Fifth Circle");
+  
+  sFac = "Wardens";
+  Add(sFac, 1, 0, "Warden");
+  Add(sFac, 2, 50, "Senior Warden");
+  Add(sFac, 3, 100, "Protector of Vyvian");
 }

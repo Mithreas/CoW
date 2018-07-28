@@ -63,7 +63,9 @@ void main()
   QUEST = "patrol_city";
   AddQuest(QUEST, PATROL, DB_QUEST);
   SetStringValue(QUEST+DESCRIPTION,
-   "I've heard there's trouble at the South Gates. Could you go there and check?",
+   "I've heard there's trouble at the South Gates. Could you go there and check? " +
+   "Careful not to upset the guards, don't be a hero.  Just find out what's going on " +
+   "and come back and tell me.",
    DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "75", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "200", DB_VARS);
@@ -774,7 +776,7 @@ void main()
     "We always need to be watchful against fey incursions into our fields.  Please check on the Home Farms, " +
 	"South Farms and West Farms and clear out any wandering fey you see.",
   DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "04_06", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "04_15", DB_VARS);
   SetStringValue(QUEST+AREA_TAGS, "PerHomeFarms,PerVilSouthFarms,PerVyvVilWestFarms", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "200", DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "150", DB_VARS);
@@ -786,7 +788,7 @@ void main()
     "Time to go a little further afield.  Please do a patrol of the East, South and Southwest borderland and " +
 	"report back on any fey you find.",
   DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "04_08", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "04_05", DB_VARS);
   SetStringValue(QUEST+AREA_TAGS, "PerVyvEastBorder,PerVilSouthBorder,PerVyvVilSWBorders", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "200", DB_VARS);
@@ -801,4 +803,54 @@ void main()
   SetStringValue(QUEST+REWARD_XP, "400", DB_VARS);
   SetStringValue(QUEST+LEVEL_RANGE, "04_05", DB_VARS);
   SetStringValue(QUEST+ITEM_TAG, "qst_spritecmd", DB_VARS);
+  
+  QUEST = "polish_greenstone";
+  AddQuest(QUEST, RETRIEVE, DB_QUEST);
+  SetStringValue(QUEST+DESCRIPTION,
+   "It's useful to learn how to polish gems.  Not only does it make them worth more in trade, but jewelry with inset gems will hold " +
+   "investments better.  Polish a greenstone, and bring it to me.  There are tables in the greeting hall of the manor, and you can " +
+   "usually find the rough stones out west among the beetles.",
+   DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "100", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "150", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "04_06", DB_VARS);
+  SetStringValue(QUEST+ITEM_TAG, "cow_gemgree", DB_VARS);
+  
+  QUEST = "make_dex_potions";
+  AddQuest(QUEST, RETRIEVE, DB_QUEST);
+  SetStringValue(QUEST+DESCRIPTION,
+   "Potions are always of use to the village's protectors.  Please bring me ten Cat's Grace potions... you may need to brew them yourself. " +
+   "They need peppermint and catnip, which you should be able to find about the village.",
+   DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "300", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
+  SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "06_15", DB_VARS);
+  SetStringValue(QUEST+ITEM_TAG, "NW_IT_MPOTION014", DB_VARS);
+  SetStringValue(QUEST+NUM_ITEMS, "10", DB_VARS);
+  
+  QUEST = "boss_heads";  
+  AddQuest(QUEST, RETRIEVE, DB_QUEST);
+  SetStringValue(QUEST+DESCRIPTION,
+   "As a Warden, you are expected to help in the defense of the village.  Bring me two heads from creatures that mean us harm.",
+   DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "200", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "06_15", DB_VARS);
+  SetStringValue(QUEST+ITEM_TAG, "GS_HEAD_EVIL", DB_VARS);
+  SetStringValue(QUEST+NUM_ITEMS, "2", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  QUEST = "fey_silver";  
+  AddQuest(QUEST, RETRIEVE, DB_QUEST);
+  SetStringValue(QUEST+DESCRIPTION,
+   "The human city has asked me to send them some silver.  I'm not sure why.  I have heard tell of people finding it in the Feywilds, " +
+   "near a grove that was overrun some time back.  I know it's a lot to ask, but please can you seek it out?  I only need a couple of nuggets.",
+   DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "300", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "350", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "06_09", DB_VARS);
+  SetStringValue(QUEST+ITEM_TAG, "cnrnuggetsil", DB_VARS);
+  SetStringValue(QUEST+NUM_ITEMS, "2", DB_VARS);
+  
 }

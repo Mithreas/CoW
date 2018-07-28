@@ -34,7 +34,7 @@ int StartingConditional()
         int bStaticLevel = GetLocalInt(GetModule(), "STATIC_LEVEL");
 
         itemproperty ipProperty = gsIPGetItemProperty(nPropertyID, nSubTypeID, nCostID, nParamID);
-        int bMundane = gsIPGetIsMundaneProperty(ipProperty);
+        int bMundane = gsIPGetIsMundaneProperty(GetItemPropertyType(ipProperty), GetItemPropertySubType(ipProperty));
 
         if (GetIsItemPropertyValid(ipProperty))
         {

@@ -581,22 +581,70 @@ void btribeCreateTribesmen(object oPC)
     AssignCommand(oTribesman, ClearAllActions());
     AssignCommand(oTribesman, btribeEquipTribesmanArmor(oGarb));
 
-    // Level up the tribesman to the PC's level.
-    int nLevel = 1;
-    while (nLevel && nLevel < GetLevelByClass(CLASS_TYPE_BARBARIAN, oPC))
-    {
-      nLevel = LevelUpHenchman(oTribesman, CLASS_TYPE_BARBARIAN);
-    }
-
+	// Sawaki, 7-27-2018; TribalLVL determined via RageFeat
+	int nLevel;
+	
+	if (GetHasFeat(331, oPC)) // barb rage 7
+	{  
+	  nLevel = 14;
+	}
+	else if (GetHasFeat(330, oPC)) // barb rage 6
+	{  
+	  nLevel = 12;
+	}
+	else if (GetHasFeat(329, oPC)) // barb rage 5
+	{  
+	  nLevel = 10;
+	}
+	else if (GetHasFeat(328, oPC)) // barb rage 4
+	{  
+	  nLevel = 8;
+	}
+	else if (GetHasFeat(327, oPC))  // barb rage 3
+	{  
+	  nLevel = 6;
+	}
+	else if (GetHasFeat(326, oPC)) // barb rage 2
+	{  
+	  nLevel = 4;
+	}
+	else
+	{ 
+	  nLevel = 3; // barb rage 1 
+	}  
+		
+	int nCounter = 0; // counts epicBarb Feats. (so the order doesn't matter) Each Epic feat gives +2 Tribal lvl
+	
+	if (GetHasFeat(869, oPC)) // Mighty Rage
+	{ 
+	  nCounter ++;
+	}
+	
+	if (GetHasFeat(988, oPC)) // Thundering Rage
+	{ 
+	  nCounter ++;
+	}
+	
+	if (GetHasFeat(989, oPC)) // Terrifying Rage
+	{ 
+	  nCounter ++;
+	}
+	
+	nLevel += (nCounter*2);
+	
+	for (nCounter = 0; nCounter < nLevel; nCounter++)
+	{
+	  LevelUpHenchman(oTribesman, CLASS_TYPE_BARBARIAN);
+	}
+	
     ApplyEffectToObject(DURATION_TYPE_PERMANENT,
-                        SupernaturalEffect(EffectACIncrease(nLevel)),
+                        SupernaturalEffect(EffectACIncrease(nLevel / 2)),
                         oTribesman);
 
     // Buff weapon.
     object oWeapon = GetItemInSlot(INVENTORY_SLOT_RIGHTHAND, oTribesman);
 
     gsIPAddItemProperty(oWeapon, ItemPropertyEnhancementBonus(nLevel / 6), 0.0);
-
 
     AddHenchman(oPC, oTribesman);
 }

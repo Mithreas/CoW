@@ -88,9 +88,12 @@ void gsIPSetOwner(object oItem, object oPC);
 // Return the material (from iprp_materials) for oItem.  0 if the item has
 // no material property.
 int gsIPGetMaterialType(object oItem);
+// Return the bonus material type, if any.  If an item has a gem in it, 
+// it will have the material: gem type bonus material property. 
+int gsIPGetBonusMaterialType (object oItem);
 // Return TRUE if the property is a 'mundane' one (AC bonus etc).  FALSE
 // if the property is a magical one (stat bonus, skill bonus etc).
-int gsIPGetIsMundaneProperty(itemproperty ip);
+int gsIPGetIsMundaneProperty(int ip, int subtype);
 // Return TRUE if oPC meets the conditions of any "Usable by" properties on 
 // oItem (or if oItem has no usage limitations). 
 int gsIPMeetsRestrictions(object oItem, object oPC);
@@ -1205,7 +1208,13 @@ int gsIPGetMaterialType(object oItem)
     {
       // NOTE - the property subtype is 0.  The material is indexed off the
       // cost table value.
-      nMaterial = GetItemPropertyCostTableValue(ip);
+	  if(GetItemPropertyCostTableValue(ip) <= 50)
+	  {
+	    // Do not return properties 51+ (gems).  These are treated as "bonus 
+		// materials" in the system.  So a necklace might be "iron" and "garnet"
+		// - we should return "iron" here and "garnet" in gsIPGetBonusMaterialType.
+        nMaterial = GetItemPropertyCostTableValue(ip);
+	  }	  
     }
 
     ip = GetNextItemProperty(oItem);
@@ -1214,9 +1223,34 @@ int gsIPGetMaterialType(object oItem)
   return nMaterial;
 }
 //------------------------------------------------------------------------------
-int gsIPGetIsMundaneProperty(itemproperty ip)
+int gsIPGetBonusMaterialType(object oItem)
 {
-  switch (GetItemPropertyType(ip))
+  int nMaterial = 0;
+  itemproperty ip = GetFirstItemProperty(oItem);
+
+  while (GetIsItemPropertyValid(ip))
+  {
+    if (GetItemPropertyType(ip) == ITEM_PROPERTY_MATERIAL)
+    {
+      // NOTE - the property subtype is 0.  The material is indexed off the
+      // cost table value.
+	  // Bonus materials are gems - properties 51+ - that can exist alongside
+	  // the main material on the item. 
+	  if(GetItemPropertyCostTableValue(ip) > 50)
+	  {
+        nMaterial = GetItemPropertyCostTableValue(ip);
+	  }	
+    }
+
+    ip = GetNextItemProperty(oItem);
+  }
+
+  return nMaterial;
+}
+//------------------------------------------------------------------------------
+int gsIPGetIsMundaneProperty(int ip, int subtype)
+{
+  switch (ip)
   {
     case ITEM_PROPERTY_AC_BONUS:
     case ITEM_PROPERTY_ARCANE_SPELL_FAILURE:
@@ -1236,7 +1270,7 @@ int gsIPGetIsMundaneProperty(itemproperty ip)
     case ITEM_PROPERTY_AC_BONUS_VS_DAMAGE_TYPE:
     case ITEM_PROPERTY_IMMUNITY_DAMAGE_TYPE:
     {
-      switch (GetItemPropertySubType(ip))
+      switch (subtype)
       {
         case 0: // bludgeoning
         case 1: // piercing
@@ -1244,7 +1278,6 @@ int gsIPGetIsMundaneProperty(itemproperty ip)
            return TRUE;
       }
     }
-
   }
 
   return FALSE;

@@ -701,7 +701,12 @@ void init_feat_list (object oPC)
         GetLevelByClass(CLASS_TYPE_SORCERER,oPC) ||
         GetLevelByClass(CLASS_TYPE_WIZARD,oPC))
     {
-	  if (GetLevelByClass(CLASS_TYPE_WIZARD, oNPC) || GetLevelByClass(CLASS_TYPE_SORCERER, oNPC))
+	  if (GetLevelByClass(CLASS_TYPE_WIZARD, oNPC) || 
+	      GetLevelByClass(CLASS_TYPE_SORCERER, oNPC) ||
+	      GetLevelByClass(CLASS_TYPE_DRUID, oNPC) ||
+	      GetLevelByClass(CLASS_TYPE_CLERIC, oNPC) ||
+	      GetLevelByClass(CLASS_TYPE_BARD, oNPC))
+  
 	  {
         add_feat_to_list(oPC, "Epic Spell Focus: Abjuration", FEAT_EPIC_SPELL_FOCUS_ABJURATION);
         add_feat_to_list(oPC, "Epic Spell Focus: Conjuration", FEAT_EPIC_SPELL_FOCUS_CONJURATION);
@@ -717,6 +722,7 @@ void init_feat_list (object oPC)
 
     add_feat_to_list(oPC, "Superior Initiative", FEAT_EPIC_SUPERIOR_INITIATIVE);
     //add_feat_to_list(oPC, "Superior Weapon Focus", FEAT_EPIC_SUPERIOR_WEAPON_FOCUS);
+    add_feat_to_list(oPC, "Mighty Rage", FEAT_MIGHTY_RAGE);
     add_feat_to_list(oPC, "Terrifying Rage", FEAT_EPIC_TERRIFYING_RAGE);
     add_feat_to_list(oPC, "Thundering Rage", FEAT_EPIC_THUNDERING_RAGE);
     add_feat_to_list(oPC, "Epic Toughness (+20)", FEAT_EPIC_TOUGHNESS_1);
@@ -896,7 +902,7 @@ void init_feat_list (object oPC)
     if (nPCLevel > 11) add_feat_to_list(oPC, "Barbarian Rage IV", 328, FALSE, CLASS_TYPE_BARBARIAN);
     if (nPCLevel > 14) add_feat_to_list(oPC, "Barbarian Rage V (Greater Rage)", 329, FALSE, CLASS_TYPE_BARBARIAN);
     if (nPCLevel > 15) add_feat_to_list(oPC, "Barbarian Rage VI", 330, FALSE, CLASS_TYPE_BARBARIAN);
-   // if (nPCLevel > 19) add_feat_to_list(oPC, "Barbarian Rage VII", 331, FALSE, CLASS_TYPE_BARBARIAN);
+    if (nPCLevel > 19) add_feat_to_list(oPC, "Barbarian Rage VII", 331, FALSE, CLASS_TYPE_BARBARIAN);
 
     if (nPCLevel > 10) add_feat_to_list(oPC, "Barbarian DR 1", 196, FALSE, CLASS_TYPE_BARBARIAN);
     if (nPCLevel > 13) add_feat_to_list(oPC, "Barbarian DR 2", 332, FALSE, CLASS_TYPE_BARBARIAN);
@@ -1273,7 +1279,11 @@ void Init()
 
   // Build the main menu.
   DeleteList(CATEGORIES);
-  if (GetLevelByClass(CLASS_TYPE_WIZARD, oNPC) || GetLevelByClass(CLASS_TYPE_SORCERER, oNPC))
+  if (GetLevelByClass(CLASS_TYPE_WIZARD, oNPC) || 
+      GetLevelByClass(CLASS_TYPE_SORCERER, oNPC) ||
+	  GetLevelByClass(CLASS_TYPE_DRUID, oNPC) ||
+	  GetLevelByClass(CLASS_TYPE_CLERIC, oNPC) ||
+	  GetLevelByClass(CLASS_TYPE_BARD, oNPC))
   {
     AddStringElement("<c  þ>Spell-related feats</c>", CATEGORIES);
   }
@@ -1426,7 +1436,11 @@ void HandleSelection()
     switch (selection)
     {
       case 0:
-        if (GetLevelByClass(CLASS_TYPE_WIZARD, oNPC) || GetLevelByClass(CLASS_TYPE_SORCERER, oNPC))
+        if (GetLevelByClass(CLASS_TYPE_WIZARD, oNPC) ||
+		    GetLevelByClass(CLASS_TYPE_SORCERER, oNPC) ||
+	        GetLevelByClass(CLASS_TYPE_DRUID, oNPC) ||
+	        GetLevelByClass(CLASS_TYPE_CLERIC, oNPC) ||
+	        GetLevelByClass(CLASS_TYPE_BARD, oNPC))
         {
           SetLocalString(OBJECT_SELF, CURR_LIST, LIST_1);
 		}

@@ -585,34 +585,15 @@ void main()
           }
           else
           {
-            // Arcanist - spell components.
-            int nCharges = 0; // Epic spells.
-            switch (nLevel)
-            {
-              case 7: nCharges=1; break;
-              case 8: nCharges=2; break;
-              case 9: nCharges=3; break;
-            }
+            // Arcanist - arcane spells cost HP.
+            int nHP = nLevel;			
 
             // Level 5 Harper-Mages can ignore spell components.
-            if (GetLocalInt(gsPCGetCreatureHide(), VAR_HARPER) == MI_CL_HARPER_MAGE &&
-                GetLevelByClass(CLASS_TYPE_HARPER) > 4)
-              nCharges = 0;
+            //if (GetLocalInt(gsPCGetCreatureHide(), VAR_HARPER) == MI_CL_HARPER_MAGE &&
+            //    GetLevelByClass(CLASS_TYPE_HARPER) > 4)
+            //  nCharges = 0;
 
-            // Warlocks don't need components.
-            // if (miWAGetIsWarlock(OBJECT_SELF))
-            // {
-            //   nCharges = 0;
-            // }
-			// Edited out:  Warlocks can only cast up to lvl 6 spells anyway.
-
-            if (!gsSPReduceCharges(OBJECT_SELF, nCharges))
-            {
-              FloatingTextStringOnCreature("You don't have enough components to cast that.", OBJECT_SELF, FALSE);
-              gsSPSetOverrideSpell();
-              SetModuleOverrideSpellScriptFinished();
-              return;
-            }
+			gsSPDoCasterDamage(OBJECT_SELF, nHP);
           }
         }
 		

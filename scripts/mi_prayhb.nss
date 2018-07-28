@@ -7,6 +7,7 @@
   the praying PC.
 */
 #include "inc_activity"
+#include "inc_spell"
 #include "inc_worship"
 void main()
 {
@@ -31,12 +32,14 @@ void main()
       Trace(TRAINING, "In temple.");
       GiveXP(oPC, TRUE);
       gsWOAdjustPiety(oPC, 2.0f);
+	  gsSPDoCasterDamage(oPC, 1);
     }
     else
     {
       Trace(TRAINING, "Not in temple.");
       GiveXP(oPC);
       gsWOAdjustPiety(oPC, 1.0f);
+	  gsSPDoCasterDamage(oPC, 1);
     }
 
     if (nTimeSoFar == 10) // 60 s, give prayer point

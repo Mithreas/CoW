@@ -31,7 +31,7 @@ void gvd_AdventuringXP_SetAreaXP(object oArea, int iXP);
 // returns a string name with the racial type of oCreature, or of iRacialType if that's provided
 string gvd_GetRacialTypeName(object oCreature, int nRacialType = 0);
 
-// adds iXP to oPC's adventuring XP pool, sFeedbackType will be included in the feeback message for the PC
+// adds iXP to oPC's adventuring XP pool, sFeedbackType will be included in the feedback message for the PC
 void gvd_AdventuringXP_GiveXP(object oPC, int iXP, string sFeedbackType);
 
 // toggles adventure mode on/off for oPC (on = 50% xp from kills directly, 100% to Adv pool, off = 100% xp from kills directly, 0% to pool)

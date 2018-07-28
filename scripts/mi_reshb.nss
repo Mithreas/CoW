@@ -62,8 +62,6 @@ void main()
       DelayCommand(6.0, ExecuteScript("mi_reshb", oPC));
       SetLocalInt(oPC, "research_time", nTimeSoFar);
       AssignCommand(oPC, ActionPlayAnimation(ANIMATION_FIREFORGET_READ));
-      // The read animation takes about 2s, so sit for the rest of the 6s.
-      AssignCommand(oPC, ActionPlayAnimation(ANIMATION_LOOPING_SIT_CROSS, 1.0, 4.0));
     }
   }
   else

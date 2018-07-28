@@ -17,6 +17,7 @@ since it is where all the deities and their respective portfolios are stored. It
 also serves as a wrapper for all the libraries required for this script.
 */
 #include "zzdlg_main_inc"
+#include "inc_spell"
 #include "inc_worship"
 #include "inc_favsoul"
 
@@ -45,6 +46,10 @@ float _GetAdjustedPiety(object oPC, int nADeity)
   return fPiety;
 }
 
+// During a ritual:
+// - The cleric gets the combined piety scores that the flock members would usually gets
+// - The flock get the cleric's piety rating as a bonus
+// - Anemoi change, the cleric gets the 1 HP from each flock member added to their HP pool. 
 void _DoPrayer (object oPC, object oAltar, object oCleric)
 {
   // Locations.
@@ -76,6 +81,7 @@ void _DoPrayer (object oPC, object oAltar, object oCleric)
 
   float fPiety = _GetAdjustedPiety(oPC, nADeity);
   int nNth;
+  int nCount = 0;
   object oFlock;
 
   if (GetIsObjectValid(oCleric) && oCleric != oPC) fPiety += _GetAdjustedPiety(oCleric, nADeity);
@@ -91,12 +97,18 @@ void _DoPrayer (object oPC, object oAltar, object oCleric)
        if (GetLocalInt(oFlock, "PRAYING"))
        {
           fPiety += _GetAdjustedPiety(oFlock, nADeity);
+		  gsSPDoCasterDamage(oFlock, 1);
+		  nCount++;
        }
 
        nNth++;
        oFlock = GetNearestCreature(CREATURE_TYPE_PLAYER_CHAR, PLAYER_CHAR_IS_PC, oPC, nNth);
     }
   }
+  
+  gsWOAdjustPiety(oPC, fPiety);
+  gsSPAdjustHPPool(oPC, nCount);
+  gsSPDoCasterDamage(oPC, 1);
 
   // dunshine: check for corpses nearby (only on permanent altars)
   if (GetStringLeft(GetTag(oAltar),5) != "GS_FX") {
@@ -131,8 +143,6 @@ void _DoPrayer (object oPC, object oAltar, object oCleric)
     }
 
   }
-  
-  gsWOAdjustPiety(oPC, fPiety);
 
   AssignCommand(oPC, DelayCommand(6.0f, _DoPrayer(oPC, oAltar, oCleric)));
 }

@@ -1504,7 +1504,8 @@ string CnrRecipeBuildRecipeString(object oDevice, int nRecipeIndex)
 /////////////////////////////////////////////////////////
 void CnrRecipeCreateItemOnObject(string sItemTag, object oTarget, int nQty)
 {
-  CreateItemOnObject(sItemTag, oTarget, nQty);
+  object oItem = CreateItemOnObject(sItemTag, oTarget, nQty);
+  SetIdentified(oItem, TRUE);
 }
 
 /////////////////////////////////////////////////////////
@@ -1647,7 +1648,7 @@ void CnrRecipeDisplayCraftingResult(object oPC, object oDevice, string sKeyToRec
       {
         if (bSpawnItemInDevice)
         {
-          CreateItemOnObject(sRecipeBiTag, oDevice, 1);
+          SetIdentified(CreateItemOnObject(sRecipeBiTag, oDevice, 1), TRUE);
         }
         else
         {
@@ -1670,7 +1671,7 @@ void CnrRecipeDisplayCraftingResult(object oPC, object oDevice, string sKeyToRec
       {
         if (bSpawnItemInDevice)
         {
-          CreateItemOnObject(sRecipeTag, oDevice, 1);
+          SetIdentified(CreateItemOnObject(sRecipeTag, oDevice, 1), TRUE);
         }
         else
         {
@@ -1688,21 +1689,6 @@ void CnrRecipeDisplayCraftingResult(object oPC, object oDevice, string sKeyToRec
         sResult += " item.";
       }
     }
-
-    // @City of Winds add-on
-    // Give 1 rep point for every 10 recipes successfully crafted.
-    int nItemsCrafted = GetPersistentInt(oPC, "items_crafted", "cnr_misc");
-    nItemsCrafted++;
-    if (nItemsCrafted == 10)
-    {
-      DeletePersistentVariable(oPC, "items_crafted", "cnr_misc");
-      GiveRepPoint(oPC, GetPCFaction(oPC));
-    }
-    else
-    {
-      SetPersistentInt(oPC, "items_crafted", nItemsCrafted, 0, "cnr_misc");
-    }
-    // End City of Winds addon.
   }
   
   string sDeviceTag = GetTag(oDevice);
@@ -1718,27 +1704,29 @@ void CnrRecipeDisplayCraftingResult(object oPC, object oDevice, string sKeyToRec
   int nTradeXP = CnrRecipeGetRecipeTradeXPByKey(sKeyToRecipe);
 
   // XP is scaled as follows...
+  // The first time you craft a recipe, 10x recipe level. 
   // a 5% success chance yields 95% of 2*RecipeXP
   // a 50% success chance yields 50% of 2*RecipeXP
   // a 95% success chance yields 5% of 2*RecipeXP
   // A failure always counts for 35%.
+  // All xp is gained as adventuring XP (i.e. to be distributed later). 
   float fScale = (bSuccess ? IntToFloat(nEffDC-1) / 10.0f : 0.7f);
   int nScaledGameXP = FloatToInt(fScale * IntToFloat(nGameXP));
   int nScaledTradeXP = FloatToInt(fScale * IntToFloat(nTradeXP));
 
   int nOldXP = GetXP(oPC);
-  int nNewXP = nOldXP + (nScaledGameXP*nBatchCount);
+  int nNewXP = nScaledGameXP*nBatchCount;
 
-  if (nScaledGameXP > 0)
+  object oHide = gsPCGetCreatureHide(oPC);
+  int iQtyFinished = GetLocalInt(oHide, "GVD_CRAFT_" + sKeyToRecipe);
+  if (iQtyFinished == 0)
   {
-    sInfo1 = CNR_TEXT_YOUR_ADVENTURING_XP_INCREASED_BY + IntToString(nScaledGameXP*nBatchCount) + ".\n";
-  }
-  else if (nScaledGameXP < 0)
-  {
-    sInfo1 = CNR_TEXT_YOUR_ADVENTURING_XP_DECREASED_BY + IntToString(nScaledGameXP*nBatchCount) + ".\n";
+    nNewXP = CnrRecipeGetRecipeLevelByKey(sKeyToRecipe)*10;
+	SetLocalInt(oHide, "GVD_CRAFT_" + sKeyToRecipe, TRUE);
   }
   
-  gsXPGiveExperience(oPC, nScaledGameXP*nBatchCount);
+  sInfo1 = CNR_TEXT_YOUR_ADVENTURING_XP_INCREASED_BY + IntToString(nNewXP) + ".\n";
+  gvd_AdventuringXP_GiveXP(oPC, nNewXP, "Crafting");
 
   if (nDeviceTradeskillType != CNR_TRADESKILL_NONE)
   {

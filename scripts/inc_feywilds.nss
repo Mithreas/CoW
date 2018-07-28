@@ -32,8 +32,10 @@
   - Encounters will be copied from the master area, whether using placed or Giga style.
 	
 */
+#include "inc_boss"
 #include "inc_encounter"
 #include "inc_log"
+#include "inc_placeable"
 #include "zzdlg_lists_inc"
 
 // Path lists - FW_Init() sets these up to contain a list of area template resrefs.
@@ -116,6 +118,16 @@ void FW_GeneratePath(object oTrigger)
   object oSourceArea = GetObjectByTag(sNextTag);
   object oDestArea   = CreateArea(sArea, GetStringLowerCase(sNextTag));
   string sEndArea    = "";
+  
+  if (!GetLocalInt(oSourceArea, "GS_ENABLED"))
+  {
+    gvd_LoadAreaVars(oSourceArea);
+
+    gsENLoadArea(oSourceArea, FALSE);
+    gsBOLoadArea(oSourceArea);
+    gsPLLoadArea(oSourceArea);
+    SetLocalInt(oSourceArea, "GS_ENABLED", TRUE);	
+  }
   
   gsENCopyArea(oSourceArea, oDestArea);
   

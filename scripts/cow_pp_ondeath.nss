@@ -3,12 +3,18 @@
   Script for when persistent people die.
 
 */
+#include "inc_flag"
 #include "inc_perspeople"
 // includes inc_log, inc_database and pg_lists_i
 #include "inc_randomquest"
 // includes pg_lists_i, inc_reputation, inc_database and inc_log
 void main()
 {
+  // Persistent people will get set as immortal by the default
+  // spawn scripts.  Unset that now.
+  gsFLSetFlag(GS_FL_MORTAL, OBJECT_SELF, FALSE);
+  SetIsDestroyable(TRUE, TRUE, FALSE);
+
   if (GetHasActivePlayers(OBJECT_SELF))
   {
     // Players are waiting for this NPC. Respawn.
@@ -20,7 +26,7 @@ void main()
     GivePointsToFaction(-1, CheckFactionNation(OBJECT_SELF));
 
     // Remove and tidy up the NPC.
-    object oWP = GetNearestObject(OBJECT_TYPE_WAYPOINT);
+    object oWP = GetLocalObject(OBJECT_SELF, "HOME_WP");
 
     // Don't respawn this NPC when the server resets... he's dead, Jim!
     RemovePersistentPerson(oWP, GetTag(OBJECT_SELF));

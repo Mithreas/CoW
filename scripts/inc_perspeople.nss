@@ -167,7 +167,9 @@ void SetUpPersistentPeople()
       while (sNPCTag != "")
       {
         Trace(P_PEOPLE, "Creating NPC: " + sNPCTag);
-        CreateObject(OBJECT_TYPE_CREATURE, sNPCTag, GetLocation(oWP));
+        object oNPC = CreateObject(OBJECT_TYPE_CREATURE, sNPCTag, GetLocation(oWP));
+		
+        SetLocalObject(oNPC, "HOME_WP", oWP);
 
         iCount++;
         sNPCTag = GetStringElement(iCount, NPC_TAG_LIST, OBJECT_SELF);

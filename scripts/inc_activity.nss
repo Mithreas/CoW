@@ -120,16 +120,29 @@ void GiveResearchInformation(object oPC)
   
   // TODO: support other races than humans.
   
-  // Query that queries the category links table, and pulls in the page data table (for title) and page text table (for content)
-  SQLExecDirect("SELECT a.cl_from,b.page_title,c.old_text FROM " + WIKI_PREFIX + "categorylinks AS a INNER JOIN " + WIKI_PREFIX + 
-  "page AS b ON a.cl_from=b.page_id INNER JOIN " + WIKI_PREFIX + "text AS c ON a.cl_from=c.old_id WHERE a.cl_to = '" + RESEARCH_CATEGORY + 
+  // Query that queries the category links table to get a random article in the correct category. 
+  SQLExecDirect("SELECT a.cl_from FROM " + WIKI_PREFIX + "categorylinks AS a WHERE a.cl_to = '" + RESEARCH_CATEGORY + 
   "' " + SQLRandom());
+  string sPage = "";
+  
+  if (SQLFetch())
+  {
+    sPage = SQLGetData(1);
+  }
+  else
+  {
+    Trace(TRAINING, "No entries found in database.");
+    return;
+  }
+  
+  // Get the most recent revision of that page. 
+  SQLExecDirect("SELECT a.page_title,c.old_text FROM " + WIKI_PREFIX + "page AS a INNER JOIN " + WIKI_PREFIX + "revision AS b ON " +
+  "a.page_id=b.rev_page INNER JOIN " + WIKI_PREFIX + "text AS c ON b.rev_text_id=c.old_id WHERE a.page_id=" + sPage + " ORDER BY b.rev_id DESC LIMIT 1");	
 	
   if (SQLFetch())
   {
-    string sPage        = SQLGetData(1);
-	string sPageTitle   = _Cleanup(SQLGetData(2));
-	string sPageContent = _Cleanup(SQLGetData(3));
+	string sPageTitle   = _Cleanup(SQLGetData(1));
+	string sPageContent = _Cleanup(SQLGetData(2));
 	
 	int nLore = gsCMGetBaseSkillRank(SKILL_LORE, ABILITY_INTELLIGENCE, oPC);
 	
@@ -551,7 +564,7 @@ void ResearchDescription(object oPC)
       sMessage = "An old map of the City of Winds from its founding.";
       break;
     case 3:
-      sMessage = "";
+      sMessage = "At the back of a shelf, you find a book that probably hasn't been looked at it in many years.";
       break;
     case 4:
       sMessage = "";

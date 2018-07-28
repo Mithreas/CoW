@@ -25,6 +25,16 @@ void main()
     {
       gsCBDetermineCombatRound();
     }
+	
+	// Wandering quest NPCs.
+	object oHomeWP = GetLocalObject(OBJECT_SELF, "HOME_WP");
+	if (GetIsObjectValid(oHomeWP) && GetArea(OBJECT_SELF) != GetArea(oHomeWP))
+	{
+	  // Go home!
+	  ClearAllActions();
+	  ActionMoveToObject(oHomeWP);
+	  return;
+	}
 
     //ai setting
     int nMatrix = gsAIGetActionMatrix();

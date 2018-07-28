@@ -1447,7 +1447,7 @@ int gsCBTalentFeint(object oTarget)
   // NB: we want to use INT not DEX here, so adjust accordingly.
   //--------------------------------------------------------------
   int nCheck = (d20() + GetSkillRank(SKILL_HIDE, OBJECT_SELF)) +
-               (GetAbilityModifier(ABILITY_INTELLIGENCE) - GetAbilityModifier(ABILITY_DEXTERITY)) -
+               (GetAbilityModifier(ABILITY_INTELLIGENCE) - GetAbilityModifier(ABILITY_DEXTERITY, oTarget)) -
                (d20() + GetSkillRank(SKILL_DISCIPLINE, oTarget));
 			   
   FloatingTextStringOnCreature(GetName(OBJECT_SELF) + " feints!", oTarget);

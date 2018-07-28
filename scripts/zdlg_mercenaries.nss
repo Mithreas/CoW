@@ -270,7 +270,8 @@ void HandleSelection()
           int nCount = 0;
           while (nCount < nNumMercs)
           {
-            CreateObject(OBJECT_TYPE_CREATURE, sResRef, GetLocation(oWP));
+            object oNPC = CreateObject(OBJECT_TYPE_CREATURE, sResRef, GetLocation(oWP));
+			SetLocalObject(oNPC, "HOME_WP", oWP);
             AddPersistentPerson(oWP, sResRef);
             nCount++;
           }
@@ -285,7 +286,7 @@ void HandleSelection()
   else
   {
     SendMessageToPC(oPC,
-                    "You've found a bug. How embarassing. Please report it.");
+                    "You've found a bug. How embarrassing. Please report it.");
     EndDlg();
   }
 }

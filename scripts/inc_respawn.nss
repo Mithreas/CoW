@@ -1,4 +1,4 @@
-/* RESPAWN Library by Gigaschatten */
+/* RESPAWN Library by Gigaschatten */
 
 //void main() {}
 
@@ -178,7 +178,7 @@ void sepREApplyNewDeathPenalty(object oUsedBy)
     }
     SendMessageToPC(oUsedBy, "It will take several hours for your strength to fully return to you.");
 
-
+    /* Drains removed for Anemoi
 
     // Calculate Drain Penalty
     // Penalty is 1 point per 3 levels by default.
@@ -196,6 +196,7 @@ void sepREApplyNewDeathPenalty(object oUsedBy)
 
     // Apply
      sepREApplyRespawnDrains(oUsedBy, nPenalty);
+	 */
 }
 //---------------------------------------------------------------------------------------------------
 int _sepRECalculateNewDrain(object oPC)
@@ -213,7 +214,7 @@ int _sepRECalculateNewDrain(object oPC)
         }
 
         int bIsDrainedSurface 	= GetLocalInt(oSave, "GS_RESPAWN_DRAIN_SURFACE");
-	int bIsDrainedCordor	= GetLocalInt(oSave, "GS_RESPAWN_DRAIN_CANDP");
+	    int bIsDrainedCordor	= GetLocalInt(oSave, "GS_RESPAWN_DRAIN_CANDP");
         int nDrain 				= GetLocalInt(oSave, "GS_RESPAWN_DRAIN_AMT");
         int nTimestamp 			= GetLocalInt(oSave, "GS_RESPAWN_DRAIN_TIMESTAMP");
         int nActual 			= gsTIGetActualTimestamp();

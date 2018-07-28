@@ -1115,19 +1115,19 @@ void Init()
 
   if (nRace == RACIAL_TYPE_HALFLING)
   {
-    // Creatures
-    if (nAlign != ALIGNMENT_EVIL &&
-        GetAlignmentLawChaos(oPC) == ALIGNMENT_NEUTRAL &&
-        nRP >= 30)
-    {
-      _AddSubraceAsOption(GS_SU_SPECIAL_FEY);
-    }
+    // Creatures - disabled.
+    //if (nAlign != ALIGNMENT_EVIL &&
+    //    GetAlignmentLawChaos(oPC) == ALIGNMENT_NEUTRAL &&
+    //    nRP >= 30)
+    //{
+    //  _AddSubraceAsOption(GS_SU_SPECIAL_FEY);
+    //}
 
-    if (nAlign != ALIGNMENT_GOOD)
-    {
-      _AddSubraceAsOption(GS_SU_SPECIAL_GOBLIN);
-      _AddSubraceAsOption(GS_SU_SPECIAL_KOBOLD);
-    }
+    //if (nAlign != ALIGNMENT_GOOD)
+    //{
+    //  _AddSubraceAsOption(GS_SU_SPECIAL_GOBLIN);
+    //  _AddSubraceAsOption(GS_SU_SPECIAL_KOBOLD);
+    //}
   }
 
   if (ALLOW_BAATEZU) // In __server_config

@@ -674,6 +674,73 @@ int IPGetNumberOfArmorAppearances(int nPart)
     return nRet;
 }
 
+string LookUp2daFromPart(int nPart)
+{
+  string s2da = "";
+  switch (nPart)
+  {
+    case ITEM_APPR_ARMOR_MODEL_BELT:
+	  s2da = "parts_belt";
+	  break;
+    case ITEM_APPR_ARMOR_MODEL_LBICEP:
+	  s2da = "parts_bicep";
+	  break;
+    case ITEM_APPR_ARMOR_MODEL_LFOOT:
+	  s2da = "parts_foot";
+	  break;
+    case ITEM_APPR_ARMOR_MODEL_LFOREARM:
+	  s2da = "parts_forearm";
+	  break;
+    case ITEM_APPR_ARMOR_MODEL_LHAND:
+	  s2da = "parts_hand";
+	  break;
+    case ITEM_APPR_ARMOR_MODEL_LSHIN:
+	  s2da = "parts_shin";
+	  break;
+    case ITEM_APPR_ARMOR_MODEL_LSHOULDER:
+	  s2da = "parts_shoulder";
+	  break;
+    case ITEM_APPR_ARMOR_MODEL_LTHIGH:
+	  s2da = "parts_legs";
+	  break;
+    case ITEM_APPR_ARMOR_MODEL_NECK:
+	  s2da = "parts_neck";
+	  break;
+    case ITEM_APPR_ARMOR_MODEL_PELVIS:
+	  s2da = "parts_pelvis";
+	  break;
+    case ITEM_APPR_ARMOR_MODEL_RBICEP:
+	  s2da = "parts_bicep";
+	  break;
+    case ITEM_APPR_ARMOR_MODEL_RFOOT:
+	  s2da = "parts_foot";
+	  break;
+    case ITEM_APPR_ARMOR_MODEL_RFOREARM:
+	  s2da = "parts_forearm";
+	  break;
+    case ITEM_APPR_ARMOR_MODEL_RHAND:
+	  s2da = "parts_hand";
+	  break;
+    case ITEM_APPR_ARMOR_MODEL_ROBE:
+	  s2da = "parts_robe";
+	  break;
+    case ITEM_APPR_ARMOR_MODEL_RSHIN:
+	  s2da = "parts_shin";
+	  break;
+    case ITEM_APPR_ARMOR_MODEL_RSHOULDER:
+	  s2da = "parts_shoulder";
+	  break;
+    case ITEM_APPR_ARMOR_MODEL_RTHIGH:
+	  s2da = "parts_legs";
+	  break;
+    case ITEM_APPR_ARMOR_MODEL_TORSO:
+	  s2da = "parts_chest";
+	  break;	 
+  }
+  
+  return s2da;
+}
+
 // ----------------------------------------------------------------------------
 // (private)
 // Returns the previous or next armor appearance type, depending on the specified
@@ -704,7 +771,7 @@ int IPGetArmorAppearanceType(object oArmor, int nPart, int nMode)
         int nMax =  IPGetNumberOfArmorAppearances(nPart)-1; // index from 0 .. numparts -1
         int nMin =  1; // this prevents part 0 from being chosen (naked)
 
-        // return a random valid armor tpze
+        // return a random valid armor type
         if (nMode == X2_IP_ARMORTYPE_RANDOM)
         {
             return Random(nMax)+nMin;
@@ -712,43 +779,55 @@ int IPGetArmorAppearanceType(object oArmor, int nPart, int nMode)
 
         else
         {
+			string part = "";
+			
             if (nMode == X2_IP_ARMORTYPE_NEXT)
             {
+			  while (part == "")
+			  {
                 // current appearance is max, return min
                 if (nCurrApp == nMax)
                 {
-                    return nMin;
+                    nRet = nMin;
                 }
                 // current appearance is min, return max  -1
                 else if (nCurrApp == nMin)
                 {
                     nRet = nMin+1;
-                    return nRet;
                 }
 
                 //SpeakString("next");
                 // next
                 nRet = nCurrApp +1;
-                return nRet;
+				
+				part = Get2DAString(LookUp2daFromPart(nPart), "ACBONUS", nRet);
+			  }	
+				
+				
+              return nRet;
             }
             else                // previous
             {
+			  while (part == "")
+			  {
                 // current appearance is max, return nMax-1
                 if (nCurrApp == nMax)
                 {
                     nRet = nMax--;
-                    return nRet;
                 }
                 // current appearance is min, return max
                 else if (nCurrApp == nMin)
                 {
-                    return nMax;
+                    nRet = nMax;
                 }
 
                 //SpeakString("prev");
 
                 nRet = nCurrApp -1;
-                return nRet;
+				part = Get2DAString(LookUp2daFromPart(nPart), "ACBONUS", nRet);
+			  }
+			  
+              return nRet;
             }
         }
 

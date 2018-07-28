@@ -47,7 +47,5 @@ void main()
     location lPCLocation = GetLocation(oPC);
     SetLocalLocation(oPC, "research_location", lPCLocation);
     AssignCommand(oPC, ActionPlayAnimation(ANIMATION_FIREFORGET_READ));
-    // The read animation takes about 2.5s, so sit for the rest of the 6s.
-    AssignCommand(oPC, ActionPlayAnimation(ANIMATION_LOOPING_SIT_CROSS, 1.0, 3.5));
   }	
 }

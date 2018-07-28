@@ -320,11 +320,28 @@ void main()
     // Hook into the quest scripts.
     CheckIfOnPatrol(oEntering, OBJECT_SELF);
 	
-	// CoW addition - reset reputation to 50 with the animal faction (faction 17) and
-	// the plot faction (faction 12).
+	// CoW addition - reset reputation to 50 with the following factions
+	// - animal faction (faction 17)
+	// - plot faction (faction 12)
+	// - merc factions (13,14,15,16,18)
+	// - imperial commoners and merchants (1,2)
 	object oNPC = GetObjectByTag("factionexample17");
     AdjustReputation(oEntering, oNPC, 50-GetFactionAverageReputation(oNPC, oEntering));
     oNPC        = GetObjectByTag("factionexample12");
+    AdjustReputation(oEntering, oNPC, 50-GetFactionAverageReputation(oNPC, oEntering));
+    oNPC        = GetObjectByTag("factionexample13");
+    AdjustReputation(oEntering, oNPC, 50-GetFactionAverageReputation(oNPC, oEntering));
+    oNPC        = GetObjectByTag("factionexample14");
+    AdjustReputation(oEntering, oNPC, 50-GetFactionAverageReputation(oNPC, oEntering));
+    oNPC        = GetObjectByTag("factionexample15");
+    AdjustReputation(oEntering, oNPC, 50-GetFactionAverageReputation(oNPC, oEntering));
+    oNPC        = GetObjectByTag("factionexample16");
+    AdjustReputation(oEntering, oNPC, 50-GetFactionAverageReputation(oNPC, oEntering));
+    oNPC        = GetObjectByTag("factionexample17");
+    AdjustReputation(oEntering, oNPC, 50-GetFactionAverageReputation(oNPC, oEntering));
+    oNPC        = GetObjectByTag("factionexample1");
+    AdjustReputation(oEntering, oNPC, 50-GetFactionAverageReputation(oNPC, oEntering));
+    oNPC        = GetObjectByTag("factionexample2");
     AdjustReputation(oEntering, oNPC, 50-GetFactionAverageReputation(oNPC, oEntering));
 	
     UpdateRangerHiPS(oEntering);

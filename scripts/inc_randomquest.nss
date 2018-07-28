@@ -151,6 +151,8 @@ const string PATROL          = "PATROL";
 
 const string AREA_LIST       = "AREA_LIST";
 
+// Returns TRUE if the PC's current quest is complete. 
+int IsQuestComplete(object oPC);
 // Returns 1 if the PC has completed their current quest for oNPC, and rewards
 // the PC appropriately.
 int QuestIsDone(object oPC, object oNPC);
@@ -194,7 +196,8 @@ void CreateQuestNPC(string sNPCTag)
     return;
   }
 
-  CreateObject(OBJECT_TYPE_CREATURE, sNPCTag, GetLocation(oWaypoint));
+  object oNPC = CreateObject(OBJECT_TYPE_CREATURE, sNPCTag, GetLocation(oWaypoint));
+  SetLocalObject(oNPC, "HOME_WP", oWaypoint);
 }
 
 // Returns GetPCPlayerName(oPC)+GetName(oPC)
@@ -491,17 +494,16 @@ void RewardPC(object oPC, object oNPC)
   }
 }
 
-int QuestIsDone(object oPC, object oNPC)
+int IsQuestComplete(object oPC)
 {
-  // Returns 1 if the PC has completed their current quest for oNPC, and rewards
-  // the PC appropriately.
+  // Returns TRUE if the PC has completed their current quest.
   Trace(RQUEST, "Checking if quest is completed.");
   // setup.
   string sQuest = GetPersistentString(oPC, CURRENT_QUEST);
   if (sQuest == "") return 1; // No quest, so mark as complete so PC can get
                               // another one (graceful handling).
-
-  string sQuestSet = GetLocalString(oNPC, QUEST_DB_NAME);
+							  
+  string sQuestSet = GetPersistentString(oPC, sQuest);
 
   if (sQuestSet == "")
   {
@@ -643,6 +645,13 @@ int QuestIsDone(object oPC, object oNPC)
                     "You've found a bug. Invalid quest type.");
     Trace(RQUEST, "!!!Invalid quest type!");
   }
+  
+  return nDone;
+}
+
+int QuestIsDone(object oPC, object oNPC)
+{
+  int nDone = IsQuestComplete(oPC);
 
   // Reward if quest completed.
   if (nDone) RewardPC(oPC, oNPC);
