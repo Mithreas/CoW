@@ -494,7 +494,7 @@ void RewardPC(object oPC, object oNPC)
   }
 }
 
-int IsQuestComplete(object oPC)
+int IsQuestComplete(object oPC, int bFinish = FALSE)
 {
   // Returns TRUE if the PC has completed their current quest.
   Trace(RQUEST, "Checking if quest is completed.");
@@ -557,19 +557,22 @@ int IsQuestComplete(object oPC)
       nDone = 1;
 
       // Remove the items.
-      nCount = 0;
+	  if (bFinish)
+	  {
+        nCount = 0;
 	  
-	  oItem = GetFirstItemInInventory(oPC);
-      while (oItem != OBJECT_INVALID && nCount < nNum)
-      {
-        if (GetTag(oItem) == sItemTag)
+	    oItem = GetFirstItemInInventory(oPC);
+        while (oItem != OBJECT_INVALID && nCount < nNum)
         {
-          nCount += GetItemStackSize(oItem); // doesn't matter if we overshoot
-		  gsCMReduceItem(oItem, nNum);
-        }
+          if (GetTag(oItem) == sItemTag)
+          {
+            nCount += GetItemStackSize(oItem); // doesn't matter if we overshoot
+		    gsCMReduceItem(oItem, nNum);
+          }
 
-        oItem = GetNextItemInInventory(oPC);
-      }	  
+          oItem = GetNextItemInInventory(oPC);
+        }
+      }		
     }
   }
   else if (sQuestType == KILL)
@@ -592,7 +595,7 @@ int IsQuestComplete(object oPC)
 
       if (GetIsObjectValid(oItem))
       {
-        DestroyObject(oItem);
+        if (bFinish) DestroyObject(oItem);
         nDone = 1;
       }
     }
@@ -627,7 +630,7 @@ int IsQuestComplete(object oPC)
       sArea = GetNextStringElement();
     }
 
-    if (nDone)
+    if (nDone && bFinish)
     {
       // Clear all the area variables in case the PC is asked to go again.
       string sArea = GetFirstStringElement(AREA_LIST);
@@ -651,7 +654,7 @@ int IsQuestComplete(object oPC)
 
 int QuestIsDone(object oPC, object oNPC)
 {
-  int nDone = IsQuestComplete(oPC);
+  int nDone = IsQuestComplete(oPC, TRUE);
 
   // Reward if quest completed.
   if (nDone) RewardPC(oPC, oNPC);
