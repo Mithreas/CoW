@@ -208,7 +208,8 @@ void GiveXP(object oPC, int InGoodArea = FALSE)
 
   int nXP = FloatToInt(fXP);
 
-  gsXPGiveExperience(oPC, nXP);
+  if (GetHitDice(oPC) < 10) gsXPGiveExperience(oPC, nXP);
+  else gvd_AdventuringXP_GiveXP(oPC, nXP, "Training");
 }
 
 void GiveTrainingBoost(object oPC)

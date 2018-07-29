@@ -87,7 +87,7 @@ void PageInit()
     }
 
     GiveGoldToCreature(oPC, nGold);
-    gsXPGiveExperience(oPC, nXP);
+    if (GetHitDice(oPC) < 6) gsXPGiveExperience(oPC, nXP);
     SetDlgPrompt("Thank-you kindly, stranger. Take this for your efforts.");
     SetDlgResponseList(END, OBJECT_SELF);
   }

@@ -138,15 +138,24 @@ void PageInit()
       "ye along yer way fer jus' twenty five coins, aye?  Where ye be wantin' "+
       "ta go?\n\nWe go at six an' nine in th'mornin', or noon, or three or six"+
       " in th'evenin', reg'lar.  No sense in bein' out at night, aye.");
+      SetDlgResponseList(DESTINATIONS);
 	  }
 	  else if (bType == TRAVEL_TYPE_SEA)
 	  {
-	    SetDlgPrompt("Lookin' ta travel 'cross the sea?  Ye can book passage " +
-		"wi'me fer jus' twenty five coins.  Don't even have ta work, aye?\n\n" +
-		"We go at six an' nine in th'mornin', or noon, or three or six"+
-        " in th'evenin', reg'lar.");
+	    if (GetRacialType(oPC) != RACIAL_TYPE_HUMAN && !GetIsObjectValid(GetItemPossessedBy(oPC, "permission_sea")))
+		{
+		  SpeakString("Sorry, no travelling without a certificate of seaworthiness.  Can't risk you sinking the ship.");
+		  EndDlg();
+		}
+	    else
+		{
+	      SetDlgPrompt("Lookin' ta travel 'cross the sea?  Ye can book passage " +
+		  "wi'me fer jus' twenty five coins.  Don't even have ta work, aye?\n\n" +
+		  "We go at six an' nine in th'mornin', or noon, or three or six"+
+          " in th'evenin', reg'lar.");
+          SetDlgResponseList(DESTINATIONS);
+		}  
 	  }
-      SetDlgResponseList(DESTINATIONS);
     }
   }
   else if (sPage == CONFIRM_MENU)

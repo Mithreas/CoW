@@ -168,16 +168,22 @@ void VerifyFeatRequirements(object oPC) {
 
 }
 
+int GetHasPermission(int nClass, object oPC)
+{
+  object oPermission = GetItemPossessedBy(oPC, "GS_PERMISSION_CLASS_" + IntToString(nClass));
+  return GetIsObjectValid(oPermission);
+}
+
 int CoW_HasAllowedClasses(object oPC)
 {
   switch (GetRacialType(oPC))
   {
     case RACIAL_TYPE_HUMAN:
 	{
-	  if (GetLevelByClass(CLASS_TYPE_WIZARD, oPC) ||
-	      GetLevelByClass(CLASS_TYPE_SORCERER, oPC) ||
-		  GetLevelByClass(CLASS_TYPE_BARD, oPC) ||
-		  GetLevelByClass(CLASS_TYPE_DRUID, oPC))
+	  if ((GetLevelByClass(CLASS_TYPE_WIZARD, oPC) && !GetHasPermission(CLASS_TYPE_WIZARD, oPC)) ||
+	      (GetLevelByClass(CLASS_TYPE_SORCERER, oPC) && !GetHasPermission(CLASS_TYPE_SORCERER, oPC)) ||
+		  (GetLevelByClass(CLASS_TYPE_BARD, oPC) && !GetHasPermission(CLASS_TYPE_BARD, oPC)) ||
+		  (GetLevelByClass(CLASS_TYPE_DRUID, oPC) && !GetHasPermission(CLASS_TYPE_DRUID, oPC)))
       {
 	    return FALSE;
 	  }
@@ -188,16 +194,29 @@ int CoW_HasAllowedClasses(object oPC)
 	}
 	case RACIAL_TYPE_HALFLING:
 	{
-	  if (GetLevelByClass(CLASS_TYPE_WIZARD, oPC) ||
-	      GetLevelByClass(CLASS_TYPE_SORCERER, oPC) ||
-		  GetLevelByClass(CLASS_TYPE_CLERIC, oPC) ||
-		  GetLevelByClass(CLASS_TYPE_PALADIN, oPC))
+	  if ((GetLevelByClass(CLASS_TYPE_WIZARD, oPC) && !GetHasPermission(CLASS_TYPE_WIZARD, oPC)) ||
+	      (GetLevelByClass(CLASS_TYPE_SORCERER, oPC) && !GetHasPermission(CLASS_TYPE_SORCERER, oPC)) ||
+		  (GetLevelByClass(CLASS_TYPE_CLERIC, oPC) && !GetHasPermission(CLASS_TYPE_CLERIC, oPC)) ||
+		  (GetLevelByClass(CLASS_TYPE_PALADIN, oPC) && !GetHasPermission(CLASS_TYPE_PALADIN, oPC)))
       {
 	    return FALSE;
 	  }
 	  else
 	  {
 	    return TRUE;
+	  }
+	}
+	case RACIAL_TYPE_ELF:
+	{
+	  if ((GetLevelByClass(CLASS_TYPE_CLERIC, oPC) && !GetHasPermission(CLASS_TYPE_CLERIC, oPC)) ||
+		  (GetLevelByClass(CLASS_TYPE_PALADIN, oPC) && !GetHasPermission(CLASS_TYPE_PALADIN, oPC)))
+	  {
+	    return FALSE;
+	  }
+	  else
+	  {
+	    //@@@ Temporary until Elves are available.
+	    return FALSE;
 	  }
 	}
 	default:

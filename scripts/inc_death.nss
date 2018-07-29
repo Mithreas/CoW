@@ -222,7 +222,9 @@ void gsDeath()
   SetLocalInt(oSave, "SEP_DEATH_TOTAL", ++DeathTotal);
   ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectHeal(GetMaxHitPoints() + 10), oSelf);
   ClearAllActions(TRUE);
-  ActionJumpToObject(GetObjectByTag("GS_TARGET_DEATH"));
+  
+  if (FindSubString(GetName(GetArea(oSelf)), "Feywilds") > -1) ActionJumpToObject(GetObjectByTag("FWB_ENTER"));
+  else ActionJumpToObject(GetObjectByTag("GS_TARGET_DEATH"));
   ActionDoCommand(DelayCommand(6.0, SetPlotFlag(oSelf, FALSE)));
   ActionDoCommand(SetCommandable(TRUE));
   SetCommandable(FALSE);

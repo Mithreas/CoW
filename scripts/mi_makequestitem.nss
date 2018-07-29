@@ -12,6 +12,11 @@
                "fill_quantity1"..."fill_quantity8" for different types of items.
 
 */
+void _CreateItemVoid(string sResRef)
+{
+ CreateItemOnObject(sResRef);
+}
+
 void main()
 {
   //Clear inventory and restock with quest item.
@@ -33,7 +38,7 @@ void main()
   {
     for (ii = 0; ii < nNumOf; ii++)
     {
-      CreateItemOnObject(sResRef);
+      DelayCommand(0.1f, _CreateItemVoid(sResRef));
     }
 
     sResRef = GetLocalString(OBJECT_SELF, "fill_with" + IntToString(jj));

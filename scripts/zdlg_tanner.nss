@@ -75,6 +75,7 @@ void PageInit()
     }
 
     GiveGoldToCreature(oPC, nGold);
+    if (GetHitDice(oPC) < 6) gsXPGiveExperience(oPC, nGold);
     miDVGivePoints(GetPCSpeaker(), ELEMENT_WATER, IntToFloat(nCount));
 
     SetDlgPrompt("Nice work.  That'll make some useful stuff.");

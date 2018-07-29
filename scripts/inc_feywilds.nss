@@ -99,6 +99,7 @@ void FW_Init()
   DeleteList(FW_PATH_PFWD + ENDS, oMod);
   AddStringElement("perfeydlifetree", FW_PATH_PFWD + ENDS, oMod); // Tree of Life
   AddStringElement("perfeyddreamend", FW_PATH_PFWD + ENDS, oMod); // Ysera
+  AddStringElement("perfeydfqueencrt", FW_PATH_PFWD + ENDS, oMod); // Fairy Queen's Court
 }
 
 void FW_GeneratePath(object oTrigger)

@@ -152,7 +152,7 @@ const string PATROL          = "PATROL";
 const string AREA_LIST       = "AREA_LIST";
 
 // Returns TRUE if the PC's current quest is complete. 
-int IsQuestComplete(object oPC);
+int IsQuestComplete(object oPC, int bFinish = FALSE);
 // Returns 1 if the PC has completed their current quest for oNPC, and rewards
 // the PC appropriately.
 int QuestIsDone(object oPC, object oNPC);

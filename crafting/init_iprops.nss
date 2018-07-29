@@ -5,6 +5,9 @@ void main()
     if (GetLocalInt(OBJECT_SELF, "GS_ENABLED")) return;
     SetLocalInt(OBJECT_SELF, "GS_ENABLED", TRUE);
 
+	object oCache = GetObjectByTag("GS_SEQUENCER");
+	SetLocalObject(GetModule(), "GS_SEQUENCER", oCache);
+	
     ActionDoCommand(gsIPLoadCostTable1());
     ActionDoCommand(gsIPLoadCostTable2());
     ActionDoCommand(gsIPLoadCostTable3());

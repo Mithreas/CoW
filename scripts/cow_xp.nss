@@ -15,8 +15,8 @@ right column.
 
 lvl xp  /encounter
 1-5 50 
-6-10 25
-11+ 10
+6-9 25
+10+ 0
 
 */
 #include "inc_xp"
@@ -33,13 +33,13 @@ void GiveXPToPC(object oPC)
   {
     fXP = 50.0;
   }
-  else if (nLevel < 11)
+  else if (nLevel < 10)
   {
     fXP = 25.0;
   }
   else
   {
-    fXP = 10.0;
+    fXP = 0.0;
   }
 
   // Module-wide XP scale control.

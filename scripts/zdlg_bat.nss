@@ -82,7 +82,7 @@ void PageInit()
     }
 
     GiveGoldToCreature(oPC, nGold);
-    gsXPGiveExperience(oPC, nXP);
+    if (GetHitDice(oPC) < 6) gsXPGiveExperience(oPC, nXP);
 
     SetDlgPrompt("Thank-you, deary. If you find any more, bring them to me!");
     SetDlgResponseList(END, OBJECT_SELF);
@@ -136,7 +136,7 @@ void HandleSelection()
   else
   {
     SendMessageToPC(oPC,
-                    "You've found a bug. How embarassing. Please report it.");
+                    "You've found a bug. How embarrassing. Please report it.");
     EndDlg();
   }
 }

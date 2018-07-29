@@ -1,8 +1,8 @@
 /*
-  Name: zdlg_tanner
+  Name: zdlg_butcher
   Author: Mithreas
   Date: June 10th 2018
-  Description: Tanner convo - buys hides.
+  Description: Butcher convo - buys meat.
 
 */
 #include "inc_divination"
@@ -65,6 +65,7 @@ void PageInit()
     }
 
     GiveGoldToCreature(oPC, nGold);
+    if (GetHitDice(oPC) < 6) gsXPGiveExperience(oPC, nGold);
     miDVGivePoints(GetPCSpeaker(), ELEMENT_WATER, IntToFloat(nCount));
 
     SetDlgPrompt("Great, that'll feed us for a while.");

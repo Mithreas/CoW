@@ -415,8 +415,9 @@ void main()
   AddQuest(QUEST, HELP, DB_QUEST);
   SetStringValue(QUEST+DESCRIPTION,
    "Knight Defender Lauris Fetter heads up the guard post down on the Second " +
-   "Level. I'd like you to go down and lend him a hand. Do a job or two for " +
-   "him, then come back here.",
+   "Level. I'd like you to go down and lend him a hand; do a job or two for " +
+   "him, then come back here.  You'll need to head into the caves below the North " +
+   "Undercity, mind the spiders.", 
    DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "1000", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "2500", DB_VARS);

@@ -54,9 +54,6 @@ void main()
 
         break;
     }
-
-        break;
-
     case GS_EV_ON_PHYSICAL_ATTACKED:
 //................................................................
 
@@ -69,31 +66,11 @@ void main()
 
     case GS_EV_ON_SPAWN:
 //................................................................
-    {
-        //tree - behaves like a boss phylactery.
-        object oObject = GetNearestObjectByTag("GS_PHYLACTERY", OBJECT_SELF);
-        int nNth       = 1;
-
-        while (GetIsObjectValid(oObject) &&
-               GetDistanceBetween(oObject, OBJECT_SELF) <= 35.0)
-        {
-            if (! GetIsObjectValid(GetLocalObject(oObject, "GS_PHYLACTERY_CREATURE")))
-            {
-                SetLocalObject(oObject, "GS_PHYLACTERY_CREATURE", OBJECT_SELF);
-                SetImmortal(OBJECT_SELF, TRUE);
-                ApplyEffectToObject(DURATION_TYPE_INSTANT,
-                                    EffectHeal(1000),
-                                    oObject);
-                break;
-            }
-
-            oObject = GetNearestObjectByTag("GS_PHYLACTERY", OBJECT_SELF, ++nNth);
-        }
-
         break;
-    }
+
     case GS_EV_ON_SPELL_CAST_AT:
 //................................................................
+
         break;
     }
     RunSpecialBehaviors(GetUserDefinedEventNumber());

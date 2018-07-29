@@ -857,15 +857,15 @@ void init_feat_list (object oPC)
       {
         add_feat_to_list(oPC, "Caster level increase +2 (New bonus: "+IntToString(nCasterLevelBonus + 2)+")", 10006, TRUE);
       }
-
-      if (GetLevelByClass(CLASS_TYPE_BARD, oPC)) add_feat_to_list(oPC, "Bonus spell slot (Bard)", 10007, TRUE);
-      if (GetLevelByClass(CLASS_TYPE_CLERIC, oPC)) add_feat_to_list(oPC, "Bonus spell slot (Cleric)", 10008, TRUE);
-      if (GetLevelByClass(CLASS_TYPE_DRUID, oPC)) add_feat_to_list(oPC, "Bonus spell slot (Druid)", 10009, TRUE);
-      if (GetLevelByClass(CLASS_TYPE_PALADIN, oPC)) add_feat_to_list(oPC, "Bonus spell slot (Paladin)", 10010, TRUE);
-      if (GetLevelByClass(CLASS_TYPE_RANGER, oPC)) add_feat_to_list(oPC, "Bonus spell slot (Ranger)", 10011, TRUE);
-      if (GetLevelByClass(CLASS_TYPE_SORCERER, oPC)) add_feat_to_list(oPC, "Bonus spell slot (Sorcerer)", 10012, TRUE);
-      if (GetLevelByClass(CLASS_TYPE_WIZARD, oPC)) add_feat_to_list(oPC, "Bonus spell slot (Wizard)", 10013, TRUE);
-	}  
+    }
+	
+    if (GetLevelByClass(CLASS_TYPE_BARD, oPC) && GetLevelByClass(CLASS_TYPE_BARD, oNPC)) add_feat_to_list(oPC, "Bonus spell slot (Bard)", 10007, TRUE);
+    if (GetLevelByClass(CLASS_TYPE_CLERIC, oPC) && GetLevelByClass(CLASS_TYPE_CLERIC, oNPC)) add_feat_to_list(oPC, "Bonus spell slot (Cleric)", 10008, TRUE);
+    if (GetLevelByClass(CLASS_TYPE_DRUID, oPC) && GetLevelByClass(CLASS_TYPE_DRUID, oNPC)) add_feat_to_list(oPC, "Bonus spell slot (Druid)", 10009, TRUE);
+    if (GetLevelByClass(CLASS_TYPE_PALADIN, oPC) >= 4 && GetLevelByClass(CLASS_TYPE_PALADIN, oNPC)) add_feat_to_list(oPC, "Bonus spell slot (Paladin)", 10010, TRUE);
+    if (GetLevelByClass(CLASS_TYPE_RANGER, oPC) >= 4 && GetLevelByClass(CLASS_TYPE_RANGER, oNPC)) add_feat_to_list(oPC, "Bonus spell slot (Ranger)", 10011, TRUE);
+    if (GetLevelByClass(CLASS_TYPE_SORCERER, oPC) && GetLevelByClass(CLASS_TYPE_SORCERER, oNPC)) add_feat_to_list(oPC, "Bonus spell slot (Sorcerer)", 10012, TRUE);
+    if (GetLevelByClass(CLASS_TYPE_WIZARD, oPC) && GetLevelByClass(CLASS_TYPE_WIZARD, oNPC)) add_feat_to_list(oPC, "Bonus spell slot (Wizard)", 10013, TRUE);	  
   }
 
   if (GetLevelByClass(CLASS_TYPE_BARD, oPC) && GetLevelByClass(CLASS_TYPE_BARD, oNPC))

@@ -199,8 +199,13 @@ void OnPageInit(string sPage)
       dlgClearResponseList(MM_RESPONSES);
       dlgAddResponseTalk(MM_RESPONSES, "[Sacrifice]", txtLime);
       dlgAddResponseTalk(MM_RESPONSES, "[Pray]", txtLime);
-                                                                                                     //gift of holy now has full altar access
-      if (gsCMGetHasClass(CLASS_TYPE_CLERIC, oSpeaker) || miFSGetIsFavoredSoul(oSpeaker) || GetLocalInt(gsPCGetCreatureHide(oSpeaker), "GIFT_OF_HOLY"))
+	  
+      //gift of holy now has full altar access.  On Anemoi, wizards and sorcerers do as well.
+      if (gsCMGetHasClass(CLASS_TYPE_CLERIC, oSpeaker) || 
+	      gsCMGetHasClass(CLASS_TYPE_WIZARD, oSpeaker) || 
+		  gsCMGetHasClass(CLASS_TYPE_SORCERER, oSpeaker) || 
+	      miFSGetIsFavoredSoul(oSpeaker) || 
+		  GetLocalInt(gsPCGetCreatureHide(oSpeaker), "GIFT_OF_HOLY"))
       {
         int nConsecrate = (gsWOGetConsecratedDeity(OBJECT_SELF) == GS_WO_NONE ||
                            gsWOGetIsDesecrated(OBJECT_SELF));

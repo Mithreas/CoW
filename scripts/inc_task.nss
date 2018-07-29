@@ -9,6 +9,7 @@ const int GS_TA_COOL_SLUG     = 3;
 const int GS_TA_DANCE         = 4;
 const int GS_TA_MINE_AT_ROCK  = 5;
 const int GS_TA_TORTURE       = 6;
+const int GS_TA_BANG_DRUM     = 7;
 
 const float GS_TA_RANGE       = 40.0;
 const int GS_TA_LIMIT         = 15;

@@ -18,7 +18,10 @@ void main()
   /////////////////////////////////////////////////////////
   // CNR recipes made by cnrAlchemyTable
   /////////////////////////////////////////////////////////
-  string sMenuAlchemyOils = CnrRecipeAddSubMenu("cnralchemytable", "Oils and Inks");
+  string sMenuAlchemyOils    = CnrRecipeAddSubMenu("cnralchemytable", "Oils and Inks");
+  string sMenuAlchemyEss     = CnrRecipeAddSubMenu("cnralchemytable", "Essences");
+  string sMenuTempWpnEss     = CnrRecipeAddSubMenu(sMenuAlchemyEss, "Temporary Weapon Essences");
+  string sMenuPermWpnEss     = CnrRecipeAddSubMenu(sMenuAlchemyEss, "Permanent Weapon Essences");
   string sMenuAlchemyPotions = CnrRecipeAddSubMenu("cnralchemytable", "Potions");
 
   CnrRecipeSetDevicePreCraftingScript("cnralchemytable", "cnr_alchemy_anim");
@@ -47,6 +50,55 @@ void main()
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 2);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 20, 20);
 
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAlchemyOils, "Lesser Acid Oil", "cnroillsacid", 5);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnremptyflask", 1, 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "X1_WMGRENADE001", 1); // Acid Flask
+  CnrRecipeAddComponent(sKeyToRecipe, "cow_gemgree", 5); // 5 gems
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAlchemyOils, "Lesser Cold Oil", "cnroillscold", 5);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnremptyflask", 1, 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "X1_IT_MSMLMISC01", 1); // Coldstone
+  CnrRecipeAddComponent(sKeyToRecipe, "cow_gemfluo", 5); // 5 gems
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAlchemyOils, "Lesser Electrical Oil", "cnroillselec", 5);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnremptyflask", 1, 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "NW_IT_MSMLMISC11", 1); // Qwartz Crystal
+  CnrRecipeAddComponent(sKeyToRecipe, "cow_gemamet", 5); // 5 gems
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAlchemyOils, "Lesser Fire Oil", "cnroillsfire", 5);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnremptyflask", 1, 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "NW_IT_MSMLMISC08", 1); // Fire Beetle Belly
+  CnrRecipeAddComponent(sKeyToRecipe, "cow_gemfiag", 5); // 5 gems
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAlchemyOils, "Lesser Negative Oil", "cnroillsnega", 5);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnremptyflask", 1, 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "NW_IT_MSMLMISC13", 1); // Skeleton Knuckle
+  CnrRecipeAddComponent(sKeyToRecipe, "cow_gemgarn", 5); // 5 gems
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAlchemyOils, "Lesser Positive Oil", "cnroillsposi", 5);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnremptyflask", 1, 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "X1_WMGRENADE005", 1); // Holy Water
+  CnrRecipeAddComponent(sKeyToRecipe, "cow_gemphen", 5); // 5 gems
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAlchemyOils, "Lesser Sonic Oil", "cnroillssoni", 5);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnremptyflask", 1, 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "X1_WMGRENADE007", 1); // Thunderstone
+  CnrRecipeAddComponent(sKeyToRecipe, "cow_gemaven", 5); // 5 gems
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
+  
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAlchemyOils, "Journeyman Scribing Ink", "cnrInkM", 5);
   CnrRecipeAddComponent(sKeyToRecipe, "cnremptyflask", 1, 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotsil", 1); // Silver ingot
@@ -60,6 +112,201 @@ void main()
   CnrRecipeAddComponent(sKeyToRecipe, "cnrbellbomb", 1); // Bombardier Beetle's Belly
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 10);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 100, 100);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAlchemyOils, "Greater Acid Oil", "cnroilgracid", 5);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnremptyflask", 1, 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "X1_WMGRENADE001", 5); // Acid Flask
+  CnrRecipeAddComponent(sKeyToRecipe, "cow_gememer", 1); // 1 gem
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 11);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 110, 110);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAlchemyOils, "Greater Cold Oil", "cnroilgrcold", 5);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnremptyflask", 1, 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "X1_IT_MSMLMISC01", 5); // Coldstone
+  CnrRecipeAddComponent(sKeyToRecipe, "cow_gemsapp", 3); // 3 gems
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 11);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 110, 110);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAlchemyOils, "Greater Electrical Oil", "cnroilgrelec", 5);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnremptyflask", 1, 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "NW_IT_MSMLMISC11", 5); // Qwartz Crystal
+  CnrRecipeAddComponent(sKeyToRecipe, "cow_gemalex", 8); // 8 gems
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 11);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 110, 110);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAlchemyOils, "Greater Fire Oil", "cnroilgrfire", 5);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnremptyflask", 1, 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "NW_IT_MSMLMISC08", 5); // Fire Beetle Belly
+  CnrRecipeAddComponent(sKeyToRecipe, "cow_gemfiop", 3); // 3 gems
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 11);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 110, 110);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAlchemyOils, "Greater Negative Oil", "cnroilgrnega", 5);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnremptyflask", 1, 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "NW_IT_MSMLMISC13", 5); // Skeleton Knuckle
+  CnrRecipeAddComponent(sKeyToRecipe, "cow_gemruby", 2); // 5 gems
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 11);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 110, 110);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAlchemyOils, "Greater Positive Oil", "cnroilgrposi", 5);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnremptyflask", 1, 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "X1_WMGRENADE005", 5); // Holy Water
+  CnrRecipeAddComponent(sKeyToRecipe, "cow_gemdiam", 2); // 5 gems
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 11);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 110, 110);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAlchemyOils, "Greater Sonic Oil", "cnroilgrsoni", 5);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnremptyflask", 1, 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "X1_WMGRENADE007", 5); // Thunderstone
+  CnrRecipeAddComponent(sKeyToRecipe, "cow_gemtopa", 5); // 5 gems
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 11);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 110, 110);
+  
+  //---------------------------------------------------------------------------------
+  //---------------------------------------------------------------------------------
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTempWpnEss, "Essence (+1, Acid, Temporary)", "essacidtemp1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnroillsacid", 2); 
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTempWpnEss, "Essence (+1, Cold, Temporary)", "esscoldtemp1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnroillscold", 2); 
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTempWpnEss, "Essence (+1, Electrical, Temporary)", "esselectemp1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnroillselec", 2); 
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTempWpnEss, "Essence (+1, Fire, Temporary)", "essfiretemp1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnroillsfire", 2); 
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTempWpnEss, "Essence (+1, Negative, Temporary)", "essnegatemp1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnroillsnega", 2); 
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTempWpnEss, "Essence (+1, Positive, Temporary)", "esspositemp1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnroillsposi", 2); 
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTempWpnEss, "Essence (+1, Sonic, Temporary)", "esssonitemp1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnroillssoni", 2); 
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTempWpnEss, "Essence (+d4, Acid, Temporary)", "essacidtemp4", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnroillsacid", 5); 
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 8);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 80, 80);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTempWpnEss, "Essence (+d4, Cold, Temporary)", "esscoldtemp4", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnroillscold", 5); 
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 8);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 80, 80);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTempWpnEss, "Essence (+d4, Electrical, Temporary)", "esselectemp4", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnroillselec", 5); 
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 8);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 80, 80);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTempWpnEss, "Essence (+d4, Fire, Temporary)", "essfiretemp4", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnroillsfire", 5); 
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 8);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 80, 80);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTempWpnEss, "Essence (+d4, Negative, Temporary)", "essnegatemp4", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnroillsnega", 5); 
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 8);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 80, 80);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTempWpnEss, "Essence (+d4, Positive, Temporary)", "esspositemp4", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnroillsposi", 5); 
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 8);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 80, 80);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTempWpnEss, "Essence (+d4, Sonic, Temporary)", "esssonitemp4", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnroillssoni", 5); 
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 8);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 80, 80);
+  
+  //---------------------------------------------------------------------------------
+  //---------------------------------------------------------------------------------
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuPermWpnEss, "Essence (+1, Acid, Permanent)", "essacidperm1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnroilgracid", 1); 
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 12);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 120, 120);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuPermWpnEss, "Essence (+1, Cold, Permanent)", "esscoldperm1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnroilgrcold", 1); 
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 12);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 120, 120);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuPermWpnEss, "Essence (+1, Electrical, Permanent)", "esselecperm1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnroilgrelec", 1); 
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 12);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 120, 120);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuPermWpnEss, "Essence (+1, Fire, Permanent)", "essfireperm1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnroilgrfire", 1); 
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 12);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 120, 120);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuPermWpnEss, "Essence (+1, Negative, Permanent)", "essnegaperm1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnroilgrnega", 1); 
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 12);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 120, 120);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuPermWpnEss, "Essence (+1, Positive, Permanent)", "essposiperm1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnroilgrposi", 1); 
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 12);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 120, 120);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuPermWpnEss, "Essence (+1, Sonic, Permanent)", "esssoniperm1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnroilgrsoni", 1); 
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 12);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 120, 120);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuPermWpnEss, "Essence (+d6, Acid, Permanent)", "essacidperm6", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnroilgracid", 5); 
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 16);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 160, 160);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuPermWpnEss, "Essence (+d6, Cold, Permanent)", "esscoldperm6", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnroilgrcold", 5); 
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 16);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 160, 160);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuPermWpnEss, "Essence (+d6, Electrical, Permanent)", "esselecperm6", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnroilgrelec", 5); 
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 16);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 160, 160);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuPermWpnEss, "Essence (+d6, Fire, Permanent)", "essfireperm6", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnroilgrfire", 5); 
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 16);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 160, 160);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuPermWpnEss, "Essence (+d6, Negative, Permanent)", "essnegaperm6", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnroilgrnega", 5); 
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 16);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 160, 160);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuPermWpnEss, "Essence (+d6, Positive, Permanent)", "essposiperm6", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnroilgrposi", 5); 
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 16);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 160, 160);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuPermWpnEss, "Essence (+d6, Sonic, Permanent)", "esssoniperm6", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnroilgrsoni", 5); 
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 16);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 160, 160);
   
   //---------------------------------------------------------------------------------
   //---------------------------------------------------------------------------------

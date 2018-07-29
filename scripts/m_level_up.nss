@@ -266,12 +266,7 @@ void main()
         case CLASS_TYPE_SHIFTER:
             if (gsPCGetMemorizedClassType(nNth, oPC) != nClassType)
             {
-                oPermission =
-                    GetItemPossessedBy(
-                        oPC,
-                        "GS_PERMISSION_CLASS_" + IntToString(nClassType));
-
-                if (! GetIsObjectValid(oPermission))
+                if (! GetHasPermission(nClassType, oPC))
                 {
                     SetXP(oPC, nXPLevel - 1);
                     gsPCMemorizeClassData(oPC);
