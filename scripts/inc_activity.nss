@@ -17,6 +17,7 @@
 #include "inc_log"
 #include "inc_database"
 #include "inc_spells"
+#include "inc_stacking"
 #include "inc_xp"
 
 // Database configuration
@@ -156,10 +157,11 @@ void GiveResearchInformation(object oPC)
 		!bLore10)
 	{
 	  // PC has enough lore to read this article.
-	  object oNote = CreateItemOnObject(TEMPLATE_NOTE, oPC);
+	  object oNote = CreateItemOnObject(TEMPLATE_NOTE, oPC, 1, "research_note_" + sPage);
 	  
-	  // Prevent stacking.
-      SetLocalInt(oNote, "_" + "research_note_" + sPage, 1);
+	  // We use a different tag above to allow notes on the same topic to stack.  Store the "real" tag here so 
+	  // e.g. quest scripts can find it. 
+	   SetLocalString(oNote, NO_STACK_TAG, "research_note");
 	  
 	  SetName(oNote, sPageTitle);
 	  SetDescription(oNote, sPageContent);

@@ -90,7 +90,7 @@ void main()
     case RACIAL_TYPE_DRAGON:
         if (!GetIsObjectValid(GetItemPossessedBy(oSelf, "nw_it_msmlmisc17")))
           SetDroppableFlag(CreateItemOnObject("nw_it_msmlmisc17"), TRUE); // dr b
-        SetDroppableFlag(CreateItemOnObject("gs_item824"), TRUE); //blood
+        SetDroppableFlag(CreateItemOnObject("dragonhide"), TRUE); //dragon hide
         break;
 
     case RACIAL_TYPE_DWARF:
@@ -103,7 +103,6 @@ void main()
         break;
 
     case RACIAL_TYPE_FEY:
-        SetDroppableFlag(CreateItemOnObject("gs_item824"), TRUE); //blood
         break;
 
     case RACIAL_TYPE_GIANT:
@@ -185,21 +184,6 @@ void main()
 	  nBonus = d20(d2());
 	  if (nBonus > nCR) nBonus = nCR;
       ApplyEffectToObject(DURATION_TYPE_PERMANENT, EffectSkillIncrease(SKILL_SPOT, nBonus), oSelf);
-    }
-
-    // Edits by Mithreas - onspawn flags. --[
-    // Statue if required.
-    if (GetLocalInt(oSelf, "onspawn_freeze"))
-    {
-      AssignCommand(oSelf, ActionPlayAnimation(ANIMATION_LOOPING_PAUSE, 500.0, 99999999999.0));
-      effect eParalyse = SupernaturalEffect(EffectCutsceneParalyze());
-      DelayCommand(1.0, ApplyEffectToObject(DURATION_TYPE_PERMANENT, eParalyse, oSelf));
-      SetLocalInt(oSelf, "INANIMATE_OBJECT", 1);
-    }
-    else
-    {
-      //set random facing
-      SetFacing(IntToFloat(Random(360)));
     }
 
     // Apply visual effects if required.
@@ -336,7 +320,6 @@ void main()
         ApplyEffectToObject(DURATION_TYPE_PERMANENT, eFX, OBJECT_SELF);
     }
 
-
     if (GetLocalInt(OBJECT_SELF, "AR_FX_STONEHOLD"))         //::  Stonehold
     {
         eFX = SupernaturalEffect(EffectVisualEffect(VFX_DUR_STONEHOLD));
@@ -375,6 +358,10 @@ void main()
 	{
 	    SetObjectVisualTransform(OBJECT_SELF, OBJECT_VISUAL_TRANSFORM_SCALE, GetLocalFloat(OBJECT_SELF, "AR_SCALE"));
 	}
+	else if (gsENGetIsEncounterCreature())
+	{
+	    SetObjectVisualTransform(OBJECT_SELF, OBJECT_VISUAL_TRANSFORM_SCALE, 0.85 + Random(30)/100.0f);
+	}
 
     if ( GetLocalInt(OBJECT_SELF, "AR_BOSS") ) {    //::  Flag as Boss!
         gsFLSetFlag(GS_FL_BOSS, OBJECT_SELF);
@@ -395,5 +382,17 @@ void main()
       SetListening(oSelf, TRUE);
     }
 
-    // ]-- end edits
+    // Statue if required.
+    if (GetLocalInt(oSelf, "onspawn_freeze"))
+    {
+      AssignCommand(oSelf, ActionPlayAnimation(ANIMATION_LOOPING_PAUSE, 500.0, 99999999999.0));
+      effect eParalyse = SupernaturalEffect(EffectCutsceneParalyze());
+      DelayCommand(1.0, ApplyEffectToObject(DURATION_TYPE_PERMANENT, eParalyse, oSelf));
+      SetLocalInt(oSelf, "INANIMATE_OBJECT", 1);
+    }
+    else
+    {
+      //set random facing
+      SetFacing(IntToFloat(Random(360)));
+    }
 }

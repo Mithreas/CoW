@@ -11,36 +11,15 @@
 const string BACKGROUNDS = "BACKGROUNDS"; // for tracing
 
 const string BACKGROUND = "MI_BACKGROUND";
-const int MI_BA_NONE = 0;
-const int MI_BA_BULLY = 1;
-const int MI_BA_DAUNTLESS = 2;
-const int MI_BA_DEVOUT = 3;
-const int MI_BA_FARMER = 4;
-const int MI_BA_FEARLESS = 5;
-const int MI_BA_FISHERMAN = 6;
-const int MI_BA_FLIRT = 7;
-const int MI_BA_GYPSY = 8;
-const int MI_BA_HEALER = 9;
-const int MI_BA_HUNTER = 10;
-const int MI_BA_MERCHANT = 11;
-const int MI_BA_NAT_LEADER = 12;
-const int MI_BA_NOBLE = 13;
-const int MI_BA_PEASANT = 14;
-const int MI_BA_SCHOLAR = 15;
-const int MI_BA_SLAVE = 16;
-const int MI_BA_SOLDIER = 17;
-const int MI_BA_TATTLE = 18;
-const int MI_BA_TRIBAL = 19;
-const int MI_BA_TROUBLE = 20;
-const int MI_BA_WANDERER = 21;
-const int MI_BA_WILD_CHILD = 22;
-const int MI_BA_WIZ_APPR = 23;
-const int MI_BA_POLITICIAN = 24;
-const int MI_BA_GLADIATOR = 25;
-const int MI_BA_OUTCAST = 26;
-const int BA_ARTIST = 27; // replaces noble
+const int MI_BA_NONE     = 0;
+const int MI_BA_IMPERIAL = 1;
+const int MI_BA_DRANNIS  = 2;
+const int MI_BA_ERENIA   = 3;
+const int MI_BA_RENERRIN = 4;
+const int MI_BA_SHADOW   = 5;
+const int MI_BA_WARDEN   = 6;
 
-const int MI_BA_NUM_BACKGROUNDS = 28;
+const int MI_BA_NUM_BACKGROUNDS = 5;
 
 //Gifts
 const int GIFT_NONE = 0;
@@ -265,60 +244,16 @@ string miBAGetBackgroundName(int nBackground)
   {
     case MI_BA_NONE:
       return "<c þ >[No background]</c>";
-    case MI_BA_BULLY:
-      return "Bully";
-    case MI_BA_DAUNTLESS:
-      return "Dauntless";
-    case MI_BA_DEVOUT:
-      return "Devout";
-    case MI_BA_FARMER:
-      return "Farmer";
-    case MI_BA_FEARLESS:
-      return "Fearless";
-    case MI_BA_FISHERMAN:
-      return "Fisherman";
-    case MI_BA_FLIRT:
-      return "Flirt";
-    case MI_BA_GYPSY:
-      return "Gypsy";
-    case MI_BA_HEALER:
-      return "Healer";
-    case MI_BA_HUNTER:
-      return "Hunter";
-    case MI_BA_MERCHANT:
-      return "Merchant";
-    case MI_BA_NAT_LEADER:
-      return "Natural Leader";
-    case MI_BA_NOBLE:
-      return "Noble";
-    case BA_ARTIST:
-      return "Artist";
-    case MI_BA_PEASANT:
-      return "Peasant";
-    case MI_BA_SCHOLAR:
-      return "Scholar";
-    case MI_BA_SLAVE:
-      return "Slave";
-    case MI_BA_SOLDIER:
-      return "Soldier";
-    case MI_BA_TATTLE:
-      return "Tattle-tale";
-    case MI_BA_TRIBAL:
-      return "Tribal";
-    case MI_BA_TROUBLE:
-      return "Troublemaker";
-    case MI_BA_WANDERER:
-      return "Wanderer";
-    case MI_BA_WILD_CHILD:
-      return "Wild Child";
-    case MI_BA_WIZ_APPR:
-      return "Wizard's Apprentice";
-    case MI_BA_POLITICIAN:
-      return "Politician";
-    case MI_BA_GLADIATOR:
-      return "Gladiator";
-    case MI_BA_OUTCAST:
-      return "Outcast";
+    case MI_BA_DRANNIS:
+      return "Drannis";
+    case MI_BA_ERENIA:
+      return "Erenia";
+    case MI_BA_RENERRIN:
+      return "Renerrin";
+    case MI_BA_WARDEN:
+      return "Wardens";
+    case MI_BA_SHADOW:
+      return "Shadow";
   }
 
   return "";
@@ -329,59 +264,13 @@ int miBAGetCasteByBackground(int nBackground)
   switch (nBackground)
   {
     case MI_BA_NONE:
-      return CASTE_WARRIOR;
-    case MI_BA_BULLY:
-      return CASTE_WARRIOR;
-    case MI_BA_DAUNTLESS:
-      return CASTE_WARRIOR;
-    case MI_BA_DEVOUT:
-      return CASTE_MERCHANT;
-    case MI_BA_FARMER:
       return CASTE_PEASANT;
-    case MI_BA_FEARLESS:
-      return CASTE_WARRIOR;
-    case MI_BA_FISHERMAN:
-      return CASTE_PEASANT;
-    case MI_BA_FLIRT:
-      return CASTE_MERCHANT;
-    case MI_BA_GYPSY:
-      return CASTE_PEASANT;
-    case MI_BA_HEALER:
-      return CASTE_MERCHANT;
-    case MI_BA_HUNTER:
-      return CASTE_WARRIOR;
-    case MI_BA_MERCHANT:
-      return CASTE_MERCHANT;
-    case MI_BA_NAT_LEADER:
+    case MI_BA_DRANNIS:
+    case MI_BA_ERENIA:
+    case MI_BA_RENERRIN:
       return CASTE_NOBILITY;
-    case MI_BA_NOBLE:
-      return CASTE_NOBILITY;
-    case MI_BA_PEASANT:
-      return CASTE_PEASANT;
-    case MI_BA_SCHOLAR:
-      return CASTE_MERCHANT;
-    case MI_BA_SLAVE:
-      return CASTE_PEASANT;
-    case MI_BA_SOLDIER:
+    case MI_BA_WARDEN:
       return CASTE_WARRIOR;
-    case MI_BA_TATTLE:
-      return CASTE_NOBILITY;
-    case MI_BA_TRIBAL:
-      return CASTE_WARRIOR;
-    case MI_BA_TROUBLE:
-      return CASTE_WARRIOR;
-    case MI_BA_WANDERER:
-      return CASTE_WARRIOR;
-    case MI_BA_WILD_CHILD:
-      return CASTE_WARRIOR;
-    case MI_BA_WIZ_APPR:
-      return CASTE_MERCHANT;
-    case MI_BA_POLITICIAN:
-      return CASTE_NOBILITY;
-    case MI_BA_GLADIATOR:
-      return CASTE_WARRIOR;
-    case MI_BA_OUTCAST:
-      return CASTE_PEASANT;
   }
 
   return CASTE_WARRIOR;
@@ -396,86 +285,24 @@ string miBAGetBackgroundDescription(int nBackground)
     case MI_BA_NONE:
       sRetVal = "No Background.";
       break;
-    case MI_BA_BULLY:
-      sRetVal = "Bully grants +1 Intimidate, +1 Fortitude Saves, -1 Bluff, -1 Will Saves.";
+	case MI_BA_IMPERIAL:
+      sRetVal = "You are a retainer of the Imperial Throne, and have left your past allegiances behind to serve the God-Emperor directly.";
+      break;	  
+    case MI_BA_DRANNIS:
+      sRetVal = "You are a retainer or scion of House Drannis, a house known for its martial might and trading acumen.";
       break;
-    case MI_BA_DAUNTLESS:
-      sRetVal = "Dauntless grants +5 HP.";
+    case MI_BA_ERENIA:
+      sRetVal = "You are a retainer or scion of House Erenia, a house known for its religious devotion and skilled sailors.";
       break;
-    case MI_BA_DEVOUT:
-      sRetVal = "Devout grants +1 Will Saves, +1 Concentration, -1 Fortitude Save, -1 Bluff.";
+    case MI_BA_RENERRIN:
+      sRetVal = "You are a retainer or scion of House Renerrin, a house known for its scholarship and political nous.";
       break;
-    case MI_BA_FARMER:
-      sRetVal = "Farmer grants +1 Spot, +1 Fortitude Save, -1 Appraise, -1 Reflex Save.";
-      break;
-    case MI_BA_FEARLESS:
-      sRetVal = "Fearless grants +4 Saves vs. Fear, -2 Reflex Saves.";
-      break;
-    case MI_BA_FISHERMAN:
-      sRetVal = "Fishermen (and women!) start with a fishing pole.";
-      break;
-    case MI_BA_FLIRT:
-      sRetVal = "Flirt grants +1 Listen, +1 Persuade, -2 Intimidate.";
-      break;
-    case MI_BA_GYPSY:
-      sRetVal = "Gypsy grants +1 Perform, +1 Tumble, -1 Concentration, -1 Use Magic Device.";
-      break;
-    case MI_BA_HEALER:
-      sRetVal = "Healer grants +2 Heal, +1 Lore, -1 Strength.";
-      break;
-    case MI_BA_HUNTER:
-      sRetVal = "Hunter grants +1 Move Silent, +1 Craft Trap, -2 Lore.";
-      break;
-    case MI_BA_MERCHANT:
-      sRetVal = "Merchant grants +2 Appraise, -1 Discipline, -1 Taunt.";
-      break;
-    case MI_BA_NAT_LEADER:
-      sRetVal = "Natural Leader grants +1 Charisma, -1 Constitution, -1 Fortitude Save, -1 Reflex Saves.";
-      break;
-    case MI_BA_NOBLE:
-    case BA_ARTIST:
-      sRetVal = "Artist grants +1 Art tradeskill, +1 Persuade, -2 Concentration.";
-      break;
-    case MI_BA_PEASANT:
-      sRetVal = "Peasant grants +1 Tailoring tradeskill, -1 Discipline.";
-      break;
-    case MI_BA_SCHOLAR:
-      sRetVal = "Scholar grants +1 Lore, +1 Concentration, -2 Discipline.";
-      break;
-    case MI_BA_SLAVE:
-      sRetVal = "Slave grants +1 Fortitude Saves, -1 Will Saves. Slaves starts in the Underdark city of Andunor branded with a slave collar.";
-      break;
-    case MI_BA_SOLDIER:
-      sRetVal = "Soldier grants +1 Discipline, +1 Forging Skill, -1 Will Saves.";
-      break;
-    case MI_BA_TATTLE:
-      sRetVal = "Tattle-tale grants +1 Lore, +1 Bluff, -2 Concentration.";
-      break;
-    case MI_BA_TRIBAL:
-      sRetVal = "Tribal grants +1 Fortitude Saves, +1 Taunt, -1 Discipline, -1 Will Saves.";
-      break;
-    case MI_BA_TROUBLE:
-      sRetVal = "Troublemaker grants +1 Reflex Saves, +1 Set Traps, +1 Pickpocket, -2 Will Saves.";
-      break;
-    case MI_BA_WANDERER:
-      sRetVal = "Wanderer grants +1 Appraise, +1 Bluff, -1 Will Saves.";
-      break;
-    case MI_BA_WILD_CHILD:
-      sRetVal = "Wild child grants +1 Tumble, +1 Hide, +1 Move Silently, -2 Bluff, -2 Appraise.";
-      break;
-    case MI_BA_WIZ_APPR:
-      sRetVal = "Wizard's Apprentice grants +1 Spellcraft, +1 Lore, +1 Alchemy Skill, -1 Spot, -1 Fortitude Saves.";
-      break;
-    case MI_BA_POLITICIAN:
-      sRetVal = "Politician grants +1 Bluff, +1 Persuade, +1 Intimidate, +1 Perform, -1 Discipline, -1 Fortitude/Reflex Saves.";
-      break;
-    case MI_BA_GLADIATOR:
-      sRetVal = "Gladiators get double XP bonus from Cordor Arena fights and get -1 Will Saves. Fixed Level server only: They start in the Arena, and cannot leave it unless they win their freedom.";
-      break;
-    case MI_BA_OUTCAST:
-      sRetVal = "Outcasts starts in the Underdark city of Andunor. They are not slaves and are free from such restrictions. Evil Humans and Half-Orcs only.";
-      break;
-  }
+	case MI_BA_SHADOW:
+	  sRetVal = "You are a member of the mysterious organisation known to outsiders only as the Shadow, known to have a nebulous sort of authority over the Undercity.";
+	  break;
+    case MI_BA_WARDEN:
+      sRetVal = "You are a Warden of Vyvian Village, one of those who protect the village and its people.";
+      break;  }
 
   // If using castes (server config.2da)
   if (GetLocalInt(GetModule(), "USE_CASTES"))
@@ -510,84 +337,15 @@ int miBAGetIsBackgroundLegal(int nBackground, object oPC)
   {
     case MI_BA_NONE:
       return TRUE;
-    case MI_BA_BULLY:
-      return (GetAbilityScore(oPC, ABILITY_STRENGTH, TRUE) >= 11);
-    case MI_BA_DAUNTLESS:
-      return ((GetAbilityScore(oPC, ABILITY_CONSTITUTION, TRUE) >= 11) &&
-              (GetRacialType(oPC) == RACIAL_TYPE_HALFORC ||
-               GetRacialType(oPC) == RACIAL_TYPE_DWARF));
-    case MI_BA_DEVOUT:
-      return (GetAbilityScore(oPC, ABILITY_WISDOM, TRUE) >= 11);
-    case MI_BA_FARMER:
-      return TRUE;
-    case MI_BA_FEARLESS:
-      return (GetAbilityScore(oPC, ABILITY_STRENGTH, TRUE) >= 11 ||
-              GetAbilityScore(oPC, ABILITY_CONSTITUTION, TRUE) >= 11);
-    case MI_BA_FISHERMAN:
-      return TRUE;
-    case MI_BA_FLIRT:
-      return (GetAbilityScore(oPC, ABILITY_CHARISMA, TRUE) >= 13);
-    case MI_BA_GYPSY:
-      return (GetRacialType(oPC) != RACIAL_TYPE_HALFORC &&
-               GetRacialType(oPC) != RACIAL_TYPE_DWARF);
-    case MI_BA_HEALER:
-      return (GetLevelByClass(CLASS_TYPE_CLERIC, oPC) ||
-              GetLevelByClass(CLASS_TYPE_PALADIN, oPC));
-    case MI_BA_HUNTER:
-      return (GetAbilityScore(oPC, ABILITY_DEXTERITY, TRUE) >= 11);
-    case MI_BA_MERCHANT:
-      return (gsCMGetBaseSkillRank(SKILL_APPRAISE, ABILITY_INTELLIGENCE, oPC) -
-              GetAbilityModifier(ABILITY_INTELLIGENCE, oPC));
-    case MI_BA_NAT_LEADER:
-      return (GetAbilityScore(oPC, ABILITY_CHARISMA, TRUE) >= 11);
-    case MI_BA_NOBLE: return FALSE; //no longer available.
-    case BA_ARTIST:
-      return (GetAbilityScore(oPC, ABILITY_CHARISMA, TRUE) >= 11);
-    case MI_BA_PEASANT:
-      return TRUE;
-    case MI_BA_SCHOLAR:
-      return (GetLevelByClass(CLASS_TYPE_CLERIC, oPC) ||
-              GetLevelByClass(CLASS_TYPE_WIZARD, oPC) ||
-              GetLevelByClass(CLASS_TYPE_BARD, oPC));
-    case MI_BA_SLAVE:
-      return (GetRacialType(oPC) == RACIAL_TYPE_HALFORC || GetRacialType(oPC) == RACIAL_TYPE_HUMAN) &&
-              GetAlignmentGoodEvil(oPC) != ALIGNMENT_GOOD;
-    case MI_BA_SOLDIER:
-      return (GetAbilityScore(oPC, ABILITY_STRENGTH, TRUE) >= 11);
-    case MI_BA_TATTLE:
-      return (GetAbilityScore(oPC, ABILITY_CHARISMA, TRUE) >= 11);
-    case MI_BA_TRIBAL:
-      return (
-              (gsSUGetSubRaceByName(GetSubRace(oPC)) == GS_SU_ELF_WOOD) ||
-              (gsSUGetSubRaceByName(GetSubRace(oPC)) == GS_SU_SPECIAL_GOBLIN) ||
-              (gsSUGetSubRaceByName(GetSubRace(oPC)) == GS_SU_SPECIAL_KOBOLD) ||
-              GetLevelByClass(CLASS_TYPE_BARBARIAN, oPC) ||
-              (GetRacialType(oPC) == RACIAL_TYPE_HALFORC)
-             );
-    case MI_BA_TROUBLE:
-      return (GetAbilityScore(oPC, ABILITY_DEXTERITY, TRUE) >= 11 &&
-              GetAlignmentLawChaos(oPC) != ALIGNMENT_LAWFUL);
-    case MI_BA_WANDERER:
-      return TRUE;
-    case MI_BA_WILD_CHILD:
-      return (GetAbilityScore(oPC, ABILITY_DEXTERITY, TRUE) >= 11 &&
-              GetAlignmentLawChaos(oPC) != ALIGNMENT_LAWFUL);
-    case MI_BA_WIZ_APPR:
-      return (GetLevelByClass(CLASS_TYPE_SORCERER, oPC) ||
-              GetLevelByClass(CLASS_TYPE_WIZARD, oPC) ||
-              GetLevelByClass(CLASS_TYPE_BARD, oPC));
-    case MI_BA_POLITICIAN:
-      return (GetAbilityScore(oPC, ABILITY_CHARISMA, TRUE) >= 11);
-    case MI_BA_GLADIATOR:
-      return (GetLevelByClass(CLASS_TYPE_FIGHTER, oPC) ||
-              GetLevelByClass(CLASS_TYPE_ROGUE, oPC) ||
-              GetLevelByClass(CLASS_TYPE_RANGER, oPC) ||
-              GetLevelByClass(CLASS_TYPE_BARBARIAN, oPC) ||
-              GetLevelByClass(CLASS_TYPE_MONK, oPC));
-    case MI_BA_OUTCAST:
-        return (GetRacialType(oPC) == RACIAL_TYPE_HALFORC || GetRacialType(oPC) == RACIAL_TYPE_HUMAN) &&
-                GetAlignmentGoodEvil(oPC) != ALIGNMENT_GOOD;
-
+    case MI_BA_DRANNIS:
+    case MI_BA_ERENIA:
+    case MI_BA_RENERRIN:
+	  return (GetRacialType(oPC) == RACIAL_TYPE_HUMAN);
+	case MI_BA_WARDEN:
+	  return (GetRacialType(oPC) == RACIAL_TYPE_HALFLING);
+	case MI_BA_IMPERIAL:
+    case MI_BA_SHADOW:
+	  return FALSE;  // Can only be acquired during gameplay.
   }
 
   return FALSE;
@@ -624,170 +382,58 @@ void miBAApplyBackground(object oPC, int nBackground = -1, int nFirstTime = TRUE
 
   Trace(BACKGROUNDS, "Got creature armour item: " + (GetIsObjectValid(oItem) ? "SUCCESS" : "FAILURE"));
 
-  switch (nBackground)
+  if (nBackground != MI_BA_NONE)
   {
-    case MI_BA_NONE:
-      break;
-    case MI_BA_BULLY:
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertySkillBonus(SKILL_INTIMIDATE, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyDecreaseSkill(SKILL_BLUFF, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyBonusSavingThrow(IP_CONST_SAVEBASETYPE_FORTITUDE, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyReducedSavingThrow(IP_CONST_SAVEBASETYPE_WILL, 1), oItem);
+    // This slightly weird logic ensures that we don't duplicate background text.
+    int nSubRace = gsSUGetSubRaceByName(GetSubRace(oPC));
+	
+	if (nSubRace == GS_SU_NONE)
+	{
+      SetSubRace(oPC, gsSUGetRaceName(GetRacialType(oPC)) + " (" + miBAGetBackgroundName(nBackground) + ")");
+	}
+	else
+	{	
+      SetSubRace(oPC, gsSUGetNameBySubRace(nSubRace) + " (" + miBAGetBackgroundName(nBackground) + ")");
+	}  
+  }
+  
+  // Optional - apply bonuses based on background here.
+  if (nFirstTime)
+  {
+    switch (nBackground)
+	{
+	  case MI_BA_DRANNIS:	   
+        CreateItemOnObject("galeoutfit", GetPCSpeaker());
+        CreateItemOnObject("key_drannis", GetPCSpeaker());
+        CreateItemOnObject("drannis_dye_1", GetPCSpeaker());
+        CreateItemOnObject("drannis_dye_2", GetPCSpeaker());
+        CreateItemOnObject("drannis_dye_3", GetPCSpeaker());
+        GiveGoldToCreature(GetPCSpeaker(), 750);
+	    break;
+	  case MI_BA_ERENIA:       
+        CreateItemOnObject("spiritoutfit", GetPCSpeaker());
+        CreateItemOnObject("key_erenia", GetPCSpeaker());
+        CreateItemOnObject("erenia_dye_1", GetPCSpeaker());
+        CreateItemOnObject("erenia_dye_2", GetPCSpeaker());
+        CreateItemOnObject("erenia_dye_3", GetPCSpeaker());
+        GiveGoldToCreature(GetPCSpeaker(), 750);
         break;
-    case MI_BA_DAUNTLESS:
-    {
-        int nHP = NWNX_Creature_GetMaxHitPointsByLevel(oPC, 1);
-        if (GetHitDice(oPC) == 1 && nFirstTime) NWNX_Creature_SetMaxHitPointsByLevel(oPC, 1, nHP + 5);
-        break;
-    }
-    case MI_BA_DEVOUT:
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertySkillBonus(SKILL_CONCENTRATION, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyDecreaseSkill(SKILL_BLUFF, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyBonusSavingThrow(IP_CONST_SAVEBASETYPE_WILL, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyReducedSavingThrow(IP_CONST_SAVEBASETYPE_FORTITUDE, 1), oItem);
-        break;
-    case MI_BA_FARMER:
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertySkillBonus(SKILL_SPOT, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyDecreaseSkill(SKILL_APPRAISE, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyBonusSavingThrow(IP_CONST_SAVEBASETYPE_FORTITUDE, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyReducedSavingThrow(IP_CONST_SAVEBASETYPE_REFLEX, 1), oItem);
-        break;
-    case MI_BA_FEARLESS:
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyBonusSavingThrowVsX(IP_CONST_SAVEVS_FEAR, 4), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyReducedSavingThrow(IP_CONST_SAVEBASETYPE_REFLEX, 2), oItem);
-        break;
-    case MI_BA_FISHERMAN:
-    {
-      if (GetHitDice(oPC) == 1 && nFirstTime) // Only get the pole at start
-      {
-        if (GetCreatureSize(oPC) <= CREATURE_SIZE_SMALL)
-        {
-          object oPole = CreateItemOnObject("ar_it_fishpolesm", oPC);
-          SetIdentified(oPole, TRUE);
-        }
-        else
-        {
-          object oPole = CreateItemOnObject("ar_it_fishpole", oPC);
-          SetIdentified(oPole, TRUE);
-        }
-      }
-
-      break;
-    }
-    case MI_BA_FLIRT:
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertySkillBonus(SKILL_LISTEN, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertySkillBonus(SKILL_PERSUADE, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyDecreaseSkill(SKILL_INTIMIDATE, 2), oItem);
-        break;
-    case MI_BA_GYPSY:
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertySkillBonus(SKILL_PERFORM, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertySkillBonus(SKILL_TUMBLE, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyDecreaseSkill(SKILL_CONCENTRATION, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyDecreaseSkill(SKILL_USE_MAGIC_DEVICE, 1), oItem);
-        break;
-    case MI_BA_HEALER:
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertySkillBonus(SKILL_HEAL, 2), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertySkillBonus(SKILL_LORE, 1), oItem);
-
-        if (GetHitDice(oPC) == 1 && nFirstTime)
-        {
-          ModifyAbilityScore(oPC, ABILITY_STRENGTH, -1);
-        }
-        break;
-    case MI_BA_HUNTER:
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertySkillBonus(SKILL_MOVE_SILENTLY, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertySkillBonus(SKILL_CRAFT_TRAP, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyDecreaseSkill(SKILL_LORE, 2), oItem);
-        break;
-    case MI_BA_MERCHANT:
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertySkillBonus(SKILL_APPRAISE, 2), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyDecreaseSkill(SKILL_DISCIPLINE, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyDecreaseSkill(SKILL_TAUNT, 1), oItem);
-        break;
-    case MI_BA_NAT_LEADER:
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyReducedSavingThrow(IP_CONST_SAVEBASETYPE_FORTITUDE, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyReducedSavingThrow(IP_CONST_SAVEBASETYPE_REFLEX, 1), oItem);
-
-        if (GetHitDice(oPC) == 1 && nFirstTime)
-        {
-          ModifyAbilityScore(oPC, ABILITY_CONSTITUTION, -1);
-          ModifyAbilityScore(oPC, ABILITY_CHARISMA, 1);
-        }
-        break;
-    case MI_BA_NOBLE:
-    case BA_ARTIST:
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertySkillBonus(SKILL_PERSUADE, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyDecreaseSkill(SKILL_CONCENTRATION, 2), oItem);
-        break;
-    case MI_BA_PEASANT:
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyDecreaseSkill(SKILL_DISCIPLINE, 1), oItem);
-        break;
-    case MI_BA_SCHOLAR:
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertySkillBonus(SKILL_LORE, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertySkillBonus(SKILL_CONCENTRATION, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyDecreaseSkill(SKILL_DISCIPLINE, 2), oItem);
-        break;
-    case MI_BA_SLAVE:
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyBonusSavingThrow(IP_CONST_SAVEBASETYPE_FORTITUDE, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyReducedSavingThrow(IP_CONST_SAVEBASETYPE_WILL, 1), oItem);
-        //CreateItemOnObject("gvd_slave_clamp", oPC);
-        break;
-    case MI_BA_SOLDIER:
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertySkillBonus(SKILL_DISCIPLINE, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyReducedSavingThrow(IP_CONST_SAVEBASETYPE_WILL, 1), oItem);
-        break;
-    case MI_BA_TATTLE:
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertySkillBonus(SKILL_LORE, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertySkillBonus(SKILL_BLUFF, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyDecreaseSkill(SKILL_CONCENTRATION, 2), oItem);
-        break;
-    case MI_BA_TRIBAL:
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertySkillBonus(SKILL_TAUNT, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyDecreaseSkill(SKILL_DISCIPLINE, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyBonusSavingThrow(IP_CONST_SAVEBASETYPE_FORTITUDE, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyReducedSavingThrow(IP_CONST_SAVEBASETYPE_WILL, 1), oItem);
-        break;
-    case MI_BA_TROUBLE:
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertySkillBonus(SKILL_SET_TRAP, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertySkillBonus(SKILL_PICK_POCKET, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyBonusSavingThrow(IP_CONST_SAVEBASETYPE_REFLEX, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyReducedSavingThrow(IP_CONST_SAVEBASETYPE_WILL, 2), oItem);
-        break;
-    case MI_BA_WANDERER:
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertySkillBonus(SKILL_APPRAISE, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertySkillBonus(SKILL_BLUFF, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyReducedSavingThrow(IP_CONST_SAVEBASETYPE_WILL, 1), oItem);
-        break;
-    case MI_BA_WILD_CHILD:
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertySkillBonus(SKILL_TUMBLE, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertySkillBonus(SKILL_HIDE, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertySkillBonus(SKILL_MOVE_SILENTLY, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyDecreaseSkill(SKILL_BLUFF, 2), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyDecreaseSkill(SKILL_APPRAISE, 2), oItem);
-        break;
-    case MI_BA_WIZ_APPR:
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertySkillBonus(SKILL_SPELLCRAFT, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertySkillBonus(SKILL_LORE, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyDecreaseSkill(SKILL_SPOT, 2), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyReducedSavingThrow(IP_CONST_SAVEBASETYPE_FORTITUDE, 1), oItem);
-        break;
-    case MI_BA_POLITICIAN:
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertySkillBonus(SKILL_INTIMIDATE, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertySkillBonus(SKILL_BLUFF, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertySkillBonus(SKILL_PERFORM, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertySkillBonus(SKILL_PERSUADE, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyDecreaseSkill(SKILL_DISCIPLINE, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyReducedSavingThrow(IP_CONST_SAVEBASETYPE_FORTITUDE, 1), oItem);
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyReducedSavingThrow(IP_CONST_SAVEBASETYPE_REFLEX, 1), oItem);
-        break;
-     case MI_BA_GLADIATOR:
-        // -1 will (double xp for gladiator fights in Cordor arena is obviously not handled here)
-        AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyReducedSavingThrow(IP_CONST_SAVEBASETYPE_WILL, 1), oItem);
-        break;
-     case MI_BA_OUTCAST:
-        // Does nothing except start you in Underdark (Andunor).
-        break;
-
+	  case MI_BA_RENERRIN:
+        CreateItemOnObject("voiceoutfit", GetPCSpeaker());
+        CreateItemOnObject("key_renerrin", GetPCSpeaker());
+        CreateItemOnObject("renerrin_dye_1", GetPCSpeaker());
+        CreateItemOnObject("renerrin_dye_2", GetPCSpeaker());
+        CreateItemOnObject("renerrin_dye_3", GetPCSpeaker());
+        GiveGoldToCreature(GetPCSpeaker(), 750);
+		break;
+      case MI_BA_WARDEN:   	  
+        CreateItemOnObject("nw_cloth001", GetPCSpeaker());
+        CreateItemOnObject("key_warden", GetPCSpeaker());
+        GiveGoldToCreature(GetPCSpeaker(), 750);
+		break;
+	  default:
+        break;		
+	}
   }
 }
 
@@ -803,17 +449,7 @@ int miBAGetCraftSkillBonus(object oPC, int nCraftSkill)
 
     switch (nBackground)
     {
-      // Note: We can't include inc_craft for the constants, as that library
-      // needs to include this one to call this method.
-      case MI_BA_NOBLE: // art
-      case BA_ARTIST:
-        return ((nCraftSkill == 3) ? 1 : 0);
-      case MI_BA_PEASANT: // tailor
-        return ((nCraftSkill == 6) ? 1 : 0);
-      case MI_BA_SOLDIER: // forge
-        return ((nCraftSkill == 4) ? 1 : 0);
-      case MI_BA_WIZ_APPR: // alchemy
-        return ((nCraftSkill == 5) ? 1 : 0);
+	  // Optional - apply bonuses based on background here.
     }
 
     return 0;
@@ -839,7 +475,7 @@ void miBAReapplyGifts(object oPC, int bReapplySpecialAbilities = TRUE)
   int i;
 
   // Gifts have not been migrated. Do that now.
-  if(!GetIsListValid(oAbility, "Gifts"))
+  if(!GetIsListValid(oAbility, "Gifts") && GetLocalString(oAbility, "MI_GIFT_1") != "")
   {
     _MigrateGiftData(oPC);
   }
@@ -1042,6 +678,7 @@ void miBAApplyGift(object oPC, int nGift, int bFirstTime = TRUE, int bApplySpeci
       Error("miBAApplyGift()", "Attempted to apply invalid gift ID(" + IntToString(nGift) + ") to " + GetName(oPC) + ".");
       return;
   }
+  
   if(bFirstTime)
   {
     miBAIncreaseECL(oPC, GetGiftECL(nGift));
@@ -1067,7 +704,7 @@ void AddGift(object oPC, int nGift, int bReapplyBonuses = TRUE)
     AddListElement(oAbility, "Gifts", IntToString(nGift));
     _UpdateGiftOfSubraceFlag(oPC);
 
-    if(bReapplyBonuses) ExecuteScript("exe_bonuses", oPC);
+	miBAApplyGift(oPC, nGift, TRUE, TRUE);
 }
 
 //::///////////////////////////////////////////////
@@ -1536,7 +1173,11 @@ int md_GetIsNoble(object oPC, string sNationID)
     else if(miCZGetIsLeader(oPC))
         nNobleType |= 0x04; //pc leader in any other nation
 
-    if(miBAGetBackground(oPC) == MI_BA_NOBLE)
+    if(miBAGetBackground(oPC) == MI_BA_IMPERIAL ||
+	   miBAGetBackground(oPC) == MI_BA_DRANNIS ||
+	   miBAGetBackground(oPC) == MI_BA_ERENIA ||
+	   miBAGetBackground(oPC) == MI_BA_RENERRIN
+	   )
         nNobleType |= 0x010;
 
     if(GetHasFeat(FEAT_EPIC_REPUTATION, oPC))

@@ -273,10 +273,10 @@
 269   Greystone02           AREA_TRANSITION_GREYSTONE_02     LS_ELD_02         ELD01     ****     
 270   Greystone03           AREA_TRANSITION_GREYSTONE_03     LS_ELD_03         ELD01     ****     
 271   Greystone04           AREA_TRANSITION_GREYSTONE_04     LS_ELD_04         ELD01     ****     
-272   Forest06              AREA_TRANSITION_FOREST_06        LS_TTF_06         TTF01     ****     
-273   Forest07              AREA_TRANSITION_FOREST_07        LS_TTF_07         TTF01     ****     
-274   Forest08              AREA_TRANSITION_FOREST_08        LS_TTF_08         TTF01     ****     
-275   Forest09              AREA_TRANSITION_FOREST_09        LS_TTF_09         TTF01     ****     
+272   Forest06              AREA_TRANSITION_FOREST_06        LS_TTF_06         ****      ****     
+273   Forest07              AREA_TRANSITION_FOREST_07        LS_TTF_07         ****      ****     
+274   Forest08              AREA_TRANSITION_FOREST_08        LS_TTF_08         ****      ****     
+275   Forest09              AREA_TRANSITION_FOREST_09        LS_TTF_09         ****      ****     
 276   Rural06               AREA_TRANSITION_RURAL_06         LS_TTR_06         TTR01     ****     
 277   Rural07               AREA_TRANSITION_RURAL_07         LS_TTR_07         TTR01     ****     
 278   Rural08               AREA_TRANSITION_RURAL_08         LS_TTR_08         TTR01     ****     

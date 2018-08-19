@@ -58,7 +58,8 @@ void barbSelfRageEffects(int nDuration, object oPC = OBJECT_SELF);
 void barbWeaponRageEffects(int nDuration, object oPC = OBJECT_SELF);
 // Application of passive CON-based boost to barb damage
 void barbReApplyBonuses(object oEquip, object oPC = OBJECT_SELF);
-
+// Override to set rage level based on number of rage feats.
+int _AnemoiRageLvl(object oPC = OBJECT_SELF);
 // TRIBAL PATH FUNCTIONS
 
 // Equip tribal armor
@@ -171,9 +172,6 @@ void barbSelfRageEffects(int nDuration, object oPC = OBJECT_SELF)
     // 50% Movement speed while enraged
     effect eSpeed = EffectMovementSpeedIncrease(50);
 
-    // Will Bonus is (Class levels / 4) + 1
-    effect eWill = EffectSavingThrowIncrease(SAVING_THROW_WILL, 1 + (nBarbLevels / 4));
-
     // Visual effect on cessation of rage.
     effect eDur = EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE);
 
@@ -185,6 +183,13 @@ void barbSelfRageEffects(int nDuration, object oPC = OBJECT_SELF)
        eHP = ExtraordinaryEffect(eHP);
     ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eHP, oPC, RoundsToSeconds(nDuration));
 
+	//Sawaki: Keeping TempHP linked to lvl, other effects to rage feats. Testwise reduced Con-requirements (BALANCING?)
+	nBarbLevels = _AnemoiRageLvl(oPC);
+	
+	// Will Bonus is (Class levels / 4) + 1
+    effect eWill = EffectSavingThrowIncrease(SAVING_THROW_WILL, 1 + (nBarbLevels / 4));
+
+	
     // AB Increase
     int nAB = 0;
     if (nBarbLevels >= 12)
@@ -193,7 +198,7 @@ void barbSelfRageEffects(int nDuration, object oPC = OBJECT_SELF)
         nAB = 1;
 
     // Drop AB increase if CON <= 17
-    if (nAB > 0 && GetAbilityScore(oPC, ABILITY_CONSTITUTION, TRUE) <= 17)
+    if (nAB > 0 && GetAbilityScore(oPC, ABILITY_CONSTITUTION, TRUE) <= 13)
         nAB = nAB - 1;
 
     // Link all effects (except HP)
@@ -209,7 +214,7 @@ void barbSelfRageEffects(int nDuration, object oPC = OBJECT_SELF)
         int nImmunity = 5;
               if (nBarbLevels >= 16)
                      nImmunity += 5;
-        if (GetAbilityScore(oPC, ABILITY_CONSTITUTION, TRUE) < 18)
+        if (GetAbilityScore(oPC, ABILITY_CONSTITUTION, TRUE) < 14)
             nImmunity -= 5;
 
               if (nImmunity > 0) {
@@ -291,6 +296,76 @@ int barbWeapDamType(object oWeapon)
 }
 
 //------------------------------------------------------------------------------
+// Sawaki: Setting BarbarianLVL via Rage-Feats. Balancing under review.
+int _AnemoiRageLvl(object oPC = OBJECT_SELF)
+{
+	int nLevel;
+	nLevel = 0;
+	
+	if (GetHasFeat(330, oPC)) // barb rage 6
+	{  
+	  nLevel = 20;
+	}
+	else if (GetHasFeat(329, oPC)) // barb rage 5
+	{  
+	  nLevel = 16;
+	}
+	else if (GetHasFeat(328, oPC)) // barb rage 4
+	{  
+	  nLevel = 12;
+	}
+	else if (GetHasFeat(327, oPC))  // barb rage 3
+	{  
+	  nLevel = 8;
+	}
+	else if (GetHasFeat(326, oPC)) // barb rage 2
+	{  
+	  nLevel = 4;
+	}
+	else
+	{ 
+	  nLevel = 1; // barb rage 1 
+	}  
+		
+	// Temporaray solution: Any epic Rage feat sets ragelvl to 24, then 28.
+	
+	if (GetHasFeat(869, oPC)) // Mighty Rage
+	{ 
+		if (nLevel == 24)
+		{	
+			nLevel = 28;
+		} 
+		else 
+		{
+			nLevel = 24;
+		}	
+	}
+	if (GetHasFeat(988, oPC)) // Thundering Rage
+	{ 
+	  if (nLevel == 24)
+		{	
+			nLevel = 28;
+		} 
+		else 
+		{
+			nLevel = 24;
+		}
+	}	
+	if (GetHasFeat(989, oPC)) // Terrifying Rage
+	{ 
+	  if (nLevel == 24)
+		{	
+			nLevel = 28;
+		} 
+		else 
+		{
+			nLevel = 24;
+		}
+	}	
+	return nLevel;
+}	
+
+//------------------------------------------------------------------------------
 
 void barbWeaponRageEffects(int nDuration, object oPC = OBJECT_SELF)
 {
@@ -332,12 +407,13 @@ void barbWeaponRageEffects(int nDuration, object oPC = OBJECT_SELF)
     }
 
     // Scale damage based on class level
-    int nBarbLevels = GetLevelByClass(CLASS_TYPE_BARBARIAN, oPC);
+    int nBarbLevels = _AnemoiRageLvl(oPC);
     int nBonusLevel = 1 + (nBarbLevels / 4);
     int nDamageBonus = IP_CONST_DAMAGEBONUS_1;
     int nSecondBonus = 0;
+	
 
-    // Separate scaling basedon 1H or 2H weapons
+    // Separate scaling basedon 1H or 2H weapons 
     if (GetWeaponSize(oWeapon, oPC) >= WEAPON_SIZE_TWO_HANDED || GetCreatureSize(oPC) >= CREATURE_SIZE_LARGE) {
         switch (nBonusLevel)
         {
@@ -463,7 +539,7 @@ void barbReApplyBonuses(object oEquip, object oPC = OBJECT_SELF)
     }
 
     // AC Increase
-    int nBarbLevels = GetLevelByClass(CLASS_TYPE_BARBARIAN, oPC);
+    int nBarbLevels = _AnemoiRageLvl(oPC);
     int nACBonus = 0;
     if (nBarbLevels >= 20)
         nACBonus = 4;
@@ -583,12 +659,9 @@ void btribeCreateTribesmen(object oPC)
 
 	// Sawaki, 7-27-2018; TribalLVL determined via RageFeat
 	int nLevel;
+	nLevel = 0;
 	
-	if (GetHasFeat(331, oPC)) // barb rage 7
-	{  
-	  nLevel = 14;
-	}
-	else if (GetHasFeat(330, oPC)) // barb rage 6
+	if (GetHasFeat(330, oPC)) // barb rage 6
 	{  
 	  nLevel = 12;
 	}

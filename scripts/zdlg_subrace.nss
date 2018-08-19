@@ -395,10 +395,10 @@ int _ApplySubRace()
 
     }
 
-    // dunshine: handle racial starting equipment here
-    _gvdCreateBaseInventoryForRace(oSpeaker);
-
   }
+
+  // dunshine: handle racial starting equipment here
+  _gvdCreateBaseInventoryForRace(oSpeaker);
 
   md_AddRacialBonuses(oSpeaker, nSubRace, oProperty);
 
@@ -515,12 +515,6 @@ void _ApplyBackground()
   int nBackground  = GetIntElement(GetLocalInt(OBJECT_SELF, SELECTION), BACKGROUND_SELECTIONS);
   SendMessageToPC(oSpeaker, "Applying selected background: " + miBAGetBackgroundName(nBackground));
   miBAApplyBackground(oSpeaker, nBackground);
-
-  if (nBackground != MI_BA_NONE)
-  {
-    SetSubRace(oSpeaker,
-        GetSubRace(oSpeaker) + " (" + miBAGetBackgroundName(nBackground) + ")");
-  }
 }
 
 void _ApplyStartLocation(int nChoice)
@@ -1846,9 +1840,7 @@ void HandleSelection()
         // Underdarkers, slaves and outcasts start in the UD.  Otherwise, players get a selection.
     		// Earthkin:  Skal, Cordor or Brogendenstein
     		// Other Surfacers:  Cordor or Skal
-    		if (!_isUnderdarkSubrace(oPC) && 
-    			   miBAGetBackground(oPC) != MI_BA_OUTCAST &&
-    			   miBAGetBackground(oPC) != MI_BA_SLAVE)
+    		if (!_isUnderdarkSubrace(oPC))
 		    {
 			//Saleph: Background and Startloc temp disabled, go to Path select 
 			SetDlgPageString(PATH_SELECT);

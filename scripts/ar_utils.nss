@@ -80,10 +80,6 @@ int ar_IsUDCharacter(object oPC, int bIncludeClampedSlaves = FALSE)
 {
     string sSubRace = GetSubRace(oPC);
     int nSubRace    = gsSUGetSubRaceByName(sSubRace);
-    int bOutcast    = miBAGetBackground(oPC) == MI_BA_OUTCAST;
-    int bSlave      = miBAGetBackground(oPC) == MI_BA_SLAVE;
-
-    if ( bIncludeClampedSlaves && !bSlave ) bSlave = ar_IsUDSlave(oPC);
 
     return nSubRace == GS_SU_ELF_DROW ||
            nSubRace == GS_SU_GNOME_DEEP ||
@@ -100,8 +96,7 @@ int ar_IsUDCharacter(object oPC, int bIncludeClampedSlaves = FALSE)
            nSubRace == GS_SU_SPECIAL_OGRE ||
            nSubRace == GS_SU_SPECIAL_IMP ||
            nSubRace == GS_SU_SPECIAL_HOBGOBLIN ||
-           nSubRace == GS_SU_DEEP_IMASKARI ||
-           bOutcast || bSlave;
+           nSubRace == GS_SU_DEEP_IMASKARI;
 }
 
 int ar_IsMonsterCharacter(object oPC)
@@ -149,13 +144,12 @@ int ar_IsUDSlave(object oPC)
 
 int ar_IsUDOutcast(object oPC)
 {
-    return miBAGetBackground(oPC) == MI_BA_OUTCAST;
+    return FALSE;
 }
 
 int ar_IsEligibleToUDVote(object oPC) {
     string sSubRace = GetSubRace(oPC);
     int nSubRace    = gsSUGetSubRaceByName(sSubRace);
-    int bOutcast    = miBAGetBackground(oPC) == MI_BA_OUTCAST;
 
     if ( ar_IsUDSlave(oPC) )    return FALSE;
 
@@ -170,8 +164,7 @@ int ar_IsEligibleToUDVote(object oPC) {
            nSubRace == GS_SU_SPECIAL_OGRE ||
            nSubRace == GS_SU_SPECIAL_IMP ||
            nSubRace == GS_SU_SPECIAL_HOBGOBLIN ||
-           nSubRace == GS_SU_DEEP_IMASKARI ||
-           bOutcast;
+           nSubRace == GS_SU_DEEP_IMASKARI;
 }
 
 int ar_IsSettlementLeader(object oPC, object oArea) {

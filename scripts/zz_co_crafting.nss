@@ -1026,18 +1026,11 @@ void Sel7()
         }
         else dlgSetPlayerDataInt(FB_VAR_WORK_PROGRESS, TRUE);
     }
-    else
+	
+    if (dlgGetPlayerDataInt(FB_VAR_WORK_PROGRESS))
     {
-        // Decide how much to repair or produce by
-        int nValue = 0;
-        switch (dlgGetSelectionIndex())
-        {
-            case 0: nValue = 1;     break;
-            case 1: nValue = 5;     break;
-            case 2: nValue = 10;    break;
-            case 3: nValue = 25;    break;
-            case 4: nValue = FALSE; break;
-        }
+        // Decide how much to repair or produce by - always 1 on Anemoi.
+        int nValue = 1;
 		
         object oSelf = OBJECT_SELF;
         int nSkill   = dlgGetSpeakeeDataInt(FB_VAR_SKILL);

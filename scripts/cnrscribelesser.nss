@@ -65,7 +65,7 @@ void main()
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 10, 10);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuLevel1Scrolls, "Cure Minor Wounds", "NW_IT_SPARSCR405", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuLevel1Scrolls, "Cure Minor Wounds", "X2_IT_SPDVSCR001", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "x2_it_cfm_bscrl", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrInkL", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "dust_gree", 1);

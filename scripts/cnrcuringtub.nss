@@ -30,47 +30,42 @@ void main()
   //CnrRecipeSetDeviceInventoryTool("cnrCuringTub", "cnr");
   //CnrRecipeSetDeviceEquippedTool("cnrCuringTub", "cnr");
   CnrRecipeSetDeviceTradeskillType("cnrcuringtub", CNR_TRADESKILL_TAILORING);
+  CnrRecipeSetRecipeAbilityPercentages("cnrcuringtub", 0, 50, 0, 50, 0, 0);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuHidesSmall, "Cured Badger Hide", "cnrhidecurebadg", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnracidtanning", 1, 0);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrskinbadger", 1, 0);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 10, 10);
-  CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 0, 65, 0, 35, 0, 0);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuHidesLarge, "Cured Deer Hide", "cnrhidecuredeer", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnracidtanning", 1, 0);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrskindeer", 1, 0);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
-  CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 0, 65, 0, 35, 0, 0);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuHidesMedium, "Cured Wolf Hide", "cnrhidecurewolf", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnracidtanning", 1, 0);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrskinwolf", 1, 0);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
-  CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 0, 65, 0, 35, 0, 0);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuHidesLarge, "Cured Worg Hide", "cnrhidecureworg", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnracidtanning", 1, 0);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrskinworg", 1, 0);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 7);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 70, 70);
-  CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 0, 65, 0, 35, 0, 0);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuHidesLarge, "Cured Grizzly Hide", "cnrhidecuregriz", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnracidtanning", 1, 0);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrskingrizbear", 1, 0);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 9);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 90, 90);
-  CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 0, 65, 0, 35, 0, 0);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuHidesLarge, "Cured Dire Bear Hide", "cnrhidecuredb", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnracidtanning", 1, 0);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrskindb", 1, 0);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 11);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 110, 110);
-  CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 0, 65, 0, 35, 0, 0);
 
 }

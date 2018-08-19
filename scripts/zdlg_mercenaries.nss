@@ -230,7 +230,7 @@ void HandleSelection()
         object oWP = GetObjectElement(selection - 1, VALID_WAYPOINTS);
         int nNumMercs = GetLocalInt(OBJECT_SELF, NUM_HIRED);
         string sResRef = GetLocalString(OBJECT_SELF, RESREF);
-        string sFaction = GetSubRace(GetPCSpeaker());
+		int nFaction = miBAGetBackground(GetPCSpeaker());
         int nCost = GetLocalInt(OBJECT_SELF, COST);
         int nTotalCost = nNumMercs * nCost;
 
@@ -239,11 +239,6 @@ void HandleSelection()
           SendMessageToPC(GetPCSpeaker(), "((This merc captain isn't set up "
            + "correctly. Missing resref. Please report this message.))");
         }
-        /*else if (sFaction == "")
-        {
-          SendMessageToPC(GetPCSpeaker(), "((You have to be a member of a "
-          + "faction to hire mercenaries!))");
-        }*/
         else if (!GetIsObjectValid(oWP) || (nNumMercs == 0))
         {
           SendMessageToPC(GetPCSpeaker(), "((Sorry, an error occurred. "
@@ -264,9 +259,9 @@ void HandleSelection()
 
           int nRepPoints = nTotalCost/1500;
           if (nRepPoints == 0) nRepPoints = 1;
-          GiveRepPoints(oPC, nRepPoints, GetFactionFromName(GetSubRace(oPC)));
+          GiveRepPoints(oPC, nRepPoints, nFaction);
 
-          sResRef = sResRef + "_" + IntToString(GetFactionFromName(sFaction));
+          sResRef = sResRef + "_" + IntToString(nFaction);
           int nCount = 0;
           while (nCount < nNumMercs)
           {

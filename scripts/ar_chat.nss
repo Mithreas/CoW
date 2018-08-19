@@ -31,7 +31,7 @@ When creating a command, some extra code ought to be added to fbCHCommandList.
 
 void _showHelp(object speaker)
 {
-    DisplayTextInExamineWindow("Arelith Virtual Console",
+    DisplayTextInExamineWindow("Virtual Console",
         "The console will recognize each of the following commands. " +
         "For details on how to use each one, simply speak a ? after the command, e.g. '-dispel ?'.\n\n" +
         "Commands inside square brackets represent aliases which provide a shortcut of functionality to their parent command.\n\n" +

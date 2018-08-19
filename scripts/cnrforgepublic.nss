@@ -23,22 +23,27 @@ void main()
   CnrRecipeSetDevicePreCraftingScript("cnrforgepublic", "cnr_forge_anim");
   CnrRecipeSetRecipeAbilityPercentages("cnrforgepublic", 50, 0, 50, 0, 0, 0);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe("cnrforgepublic", "Ondaran Ingot(s)", "cnringotond", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe("cnrforgepublic", "Ondaran Ingot", "cnringotond", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrnuggetond", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe("cnrforgepublic", "Iron Ingot(s)", "cnringotiro", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe("cnrforgepublic", "Iron Ingot", "cnringotiro", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrnuggetiro", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe("cnrforgepublic", "Silver Ingot(s)", "cnringotsil", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe("cnrforgepublic", "Silver Ingot", "cnringotsil", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrnuggetsil", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe("cnrforgepublic", "Gold Ingot(s)", "cnringotgol", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe("cnrforgepublic", "Gold Ingot", "cnringotgol", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrnuggetgol", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
 
+  sKeyToRecipe = CnrRecipeCreateRecipe("cnrforgepublic", "Electrum Ingot", "cnringotele", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrnuggetsil", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrnuggetgol", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
+/*
   sKeyToRecipe = CnrRecipeCreateRecipe("cnrforgepublic", "Demon's Bane Ingot(s)", "cnringotdem", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrnuggetdem", 2, 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
@@ -54,5 +59,5 @@ void main()
   sKeyToRecipe = CnrRecipeCreateRecipe("cnrforgepublic", "Stallix Ingot(s)", "cnringotsta", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrnuggetsta", 3, 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
-
+*/
 }

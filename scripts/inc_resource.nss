@@ -31,16 +31,15 @@ void DistributeResources();
 int GetPCFactionOwnsArea(object oPC, object oArea)
 {
   Trace(RESOURCE, "Checking if PC " +GetName(oPC)+ "'s faction owns " +GetName(oArea));
-  string sSubRace = GetSubRace(oPC);
 
-  if (GetPersistentInt(OBJECT_INVALID, GetTag(oArea)+OWNER) == GetFactionFromName(sSubRace))
+  if (GetPersistentInt(OBJECT_INVALID, GetTag(oArea)+OWNER) == miBAGetBackground(oPC))
   {
-    Trace(RESOURCE, "PC's faction ("+IntToString(GetFactionFromName(sSubRace))+") owns area.");
+    Trace(RESOURCE, "PC's faction ("+IntToString(miBAGetBackground(oPC))+") owns area.");
     return 1;
   }
   else
   {
-    Trace(RESOURCE, "PC's faction ("+IntToString(GetFactionFromName(sSubRace))+") doesn't own area.");
+    Trace(RESOURCE, "PC's faction ("+IntToString(miBAGetBackground(oPC))+") doesn't own area.");
     return 0;
   }
 }
@@ -55,8 +54,8 @@ int CheckNoUnalignedMercenaries(object oArea)
     {
       if (GetIsPC(oObject))
       {
-        string sSubRace = GetSubRace(oObject);
-        if (sSubRace == "")
+        int nFaction = miBAGetBackground(oObject);
+        if (!nFaction)
         {
           Trace(RESOURCE, "Found unaligned PC. Returning false.");
           return FALSE;
@@ -103,8 +102,8 @@ int CheckNoOwnersPresent(object oArea)
     {
       if (GetIsPC(oObject))
       {
-        string sSubRace = GetSubRace(oObject);
-        if (GetFactionFromName(sSubRace) == nOwner)
+        int nFaction = miBAGetBackground(oObject);
+        if (nFaction == nOwner)
         {
           Trace(RESOURCE,
                 "Found PC of owner's faction("+GetName(oObject)+"). Returning false.");
@@ -134,8 +133,8 @@ void ClaimResource(object oPC, object oArea)
   if (!GetIsPC(oPC)) return;
   Trace(RESOURCE, "Changing owner of "+GetName(oArea)+" to faction of "+GetName(oPC));
 
-  string sSubRace = GetSubRace(oPC);
-  SetPersistentInt(OBJECT_INVALID, GetTag(oArea)+OWNER, GetFactionFromName(sSubRace));
+  int nFaction = miBAGetBackground(oPC);
+  SetPersistentInt(OBJECT_INVALID, GetTag(oArea)+OWNER, nFaction);
 }
 
 int GetOwningFaction(object oArea)

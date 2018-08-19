@@ -270,7 +270,8 @@ void gsInitialize()
         //subrace selection
         // Changed by Mithreas to use Z-Dialog.
         Log(INIT, "Calling subrace selection");
-        SetLocalString(OBJECT_SELF, "dialog", "zdlg_subrace");
+		GiveGoldToCreature(OBJECT_SELF, 250);
+        SetLocalString(OBJECT_SELF, "dialog", "zdlg_pc_init");
         DelayCommand(2.0, ActionStartConversation(OBJECT_SELF, "zdlg_converse", TRUE, FALSE));
     }
     else

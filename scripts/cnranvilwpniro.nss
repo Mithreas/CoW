@@ -97,6 +97,12 @@ void main()
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
 
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Axes, "Iron Pickaxe", "cnrminerspickiro", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrmedbld2", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrshaft", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
+
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Axes, "Iron Handaxe", "waxhn003", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrsmlbld2", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrshaft", 1);

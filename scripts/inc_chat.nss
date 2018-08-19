@@ -96,7 +96,7 @@ struct fbCHChat fbCHGetChat()
   if (stChat.nChannel == NWNX_CHAT_CHANNEL_PLAYER_PARTY)
   {
     fbCHMute(stChat.oSpeaker);
-    SendMessageToPC(stChat.oSpeaker, txtRed + "Party chat is not allowed on Arelith.</c>");
+    SendMessageToPC(stChat.oSpeaker, txtRed + "Party chat is not allowed here, please keep OOC to Tells.</c>");
     stChat.bIgnore = TRUE;
     return stChat;
   }

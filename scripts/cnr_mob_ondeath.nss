@@ -17,4 +17,6 @@ void main()
   string sMobTag = GetTag(OBJECT_SELF);
   string sDropTag = GetLocalString(GetModule(), sMobTag + "_DropTag");
   CreateObject(OBJECT_TYPE_ITEM, sDropTag, locDeath, FALSE);
+  
+  ExecuteScript("gs_ai_death", OBJECT_SELF);
 }

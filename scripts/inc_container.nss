@@ -4,7 +4,7 @@
 //:://////////////////////////////////////////////
 /*
     Library to hold functions relating to
-    persitant container management for the
+    persistent container management for the
     PW world of Arelith.
 */
 //:://////////////////////////////////////////////
@@ -13,8 +13,8 @@
 //:://////////////////////////////////////////////
 
 #include "inc_database"
-#include "inc_xfer"
 #include "inc_stacking"
+#include "inc_xfer"
 
 // Database table needs to have the following schema:
 /*
@@ -67,7 +67,7 @@ void gsCOLoad(string sID, object oContainer, int nLimit = GS_LIMIT_DEFAULT, int 
         string sUseID     = SQLEncodeSpecialChars(sID);
         string sItemCache = "#";
         object oItem;
-
+        int bGSINV=FALSE;
         // Special case: Loot containers for different modules, SERVER_ISLAND (surface) is the default and has no prefix, others do
         if (GetStringLeft(sID, 12) == "GS_INVENTORY")
         {
@@ -83,9 +83,10 @@ void gsCOLoad(string sID, object oContainer, int nLimit = GS_LIMIT_DEFAULT, int 
           {
             sUseID = "DS_" + sUseID;
           }
+          bGSINV=TRUE;
         }
 
-        SQLExecDirect("SELECT item_number FROM gs_container_data WHERE UPPER(container_id)='" + sUseID + "' ORDER BY item_number ASC");
+        SQLExecDirect("SELECT item_number,item FROM gs_container_data WHERE UPPER(container_id)='" + sUseID + "' AND item_number>0 ORDER BY item_number ASC");
 
         if (!SQLFetch())
         {
@@ -99,6 +100,30 @@ void gsCOLoad(string sID, object oContainer, int nLimit = GS_LIMIT_DEFAULT, int 
             if (nSlot == nPos)
             {
                 sItemCache += "*";
+                oItem = NWNX_SQL_ReadFullObjectInActiveRow(1, oContainer);
+                if(GetIsObjectValid(oItem))
+                {
+
+                    if (GetResRef(oItem) == "nw_it_gold001") // Legacy
+                    {
+                        DestroyObject(oItem);
+                    }
+                    else
+                    {
+                        SetStolenFlag(oItem, bShop);
+                    }
+
+                    if(GetLocalInt(oItem, SLOT_VAR) != nSlot)
+                    {
+                        if(!bGSINV)
+                            Trace(CO, "ID: " + sUseID + " Slot mismatched fromm expected for " + GetName(oItem) + " Original: " + IntToString(GetLocalInt(oItem, SLOT_VAR)));
+
+                        //only setting in case of mismmatch
+                        SetLocalInt(oItem, SLOT_VAR, nSlot);
+                    }
+                }
+                else if(!bGSINV)
+                    Trace(CO, "ID: " + sUseID + " expected to load. Item not created.");
                 SQLFetch();
                 nSlot = StringToInt(SQLGetData(1));
             }
@@ -108,57 +133,7 @@ void gsCOLoad(string sID, object oContainer, int nLimit = GS_LIMIT_DEFAULT, int 
             }
         }
 
-        nSlot = 0;
-        string sItem;
-        object oTempItem;
 
-        while (nSlot < nLimit)
-        {
-            nSlot = FindSubString(sItemCache, "*", nSlot + 1);
-
-            if (nSlot == -1) break;
-
-            sSlot = IntToString(nSlot);
-
-            sSQL = "SELECT item FROM gs_container_data WHERE UPPER(container_id)='" + sUseID + "' AND item_number='" + sSlot + "'";
-            SQLExecStatement(sSQL);
-
-            if (SQLFetch()) {
-              oItem = NWNX_SQL_ReadFullObjectInActiveRow(0, oContainer);
-              if(GetIsObjectValid(oItem))
-              {
-                if(bShop)
-                {
-                    string sOldTag = GetLocalString(oItem, NO_STACK_TAG);
-                    string sCurrentTag = GetTag(oItem);
-                    if(GetStringLeft(sOldTag, 6) == "GS_SH_")
-                    {
-                        RemoveItemNoStack(oItem);
-                        DeleteLocalString(oItem, NO_STACK_TAG);
-                    }
-                    else if(GetStringLeft(GetTag(oItem), 6) != "GS_SH_")
-                    {
-                        SetLocalString(oItem, "SHOP_BUG_TAG", GetTag(oItem));
-                        SetTag(oItem, "GS_SH_" + GetTag(oItem));
-                    }
-
-                }
-              }
-              SetLocalInt(oItem, SLOT_VAR, nSlot);
-
-              if (GetIsObjectValid(oItem))
-              {
-                if (GetResRef(oItem) == "nw_it_gold001") // Legacy
-                {
-                    DestroyObject(oItem);
-                }
-                else
-                {
-                  SetStolenFlag(oItem, bShop);
-                }
-              }
-            }
-        }
 
         if (GetStringLeft(GetTag(oContainer), 12) == "GS_INVENTORY")
         {
@@ -211,9 +186,10 @@ struct gsCOResults gsCOSave(string sID, object oContainer, int nLimit = GS_LIMIT
             sItemCache += ".";
           }
         }
-
+        string sTag;
         while (GetIsObjectValid(oItem) && nNth < nLimit)
         {
+
             if (GetResRef(oItem) == "nw_it_gold001")
             {
                 stResults.nGold += GetItemStackSize(oItem);
@@ -227,6 +203,17 @@ struct gsCOResults gsCOSave(string sID, object oContainer, int nLimit = GS_LIMIT
 
                 if (nSlot != -1)
                 {
+                    sTag = GetTag(oItem);
+                    if(bShop && GetStringLeft(sTag, 6) != "GS_SH_")
+                    {
+                        Trace(CO, "Proper import failed. Shop name: " + GetName(oContainer) + "/" + GetName(GetLocalObject(oItem, "GS_SH_CONTAINER")) + " ID: " + sUseID + " Item name: " + GetName(oItem) + " Stolen flag: " + IntToString(GetStolenFlag(oItem)) +  " Closed by: " + GetName(GetLastClosedBy()));
+                        SetTag(oItem, "GS_SH_"+sTag);
+                        SetLocalObject(oItem, "GS_SH_CONTAINER", oContainer);
+                        SetLocalInt(oItem, "MD_CUSTOM_PRICE", 500000);
+                        //no need to touch stolen flag as that's done below
+                        SendMessageToPC(GetLastClosedBy(), "The shop has saved without being purchased. If you wish to make use of the shop please purchase it. " + GetName(oItem) + " has been saved, but you will need to update it's price.");
+                    }
+
                     sSlot = IntToString(nSlot);
 
                     sItemCache = GetStringLeft(sItemCache, nSlot) + "*" +
@@ -255,6 +242,7 @@ struct gsCOResults gsCOSave(string sID, object oContainer, int nLimit = GS_LIMIT
             stResults.nOverflowed++;
             oItem = GetNextItemInInventory(oContainer);
         }
+
 
         if (GetStringLeft(GetTag(oContainer), 12) == "GS_INVENTORY")
         {
@@ -294,17 +282,17 @@ void spCORemove(string sID, object oContainer, object oItem)
     string sCheck;
     if (nSlot == 0)
     {
-	  //------------------------------------------------------------------------------
+      //------------------------------------------------------------------------------
       // If it's gold, it's all good. Otherwise, it suggests that the removed item
-	  // stacked, meaning we lost access to its slot variable, or was never saved in
-	  // the first place.  Check for stacking first and clean up the database entry.
-	  //------------------------------------------------------------------------------
+      // stacked, meaning we lost access to its slot variable, or was never saved in
+      // the first place.  Check for stacking first and clean up the database entry.
+      //------------------------------------------------------------------------------
       if (GetResRef(oItem) != "nw_it_gold001")
       {
-        Error(CO, "Item had no slot assigned, container ID was " + sID + ".");
+        Log(CO, "Item had no slot assigned, container ID was " + sID + ".");
 
-        // Loop through all the items still in the container, to find which slot was 
-		// removed.
+        // Loop through all the items still in the container, to find which slot was
+        // removed.
         if (sID != "" && GetIsObjectValid(oContainer))
         {
           object oChest = GetFirstItemInInventory(oContainer);
@@ -324,11 +312,13 @@ void spCORemove(string sID, object oContainer, object oItem)
           {
             if(FindSubString(sCheck, ","+IntToString(x)+",") == -1) //not found so it must had been the item removed
             {
+                 Log(CO, "Checking non-existant slot: " + IntToString(x) + " " + sCheck + " " + sItemCache);
                  SQLExecStatement("SELECT * FROM gs_container_data WHERE UPPER(container_id)=? AND item_number=?", sUseID, IntToString(x));
                  if(SQLFetch()) //item found for that number
                  {
                     sItemCache = GetStringLeft(sItemCache, x) + "." +
                      GetStringRight(sItemCache, GetStringLength(sItemCache) - x- 1);
+                    Log(CO, "Item removed: " + sItemCache);
 
                     SQLExecDirect("DELETE FROM gs_container_data WHERE UPPER(container_id)='" + sUseID + "' " + "AND item_number='" + IntToString(x) + "'");
                     SetLocalString(oContainer, "SP_CO_ITEMSTRING", sItemCache);
@@ -340,8 +330,9 @@ void spCORemove(string sID, object oContainer, object oItem)
         }
       }
 	  
-	  // If we have not already returned, then the item was never saved.  In this 
-	  // case there is nothing to do, so we can return safely. 
+      Log(CO, "No item removed.");
+      // If we have not already returned, then the item was never saved.  In this
+      // case there is nothing to do, so we can return safely.
       return;
     }
 

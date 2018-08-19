@@ -2,7 +2,7 @@
 
            Name   Label         Amount   Cost   GS_IP_DISABLED
 0          ****   Random        ****     0      ****
-1          1652   Resist_5/-    5        0.75   ****
+1          1652   Resist_5/-    5        0.75   TRUE
 2          1653   Resist_10/-   10       1.5    TRUE
 3          1654   Resist_15/-   15       2.25   TRUE
 4          1655   Resist_20/-   20       3.5    TRUE

@@ -1189,9 +1189,7 @@ int CnrRecipeCheckComponentAvailability(object oPC, object oContainer, string sK
 string CnrRecipeBuildRecipeStringCommon(object oPC, object oContainer, string sKeyToRecipe)
 {
   string sRecipe = CnrRecipeGetRecipeDescByKey(sKeyToRecipe);
-  sRecipe = sRecipe + "\n\n";
-  sRecipe = sRecipe + CNR_TEXT_COMPONENTS_AVAILABLE_REQUIRED + "\n";
-  sRecipe = sRecipe + "---------------------------\n\n";
+  sRecipe = sRecipe + "\n";
   int nComponentCount = CnrRecipeGetComponentCountByKey(sKeyToRecipe);
   int nComponentIndex;
   for (nComponentIndex=1; nComponentIndex<=nComponentCount; nComponentIndex++)
@@ -1606,8 +1604,7 @@ void CnrRecipeDisplayCraftingResult(object oPC, object oDevice, string sKeyToRec
       }
     }
   }
-  
-  
+   
   // Worship hook - increase Piety by number of batches * 0.2 %
   int nAspect = gsWOGetDeityAspect(oPC);
   if (nAspect & ASPECT_KNOWLEDGE_INVENTION)
@@ -1708,18 +1705,18 @@ void CnrRecipeDisplayCraftingResult(object oPC, object oDevice, string sKeyToRec
   // a 5% success chance yields 95% of 2*RecipeXP
   // a 50% success chance yields 50% of 2*RecipeXP
   // a 95% success chance yields 5% of 2*RecipeXP
-  // A failure always counts for 35%.
+  // On failure, get XP based on your current craft level (no bonus for trying harder things).
   // All xp is gained as adventuring XP (i.e. to be distributed later). 
-  float fScale = (bSuccess ? IntToFloat(nEffDC-1) / 10.0f : 0.7f);
-  int nScaledGameXP = FloatToInt(fScale * IntToFloat(nGameXP));
-  int nScaledTradeXP = FloatToInt(fScale * IntToFloat(nTradeXP));
+  float fScale = IntToFloat(nEffDC-1) / 10.0f;
+  int nScaledGameXP = (bSuccess ? FloatToInt(fScale * IntToFloat(nGameXP)) : CnrGetPlayerLevel(oPC, sDeviceTag) / 2);
+  int nScaledTradeXP = (bSuccess ? FloatToInt(fScale * IntToFloat(nTradeXP)) :  3 * CnrGetPlayerLevel(oPC, sDeviceTag));
 
   int nOldXP = GetXP(oPC);
   int nNewXP = nScaledGameXP*nBatchCount;
 
   object oHide = gsPCGetCreatureHide(oPC);
   int iQtyFinished = GetLocalInt(oHide, "GVD_CRAFT_" + sKeyToRecipe);
-  if (iQtyFinished == 0)
+  if (iQtyFinished == 0 && bSuccess)
   {
     nNewXP = CnrRecipeGetRecipeLevelByKey(sKeyToRecipe)*10;
 	SetLocalInt(oHide, "GVD_CRAFT_" + sKeyToRecipe, TRUE);
@@ -1768,6 +1765,7 @@ void CnrRecipeDisplayCraftingResult(object oPC, object oDevice, string sKeyToRec
         {
           string sNewLevel = CNR_TEXT_YOU_HAVE_REACHED_LEVEL + IntToString(nNewLevel) + CNR_TEXT_IN + sTradeName + "!";
           AssignCommand(oPC, DelayCommand(0.6, SendMessageToPC(oPC, sNewLevel)));
+          AssignCommand(oPC, DelayCommand(0.6, PlaySound("gui_level_up")));
         }
         else
         {

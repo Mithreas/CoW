@@ -25,8 +25,6 @@ void main()
     int bDistantShores  = miXFGetCurrentServer() == SERVER_DISTSHORES;
     
     int bIsUnderdarker  = gsSUGetIsUnderdarker(nRace);
-    int bOutcast        = miBAGetBackground(oPC) == MI_BA_OUTCAST;
-    int bSlave          = miBAGetBackground(oPC) == MI_BA_SLAVE;
     int bHaveSlaveBadge = GetIsObjectValid( GetItemPossessedBy(oPC, "gvd_slave_clamp") );
     int nAlternateStart = GetLocalInt(gsPCGetCreatureHide(oPC), "MI_RACIAL_STARTLOC");
 
@@ -67,35 +65,12 @@ void main()
 			miXFDoPortal(oPC, SERVER_UNDERDARK, sTag);
 		}
 	}
-  else if (bUnderdark || bSlave || bOutcast)
+  else if (bUnderdark)
   {
-    //::  Jump to UD server if PC Outcast or Slave, if character is created on Surface server
-    if ( (bOutcast || bSlave) && !bUnderdark ) {
-      // gsSUGetSubRaceByName() will truncate at (, so Human (Outcast) will just get Human.
-      // Since we are having Slaves and Outcasts start in the UD, group them with Orogs for now, arbitrarily chosen.
-      // nRace   = GetRacialType(oPC);
-      nRace = GS_SU_HALFORC_OROG;
-      sTag = "GS_TARGET_SUBRACE_" + IntToString(nRace);
-      miXFDoPortal(oPC, SERVER_UNDERDARK, sTag);
-      return;
-    }
-    else if (bOutcast || bSlave)
-    {
-      // Have Slaves and Outcasts start with Orogs, arbitrarily chosen so they start in UD.
-      nRace = GS_SU_HALFORC_OROG;
-      oTarget = GetWaypointByTag("GS_TARGET_SUBRACE_" + IntToString(nRace));
-    }
-    else
-    {
-      oTarget = GetWaypointByTag("GS_TARGET_SUBRACE_" + IntToString(nRace));
-    }
+
+    oTarget = GetWaypointByTag("GS_TARGET_SUBRACE_" + IntToString(nRace));
 
     if (!GetIsObjectValid(oTarget)) oTarget = GetWaypointByTag("GS_TARGET_DEFAULT");
-
-    //::  Give Slave clamp (Only once!)
-    if (!bHaveSlaveBadge && bSlave) {
-      CreateItemOnObject("gvd_slave_clamp", oPC);
-    }
 
     _jumpToTarget(oPC, oTarget);
   }

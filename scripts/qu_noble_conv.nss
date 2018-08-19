@@ -8,7 +8,7 @@ void main()
 
     // check if PC has noble background
     object oPC = GetLastUsedBy();
-    if (miBAGetBackground(oPC) == MI_BA_NOBLE) {
+    if (miBAGetCasteByBackground(miBAGetBackground(oPC)) == CASTE_NOBILITY) {
       AssignCommand(oPC, ActionStartConversation(oSelf, "", TRUE, FALSE));
     } else {
       FloatingTextStringOnCreature("These quarters are only available to characters with the Noble background.", oPC, FALSE);

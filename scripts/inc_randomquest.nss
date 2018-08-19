@@ -114,6 +114,7 @@
 #include "inc_pc";
 #include "inc_perspeople"
 #include "inc_reputation"
+#include "inc_stacking"
 // inc_reputation includes inc_database and inc_log
 #include "inc_quest"
 // inc_quest includes inc_database, inc_log, and inc_disguise.
@@ -540,7 +541,7 @@ int IsQuestComplete(object oPC, int bFinish = FALSE)
     object oItem = GetFirstItemInInventory(oPC);
     while (oItem != OBJECT_INVALID)
     {
-      if (GetTag(oItem) == sItemTag)
+      if (ConvertedStackTag(oItem) == sItemTag)
       {
         nCount+= GetItemStackSize(oItem);
       }
@@ -564,7 +565,7 @@ int IsQuestComplete(object oPC, int bFinish = FALSE)
 	    oItem = GetFirstItemInInventory(oPC);
         while (oItem != OBJECT_INVALID && nCount < nNum)
         {
-          if (GetTag(oItem) == sItemTag)
+          if (ConvertedStackTag(oItem) == sItemTag)
           {
             nCount += GetItemStackSize(oItem); // doesn't matter if we overshoot
 		    gsCMReduceItem(oItem, nNum);

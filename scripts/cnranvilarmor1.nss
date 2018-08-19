@@ -227,7 +227,7 @@ void main()
   CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Heavy, "Iron Banded Mail", "aarcl015", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrsmlplt1", 2);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrsmlplt2", 2);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrpadding", 2);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);

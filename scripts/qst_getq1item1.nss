@@ -12,7 +12,7 @@
 #include "inc_quest"
 void main()
 {
-  string sItemTag = GetPersistentString(OBJECT_SELF, "quest1item1");
+  string sItemTag = GetLocalString(OBJECT_SELF, "quest1item1");
   object oItem = CreateItemOnObject(sItemTag, GetPCSpeaker());
 
   if (oItem == OBJECT_INVALID)

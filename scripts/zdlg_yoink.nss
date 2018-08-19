@@ -1,8 +1,6 @@
 /*
-  Name: zdlg_subrace
-  Author: Mithreas, converted to Z-Dialog from Gigaschatten's legacy convo.
-  Date: 8 June 2007
-  Description: Subrace selection conversation script. Uses Z-Dialog.
+  Name: zdlg_yoink
+  Description: Epic spell to pull a PC to you. Uses Z-Dialog.
 
   Z-Dialog methods:
     AddStringElement - used to build up replies as a list.
@@ -61,7 +59,7 @@ void PageInit()
   else
   {
     SendMessageToPC(oPC,
-                    "You've found a bug. How embarassing. Please report it.");
+                    "You've found a bug. How embarrassing. Please report it.");
     EndDlg();
   }
 }

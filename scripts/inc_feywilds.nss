@@ -41,6 +41,7 @@
 // Path lists - FW_Init() sets these up to contain a list of area template resrefs.
 const string FW_PATH_PFWF = "FW_PERENOR_FEYWILDS_FRINGE";
 const string FW_PATH_PFWD = "FW_PERENOR_FEYWILDS_DEEP";
+const string UC_HOUSES    = "UNDERCITY_HOUSES";
 const string ENDS         = "_ENDINGS"; // Added to another list name for the endings.
 
 const string FEYWILDS     = "FEYWILDS"; // for tracing. 
@@ -100,6 +101,25 @@ void FW_Init()
   AddStringElement("perfeydlifetree", FW_PATH_PFWD + ENDS, oMod); // Tree of Life
   AddStringElement("perfeyddreamend", FW_PATH_PFWD + ENDS, oMod); // Ysera
   AddStringElement("perfeydfqueencrt", FW_PATH_PFWD + ENDS, oMod); // Fairy Queen's Court
+  
+  // Undercity houses
+  DeleteList(UC_HOUSES, oMod);
+  AddStringElement("uchouse1", UC_HOUSES, oMod);
+  AddStringElement("uchouse1", UC_HOUSES, oMod);
+  AddStringElement("uchouse2", UC_HOUSES, oMod);
+  AddStringElement("uchouse2", UC_HOUSES, oMod);
+  AddStringElement("uchouse3", UC_HOUSES, oMod);
+  AddStringElement("uchouse3", UC_HOUSES, oMod);
+  AddStringElement("uchouse5", UC_HOUSES, oMod);
+  AddStringElement("uchouse5", UC_HOUSES, oMod);
+  AddStringElement("uchouse7", UC_HOUSES, oMod); // Verria statue
+  AddStringElement("uchouse8", UC_HOUSES, oMod);
+  AddStringElement("uchouse8", UC_HOUSES, oMod);
+  AddStringElement("uchouse9", UC_HOUSES, oMod);
+  AddStringElement("uchouse9", UC_HOUSES, oMod);
+  AddStringElement("uchouse4", UC_HOUSES, oMod);  // dark one cultist
+  AddStringElement("uchouse6", UC_HOUSES, oMod);  // beast cult
+  
 }
 
 void FW_GeneratePath(object oTrigger)
@@ -116,6 +136,11 @@ void FW_GeneratePath(object oTrigger)
   string sArea  = GetRandomStringElement(sPath, GetModule());
   
   Trace(FEYWILDS, "Setting up path for " + sPath + ", instance " + IntToString(nInstance) + ".  Next area: " + sArea);
+  
+  // Doors
+  // DOOR_EXIT
+  // DOOR_DOWN
+  // DOOR_UP
   
   string sNextTag = sPath+IntToString(nInstance)+"_"+IntToString(++nStage);
   
@@ -182,6 +207,9 @@ void FW_GeneratePath(object oTrigger)
   object oDest;
   string sTag;
   
+  object oUpstairsDoor   = OBJECT_INVALID;
+  object oDownstairsDoor = OBJECT_INVALID;
+  
   while (GetIsObjectValid(oObject))
   {
     sTag = GetTag(oObject);
@@ -229,6 +257,31 @@ void FW_GeneratePath(object oTrigger)
 	  sTag == "WP_TRANS_N" || sTag == "WP_TRANS_S" || sTag == "WP_TRANS_E" || sTag == "WP_TRANS_W")
 	{
 	  DestroyObject (oObject);
+	}
+	// Inner and exit doors.
+	else if (sTag == "DOOR_EXIT")
+	{
+	  SetTag(oObject, sNextTag + sEnterBy);
+	  SetTransitionTarget(oObject, OBJECT_SELF);
+	  SetTransitionTarget(OBJECT_SELF, oObject);
+	}
+	else if (sTag == "DOOR_UP")
+	{
+	  oUpstairsDoor = oObject;
+	  if (GetIsObjectValid(oDownstairsDoor))
+	  {
+	    SetTransitionTarget(oDownstairsDoor, oUpstairsDoor);
+	    SetTransitionTarget(oUpstairsDoor, oDownstairsDoor);	    
+	  }
+	}
+	else if (sTag == "DOOR_DOWN")
+	{
+	  oDownstairsDoor = oObject;
+	  if (GetIsObjectValid(oUpstairsDoor))
+	  {
+	    SetTransitionTarget(oDownstairsDoor, oUpstairsDoor);
+	    SetTransitionTarget(oUpstairsDoor, oDownstairsDoor);	    
+	  }
 	}
 	
     oObject = GetNextObjectInArea(oDestArea);

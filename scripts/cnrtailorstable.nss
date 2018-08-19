@@ -153,7 +153,7 @@ void main()
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorGloves, "Gloves (Silk)", "cnrglovesilk", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrcloth2", 1, 0);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 40);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
 
 

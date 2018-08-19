@@ -5,7 +5,6 @@
 const string AWARD_MAJOR = "Major";     //award 1
 const string AWARD_NORMAL = "Normal";   //award 2
 const string AWARD_MINOR = "Minor";     //award 3
-const string AWARD_GREATER = "Greater"; //award1_5
 
 // function that handles the reward rolls for oPC
 void gvd_DoRewards(object oPC);
@@ -105,10 +104,6 @@ void _Grant5Percent(object oPC, string sAwardLevel)
   else if (sAwardLevel == AWARD_NORMAL) {
     int nAwards = StringToInt(miDAGetKeyedValue("gs_player_data", sID, "award2"));
     miDASetKeyedValue("gs_player_data", sID, "award2", IntToString(nAwards+1));
-  }
-  else if(sAwardLevel == AWARD_GREATER) {
-    int nAwards = StringToInt(miDAGetKeyedValue("gs_player_data", sID, "award1_5"));
-    miDASetKeyedValue("gs_player_data", sID, "award1_5", IntToString(nAwards+1));
   }
   else {
     int nAwards = StringToInt(miDAGetKeyedValue("gs_player_data", sID, "award3"));
@@ -267,9 +262,6 @@ void gvd_DoRewards(object oPC) {
       // Roll is performed and highest award given.
       if (nRoll <= nMajorSuccessMaxVal && nRoll >= nMajorSuccessMinVal) {
         _Grant5Percent(oPC, AWARD_MAJOR);
-      }
-      else if (nRoll <= nGreaterSuccessMaxVal && nRoll >= nGreaterSuccessMinVal) {
-        _Grant5Percent(oPC, AWARD_GREATER);
       }
       else if (nRoll <= nMediumSuccessMaxVal && nRoll >= nMediumSuccessMinVal) {
         _Grant5Percent(oPC, AWARD_NORMAL);

@@ -5,7 +5,7 @@ void main()
 {
     object oSpeaker = GetPCSpeaker();
     TakeGoldFromCreature(100000, oSpeaker, TRUE);
-    int nBackground = MI_BA_OUTCAST;
+    int nBackground = FALSE;
 
     SetSubRace(oSpeaker,
         GetSubRace(oSpeaker) + " (" + miBAGetBackgroundName(nBackground) + ")");

@@ -1248,6 +1248,29 @@ int gsIPGetBonusMaterialType(object oItem)
   return nMaterial;
 }
 //------------------------------------------------------------------------------
+int gsIPGetQuality(object oItem)
+{
+  int nQuality = 0;
+  itemproperty ip = GetFirstItemProperty(oItem);
+
+  while (GetIsItemPropertyValid(ip))
+  {
+    if (GetItemPropertyType(ip) == ITEM_PROPERTY_QUALITY)
+    {
+      // NOTE - the property subtype is 0.  The quality is indexed off the
+      // cost table value (iprp_qualcost.2da).
+	  if(GetItemPropertyCostTableValue(ip) > 50)
+	  {
+        nQuality = GetItemPropertyCostTableValue(ip);
+	  }	
+    }
+
+    ip = GetNextItemProperty(oItem);
+  }
+
+  return nQuality;
+}
+//------------------------------------------------------------------------------
 int gsIPGetIsMundaneProperty(int ip, int subtype)
 {
   switch (ip)

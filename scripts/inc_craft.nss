@@ -1694,6 +1694,7 @@ int gsCRGetCraftSkillByItemType(object oItem, int bMundaneProperty)
   switch (nType)
   {
     case BASE_ITEM_ARMOR:
+    case BASE_ITEM_BRACER:
       nRetVal = CNR_TRADESKILL_ARMOR_CRAFTING;
       break;
     case BASE_ITEM_LARGESHIELD:
@@ -1713,7 +1714,6 @@ int gsCRGetCraftSkillByItemType(object oItem, int bMundaneProperty)
       break;
     case BASE_ITEM_BASTARDSWORD:
     case BASE_ITEM_BATTLEAXE:
-    case BASE_ITEM_BRACER:
     case BASE_ITEM_BULLET:
     case BASE_ITEM_CLUB:
     case BASE_ITEM_DAGGER:
@@ -1867,23 +1867,36 @@ int gsCRGetMaterialSkillBonus(object oItem)
 	  nBonus = 5; 
 	  break;
 	case 73: // Sapphire
-	  nBonus = 6;
-	  break;
 	case 62: // Fire Opal
-	  nBonus = 7;
+	  nBonus = 6;
 	  break;
 	case 59: // Diamond
-	  nBonus = 8;
-	  break;
 	case 72: // Ruby
-	  nBonus = 9;
-	  break;
 	case 60: // Emerald
-	  nBonus = 6;
+	  nBonus = 7;
 	  break;
   }
   
-  return nBonus;
+  if (nBonus) return nBonus;
+  
+  int nQuality = gsIPGetQuality(oItem);
+  
+  switch (nQuality)
+  {
+    case 0:  // unknown
+	case 1:  // destroyed
+	case 2:  // ruined
+	case 13: // raw
+	case 14: // cut
+	case 15: // polished
+	  // No bonus.
+	  break;
+	default:
+      nBonus = nQuality - 6; // penality for poor quality, zero for average, bonus above that. 	
+	  break;
+  }
+ 
+  return nBonus; 
 }
 
 //------------------------------------------------------------------------------

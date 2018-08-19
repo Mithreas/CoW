@@ -51,7 +51,7 @@ void main()
   CnrPlantInitialize("cnrhazelplant", "cnrhazelleaf", 2, CNR_FLOAT_DEFAULT_PLANT_RESPAWN_TIME_SECS);
   CnrPlantInitialize("cnrcottonplant", "cnrcotton", 2, CNR_FLOAT_DEFAULT_PLANT_RESPAWN_TIME_SECS);
   CnrPlantInitialize("cnrbirchplant", "cnrbirchbark", 2, CNR_FLOAT_DEFAULT_PLANT_RESPAWN_TIME_SECS, CNR_INT_ALWAYS_RESPAWN_FRUIT);
-  CnrPlantInitialize("cnrcpidercocoon", "cnrspidersilk", 2, CNR_FLOAT_DEFAULT_PLANT_RESPAWN_TIME_SECS);
+  CnrPlantInitialize("cnrspidercocoon", "cnrspidersilk", 2, CNR_FLOAT_DEFAULT_PLANT_RESPAWN_TIME_SECS);
   CnrPlantInitialize("cnrmossyellow", "cnrmossyellow", 2, CNR_FLOAT_DEFAULT_PLANT_RESPAWN_TIME_SECS);
 }
 

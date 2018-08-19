@@ -606,7 +606,8 @@ void miCLOverridePRC(object oPC)
       SetLocalInt(oPC, CHAMP_TORM, 0);
     }
 
-    // Drag disciple - unchanged (lore 8)
+    // Drag disciple - disabled for now. 
+	SetLocalInt(oPC, DRAG_DISC, TRUE);
     // Dw def - dwarf, lawful, BAB 3.
     if(GetBaseAttackBonus(oPC) >= 3 && GetAlignmentLawChaos(oPC) == ALIGNMENT_LAWFUL
      && GetRacialType(oPC) == RACIAL_TYPE_DWARF)
@@ -640,7 +641,8 @@ void miCLOverridePRC(object oPC)
       SetLocalInt(oPC, SHADOW_DANCER, TRUE);
     }
 
-    // shifter - unchanged
+    // shifter - disabled for now.
+	SetLocalInt(oPC, SHIFT, TRUE);
     // weapon master - bab 3, dodge, expertise
     if(GetBaseAttackBonus(oPC) >= 3 &&
        GetHasFeat(FEAT_DODGE, oPC) &&

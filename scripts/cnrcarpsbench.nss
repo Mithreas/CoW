@@ -31,9 +31,9 @@ void main()
   string sMenuCarpShields = CnrRecipeAddSubMenu("cnrcarpsbench", "Shields");
   string sMenuCarpHouse = CnrRecipeAddSubMenu("cnrcarpsbench", "House Items");
 
-  string sMenuBows2 = CnrRecipeAddSubMenu(sMenuCarpBows, "Yinus");
   string sMenuBows1 = CnrRecipeAddSubMenu(sMenuCarpBows, "Irl");
-  string sMenuBows3 = CnrRecipeAddSubMenu(sMenuCarpBows, "Amkare");
+  string sMenuBows2 = CnrRecipeAddSubMenu(sMenuCarpBows, "Ironwood");
+  string sMenuBows3 = CnrRecipeAddSubMenu(sMenuCarpBows, "Duskwood");
 
 
   CnrRecipeSetDevicePreCraftingScript("cnrcarpsbench", "cnr_carp_anim");
@@ -133,16 +133,38 @@ void main()
   CnrRecipeAddComponent(sKeyToRecipe, "cnrrope", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 2);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 20, 20);
+  
+  //----------------------------weapons--------------------------------------
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpWeapons, "Wooden Club", "cnrclub", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrbranch1", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 10, 10);
 
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpWeapons, "Ironwood Club", "cnrclub2", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrbranch2", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpWeapons, "Duskwood Club", "wblcl008", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrbranch3", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 10);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 100, 100);
+
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpWeapons, "Wooden Quarterstaff", "cnrqstaff", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrbranch1", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 10, 10);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpWeapons, "Ironwood Quarterstaff", "cnrqstaff2", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrbranch2", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpWeapons, "Duskwood Quarterstaff", "wdbqs004", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrbranch3", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 10);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 100, 100);
 
   //----------------------------arrows--------------------------------------
 

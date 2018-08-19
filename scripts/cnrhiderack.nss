@@ -27,30 +27,10 @@ void main()
 //CnrRecipeSetDeviceInventoryTool("cnrHideRack", "cnrSewingKit", CNR_FLOAT_SEWING_KIT_BREAKAGE_PERCENTAGE);
 //CnrRecipeSetDeviceEquippedTool("cnrHideRack", "cnr");
   CnrRecipeSetDeviceTradeskillType("cnrhiderack", CNR_TRADESKILL_TAILORING);
+  CnrRecipeSetRecipeAbilityPercentages("cnrhiderack", 0, 50, 0, 50, 0, 0);
 
 
 //////////////////////////////////////////////////////////////////////////////////////
-
-/*  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorLeathers, "Small Piece of Leather", "cnrLeatherSm", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrHideCuredSm", 1, 0);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrOilTanning", 1, 0);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 2);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 20, 20);
-  CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 0, 65, 0, 35, 0, 0);
-
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorLeathers, "Medium Piece of Leather", "cnrLeatherMed", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrHideCuredMed", 1, 0);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrOilTanning", 1, 0);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 2);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 20, 20);
-  CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 0, 65, 0, 35, 0, 0);
-
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorLeathers, "Large Piece of Leather", "cnrLeatherLg", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrHideCuredLg", 1, 0);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrOilTanning", 1, 0);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 2);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 20, 20);
-  CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 0, 65, 0, 35, 0, 0); */
 
 //////////////////////////////////////////////
 //New CNR Tailoring items by LasCivious     //
@@ -62,51 +42,38 @@ void main()
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorLeathers, "Badger Leather", "cnrleathbadg", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrskinbadger", 1, 0);
   CnrRecipeAddComponent(sKeyToRecipe, "cnroiltanning", 1, 0);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 10, 10);
-  CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 0, 65, 0, 35, 0, 0);
-
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorLeathers, "Bat Leather", "cnrleatbat", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrSkinBat", 1, 0);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnroiltanning", 1, 0);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 10, 10);
-  CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 0, 65, 0, 35, 0, 0);
-
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 2);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 20, 20);
+  
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorLeathers, "Deer Leather", "cnrleathdeer", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrskindeer", 1, 0);
   CnrRecipeAddComponent(sKeyToRecipe, "cnroiltanning", 1, 0);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
-  CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 0, 65, 0, 35, 0, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorLeathers, "Wolf Leather", "cnrleathwolf", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrskinwolf", 1, 0);
   CnrRecipeAddComponent(sKeyToRecipe, "cnroiltanning", 1, 0);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
-  CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 0, 65, 0, 35, 0, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 6);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 60, 60);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorLeathers, "Grizzly Leather", "cnrleathgriz", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrskingrizbear", 1, 0);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnroiltanning", 1, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 8);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 80, 80);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorLeathers, "Worg Leather", "cnrleathworg", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrskinworg", 1, 0);
   CnrRecipeAddComponent(sKeyToRecipe, "cnroiltanning", 1, 0);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 9);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 90, 90);
-  CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 0, 65, 0, 35, 0, 0);
-
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorLeathers, "Grizzly Leather", "cnrleathgriz", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrskingriz", 1, 0);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnroiltanning", 1, 0);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 7);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 70, 70);
-  CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 0, 65, 0, 35, 0, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 10);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 100, 100);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorLeathers, "Dire Bear Leather", "cnrleathdb", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrskindb", 1, 0);
   CnrRecipeAddComponent(sKeyToRecipe, "cnroiltanning", 1, 0);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 11);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 110, 110);
-  CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 0, 65, 0, 35, 0, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 12);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 120, 120);
 
 }
 

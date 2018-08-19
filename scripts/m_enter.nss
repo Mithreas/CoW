@@ -221,6 +221,34 @@ void main()
         DeleteLocalInt(oEntering, "GS_ENABLED");
       }
     }
+	
+	// Migration code - old faction system to new.
+	string sSubRace = GetSubRace(oEntering);
+	if (sSubRace == "House Drannis")
+	{
+	  SetSubRace(oEntering, "Human");
+	  miBAApplyBackground(oEntering, MI_BA_DRANNIS);
+	}
+	else if (sSubRace == "House Erenia")
+	{
+	  SetSubRace(oEntering, "Human");
+	  miBAApplyBackground(oEntering, MI_BA_ERENIA);
+	}
+	else if (sSubRace == "House Renerrin")
+	{
+	  SetSubRace(oEntering, "Human");
+	  miBAApplyBackground(oEntering, MI_BA_RENERRIN);
+	}
+	else if(sSubRace == "The Shadow")
+	{
+	  SetSubRace(oEntering, "Human");
+	  miBAApplyBackground(oEntering, MI_BA_SHADOW);
+	}
+	else if (sSubRace == "Wardens")
+	{
+	  SetSubRace(oEntering, "Halfling");
+	  miBAApplyBackground(oEntering, MI_BA_WARDEN);
+	}
 
     if (GetLocalInt(oEntering, "GS_ENABLED"))
     {
@@ -304,68 +332,6 @@ void main()
       //  "need to interactively RP with you before attacking, but still need to follow all " +
       //  "other rules of engagement (e.g. hostile before attack).");
     }
-
-    // Auto hostile surfacers/UDers.  Exclude svirfs and gnolls.
-    // Addition by Dunshine: exclude PCs with Slave/Outcast background as well, they will be neutral to both Surface and UD.
-    // We have three classifications.  Hostile UDer, surfacer, and neutral.
-    // If neutral, do nothing.
-    /*
-    int nSubrace = gsSUGetSubRaceByName(GetSubRace(oEntering));
-    int iBackGround = miBAGetBackground(oEntering);
-    int iBackGround2;
-
-    // treat PCs with slave clamp the same as with slave background
-    object oSlaveClamp = GetItemPossessedBy(oEntering, "gvd_slave_clamp");
-    if (oSlaveClamp != OBJECT_INVALID) {
-      if (GetName(oSlaveClamp) != "Slave Clamp (Prisoner)") {
-        iBackGround = MI_BA_SLAVE;
-      }
-    }
-
-    // auto hostile citizens of warring states.
-    string sMyNation = GetLocalString(oEntering, VAR_NATION);
-    int iNeutral = (gsSUGetIsNeutralRace(nSubrace) || (iBackGround == MI_BA_OUTCAST) || (iBackGround == MI_BA_SLAVE));
-    int iNeutral2;
-
-    if ((iNeutral == 0) || sMyNation != "")
-    {
-      object oPC = GetFirstPC();
-      while (GetIsObjectValid(oPC))
-      {
-        int nSubrace2 = gsSUGetSubRaceByName(GetSubRace(oPC));
-        iBackGround2 = miBAGetBackground(oPC);
-
-        // treat PCs with slave clamp the same as with slave background
-        oSlaveClamp = GetItemPossessedBy(oPC, "gvd_slave_clamp");
-        if (oSlaveClamp != OBJECT_INVALID) {
-          if (GetName(oSlaveClamp) != "Slave Clamp (Prisoner)") {
-            iBackGround2 = MI_BA_SLAVE;
-          }
-        }
-
-        iNeutral2 = (gsSUGetIsNeutralRace(nSubrace2) || (iBackGround2 == MI_BA_OUTCAST) || (iBackGround2 == MI_BA_SLAVE));
-
-        if ((iNeutral == 0) && (iNeutral2 == 0))
-        {
-           int bUnderdarker1 = gsSUGetIsHostileUnderdarker(nSubrace);
-           int bUnderdarker2 = gsSUGetIsHostileUnderdarker(nSubrace2);
-
-           if (bUnderdarker1 != bUnderdarker2) SetPCDislike(oEntering, oPC);
-        }
-
-        string sTheirNation = GetLocalString(oPC, VAR_NATION);
-        if (sMyNation != "" && sTheirNation != "" && sMyNation != sTheirNation)
-        {
-          if (miCZGetWar(sMyNation, sTheirNation))
-          {
-            SetPCDislike(oEntering, oPC);
-          }
-        }
-
-        oPC = GetNextPC();
-      }
-    }
-    */
 
     object oHide = gsPCGetCreatureHide(oEntering);
 
@@ -556,6 +522,11 @@ void main()
     {
       SetLocalInt(oEntering, "DM_TIP", 1);
     }
+	
+	if (GetLocalFloat(oEntering, "AR_SCALE") > 0.0f)
+	{
+	    SetObjectVisualTransform(oEntering, OBJECT_VISUAL_TRANSFORM_SCALE, GetLocalFloat(oEntering, "AR_SCALE"));
+	}
 }
 
 void _FixXPECL(object oPC, int nSubRace)

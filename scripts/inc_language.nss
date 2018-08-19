@@ -249,7 +249,6 @@ int _gsLAGetCanSpeakLanguage(int nLanguage, object oPC, object oHide, string sTa
             nSubRace == GS_SU_SPECIAL_IMP ||
             nSubRace == GS_SU_SPECIAL_HOBGOBLIN ||
             nSubRace == GS_SU_HALFORC_GNOLL ||
-            miBAGetBackground(oPC) == MI_BA_OUTCAST ||
             nSubRace == GS_SU_DEEP_IMASKARI)
          {
            SetLocalInt(oHide, sTag, 1);

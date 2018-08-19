@@ -600,7 +600,7 @@ void main()
    "There are temples to Morrian and Solkin maintained by the other Houses, " +
    "as well as the Temple to the Seven of our own House. Finally, you should " +
    "visit the Grove of the Gods, here on Sunrise Isle. It's not far from the " +
-   "entrance to Sunrise Tower.", DB_VARS);
+   "entrance to the estate.", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "2", DB_VARS);
   SetStringValue(QUEST+LEVEL_RANGE, "04_15", DB_VARS);
@@ -709,14 +709,15 @@ void main()
   QUEST = "make_cunning_potions";
   AddQuest(QUEST, RETRIEVE, DB_QUEST);
   SetStringValue(QUEST+DESCRIPTION,
-   "Our agents make heavy use of Fox's Cunning potions to ensure they are always working at their " +
-   "best.  Bring me 10 potions... brew them yourself if need be.",
+   "A disciple of Erenia should always be prepared to offer blessings.  Since not all of us are gifted " +
+   "with divine magics, potions must serve.  Bring me 10 Potions of Bless... brew them yourself if need be. " +
+   "You can find what you need at the Garden of Contemplation, here on Sunrise Isle.",
    DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "50", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "150", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "2", DB_VARS);
   SetStringValue(QUEST+LEVEL_RANGE, "04_15", DB_VARS);
-  SetStringValue(QUEST+ITEM_TAG, "nw_it_mpotion017", DB_VARS);
+  SetStringValue(QUEST+ITEM_TAG, "NW_IT_MPOTION009", DB_VARS);
   SetStringValue(QUEST+NUM_ITEMS, "10", DB_VARS);
   
 

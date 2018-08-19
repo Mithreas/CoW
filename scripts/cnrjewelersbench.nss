@@ -129,6 +129,11 @@ void main()
   // Rings
   /////////////////////////////////////////////////////////
   
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuRings, "Ondaran Ring", "cnrondring", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotond", 1, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 2);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 20, 20);
+  
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuRings, "Ondaran Greenstone Ring", "cnrondgreering", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotond", 1, 0);
   CnrRecipeAddComponent(sKeyToRecipe, "cow_gemgree", 1, 0);
@@ -146,42 +151,98 @@ void main()
   CnrRecipeAddComponent(sKeyToRecipe, "cow_gemfiag", 1, 0);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuRings, "Iron Ring", "cnriroring", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotiro", 1, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuRings, "Iron Aventurine Ring", "cnrironavenring", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotiro", 1, 0);
   CnrRecipeAddComponent(sKeyToRecipe, "cow_gemaven", 1, 0);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuRings, "Iron Phenalope Ring", "cnrirophenring", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotiro", 1, 0);
   CnrRecipeAddComponent(sKeyToRecipe, "cow_gemphen", 1, 0);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuRings, "Iron Amethyst Ring", "cnriroametring", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotiro", 1, 0);
   CnrRecipeAddComponent(sKeyToRecipe, "cow_gemamet", 1, 0);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 6);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 60, 60);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuRings, "Silver Ring", "cnrsilring", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotsil", 1, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 7);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 70, 70);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuRings, "Silver Fluorspar Ring", "cnrsilfluoring", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotsil", 1, 0);
   CnrRecipeAddComponent(sKeyToRecipe, "cow_gemfluo", 1, 0);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 6);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 60, 60);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 8);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 80, 80);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuRings, "Silver Garnet Ring", "cnrsilgarnring", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotsil", 1, 0);
   CnrRecipeAddComponent(sKeyToRecipe, "cow_gemgarn", 1, 0);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 7);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 70, 70);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 9);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 90, 90);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuRings, "Silver Alexandrite Ring", "cnrsilalexring", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotsil", 1, 0);
   CnrRecipeAddComponent(sKeyToRecipe, "cow_gemalex", 1, 0);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 7);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 70, 70);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 9);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 90, 90);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuRings, "Gold Ring", "cnrgolring", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotgol", 1, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 10);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 100, 100);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuRings, "Gold Topaz Ring", "cnrgolring", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotgol", 1, 0);
+  CnrRecipeAddComponent(sKeyToRecipe, "cow_gemtopa", 1, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 11);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 110, 110);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuRings, "Gold Sapphire Ring", "cnrgolring", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotgol", 1, 0);
+  CnrRecipeAddComponent(sKeyToRecipe, "cow_gemsapp", 1, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 12);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 120, 120);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuRings, "Gold Fire Opal Ring", "cnrgolring", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotgol", 1, 0);
+  CnrRecipeAddComponent(sKeyToRecipe, "cow_gemfiop", 1, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 13);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 130, 130);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuRings, "Electrum Ring", "cnrelering", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotele", 1, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 14);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 140, 140);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuRings, "Electrum Diamond Ring", "cnrelediamring", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotele", 1, 0);
+  CnrRecipeAddComponent(sKeyToRecipe, "cow_gemdiam", 1, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 15);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 150, 150);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuRings, "Electrum Ruby Ring", "cnrelerubyring", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotele", 1, 0);
+  CnrRecipeAddComponent(sKeyToRecipe, "cow_gemruby", 1, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 16);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 160, 160);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuRings, "Electrum Emerald Ring", "cnreleemerring", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotele", 1, 0);
+  CnrRecipeAddComponent(sKeyToRecipe, "cow_gememer", 1, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 17);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 170, 170);
 
   /////////////////////////////////////////////////////////
   // Scarabs
@@ -230,54 +291,13 @@ void main()
   CnrRecipeSetRecipeXP(sKeyToRecipe, 70, 70);
 */
   /////////////////////////////////////////////////////////
-  // Necklaces
+  // Amulets  
   /////////////////////////////////////////////////////////
-/*
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuNecklaces, "Bronze Feldspar Necklace", "cnrBroFeldNeck", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrMoldNecklace", 1, 0);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrEnchIngotBron", 1, 0);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrGemEnchant015", 1, 0);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
-
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuNecklaces, "Bronze Garnet Necklace", "cnrBroGarNeck", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrMoldNecklace", 1, 0);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrEnchIngotBron", 1, 0);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrGemEnchant011", 1, 0);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
-
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuNecklaces, "Gold Alexandrite Necklace", "cnrGoldAlexNeck", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrMoldNecklace", 1, 0);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrEnchIngotGold", 1, 0);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrGemEnchant013", 1, 0);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 6);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 60, 60);
-
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuNecklaces, "Gold Topaz Necklace", "cnrGoldTopNeck", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrMoldNecklace", 1, 0);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrEnchIngotGold", 1, 0);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrGemEnchant010", 1, 0);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 6);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 60, 60);
-
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuNecklaces, "Gold Sapphire Necklace", "cnrGoldSapNeck", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrMoldNecklace", 1, 0);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrEnchIngotGold", 1, 0);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrGemEnchant008", 1, 0);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 7);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 70, 70);
-
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuNecklaces, "Gold Fire Opal Necklace", "cnrGoldFireOpNeck", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrMoldNecklace", 1, 0);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrEnchIngotGold", 1, 0);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrGemEnchant009", 1, 0);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 7);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 70, 70);
-*/
-  /////////////////////////////////////////////////////////
-  // Amulets
-  /////////////////////////////////////////////////////////
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAmulets, "Ondaran Amulet", "cnrondamu", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotond", 2, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
+  
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAmulets, "Ondaran Greenstone Amulet", "cnrondgreeamu", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotond", 2, 0);
   CnrRecipeAddComponent(sKeyToRecipe, "cow_gemgree", 1, 0);
@@ -295,42 +315,98 @@ void main()
   CnrRecipeAddComponent(sKeyToRecipe, "cow_gemfiag", 1, 0);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAmulets, "Iron Amulet", "cnrironamu", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotiro", 2, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAmulets, "Iron Aventurine Amulet", "cnrironavenamu", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotiro", 2, 0);
   CnrRecipeAddComponent(sKeyToRecipe, "cow_gemaven", 1, 0);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 6);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 60, 60);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAmulets, "Iron Phenalope Amulet", "cnrironphenamu", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotiro", 2, 0);
   CnrRecipeAddComponent(sKeyToRecipe, "cow_gemphen", 1, 0);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 6);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 60, 60);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAmulets, "Iron Amethyst Amulet", "cnrironametamu", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotiro", 2, 0);
   CnrRecipeAddComponent(sKeyToRecipe, "cow_gemamet", 1, 0);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 6);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 60, 60);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 7);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 70, 70);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAmulets, "Silver Amulet", "cnrsilamu", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotsil", 2, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 8);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 80, 80);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAmulets, "Silver Fluorspar Amulet", "cnrsilfluoramu", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotsil", 2, 0);
   CnrRecipeAddComponent(sKeyToRecipe, "cow_gemfluo", 1, 0);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 7);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 70, 70);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 9);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 90, 90);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAmulets, "Silver Garnet Amulet", "cnrsilgarnamu", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotsil", 2, 0);
   CnrRecipeAddComponent(sKeyToRecipe, "cow_gemgarn", 1, 0);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 8);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 80, 80);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 10);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 100, 100);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAmulets, "Silver Alexandrite Amulet", "cnrsilalexamu", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotsil", 2, 0);
   CnrRecipeAddComponent(sKeyToRecipe, "cow_gemalex", 1, 0);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 8);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 80, 80);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 10);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 100, 100);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAmulets, "Gold Amulet", "cnrgolamu", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotgol", 2, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 11);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 110, 110);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAmulets, "Gold Topaz Amulet", "cnrgoltopaamu", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotgol", 2, 0);
+  CnrRecipeAddComponent(sKeyToRecipe, "cow_gemtopa", 1, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 12);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 120, 120);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAmulets, "Gold Sapphire Amulet", "cnrgolsappamu", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotgol", 2, 0);
+  CnrRecipeAddComponent(sKeyToRecipe, "cow_gemsapp", 1, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 13);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 130, 130);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAmulets, "Gold Fire Opal Amulet", "cnrgolfiopamu", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotgol", 2, 0);
+  CnrRecipeAddComponent(sKeyToRecipe, "cow_gemfiop", 1, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 14);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 140, 140);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAmulets, "Electrum Amulet", "cnreleamu", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotele", 2, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 15);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 150, 150);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAmulets, "Electrum Diamond Amulet", "cnrelediamamu", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotele", 2, 0);
+  CnrRecipeAddComponent(sKeyToRecipe, "cow_gemdiam", 1, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 16);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 160, 160);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAmulets, "Electrum Ruby Amulet", "cnrelerubyamu", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotele", 2, 0);
+  CnrRecipeAddComponent(sKeyToRecipe, "cow_gemruby", 1, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 17);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 170, 170);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAmulets, "Electrum Emerald Amulet", "cnreleemeramu", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotele", 2, 0);
+  CnrRecipeAddComponent(sKeyToRecipe, "cow_gememer", 1, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 18);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 180, 180);
   
   /*
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAmulets, "Gold Feldspar Amulet", "cnrGoldFeldAmulet", 1);

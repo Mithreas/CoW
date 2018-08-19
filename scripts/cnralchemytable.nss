@@ -9,10 +9,13 @@
 /////////////////////////////////////////////////////////
 #include "cnr_recipe_utils"
 
+// Split into several methods to avoid TMI.
+void processOils(string sMenuAlchemyOils);
+void processEssences(string sMenuAlchemyEss);
+void processPotions(string sMenuAlchemyPotions);
+
 void main()
 {
-  string sKeyToRecipe;
-
   PrintString("cnralchemytable init");
 
   /////////////////////////////////////////////////////////
@@ -20,14 +23,27 @@ void main()
   /////////////////////////////////////////////////////////
   string sMenuAlchemyOils    = CnrRecipeAddSubMenu("cnralchemytable", "Oils and Inks");
   string sMenuAlchemyEss     = CnrRecipeAddSubMenu("cnralchemytable", "Essences");
-  string sMenuTempWpnEss     = CnrRecipeAddSubMenu(sMenuAlchemyEss, "Temporary Weapon Essences");
-  string sMenuPermWpnEss     = CnrRecipeAddSubMenu(sMenuAlchemyEss, "Permanent Weapon Essences");
   string sMenuAlchemyPotions = CnrRecipeAddSubMenu("cnralchemytable", "Potions");
 
   CnrRecipeSetDevicePreCraftingScript("cnralchemytable", "cnr_alchemy_anim");
   //CnrRecipeSetDeviceInventoryTool("cnrAlchemyTable", "");
   CnrRecipeSetDeviceTradeskillType("cnralchemytable", CNR_TRADESKILL_IMBUING);
   CnrRecipeSetRecipeAbilityPercentages("cnralchemytable", 0, 0, 0, 0, 50, 50); // WIS and CHA
+  
+  CnrIncrementStackCount(OBJECT_SELF);
+  AssignCommand(OBJECT_SELF, processOils(sMenuAlchemyOils));
+
+  CnrIncrementStackCount(OBJECT_SELF);
+  AssignCommand(OBJECT_SELF, processEssences(sMenuAlchemyEss));
+
+  CnrIncrementStackCount(OBJECT_SELF);
+  AssignCommand(OBJECT_SELF, processPotions(sMenuAlchemyPotions));
+  
+}  
+  
+void processOils(string sMenuAlchemyOils)
+{  
+  string sKeyToRecipe;
   
   //---------------------------------------------------------------------------------
   //---------------------------------------------------------------------------------
@@ -161,6 +177,15 @@ void main()
   CnrRecipeAddComponent(sKeyToRecipe, "cow_gemtopa", 5); // 5 gems
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 11);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 110, 110);
+  
+  CnrDecrementStackCount(OBJECT_SELF);
+}
+
+void processEssences(string sMenuAlchemyEss)
+{
+  string sKeyToRecipe;
+  string sMenuTempWpnEss     = CnrRecipeAddSubMenu(sMenuAlchemyEss, "Temporary Weapon Essences");
+  string sMenuPermWpnEss     = CnrRecipeAddSubMenu(sMenuAlchemyEss, "Permanent Weapon Essences");
   
   //---------------------------------------------------------------------------------
   //---------------------------------------------------------------------------------
@@ -308,9 +333,13 @@ void main()
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 16);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 160, 160);
   
+  CnrDecrementStackCount(OBJECT_SELF);
+}  
   //---------------------------------------------------------------------------------
   //---------------------------------------------------------------------------------
-
+void processPotions(string sMenuAlchemyPotions)
+{
+  string sKeyToRecipe;
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAlchemyPotions, "Potion of Bless", "NW_IT_MPOTION009", 5);
   CnrRecipeAddComponent(sKeyToRecipe, "cnremptyflask", 1, 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrangelicaleaf", 1);
@@ -340,19 +369,19 @@ void main()
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAlchemyPotions, "Potion of Cure Moderate Wounds", "NW_IT_MPOTION020", 5);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnremptyflask", 1, 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnraloeleaf", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrcomfreyroot", 1);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 6);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 60, 60);
-
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAlchemyPotions, "Potion of Lesser Restoration", "NW_IT_MPOTION011", 5);
   CnrRecipeAddComponent(sKeyToRecipe, "cnremptyflask", 1, 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrangelicaleaf", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnralmondfruit", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAlchemyPotions, "Potion of Cure Moderate Wounds", "NW_IT_MPOTION020", 5);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnremptyflask", 1, 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnraloeleaf", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrcomfreyroot", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 6);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 60, 60);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAlchemyPotions, "Potion of Bull's Strength", "NW_IT_MPOTION015", 5);
   CnrRecipeAddComponent(sKeyToRecipe, "cnremptyflask", 1, 1);
@@ -403,6 +432,13 @@ void main()
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 8);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 80, 80);
 
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAlchemyPotions, "Potion of Clarity", "NW_IT_MPOTION007", 5);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnremptyflask", 1, 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrcloverleaf", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrnettleleaf", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 8);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 80, 80);
+
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAlchemyPotions, "Potion of Invisibility", "NW_IT_MPOTION008", 5);
   CnrRecipeAddComponent(sKeyToRecipe, "cnremptyflask", 1, 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrcloverleaf", 1);
@@ -416,13 +452,6 @@ void main()
   CnrRecipeAddComponent(sKeyToRecipe, "cnrthistleleaf", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 10);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 100, 100);
-
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAlchemyPotions, "Potion of Clarity", "NW_IT_MPOTION007", 5);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnremptyflask", 1, 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrcloverleaf", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrnettleleaf", 1);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 12);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 120, 120);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAlchemyPotions, "Potion of Cure Serious Wounds", "NW_IT_MPOTION002", 5);
   CnrRecipeAddComponent(sKeyToRecipe, "cnremptyflask", 1, 1);
@@ -438,6 +467,13 @@ void main()
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 12);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 120, 120);
 
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAlchemyPotions, "Potion of Negative Energy Protection", "pot_negenprot", 5);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnremptyflask", 1, 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrskullcapleaf", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrechinacearoot", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 13);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 130, 130);
+
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAlchemyPotions, "Potion of Cure Critical Wounds", "NW_IT_MPOTION003", 5);
   CnrRecipeAddComponent(sKeyToRecipe, "cnremptyflask", 1, 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnraloeleaf", 1);
@@ -451,7 +487,8 @@ void main()
   CnrRecipeAddComponent(sKeyToRecipe, "cnrginsengroot", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 14);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 140, 140);
-
+  
+  CnrDecrementStackCount(OBJECT_SELF);
 }
 
 

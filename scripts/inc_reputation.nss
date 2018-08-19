@@ -14,6 +14,7 @@
   rep_factionRep - holds the scores for the factions.
 
 */
+#include "inc_backgrounds"
 #include "inc_crime"
 // inc_crime includes inc_log
 #include "inc_database"
@@ -163,17 +164,17 @@ int GetRepNeededForRank(string sFaction, int nRank)
 int GetRepPointsNeededToLevel(object oPC)
 {
   // Get PC current rep score
-  string sSubRace = GetSubRace(oPC);
-  int nRepScore   = GetRepScore(oPC, GetFactionFromName(sSubRace));
+  string sFaction = GetFactionName(miBAGetBackground(oPC));
+  int nRepScore   = GetRepScore(oPC, miBAGetBackground(oPC));
   Trace(RANKS, "PC current rep score: " + IntToString(nRepScore));
 
   // Get PC current rank number
-  int nRank = GetPCRank(sSubRace, nRepScore);
+  int nRank = GetPCRank(sFaction, nRepScore);
   Trace(RANKS, "PC current rank: " + IntToString(nRank));
 
   // Get score needed for next rep score.
-  int nCurrentRankScore = GetRepNeededForRank(sSubRace, nRank);
-  int nNextRankScore    = GetRepNeededForRank(sSubRace, nRank + 1);
+  int nCurrentRankScore = GetRepNeededForRank(sFaction, nRank);
+  int nNextRankScore    = GetRepNeededForRank(sFaction, nRank + 1);
   Trace(RANKS, "PC current rank score needed: " + IntToString(nCurrentRankScore));
   Trace(RANKS, "PC next rank score needed: " + IntToString(nNextRankScore));
 
@@ -184,16 +185,15 @@ int GetRepPointsNeededToLevel(object oPC)
 string GetPCFactionRank(object oPC)
 {
   // Get PC current rep score
-  string sSubRace = GetSubRace(oPC);
-  int nRepScore   = GetRepScore(oPC, GetFactionFromName(sSubRace));
+  int nRepScore   = GetRepScore(oPC, miBAGetBackground(oPC));
   Trace(RANKS, "PC current rep score: " + IntToString(nRepScore));
 
   // Get PC current rank number
-  int nRank = GetPCRank(sSubRace, nRepScore);
+  int nRank = GetPCRank(GetFactionName(miBAGetBackground(oPC)), nRepScore);
   Trace(RANKS, "PC current rank number: " + IntToString(nRank));
 
   // Get rank name of current rank.
-  string sRank = GetRankName(sSubRace, nRank);
+  string sRank = GetRankName(GetFactionName(miBAGetBackground(oPC)), nRank);
   Trace(RANKS, "PC current rank name: " + sRank);
   return sRank;
 }
@@ -375,13 +375,12 @@ int GetFactionScore(int nFaction)
 
 int GetPCFaction(object oPC)
 {
-  string sSubRace = GetSubRace(oPC);
-  return (GetFactionFromName(sSubRace));
+  return miBAGetBackground(oPC);
 }
 
 void SetPCFaction(object oPC, int nFaction)
 {
-  SetSubRace (oPC, GetFactionName(nFaction));
+  miBAApplyBackground(oPC, nFaction);
 }
 
 //void main() {}

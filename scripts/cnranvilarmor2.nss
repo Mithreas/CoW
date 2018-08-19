@@ -53,7 +53,7 @@ void main()
   CnrRecipeSetDeviceEquippedTool("cnranvilarmor1", "cnrSmithsHammer", CNR_FLOAT_SMITH_HAMMER_BREAKAGE_PERCENTAGE);
   CnrRecipeSetDeviceTradeskillType("cnranvilarmor1", CNR_TRADESKILL_ARMOR_CRAFTING);
 
-
+  // @@@ todo AnkhegShell
 
   //----------------- Demon's Bane shields -----------------------
 
