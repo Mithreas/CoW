@@ -406,42 +406,5 @@ void main()
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotele", 2, 0);
   CnrRecipeAddComponent(sKeyToRecipe, "cow_gememer", 1, 0);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 18);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 180, 180);
-  
-  /*
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAmulets, "Gold Feldspar Amulet", "cnrGoldFeldAmulet", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrMoldAmulet", 1, 0);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrEnchIngotGold", 1, 0);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrGemEnchant015", 2, 0);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 8);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 80, 80);
-
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAmulets, "Gold Garnet Amulet", "cnrGoldGarAmulet", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrMoldAmulet", 1, 0);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrEnchIngotGold", 1, 0);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrGemEnchant011", 2, 0);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 8);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 80, 80);
-
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAmulets, "Silver Diamond Amulet", "cnrSilvDiaAmulet", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrMoldAmulet", 1, 0);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrEnchIngotSilv", 1, 0);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrGemEnchant005", 2, 0);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 11);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 110, 110);
-
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAmulets, "Silver Emerald Amulet", "cnrSilvEmAmulet", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrMoldAmulet", 1, 0);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrEnchIngotSilv", 1, 0);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrGemEnchant012", 2, 0);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 11);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 110, 110);
-
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAmulets, "Silver Ruby Amulet", "cnrSilvRubyAmulet", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrMoldAmulet", 1, 0);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrEnchIngotSilv", 1, 0);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrGemEnchant006", 2, 0);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 12);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 120, 120);
-*/
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 180, 180);  
 }

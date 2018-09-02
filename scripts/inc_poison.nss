@@ -4,7 +4,7 @@
   - Poisons are craftable under Cooking, with moderately high DCs.
   - There are two sorts of poisons: contact poisons (applied to weapons) and
     ingestion poisons (which must be eaten or drunk to take effect).
-  - Contact poisons are 'standard' NWN posions - they do 1d2 ability damage on
+  - Contact poisons are 'standard' NWN poisons - they do 1d2 ability damage on
     a failed save (des_crft_poison.2da).
   - Ingestion poisons use the poison.2da file (http://nwn.wikia.com/wiki/Poison
     has a good list of standard poisons).  We can add custom poisons later...

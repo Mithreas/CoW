@@ -16,6 +16,7 @@
 #include "nw_i0_spells"
 #include "x0_i0_spells"
 #include "inc_customspells"
+#include "inc_state"
 
 int GetIsEntangled(object oCreature);
 
@@ -71,6 +72,8 @@ void main()
                         }
                     //}
                 }
+				
+				gsSTAdjustState(GS_ST_STAMINA, -5.0f, oTarget);
             }
         }
         //Get next target in the AOE

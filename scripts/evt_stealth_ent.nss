@@ -14,7 +14,7 @@ void RoundStealthTimerIncrement()
         {
             // We're now reachable again.
             miFXUpdatePlayerReachable(OBJECT_SELF, TRUE);
-            SendMessageToPC(OBJECT_SELF, "You are now reachable by Speedy Messengers.");
+            //SendMessageToPC(OBJECT_SELF, "You are now reachable by Speedy Messengers.");
         }
     }
     else
@@ -24,7 +24,7 @@ void RoundStealthTimerIncrement()
         if (existingTimer + 6 >= 30 && GetLocalInt(OBJECT_SELF, "Reachable"))
         {
             miFXUpdatePlayerReachable(OBJECT_SELF, FALSE);
-            SendMessageToPC(OBJECT_SELF, "You are no longer reachable by Speedy Messengers.");
+            //SendMessageToPC(OBJECT_SELF, "You are no longer reachable by Speedy Messengers.");
         }
 
         DelayCommand(6.0, RoundStealthTimerIncrement());

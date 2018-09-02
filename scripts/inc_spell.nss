@@ -80,12 +80,6 @@ void gsSPDispelAreaOfEffect(object oCaster, object oTarget, int nChance = 100);
 int gsSPReduceCharges(object oPC, int nNumCharges, int bReduceChargesBelowZero = FALSE);
 // Return stotal number of spell components available to the PC.
 int GetTotalSpellComponentCharges(object oPC);
-// Anemoi spell system.  Bonus HP pool management. 
-int gsSPGetHPPool(object oCreature);
-// Anemoi spell system.  Bonus HP pool management. 
-void gsSPAdjustHPPool(object oCreature, int nAdjust);
-// Anemoi spell system.  Arcane spells cost 1 HP per caster level. 
-void gsSPDoCasterDamage(object oCaster, int nDamage);
 
 //----------------------------------------------------------------
 int gsSPReduceCharges(object oPC, int nNumCharges, int bReduceChargesBelowZero = FALSE)
@@ -598,50 +592,4 @@ int GetTotalSpellComponentCharges(object oPC)
     }
 
     return nCharges;
-}
-//----------------------------------------------------------------
-int gsSPGetHPPool(object oCreature)
-{
-  // NPCs
-  if (GetLocalInt(oCreature, "HP_POOL")) return GetLocalInt(oCreature, "HP_POOL");
-
-  object oHide = gsPCGetCreatureHide(oCreature);
-  
-  if (GetIsObjectValid(oHide)) return GetLocalInt(oHide, "HP_POOL");
-  
-  return 0;
-}
-//----------------------------------------------------------------
-void gsSPAdjustHPPool(object oCreature, int nAdjust)
-{
-  if (GetLocalInt(oCreature, "HP_POOL")) SetLocalInt(oCreature, "HP_POOL", GetLocalInt(oCreature, "HP_POOL") + nAdjust);
-  
-  object oHide = gsPCGetCreatureHide(oCreature);
-  
-  if (GetIsObjectValid(oHide)) SetLocalInt(oHide, "HP_POOL", GetLocalInt(oHide, "HP_POOL") + nAdjust);
-}
-//----------------------------------------------------------------
-void gsSPDoCasterDamage(object oCaster, int nDamage)
-{
-  int nHPPool = gsSPGetHPPool(oCaster);
-  
-  if (nHPPool)
-  {
-    if (nDamage > nHPPool)
-	{
-	  nDamage -= nHPPool;
-	  gsSPAdjustHPPool(oCaster, -nHPPool);
-	}
-	else
-	{
-	  gsSPAdjustHPPool(oCaster, -nDamage);
-	  nDamage = 0;
-	}
-  }
-  
-  if (nDamage)
-  {
-    effect eDam = EffectDamage(nDamage, DAMAGE_TYPE_MAGICAL);
-	ApplyEffectToObject(DURATION_TYPE_INSTANT, eDam, oCaster);
-  }
 }

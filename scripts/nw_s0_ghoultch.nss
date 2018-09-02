@@ -22,6 +22,7 @@
 #include "nw_i0_spells"
 #include "inc_customspells"
 #include "inc_spells"
+#include "inc_state"
 
 void main()
 {
@@ -83,6 +84,10 @@ void main()
                 //Create an instance of the AOE Object using the Apply Effect function
                 ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, RoundsToSeconds(nDuration));
                 ApplyEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, GetLocation(oTarget), RoundsToSeconds(nDuration));
+				
+				// Stamina drain.
+				gsSTAdjustState(GS_ST_STAMINA, -IntToFloat(nDuration), oTarget);
+				gsSTAdjustState(GS_ST_STAMINA, IntToFloat(nDuration), OBJECT_SELF);
             }
         }
     }

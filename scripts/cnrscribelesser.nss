@@ -113,6 +113,14 @@ void main()
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 10, 10);
 
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuLevel1Scrolls, "Sanctuary", "X1_IT_SPDVSCR101", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "x2_it_cfm_bscrl", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrInkL", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "dust_mala", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "CNR_RECIPE_SPELL", 1, SPELL_SANCTUARY);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 10, 10);
+
 //Level 2 Scrolls
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuLevel2Scrolls, "Magic Weapon", "X2_IT_SPARSCR105", 1);

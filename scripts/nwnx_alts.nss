@@ -457,7 +457,8 @@ void SetRawQuickBarSlot (object oPC, string sSlot) {
 
 
 int SetWeaponIsMonkWeapon (int nBaseItem, int nMonkLevelsRequired) {
-  return 0;
+  NWNX_Weapon_SetWeaponIsMonkWeapon(nBaseItem);
+  return 1;
 }
 
 int SetWeaponFinesseSize (int nBaseItem, int nSize) {

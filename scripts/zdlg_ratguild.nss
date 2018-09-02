@@ -5,6 +5,7 @@
   Description: Rat hunter guild front. Uses Z-Dialog.
 
 */
+#include "inc_backgrounds"
 #include "inc_house_check"
 #include "inc_xp"
 #include "inc_zdlg"
@@ -191,7 +192,7 @@ void HandleSelection()
 	{
 	  if (!selection) 
 	  {
-	    SetSubRace(GetPCSpeaker(), "Shadow");
+	    miBAApplyBackground(GetPCSpeaker(), MI_BA_SHADOW, TRUE);
 	  }
 	  
 	  EndDlg();

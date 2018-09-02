@@ -19,7 +19,7 @@ const int MI_BA_RENERRIN = 4;
 const int MI_BA_SHADOW   = 5;
 const int MI_BA_WARDEN   = 6;
 
-const int MI_BA_NUM_BACKGROUNDS = 5;
+const int MI_BA_NUM_BACKGROUNDS = 7;
 
 //Gifts
 const int GIFT_NONE = 0;
@@ -403,33 +403,37 @@ void miBAApplyBackground(object oPC, int nBackground = -1, int nFirstTime = TRUE
     switch (nBackground)
 	{
 	  case MI_BA_DRANNIS:	   
-        CreateItemOnObject("galeoutfit", GetPCSpeaker());
-        CreateItemOnObject("key_drannis", GetPCSpeaker());
-        CreateItemOnObject("drannis_dye_1", GetPCSpeaker());
-        CreateItemOnObject("drannis_dye_2", GetPCSpeaker());
-        CreateItemOnObject("drannis_dye_3", GetPCSpeaker());
-        GiveGoldToCreature(GetPCSpeaker(), 750);
+        CreateItemOnObject("galeoutfit", oPC);
+        CreateItemOnObject("key_drannis", oPC);
+        CreateItemOnObject("drannis_dye_1", oPC);
+        CreateItemOnObject("drannis_dye_2", oPC);
+        CreateItemOnObject("drannis_dye_3", oPC);
+        GiveGoldToCreature(oPC, 750);
 	    break;
 	  case MI_BA_ERENIA:       
-        CreateItemOnObject("spiritoutfit", GetPCSpeaker());
-        CreateItemOnObject("key_erenia", GetPCSpeaker());
-        CreateItemOnObject("erenia_dye_1", GetPCSpeaker());
-        CreateItemOnObject("erenia_dye_2", GetPCSpeaker());
-        CreateItemOnObject("erenia_dye_3", GetPCSpeaker());
-        GiveGoldToCreature(GetPCSpeaker(), 750);
+        CreateItemOnObject("spiritoutfit", oPC);
+        CreateItemOnObject("key_erenia", oPC);
+        CreateItemOnObject("erenia_dye_1", oPC);
+        CreateItemOnObject("erenia_dye_2", oPC);
+        CreateItemOnObject("erenia_dye_3", oPC);
+        GiveGoldToCreature(oPC, 750);
         break;
 	  case MI_BA_RENERRIN:
-        CreateItemOnObject("voiceoutfit", GetPCSpeaker());
-        CreateItemOnObject("key_renerrin", GetPCSpeaker());
-        CreateItemOnObject("renerrin_dye_1", GetPCSpeaker());
-        CreateItemOnObject("renerrin_dye_2", GetPCSpeaker());
-        CreateItemOnObject("renerrin_dye_3", GetPCSpeaker());
-        GiveGoldToCreature(GetPCSpeaker(), 750);
+        CreateItemOnObject("voiceoutfit", oPC);
+        CreateItemOnObject("key_renerrin", oPC);
+        CreateItemOnObject("renerrin_dye_1", oPC);
+        CreateItemOnObject("renerrin_dye_2", oPC);
+        CreateItemOnObject("renerrin_dye_3", oPC);
+        GiveGoldToCreature(oPC, 750);
 		break;
       case MI_BA_WARDEN:   	  
-        CreateItemOnObject("nw_cloth001", GetPCSpeaker());
-        CreateItemOnObject("key_warden", GetPCSpeaker());
-        GiveGoldToCreature(GetPCSpeaker(), 750);
+        CreateItemOnObject("nw_cloth001", oPC);
+        CreateItemOnObject("key_warden", oPC);
+        GiveGoldToCreature(oPC, 750);
+		break;
+      case MI_BA_SHADOW:   	  
+        CreateItemOnObject("key_shadow", oPC);
+        GiveGoldToCreature(oPC, 250);
 		break;
 	  default:
         break;		

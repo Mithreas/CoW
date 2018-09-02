@@ -14,6 +14,7 @@
 //::Updated Aug 14, 2003 Georg: removed some artifacts
 #include "X0_I0_SPELLS"
 #include "inc_customspells"
+#include "inc_state"
 
 int GetIsEntangled(object oCreature);
 
@@ -51,6 +52,8 @@ void main()
                         }
                     //}
                 }
+				
+				gsSTAdjustState(GS_ST_STAMINA, -5.0f, oTarget);
             }
         }
         //Get next target in the AOE

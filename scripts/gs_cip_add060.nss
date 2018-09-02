@@ -61,7 +61,7 @@ int StartingConditional()
             if (nCost)
             {
                 int nBaseItemValue = FloatToInt(gsCRGetCraftingCostMultiplier(oSpeaker, oItem, ipProperty)
-                                                * IntToFloat(gsCMGetItemValue(oItem)));
+                                                * IntToFloat(gsCMGetItemValue(oItem) - gsCRGetMaterialBaseValue(oItem)));
 
                 // Impose a min cost to avoid abusing merchants.  Max possible
                 // merchant buy price is 75% of base value so make this the min

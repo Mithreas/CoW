@@ -1069,7 +1069,7 @@ void gsIPAddItemProperty(object oItem, itemproperty ipProperty, float fDuration 
 
         if (((nDurationType == DURATION_TYPE_PERMANENT && fDuration == 0.0) ||
              (nDurationType == DURATION_TYPE_TEMPORARY && fDuration > 0.0)) &&
-//             (GetItemPropertyType(_ipProperty) != ITEM_PROPERTY_BONUS_SPELL_SLOT_OF_LEVEL_N) &&
+             (GetItemPropertyType(_ipProperty) != ITEM_PROPERTY_BONUS_SPELL_SLOT_OF_LEVEL_N) &&
             GetItemPropertyType(_ipProperty) == nType &&
             (nSingleSubTypeOnly ||
              nSubType == -1 ||

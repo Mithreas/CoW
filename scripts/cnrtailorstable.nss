@@ -71,7 +71,7 @@ void main()
   CnrRecipeSetRecipeXP(sKeyToRecipe, 10, 10);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorProducts, "Rope", "cnrrope", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrspidersilk", 1, 0);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrcloth", 1, 0);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 10, 10);
 

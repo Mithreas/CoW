@@ -1723,7 +1723,7 @@ void CnrRecipeDisplayCraftingResult(object oPC, object oDevice, string sKeyToRec
   }
   
   sInfo1 = CNR_TEXT_YOUR_ADVENTURING_XP_INCREASED_BY + IntToString(nNewXP) + ".\n";
-  gvd_AdventuringXP_GiveXP(oPC, nNewXP, "Crafting");
+  if (nNewXP) gvd_AdventuringXP_GiveXP(oPC, nNewXP, "Crafting");
 
   if (nDeviceTradeskillType != CNR_TRADESKILL_NONE)
   {

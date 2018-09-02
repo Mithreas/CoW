@@ -128,41 +128,47 @@ void main()
   CnrRecipeSetRecipeXP(sKeyToRecipe, 10, 10);
   
   
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpMisc, "Torch", "cnrtorch", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpMisc, "Torch", "NW_IT_TORCH001", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrstaveshort1", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrrope", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 2);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 20, 20);
   
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpMisc, "Bone Wand", "x2_it_cfm_wand", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "NW_IT_MSMLMISC13", 1); // Skeleton Knuckle
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrstaveshort1", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
+  
   //----------------------------weapons--------------------------------------
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpWeapons, "Wooden Club", "cnrclub", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrbranch1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrstaveshort1", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 10, 10);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpWeapons, "Ironwood Club", "cnrclub2", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrbranch2", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrstaveshort2", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpWeapons, "Duskwood Club", "wblcl008", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrbranch3", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrstaveshort3", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 10);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 100, 100);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpWeapons, "Wooden Quarterstaff", "cnrqstaff", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrbranch1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrstavelong1", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 10, 10);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpWeapons, "Ironwood Quarterstaff", "cnrqstaff2", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrbranch2", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrstavelong2", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpWeapons, "Duskwood Quarterstaff", "wdbqs004", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrbranch3", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrstavelong3", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 10);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 100, 100);
 
@@ -206,7 +212,7 @@ void main()
   CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpBolts, "Silver Bolts", "ca_gen_bolt_sil", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnringotlir", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotsil", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrbranch2", 3);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrfeather", 4);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 6);

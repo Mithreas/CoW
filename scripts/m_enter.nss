@@ -239,10 +239,10 @@ void main()
 	  SetSubRace(oEntering, "Human");
 	  miBAApplyBackground(oEntering, MI_BA_RENERRIN);
 	}
-	else if(sSubRace == "The Shadow")
+	else if(sSubRace == "Shadow")
 	{
 	  SetSubRace(oEntering, "Human");
-	  miBAApplyBackground(oEntering, MI_BA_SHADOW);
+	  miBAApplyBackground(oEntering, MI_BA_SHADOW, TRUE);
 	}
 	else if (sSubRace == "Wardens")
 	{

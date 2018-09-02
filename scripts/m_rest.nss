@@ -15,6 +15,7 @@ void gsRestMonitor(int nEffect = TRUE)
     if (GetCurrentAction() == ACTION_REST)
     {
         gsSTAdjustState(GS_ST_REST, 2.5);
+        gsSTAdjustState(GS_ST_STAMINA, 5.0);
         gsSTAdjustState(GS_ST_SOBRIETY, 5.0);
 
         //if (nEffect)

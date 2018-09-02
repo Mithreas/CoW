@@ -14,6 +14,7 @@ const int GS_ST_REST     = 3;
 const int GS_ST_SOBRIETY = 4;
 const int GS_ST_PIETY    = 5;
 const int GS_ST_BLOOD    = 6; // Used only by vampires
+const int GS_ST_STAMINA  = 7; // Used only by vampires
 
 //set initial state of caller
 void gsSTSetInitialState(int bReset = FALSE);
@@ -26,6 +27,12 @@ void gsSTAdjustState(int nState, float fValue, object oCreature = OBJECT_SELF);
 float gsSTGetState(int nState, object oCreature = OBJECT_SELF);
 //animate caller depending on state
 void gsSTPlayAnimation();
+// Anemoi spell system.  Bonus HP pool management. 
+int gsSTGetHPPool(object oCreature);
+// Anemoi spell system.  Bonus HP pool management. 
+void gsSTAdjustHPPool(object oCreature, int nAdjust);
+// Anemoi spell system.  Arcane spells cost 1 HP per caster level. 
+void gsSTDoCasterDamage(object oCaster, int nDamage);
 
 void gsSTSetInitialState(int bReset = FALSE)
 {
@@ -40,6 +47,7 @@ void gsSTSetInitialState(int bReset = FALSE)
       gsSTAdjustState(GS_ST_SOBRIETY, 100.0 - gsSTGetState(GS_ST_SOBRIETY));
       gsSTAdjustState(GS_ST_FOOD,      75.0 - gsSTGetState(GS_ST_FOOD));
       gsSTAdjustState(GS_ST_WATER,     75.0 - gsSTGetState(GS_ST_WATER));
+      gsSTAdjustState(GS_ST_STAMINA,   IntToFloat(GetMaxHitPoints(OBJECT_SELF)) - gsSTGetState(GS_ST_STAMINA));
       // NB - do not adjust piety.
     }
 
@@ -86,6 +94,8 @@ void gsSTProcessState()
       {
         gsSTAdjustState(GS_ST_REST,  -2.083); //48 hours
       }
+	  
+	  gsSTAdjustState(GS_ST_STAMINA, -1.0f);
       // ]-- end addition
     }
 
@@ -150,6 +160,11 @@ void gsSTAdjustState(int nState, float fValue, object oCreature = OBJECT_SELF)
         sMessage = "Blood";
         break;
 
+    case GS_ST_STAMINA:
+        sState = "GS_ST_STAMINA";
+        sMessage = "Stamina";
+        break;
+
     default:
         return;
     }
@@ -190,6 +205,7 @@ void gsSTAdjustState(int nState, float fValue, object oCreature = OBJECT_SELF)
     float fDexDecrease = 0.0;
     float fStrDecrease = 0.0;
     float fStrIncrease = 0.0;
+	int   nSpFailure   = 0;
 
     //food
     fState = gsSTGetState(GS_ST_FOOD);
@@ -264,6 +280,7 @@ void gsSTAdjustState(int nState, float fValue, object oCreature = OBJECT_SELF)
         fConDecrease += fValue;
         fDexDecrease += fValue;
         fStrDecrease += fValue;
+		nSpFailure   += FloatToInt(fabs(fState));
     }
     else if (fState < 15.0)
     {
@@ -307,10 +324,34 @@ void gsSTAdjustState(int nState, float fValue, object oCreature = OBJECT_SELF)
         FloatingTextStringOnCreature(GS_T_16777593, oCreature, FALSE);
     }
 
+    //stamina
+    fState = gsSTGetState(GS_ST_STAMINA);
+
+	if (fState == -100.0)
+    {
+        FloatingTextStringOnCreature(GS_T_16777309, oCreature, FALSE);
+
+        ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectDeath(FALSE, FALSE), oCreature);
+        return;
+    }
+    else if (fState < 0.0)
+    {
+        fValue        = fabs(fState) / 10.0;
+        fConDecrease += fValue;
+        fDexDecrease += fValue;
+        fStrDecrease += fValue;
+		nSpFailure   += FloatToInt(fabs(fState));
+    }
+	else if (fState > IntToFloat(GetMaxHitPoints(OBJECT_SELF)))
+	{
+      SetLocalFloat(oHide, "GS_ST_STAMINA", IntToFloat(GetMaxHitPoints(OBJECT_SELF)));  
+	}
+	
     //limit penalty
     if (fConDecrease > 10.0) fConDecrease = 10.0;
     if (fDexDecrease > 10.0) fDexDecrease = 10.0;
     if (fStrDecrease > 10.0) fStrDecrease = 10.0;
+	if (nSpFailure > 100) nSpFailure = 100;
 
     //remove effect
     effect eEffect = GetFirstEffect(oCreature);
@@ -354,6 +395,15 @@ void gsSTAdjustState(int nState, float fValue, object oCreature = OBJECT_SELF)
                                           FloatToInt(fStrDecrease))),
                 oSelf));
 
+    if (nSpFailure)
+        AssignCommand(
+            oCreator,
+            ApplyEffectToObject(
+                DURATION_TYPE_PERMANENT,
+                ExtraordinaryEffect(
+                    EffectSpellFailure(nSpFailure)),
+                oSelf));
+
     if (fStrIncrease != 0.0)
         AssignCommand(
             oCreator,
@@ -376,6 +426,7 @@ float gsSTGetState(int nState, object oCreature = OBJECT_SELF)
     case GS_ST_SOBRIETY: return GetLocalFloat(oHide, "GS_ST_SOBRIETY");
     case GS_ST_PIETY:    return GetLocalFloat(oHide, "GS_ST_PIETY");
     case GS_ST_BLOOD:    return GetLocalFloat(oHide, "GS_ST_BLOOD");
+    case GS_ST_STAMINA:  return GetLocalFloat(oHide, "GS_ST_STAMINA");
     }
 
     return 0.0;
@@ -399,7 +450,8 @@ void gsSTPlayAnimation()
         if (fRandom > gsSTGetState(GS_ST_FOOD)  ||
             fRandom > gsSTGetState(GS_ST_WATER) ||
             fRandom > gsSTGetState(GS_ST_REST)  ||
-            fRandom > gsSTGetState(GS_ST_SOBRIETY))
+            fRandom > gsSTGetState(GS_ST_SOBRIETY) ||
+            fRandom > gsSTGetState(GS_ST_STAMINA))
         {
             ClearAllActions();
             ActionPlayAnimation(ANIMATION_LOOPING_DEAD_FRONT,    1.0, 3600.0);
@@ -416,7 +468,8 @@ void gsSTPlayAnimation()
         }
         else if (fRandom > gsSTGetState(GS_ST_FOOD)  ||
                  fRandom > gsSTGetState(GS_ST_WATER) ||
-                 fRandom > gsSTGetState(GS_ST_REST))
+                 fRandom > gsSTGetState(GS_ST_REST) ||
+                 fRandom > gsSTGetState(GS_ST_STAMINA))
         {
             ClearAllActions();
             ActionPlayAnimation(ANIMATION_LOOPING_PAUSE_TIRED,   1.0, 3600.0);
@@ -427,4 +480,50 @@ void gsSTPlayAnimation()
             ActionPlayAnimation(ANIMATION_LOOPING_PAUSE_TIRED,   1.0, 3600.0);
         }
     }
+}
+//----------------------------------------------------------------
+int gsSTGetHPPool(object oCreature)
+{
+  // NPCs
+  if (GetLocalInt(oCreature, "HP_POOL")) return GetLocalInt(oCreature, "HP_POOL");
+
+  object oHide = gsPCGetCreatureHide(oCreature);
+  
+  if (GetIsObjectValid(oHide)) return GetLocalInt(oHide, "HP_POOL");
+  
+  return 0;
+}
+//----------------------------------------------------------------
+void gsSTAdjustHPPool(object oCreature, int nAdjust)
+{
+  if (GetLocalInt(oCreature, "HP_POOL")) SetLocalInt(oCreature, "HP_POOL", GetLocalInt(oCreature, "HP_POOL") + nAdjust);
+  
+  object oHide = gsPCGetCreatureHide(oCreature);
+  
+  if (GetIsObjectValid(oHide)) SetLocalInt(oHide, "HP_POOL", GetLocalInt(oHide, "HP_POOL") + nAdjust);
+}
+//----------------------------------------------------------------
+void gsSTDoCasterDamage(object oCaster, int nDamage)
+{
+  int nHPPool  = gsSTGetHPPool(oCaster);
+  int nStamina = FloatToInt(gsSTGetState(GS_ST_STAMINA, oCaster));
+  
+  if (nHPPool && (nStamina - nDamage < 10))
+  {
+    if (nDamage > nHPPool)
+	{
+	  nDamage -= nHPPool;
+	  gsSTAdjustHPPool(oCaster, -nHPPool);
+	}
+	else
+	{
+	  gsSTAdjustHPPool(oCaster, -nDamage);
+	  nDamage = 0;
+	}
+  }
+  
+  if (nDamage)
+  {
+      gsSTAdjustState(GS_ST_STAMINA, -IntToFloat(nDamage));
+  }
 }

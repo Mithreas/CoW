@@ -97,7 +97,7 @@ void _DoPrayer (object oPC, object oAltar, object oCleric)
        if (GetLocalInt(oFlock, "PRAYING"))
        {
           fPiety += _GetAdjustedPiety(oFlock, nADeity);
-		  gsSPDoCasterDamage(oFlock, 1);
+		  gsSTDoCasterDamage(oFlock, 1);
 		  nCount++;
        }
 
@@ -107,8 +107,8 @@ void _DoPrayer (object oPC, object oAltar, object oCleric)
   }
   
   gsWOAdjustPiety(oPC, fPiety);
-  gsSPAdjustHPPool(oPC, nCount);
-  gsSPDoCasterDamage(oPC, 1);
+  gsSTAdjustHPPool(oPC, nCount);
+  gsSTDoCasterDamage(oPC, 1);
 
   // dunshine: check for corpses nearby (only on permanent altars)
   if (GetStringLeft(GetTag(oAltar),5) != "GS_FX") {

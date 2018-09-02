@@ -19,6 +19,7 @@
 #include "X0_I0_SPELLS"
 #include "inc_customspells"
 #include "inc_spells"
+#include "inc_state"
 
 void main()
 {
@@ -59,6 +60,10 @@ void main()
                         //Entangle effect and Web VFX impact
                         ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eWeb, oTarget, RoundsToSeconds(1));
                         ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eVis, oTarget, RoundsToSeconds(1));
+						
+						// Anemoi: drain stamina.
+						SendMessageToPC(oTarget, "Struggling in the web is exhausting!");
+						gsSTAdjustState(GS_ST_STAMINA, -10.0f, oTarget);
                     }
                 //}
             }

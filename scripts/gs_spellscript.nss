@@ -3,6 +3,7 @@
 #include "inc_text"
 #include "inc_worship"
 #include "inc_spell"
+#include "inc_state"
 #include "inc_strack"
 #include "inc_pc"
 #include "inc_spells"
@@ -556,11 +557,8 @@ void main()
         if(nSpell == 627) nLevel = 0;
 
         int nSpellCastClass = GetIsLastSpellCastSpontaneous() ? GetSpontaneousSpellClass(OBJECT_SELF, GetSpellId()) : GetLastSpellCastClass();
-        if (nLevel >= 7)
+        if (nLevel >= 7 && (nSpellCastClass == CLASS_TYPE_DRUID || nSpellCastClass == CLASS_TYPE_CLERIC))
         {
-          if (nSpellCastClass == CLASS_TYPE_DRUID ||
-               nSpellCastClass == CLASS_TYPE_CLERIC)
-          {
             switch (nLevel)
             {
               case 7: fRequired = 1.0; break;
@@ -581,10 +579,10 @@ void main()
                 gsSPSetOverrideSpell();
                 SetModuleOverrideSpellScriptFinished();
                 return;
-            }
-          }
-          else
-          {
+            }          
+        }
+        else if (nSpellCastClass == CLASS_TYPE_WIZARD || nSpellCastClass == CLASS_TYPE_SORCERER || nSpellCastClass == CLASS_TYPE_BARD)
+        {
             // Arcanist - arcane spells cost HP.
             int nHP = nLevel;			
 
@@ -593,8 +591,7 @@ void main()
             //    GetLevelByClass(CLASS_TYPE_HARPER) > 4)
             //  nCharges = 0;
 
-			gsSPDoCasterDamage(OBJECT_SELF, nHP);
-          }
+			gsSTDoCasterDamage(OBJECT_SELF, nHP);
         }
 		
 		// CoW addition - sympathetic cleric magic

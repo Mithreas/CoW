@@ -264,33 +264,33 @@ void main()
   
 ////////////////////////////////////////////////Belts/////////////////////////////////////////////////////////
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuLeatherBelts, "Badger Leather Belt", "cnrbelt", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrleathbadg", 1, 0);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuLeatherBelts, "Badger Hide Belt", "cnrbelt", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrhidecurebadg", 1, 0);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuLeatherBelts, "Deer Leather Belt", "cnrbelt2", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrleathdeer", 1, 0);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuLeatherBelts, "Deer Hide Belt", "cnrbelt2", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrhidecuredeer", 1, 0);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuLeatherBelts, "Wolf Leather Belt", "cnrbelt3", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrleathwolf", 1, 0);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuLeatherBelts, "Wolf Hide Belt", "cnrbelt3", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrhidecurewolf", 1, 0);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 7);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 70, 70);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuLeatherBelts, "Grizzly Leather Belt", "cnrbelt4", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrleathgriz", 1, 0);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuLeatherBelts, "Grizzly Hide Belt", "cnrbelt4", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrhidecuregriz", 1, 0);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 9);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 90, 90);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuLeatherBelts, "Worg Leather Belt", "cnrbelt5", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrleathworg", 1, 0);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuLeatherBelts, "Worg Hide Belt", "cnrbelt5", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrhidecureworg", 1, 0);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 11);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 110, 110);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuLeatherBelts, "Dire Bear Leather Belt", "cnrbelt6", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrleathdb", 1, 0);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuLeatherBelts, "Dire Bear Hide Belt", "cnrbelt6", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrhidecuredb", 1, 0);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 13);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 130, 130);
   
