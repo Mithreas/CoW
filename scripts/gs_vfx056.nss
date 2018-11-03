@@ -4,7 +4,7 @@ void main()
 {
     if (GetLocalInt(OBJECT_SELF, "GS_ENABLED")) return;
     SetLocalInt(OBJECT_SELF, "GS_ENABLED", TRUE);
-
+	
     object oArea      = GetArea(OBJECT_SELF);
     vector vPosition  = GetPosition(OBJECT_SELF);
     float fFacing     = 0.0;

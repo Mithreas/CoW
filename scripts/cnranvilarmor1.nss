@@ -38,6 +38,7 @@ void main()
   string sMenuArmor1 = CnrRecipeAddSubMenu(sMenuArmor, "Ondaran Armour");
   string sMenuArmor2 = CnrRecipeAddSubMenu(sMenuArmor, "Iron Armour");
   string sMenuArmor3 = CnrRecipeAddSubMenu(sMenuArmor, "Silver Armour");
+  string sMenuArmor4 = CnrRecipeAddSubMenu(sMenuArmor, "Ankheg Armour");
 
 
   string sMenu1Medium = CnrRecipeAddSubMenu(sMenuArmor1, "Medium Ondaran");
@@ -332,5 +333,12 @@ void main()
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 7);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 70, 70);
 
+  //----------------- Ankheg armor -----------------------
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuArmor4, "Ankheg Full Plate", "aarcl028", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "AnkhegShell", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrpadding", 2);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 15);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 150, 150);
 
   }

@@ -36,6 +36,7 @@ const int FACTION_SPIRIT   = NATION_ERENIA;   // 3
 const int FACTION_VOICE    = NATION_RENERRIN; // 4
 const int FACTION_SHADOW   = NATION_SHADOW;   // 5
 const int FACTION_WARDENS  = NATION_VYVIAN;   // 6
+const int FACTION_FERNVALE = NATION_ELF;      // 7
 
 /* function prototypes */
 // Get the name of this faction from its number.
@@ -216,6 +217,8 @@ string GetFactionName(int nFaction)
       return "The Shadow";
 	case FACTION_WARDENS:
 	  return "Wardens";
+	case FACTION_FERNVALE:
+	  return "Fernvale";
   }
 
   return "";
@@ -237,6 +240,8 @@ int GetFactionFromName(string sFactionName)
       return FACTION_SHADOW;
   else if (sFactionName == "Wardens")
       return FACTION_WARDENS;
+  else if (sFactionName == "Fernvale")
+      return FACTION_FERNVALE;
 
   return FACTION_GLOBAL;
 }
@@ -293,14 +298,20 @@ void DisplayAllRepScores()
   {
     sMessage = GetName(oPC) + ". Global reputation: ";
     sMessage += IntToString(GetRepScore(oPC));
-    sMessage += ", House Drannis reputation: ";
+    sMessage += ", Imperial reputation: ";
     sMessage += IntToString(GetRepScore(oPC, 1));
-    sMessage += ", House Erenia reputation: ";
+    sMessage += ", House Drannis reputation: ";
     sMessage += IntToString(GetRepScore(oPC, 2));
-    sMessage += ", House Renerren reputation: ";
+    sMessage += ", House Erenia reputation: ";
     sMessage += IntToString(GetRepScore(oPC, 3));
-    sMessage += ", Shadow reputation: ";
+    sMessage += ", House Renerren reputation: ";
     sMessage += IntToString(GetRepScore(oPC, 4));
+    sMessage += ", Shadow reputation: ";
+    sMessage += IntToString(GetRepScore(oPC, 5));
+    sMessage += ", Vyvian reputation: ";
+    sMessage += IntToString(GetRepScore(oPC, 6));
+    sMessage += ", Fernvale reputation: ";
+    sMessage += IntToString(GetRepScore(oPC, 7));
 
     SendMessageToPC(oDM, sMessage);
     oPC = GetNextPC();

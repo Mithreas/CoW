@@ -42,6 +42,7 @@
 const string FW_PATH_PFWF = "FW_PERENOR_FEYWILDS_FRINGE";
 const string FW_PATH_PFWD = "FW_PERENOR_FEYWILDS_DEEP";
 const string UC_HOUSES    = "UNDERCITY_HOUSES";
+const string PC_HOUSES    = "PARLI_HOUSES";
 const string ENDS         = "_ENDINGS"; // Added to another list name for the endings.
 
 const string FEYWILDS     = "FEYWILDS"; // for tracing. 
@@ -119,6 +120,39 @@ void FW_Init()
   AddStringElement("uchouse9", UC_HOUSES, oMod);
   AddStringElement("uchouse4", UC_HOUSES, oMod);  // dark one cultist
   AddStringElement("uchouse6", UC_HOUSES, oMod);  // beast cult
+  
+  // Parli city houses.
+  DeleteList(PC_HOUSES, oMod);
+  AddStringElement("pchouse1", PC_HOUSES, oMod);
+  AddStringElement("pchouse1", PC_HOUSES, oMod);
+  AddStringElement("pchouse2", PC_HOUSES, oMod);
+  AddStringElement("pchouse2", PC_HOUSES, oMod);
+  AddStringElement("pchouse3", PC_HOUSES, oMod);
+  AddStringElement("pchouse3", PC_HOUSES, oMod);
+  AddStringElement("pchouse4", PC_HOUSES, oMod);
+  AddStringElement("pchouse4", PC_HOUSES, oMod);
+  AddStringElement("pchouse5", PC_HOUSES, oMod);
+  AddStringElement("pchouse5", PC_HOUSES, oMod);
+  AddStringElement("pchouse6", PC_HOUSES, oMod);
+  AddStringElement("pchouse6", PC_HOUSES, oMod);
+  AddStringElement("pchouse7", PC_HOUSES, oMod);
+  AddStringElement("pchouse7", PC_HOUSES, oMod);
+  AddStringElement("pchouse8", PC_HOUSES, oMod);
+  AddStringElement("pchouse8", PC_HOUSES, oMod);
+  AddStringElement("pchouse9", PC_HOUSES, oMod);
+  AddStringElement("pchouse9", PC_HOUSES, oMod);
+  AddStringElement("pchouse10", PC_HOUSES, oMod);
+  AddStringElement("pchouse10", PC_HOUSES, oMod);
+  AddStringElement("pchouse11", PC_HOUSES, oMod);
+  AddStringElement("pchouse11", PC_HOUSES, oMod);
+  AddStringElement("pchouse12", PC_HOUSES, oMod);
+  AddStringElement("pchouse12", PC_HOUSES, oMod);
+  AddStringElement("pchouse13", PC_HOUSES, oMod);
+  AddStringElement("pchouse13", PC_HOUSES, oMod);
+  AddStringElement("pchouse14", PC_HOUSES, oMod);
+  AddStringElement("pchouse14", PC_HOUSES, oMod);
+  AddStringElement("pchouse15", PC_HOUSES, oMod);
+  AddStringElement("pchouse15", PC_HOUSES, oMod);
   
 }
 

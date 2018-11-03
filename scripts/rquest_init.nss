@@ -45,6 +45,19 @@ void main()
   
   CleanDB(DB_QUEST);
 
+  QUEST = "patrol_city";
+  AddQuest(QUEST, PATROL, DB_QUEST);
+  SetStringValue(QUEST+DESCRIPTION,
+   "I've heard there's trouble at the South Gates. Could you go there and check? " +
+   "Careful not to upset the guards, don't be a hero.  Just find out what's going on " +
+   "and come back and tell me.",
+   DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "75", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "2000", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "01_02", DB_VARS);
+  SetStringValue(QUEST+AREA_TAGS, "southgates", DB_VARS);
+  SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
+
   QUEST = "train";
   AddQuest(QUEST, PATROL, DB_QUEST);
   SetStringValue(QUEST+DESCRIPTION,
@@ -56,22 +69,9 @@ void main()
    "entrances to the tombs, and you should be fine. \n\n When you think you're " +
    "ready to do more for the House, come back to me.",
    DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "01_05", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "03_05", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
   SetStringValue(QUEST+AREA_TAGS, "MarketSquare,UndercityAncestorsRest", DB_VARS);
-
-  QUEST = "patrol_city";
-  AddQuest(QUEST, PATROL, DB_QUEST);
-  SetStringValue(QUEST+DESCRIPTION,
-   "I've heard there's trouble at the South Gates. Could you go there and check? " +
-   "Careful not to upset the guards, don't be a hero.  Just find out what's going on " +
-   "and come back and tell me.",
-   DB_VARS);
-  SetStringValue(QUEST+REWARD_GOLD, "75", DB_VARS);
-  SetStringValue(QUEST+REWARD_XP, "200", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "01_05", DB_VARS);
-  SetStringValue(QUEST+AREA_TAGS, "southgates", DB_VARS);
-  SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
 
   QUEST = "drarayne_rats";
   AddQuest(QUEST, HELP, DB_QUEST);
@@ -284,7 +284,18 @@ void main()
   DB_VARS  = "drannis_vars";
 
   CleanDB(DB_QUEST);
-  
+
+  QUEST = "patrol_city";
+  AddQuest(QUEST, PATROL, DB_QUEST);
+  SetStringValue(QUEST+DESCRIPTION,
+   "I've heard there's trouble at the South Gates. Could you go there and check?",
+   DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "75", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "2000", DB_VARS);
+  SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "01_02", DB_VARS);
+  SetStringValue(QUEST+AREA_TAGS, "southgates", DB_VARS);
+    
   QUEST = "train";
   AddQuest(QUEST, PATROL, DB_QUEST);
   SetStringValue(QUEST+DESCRIPTION,
@@ -295,21 +306,10 @@ void main()
    "dead at rest... and we suspect dark magic at play, too. Stay near the " +
    "entrances to the tombs, and you should be fine. \n\n When you think you're " +
    "ready to do more for the House, come back to me.",
-   DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "01_05", DB_VARS);
+   DB_VARS);   
+  SetStringValue(QUEST+LEVEL_RANGE, "03_05", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
   SetStringValue(QUEST+AREA_TAGS, "MarketSquare,UndercityAncestorsRest", DB_VARS);
-
-  QUEST = "patrol_city";
-  AddQuest(QUEST, PATROL, DB_QUEST);
-  SetStringValue(QUEST+DESCRIPTION,
-   "I've heard there's trouble at the South Gates. Could you go there and check?",
-   DB_VARS);
-  SetStringValue(QUEST+REWARD_GOLD, "75", DB_VARS);
-  SetStringValue(QUEST+REWARD_XP, "200", DB_VARS);
-  SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "01_05", DB_VARS);
-  SetStringValue(QUEST+AREA_TAGS, "southgates", DB_VARS);
   
   QUEST = "gather_wood";
   AddQuest(QUEST, RETRIEVE, DB_QUEST);
@@ -518,6 +518,19 @@ void main()
   DB_VARS  = "erenia_vars";
 
   CleanDB(DB_QUEST);
+
+  QUEST = "gather_holywater";
+  AddQuest(QUEST, RETRIEVE, DB_QUEST);
+  SetStringValue(QUEST+DESCRIPTION,
+   "Freda told me there's a ghost in the Tower. I need some holy water to keep "
+   + "it out of my rooms. Please can you fetch me some? The Temple should have "
+   + "plenty.",
+   DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "100", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "1000", DB_VARS);
+  SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "01_02", DB_VARS);
+  SetStringValue(QUEST+ITEM_TAG, "X1_WMGRENADE005", DB_VARS);
   
   QUEST = "train";
   AddQuest(QUEST, PATROL, DB_QUEST);
@@ -530,22 +543,9 @@ void main()
    "entrances to the tombs, and you should be fine. \n\n When you think you're " +
    "ready to do more for the House, come back to me.",
    DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "01_05", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "03_05", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
   SetStringValue(QUEST+AREA_TAGS, "MarketSquare,UndercityAncestorsRest", DB_VARS);
-
-  QUEST = "gather_holywater";
-  AddQuest(QUEST, RETRIEVE, DB_QUEST);
-  SetStringValue(QUEST+DESCRIPTION,
-   "Freda told me there's a ghost in the Tower. I need some holy water to keep "
-   + "it out of my rooms. Please can you fetch me some? The Temple should have "
-   + "plenty.",
-   DB_VARS);
-  SetStringValue(QUEST+REWARD_GOLD, "100", DB_VARS);
-  SetStringValue(QUEST+REWARD_XP, "100", DB_VARS);
-  SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "01_05", DB_VARS);
-  SetStringValue(QUEST+ITEM_TAG, "X1_WMGRENADE005", DB_VARS);
 
   QUEST = "more_holywater";
   AddQuest(QUEST, RETRIEVE, DB_QUEST);
@@ -736,8 +736,8 @@ void main()
 	"dwellings.", DB_VARS);
   SetStringValue(QUEST+AREA_TAGS, "PerVyvTradeRoute", DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "25", DB_VARS);
-  SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "01_04", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "1000", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "01_02", DB_VARS);
 
   QUEST = "patrol_docks";
   AddQuest(QUEST, PATROL, DB_QUEST);
@@ -747,7 +747,7 @@ void main()
   SetStringValue(QUEST+AREA_TAGS, "PerVilDocks", DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "25", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "01_04", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "03_04", DB_VARS);
   
   QUEST = "cure_potion";
   AddQuest(QUEST, RETRIEVE, DB_QUEST);
@@ -756,7 +756,7 @@ void main()
 	"me feel better.  If you haven't got one on you, Allie should have some for sale in the Tankard of Mead.", DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "125", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "01_04", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "03_04", DB_VARS);
   SetStringValue(QUEST+ITEM_TAG, "NW_IT_MPOTION001", DB_VARS);
   SetStringValue(QUEST+NUM_ITEMS, "1", DB_VARS);
   
@@ -768,7 +768,7 @@ void main()
 	"in the Tankard of Mead probably has one you can buy.", DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "250", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "01_05", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "03_05", DB_VARS);
   SetStringValue(QUEST+ITEM_TAG, "cnrnuggetond", DB_VARS);
   SetStringValue(QUEST+NUM_ITEMS, "4", DB_VARS);
   
@@ -855,4 +855,145 @@ void main()
   SetStringValue(QUEST+ITEM_TAG, "cnrnuggetsil", DB_VARS);
   SetStringValue(QUEST+NUM_ITEMS, "2", DB_VARS);
   
+  //-------------------------------------------------------------------------------------------
+  /* Fernvale Quests */
+  DB_QUEST = "fernvale_quests";
+  DB_VARS  = "fernvale_vars";
+  
+  QUEST = "explore_fernvale";
+  AddQuest(QUEST, PATROL, DB_QUEST);
+  SetStringValue(QUEST+DESCRIPTION, 
+    "You should get to know the village.  Visit the Rangers' Guild, the Mages' Guild, the Canopy, and the Temple. " +
+	"They're all nearby; the guilds are to your left and right, the way up to the canopy is further to your left, " +
+	"and the temple is a short walk to the east.", DB_VARS);
+  SetStringValue(QUEST+AREA_TAGS, "fevCanopy,fevMageGuild,fevRangersGuild,fevtemple", DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "25", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "2000", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "01_02", DB_VARS);
+  
+  QUEST = "kill_gobbo_carrier";
+  AddQuest(QUEST, KILL, DB_QUEST);
+  SetStringValue(QUEST+DESCRIPTION,
+  "There is a nasty plague in the lands.  The nearby tribe of goblins is deeply afflicted; this is not helped by " +
+  "some of them acting as carriers, and passing the disease on to each generation.  Go to the goblin cave in the " +
+  "north woods, and remove one of the carriers.",
+  DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "250", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
+  SetStringValue(QUEST+REWARD_FAC_REP, "2", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "03_05", DB_VARS);
+  SetStringValue(QUEST+TARGET_TAG, "qst_gobcarrier", DB_VARS);
+  
+  QUEST = "retrieve_bark";
+  AddQuest(QUEST, MESSENGER, DB_QUEST);
+  SetStringValue(QUEST+DESCRIPTION,
+  "One of the Entish has been growing some very special bark for me, which might help us deal with the plague that's " +
+  "troubling our land.  He usually wanders in the southern woods.  Please find out whether the bark is ready, and if so, " +
+  "bring it back to me.",
+  DB_VARS);
+  SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "03_05", DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "50", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
+  SetStringValue(QUEST+ITEM_TO_BRING, "special_bark", DB_VARS);
+  SetStringValue(QUEST+TYPE, "GET", DB_VARS);
+  SetStringValue(QUEST+OTHER_NPC, "ent_bark_grower", DB_VARS);
+  
+  QUEST = "craft_arrows";
+  AddQuest(QUEST, RETRIEVE, DB_QUEST);
+  SetStringValue(QUEST+DESCRIPTION,
+    "You should learn how to make bundles of arrows; later you will be able to enchant whole bundles to make many powerful " +
+	"arrows.  Firstly, you will need to obtain some twigs from an ent.  Speak with an ent bare-handed, and they will let you " +
+	"gather some twigs.  You will also need some feathers; you have probably noticed the birds in the canopy.  Harvest wisely. " +
+	"Then in the Rangers' Guild you will find a craft station for making arrows.", DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "125", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "03_05", DB_VARS);
+  SetStringValue(QUEST+ITEM_TAG, "ca_gen_arrow_ent", DB_VARS);
+  SetStringValue(QUEST+NUM_ITEMS, "1", DB_VARS);
+  
+  QUEST = "craft_chitin";
+  AddQuest(QUEST, RETRIEVE, DB_QUEST);
+  SetStringValue(QUEST+DESCRIPTION,
+    "You should learn how to work with chitin.  Ask an arachne if they have any spare; they are always shedding their skins as they " +
+	"grow, so most have a ready supply.  Take it to the Rangers' Guild and use the armour crafting anvil to make small plates, and " +
+	"make a helmet from those plates and bring it to me.", DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "255", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "03_05", DB_VARS);
+  SetStringValue(QUEST+ITEM_TAG, "cnrhelm5", DB_VARS);
+  SetStringValue(QUEST+NUM_ITEMS, "1", DB_VARS);
+  
+  QUEST = "hobgob_caves";
+  AddQuest(QUEST, HELP, DB_QUEST);
+  SetStringValue(QUEST+DESCRIPTION,
+   "Ranger Rathendriel has sent a request for help.  He's stationed at the outpost just west of the village.  Please " +
+   "go and see what you can do to help him.", 
+   DB_VARS);
+  SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "04_06", DB_VARS);
+  SetStringValue(QUEST+OTHER_NPC, "qst_rathendriel", DB_VARS);
+  
+  QUEST = "cure_ingredients";  
+  AddQuest(QUEST, RETRIEVE, DB_QUEST);
+  SetStringValue(QUEST+DESCRIPTION,
+   "Keeping the plague from affecting our peoples requires a constant source of cure.  Happily this can be made with " +
+   "local ingredients.  Please bring back some ginseng from the foothills to the west.",
+   DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "100", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "100", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "04_05", DB_VARS);
+  SetStringValue(QUEST+ITEM_TAG, "cnrginsengroot", DB_VARS);
+  SetStringValue(QUEST+NUM_ITEMS, "2", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  QUEST = "make_cure";  
+  AddQuest(QUEST, RETRIEVE, DB_QUEST);
+  SetStringValue(QUEST+DESCRIPTION,
+   "Keeping the plague from affecting our peoples requires a constant source of cure.  Please deliver me five potions " +
+   "of cure disease.",
+   DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "250", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "06_10", DB_VARS);
+  SetStringValue(QUEST+ITEM_TAG, "it_mpotion007", DB_VARS);
+  SetStringValue(QUEST+NUM_ITEMS, "5", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  QUEST = "ent_bark";  
+  AddQuest(QUEST, RETRIEVE, DB_QUEST);
+  SetStringValue(QUEST+DESCRIPTION,
+   "You've already worked with ent twigs.  But to make things like shields and crossbows, you'll need to learn how to harvest " +
+   "bark from our entish companions.  First, you will need fungus juice... you can find fungi in some caves.  Rub the fungus " +
+   "juice on an ent, and then you'll be able to peel a strip of bark off.  You'll only be able to take loose bark, so if you " +
+   "have a lot of juice, use it in small amounts at a time.  Show you've managed this by bringing me a piece of bark.",
+   DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "250", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "06_10", DB_VARS);
+  SetStringValue(QUEST+ITEM_TAG, "cnrbarkent", DB_VARS);
+  SetStringValue(QUEST+NUM_ITEMS, "1", DB_VARS);
+  
+  QUEST = "kill_vampire";
+  AddQuest(QUEST, KILL, DB_QUEST);
+  SetStringValue(QUEST+DESCRIPTION,
+  "A vampire is blocking the bridge south of the village!  Please banish it at once.",
+  DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "1000", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
+  SetStringValue(QUEST+REWARD_FAC_REP, "2", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "07_10", DB_VARS);
+  SetStringValue(QUEST+TARGET_TAG, "qst_vampire", DB_VARS); 
+
+  QUEST = "kill_orc_scout";
+  AddQuest(QUEST, KILL, DB_QUEST);
+  SetStringValue(QUEST+DESCRIPTION,
+  "An arachne brought word of an orc scout skulking by the foothills. Orc axes must never be permitted in these woods. " + 
+  "Deal with the problem,please.",
+  DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "1000", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
+  SetStringValue(QUEST+REWARD_FAC_REP, "2", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "07_10", DB_VARS);
+  SetStringValue(QUEST+TARGET_TAG, "qst_orc_scout", DB_VARS);  
 }

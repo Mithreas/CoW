@@ -112,7 +112,7 @@ int StartingConditional()
 
                     if (Random(100) < nChance)
                     {
-                        // divine invervention
+                        // divine intervention
                         string sDeity = GetDeity(oSpeaker);
                         int nAspect = ASPECT_MAGIC;
                         if (bStaticLevel && bMundane) nAspect = ASPECT_KNOWLEDGE_INVENTION;

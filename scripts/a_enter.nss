@@ -34,8 +34,30 @@
 const int GS_TIMEOUT   = 2400;  // 4 RT minutes (40 game minutes)
 const string ENTER = "ENTER"; // For logging
 
+void _ApplyUnderwaterSpeedPenalty(object oPC)
+{
+  object oEffector = GetObjectByTag("gwwcc_idol");
+  
+  AssignCommand(oEffector, 
+    ApplyEffectToObject(DURATION_TYPE_PERMANENT,
+                        ExtraordinaryEffect(EffectSlow()),
+                        oPC));
+}
 
-// Added by Mithreas
+void _RemoveUnderwaterSpeedPenalty(object oPC)
+{
+  object oEffector = GetObjectByTag("gwwcc_idol");
+  effect eEffect = GetFirstEffect(oPC);
+
+  while (GetIsEffectValid(eEffect))
+  {
+    if (GetEffectCreator(eEffect) == oEffector)
+      RemoveEffect(oPC, eEffect);
+
+    eEffect = GetNextEffect(oPC);
+  }
+}
+
 void DoRandomTraps()
 {
   object oPC = GetEnteringObject();
@@ -165,7 +187,22 @@ void DoDeadPeople()
 
   SetLocalObject(oPC, GetTag(OBJECT_SELF) + "_dead", oCopy);
 }
-
+//----------------------------------------------------------------
+void DoUnderwaterHeartbeat(object oPC)
+{
+  if (GetLocalInt(GetArea(oPC), "IS_UNDERWATER") != 2)
+  {
+    _RemoveUnderwaterSpeedPenalty(oPC);
+  }
+  else
+  {
+    // We're still underwater. 
+    AssignCommand(oPC, gsSTAdjustState(GS_ST_STAMINA, -1.0f));
+	SendMessageToPC(oPC, "You are underwater! Surface before you run out of air.");
+	DelayCommand(1.0f, DoUnderwaterHeartbeat(oPC));
+  }	
+}
+//----------------------------------------------------------------
 void gsActivateRecreator(object oRecreator)
 {
     object oObject = CreateObject(GetLocalInt(oRecreator, "GS_TYPE"),
@@ -361,6 +398,15 @@ void main()
       }
       else if (nTravelling) DeleteLocalInt(oEntering, MICA_TRAVELLING);
     }
+	
+	// Underwater areas.
+	// IS_UNDERWATER = 1 means flooded (drains stamina faster)
+	// IS_UNDERWATER = 2 means totally underwater (drains stamina very fast, slows PC).
+	if (GetLocalInt(oArea, "IS_UNDERWATER") == 2 && (GetIsPC(oEntering) || GetIsPC(GetMaster(oEntering))))
+	{
+	  _ApplyUnderwaterSpeedPenalty(oEntering);
+	  DoUnderwaterHeartbeat(oEntering);
+	}
 
     //clean up area
     if (nTimestampArea != nTimestamp && GetLocalInt(OBJECT_SELF, "DM_FORCE_ACTIVE") != 1)
@@ -474,6 +520,13 @@ void main()
                   DelayCommand(0.5, gsQUPayTax(oObject));
                 }
 
+				// Light
+				if (GetLocalInt(oObject, "GS_LIGHT") && !GetLocalInt(oObject, "GS_ACTIVE"))
+				{
+				  // GS_LIGHT should be set to a VFX_DUR_* constant (153-180, see https://nwnlexicon.com/index.php?title=Vfx_dur).
+				  ApplyEffectToObject(DURATION_TYPE_PERMANENT, EffectVisualEffect(GetLocalInt(oObject, "GS_LIGHT")), oObject);
+				}
+				
                 break;
 
             case OBJECT_TYPE_STORE:

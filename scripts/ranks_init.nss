@@ -62,4 +62,9 @@ void main()
   Add(sFac, 1, 0, "Warden");
   Add(sFac, 2, 50, "Senior Warden");
   Add(sFac, 3, 100, "Protector of Vyvian");
+  
+  sFac = "Ferndale";
+  Add(sFac, 1, 0, "Resident");
+  Add(sFac, 2, 50, "Elder");
+  Add(sFac, 3, 100, "Champion");
 }

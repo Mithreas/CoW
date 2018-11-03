@@ -196,8 +196,7 @@ void miCheckIfCharacterIsLegal_1(object oPC)
 void main()
 {
   // City of Winds - allowed races and classes.
-  if ((GetRacialType(OBJECT_SELF) != RACIAL_TYPE_HUMAN && GetRacialType(OBJECT_SELF) != RACIAL_TYPE_HALFLING) || 
-      !CoW_HasAllowedClasses(OBJECT_SELF))
+  if (!CoW_HasAllowedClasses(OBJECT_SELF))
   {
        DelayCommand(3.0, JumpToLocation(GetLocation(GetObjectByTag("invalid_classes")) ));
        return;

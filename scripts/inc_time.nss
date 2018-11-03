@@ -52,6 +52,10 @@ int GetModuleTime();
 // This value is set in module properties.  We can calculate it dynamically from
 // HoursToSeconds() etc, but having it as a constant makes it easier to follow
 // the code.
+//
+// Complexity here is that GetTimeMinute returns the RL minute since the last 
+// hour.  If set to 6 minutes per hour, possible return values are 0,1,2,3,4,5
+// then it wraps.  So all timestamps need to build up from these values. 
 const int MINUTES_PER_HOUR = 15;
 
 int gsTIGetActualTimestamp()
@@ -68,12 +72,14 @@ int gsTIGetTimestamp(int nYear, int nMonth = 0, int nDay = 0, int nHour = 0, int
 {
     if (nYear) nYear -= GetLocalInt(GetModule(), "GS_YEAR");
 
-    return 29030400 * nYear +
-            2419200 * nMonth +
-              86400 * nDay +
-               3600 * nHour +
-                3600/MINUTES_PER_HOUR * nMinute +
-                  60/MINUTES_PER_HOUR * nSecond;
+	// For historical reasons we multiply by 10x (Giga's calculation but now depended on in the module). 
+    return 10 * 
+	       60 * MINUTES_PER_HOUR * 24 * 30 * 12 * nYear +
+             60 * MINUTES_PER_HOUR * 24 * 30 * nMonth +
+               60 * MINUTES_PER_HOUR * 24 * nDay +
+                60 * MINUTES_PER_HOUR * nHour +
+                 60 * nMinute +
+                   nSecond;
 }
 //----------------------------------------------------------------
 int gsTIGetYear(int nTimestamp)
@@ -228,10 +234,10 @@ string gsTIGetPresentableTime(int nTime=0)
 //:://////////////////////////////////////////////
 int GetModuleTime()
 {
-    return 2903040 * (GetCalendarYear() - GetLocalInt(GetModule(), "GS_YEAR"))
-        + 241920 * (GetCalendarMonth() - 1)
-        + 8640 * (GetCalendarDay() - 1)
-        + 360 * GetTimeHour()
+    return 60 * MINUTES_PER_HOUR * 24 * 30 * 12 * (GetCalendarYear() - GetLocalInt(GetModule(), "GS_YEAR"))
+        + 60 * MINUTES_PER_HOUR * 24 * 30 * (GetCalendarMonth() - 1)
+        + 60 * MINUTES_PER_HOUR * 24 * (GetCalendarDay() - 1)
+        + 60 * MINUTES_PER_HOUR * GetTimeHour()
         + 60 * GetTimeMinute()
         + GetTimeSecond();
 }

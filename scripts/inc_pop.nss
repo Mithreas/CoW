@@ -44,6 +44,7 @@
   - To hardcode existing areas to be associated with the same population (so
     that monster kills there cull the herd) put down copies of the master
     Population marker with GS_PO_MASTER=0.
+  - There is a hard limit of 1000 in the code at present.  
 
 */
 #include "inc_encounter"
@@ -111,6 +112,9 @@ void miPORepopulate()
   //if (miXFGetCurrentServer() == SERVER_CORDOR || miXFGetCurrentServer() == SERVER_PREHISTORY)
   SQLExecDirect(sQuery);
 
+  // Max 1000. 
+  SQLExecDirect("UPDATE mipo_populations SET pop=1000 WHERE pop>1000");
+  
   SQLExecDirect("SELECT tag FROM mipo_populations");
 
   while (SQLFetch())

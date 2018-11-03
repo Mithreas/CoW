@@ -95,7 +95,6 @@ void gsSTProcessState()
         gsSTAdjustState(GS_ST_REST,  -2.083); //48 hours
       }
 	  
-	  gsSTAdjustState(GS_ST_STAMINA, -1.0f);
       // ]-- end addition
     }
 
@@ -193,9 +192,7 @@ void gsSTAdjustState(int nState, float fValue, object oCreature = OBJECT_SELF)
     else              sMessage += "<cþ((>";
     sMessage += FloatToString(fValue,    0, 1) + "% (" +
                 FloatToString(fStateNew, 0, 1) + "%)";
-
-    SendMessageToPC(oCreature, sMessage);
-
+	
     //effect
     if (GetIsDead(oCreature))       return;
     object oCreator    = GetLocalObject(GetModule(), "GS_ST_CREATOR");
@@ -344,8 +341,11 @@ void gsSTAdjustState(int nState, float fValue, object oCreature = OBJECT_SELF)
     }
 	else if (fState > IntToFloat(GetMaxHitPoints(OBJECT_SELF)))
 	{
-      SetLocalFloat(oHide, "GS_ST_STAMINA", IntToFloat(GetMaxHitPoints(OBJECT_SELF)));  
+      SetLocalFloat(oHide, "GS_ST_STAMINA", IntToFloat(GetMaxHitPoints(OBJECT_SELF)));
+      fStateNew = IntToFloat(GetMaxHitPoints(OBJECT_SELF));
 	}
+	
+    if (fStateNew != fStateOld) SendMessageToPC(oCreature, sMessage);
 	
     //limit penalty
     if (fConDecrease > 10.0) fConDecrease = 10.0;

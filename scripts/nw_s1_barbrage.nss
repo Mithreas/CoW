@@ -27,7 +27,7 @@
 void main()
 {
     // Rage Override for tribesman path.
-    if (GetLocalInt(gsPCGetCreatureHide(), "TRIBESMAN"))
+    if (GetLocalInt(gsPCGetCreatureHide(), "TRIBESMAN") || GetLocalInt(OBJECT_SELF, "TRIBESMAN"))
     {
         btribeCreateTribesmen(OBJECT_SELF);
         btribeCreateTribesmen(OBJECT_SELF);

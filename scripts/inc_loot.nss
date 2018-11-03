@@ -71,21 +71,44 @@ void InitialiseLootSystem()
     // Set up the resref arrays. We select one of these based on what we want to spawn.
     // These use the expanded base item set in inc_baseitem.
     AddBaseItemResRef(BASE_ITEM_AMULET, "nw_it_mneck020");
-    //TODO: AddBaseItemResRef(BASE_ITEM_ARMOR_AC0, "TODO");
-    //TODO: AddBaseItemResRef(BASE_ITEM_ARMOR_AC1, "TODO");
-    //TODO: AddBaseItemResRef(BASE_ITEM_ARMOR_AC2, "TODO");
-    //TODO: AddBaseItemResRef(BASE_ITEM_ARMOR_AC3, "TODO");
-    //TODO: AddBaseItemResRef(BASE_ITEM_ARMOR_AC4, "TODO");
-    //TODO: AddBaseItemResRef(BASE_ITEM_ARMOR_AC5, "TODO");
-    //TODO: AddBaseItemResRef(BASE_ITEM_ARMOR_AC6, "TODO");
-    //TODO: AddBaseItemResRef(BASE_ITEM_ARMOR_AC7, "TODO");
-    //TODO: AddBaseItemResRef(BASE_ITEM_ARMOR_AC8, "TODO");
+    AddBaseItemResRef(BASE_ITEM_ARMOR_AC0, "mcloth012");
+    AddBaseItemResRef(BASE_ITEM_ARMOR_AC0, "cloth023");
+    AddBaseItemResRef(BASE_ITEM_ARMOR_AC0, "cloth029");
+    AddBaseItemResRef(BASE_ITEM_ARMOR_AC1, "mcloth013");
+    AddBaseItemResRef(BASE_ITEM_ARMOR_AC1, "cloth024");
+    AddBaseItemResRef(BASE_ITEM_ARMOR_AC1, "cloth030");
+    AddBaseItemResRef(BASE_ITEM_ARMOR_AC2, "maarcl029");
+    AddBaseItemResRef(BASE_ITEM_ARMOR_AC2, "aarcl002");
+    AddBaseItemResRef(BASE_ITEM_ARMOR_AC2, "cnrarmhiddb");
+    AddBaseItemResRef(BASE_ITEM_ARMOR_AC2, "cnrarmleatdb");
+    AddBaseItemResRef(BASE_ITEM_ARMOR_AC3, "maarcl030");
+    AddBaseItemResRef(BASE_ITEM_ARMOR_AC3, "aarcl003");
+    AddBaseItemResRef(BASE_ITEM_ARMOR_AC3, "cnrarmstudb");
+    AddBaseItemResRef(BASE_ITEM_ARMOR_AC3, "maarcl033");
+    AddBaseItemResRef(BASE_ITEM_ARMOR_AC4, "aarcl016");
+    AddBaseItemResRef(BASE_ITEM_ARMOR_AC4, "aarcl026");
+    AddBaseItemResRef(BASE_ITEM_ARMOR_AC4, "aarcl021");
+    AddBaseItemResRef(BASE_ITEM_ARMOR_AC5, "aarcl017");
+    AddBaseItemResRef(BASE_ITEM_ARMOR_AC5, "aarcl022");
+    AddBaseItemResRef(BASE_ITEM_ARMOR_AC6, "aarcl015");
+    AddBaseItemResRef(BASE_ITEM_ARMOR_AC6, "aarcl018");
+    AddBaseItemResRef(BASE_ITEM_ARMOR_AC7, "aarcl014");
+    AddBaseItemResRef(BASE_ITEM_ARMOR_AC7, "aarcl020");
+    AddBaseItemResRef(BASE_ITEM_ARMOR_AC8, "aarcl008");
+    AddBaseItemResRef(BASE_ITEM_ARMOR_AC8, "aarcl019");
+    AddBaseItemResRef(BASE_ITEM_ARMOR_AC8, "aarcl029");
     AddBaseItemResRef(BASE_ITEM_BASTARDSWORD, "nw_wswbs001");
     AddBaseItemResRef(BASE_ITEM_BATTLEAXE, "nw_waxbt001");
     AddBaseItemResRef(BASE_ITEM_BELT, "cnrbelt");
+    AddBaseItemResRef(BASE_ITEM_BOOTS, "cnrbootsdeer");
     AddBaseItemResRef(BASE_ITEM_BOOTS, "cnrboots");
+    AddBaseItemResRef(BASE_ITEM_BOOTS, "cnrbootsdb");
     AddBaseItemResRef(BASE_ITEM_BRACER, "cnrbrac");
     AddBaseItemResRef(BASE_ITEM_CLOAK, "cnrcloak");
+    AddBaseItemResRef(BASE_ITEM_CLOAK, "maarcl038");
+    AddBaseItemResRef(BASE_ITEM_CLOAK, "maarcl035");
+    AddBaseItemResRef(BASE_ITEM_CLOAK, "maarcl036");
+    AddBaseItemResRef(BASE_ITEM_CLOAK, "cnrcloak5");
     AddBaseItemResRef(BASE_ITEM_CLUB, "nw_wblcl001");
     AddBaseItemResRef(BASE_ITEM_DAGGER, "nw_wswdg001");
     AddBaseItemResRef(BASE_ITEM_DIREMACE, "nw_wdbma001");
@@ -175,7 +198,13 @@ void CreateLoot(int context, object container, object creature)
     }
 
     CreateProceduralLoot(LOOT_TEMPLATE_TIER_1, context, container, creature);
-    CreateProceduralLoot(LOOT_TEMPLATE_TIER_2, context, container, creature);
+	
+	// Only make more powerful items if we're in a Medium or High context loot situation.
+	if (INTERNAL_GetPostfixFromContext(context) == INTERNAL_POSTFIX_MEDIUM || 
+	    INTERNAL_GetPostfixFromContext(context) == INTERNAL_POSTFIX_HIGH)
+	{
+      CreateProceduralLoot(LOOT_TEMPLATE_TIER_2, context, container, creature);
+	}  
 }
 
 void CreateProceduralLoot(string template, int context, object container, object creature, int override = FALSE)
@@ -214,6 +243,14 @@ void CreateProceduralLoot(string template, int context, object container, object
         object generatedLoot = OBJECT_INVALID;
 
         string resref = GetRandomResRefFromItemType(ITEM_TYPE_GEAR);
+		
+		switch (d3())
+		{
+		  // TODO - tailored loot should check AC values / weapon focuses. 
+		  case 1: resref = GetRandomResRefFromItemType(ITEM_TYPE_WEAPON); break;
+		  case 2: resref = GetRandomResRefFromItemType(ITEM_TYPE_ARMOUR); break;
+		  default: break;
+		}
 
         // To allow for different loot generation per loot difficulty (low, med, high), we actually
         // have three loot scripts per tier.
@@ -251,7 +288,7 @@ void CreateProceduralLoot(string template, int context, object container, object
                 if(nRandom <= 20)
                     runicLang = GS_LA_LANGUAGE_ELVEN;
                 else if(nRandom <= 40)
-                    runicLang = GS_LA_LANGUAGE_DWARVEN;
+                    runicLang = GS_LA_LANGUAGE_HALFLING;
                 else if(nRandom <= 55)
                     runicLang = GS_LA_LANGUAGE_DRACONIC;
                 else if(nRandom <= 65)

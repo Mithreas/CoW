@@ -4,9 +4,12 @@ void main()
 {
     if (GetLocalInt(OBJECT_SELF, "GS_ENABLED")) return;
     SetLocalInt(OBJECT_SELF, "GS_ENABLED", TRUE);
+	
+	string sTemplate = GetLocalString(OBJECT_SELF, "GS_TEMPLATE");
+	if (sTemplate == "") sTemplate = GS_TEMPLATE_PANEL;
 
     object oObject = CreateObject(OBJECT_TYPE_PLACEABLE,
-                                  GS_TEMPLATE_PANEL,
+                                  sTemplate,
                                   GetLocation(OBJECT_SELF));
 
     if (GetIsObjectValid(oObject))

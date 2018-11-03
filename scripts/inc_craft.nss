@@ -1776,8 +1776,10 @@ int gsCRGetMaterialMultiplier(int nMaterial, int bMundaneProperty = TRUE)
       case 3: // bronze
       case 13: // silver
       case 17: // hide
+	  case 18: // arachne chitin
       case 36: // wool
       case 38: // ironwood
+	  case 40: // entwood
         nMaterialBonus = 2;
         break;
       case 9: // iron
@@ -1799,7 +1801,6 @@ int gsCRGetMaterialMultiplier(int nMaterial, int bMundaneProperty = TRUE)
       case 11: // mithril
       case 15: // steel
       case 32: // ankheg (scale)
-      case 40: // duskwood from Zalantar
         nMaterialBonus = 4;
         break;
 
@@ -1817,6 +1818,7 @@ int gsCRGetMaterialMultiplier(int nMaterial, int bMundaneProperty = TRUE)
         break;
       case 8: // gold
       case 11: // mithril
+	  case 18: // arachne chitin
       case 20: // wyvern
       case 21: // dragonhides
       case 22:
@@ -1830,7 +1832,7 @@ int gsCRGetMaterialMultiplier(int nMaterial, int bMundaneProperty = TRUE)
       case 35: // silk
       case 30: // dragonhides
       case 39: // duskwood
-      case 40: // duskwood from Zalantar
+      case 40: // entwood
         nMaterialBonus = 3;
         break;
     }
@@ -2010,6 +2012,9 @@ int gsCRGetMaterialBaseValue(object oItem)
       case 17: // hide
         nBaseCost = 2000;
         break;
+	  case 18: // chitin
+	    nBaseCost = 6000;
+		break;
       case 20: // wyvern
       case 21: // dragonhides
       case 22:
@@ -2039,15 +2044,16 @@ int gsCRGetMaterialBaseValue(object oItem)
         nBaseCost = 6500;
         break;
       case 39: // duskwood
-      case 40: // duskwood from Zalantar
         nBaseCost = 18000;
         break;
+      case 40: // entwood
+	    nBaseCost = 6000;
+		break;
 
   }
 
   return nBaseCost;
 }
-
 
 //------------------------------------------------------------------------------
 string mdCRGetRecipeRaceList(struct gsCRRecipe stRecipe)

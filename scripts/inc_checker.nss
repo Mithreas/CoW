@@ -15,7 +15,7 @@ const int MAX_FEAT  = 426; // Very few after here, so do them by hand for perf
                            // reasons.
 const int MAX_SKILL = 26;
 
-const int GS_EXPERIENCE_BASE = 3000; //level 3
+const int GS_EXPERIENCE_BASE = 1000; //level 2
 
 // Bans the PC and boots them from the server with a "friendly" message.
 void miBootAndBanPC (object oPC);
@@ -209,14 +209,14 @@ int CoW_HasAllowedClasses(object oPC)
 	case RACIAL_TYPE_ELF:
 	{
 	  if ((GetLevelByClass(CLASS_TYPE_CLERIC, oPC) && !GetHasPermission(CLASS_TYPE_CLERIC, oPC)) ||
-		  (GetLevelByClass(CLASS_TYPE_PALADIN, oPC) && !GetHasPermission(CLASS_TYPE_PALADIN, oPC)))
+		  (GetLevelByClass(CLASS_TYPE_PALADIN, oPC) && !GetHasPermission(CLASS_TYPE_PALADIN, oPC)) ||
+		  (GetLevelByClass(CLASS_TYPE_DRUID, oPC) && !GetHasPermission(CLASS_TYPE_DRUID, oPC)))
 	  {
 	    return FALSE;
 	  }
 	  else
 	  {
-	    //@@@ Temporary until Elves are available.
-	    return FALSE;
+	    return TRUE;
 	  }
 	}
 	default:

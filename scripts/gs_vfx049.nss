@@ -8,7 +8,7 @@ void main()
     int nSizeX       = FloatToInt(gsARGetSizeX(oArea)) - 1;
     int nSizeY       = FloatToInt(gsARGetSizeY(oArea)) - 1;
     int i            = 0;
-    int c            = nSizeX * nSizeY / 1000;
+    int c            = nSizeX * nSizeY / 500;
 
     if (c > 10) c = 10;
 

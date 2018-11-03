@@ -413,7 +413,6 @@ void CheckIfOnPatrol(object oPC, object oArea)
   if (sQuest == "") return;
   string sQuestSet =  GetPersistentString(oPC, sQuest);
 
-  string sQuestDB  = sQuestSet + QUEST_DB;
   string sVarsDB   = sQuestSet + QUEST_VAR_DB;
   
   object oCache = miDAGetCacheObject(sVarsDB);
@@ -450,7 +449,6 @@ void RewardPC(object oPC, object oNPC)
   }
 
   // Databases.
-  string sQuestDB  = sQuestSet + QUEST_DB;
   string sVarsDB   = sQuestSet + QUEST_VAR_DB;
   
   object oCache = miDAGetCacheObject(sVarsDB);

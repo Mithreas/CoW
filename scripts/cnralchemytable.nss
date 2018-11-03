@@ -375,6 +375,13 @@ void processPotions(string sMenuAlchemyPotions)
   CnrRecipeAddComponent(sKeyToRecipe, "cnralmondfruit", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAlchemyPotions, "Potion of Cure Disease", "it_mpotion007", 5);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnremptyflask", 1, 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrginsengroot", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrgingerroot", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAlchemyPotions, "Potion of Cure Moderate Wounds", "NW_IT_MPOTION020", 5);
   CnrRecipeAddComponent(sKeyToRecipe, "cnremptyflask", 1, 1);

@@ -368,10 +368,6 @@ void main()
       itemproperty iGenProperty = GetFirstItemProperty(oItem);
       while (GetIsItemPropertyValid(iGenProperty))
       {
-      // Damage bonuses and materials are the only thing transferred
-        if (GetItemPropertyType(iGenProperty) == ITEM_PROPERTY_DAMAGE_BONUS ||
-            GetItemPropertyType(iGenProperty) == ITEM_PROPERTY_DAMAGE_BONUS_VS_RACIAL_GROUP)
-        {
           // Add this to the item
           AddItemProperty(DURATION_TYPE_PERMANENT, iGenProperty, oAmmo);
           // Add this to the item name if elemental
@@ -411,12 +407,7 @@ void main()
           {
             sName = sName +  ", Sonic";
           }
-        }
-        else if (GetItemPropertyType(iGenProperty) == ITEM_PROPERTY_MATERIAL)
-        {
-          // Add this to the item
-          AddItemProperty(DURATION_TYPE_PERMANENT, iGenProperty, oAmmo);
-        }
+		  
         iGenProperty = GetNextItemProperty(oItem);
       }
       // Set the start of the name based on the item that created it
@@ -440,6 +431,10 @@ void main()
       if (sGenQuality == "SIL")
       {
         sName= "Silver " + sName;
+      }
+      if (sGenQuality == "ENT")
+      {
+        sName= "Entwood " + sName;
       }
       SetName(oAmmo, sName);
       SetLocalString(oAmmo, "AMMOTYPE", sName);
@@ -1519,7 +1514,6 @@ void main()
       FloatingTextStringOnCreature("You kiss the horseshoe for some luck...", oActivator);
     }
 
-
     if (sTag == "IR_CURVEDBLADE")
     {
       // Assassin tool.  Corpses have the ID of the player they belong to
@@ -1551,6 +1545,13 @@ void main()
     {
         BondThievesGloves(oItem, oActivator);
     }
+	
+	if (sTag == "FUNGUSJUICE")
+	{
+	    // For rubbing onto ents to get their bark to come off.
+	    int nJuice = GetLocalInt(oTarget, "ENT_JUICE_COUNT");
+		SetLocalInt(oTarget, "ENT_JUICE_COUNT", nJuice + GetItemStackSize(oItem));
+	}
 
 // ---  DM actions only below this line -- //
     if (! (GetIsDM(oActivator) ||

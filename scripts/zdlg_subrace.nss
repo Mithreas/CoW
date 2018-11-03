@@ -1341,9 +1341,6 @@ void PageInit()
   {
     SetDlgPrompt(MARK_INTRO);
     SetDlgResponseList(MARK_OPTIONS);
-
-    // Now that subraces are set up, set up hunger/thirst/rest on the skin.
-    AssignCommand(oPC, gsSTSetInitialState(TRUE));
   }
   else if (sPage == ALIGNMENT_PAGE)
   {
@@ -1495,6 +1492,10 @@ void HandleSelection()
         // OK
         int nSkin = _ApplySubRace(); // Returns a MI_SKIN_* constant
         _SetUpAllowedBackgrounds(); // Now that we know which subrace we are.
+
+        // Now that subraces are set up, set up hunger/thirst/rest on the skin.
+        AssignCommand(oPC, gsSTSetInitialState(TRUE));
+		
         if (nSkin)
         {
           SetDlgPageString(SKIN_SELECT);

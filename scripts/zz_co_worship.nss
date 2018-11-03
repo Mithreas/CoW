@@ -45,10 +45,10 @@ void OnPageInit(string sPage)
             string sServing = GetDeity(oSpeaker);
             if (sServing == "") sServing = GS_T_16777332;
             dlgSetPrompt("You are serving "+sServing+". You can change your belief by selecting a deity from this book. It is only possible to choose deities that convene with your character. If you turn away from your deity it will punish you with a loss of 500 experience points.");
-            dlgAddResponseTalk(FB_RESPONSES, "Major deities");
-            //dlgAddResponseTalk(FB_RESPONSES, "Intermediate deities");
-            //dlgAddResponseTalk(FB_RESPONSES, "Lesser deities");
-            //dlgAddResponseTalk(FB_RESPONSES, "Demigods");
+            dlgAddResponseTalk(FB_RESPONSES, "The Seven Divines");
+            dlgAddResponseTalk(FB_RESPONSES, "Deities of Nature");
+            dlgAddResponseTalk(FB_RESPONSES, "Deities of Magic");
+            //dlgAddResponseTalk(FB_RESPONSES, "Beast Lords");
             dlgAddResponseAction(FB_RESPONSES, "[No deity]");
             dlgDeactivateResetResponse();
             break;
@@ -60,19 +60,16 @@ void OnPageInit(string sPage)
             switch (nCategory)
             {
             case 1:
-                sCategory = "Major deities";
+                sCategory = "The Seven Divines";
                 break;
             case 2:
-                sCategory = "Intermediate deities";
+                sCategory = "Deities of Nature";
                 break;
             case 3:
-                sCategory = "Lesser deities";
+                sCategory = "Deities of Magic";
                 break;
             case 4:
-                sCategory = "Demigods";
-                break;
-            case 5:
-                sCategory = "Planar powers";
+                sCategory = "Beast Lords";
                 break;
             case 6:
                 sCategory = "Setting-specific deities";

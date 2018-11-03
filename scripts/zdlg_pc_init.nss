@@ -314,11 +314,11 @@ void _SetUpAllowedSubraces()
   }
   else if (nRace == RACIAL_TYPE_ELF)
   {
-    // Elf subraces
-    _AddSubraceAsOption(GS_SU_ELF_MOON);
-    _AddSubraceAsOption(GS_SU_ELF_SUN);
-    _AddSubraceAsOption(GS_SU_ELF_WILD);
-    _AddSubraceAsOption(GS_SU_ELF_WOOD);
+    // Elf subraces - disabled for now.
+    //_AddSubraceAsOption(GS_SU_ELF_MOON);
+    //_AddSubraceAsOption(GS_SU_ELF_SUN);
+    //_AddSubraceAsOption(GS_SU_ELF_WILD);
+    //_AddSubraceAsOption(GS_SU_ELF_WOOD);
   }
   else if (nRace == RACIAL_TYPE_GNOME)
   {
@@ -718,6 +718,16 @@ void _SetUpMainOptions()
 { 
   object oPC       = GetPcDlgSpeaker();
   object oHide     = gsPCGetCreatureHide(oPC);
+  
+  if (!GetIsObjectValid(oHide))
+  {
+    oHide = CreateItemOnObject(GS_SU_TEMPLATE_PROPERTY, oPC);
+
+    if (GetIsObjectValid(oHide))
+    {
+        AssignCommand(oPC, ActionEquipItem(oHide, INVENTORY_SLOT_CARMOUR));
+    }
+  }
   
   DeleteList(MAIN_MENU);
   

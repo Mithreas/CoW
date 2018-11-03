@@ -18,8 +18,9 @@ const int MI_BA_ERENIA   = 3;
 const int MI_BA_RENERRIN = 4;
 const int MI_BA_SHADOW   = 5;
 const int MI_BA_WARDEN   = 6;
+const int MI_BA_FERNVALE = 7;
 
-const int MI_BA_NUM_BACKGROUNDS = 7;
+const int MI_BA_NUM_BACKGROUNDS = 8;
 
 //Gifts
 const int GIFT_NONE = 0;
@@ -254,6 +255,8 @@ string miBAGetBackgroundName(int nBackground)
       return "Wardens";
     case MI_BA_SHADOW:
       return "Shadow";
+    case MI_BA_FERNVALE:
+      return "Fernvale";
   }
 
   return "";
@@ -264,12 +267,14 @@ int miBAGetCasteByBackground(int nBackground)
   switch (nBackground)
   {
     case MI_BA_NONE:
+	case MI_BA_SHADOW:
       return CASTE_PEASANT;
     case MI_BA_DRANNIS:
     case MI_BA_ERENIA:
     case MI_BA_RENERRIN:
       return CASTE_NOBILITY;
     case MI_BA_WARDEN:
+	case MI_BA_FERNVALE:
       return CASTE_WARRIOR;
   }
 
@@ -302,7 +307,11 @@ string miBAGetBackgroundDescription(int nBackground)
 	  break;
     case MI_BA_WARDEN:
       sRetVal = "You are a Warden of Vyvian Village, one of those who protect the village and its people.";
-      break;  }
+      break;  
+    case MI_BA_FERNVALE:
+      sRetVal = "You are a resident of Fernvale Village, an ancient elven settlement.";
+      break;  
+  }
 
   // If using castes (server config.2da)
   if (GetLocalInt(GetModule(), "USE_CASTES"))
@@ -343,6 +352,8 @@ int miBAGetIsBackgroundLegal(int nBackground, object oPC)
 	  return (GetRacialType(oPC) == RACIAL_TYPE_HUMAN);
 	case MI_BA_WARDEN:
 	  return (GetRacialType(oPC) == RACIAL_TYPE_HALFLING);
+	case MI_BA_FERNVALE:
+	  return (GetRacialType(oPC) == RACIAL_TYPE_ELF);
 	case MI_BA_IMPERIAL:
     case MI_BA_SHADOW:
 	  return FALSE;  // Can only be acquired during gameplay.
@@ -434,6 +445,10 @@ void miBAApplyBackground(object oPC, int nBackground = -1, int nFirstTime = TRUE
       case MI_BA_SHADOW:   	  
         CreateItemOnObject("key_shadow", oPC);
         GiveGoldToCreature(oPC, 250);
+		break;
+      case MI_BA_FERNVALE:   	  
+        CreateItemOnObject("key_fernvale", oPC);
+        GiveGoldToCreature(oPC, 750);
 		break;
 	  default:
         break;		

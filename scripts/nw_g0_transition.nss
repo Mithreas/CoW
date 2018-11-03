@@ -22,6 +22,7 @@ void main()
   SetAreaTransitionBMP(AREA_TRANSITION_RANDOM);
 
   JumpAllToObject(oClicker, oTarget);
+  if (GetArea(oTarget) == GetArea(oClicker)) SetLocalInt(oClicker, "TRANSITION", TRUE);
 
   if (GetObjectType(OBJECT_SELF) == OBJECT_TYPE_DOOR)
   {

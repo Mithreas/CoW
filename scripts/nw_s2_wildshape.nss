@@ -72,6 +72,11 @@ void main()
     int nMetaMagic = GetMetaMagicFeat();
     int nDuration = GetLevelByClass(CLASS_TYPE_DRUID);
 
+	if (GetLocalInt(GetModule(), "STATIC_LEVEL"))
+	{
+      nDuration = GetLocalInt(gsPCGetCreatureHide(OBJECT_SELF), "FL_LEVEL");
+	}
+	
     // Check for zombification.
     if (fbZGetIsZombie(oTarget))
     {

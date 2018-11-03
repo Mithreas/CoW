@@ -41,6 +41,28 @@ void main()
     int nDuration = GetHitDice(OBJECT_SELF);
     int nTier;
 
+	string sResRef = "sum_l_plaguebrr";
+    if (GetHasFeat(1003,OBJECT_SELF)) // epic fiend feat
+    {
+       sResRef = "sum_angelofdecay";
+    }
+    else if (nLevel < 7)
+    {
+        sResRef = "sum_l_plaguebrr";
+    }
+    else if (nLevel < 9 )
+    {
+        sResRef = "sum_m_plaguebrr";
+    }
+    else
+    {
+        sResRef = "sum_g_plaguebrr";
+    }
+	
+    ScheduleSummonCooldown(OBJECT_SELF, 360, "Summon Fiend", FEAT_FIENDISH_SERVANT);
+    ApplyEffectAtLocation(DURATION_TYPE_TEMPORARY, EffectSummonCreature(sResRef, VFX_FNF_SUMMON_GATE), GetSpellTargetLocation(), HoursToSeconds(nDuration));
+	
+	/*
     if (GetHasFeat(1003,OBJECT_SELF)) // epic fiend feat
     {
        nTier = STREAM_PLANAR_TIER_6;
@@ -58,7 +80,7 @@ void main()
         nTier = STREAM_PLANAR_TIER_5;
     }
 
-    ScheduleSummonCooldown(OBJECT_SELF, 360, "Summon Fiend", FEAT_FIENDISH_SERVANT);
     SummonFromStream(OBJECT_SELF, GetSpellTargetLocation(), HoursToSeconds(nDuration), STREAM_TYPE_PLANAR, nTier,
         VFX_FNF_SUMMON_GATE, 3.0, FALSE, FALSE, GetAvailableBlackguardPlanarStreams(OBJECT_SELF));
+	*/
 }

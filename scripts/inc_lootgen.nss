@@ -137,7 +137,7 @@ object GenerateTailoredLootInContainer(object container, object creature, string
 // The LGEN_PropertyStruct is used to pass information about properties between functions.
 struct LGEN_PropertyStruct
 {
-    // The id corresponds to one of the PROPERY_* constants, depending on gear type.
+    // The id corresponds to one of the PROPERTY_* constants, depending on gear type.
     int id;
 
     // The modifiers are used to store each property value.
@@ -736,7 +736,7 @@ void INTERNAL_PopulateItemWithProperty(object item, struct LGEN_PropertyStruct p
             break;
 
         case PROPERTY_ELEMENTAL_DR:
-            AddItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyDamageResistance(property.mod1, property.mod2), item);
+            AddItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyDamageImmunity(property.mod1, property.mod2), item);
             break;
 
         case PROPERTY_ABILITY_BONUS:

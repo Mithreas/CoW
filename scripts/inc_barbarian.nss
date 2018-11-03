@@ -719,6 +719,8 @@ void btribeCreateTribesmen(object oPC)
 
     gsIPAddItemProperty(oWeapon, ItemPropertyEnhancementBonus(nLevel / 6), 0.0);
 
+	if (!GetIsPC(oPC)) ChangeFaction(oTribesman, oPC);
+	
     AddHenchman(oPC, oTribesman);
 }
 

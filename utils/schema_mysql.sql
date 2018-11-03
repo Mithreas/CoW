@@ -2699,6 +2699,17 @@ CREATE TABLE `drannis_vars` (
         KEY idx (player,tag,name)
         ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 		
+DROP TABLE IF EXISTS `fernvale_quests`;
+CREATE TABLE `fernvale_quests` (
+        `player` varchar(32) default NULL,
+        `tag` varchar(32) default NULL,
+        `name` varchar(64) default NULL,
+        `val` text,
+        `expire` int(11) default NULL,
+        `modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        KEY idx (player,tag,name)
+        ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+		
 DROP TABLE IF EXISTS `erenia_quests`;
 CREATE TABLE `erenia_quests` (
         `player` varchar(32) default NULL,
