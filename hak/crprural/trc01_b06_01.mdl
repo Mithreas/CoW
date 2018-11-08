@@ -1,0 +1,221 @@
+# Exported from 3ds max by MDL Plugin Suite 1.1b3
+# http://rockbottom.vtex.net
+#MAXMODEL ASCII
+# model: TRC01_B06_01
+filedependancy TRC01_B06_01.max
+newmodel TRC01_B06_01
+setsupermodel TRC01_B06_01 NULL
+classification Tile
+setanimationscale 1.0
+#MAXGEOM  ASCII
+beginmodelgeom TRC01_B06_01
+node dummy TRC01_B06_01
+  parent NULL
+endnode
+node light TRC01_B06_01ml1
+  parent TRC01_B06_01
+  position 0 0 5
+  orientation 0 0 0 0
+  wirecolor 0.898438 0.898438 0.898438
+    radius 14
+    multiplier 1
+    color 1 1 1
+    ambientOnly 0
+    nDynamicType 0
+    affectDynamic 1
+    shadow 0
+    lightpriority 5
+    lensflares 0
+    fadingLight 1
+endnode
+node light TRC01_B06_01ml2
+  parent TRC01_B06_01
+  position -2 -2 4
+  orientation 0 0 0 0
+  wirecolor 0.0351563 0.0351563 0.0351563
+    radius 5
+    multiplier 1
+    color 1 1 1
+    ambientOnly 0
+    nDynamicType 0
+    affectDynamic 1
+    shadow 0
+    lightpriority 5
+    lensflares 0
+    fadingLight 1
+endnode
+node aabb Walkmesh_12
+  parent TRC01_B06_01
+  position 0 0 0
+  orientation 0 0 0 0
+  wirecolor 0.878906 0.878906 0.878906
+  ambient 0.875 0.558594 0.339844
+  diffuse 0.875 0.558594 0.339844
+  specular 0 0 0
+  shininess 1
+  bitmap NULL
+  verts 9
+    -5 -5 -1
+    -3.82 -5 -0.350001
+    -5 -2.56 0
+    5 -5 0
+    -5 5 0
+    5 5 0
+    -2.79975 -5 0
+    -4.28 -5 -0.8
+    -5 -3.57 -0.8
+  faces 7
+    7 1 2  1  0 0 0  6
+    6 3 5  1  0 0 0  3
+    1 5 4  2  0 0 0  3
+    1 4 2  4  0 0 0  3
+    1 6 5  8  0 0 0  3
+    0 7 8  2  0 0 0  6
+    8 7 2  8  0 0 0  6
+  aabb     -5.00 -5.00 -1.00   5.00 5.00 0.00   -1
+     -5.00 -5.00 -1.00   -3.82 -2.56 0.00   -1
+     -5.00 -5.00 -1.00   -4.28 -3.57 -0.80   5
+     -5.00 -5.00 -0.80   -3.82 -2.56 0.00   -1
+     -5.00 -5.00 -0.80   -3.82 -2.56 0.00   0
+     -5.00 -5.00 -0.80   -4.28 -2.56 0.00   6
+     -5.00 -5.00 -0.35   5.00 5.00 0.00   -1
+     -5.00 -5.00 -0.35   5.00 5.00 0.00   -1
+     -5.00 -5.00 -0.35   5.00 5.00 0.00   2
+     -3.82 -5.00 -0.35   5.00 5.00 0.00   4
+     -5.00 -5.00 -0.35   5.00 5.00 0.00   -1
+     -5.00 -5.00 -0.35   -3.82 5.00 0.00   3
+     -2.80 -5.00 0.00   5.00 5.00 0.00   1
+endnode
+node trimesh Fosse_12
+  parent TRC01_B06_01
+  position -4.41 -3.765 -0.5
+  orientation 0 0 0 0
+  wirecolor 0.695313 0.695313 0.695313
+  ambient 1 1 1
+  diffuse 1 1 1
+  specular 0 0 0
+  shininess 10
+  bitmap ttr01_rock00
+  render 1
+  Shadow 0
+  beaming 0
+  transparencyhint 0
+  tilefade 0
+  rotatetexture 1
+  verts 5
+    0.589998 -1.235 0.15
+    -0.590002 1.235 0.5
+    -0.590002 -1.235 -0.5
+    0.129998 -1.235 -0.3
+    -0.590002 0.195004 -0.3
+  faces 3
+    4 3 0  4  0 1 2  2
+    4 0 1  4  6 7 8  2
+    3 4 2  1  15 16 17  0
+  tverts 33
+    7.07003 1.26 2.5
+    7.5 1.26 2.57198
+    7.5 1.5 2.618
+    7.5 1.5 2.618
+    6.78 1.5 2.505
+    6.78822 1.47143 2.5
+    7.07003 1.26 2.5
+    7.5 1.5 2.618
+    6.78822 1.47143 2.5
+    7.63281 -4.5 0.410909
+    7.515 -4.464 0.4
+    7.51921 -4.5 0.4
+    7.5 -4.45943 0.4
+    7.515 -4.464 0.4
+    7.5 -4.43583 0.4
+    7.71593 -4.5 0.42
+    7.5 -4.07003 0.42
+    7.5 -4.43583 0.4
+    7.5 -4.43583 0.4
+    7.515 -4.464 0.4
+    7.63281 -4.5 0.410909
+    7.71593 -4.5 0.42
+    7.5 -4.43583 0.4
+    7.63281 -4.5 0.410909
+    7.5 -4.5 0.4
+    7.515 -4.464 0.4
+    7.5 -4.45943 0.4
+    7.51921 -4.5 0.4
+    7.515 -4.464 0.4
+    7.5 -4.5 0.4
+    6.78822 1.47143 2.5
+    6.78 1.5 2.505
+    6.759 1.5 2.5
+endnode
+node trimesh Herbe_12
+  parent TRC01_B06_01
+  position 0 0 0
+  orientation 0 0 0 0
+  wirecolor 0.601563 0.601563 0.601563
+  ambient 1 1 1
+  diffuse 1 1 1
+  specular 0 0 0
+  shininess 10
+  bitmap ttr01_grass02
+  verts 6
+    -3.82 -5 -0.350001
+    -5 5 0
+    5 5 0
+    5 -5 0
+    -5 -2.53 0
+    -2.8 -5 0
+  faces 4
+    2 1 3  0  0 1 4  0
+    1 4 3  0  3 6 4  0
+    3 4 5  0  4 5 7  0
+    5 4 0  0  7 5 2  0
+  tverts 8
+    7 -1 0
+    5 -1 0
+    5.23576 -3 0
+    5 -1 0
+    7 -3 0
+    5 -2.506 0
+    5 -2.506 0
+    5.42991 -3 0
+endnode
+node dummy TRC01_B06_01a
+  parent TRC01_B06_01
+  position 0 0 0
+  orientation 0 0 0 0
+  wirecolor 0.335938 0.335938 0.335938
+endnode
+node trimesh Eau_12
+  parent TRC01_B06_01a
+  position 0 0 -0.599999
+  orientation 0 0 0 0
+  wirecolor 0.347656 0.347656 0.347656
+  ambient 1 1 1
+  diffuse 1 1 1
+  specular 0 0 0
+  shininess 10
+  bitmap ttr01_water01
+  render 1
+  Shadow 0
+  beaming 0
+  transparencyhint 1
+  tilefade 0
+  rotatetexture 1
+  verts 4
+    5 -5 0
+    -5 5 0
+    5 5 0
+    -5 -5 0
+  faces 2
+    1 3 2  0  0 5 2  0
+    3 0 2  0  3 1 4  0
+  tverts 6
+    7.5 -1.5 0
+    10.5 -4.5 0
+    10.5 -1.5 0
+    7.5 -4.5 0
+    10.5 -1.5 0
+    7.5 -4.5 0
+endnode
+endmodelgeom TRC01_B06_01
+donemodel TRC01_B06_01

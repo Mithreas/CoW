@@ -1,0 +1,32 @@
+2DA V2.0
+
+       Corner1     Edge     Corner2     Height     Model            
+0      Cobble      ****     Cobble      0          agc01_Z01_01     
+1      Water       ****     Water       0          agc01_Z02_01     
+2      Building    ****     Building    0          agc01_Z03_01     
+3      EvilCastle  ****     EvilCastle  0          agc01_Z04_01     
+4      GoodCastle  ****     GoodCastle  0          agc01_Z05_01     
+5      Water       Bridge   Water       0          agc01_Z06_01     
+6      Water       Dock     Water       0          agc01_Z07_01     
+7      Cobble      Stream   Cobble      0          agc01_Z08_01     
+8      Cobble      Wall     Cobble      0          agc01_Z09_01     
+9      GoodCastle  ****     Cobble      0          agc01_Z10_01     
+10     EvilCastle  ****     Cobble      0          agc01_Z11_01     
+11     Building    ****     Cobble      0          agc01_Z12_01     
+12     Cobble      ****     Water       0          agc01_Z13_01     
+13     Cobble+     ****     Cobble      0          agc01_Z14_01     
+14     Cobble+     ****     Cobble+     1          agc01_Z01_01     
+15     Cobble+     Bridge   Cobble+     1          agc01_Z06_01     
+16     Cobble+     Dock     Cobble+     1          agc01_Z07_01     
+17     Cobble+     Stream   Cobble+     1          agc01_Z08_01     
+18     Cobble+     Wall     Cobble+     1          agc01_Z09_01     
+19     Cobble+     ****     Building    0          agc01_Z15_01     
+20     Cobble+     ****     Water       0          agc01_Z16_01     
+21     Building    ****     Water       0          agc01_Z17_01     
+22     Cobble      ****     ****        0          agc01_Z01_01     
+23     Water       ****     ****        0          agc01_Z02_01     
+24     Building    ****     ****        0          agc01_Z03_01     
+25     EvilCastle  ****     ****        0          agc01_Z04_01     
+26     GoodCastle  ****     ****        0          agc01_Z05_01     
+27     Cobble+     ****     ****        1          agc01_Z01_01   
+

@@ -1,0 +1,138 @@
+#Exported from 3ds max by MDL Plug-in Suite 1.0b
+#http://www.bricksbuilder.com/nwn/utils/
+#MAXMODEL ASCII
+# model: TBM17_A03_01
+filedependancy Unknown
+newmodel TBM17_A03_01
+setsupermodel TBM17_A03_01 NULL
+classification Tile
+setanimationscale 1.0
+#MAXGEOM  ASCII
+beginmodelgeom TBM17_A03_01
+node dummy TBM17_A03_01
+  parent NULL
+endnode
+node light TBM17_A03_01ml1
+  parent TBM17_A03_01
+  position 0 0 5
+  orientation 0 0 0 0
+  wirecolor 0.769531 0.769531 0.769531
+    radius 1400
+    multiplier 1
+    color 0 0 0
+    ambientOnly 0
+    nDynamicType 0
+    affectDynamic 1
+    shadow 0
+    lightpriority 5
+    lensflares 0
+    fadingLight 0
+endnode
+node light TBM17_A03_01ml2
+  parent TBM17_A03_01
+  position -2 -2 4
+  orientation 0 0 0 0
+  wirecolor 0.769531 0.769531 0.769531
+    radius 500
+    multiplier 1
+    color 0 0 0
+    ambientOnly 0
+    nDynamicType 0
+    affectDynamic 1
+    shadow 0
+    lightpriority 5
+    lensflares 0
+    fadingLight 0
+endnode
+node trimesh Plane01_01_01
+  parent TBM17_A03_01
+  position 0 0 0
+  orientation 0 0 0 0
+  wirecolor 0.105469 0.105469 0.105469
+  ambient 1 1 1
+  diffuse 1 1 1
+  specular 0 0 0
+  shininess 2
+  bitmap bm_snow2
+  verts 11
+    5 -5 0
+    -4.38 -5 0
+    -4.81 -5 0
+    -4.87 -5 0
+    -5 -5 0
+    5 3.65 0
+    5 3.62 0
+    5 5 0
+    5 4.79 0
+    -5 5 0
+    -5 -2.16 0
+  faces 9
+    6 1 0  1  0 1 2  0
+    5 2 1  1  3 4 1  0
+    1 6 5  1  1 0 3  0
+    5 8 3  1  3 5 6  0
+    3 2 5  1  6 4 3  0
+    10 4 3  1  7 8 6  0
+    9 10 3  1  9 7 6  0
+    9 3 8  1  9 6 5  0
+    9 8 7  1  9 5 10  0
+  tverts 11
+    0.931562 0.865196 0
+    0.0919457 0.0449428 0
+    0.931561 0.0449426 0
+    0.931237 0.867946 0
+    0.0481853 0.0449428 0
+    0.931237 0.931236 0
+    0.0428809 0.0428811 0
+    0.0314741 0.300354 0
+    0.031474 0.042881 0
+    0.0314742 0.950065 0
+    0.931237 0.950064 0
+endnode
+node aabb Plane01
+  parent TBM17_A03_01
+  position 0 0 0
+  orientation 0 0 0 0
+  wirecolor 0.105469 0.105469 0.105469
+  ambient 0.835938 0.894531 0.648438
+  diffuse 0.835938 0.894531 0.648438
+  specular 0 0 0
+  shininess 1
+  bitmap NULL
+  verts 9
+    -5 -5 0
+    0 -5 0
+    5 -5 0
+    -5 -4.63041 0
+    0 -4.63041 0
+    5 -4.63041 0
+    -5 5 0
+    0 5 0
+    5 5 0
+  faces 8
+    3 0 4  1  0 0 0  4
+    1 4 0  1  0 0 0  4
+    4 1 5  1  0 0 0  4
+    2 5 1  1  0 0 0  4
+    6 3 7  1  0 0 0  14
+    4 7 3  1  0 0 0  14
+    7 4 8  1  0 0 0  14
+    5 8 4  1  0 0 0  14
+  aabb     -5.00 -5.00 0.00   5.00 5.00 0.00   -1
+     -5.00 -5.00 0.00   5.00 -4.63 0.00   -1
+     -5.00 -5.00 0.00   0.00 -4.63 0.00   -1
+     -5.00 -5.00 0.00   0.00 -4.63 0.00   0
+     -5.00 -5.00 0.00   0.00 -4.63 0.00   1
+     0.00 -5.00 0.00   5.00 -4.63 0.00   -1
+     0.00 -5.00 0.00   5.00 -4.63 0.00   2
+     0.00 -5.00 0.00   5.00 -4.63 0.00   3
+     -5.00 -4.63 0.00   5.00 5.00 0.00   -1
+     -5.00 -4.63 0.00   0.00 5.00 0.00   -1
+     -5.00 -4.63 0.00   0.00 5.00 0.00   5
+     -5.00 -4.63 0.00   0.00 5.00 0.00   4
+     0.00 -4.63 0.00   5.00 5.00 0.00   -1
+     0.00 -4.63 0.00   5.00 5.00 0.00   7
+     0.00 -4.63 0.00   5.00 5.00 0.00   6
+endnode
+endmodelgeom TBM17_A03_01
+donemodel TBM17_A03_01

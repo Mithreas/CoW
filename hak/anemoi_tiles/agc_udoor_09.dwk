@@ -1,0 +1,125 @@
+#MAXDOOR ASCII
+# model: agc_UDoor_09_DWK 
+filedependancy agc01.max
+node dummy 09_DWK_dp_closed_01 
+  parent agc_UDoor_09_DWK 
+  position 0.368164 0.0 0.0
+  orientation  0.0 0.0 0.0  0.0
+  wirecolor 0.0235294 0.52549 0.0235294  
+endnode
+node dummy 09_DWK_dp_open1_01 
+  parent agc_UDoor_09_DWK 
+  position 0.368164 0.0943408 0.0
+  orientation  0.0 0.0 0.0  0.0
+  wirecolor 0.0235294 0.52549 0.0235294  
+endnode
+node dummy 09_DWK_dp_closed_02 
+  parent agc_UDoor_09_DWK 
+  position -0.361445 0.0 0.0
+  orientation  0.0 0.0 0.0  0.0
+  wirecolor 0.0235294 0.52549 0.0235294  
+endnode
+node dummy 09_DWK_dp_open1_02 
+  parent agc_UDoor_09_DWK 
+  position -0.361445 0.0943408 0.0
+  orientation  0.0 0.0 0.0  0.0
+  wirecolor 0.0235294 0.52549 0.0235294  
+endnode
+node trimesh 09_DWK_wg_closed 
+  parent agc_UDoor_09_DWK 
+  position 0.05 0.00998047 0.0
+  orientation  0.0 0.0 0.0  0.0
+  wirecolor 0.109804 0.584314 0.694118  
+  multimaterial 18 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+    bitmap NULL
+    verts 8
+     -0.055 -1.00996 -2.30408e-005
+     0.0648438 -1.00996 -2.30408e-005
+     -0.055 0.99 -2.30408e-005
+     0.0648438 0.99 -2.30408e-005
+     -0.055 -1.00996 2.99999
+     0.0648438 -1.00996 2.99999
+     -0.055 0.99 2.99999
+     0.0648438 0.99 2.99999
+    faces 12
+     0 2 3  2  0 0 0  7
+     3 1 0  2  0 0 0  7
+     4 5 7  4  0 0 0  7
+     7 6 4  4  0 0 0  7
+     0 1 5  8  0 0 0  7
+     5 4 0  8  0 0 0  7
+     1 3 7  16  0 0 0  7
+     7 5 1  16  0 0 0  7
+     3 2 6  32  0 0 0  7
+     6 7 3  32  0 0 0  7
+     2 0 4  64  0 0 0  7
+     4 6 2  64  0 0 0  7
+endnode
+node trimesh 09_DWK_wg_open1 
+  parent agc_UDoor_09_DWK 
+  position -0.95 -0.940019 0.0
+  orientation  0.0 0.0 0.0  0.0
+  wirecolor 0.109804 0.584314 0.694118  
+  multimaterial 18 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+    bitmap NULL
+    verts 8
+     1.00215 -0.118957 -2.30408e-005
+     1.00843 0.000722686 -2.30408e-005
+     -0.995066 -0.0142871 -2.30408e-005
+     -0.988794 0.105392 -2.30408e-005
+     1.00215 -0.118957 2.99999
+     1.00843 0.000722686 2.99999
+     -0.995066 -0.0142871 2.99999
+     -0.988794 0.105392 2.99999
+    faces 12
+     0 2 3  2  0 0 0  7
+     3 1 0  2  0 0 0  7
+     4 5 7  4  0 0 0  7
+     7 6 4  4  0 0 0  7
+     0 1 5  8  0 0 0  7
+     5 4 0  8  0 0 0  7
+     1 3 7  16  0 0 0  7
+     7 5 1  16  0 0 0  7
+     3 2 6  32  0 0 0  7
+     6 7 3  32  0 0 0  7
+     2 0 4  64  0 0 0  7
+     4 6 2  64  0 0 0  7
+endnode
+
+

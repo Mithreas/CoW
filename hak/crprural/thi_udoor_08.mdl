@@ -1,0 +1,1108 @@
+# Exported from Wayland's NWN Maxscript v0.3b at 6/29/2003 1:50:38 PM
+# mdl file
+#
+filedependancy door.max
+newmodel thi_udoor_08
+setsupermodel thi_udoor_08 NULL
+classification Door
+setanimationscale 1.0
+beginmodelgeom thi_udoor_08
+node dummy thi_udoor_08
+    parent NULL
+endnode
+node dummy thi_udoor_08grnd
+    parent thi_udoor_08
+    position 0.0 0.0 0.0
+    orientation 1.0 0.0 0.0 0.0
+    scale 1.0
+endnode
+node emitter fire!07
+    parent thi_udoor_08
+    position -0.00162842 0.0288672 0.928905
+    orientation 1.0 0.0 0.0 -4.71239
+    scale 1.0
+    colorStart 0.47451 0.439216 0.364706
+    colorEnd 0.819608 0.796079 0.709804
+    alphaStart 1
+    alphaEnd 0
+    sizeStart 4
+    sizeEnd 1
+    sizeStart_y 0
+    sizeEnd_y 0
+    frameStart 0
+    frameEnd 24
+    birthrate 10
+    spawnType 0
+    lifeExp 2.5
+    mass 0.09
+    spread 2.96706
+    particleRot 0.5
+    velocity 2
+    randvel 0.5
+    fps 10
+    random 0
+    inherit 1
+    inherit_local 0
+    inherit_part 0
+    inheritvel 0
+    xsize 100
+    ysize 99
+    bounce 0
+    bounce_co 0
+    loop 0
+    update Explosion
+    render Normal
+    Blend Normal
+    update_sel 2
+    render_sel 1
+    blend_sel 1
+    deadspace 0
+    opacity 0.5
+    blurlength 10
+    lightningDelay 0
+    lightningRadius 0
+    lightningScale 0
+    blastRadius 0.2
+    blastLength 1
+    twosidedtex 1
+    p2p 0
+    p2p_sel 1
+    p2p_type Bezier
+    p2p_bezier2 0
+    p2p_bezier3 0
+    combinetime 0
+    drag 0
+    grav 0
+    threshold 0
+    texture fxpa_smoke01
+    xgrid 4
+    ygrid 4
+    affectedByWind 0
+    m_isTinted 1
+    renderorder 0
+    Splat 0
+endnode
+node dummy thi_udoor_08head
+    parent thi_udoor_08
+    position 0.0 0.0 2.50064
+    orientation 1.0 0.0 0.0 0.0
+    scale 1.0
+endnode
+node dummy thi_udoor08hhit
+    parent thi_udoor_08
+    position 0.0 0.0 2.17507
+    orientation 1.0 0.0 0.0 0.0
+    scale 1.0
+endnode
+node dummy thi_udoor08impc
+    parent thi_udoor_08
+    position 0.0 0.0 1.63648
+    orientation 1.0 0.0 0.0 0.0
+    scale 1.0
+endnode
+node dummy TIN01_B13_03
+    parent thi_udoor_08
+    position -0.999999 0.0 0.0
+    orientation 0.0 0.0 -1.0 -1.5708
+    scale 1.0
+endnode
+node trimesh Doorknob1
+    parent TIN01_B13_03
+    position -0.163723 -1.02067 1.5259
+    orientation 1.0 0.0 0.0 0.0
+    scale 1.0
+    shininess 10
+    diffuse 1.0 1.0 1.0
+    ambient 1.0 1.0 1.0
+    specular 0.0 0.0 0.0
+    selfillumcolor 0.0 0.0 0.0
+    alpha 1.0
+    bitmap ttr01_metaltop
+    verts 8
+        -0.0555131 -0.0278979 -0.0660715
+        -0.0280376 0.0884477 -0.0658376
+        0.0280371 0.0921175 -0.0658376
+        0.0555147 -0.0278979 -0.0660715
+        -0.0555131 -0.0278979 0.0574713
+        0.0555147 -0.0278979 0.0574713
+        0.0280371 0.0921175 0.0574724
+        -0.0280376 0.0884477 0.0541624
+    faces 12
+        0 1 2 1 0 1 2 65536
+        2 3 0 1 2 3 0 65536
+        4 5 6 1 0 3 2 65536
+        6 7 4 1 2 1 0 65536
+        0 3 5 1 4 5 6 65536
+        5 4 0 1 6 7 4 65536
+        3 2 6 1 5 8 9 65536
+        6 5 3 1 9 6 5 65536
+        2 1 7 1 10 11 12 65536
+        7 6 2 1 12 13 10 65536
+        1 0 4 1 11 4 7 65536
+        4 7 1 1 7 12 11 65536
+    tverts 14
+        0.886085 0.892606 0
+        0.886085 0.976959 0
+        0.970438 0.976959 0
+        0.970438 0.892606 0
+        0.876991 0.881214 0
+        0.977012 0.881214 0
+        0.977012 0.99535 0
+        0.876991 0.99535 0
+        0.877947 0.881214 0
+        0.877947 0.99535 0
+        0.876034 0.881214 0
+        0.976055 0.881214 0
+        0.976055 0.99535 0
+        0.876034 0.99535 0
+endnode
+node trimesh Door
+    parent TIN01_B13_03
+    position 0.0 0.0 0.0
+    orientation 1.0 0.0 0.0 0.0
+    scale 1.0
+    shininess 10
+    diffuse 1.0 1.0 1.0
+    ambient 1.0 1.0 1.0
+    specular 0.0 0.0 0.0
+    selfillumcolor 0.0 0.0 0.0
+    alpha 1.0
+    bitmap ttr01_wdfence
+    verts 24
+        -0.0729958 -0.499999 2.35
+        0.0970936 -0.499999 2.35
+        0.0970902 -0.149999 2.0
+        -0.0729998 -0.149999 2.0
+        -0.0729944 -0.149999 1.0
+        0.0970949 -0.149999 1.0
+        0.0970906 -0.0062294 1.5
+        -0.073 -0.00622872 1.5
+        0.0970786 -1.85 1.0
+        -0.0729914 -1.85 1.0
+        0.0970699 -1.5 0.65
+        -0.073 -1.5 0.65
+        0.0970769 -0.999999 0.5
+        -0.0729931 -0.999999 0.5
+        0.0970724 -0.499999 0.65
+        -0.0729946 -0.499999 0.65
+        0.097078 -2.0 1.5
+        -0.0729919 -2.0 1.5
+        0.0970786 -1.85 2.0
+        -0.0729914 -1.85 2.0
+        0.09708 -1.5 2.35
+        -0.07299 -1.5 2.35
+        0.0970769 -0.999999 2.5
+        -0.0729931 -0.999999 2.5
+    faces 44
+        0 1 2 1 24 25 26 65536
+        2 3 0 1 27 28 29 65536
+        6 7 3 1 30 31 32 65536
+        3 2 6 1 33 34 35 65536
+        7 4 0 2 36 37 38 65536
+        0 3 7 2 39 3 40 65536
+        5 6 1 2 41 42 43 65536
+        2 1 6 2 2 44 45 65536
+        1 14 5 2 46 47 48 65536
+        1 12 14 2 49 50 51 65536
+        22 12 1 2 52 53 54 65536
+        20 12 22 2 55 56 57 65536
+        20 10 12 2 58 59 60 65536
+        20 8 10 2 61 62 63 65536
+        20 16 8 2 64 65 66 65536
+        20 18 16 2 67 68 69 65536
+        0 4 15 2 70 71 72 65536
+        15 13 0 2 73 74 75 65536
+        13 23 0 2 76 77 78 65536
+        13 21 23 2 79 80 81 65536
+        13 11 21 2 82 83 84 65536
+        11 9 21 2 85 86 87 65536
+        21 9 17 2 88 89 90 65536
+        17 19 21 2 91 92 93 65536
+        1 0 23 1 94 0 95 65536
+        1 23 22 1 1 96 97 65536
+        22 21 20 1 98 99 100 65536
+        22 23 21 1 22 23 101 65536
+        21 19 18 1 102 103 104 65536
+        18 20 21 1 105 20 21 65536
+        19 17 16 1 106 107 108 65536
+        16 18 19 1 109 18 19 65536
+        17 9 8 1 110 111 112 65536
+        8 16 17 1 113 16 17 65536
+        9 11 10 1 114 115 116 65536
+        10 8 9 1 117 8 9 65536
+        12 10 11 1 118 10 119 65536
+        11 13 12 1 11 120 121 65536
+        12 13 14 1 12 122 123 65536
+        13 15 14 1 13 124 125 65536
+        14 15 5 1 14 126 127 65536
+        4 5 15 1 128 129 15 65536
+        4 7 5 1 4 130 131 65536
+        5 7 6 1 5 7 6 65536
+    tverts 132
+        0.403686 0.793155 0
+        0.516316 0.793155 0
+        1.02492 0.791092 0
+        -0.104919 0.791092 0
+        0.516313 0.128908 0
+        0.403683 0.128908 0
+        0.403686 0.46 0
+        0.516317 0.46 0
+        0.516306 0.128908 0
+        0.403689 0.128908 0
+        0.4037 0.130971 0
+        0.516317 0.130971 0
+        0.403695 0.462063 0
+        0.516312 0.462063 0
+        0.403698 -0.102856 0
+        0.516313 -0.102856 0
+        0.516306 0.46 0
+        0.403688 0.46 0
+        0.516306 0.791092 0
+        0.403689 0.791092 0
+        0.516307 0.130971 0
+        0.40369 0.130971 0
+        0.516305 0.462063 0
+        0.403688 0.462063 0
+        0.403686 0.793155 0
+        0.516316 0.793155 0
+        0.516314 1.02492 0
+        0.516314 1.02492 0
+        0.403683 1.02492 0
+        0.403686 0.793155 0
+        0.403686 0.46 0
+        0.516317 0.46 0
+        0.516317 0.791092 0
+        0.516317 0.791092 0
+        0.403686 0.791092 0
+        0.403686 0.46 0
+        -0.200121 0.46 0
+        -0.104919 0.128908 0
+        0.126845 1.02286 0
+        0.126845 1.02286 0
+        -0.200121 0.46 0
+        1.02492 0.128908 0
+        1.12012 0.46 0
+        0.793154 1.02286 0
+        0.793154 1.02286 0
+        1.12012 0.46 0
+        0.793154 1.02286 0
+        0.793154 -0.102856 0
+        1.02492 0.128908 0
+        0.793154 1.02286 0
+        0.462063 -0.202183 0
+        0.793154 -0.102856 0
+        0.462063 1.12218 0
+        0.462063 -0.202183 0
+        0.793154 1.02286 0
+        0.130971 1.02286 0
+        0.462063 -0.202183 0
+        0.462063 1.12218 0
+        0.130971 1.02286 0
+        0.130971 -0.102856 0
+        0.462063 -0.202183 0
+        0.130971 1.02286 0
+        -0.100794 0.128908 0
+        0.130971 -0.102856 0
+        0.130971 1.02286 0
+        -0.200121 0.46 0
+        -0.100794 0.128908 0
+        0.130971 1.02286 0
+        -0.100794 0.791092 0
+        -0.200121 0.46 0
+        0.126845 1.02286 0
+        -0.104919 0.128908 0
+        0.126845 -0.102856 0
+        0.126845 -0.102856 0
+        0.457937 -0.202183 0
+        0.126845 1.02286 0
+        0.457937 -0.202183 0
+        0.457937 1.12218 0
+        0.126845 1.02286 0
+        0.457937 -0.202183 0
+        0.789029 1.02286 0
+        0.457937 1.12218 0
+        0.457937 -0.202183 0
+        0.789029 -0.102856 0
+        0.789029 1.02286 0
+        0.789029 -0.102856 0
+        1.02079 0.128908 0
+        0.789029 1.02286 0
+        0.789029 1.02286 0
+        1.02079 0.128908 0
+        1.12012 0.46 0
+        1.12012 0.46 0
+        1.02079 0.791092 0
+        0.789029 1.02286 0
+        0.516316 0.793155 0
+        0.403688 0.462063 0
+        0.403688 0.462063 0
+        0.516305 0.462063 0
+        0.516305 0.462063 0
+        0.40369 0.130971 0
+        0.516307 0.130971 0
+        0.40369 0.130971 0
+        0.40369 0.130971 0
+        0.403689 -0.100794 0
+        0.516306 -0.100794 0
+        0.516306 -0.100794 0
+        0.403689 0.791092 0
+        0.403688 0.46 0
+        0.516306 0.46 0
+        0.516306 0.46 0
+        0.403688 0.46 0
+        0.403689 0.128908 0
+        0.516306 0.128908 0
+        0.516306 0.128908 0
+        0.403689 0.128908 0
+        0.403683 -0.102856 0
+        0.5163 -0.102856 0
+        0.5163 -0.102856 0
+        0.403695 0.462063 0
+        0.516317 0.130971 0
+        0.516312 0.462063 0
+        0.403695 0.462063 0
+        0.516312 0.462063 0
+        0.403698 0.793155 0
+        0.516313 0.793155 0
+        0.403698 0.793155 0
+        0.516313 -0.102856 0
+        0.403683 0.128908 0
+        0.516313 0.128908 0
+        0.403683 0.128908 0
+        0.516317 0.46 0
+        0.403683 0.128908 0
+endnode
+node trimesh Doorknob2
+    parent TIN01_B13_03
+    position 0.184278 -1.02352 1.5259
+    orientation 1.0 0.0 0.0 0.0
+    scale 1.0
+    shininess 10
+    diffuse 1.0 1.0 1.0
+    ambient 1.0 1.0 1.0
+    specular 0.0 0.0 0.0
+    selfillumcolor 0.0 0.0 0.0
+    alpha 1.0
+    bitmap ttr01_metaltop
+    verts 8
+        -0.0555131 -0.0275688 -0.0662275
+        -0.0280376 0.0939844 -0.0658376
+        0.0280371 0.0939844 -0.0658376
+        0.0555147 -0.0275688 -0.0662275
+        -0.0555131 -0.0275688 0.0574713
+        0.0555147 -0.0275688 0.0574713
+        0.0280371 0.0939844 0.0566106
+        -0.0280376 0.0939844 0.0563739
+    faces 12
+        0 1 2 1 0 1 2 65536
+        2 3 0 1 2 3 0 65536
+        4 5 6 1 0 3 2 65536
+        6 7 4 1 2 1 0 65536
+        0 3 5 1 4 5 6 65536
+        5 4 0 1 6 7 4 65536
+        3 2 6 1 5 8 9 65536
+        6 5 3 1 9 6 5 65536
+        2 1 7 1 10 11 12 65536
+        7 6 2 1 12 13 10 65536
+        1 0 4 1 11 4 7 65536
+        4 7 1 1 7 12 11 65536
+    tverts 14
+        0.886085 0.892606 0
+        0.886085 0.976959 0
+        0.970438 0.976959 0
+        0.970438 0.892606 0
+        0.876991 0.881214 0
+        0.977012 0.881214 0
+        0.977012 0.99535 0
+        0.876991 0.99535 0
+        0.877947 0.881214 0
+        0.877947 0.99535 0
+        0.876034 0.881214 0
+        0.976055 0.881214 0
+        0.976055 0.99535 0
+        0.876034 0.99535 0
+endnode
+node trimesh sam
+    parent thi_udoor_08
+    position -1.0 0.0 0.0
+    orientation 0.0 0.0 -1.0 -1.5708
+    scale 1.0
+    shininess 1
+    render 1
+    Shadow 0
+    beaming 0
+    transparencyhint 1
+    tilefade 0
+    rotatetexture 0
+    diffuse 0.8 0.8 0.8
+    ambient 0.2 0.2 0.2
+    specular 0.0 0.0 0.0
+    selfillumcolor 0.0705882 0.0 1.0
+    alpha 0.0
+    verts 24
+        -0.00620381 -0.0100158 1.5
+        -0.00620772 -2.0 1.5
+        -0.00620059 -1.85189 2.0
+        -0.00620395 -0.151896 2.0
+        0.0508923 -2.0 1.5
+        0.0509031 -0.00622432 1.5
+        0.0509063 -1.84811 2.0
+        0.050903 -0.148104 2.0
+        -0.00620577 -1.5 2.35
+        0.0508942 -1.5 2.35
+        -0.00620713 -1.85 1.0
+        0.0508929 -1.85 1.0
+        -0.00620577 -1.5 0.65
+        0.0508942 -1.5 0.65
+        -0.00620382 -1.0 0.5
+        0.0508962 -1.0 0.5
+        -0.00620381 -1.0 2.5
+        0.0508962 -1.0 2.5
+        -0.00620186 -0.5 0.65
+        0.0508981 -0.5 0.65
+        -0.00620186 -0.5 2.35
+        0.0508981 -0.5 2.35
+        -0.0062005 -0.15 1.0
+        0.0508995 -0.15 1.0
+    faces 20
+        0 1 2 1 0 1 2 65536
+        2 3 0 1 2 3 0 65536
+        4 5 6 1 1 0 2 65536
+        7 6 5 1 3 2 0 65536
+        4 11 5 0 1 4 0 65536
+        11 13 5 0 4 5 0 65536
+        13 15 5 0 5 6 0 65536
+        15 19 5 0 6 7 0 65536
+        19 23 5 0 7 8 0 65536
+        7 9 6 0 3 9 2 65536
+        17 9 7 0 10 9 3 65536
+        21 17 7 0 11 10 3 65536
+        1 0 10 0 1 0 12 65536
+        10 0 12 0 12 0 13 65536
+        12 0 14 0 13 0 14 65536
+        14 0 18 0 14 0 15 65536
+        18 0 22 0 15 0 16 65536
+        2 8 3 0 2 17 3 65536
+        8 16 3 0 17 18 3 65536
+        16 20 3 0 18 19 3 65536
+    tverts 20
+        0.000499517 0.000499666 0
+        0.49427 0.000499547 0
+        0.494271 0.876312 0
+        0.000499815 0.876312 0
+        0.5 0.5 0
+        0.5 0.5 0
+        0.5 0.5 0
+        0.5 0.5 0
+        0.5 0.5 0
+        0.5 0.5 0
+        0.5 0.5 0
+        0.5 0.5 0
+        0.5 0.5 0
+        0.5 0.5 0
+        0.5 0.5 0
+        0.5 0.5 0
+        0.5 0.5 0
+        0.5 0.5 0
+        0.5 0.5 0
+        0.5 0.5 0
+endnode
+endmodelgeom thi_udoor_08
+
+newanim opening1 thi_udoor_08
+    length 1.0
+    transtime 0.25
+    animroot thi_udoor_08
+    node dummy thi_udoor_08
+        parent NULL
+    endnode
+    node dummy thi_udoor_08grnd
+        parent thi_udoor_08
+    endnode
+    node emitter fire!07
+        parent thi_udoor_08
+    endnode
+    node dummy thi_udoor_08head
+        parent thi_udoor_08
+    endnode
+    node dummy thi_udoor08hhit
+        parent thi_udoor_08
+    endnode
+    node dummy thi_udoor08impc
+        parent thi_udoor_08
+    endnode
+    node dummy TIN01_B13_03
+        parent thi_udoor_08
+        positionkey
+            0.0 -0.999999 0.0 0.0
+            0.0333333 -0.999999 0.0 0.0
+            1.0 -0.999999 0.0 0.0
+        endlist
+        orientationkey
+            0.0 0.0 0.0 -1.0 -1.5708
+            0.0333333 0.0 0.0 -1.0 -1.5708
+            0.333333 0.0 0.0 -1.0 -1.5708
+            0.433333 0.0 0.0 -1.0 -1.47299
+            0.533333 0.0 0.0 -1.0 -1.43808
+            0.733333 0.0 0.0 -1.0 -0.583658
+            0.766667 0.0 0.0 -1.0 -0.515247
+            0.866667 0.0 0.0 -1.0 -0.310014
+            0.933333 0.0 0.0 -1.0 -0.2618
+            1.0 0.0 0.0 -1.0 -0.23562
+        endlist
+    endnode
+    node trimesh Doorknob1
+        parent TIN01_B13_03
+        orientationkey
+            0.0 1.0 0.0 0.0 0.0
+            0.0333333 1.0 0.0 0.0 0.0
+            0.4 1.0 0.0 -3.08184e-007 -0.640191
+            0.533333 1.0 0.0 -2.68274e-007 -0.640191
+            0.7 1.0 0.0 0.0 0.0
+            1.0 1.0 0.0 0.0 0.0
+        endlist
+    endnode
+    node trimesh Door
+        parent TIN01_B13_03
+    endnode
+    node trimesh Doorknob2
+        parent TIN01_B13_03
+        orientationkey
+            0.0 1.0 0.0 0.0 0.0
+            0.0333333 1.0 0.0 0.0 0.0
+            0.4 1.0 0.0 -3.08184e-007 -0.640191
+            0.533333 1.0 0.0 -2.68274e-007 -0.640191
+            0.7 1.0 0.0 0.0 0.0
+            1.0 1.0 0.0 0.0 0.0
+        endlist
+    endnode
+    node trimesh sam
+        parent thi_udoor_08
+    endnode
+doneanim opening1 thi_udoor_08
+
+
+newanim closing1 thi_udoor_08
+    length 0.666667
+    transtime 0.25
+    animroot thi_udoor_08
+    node dummy thi_udoor_08
+        parent NULL
+    endnode
+    node dummy thi_udoor_08grnd
+        parent thi_udoor_08
+    endnode
+    node emitter fire!07
+        parent thi_udoor_08
+    endnode
+    node dummy thi_udoor_08head
+        parent thi_udoor_08
+    endnode
+    node dummy thi_udoor08hhit
+        parent thi_udoor_08
+    endnode
+    node dummy thi_udoor08impc
+        parent thi_udoor_08
+    endnode
+    node dummy TIN01_B13_03
+        parent thi_udoor_08
+        positionkey
+            0.0 -0.999999 0.0 0.0
+            0.0333333 -0.999999 0.0 0.0
+            0.666667 -0.999999 0.0 0.0
+        endlist
+        orientationkey
+            0.0 0.0 0.0 -1.0 -0.23562
+            0.0333333 4.36127e-007 0.0 -1.0 -0.23562
+            0.1 0.0 0.0 -1.0 -0.278195
+            0.166667 0.0 0.0 -1.0 -0.306578
+            0.3 0.0 0.0 -1.0 -0.504164
+            0.366667 0.0 0.0 -1.0 -0.602957
+            0.5 0.0 0.0 -1.0 -1.50128
+            0.566667 0.0 0.0 -1.0 -1.5708
+            0.6 0.0 0.0 -1.0 -1.5708
+            0.633333 0.0 0.0 -1.0 -1.5708
+            0.666667 0.0 0.0 -1.0 -1.5708
+        endlist
+    endnode
+    node trimesh Doorknob1
+        parent TIN01_B13_03
+        orientationkey
+            0.0 1.0 0.0 0.0 -1.21643e-006
+            0.0333333 1.0 0.0 0.0 -2.43286e-006
+            0.466667 0.000369319 0.0 -1.0 -1.88486e-007
+            0.566667 1.0 0.0 0.0 -0.567232
+            0.633333 -1.0 0.0 0.0 0.0
+            0.666667 -1.0 0.0 0.0 0.0
+        endlist
+    endnode
+    node trimesh Door
+        parent TIN01_B13_03
+    endnode
+    node trimesh Doorknob2
+        parent TIN01_B13_03
+        orientationkey
+            0.0 1.0 0.0 0.0 -1.21643e-006
+            0.0333333 1.0 0.0 0.0 -2.43286e-006
+            0.466667 0.000369319 0.0 -1.0 -1.88486e-007
+            0.566667 1.0 0.0 0.0 -0.567232
+            0.633333 -1.0 0.0 0.0 0.0
+            0.666667 -1.0 0.0 0.0 0.0
+        endlist
+    endnode
+    node trimesh sam
+        parent thi_udoor_08
+    endnode
+doneanim closing1 thi_udoor_08
+
+
+newanim opening2 thi_udoor_08
+    length 1.0
+    transtime 0.25
+    animroot thi_udoor_08
+    node dummy thi_udoor_08
+        parent NULL
+    endnode
+    node dummy thi_udoor_08grnd
+        parent thi_udoor_08
+    endnode
+    node emitter fire!07
+        parent thi_udoor_08
+    endnode
+    node dummy thi_udoor_08head
+        parent thi_udoor_08
+    endnode
+    node dummy thi_udoor08hhit
+        parent thi_udoor_08
+    endnode
+    node dummy thi_udoor08impc
+        parent thi_udoor_08
+    endnode
+    node dummy TIN01_B13_03
+        parent thi_udoor_08
+        positionkey
+            0.0 -0.999999 0.0 0.0
+            1.0 -0.999999 0.0 0.0
+        endlist
+        orientationkey
+            0.0 8.88086e-007 -8.88089e-007 -1.0 -1.5708
+            0.333333 1.77617e-006 -1.77618e-006 -1.0 -1.5708
+            0.433333 0.0 0.0 -1.0 -1.6686
+            0.533333 0.0 0.0 -1.0 -1.70351
+            0.733333 0.0 0.0 -1.0 -2.55794
+            0.766667 0.0 0.0 -1.0 -2.62635
+            0.866667 0.0 0.0 -1.0 -2.83157
+            0.933333 0.0 0.0 -1.0 -2.87979
+            1.0 0.0 0.0 -1.0 -2.90597
+        endlist
+    endnode
+    node trimesh Doorknob1
+        parent TIN01_B13_03
+        orientationkey
+            0.0 0.999991 -0.00430598 8.88081e-007 0.0
+            0.4 1.0 0.0 0.0 -0.640191
+            0.533333 1.0 0.0 0.0 -0.640191
+            0.7 1.0 0.0 0.0 -6.28319
+            1.0 1.0 0.0 0.0 -6.28318
+        endlist
+    endnode
+    node trimesh Door
+        parent TIN01_B13_03
+    endnode
+    node trimesh Doorknob2
+        parent TIN01_B13_03
+        orientationkey
+            0.0 0.999991 -0.00430598 8.88081e-007 0.0
+            0.4 1.0 0.0 0.0 -0.640191
+            0.533333 1.0 0.0 0.0 -0.640191
+            0.7 1.0 0.0 0.0 -6.28319
+            1.0 1.0 0.0 0.0 -6.28318
+        endlist
+    endnode
+    node trimesh sam
+        parent thi_udoor_08
+    endnode
+doneanim opening2 thi_udoor_08
+
+
+newanim die thi_udoor_08
+    length 0.666667
+    transtime 0.0
+    animroot thi_udoor_08
+    event 0.0 detonate
+    node dummy thi_udoor_08
+        parent NULL
+    endnode
+    node dummy thi_udoor_08grnd
+        parent thi_udoor_08
+    endnode
+    node emitter fire!07
+        parent thi_udoor_08
+    endnode
+    node dummy thi_udoor_08head
+        parent thi_udoor_08
+    endnode
+    node dummy thi_udoor08hhit
+        parent thi_udoor_08
+    endnode
+    node dummy thi_udoor08impc
+        parent thi_udoor_08
+    endnode
+    node dummy TIN01_B13_03
+        parent thi_udoor_08
+        positionkey
+            0.0 -0.999999 0.0 0.0
+            0.1 -0.895449 0.0 -0.570152
+            0.133333 -0.895449 0.0 -0.81911
+            0.366667 -0.721199 0.0 -0.901047
+            0.666667 0.262883 1.08648 -2.83311
+        endlist
+        orientationkey
+            0.0 0.0 0.0 -1.0 -1.5708
+            0.1 -0.0700964 -0.0906631 -0.993412 -1.43993
+            0.133333 -0.0700961 -0.0906633 -0.993412 -1.43993
+            0.266667 -0.0711772 0.0235461 -0.997186 -1.4857
+            0.333333 -0.105541 0.0251409 -0.994097 -1.51399
+            0.666667 -0.326389 0.362491 -0.872966 -1.60174
+        endlist
+    endnode
+    node trimesh Doorknob1
+        parent TIN01_B13_03
+    endnode
+    node trimesh Door
+        parent TIN01_B13_03
+    endnode
+    node trimesh Doorknob2
+        parent TIN01_B13_03
+    endnode
+    node trimesh sam
+        parent thi_udoor_08
+    endnode
+doneanim die thi_udoor_08
+
+
+newanim closing2 thi_udoor_08
+    length 0.633333
+    transtime 0.25
+    animroot thi_udoor_08
+    node dummy thi_udoor_08
+        parent NULL
+    endnode
+    node dummy thi_udoor_08grnd
+        parent thi_udoor_08
+    endnode
+    node emitter fire!07
+        parent thi_udoor_08
+    endnode
+    node dummy thi_udoor_08head
+        parent thi_udoor_08
+    endnode
+    node dummy thi_udoor08hhit
+        parent thi_udoor_08
+    endnode
+    node dummy thi_udoor08impc
+        parent thi_udoor_08
+    endnode
+    node dummy TIN01_B13_03
+        parent thi_udoor_08
+        positionkey
+            0.0 -0.999999 0.0 0.0
+            0.0333333 -0.999999 0.0 0.0
+        endlist
+        orientationkey
+            0.0 0.0 0.0 -1.0 -2.90597
+            0.0333333 0.0 0.0 -1.0 -2.90597
+            0.1 0.0 0.0 -1.0 -2.8634
+            0.166667 0.0 0.0 -1.0 -2.83501
+            0.3 0.0 0.0 -1.0 -2.63744
+            0.366667 0.0 0.0 -1.0 -2.53863
+            0.5 0.0 0.0 -1.0 -1.64031
+            0.566667 0.0 0.0 -1.0 -1.5708
+            0.6 0.0 0.0 -1.0 -1.5708
+            0.633333 0.0 0.0 -1.0 -1.5708
+        endlist
+    endnode
+    node trimesh Doorknob1
+        parent TIN01_B13_03
+        orientationkey
+            0.0 1.0 0.0 0.0 -6.28319
+            0.0333333 1.0 0.0 0.0 -6.28319
+            0.466667 0.712147 0.0 0.70203 0.0
+            0.566667 1.0 0.0 0.0 -0.567232
+            0.633333 -1.0 -4.19687e-007 0.0 0.0
+        endlist
+    endnode
+    node trimesh Door
+        parent TIN01_B13_03
+    endnode
+    node trimesh Doorknob2
+        parent TIN01_B13_03
+        orientationkey
+            0.0 1.0 0.0 0.0 -6.28319
+            0.0333333 1.0 0.0 0.0 -6.28319
+            0.466667 0.712147 0.0 0.70203 0.0
+            0.566667 1.0 0.0 0.0 -0.567232
+            0.633333 -1.0 -4.19687e-007 0.0 0.0
+        endlist
+    endnode
+    node trimesh sam
+        parent thi_udoor_08
+    endnode
+doneanim closing2 thi_udoor_08
+
+
+newanim closed thi_udoor_08
+    length 0.0333333
+    transtime 0.25
+    animroot thi_udoor_08
+    node dummy thi_udoor_08
+        parent NULL
+    endnode
+    node dummy thi_udoor_08grnd
+        parent thi_udoor_08
+    endnode
+    node emitter fire!07
+        parent thi_udoor_08
+    endnode
+    node dummy thi_udoor_08head
+        parent thi_udoor_08
+    endnode
+    node dummy thi_udoor08hhit
+        parent thi_udoor_08
+    endnode
+    node dummy thi_udoor08impc
+        parent thi_udoor_08
+    endnode
+    node dummy TIN01_B13_03
+        parent thi_udoor_08
+        positionkey
+            0.0 -0.999999 0.0 0.0
+            0.0333333 -0.999999 0.0 0.0
+        endlist
+        orientationkey
+            0.0 1.57525e-006 -1.57525e-006 -1.0 -1.5708
+            0.0333333 0.0 0.0 -1.0 -1.5708
+        endlist
+    endnode
+    node trimesh Doorknob1
+        parent TIN01_B13_03
+        orientationkey
+            0.0 1.0 -1.85446e-006 1.57525e-006 -4.10797e-007
+            0.0333333 1.0 0.0 0.0 -8.22674e-007
+        endlist
+    endnode
+    node trimesh Door
+        parent TIN01_B13_03
+    endnode
+    node trimesh Doorknob2
+        parent TIN01_B13_03
+        orientationkey
+            0.0 1.0 -1.85446e-006 1.57525e-006 -4.10797e-007
+            0.0333333 1.0 0.0 0.0 -8.22674e-007
+        endlist
+    endnode
+    node trimesh sam
+        parent thi_udoor_08
+    endnode
+doneanim closed thi_udoor_08
+
+
+newanim opened2 thi_udoor_08
+    length 0.0333333
+    transtime 0.25
+    animroot thi_udoor_08
+    node dummy thi_udoor_08
+        parent NULL
+    endnode
+    node dummy thi_udoor_08grnd
+        parent thi_udoor_08
+    endnode
+    node emitter fire!07
+        parent thi_udoor_08
+    endnode
+    node dummy thi_udoor_08head
+        parent thi_udoor_08
+    endnode
+    node dummy thi_udoor08hhit
+        parent thi_udoor_08
+    endnode
+    node dummy thi_udoor08impc
+        parent thi_udoor_08
+    endnode
+    node dummy TIN01_B13_03
+        parent thi_udoor_08
+        positionkey
+            0.0 -0.999999 0.0 0.0
+            0.0333333 -0.999999 0.0 0.0
+        endlist
+        orientationkey
+            0.0 0.0 0.0 -1.0 -2.90597
+            0.0333333 0.0 0.0 -1.0 -2.90597
+        endlist
+    endnode
+    node trimesh Doorknob1
+        parent TIN01_B13_03
+        orientationkey
+            0.0 1.0 0.0 0.0 -6.28319
+            0.0333333 1.0 0.0 0.0 -6.28319
+        endlist
+    endnode
+    node trimesh Door
+        parent TIN01_B13_03
+    endnode
+    node trimesh Doorknob2
+        parent TIN01_B13_03
+        orientationkey
+            0.0 1.0 0.0 0.0 -6.28319
+            0.0333333 1.0 0.0 0.0 -6.28319
+        endlist
+    endnode
+    node trimesh sam
+        parent thi_udoor_08
+    endnode
+doneanim opened2 thi_udoor_08
+
+
+newanim opened1 thi_udoor_08
+    length 0.0333333
+    transtime 0.25
+    animroot thi_udoor_08
+    node dummy thi_udoor_08
+        parent NULL
+    endnode
+    node dummy thi_udoor_08grnd
+        parent thi_udoor_08
+    endnode
+    node emitter fire!07
+        parent thi_udoor_08
+    endnode
+    node dummy thi_udoor_08head
+        parent thi_udoor_08
+    endnode
+    node dummy thi_udoor08hhit
+        parent thi_udoor_08
+    endnode
+    node dummy thi_udoor08impc
+        parent thi_udoor_08
+    endnode
+    node dummy TIN01_B13_03
+        parent thi_udoor_08
+        positionkey
+            0.0 -0.999999 0.0 0.0
+            0.0333333 -0.999999 0.0 0.0
+        endlist
+        orientationkey
+            0.0 0.0 0.0 -1.0 -0.23562
+            0.0333333 0.0 0.0 -1.0 -0.23562
+        endlist
+    endnode
+    node trimesh Doorknob1
+        parent TIN01_B13_03
+        orientationkey
+            0.0 1.0 0.0 0.0 -3.03925e-007
+            0.0333333 1.0 0.0 0.0 -6.0785e-007
+        endlist
+    endnode
+    node trimesh Door
+        parent TIN01_B13_03
+    endnode
+    node trimesh Doorknob2
+        parent TIN01_B13_03
+        orientationkey
+            0.0 1.0 0.0 0.0 -3.03925e-007
+            0.0333333 1.0 0.0 0.0 -6.0785e-007
+        endlist
+    endnode
+    node trimesh sam
+        parent thi_udoor_08
+    endnode
+doneanim opened1 thi_udoor_08
+
+
+newanim trans thi_udoor_08
+    length 0.0333333
+    transtime 0.25
+    animroot thi_udoor_08
+    node dummy thi_udoor_08
+        parent NULL
+    endnode
+    node dummy thi_udoor_08grnd
+        parent thi_udoor_08
+    endnode
+    node emitter fire!07
+        parent thi_udoor_08
+    endnode
+    node dummy thi_udoor_08head
+        parent thi_udoor_08
+    endnode
+    node dummy thi_udoor08hhit
+        parent thi_udoor_08
+    endnode
+    node dummy thi_udoor08impc
+        parent thi_udoor_08
+    endnode
+    node dummy TIN01_B13_03
+        parent thi_udoor_08
+    endnode
+    node trimesh Doorknob1
+        parent TIN01_B13_03
+    endnode
+    node trimesh Door
+        parent TIN01_B13_03
+    endnode
+    node trimesh Doorknob2
+        parent TIN01_B13_03
+    endnode
+    node trimesh sam
+        parent thi_udoor_08
+    endnode
+doneanim trans thi_udoor_08
+
+
+newanim dead thi_udoor_08
+    length 0.0333333
+    transtime 0.0
+    animroot thi_udoor_08
+    node dummy thi_udoor_08
+        parent NULL
+    endnode
+    node dummy thi_udoor_08grnd
+        parent thi_udoor_08
+    endnode
+    node emitter fire!07
+        parent thi_udoor_08
+    endnode
+    node dummy thi_udoor_08head
+        parent thi_udoor_08
+    endnode
+    node dummy thi_udoor08hhit
+        parent thi_udoor_08
+    endnode
+    node dummy thi_udoor08impc
+        parent thi_udoor_08
+    endnode
+    node dummy TIN01_B13_03
+        parent thi_udoor_08
+        positionkey
+            0.0 0.262883 1.08648 -2.83311
+            0.0333333 0.262883 1.08648 -2.83311
+        endlist
+        orientationkey
+            0.0 -0.326389 0.362491 -0.872966 -1.60174
+            0.0333333 -0.326389 0.362491 -0.872967 -1.60174
+        endlist
+    endnode
+    node trimesh Doorknob1
+        parent TIN01_B13_03
+    endnode
+    node trimesh Door
+        parent TIN01_B13_03
+    endnode
+    node trimesh Doorknob2
+        parent TIN01_B13_03
+    endnode
+    node trimesh sam
+        parent thi_udoor_08
+    endnode
+doneanim dead thi_udoor_08
+donemodel thi_udoor_08

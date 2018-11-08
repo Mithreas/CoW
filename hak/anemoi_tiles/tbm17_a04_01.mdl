@@ -1,0 +1,125 @@
+#Exported from 3ds max by MDL Plug-in Suite 1.0b
+#http://www.bricksbuilder.com/nwn/utils/
+#MAXMODEL ASCII
+# model: TBM17_A04_01
+filedependancy Unknown
+newmodel TBM17_A04_01
+setsupermodel TBM17_A04_01 NULL
+classification Tile
+setanimationscale 1.0
+#MAXGEOM  ASCII
+beginmodelgeom TBM17_A04_01
+node dummy TBM17_A04_01
+  parent NULL
+endnode
+node light TBM17_A04_01ml1
+  parent TBM17_A04_01
+  position 0 0 5
+  orientation 0 0 0 0
+  wirecolor 0.5625 0.5625 0.5625
+    radius 1400
+    multiplier 1
+    color 0 0 0
+    ambientOnly 0
+    nDynamicType 0
+    affectDynamic 1
+    shadow 0
+    lightpriority 5
+    lensflares 0
+    fadingLight 0
+endnode
+node light TBM17_A04_01ml2
+  parent TBM17_A04_01
+  position -2 -2 4
+  orientation 0 0 0 0
+  wirecolor 0.5625 0.5625 0.5625
+    radius 500
+    multiplier 1
+    color 0 0 0
+    ambientOnly 0
+    nDynamicType 0
+    affectDynamic 1
+    shadow 0
+    lightpriority 5
+    lensflares 0
+    fadingLight 0
+endnode
+node aabb Plane02_01_01
+  parent TBM17_A04_01
+  position 0 0 0
+  orientation 0 0 0 0
+  wirecolor 0.5625 0.5625 0.5625
+  ambient 1 1 1
+  diffuse 1 1 1
+  specular 0 0 0
+  shininess 2
+  bitmap ttr01_grass02
+  verts 6
+    -3.98 -5 0
+    -5 -5 0
+    5 -5 0
+    5 5 0
+    -5 5 0
+    4.98 5 0
+  faces 4
+    3 5 0  1  0 0 0  14
+    0 2 3  1  0 0 0  14
+    4 1 0  1  0 0 0  14
+    0 5 4  1  0 0 0  14
+  aabb     -5.00 -5.00 0.00   5.00 5.00 0.00   -1
+     -5.00 -5.00 0.00   5.00 5.00 0.00   -1
+     -3.98 -5.00 0.00   5.00 5.00 0.00   1
+     -5.00 -5.00 0.00   -3.98 5.00 0.00   2
+     -5.00 -5.00 0.00   5.00 5.00 0.00   -1
+     -3.98 -5.00 0.00   5.00 5.00 0.00   0
+     -5.00 -5.00 0.00   4.98 5.00 0.00   3
+endnode
+node trimesh Plane01_01_01
+  parent TBM17_A04_01
+  position 0 0 0
+  orientation 0 0 0 0
+  wirecolor 0.878906 0.878906 0.878906
+  ambient 1 1 1
+  diffuse 1 1 1
+  specular 0 0 0
+  shininess 2
+  bitmap bm_snow3
+  verts 11
+    5 -5 0
+    -4.59 -5 0
+    -5 -5 0
+    5 5 0
+    5 4.65 0
+    5 4.64 0
+    -5 5 0
+    4.69 5 0
+    -5 -4.97 0
+    -5 -4.96 0
+    -5 -4.94 0
+  faces 10
+    4 8 2  1  0 1 2  0
+    4 4 2  1  3 0 2  0
+    5 4 2  1  4 3 2  0
+    1 5 2  1  5 4 2  0
+    5 1 0  1  4 5 6  0
+    10 7 6  1  7 8 9  0
+    8 4 3  1  1 0 10  0
+    9 8 3  1  11 1 10  0
+    9 3 7  1  11 10 8  0
+    9 7 10  1  11 8 7  0
+  tverts 12
+    0.982405 0.915635 0
+    0.0434922 0.0405689 0
+    0.0436734 0.037929 0
+    0.982409 0.915588 0
+    0.982455 0.914915 0
+    0.0847665 0.0379291 0
+    0.982454 0.0379288 0
+    0.0434922 0.0434924 0
+    0.953487 0.953486 0
+    0.0434924 0.953487 0
+    0.982405 0.950843 0
+    0.0434922 0.0421105 0
+endnode
+endmodelgeom TBM17_A04_01
+donemodel TBM17_A04_01

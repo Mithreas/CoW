@@ -1,0 +1,198 @@
+# Exported from NWmax 0.8 b60 at 4/8/2006 12:39:29 PM
+# mdl file
+#
+#NWmax MODEL ASCII
+# model: c_t_liz_plt
+#local file: C:\Documents and Settings\Lisa\Desktop\WIngtails\c_t_liz_plt.max
+filedependancy c_t_liz_plt.max
+newmodel c_t_liz_plt
+setsupermodel c_t_liz_plt c_tailliz
+classification Character
+setanimationscale 1.0
+#NWmax GEOM  ASCII
+beginmodelgeom c_t_liz_plt
+node dummy c_t_liz_plt
+  parent NULL
+endnode
+node dummy tail
+  parent c_t_liz_plt
+  position 0.0 0.0 0.0
+  orientation 1.0 0.0 0.0 0.0
+  wirecolor 0.694118 0.109804 0.584314 
+endnode
+node trimesh LizWar_tailmidle
+  parent tail
+  position 0.0 0.0243851 0.037863
+  orientation -0.96118 -0.0185037 -0.2753 -1.04405
+  wirecolor 1.0 1.0 1.0 
+  tilefade 0
+  scale 1.0
+  render 1
+  Shadow 1
+  beaming 0
+  inheritcolor 0
+  rotatetexture 0
+  alpha 1.0
+  transparencyhint 0
+  selfillumcolor 0.0 0.0 0.0 
+  ambient 1.0 1.0 1.0 
+  Diffuse 1.0 1.0 1.0 
+  Specular 0.05 0.05 0.05 
+  shininess 26
+  center 0.0 -5.27835 -1.18486 
+  bitmap c_t_liz_plt
+  verts 13
+    -0.0707764 -0.061934 -0.0312968
+    0.0 0.0223288 0.0540757
+    0.0 0.106022 0.0195861
+    0.0 -0.187138 0.0147918
+    0.0 -0.0182616 -0.0777729
+    -0.026926 -0.211589 -0.061809
+    0.0 -0.193548 0.012512
+    -0.0379657 -0.193801 -0.00475439
+    0.0 0.0736677 -0.0518712
+    0.0707764 -0.061934 -0.0312968
+    0.0 -0.207948 -0.0702601
+    0.0379657 -0.193801 -0.00475439
+    0.026926 -0.211589 -0.061809
+  faces 22
+    0 1 2  1  0 1 2  1
+    3 1 0  1  3 1 0  5
+    4 5 0  1  4 5 0  6
+    0 6 3  1  0 6 3  3
+    7 0 5  1  6 0 5  3
+    8 4 0  1  7 4 0  3
+    1 9 2  1  1 0 2  1
+    1 3 9  1  1 3 0  5
+    10 4 9  1  5 4 0  6
+    11 9 3  1  6 0 3  3
+    9 11 12  1  0 6 5  3
+    4 8 9  1  4 7 0  3
+    2 9 8  1  2 0 7  1
+    0 2 8  1  0 2 7  1
+    7 11 6  1  6 0 0  3
+    10 12 5  1  5 0 0  6
+    4 10 5  1  4 5 0  6
+    0 7 6  1  0 6 0  3
+    12 10 9  1  0 5 0  6
+    6 11 3  1  0 0 3  3
+    11 7 12  1  0 6 0  3
+    5 12 7  1  0 0 6  3
+  tverts 8
+    0.302283 0.570794 0
+    0.378925 0.990438 0
+    0.133229 0.96449 0
+    0.686375 0.575967 0
+    0.123408 0.428286 0
+    0.528888 0.248354 0
+    0.683675 0.504941 0
+    0.0113848 0.652054 0
+endnode
+node trimesh LizWar_tailend
+  parent LizWar_tailmidle
+  position -0.00197905 -0.187332 -0.0402067
+  orientation 0.7567 -0.0518942 -0.6517 -0.575915
+  wirecolor 1.0 1.0 1.0 
+  tilefade 0
+  scale 1.0
+  render 1
+  Shadow 1
+  beaming 0
+  inheritcolor 0
+  rotatetexture 0
+  alpha 1.0
+  transparencyhint 0
+  selfillumcolor 0.0 0.0 0.0 
+  ambient 1.0 1.0 1.0 
+  Diffuse 1.0 1.0 1.0 
+  Specular 0.05 0.05 0.05 
+  shininess 26
+  center 0.0 -7.51964 2.18149 
+  bitmap c_t_liz_plt
+  verts 8
+    -0.0556738 -0.0378371 0.00316415
+    0.0 0.0502532 0.0863344
+    0.0 0.0206252 0.00453839
+    0.00459446 -0.166375 0.037716
+    0.0 0.0201306 -0.0427045
+    0.0 -0.182162 -0.0385512
+    0.00459446 -0.200646 -0.00619965
+    0.0556738 -0.0378371 0.00316415
+  faces 12
+    0 1 2  1  0 1 2  1
+    3 1 0  1  3 1 0  5
+    4 5 0  1  4 5 0  6
+    0 6 3  1  0 6 3  3
+    6 0 5  1  6 0 5  3
+    2 4 0  1  2 4 0  3
+    1 7 2  1  1 7 2  1
+    1 3 7  1  1 3 7  5
+    5 4 7  1  5 4 7  6
+    6 7 3  1  6 7 3  3
+    7 6 5  1  7 6 5  3
+    4 2 7  1  4 2 7  3
+  tverts 8
+    0.282192 0.539815 0
+    0.272472 0.91199 0
+    0.171125 0.604084 0
+    0.610556 0.513309 0
+    0.0776963 0.442464 0
+    0.493151 0.225004 0
+    0.598389 0.313936 0
+    0.282567 0.539607 0
+endnode
+node trimesh LizWar_tailtip
+  parent LizWar_tailend
+  position 0.0 -0.15418 -0.0176584
+  orientation 0.526783 -0.290217 -0.798921 -0.217055
+  wirecolor 1.0 1.0 1.0 
+  tilefade 0
+  scale 1.0
+  render 1
+  Shadow 1
+  beaming 0
+  inheritcolor 0
+  rotatetexture 0
+  alpha 1.0
+  transparencyhint 0
+  selfillumcolor 0.0 0.0 0.0 
+  ambient 1.0 1.0 1.0 
+  Diffuse 1.0 1.0 1.0 
+  Specular 0.05 0.05 0.05 
+  shininess 26
+  center -0.0494601 -22.1094 3.08629 
+  bitmap c_t_liz_plt
+  verts 8
+    -0.0281782 -0.07215 0.00115749
+    0.0 0.0190007 0.0905295
+    0.0 -0.0180821 0.00505418
+    -0.0017311 -0.162766 0.0286613
+    0.0 0.00991159 -0.0288038
+    -0.0017311 -0.167243 -0.0144494
+    -0.0114532 -0.461188 0.0457921
+    0.027189 -0.0721499 0.00115749
+  faces 12
+    0 1 2  1  0 1 2  1
+    3 1 0  1  3 1 0  5
+    4 5 0  1  4 5 0  6
+    0 6 3  1  0 6 3  3
+    6 0 5  1  6 0 5  3
+    2 4 0  1  2 4 0  3
+    1 7 2  1  1 7 2  1
+    1 3 7  1  1 3 7  5
+    5 4 7  1  5 4 7  6
+    6 7 3  1  6 7 3  3
+    7 6 5  1  7 6 5  3
+    4 2 7  1  4 2 7  3
+  tverts 8
+    0.544207 0.293224 0
+    0.600236 0.627197 0
+    0.527956 0.33725 0
+    0.86434 0.301748 0
+    0.403334 0.256121 0
+    0.749222 0.053591 0
+    0.967331 0.180101 0
+    0.545099 0.29272 0
+endnode
+endmodelgeom c_t_liz_plt
+donemodel c_t_liz_plt

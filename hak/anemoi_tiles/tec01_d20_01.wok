@@ -1,0 +1,21 @@
+#MAXWALKMESH  ASCII
+beginwalkmeshgeom tec01_d20_01 
+node aabb Plane04 
+  parent tec01_d20_01 
+  position 0.0 0.0 4.0
+  orientation  0.0 0.0 0.0  0.0
+  wirecolor 0.541176 0.0313726 0.431373  
+    verts 4
+     -5.0 -4.99998 0.0
+     5.0 -4.99998 0.0
+     -5.0 5.00002 0.0
+     5.0 5.00002 0.0
+    faces 2
+     2 0 3  1  0 0 0  7
+     1 3 0  1  0 0 0  7
+aabb    -5.00 -5.00  0.00   5.00  5.00  0.00  -1
+    -5.00 -5.00  0.00   5.00  5.00  0.00  1
+    -5.00 -5.00  0.00   5.00  5.00  0.00  0
+endnode
+endwalkmeshgeom tec01_d20_01 
+

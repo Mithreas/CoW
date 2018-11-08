@@ -1,0 +1,66 @@
+#Model converted by mdl2ascii
+#For updates/comments check out http://nwn-j3d.sf.net
+filedependancy Unknown
+newmodel pfg0_neck106
+setsupermodel pfg0_neck106 NULL
+classification Character
+setanimationscale 1.000000
+#MAXGEOM  ASCII
+beginmodelgeom pfg0_neck106
+node dummy pfg0_neck106
+  parent NULL
+endnode
+node trimesh pfg0_neck106g
+  parent pfg0_neck106
+  position 0.000000 0.000000 0.000000
+  orientation 0.000000 0.000000 0.000000 0.000000
+  diffuse 1.000000 1.000000 1.000000
+  ambient 1.000000 1.000000 1.000000
+  specular 0.260000 0.260000 0.260000
+  shininess 14.000000
+  render 1
+    bitmap pfh0_neck106
+    verts 10
+     0.000000 0.002884 -0.045411
+     -0.048940 -0.002266 -0.000888
+     0.000000 0.045483 0.000408
+     0.000000 -0.047853 0.004296
+     -0.037928 0.007479 0.078593
+     0.000000 0.038476 0.054494
+     0.000000 -0.036457 0.067416
+     0.000000 0.004319 0.098627
+     0.048940 -0.002266 -0.000888
+     0.037928 0.007479 0.078593
+    faces 16
+     0 1 2 1 0 1 2 1
+     0 3 1 1 0 3 1 1
+     2 4 5 1 2 4 5 1
+     2 1 4 1 2 1 4 1
+     1 6 4 1 1 6 4 1
+     1 3 6 1 1 3 6 1
+     7 5 4 1 7 5 4 1
+     7 4 6 1 7 4 6 1
+     8 0 2 1 8 0 2 1
+     3 0 8 1 3 0 8 1
+     9 2 5 1 9 2 5 1
+     8 2 9 1 8 2 9 1
+     6 8 9 1 6 8 9 1
+     3 8 6 1 3 8 6 1
+     5 7 9 1 5 7 9 1
+     9 7 6 1 9 7 6 1
+    tverts 10
+     0.510302 0.025717 0
+     0.010367 0.087072 0
+     0.509868 0.096064 0
+     0.509868 0.123030 0
+     0.033947 0.941660 0
+     0.509868 0.688916 0
+     0.501974 0.809937 0
+     0.500000 0.982689 0
+     0.979765 0.079825 0
+     0.981841 0.940598 0
+endnode
+endmodelgeom pfg0_neck106
+donemodel pfg0_neck106
+
+

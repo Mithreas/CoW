@@ -1,0 +1,22 @@
+#MAXWALKMESH  ASCII
+beginwalkmeshgeom eld01_O01_02 
+node aabb Rectangle17 
+  parent eld01_O01_02 
+  position 0.0 0.0 0.0
+  orientation  0.0 0.0 0.0  0.0
+  wirecolor 0.690196 0.101961 0.101961  
+    verts 4
+     5.0 5.0 0.0
+     -5.0 5.0 0.0
+     -5.0 -5.0 0.0
+     5.0 -5.0 0.0
+    faces 2
+     2 3 0  1  0 0 0  4
+     1 2 0  1  0 0 0  4
+aabb    -5.00 -5.00  0.00   5.00  5.00  0.00  -1
+    -5.00 -5.00  0.00   5.00  5.00  0.00  0
+    -5.00 -5.00  0.00   5.00  5.00  0.00  1
+endnode
+endwalkmeshgeom eld01_O01_02 
+
+

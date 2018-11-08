@@ -1,0 +1,226 @@
+#Exported from 3ds max by MDL Plug-in Suite 1.0b
+#http://www.bricksbuilder.com/nwn/utils/
+#MAXMODEL ASCII
+# model: tbm01_w79_01
+filedependancy Unknown
+newmodel tbm01_w79_01
+setsupermodel tbm01_w79_01 NULL
+classification Tile
+setanimationscale 1.0
+#MAXGEOM  ASCII
+beginmodelgeom tbm01_w79_01
+node dummy tbm01_w79_01
+  parent NULL
+endnode
+node trimesh Plane427
+  parent tbm01_w79_01
+  position 0 0 8
+  orientation 0 0 0 0
+  wirecolor 0.894531 0.894531 0.894531
+  ambient 1 1 1
+  diffuse 1 1 1
+  specular 0 0 0
+  shininess 26
+  bitmap TCN01_cobb02
+  render 1
+  Shadow 1
+  beaming 0
+  transparencyhint 0
+  tilefade 0
+  rotatetexture 0
+  verts 25
+    -5 -2.5 0
+    -5 -5 0
+    -2.5 -2.5 0
+    -2.5 -5 0
+    0 -2.5 0
+    0 -5 0
+    2.5 -2.5 0
+    2.5 -5 0
+    5 -2.5 0
+    5 -5 0
+    -5 0 0
+    -2.5 0 0
+    0 0 0
+    2.5 0 0
+    5 0 0
+    -5 2.5 0
+    -2.5 2.5 0
+    0 2.5 0
+    2.5 2.5 0
+    5 2.5 0
+    -5 5 0
+    -2.5 5 0
+    0 5 0
+    2.5 5 0
+    5 5 0
+  faces 32
+    0 1 2  1  0 1 2  0
+    3 2 1  1  3 2 1  0
+    2 3 4  1  2 3 4  0
+    5 4 3  1  5 4 3  0
+    4 5 6  1  4 5 6  0
+    7 6 5  1  7 6 5  0
+    6 7 8  1  6 7 8  0
+    9 8 7  1  9 8 7  0
+    10 0 11  1  10 0 11  0
+    2 11 0  1  2 11 0  0
+    11 2 12  1  11 2 12  0
+    4 12 2  1  4 12 2  0
+    12 4 13  1  12 4 13  0
+    6 13 4  1  6 13 4  0
+    13 6 14  1  13 6 14  0
+    8 14 6  1  8 14 6  0
+    15 10 16  1  15 10 16  0
+    11 16 10  1  11 16 10  0
+    16 11 17  1  16 11 17  0
+    12 17 11  1  12 17 11  0
+    17 12 18  1  17 12 18  0
+    13 18 12  1  13 18 12  0
+    18 13 19  1  18 13 19  0
+    14 19 13  1  14 19 13  0
+    20 15 21  1  20 15 21  0
+    16 21 15  1  16 21 15  0
+    21 16 22  1  21 16 22  0
+    17 22 16  1  17 22 16  0
+    22 17 23  1  22 17 23  0
+    18 23 17  1  18 23 17  0
+    23 18 24  1  23 18 24  0
+    19 24 18  1  19 24 18  0
+  tverts 25
+    0.000499278 -0.499001 0
+    0.000499159 -0.998501 0
+    0.5 -0.499001 0
+    0.5 -0.998501 0
+    0.9995 -0.499001 0
+    0.9995 -0.998502 0
+    1.499 -0.499001 0
+    1.499 -0.998502 0
+    1.9985 -0.499001 0
+    1.9985 -0.998502 0
+    0.000499398 0.000499636 0
+    0.5 0.000499517 0
+    0.9995 0.000499398 0
+    1.499 0.000499278 0
+    1.9985 0.000499159 0
+    0.000499517 0.5 0
+    0.5 0.5 0
+    0.999501 0.5 0
+    1.499 0.5 0
+    1.9985 0.5 0
+    0.000499636 0.999501 0
+    0.5 0.999501 0
+    0.999501 0.9995 0
+    1.499 0.9995 0
+    1.9985 0.9995 0
+endnode
+node trimesh Mesh1151
+  parent tbm01_w79_01
+  position 0 0 3
+  orientation 0 0 0 0
+  wirecolor 0.894531 0.894531 0.894531
+  ambient 0 0 0
+  diffuse 0 0 0
+  specular 0 0 0
+  shininess 1
+  bitmap TCN01_Black
+  render 1
+  Shadow 0
+  beaming 0
+  transparencyhint 0
+  tilefade 0
+  rotatetexture 0
+  verts 4
+    -5 5 0
+    -5 -5 0
+    5 5 0
+    5 -5 0
+  faces 2
+    0 1 2  1  0 1 2  0
+    3 2 1  1  3 2 1  0
+  tverts 4
+    0.000499755 0.999501 0
+    0.000499517 0.000499755 0
+    0.999501 0.9995 0
+    0.9995 0.000499517 0
+endnode
+node aabb Rectangle998
+  parent tbm01_w79_01
+  position 0 0 8
+  orientation 0 0 0 0
+  wirecolor 0.894531 0.894531 0.894531
+  ambient 0.2 0.2 0.2
+  diffuse 0.8 0.8 0.8
+  specular 0 0 0
+  shininess 1
+  bitmap NULL
+  verts 4
+    -5 -5 0
+    5 -5 0
+    5 5 0
+    -5 5 0
+  faces 2
+    0 1 2  1  0 0 0  4
+    3 0 2  1  0 0 0  4
+  aabb     -5.00 -5.00 0.00   5.00 5.00 0.00   -1
+     -5.00 -5.00 0.00   5.00 5.00 0.00   0
+     -5.00 -5.00 0.00   5.00 5.00 0.00   1
+endnode
+node trimesh Box1290
+  parent tbm01_w79_01
+  position 0 0 5.5
+  orientation 0 0 0 0
+  wirecolor 0.894531 0.894531 0.894531
+  ambient 0 0 0
+  diffuse 0 0 0
+  specular 0 0 0
+  shininess 1
+  bitmap TCN01_Black
+  render 1
+  Shadow 0
+  beaming 0
+  transparencyhint 0
+  tilefade 0
+  rotatetexture 0
+  verts 8
+    -5 -5 -2.5
+    5 -5 -2.5
+    5 -5 2.5
+    -5 -5 2.5
+    5 5 -2.5
+    5 5 2.5
+    -5 5 -2.5
+    -5 5 2.5
+  faces 8
+    0 1 2  1  0 1 1  0
+    2 3 0  1  1 0 0  0
+    1 4 5  1  1 2 2  0
+    5 2 1  1  2 1 1  0
+    4 6 7  1  2 3 3  0
+    7 5 4  1  3 2 2  0
+    6 0 3  1  3 0 0  0
+    3 7 6  1  0 3 3  0
+  tverts 4
+    0.000499517 0.000499755 0
+    0.9995 0.000499517 0
+    0.999501 0.9995 0
+    0.000499755 0.999501 0
+endnode
+node light tbm01_w79_01ml1
+  parent tbm01_w79_01
+  position 0 0 9
+  orientation 0 0 0 0
+  wirecolor 0.894531 0.894531 0.894531
+    radius 14
+    multiplier 1
+    color 0 0 0
+    ambientOnly 0
+    nDynamicType 0
+    affectDynamic 1
+    shadow 0
+    lightpriority 5
+    lensflares 0
+    fadingLight 1
+endnode
+endmodelgeom tbm01_w79_01
+donemodel tbm01_w79_01

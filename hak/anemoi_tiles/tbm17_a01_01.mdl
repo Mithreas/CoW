@@ -1,0 +1,108 @@
+#Exported from 3ds max by MDL Plug-in Suite 1.0b
+#http://www.bricksbuilder.com/nwn/utils/
+#MAXMODEL ASCII
+# model: tbm17_A01_01
+filedependancy Unknown
+newmodel tbm17_A01_01
+setsupermodel tbm17_A01_01 NULL
+classification Tile
+setanimationscale 1.0
+#MAXGEOM  ASCII
+beginmodelgeom tbm17_A01_01
+node dummy tbm17_A01_01
+  parent NULL
+endnode
+node light tbm17_A01_01ml1
+  parent tbm17_A01_01
+  position 0 0 5
+  orientation 0 0 0 0
+  wirecolor 0.105469 0.105469 0.105469
+    radius 1400
+    multiplier 1
+    color 0 0 0
+    ambientOnly 0
+    nDynamicType 0
+    affectDynamic 1
+    shadow 0
+    lightpriority 5
+    lensflares 0
+    fadingLight 0
+endnode
+node light tbm17_A01_01ml2
+  parent tbm17_A01_01
+  position -2 -2 4
+  orientation 0 0 0 0
+  wirecolor 0.105469 0.105469 0.105469
+    radius 500
+    multiplier 1
+    color 0 0 0
+    ambientOnly 0
+    nDynamicType 0
+    affectDynamic 1
+    shadow 0
+    lightpriority 5
+    lensflares 0
+    fadingLight 0
+endnode
+node trimesh Plane01_01
+  parent tbm17_A01_01
+  position 0 0 0
+  orientation 0 0 0 0
+  wirecolor 0.445313 0.445313 0.445313
+  ambient 1 1 1
+  diffuse 1 1 1
+  specular 0 0 0
+  shininess 2
+  bitmap bm_fullsnow
+  verts 6
+    -4.54 -5 0
+    -5 -5 0
+    5 -5 0
+    5 5 0
+    5 4.32 0
+    -5 5 0
+  faces 4
+    4 0 2  1  0 1 2  0
+    1 0 4  1  3 1 0  0
+    1 4 3  1  3 0 4  0
+    5 1 3  1  5 3 4  0
+  tverts 6
+    0.474286 0.474286 0
+    0.0713566 0.0713567 0
+    0.4515 0.0490762 0
+    0.0526452 0.0714833 0
+    0.47512 0.503761 0
+    0.0649626 0.506536 0
+endnode
+node aabb Plane02_01
+  parent tbm17_A01_01
+  position 0 0 0
+  orientation 0 0 0 0
+  wirecolor 0.445313 0.445313 0.445313
+  ambient 1 1 1
+  diffuse 1 1 1
+  specular 0 0 0
+  shininess 2
+  bitmap ttr01_grass02
+  verts 6
+    -3.98 -5 0
+    -5 -5 0
+    5 -5 0
+    5 5 0
+    -5 5 0
+    4.98 5 0
+  faces 4
+    3 5 0  1  0 0 0  14
+    0 2 3  1  0 0 0  14
+    4 1 0  1  0 0 0  14
+    0 5 4  1  0 0 0  14
+  aabb     -5.00 -5.00 0.00   5.00 5.00 0.00   -1
+     -5.00 -5.00 0.00   5.00 5.00 0.00   -1
+     -3.98 -5.00 0.00   5.00 5.00 0.00   1
+     -5.00 -5.00 0.00   -3.98 5.00 0.00   2
+     -5.00 -5.00 0.00   5.00 5.00 0.00   -1
+     -3.98 -5.00 0.00   5.00 5.00 0.00   0
+     -5.00 -5.00 0.00   4.98 5.00 0.00   3
+endnode
+endmodelgeom tbm17_A01_01
+donemodel tbm17_A01_01

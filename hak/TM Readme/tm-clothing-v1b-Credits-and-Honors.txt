@@ -1,0 +1,155 @@
+If in the process of putting all the various haks together we failed to note yours in the list below, please accept our apologies.  Let us know of this lack so we can add your well deserved credit to the honors list.
+
+MUCH personal thanks to Lisa for her documentation on how to manipulate and work with armor.  Not to mention the loads of clothing that are so well created and documented.  Thanks also to Eligio_Sacateca for making the Armory.  Haks added in version .97 or later have their hak number noted next to them.
+
+More thanks to Lisa for upgrading our female human heads after the 1.66 Bioware patch.
+
+As of versions 1b, heads have been removed from this hak and into their own hak.
+
+Author's Name - Hak Name - Hak Number
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+Clothing
+-=-=-=-=
+Anonymous - Nude.hak - 2182
+Anony-mouse - FetishMix - 1121
+Aragorn26282 LOTR armors: Gondor and Rohan - 1608
+Aramis SyX - Wizard Coats - 3999
+Aria_1221 - Merkavah Clothing - Female Version - 5875
+aria_1221 - Merkvah Clothing - for Males Only - 5876
+Arthur - Enlightenment V 5 - 6989
+Ascadia/NWVault - Complete Clothing Hak V3.0.1 - CEP Anatomy Replacement - 6241
+Aurus - New Cloak Textures - 7049
+Balders - Hauberks V3 - 4393
+BatintheHat&Schazzwozzer&Bigfoot - CODI Robe Pack 1.01 - 501
+Big_Shoe - Visible or Invisible Cloaks Hak - 6939
+Bloodsong - Universal Wings/Tails (zabea-wt) - 5272 - Compilation and original work
+Calvinthesneak - cloaks and robes - Bioware Social Forums (not posted on the Vault)
+CC Makers - Custom Content Challenge December 2010 - 8017
+CC Makers - Custom Content Challenge January & February 2011 - 8025
+CC Makers - Custom Content Challenge November 2010 - 8006
+CC Makers - Custom Content Challenge October 2010 - 8001
+CC Makers - Custom Content Challenge September 2010 - 7988
+CEP Team - CEP 2.3 /CEP 2.4 - 7849
+Charlotte Selladin - LinwellinClothes - 1705
+ChaoticStreams - hoof armor - 3571
+Chris "GhostFactory" Thornton - Threat of Dreams 2 - Hour of the Tongue v1.3 - 4247
+coulisfu - Oriental Clothing & Armour v1.2 - 2217
+Daemon Blackrazor - Issig Hide Armor - 3924
+Daigoro - gendarmor
+Dances-With-Lobsters - Fighting Fists of Fury! - 1124
+Dances-With-Lobsters - Impractical Torsos! -  1458
+Dartagnon - Rotex Women of Fantasy - 2504
+Darkwoulfe - Darkwoulfes Skirts+ 2
+Darkwoulfe - Von Helsing Hat - 3253
+Dartagnon - Rotex: Women of Fantasy - 2504
+DLA Team - DLA Elven Chain - 4943
+DLA Team - DLA Elven Chain - Compleat - 4366
+Don C - a_demo_module - 3462
+Donando - Donando's Druid Armor - 882
+DrZaius - DrZaius's CODI Dustman Robe v1.1 - 7307
+E the Tailor - Maid Costume - 6514
+Enkidus_Shade - MoreHauberksV2 - 4711
+Fantu - Celestial Armor - 7423
+Fantu - Infernal Armor - 7425
+Feanor - Feanor's Mediaeval Armoury 2.1 - 7332
+HUB_Team - HUB Roupas/Clothing v3.1 - 3899
+i90r - clothing stuff 
+i905 - Paladin armour - 2278
+Jade - Jade in chain - 1501
+Jade - LoDJenXPatch - 4514
+JDA - Chult Clothes - 7077
+Jenova the Elfie - JenX2.3 - 4463
+Jeriko - SkinTails - Wearable Skincolor Tails - 2749
+Kaczor - D20 Modern Outfits v3 - No longer on the Vault?
+kaczor - Modern legs pack - 7169
+kurairyu  - kurairyu's hands 1.5 - 311 (models)
+Leonardo - Anatomically correct breasts and hairless pelvis (highest quality nude skins for Elven, Half-Elven, and Human Females) 
+Lisa - Lisa’s Clothes Horse HotU Padded - 1742
+Lisa and ragnarok_mr4 - DLA Lisa's Fantasy Dresses - 5810
+Lisa - Lisa's It's All Greek to Me - 4306
+Lisa - Lisa's Wearable version of Kim Syberg's Freya - 3725
+Lisa and ragnarok_mr4 - DLA Lisa's Fantasy Dresses - 5810
+mervodgp - Robe,wings,head and helmet based on Nasuradins artwork - 4638
+M. Helling - Rogue/Assassin HAK - 6418
+Mortuai (some included material by other authors) - Clichéd barmaid / "wench" outfit - 6498
+Mr T - Patched Leathers v1.0 - 7738
+Mr-XXS - Asmodeus Robe - 6061
+Mr-XXS - MrXXS Shoulder Pack 1 - 6049
+Nepuk - nude male model - 3614
+NewByPower - Morrowind Indoril Armor - 339 (models)
+NewByPower - Morrowind Robe - 362 (models)
+Patrick Wilson (whatbrick) - whatbrick's NWN Stuff - 385 (models)
+Pierre_Dupac - New Female Human Tops+Dryad Pack - 2124
+Pierre_Dupac - Priestess Robes - 2369
+PLUSH HYENA of DOOM - PHoD Psycho Vixen Attire - 7986
+Project Q - Project Q v1.3 - 7807
+Project Q - Project Q v1.4 - 7807
+Quantiko - Modern cloth - 7220
+REDCAP036 - THE PC PACK V3.10.HAK - 2889
+Relic - Relic's Chest Tattoos
+Rhedd - Rhedd's Cloaks v1.0 
+Robert Burson with modifications by Loki Hakanin - Necromancer Pack 2 (1.30 Padded-SoU/Lisa Compatible)
+Robert Burson - Necromancer Pack 02 - 2105
+Robert Burson - Sedos Clothing for PCs - 2626
+RosieTreats  - Rosie's Custom Appearance - 7451
+Ryuujin - Adventurers Kit (Scabbards, Backpacks and the like) - 146
+ShadowHawk - ShadowHawk Fix: Mithral and Adamantine Armor Types v1.2 - 1072741430969
+Shemsu-Heru - Roman Armor and other things - 8052
+Shemsu-Heru - Shemsu-Heru's Egyptian Armory - 8062
+Shemsu-Heru - Wearable animal furs - 8066
+Sir Kayne - Kat MiniSkirt v1.0 - 1541
+Sir Kayne - Lady Pendragon outfit - 1616
+Spellman's Project (Ryuujin and Soopaman) - SMP Robes - 2574
+Stumpfgobs - Stumpfgobs Armor2 - 2834
+syuuza - BLK Armor - 350 (models)
+Ta'lith - Aribeth Armor for PCs/NPCs - 296
+Telstar - Realm of Delight Clothes Hak v 1.4 by - 2421
+ThallionStellani - LegPack - 1676
+ThallionStellani - Thallion's LegPack - 2962
+The Amethyst Dragon - The Amethyst Dragon's Cloaks - 7389
+THEFACE - commoners clothes,hobbit feet and fur cloaks - 3503
+Ting - Tattoo Hak - 'Yes it contains jiggly boobs, penis and nudity - it´s a tatoo hak!' - 4962
+trooper9 - Fangfeymim greek set - 4442
+trooper9 - Fangfeymim greek set almost final - 1099595377000
+trooper9 - Fangfeymim greek set final v1.0 - 4806
+Valine - ACAG - 6602
+Various - All Female Nudes & Tatoo Torso - 7390
+Various - JenX - CEP 2.0 - 7111
+Wolfsong - LWP - BP #6 - Custom Armor - v1 - 5381
+Xinica - Xinica's Clothing Combo Hak v2.12 - 3411
+Yumi-Chan - Yumi's Anatomical Roman Breastplate -3429
+Yumi-chan - Yumi's Hakama Pants - 3431
+Zorro - Final_NudePack2 - 1128
+
+Tracing back original authors of content in combo packs
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+Claude - Jade_NWN - 138 (in mdls not hak) 
+NewByPower - Morrowind Indoril Armor - 339 (in models not haks) - with requested author credits to Bethesda and Bioware.
+
+Special note about some of the re-textured necklaces originally done by Este -  some of the textures used came from www.cgtextures.com and the following statement is a requirement for using their textures in a 3D model.
+"One or more textures on this 3D model have been created with images from CGTextures.com. These images may not be redistributed by default, please visit www.cgtextures.com for more information."
+
+Helmets (if not already listed as part of the clothing)
+-=-=-=-
+Ben Harrison - Golem Helms - 7793
+Dash Handsome - Insect Chitin Helmet - 1075162419367
+Fess - Great Helm V1.1 - 1278
+i90r - All new helm models - 209
+kefrem - Thayhead/helmet 
+Ketaros - Ketaros Helmets Pack (18 Brand New) - 5202
+Kinarr Greycloak - Masks (updated Nov 3, 02) 
+Mr-XXS - Helmet Hak - SoU 1.32 (HotU 1.61 Patch added) - 1382
+ShadowHawk - ShadowHawk Great Helms v1.0 - 5533
+Storm - Storm's Helms - 6839
+v3par - Masks - 322 (models)
+WoRm - Death Dealer Helm - 5204
+
+Additional Credits
+-=-=-=-=-=-=-=-=-=
+- Special credit is due to Estelindis. These updates would not exist without her. She was very patient in teaching Mistress how to work with plts. Thanks Este. *hugs and chocolates* 
+- Kookoo for listening to Mistress groan about the size of the todo pile. Offen. A lot. 
+- Six for telling me about the hidden texture location. 
+- Big Shoe for the Consecutive Clothing 2das hak. If you are mining clothing haks, this hak is a MUST have (http://nwvault.ign.com/View.php?view=Hakpaks.Detail&id=6570). 
+- Justin for his easy to use PLTEditor 0.31b (http://nwvault.ign.com/View.php?view=Other.Detail&id=407) 
+- DLA Team for their GIMP PLT PlugIn (http://nwvault.ign.com/View.php?view=Other.Detail&id=670) 

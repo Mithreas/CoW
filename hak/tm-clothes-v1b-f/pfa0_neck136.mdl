@@ -1,0 +1,72 @@
+#MDL ascii format
+#Modeled with Blender3d http://blender.org
+#Exported using Python script Blend2MDL version 102
+#Based on: 
+#Modeler: 
+filedependancy E:/Blend Files/Projets/NWN/IndorilArmor/Indoril.blend.blend
+newmodel pfa0_neck136
+setsupermodel pfa0_neck136 pfh0
+classification character
+setanimationscale 1
+beginmodelgeom pfa0_neck136
+node dummy pfa0_neck136
+  parent NULL
+  #part-number 0/1
+endnode
+
+node trimesh collar.001
+  parent pfa0_neck136
+  #part-number 1/1 
+   ambient 1 1 1
+   diffuse 1.0 1.0 1.0
+   specular 1.0 1.0 1.0
+   shininess 10
+   alpha 1
+   bitmap pfa0_neck136
+  verts 10
+    0.0000000 0.0025235 -0.0438085
+    -0.0403032 -0.0019824 -0.0008569
+    0.0000000 0.0397978 0.0003936
+    0.0000000 -0.0418712 0.0041443
+    -0.0275534 0.0065443 0.0871676
+    0.0000000 0.0336665 0.0639198
+    0.0000000 -0.0280112 0.0763855
+    0.0000000 0.0037793 0.1064950
+    0.0403032 -0.0019824 -0.0008569
+    0.0275534 0.0065443 0.0871676
+   tverts 10
+    0.492 0.148 0
+    0.859 0.203 0
+    0.492 0.227 0
+    0.492 0.258 0
+    0.844 0.836 0
+    0.492 0.68 0
+    0.508 0.758 0
+    0.508 0.891 0
+    0.148 0.203 0
+    0.156 0.867 0
+  faces 16
+    0 1 2 1 0 1 2 1
+    0 3 1 1 0 3 1 1
+    2 4 5 1 2 4 5 1
+    2 1 4 1 2 1 4 1
+    1 6 4 1 1 6 4 1
+    1 3 6 1 1 3 6 1
+    7 5 4 1 7 5 4 1
+    7 4 6 1 7 4 6 1
+    8 0 2 1 8 0 2 1
+    3 0 8 1 3 0 8 1
+    9 2 5 1 9 2 5 1
+    8 2 9 1 8 2 9 1
+    6 8 9 1 6 8 9 1
+    3 8 6 1 3 8 6 1
+    5 7 9 1 5 7 9 1
+    9 7 6 1 9 7 6 1
+  position 0.0000000 0.0000000 0.0000000
+  orientation 0 0 0 0
+  scale 1
+endnode
+
+endmodelgeom pfa0_neck136
+donemodel pfa0_neck136
+

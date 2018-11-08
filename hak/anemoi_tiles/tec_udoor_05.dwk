@@ -1,0 +1,171 @@
+#MAXDOOR ASCII
+# model: tec_udoor_05_DWK 
+filedependancy TTU01_WIP.max
+node dummy 05_DWK_dp_closed_01 
+  parent tec_udoor_05_DWK 
+  position -0.112106 -1.05066 1.77128e-007
+  orientation  0.0 1.68587e-007 1.0  -4.71239
+  wirecolor 0.54902 0.345098 0.882353  
+endnode
+node dummy 05_DWK_dp_open1_01 
+  parent tec_udoor_05_DWK 
+  position -0.112112 -1.0574 1.78264e-007
+  orientation  0.0 1.68587e-007 1.0  -4.71239
+  wirecolor 0.54902 0.345098 0.882353  
+endnode
+node dummy 05_DWK_dp_closed_02 
+  parent tec_udoor_05_DWK 
+  position -0.112108 1.21281 -2.04465e-007
+  orientation  0.0 1.68587e-007 1.0  -4.71239
+  wirecolor 0.54902 0.345098 0.882353  
+endnode
+node dummy 05_DWK_dp_open2_01 
+  parent tec_udoor_05_DWK 
+  position -0.112108 1.21281 -2.04465e-007
+  orientation  0.0 1.68587e-007 1.0  -4.71239
+  wirecolor 0.54902 0.345098 0.882353  
+endnode
+node trimesh 05_DWK_wg_open1 
+  parent tec_udoor_05_DWK 
+  position -2.06503 1.10723 0.00298062
+  orientation  0.0 -1.68587e-007 -1.0  -1.5708
+  wirecolor 0.694118 0.109804 0.584314  
+  multimaterial 18 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+    bitmap NULL
+    verts 8
+     -1.28345 -1.04465 -0.00298045
+     0.852234 -1.18575 -0.00298044
+     -1.28345 -0.825785 -0.00298046
+     0.861771 -0.91477 -0.00298045
+     -1.28345 -1.04469 4.17302
+     0.852234 -1.18575 4.17302
+     -1.28345 -0.825784 4.17302
+     0.861771 -0.914769 4.17302
+    faces 12
+     0 2 3  2  0 0 0  7
+     3 1 0  2  0 0 0  7
+     4 5 7  4  0 0 0  7
+     7 6 4  4  0 0 0  7
+     0 1 5  8  0 0 0  7
+     5 4 0  8  0 0 0  7
+     1 3 7  16  0 0 0  7
+     7 5 1  16  0 0 0  7
+     3 2 6  32  0 0 0  7
+     6 7 3  32  0 0 0  7
+     2 0 4  64  0 0 0  7
+     4 6 2  64  0 0 0  7
+endnode
+node trimesh 05_DWK_wg_open2 
+  parent tec_udoor_05_DWK 
+  position -2.06503 1.10723 0.00298062
+  orientation  0.0 -1.68587e-007 -1.0  -1.5708
+  wirecolor 0.694118 0.109804 0.584314  
+  multimaterial 18 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+    bitmap NULL
+    verts 8
+     -1.28345 -1.04465 -0.00298044
+     0.852234 -1.18575 -0.00298043
+     -1.28345 -0.825785 -0.00298045
+     0.861771 -0.91477 -0.00298043
+     -1.28345 -1.04469 4.17302
+     0.852234 -1.18575 4.17302
+     -1.28345 -0.825784 4.17302
+     0.861771 -0.914769 4.17302
+    faces 12
+     0 2 3  2  0 0 0  7
+     3 1 0  2  0 0 0  7
+     4 5 7  4  0 0 0  7
+     7 6 4  4  0 0 0  7
+     0 1 5  8  0 0 0  7
+     5 4 0  8  0 0 0  7
+     1 3 7  16  0 0 0  7
+     7 5 1  16  0 0 0  7
+     3 2 6  32  0 0 0  7
+     6 7 3  32  0 0 0  7
+     2 0 4  64  0 0 0  7
+     4 6 2  64  0 0 0  7
+endnode
+node trimesh 05_DWK_wg_closed 
+  parent tec_udoor_05_DWK 
+  position 0.0549648 -0.00277305 0.00298081
+  orientation  0.0 -1.68587e-007 -1.0  -1.5708
+  wirecolor 0.101961 0.694118 0.345098  
+  multimaterial 18 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+    bitmap NULL
+    verts 8
+     -0.191741 -1.09368 -0.00298083
+     0.198364 -1.09368 -0.00298083
+     -0.191743 1.24773 -0.00298083
+     0.198362 1.24773 -0.00298083
+     -0.191741 -1.09368 3.93796
+     0.198364 -1.09368 3.93796
+     -0.191743 1.24773 3.93796
+     0.198362 1.24773 3.93796
+    faces 12
+     0 2 3  2  0 0 0  7
+     3 1 0  2  0 0 0  7
+     4 5 7  4  0 0 0  7
+     7 6 4  4  0 0 0  7
+     0 1 5  8  0 0 0  7
+     5 4 0  8  0 0 0  7
+     1 3 7  16  0 0 0  7
+     7 5 1  16  0 0 0  7
+     3 2 6  32  0 0 0  7
+     6 7 3  32  0 0 0  7
+     2 0 4  64  0 0 0  7
+     4 6 2  64  0 0 0  7
+endnode

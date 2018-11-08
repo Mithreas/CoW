@@ -1,0 +1,35 @@
+2DA V2.0
+
+       Corner1     Edge       Corner2     Height     Model            
+0      Trees       ****       Water       0          ttr01_Z10_01     
+1      Grass       ****       Water       0          ttr01_Z05_01     
+2      Water       ****       Water       0          ttr01_Z02_01     
+3      Grass+      ****       Water       0          phf01_Z07_01     
+4      Trees       ****       Grass       0          ttr01_Z08_01     
+5      Grass       ****       Grass       0          phf01_o03_02     
+6      Grass+      ****       Grass       0          phf01_Z06_01     
+7      Trees       ****       Trees       0          ttr01_Z03_01     
+8      Grass+      ****       Trees       0          phf01_Z09_01     
+9      Grass+      ****       Grass+      1          ttr01_Z01_01     
+10     Grass       Road       Grass       0          ttr01_Z12_01     
+11     Grass       Stream     Grass       0          ttr01_Z15_01     
+12     Grass       Wall1      Grass       0          ttr01_Z13_01     
+13     Grass       Wall2      Grass       0          ttr01_Z14_01     
+14     Water       Road       Water       0          ttr01_Z16_01     
+15     Water       ****       ****        0          ttr01_Z02_01     
+16     Grass       ****       ****        0          ttr01_Z01_01     
+17     Trees       ****       ****        0          ttr01_Z03_01     
+18     Grass+      ****       ****        1          ttr01_Z01_01     
+19     Grass+      Road       Grass+      1          ttr01_Z12_01     
+20     Grass+      Stream     Grass+      1          ttr01_Z15_01     
+21     Grass+      Wall1      Grass+      1          ttr01_Z13_01     
+22     Grass+      Wall2      Grass+      1          ttr01_Z14_01     
+23     Grass+      Hills      Grass       0          phf01_Z19_01
+24     Trees+      ****       Trees       0          phf01_Z17_01
+25     Trees+      ****       Grass       0          phf01_Z18_01
+26     Trees+      ****       Grass+      1          ttr01_Z08_01
+27     Trees+      ****       Trees+      1          ttr01_Z03_01     
+28     Grass+      CityWall   Grass       0          phf01_Z14_01
+29     Grass+      RuinWall   Grass       0          phf01_Z15_01
+30     Grass+      CityWall   Water       0          phf01_Z16_01
+

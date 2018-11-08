@@ -1,0 +1,95 @@
+# Exported from NWmax 0.8 b60 at 18/2/2008 12:43:17
+# mdl file
+#
+#NWmax MODEL ASCII
+# model: pmh0_handr104
+#local file: C:\EMLR\gmax\Scenes\Armor.gmax
+filedependancy Armor.gmax
+newmodel pmh0_handr104
+setsupermodel pmh0_handr104 NULL
+classification Character
+setanimationscale 1.0
+#NWmax GEOM  ASCII
+beginmodelgeom pmh0_handr104
+node dummy pmh0_handr104
+  parent NULL
+endnode
+node trimesh pmh0_handr104g
+  parent pmh0_handr104
+  position 0.0000000 0.0000000 0.0000000
+  orientation 1.0 0.0 0.0 0.0
+  wirecolor 1.0 1.0 1.0 
+  tilefade 0
+  scale 1.0
+  render 1
+  Shadow 1
+  beaming 0
+  inheritcolor 0
+  rotatetexture 0
+  alpha 1.0
+  transparencyhint 0
+  selfillumcolor 0.0 0.0 0.0 
+  ambient 1.0 1.0 1.0 
+  diffuse 1.0 1.0 1.0 
+  specular 0.0 0.0 0.0 
+  shininess 1
+  center 2.4459 2.17121 -8.93036 
+  bitmap Bear_A_hands
+  verts 10
+    -0.0267260 0.0542272 -0.0055582
+    -0.0495323 0.0942840 -0.1159721
+    -0.0325980 -0.0630186 -0.1364874
+    -0.0308253 -0.0601097 -0.0054733
+    0.0847534 -0.0586098 -0.1173581
+    0.0826639 0.0891554 -0.1112504
+    0.0472970 -0.0505665 -0.0045957
+    0.0577364 0.0644338 -0.0047001
+    -0.0103519 0.0490452 -0.1585760
+    0.0368155 -0.0109943 0.0085459
+  faces 16
+    0 1 2  1  0 1 2  2
+    2 3 0  1  2 3 0  2
+    4 5 6  1  4 5 6  1
+    7 6 5  1  7 6 5  1
+    2 8 4  1  8 9 10  5
+    5 4 8  1  11 10 9  5
+    3 2 6  1  12 13 6  4
+    4 6 2  1  4 6 13  4
+    0 3 9  1  14 15 16  6
+    6 7 9  1  17 18 16  6
+    8 2 1  1  9 8 19  3
+    7 5 1  1  7 5 1  3
+    0 9 7  1  14 16 18  6
+    6 9 3  1  17 16 15  6
+    8 1 5  1  9 19 11  3
+    7 1 0  1  7 1 0  3
+  tverts 20
+    0.481447 0.306382 0
+    0.987995 0.26506 0
+    0.991401 0.01695 0
+    0.471089 0.01695 0
+    0.987995 0.781515 0
+    0.994808 0.491003 0
+    0.471624 0.815301 0
+    0.47482 0.524199 0
+    0.037252 0.026973 0
+    0.239135 0.498705 0
+    0.0216976 0.977332 0
+    0.443167 0.983333 0
+    0.471741 0.990005 0
+    0.991401 0.988215 0
+    0.52789 0.667871 0
+    0.527899 0.684011 0
+    0.528033 0.683998 0
+    0.528013 0.684561 0
+    0.528169 0.683902 0
+    0.456318 0.0127884 0
+endnode
+node dummy rhand
+  parent pmh0_handr104g
+  position 0.0079705 0.0000001 -0.0807495
+  orientation 1.0 0.0 0.0 0.0
+  wirecolor 0.721569 0.894118 0.6 
+endnode
+endmodelgeom pmh0_handr104
+donemodel pmh0_handr104

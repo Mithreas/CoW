@@ -1,0 +1,27 @@
+#Exported from 3ds max by MDL Plug-in Suite 1.0b
+#http://www.bricksbuilder.com/nwn/utils/
+#MAXMODEL ASCII
+beginwalkmeshgeom tbm03_A03_01
+node aabb tbm03_A03_01_wok
+  parent tbm03_A03_01
+  position 0 0 10
+  orientation 0 0 0 0
+  wirecolor 0.527344 0.527344 0.527344
+  ambient 1 1 1
+  diffuse 1 1 1
+  specular 0 0 0
+  shininess 2
+  bitmap mountain
+  verts 4
+    -5.001 -5.001 0
+    5.001 -5.001 0
+    -5.001 5.001 0
+    5.001 5.001 0
+  faces 2
+    2 0 3  1  0 0 0  4
+    1 3 0  1  0 0 0  4
+  aabb     -5.00 -5.00 0.00   5.00 5.00 0.00   -1
+     -5.00 -5.00 0.00   5.00 5.00 0.00   1
+     -5.00 -5.00 0.00   5.00 5.00 0.00   0
+endnode
+endwalkmeshgeom tbm03_A03_01

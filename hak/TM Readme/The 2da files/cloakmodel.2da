@@ -1,0 +1,46 @@
+2DA V2.0 
+
+      LABEL                 MODEL   TEXTURE   ICON   HIDEWING  HIDETAIL  HIDESHOL  HIDESHOR  ENVMAP        
+0     ****                  0       0         0      0         0         0         0         ****
+1     Plain                 1       1         1      1         0         0         1         default
+2     Arcane                1       10        2      1         0         0         1         default    
+3     "Great Cloak"         2       2         3      1         0         1         1         default
+4     "Great Cloak, Fine"   2       13        4      1         0         1         1         default
+5     Hooded                3       3         5      1         0         1         1         default
+6     Fancy                 4       4         6      1         0         1         1         default
+7     Elegant               4       11        7      1         0         1         1         default
+8     Elvan                 4       12        8      1         0         1         1         default
+9     Wizard                5       5         9      1         0         1         1         default
+10    Jeweled               7       14        10     1         0         1         1         default
+11    "Blackguard Cyric"    6       6         11     1         0         0         0         default
+12    "Paladin Helm"        6       7         12     1         0         0         0         default
+13    "Champion of Torm"    6       8         13     1         0         0         0         default
+14    "Dragon Knight"       6       9         14     1         0         0         0         default
+15    "Many Starred"        5       15        15     1         0         1         1         default
+16    "Wizard, Plain"       5       16        16     1         0         1         1         default
+17    "Dragon Lined"        7       17        17     1         0         1         1         default
+18    Paisley               6       18        18     1         0         0         0         default
+19    "Spider Web"          3       19        19     1         0         1         1         ****
+20    "Caviler Hat"         20      20        20     0         0         0         0         default
+21    Ragged                3       21        21     1         0         1         1         ****
+22    ****                  ****    ****      ****   ****      ****      ****      ****      ****  
+23    "Wizard Hat"          23      23        23     0         0         0         0         default
+24    Plaid                 1       24        24     0         0         0         1         default 
+25    "Mantle, Trimmed"     2       25        25     0         0         1         1         ****         
+26    Prank                 1       26        26     0         0         0         0         ****    
+27    Music                 1       27        27     0         0         0         1         default 
+28    Patched               1       28        28     0         0         0         1         default 
+29    "Mantle, Jester"      2       29        29     0         0         1         1         ****    
+30    "Mantle, Eyes"        2       30        30     0         0         1         1         ****    
+31    Eyes                  7       31        31     0         0         1         1         default 
+32    Celestial             4       32        32     1         0         1         1         default  
+33    Spotted               3       33        33     1         0         1         1         default 
+34    Invisible             0       0         34     0         0         0         0         default
+35    Backpack              35      35        35     0         0         0         0         default
+36    ****                  ****    ****      ****   ****      ****      ****      ****      ****
+37    ****                  ****    ****      ****   ****      ****      ****      ****      ****
+38    ****                  ****    ****      ****   ****      ****      ****      ****      ****
+39    "Border Wrap, Ragged" 39      39        39     1         0         1         1         ****
+40    "Border Wrap"         39      40        40     1         0         1         1         default
+41    "Cloth Wrap"          39      41        41     1         0         1         1         default
+42    "Cloth Wrap, Ragged"  39      42        42     1         0         1         1         ****

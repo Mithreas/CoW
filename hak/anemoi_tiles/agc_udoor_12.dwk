@@ -1,0 +1,45 @@
+#MAXDOOR ASCII
+# model: agc_UDoor_12_DWK 
+filedependancy agc02.max
+node dummy 12_DWK_dp_closed_02 
+  parent agc_UDoor_12_DWK 
+  position -0.746226 -1.11368 0.0
+  orientation  0.0 0.0 0.0  0.0
+  wirecolor 0.894118 0.6 0.721569  
+endnode
+node dummy 12_DWK_dp_closed_01 
+  parent agc_UDoor_12_DWK 
+  position -1.12788 -1.1381 0.0
+  orientation  0.0 0.0 0.0  0.0
+  wirecolor 0.894118 0.6 0.721569  
+endnode
+node trimesh 12_DWK_wg_closed 
+  parent agc_UDoor_12_DWK 
+  position 0.193473 0.00940935 0.2
+  orientation  0.0 0.0 0.0  0.0
+  wirecolor 0.341176 0.878431 0.341176  
+    bitmap NULL
+    verts 8
+     -1.25 -0.800002 0.0
+     1.25 -0.800002 0.0
+     -1.25 1.23327 0.0
+     -1.25 -0.800002 4.52599
+     1.25 -0.800002 4.52599
+     -1.25 1.23327 4.52599
+     1.25 1.23327 4.52599
+     1.25 1.23327 0.0
+    faces 12
+     0 1 4  8  0 0 0  5
+     4 3 0  8  0 0 0  5
+     2 0 3  64  0 0 0  3
+     3 5 2  64  0 0 0  3
+     6 7 2  64  0 0 0  3
+     2 5 6  64  0 0 0  3
+     4 1 7  64  0 0 0  3
+     7 6 4  64  0 0 0  3
+     1 0 2  64  0 0 0  3
+     2 7 1  64  0 0 0  3
+     3 4 6  64  0 0 0  3
+     6 5 3  64  0 0 0  3
+endnode
+

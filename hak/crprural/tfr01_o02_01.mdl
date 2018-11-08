@@ -1,0 +1,136 @@
+# Exported from Wayland's NWN Maxscript v0.3b at 8/6/2003 11:23:38 PM
+# mdl file
+#
+filedependancy Unknown
+newmodel tfr01_o02_01
+setsupermodel tfr01_o02_01 NULL
+classification Tile
+setanimationscale 1.0
+beginmodelgeom tfr01_o02_01
+node dummy tfr01_o02_01
+    parent NULL
+endnode
+node light tfr01_o02_01ml2
+    parent tfr01_o02_01
+    position 2.99 3.54 5.0
+    orientation 1.0 0.0 0.0 0.0
+    scale 1.0
+#   Fake light data
+    ambientonly 0
+    shadow 0
+    isdynamic 0
+    affectdynamic 1
+    lightpriority 5
+    fadingLight 1
+    flareradius 0
+    radius 14
+    multiplier 1
+    color 0 0 0	
+endnode
+node light tfr01_o02_01ml1
+    parent tfr01_o02_01
+    position 0.0 0.0 8.0
+    orientation 1.0 0.0 0.0 0.0
+    scale 1.0
+#   Fake light data
+    ambientonly 0
+    shadow 0
+    isdynamic 0
+    affectdynamic 1
+    lightpriority 5
+    fadingLight 1
+    flareradius 0
+    radius 14
+    multiplier 1
+    color 0 0 0	
+endnode
+node trimesh plane
+    parent tfr01_o02_01
+    position 0.0 0.0 0.0
+    orientation 1.0 0.0 0.0 0.0
+    scale 1.0
+    shininess 26.000000
+    render 1
+    diffuse 1.0 1.0 1.0
+    ambient 1.0 1.0 1.0
+    specular 0.0 0.0 0.0
+    selfillumcolor 0.0 0.0 0.0
+    alpha 1.0
+    bitmap TTF01_cliff02
+    verts 9
+        5.0 -5.0 4.0
+        5.0 5.0 4.0
+        -5.0 -5.0 4.0
+        -5.0 5.0 4.0
+        0.0 0.0 4.2
+        0.0 -5.0 4.0
+        5.0 0.0 4.0
+        0.0 5.0 4.0
+        -5.0 0.0 4.0
+    faces 8
+        4 5 6 1 4 5 6 1
+        4 7 8 1 4 7 8 1
+        1 4 6 1 1 4 6 1
+        4 2 5 1 4 2 5 1
+        6 5 0 1 6 5 0 1
+        2 4 8 1 2 4 8 1
+        4 1 7 1 4 1 7 1
+        8 7 3 1 8 7 3 1
+    tverts 9
+        1.5 -0.5 0
+        1.5 1.5 0
+        -0.5 -0.5 0
+        -0.5 1.5 0
+        0.5 0.5 0
+        0.5 -0.5 0
+        1.5 0.5 0
+        0.5 1.5 0
+        -0.5 0.5 0
+endnode
+node aabb wokmesh
+    parent tfr01_o02_01
+    position 0.0 0.0 0.0
+    orientation 1.0 0.0 0.0 0.0
+    scale 1.0
+    diffuse 0.8000 0.8000 0.8000
+    ambient 0.2000 0.2000 0.2000
+    specular 0.0000 0.0000 0.0000
+    render 0
+    bitmap NULL
+    verts 9
+        -5.0 0.0 4.0
+        -5.0 -5.0 4.0
+        0.0 0.0 4.2
+        0.0 -5.0 4.0
+        5.0 0.0 4.0
+        5.0 -5.0 4.0
+        -5.0 5.0 4.0
+        0.0 5.0 4.0
+        5.0 5.0 4.0
+    faces 8
+        0 1 2 1 0 0 0 4
+        3 2 1 1 0 0 0 4
+        2 3 4 1 0 0 0 4
+        5 4 3 1 0 0 0 4
+        6 0 7 1 0 0 0 4
+        2 7 0 1 0 0 0 4
+        7 2 8 1 0 0 0 4
+        4 8 2 1 0 0 0 4
+    aabb         -5.0 -5.0 4.0 5.0 5.0 4.2 -1
+        -5.0 -5.0 4.0 0.0 5.0 4.2 -1
+        -5.0 -5.0 4.0 0.0 0.0 4.2 -1
+        -5.0 -5.0 4.0 0.0 0.0 4.2 0
+        -5.0 -5.0 4.0 0.0 0.0 4.2 1
+        -5.0 0.0 4.0 0.0 5.0 4.2 -1
+        -5.0 0.0 4.0 0.0 5.0 4.0 4
+        -5.0 0.0 4.0 0.0 5.0 4.2 5
+        0.0 -5.0 4.0 5.0 5.0 4.2 -1
+        0.0 -5.0 4.0 5.0 0.0 4.2 -1
+        0.0 -5.0 4.0 5.0 0.0 4.2 2
+        0.0 -5.0 4.0 5.0 0.0 4.0 3
+        0.0 0.0 4.0 5.0 5.0 4.2 -1
+        0.0 0.0 4.0 5.0 5.0 4.2 6
+        0.0 0.0 4.0 5.0 5.0 4.2 7
+endnode
+endmodelgeom tfr01_o02_01
+donemodel tfr01_o02_01

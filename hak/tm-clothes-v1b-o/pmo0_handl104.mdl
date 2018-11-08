@@ -1,0 +1,95 @@
+# Exported from NWmax 0.8 b60 at 18/2/2008 12:43:15
+# mdl file
+#
+#NWmax MODEL ASCII
+# model: pmo0_handl104
+#local file: C:\EMLR\gmax\Scenes\Armor.gmax
+filedependancy Armor.gmax
+newmodel pmo0_handl104
+setsupermodel pmo0_handl104 NULL
+classification Character
+setanimationscale 1.0
+#NWmax GEOM  ASCII
+beginmodelgeom pmo0_handl104
+node dummy pmo0_handl104
+  parent NULL
+endnode
+node trimesh pmo0_handl104g
+  parent pmo0_handl104
+  position 0.0000000 0.0000000 0.0000000
+  orientation 1.0 0.0 0.0 0.0
+  wirecolor 1.0 1.0 1.0 
+  tilefade 0
+  scale 1.0
+  render 1
+  Shadow 1
+  beaming 0
+  inheritcolor 0
+  rotatetexture 0
+  alpha 1.0
+  transparencyhint 0
+  selfillumcolor 0.0 0.0 0.0 
+  ambient 1.0 1.0 1.0 
+  diffuse 1.0 1.0 1.0 
+  specular 0.0 0.0 0.0 
+  shininess 1
+  center -2.4459 2.17127 -8.93036 
+  bitmap Bear_A_hands
+  verts 10
+    0.0693452 0.1319986 -0.1391665
+    0.0374164 0.0759181 -0.0066698
+    0.0456371 -0.0882259 -0.1637849
+    0.0431554 -0.0841536 -0.0065680
+    -0.1157295 0.1248176 -0.1335005
+    -0.1186548 -0.0820536 -0.1408297
+    -0.0662158 -0.0707931 -0.0055148
+    -0.0808310 0.0902073 -0.0056401
+    0.0144927 0.0686634 -0.1902912
+    -0.0515417 -0.0153920 0.0102551
+  faces 16
+    0 1 2  1  0 1 2  2
+    3 2 1  1  3 2 1  2
+    4 5 6  1  4 5 6  1
+    6 7 4  1  6 7 4  1
+    8 2 5  1  8 9 10  5
+    5 4 8  1  10 11 8  5
+    2 3 6  1  12 13 6  4
+    6 5 2  1  6 5 12  4
+    3 1 9  1  14 15 16  6
+    7 6 9  1  17 18 16  6
+    2 8 0  1  9 8 19  3
+    4 7 0  1  4 7 0  3
+    9 1 7  1  16 15 17  6
+    9 6 3  1  16 18 14  6
+    0 8 4  1  19 8 11  3
+    0 7 1  1  0 7 1  3
+  tverts 20
+    0.987995 0.26506 0
+    0.481447 0.306382 0
+    0.991401 0.01695 0
+    0.471089 0.01695 0
+    0.994808 0.491003 0
+    0.987995 0.781515 0
+    0.471624 0.815301 0
+    0.47482 0.524199 0
+    0.239135 0.498705 0
+    0.037252 0.026973 0
+    0.0216976 0.977332 0
+    0.443167 0.983333 0
+    0.991401 0.988215 0
+    0.471741 0.990005 0
+    0.527899 0.684011 0
+    0.52789 0.667871 0
+    0.528033 0.683998 0
+    0.528169 0.683902 0
+    0.528013 0.684561 0
+    0.456318 0.0127884 0
+endnode
+node dummy lhand
+  parent pmo0_handl104g
+  position -0.0154585 -0.0000001 -0.0952735
+  orientation 1.0 0.0 0.0 0.0
+  wirecolor 0.690196 0.101961 0.101961 
+endnode
+endmodelgeom pmo0_handl104
+donemodel pmo0_handl104

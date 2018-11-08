@@ -1,0 +1,94 @@
+# Exported from 3ds max by MDL Plugin Suite 1.1b3
+# http://rockbottom.vtex.net
+#MAXMODEL ASCII
+# model: TRC01_C06_01
+filedependancy TRC01_C06_01.max
+newmodel TRC01_C06_01
+setsupermodel TRC01_C06_01 NULL
+classification Tile
+setanimationscale 1.0
+#MAXGEOM  ASCII
+beginmodelgeom TRC01_C06_01
+node dummy TRC01_C06_01
+  parent NULL
+endnode
+node light TRC01_C06_01ml1
+  parent TRC01_C06_01
+  position 0 0 5
+  orientation 0 0 0 0
+  wirecolor 0.34375 0.34375 0.34375
+    radius 14
+    multiplier 1
+    color 1 1 1
+    ambientOnly 0
+    nDynamicType 0
+    affectDynamic 1
+    shadow 0
+    lightpriority 5
+    lensflares 0
+    fadingLight 1
+endnode
+node light TRC01_C06_01ml2
+  parent TRC01_C06_01
+  position -2 -2 4
+  orientation 0 0 0 0
+  wirecolor 0.570313 0.570313 0.570313
+    radius 5
+    multiplier 1
+    color 1 1 1
+    ambientOnly 0
+    nDynamicType 0
+    affectDynamic 1
+    shadow 0
+    lightpriority 5
+    lensflares 0
+    fadingLight 1
+endnode
+node aabb Walkmesh_18
+  parent TRC01_C06_01
+  position 0 0 0
+  orientation 0 0 0 0
+  wirecolor 0.878906 0.878906 0.878906
+  ambient 0.875 0.558594 0.339844
+  diffuse 0.875 0.558594 0.339844
+  specular 0 0 0
+  shininess 1
+  bitmap NULL
+  verts 4
+    -5 -5 0
+    5 -5 0
+    -5 5 0
+    5 5 0
+  faces 2
+    3 2 0  1  0 0 0  3
+    0 1 3  1  0 0 0  3
+  aabb     -5.00 -5.00 0.00   5.00 5.00 0.00   -1
+     -5.00 -5.00 0.00   5.00 5.00 0.00   0
+     -5.00 -5.00 0.00   5.00 5.00 0.00   1
+endnode
+node trimesh Herbe_18
+  parent TRC01_C06_01
+  position 0 0 0
+  orientation 0 0 0 0
+  wirecolor 0.601563 0.601563 0.601563
+  ambient 1 1 1
+  diffuse 1 1 1
+  specular 0 0 0
+  shininess 10
+  bitmap ttr01_grass02
+  verts 4
+    -5 5 0
+    5 -5 0
+    -5 -5 0
+    5 5 0
+  faces 2
+    2 1 3  0  2 1 3  0
+    0 2 3  0  0 2 3  0
+  tverts 4
+    0 2 0.5
+    2 0 0.5
+    0 0 0.5
+    2 2 0.5
+endnode
+endmodelgeom TRC01_C06_01
+donemodel TRC01_C06_01

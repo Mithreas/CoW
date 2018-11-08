@@ -1,0 +1,50 @@
+#Exported from 3ds max by MDL Plug-in Suite 1.0b
+#http://www.bricksbuilder.com/nwn/utils/
+#MAXMODEL ASCII
+# model: tbm_p94_01
+filedependancy Unknown
+newmodel tbm_p94_01
+setsupermodel tbm_p94_01 NULL
+classification Tile
+setanimationscale 1.0
+#MAXGEOM  ASCII
+beginmodelgeom tbm_p94_01
+node dummy tbm_p94_01
+  parent NULL
+endnode
+node trimesh Plane164
+  parent tbm_p94_01
+  position 0 0 -8.4
+  orientation 0 0 0 0
+  wirecolor 0.582031 0.582031 0.582031
+  ambient 0.784314 0.784314 0.784314
+  diffuse 0.784314 0.784314 0.784314
+  specular 0.05 0.05 0.05
+  shininess 26
+  bitmap bmblack1
+  verts 9
+    -5.002 0 0
+    -5.002 -5.002 0
+    0 0 0
+    0 -5.002 0
+    5.002 0 0
+    5.002 -5.002 0
+    -5.002 5.002 0
+    0 5.002 0
+    5.002 5.002 0
+  faces 8
+    0 1 2  1  0 1 0  0
+    3 2 1  1  1 0 1  0
+    2 3 4  1  0 1 0  0
+    5 4 3  1  1 0 1  0
+    6 0 7  1  2 0 2  0
+    2 7 0  1  0 2 0  0
+    7 2 8  1  2 0 2  0
+    4 8 2  1  0 2 0  0
+  tverts 3
+    0.5 0.05 0
+    0.000499517 0.05 0
+    0.999501 0.05 0
+endnode
+endmodelgeom tbm_p94_01
+donemodel tbm_p94_01

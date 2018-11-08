@@ -1,0 +1,21 @@
+#MAXWALKMESH  ASCII
+beginwalkmeshgeom tec01_l04_01 
+node aabb Object630 
+  parent tec01_l04_01 
+  position 0.0 0.0 4.2
+  orientation  0.0 0.0 1.0  -1.5708
+  wirecolor 0.345098 0.694118 0.101961  
+    verts 4
+     -5.0 -5.00001 0.0
+     -5.0 4.99999 0.0
+     4.99999 -5.00001 0.0
+     4.99999 4.99997 0.0
+    faces 2
+     2 3 1  1  2 3 1  7
+     1 0 2  1  1 0 2  7
+aabb    -5.00 -5.00  0.00   5.00  5.00  0.00  -1
+    -5.00 -5.00  0.00   5.00  5.00  0.00  1
+    -5.00 -5.00  0.00   5.00  5.00  0.00  0
+endnode
+endwalkmeshgeom tec01_l04_01 
+

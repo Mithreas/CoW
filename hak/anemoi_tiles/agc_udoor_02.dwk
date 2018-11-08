@@ -1,0 +1,224 @@
+#MAXDOOR ASCII
+# model: agc_UDoor_02_DWK 
+filedependancy agc02.max
+node dummy 02_DWK_dp_closed_01 
+  parent agc_UDoor_02_DWK 
+  position -0.0103516 -0.604761 0.0
+  orientation  0.0 0.0 0.0  0.0
+  wirecolor 0.603922 0.603922 0.898039  
+endnode
+node dummy 02_DWK_dp_open2_01 
+  parent agc_UDoor_02_DWK 
+  position -1.15703 -2.1255 0.0
+  orientation  0.0 0.0 0.0  0.0
+  wirecolor 0.603922 0.603922 0.898039  
+endnode
+node dummy 02_DWK_dp_open2_02 
+  parent agc_UDoor_02_DWK 
+  position 1.29523 -2.19843 0.0
+  orientation  0.0 0.0 0.0  0.0
+  wirecolor 0.603922 0.603922 0.898039  
+endnode
+node dummy 02_DWK_dp_open1_01 
+  parent agc_UDoor_02_DWK 
+  position -1.63594 2.46403 0.0
+  orientation  0.0 0.0 0.0  0.0
+  wirecolor 0.603922 0.603922 0.898039  
+endnode
+node dummy 02_DWK_dp_closed_02 
+  parent agc_UDoor_02_DWK 
+  position 0.00703125 0.713711 0.0
+  orientation  0.0 0.0 0.0  0.0
+  wirecolor 0.603922 0.603922 0.898039  
+endnode
+node dummy 02_DWK_dp_open1_02 
+  parent agc_UDoor_02_DWK 
+  position 1.5548 2.47468 0.0
+  orientation  0.0 0.0 0.0  0.0
+  wirecolor 0.603922 0.603922 0.898039  
+endnode
+node trimesh 02_DWK_wg_closed 
+  parent agc_UDoor_02_DWK 
+  position 0.0 0.01 6.0
+  orientation  0.0 0.0 0.0  0.0
+  wirecolor 0.0235294 0.52549 0.443137  
+  multimaterial 18 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+    bitmap NULL
+    verts 8
+     -1.99867 -0.0324707 -2.99654
+     2.0148 -0.0324707 -2.99654
+     -1.99867 0.241865 -2.99654
+     2.0148 0.241865 -2.99654
+     -1.99867 -0.0324707 -6.02262
+     2.0148 -0.0324707 -6.02262
+     -1.99867 0.241865 -6.02262
+     2.0148 0.241865 -6.02262
+    faces 12
+     2 0 3  0  0 0 0  7
+     1 3 0  0  0 0 0  7
+     5 4 7  0  0 0 0  7
+     6 7 4  0  0 0 0  7
+     1 0 5  0  0 0 0  7
+     4 5 0  0  0 0 0  7
+     3 1 7  0  0 0 0  7
+     5 7 1  0  0 0 0  7
+     2 3 6  0  0 0 0  7
+     7 6 3  0  0 0 0  7
+     0 2 4  0  0 0 0  7
+     6 4 2  0  0 0 0  7
+endnode
+node trimesh 02_DWK_wg_open2 
+  parent agc_UDoor_02_DWK 
+  position 2.62 -1.31 6.0
+  orientation  0.0 0.0 0.0  0.0
+  wirecolor 0.839216 0.898039 0.65098  
+  multimaterial 18 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+    bitmap NULL
+    verts 16
+     -1.32781 -0.50978 -2.99654
+     -1.08793 -0.599448 -2.99654
+     -0.743984 1.4632 -2.99654
+     -0.443867 1.49373 -2.99654
+     -1.32781 -0.50978 -6.02262
+     -1.08793 -0.599448 -6.02262
+     -0.743984 1.4632 -6.02262
+     -0.443867 1.49373 -6.02262
+     -4.1166 -0.575786 -2.99654
+     -3.91328 -0.465815 -2.99654
+     -4.7598 1.39656 -2.99654
+     -4.51863 1.42709 -2.99654
+     -4.1166 -0.575786 -6.02262
+     -3.91328 -0.465815 -6.02262
+     -4.7598 1.39656 -6.02262
+     -4.51863 1.42709 -6.02262
+    faces 24
+     2 0 3  0  0 0 0  7
+     1 3 0  0  0 0 0  7
+     5 4 7  0  0 0 0  7
+     6 7 4  0  0 0 0  7
+     1 0 5  0  0 0 0  7
+     4 5 0  0  0 0 0  7
+     3 1 7  0  0 0 0  7
+     5 7 1  0  0 0 0  7
+     2 3 6  0  0 0 0  7
+     7 6 3  0  0 0 0  7
+     0 2 4  0  0 0 0  7
+     6 4 2  0  0 0 0  7
+     10 8 11  0  0 0 0  7
+     9 11 8  0  0 0 0  7
+     13 12 15  0  0 0 0  7
+     14 15 12  0  0 0 0  7
+     9 8 13  0  0 0 0  7
+     12 13 8  0  0 0 0  7
+     11 9 15  0  0 0 0  7
+     13 15 9  0  0 0 0  7
+     10 11 14  0  0 0 0  7
+     15 14 11  0  0 0 0  7
+     8 10 12  0  0 0 0  7
+     14 12 10  0  0 0 0  7
+endnode
+node trimesh 02_DWK_wg_open1 
+  parent agc_UDoor_02_DWK 
+  position 2.62 -1.31 6.0
+  orientation  0.0 0.0 0.0  0.0
+  wirecolor 0.839216 0.898039 0.65098  
+  multimaterial 18 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+      NULL 
+    bitmap NULL
+    verts 16
+     -0.787148 3.4726 -2.99654
+     -0.487031 3.50312 -2.99654
+     -0.743984 1.4632 -2.99654
+     -0.443867 1.49373 -2.99654
+     -0.787148 3.4726 -6.02262
+     -0.487031 3.50312 -6.02262
+     -0.743984 1.4632 -6.02262
+     -0.443867 1.49373 -6.02262
+     -4.7025 3.41436 -2.99654
+     -4.46133 3.44488 -2.99654
+     -4.7598 1.39656 -2.99654
+     -4.51863 1.42709 -2.99654
+     -4.7025 3.41436 -6.02262
+     -4.46133 3.44488 -6.02262
+     -4.7598 1.39656 -6.02262
+     -4.51863 1.42709 -6.02262
+    faces 24
+     0 2 3  2  0 0 0  7
+     3 1 0  2  0 0 0  7
+     4 5 7  4  0 0 0  7
+     7 6 4  4  0 0 0  7
+     0 1 5  8  0 0 0  7
+     5 4 0  8  0 0 0  7
+     1 3 7  16  0 0 0  7
+     7 5 1  16  0 0 0  7
+     3 2 6  32  0 0 0  7
+     6 7 3  32  0 0 0  7
+     2 0 4  64  0 0 0  7
+     4 6 2  64  0 0 0  7
+     8 10 11  2  0 0 0  7
+     11 9 8  2  0 0 0  7
+     12 13 15  4  0 0 0  7
+     15 14 12  4  0 0 0  7
+     8 9 13  8  0 0 0  7
+     13 12 8  8  0 0 0  7
+     9 11 15  16  0 0 0  7
+     15 13 9  16  0 0 0  7
+     11 10 14  32  0 0 0  7
+     14 15 11  32  0 0 0  7
+     10 8 12  64  0 0 0  7
+     12 14 10  64  0 0 0  7
+endnode
+

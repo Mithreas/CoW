@@ -1,0 +1,111 @@
+#Exported from 3ds max by MDL Plug-in Suite 1.0b
+#http://www.bricksbuilder.com/nwn/utils/
+#MAXMODEL ASCII
+# model: tbm01_p83_01
+filedependancy Unknown
+newmodel tbm01_p83_01
+setsupermodel tbm01_p83_01 NULL
+classification Tile
+setanimationscale 1.0
+#MAXGEOM  ASCII
+beginmodelgeom tbm01_p83_01
+node dummy tbm01_p83_01
+  parent NULL
+endnode
+node light tbm01_p83_01ml1
+  parent tbm01_p83_01
+  position 0 0 -4.68072
+  orientation 0 0 0 0
+  wirecolor 0.601563 0.601563 0.601563
+    radius 14
+    multiplier 1
+    color 0 0 0
+    ambientOnly 0
+    nDynamicType 0
+    affectDynamic 1
+    shadow 0
+    lightpriority 5
+    lensflares 0
+    fadingLight 1
+endnode
+node trimesh Plane164
+  parent tbm01_p83_01
+  position 0 0 -8.4
+  orientation 0 0 0 0
+  wirecolor 0.601563 0.601563 0.601563
+  ambient 0.784314 0.784314 0.784314
+  diffuse 0.784314 0.784314 0.784314
+  specular 0.05 0.05 0.05
+  shininess 26
+  bitmap bmblack1
+  verts 9
+    -5.003 0 0
+    -5.003 -5.003 0
+    0 0 0
+    0 -5.003 0
+    5.003 0 0
+    5.003 -5.003 0
+    -5.003 5.003 0
+    0 5.003 0
+    5.003 5.003 0
+  faces 8
+    0 1 2  1  0 1 0  0
+    3 2 1  1  1 0 1  0
+    2 3 4  1  0 1 0  0
+    5 4 3  1  1 0 1  0
+    6 0 7  1  2 0 2  0
+    2 7 0  1  0 2 0  0
+    7 2 8  1  2 0 2  0
+    4 8 2  1  0 2 0  0
+  tverts 3
+    0.5 0.05 0
+    0.000499517 0.05 0
+    0.999501 0.05 0
+endnode
+node aabb CM167
+  parent tbm01_p83_01
+  position 0 0 -8.4
+  orientation 0 0 0 0
+  wirecolor 0.601563 0.601563 0.601563
+  ambient 0.2 0.2 0.2
+  diffuse 0.8 0.8 0.8
+  specular 0 0 0
+  shininess 1
+  bitmap NULL
+  verts 9
+    -5 0 0
+    -5 -5 0
+    0 0 0
+    0 -5 0
+    5 0 0
+    5 -5 0
+    -5 5 0
+    0 5 0
+    5 5 0
+  faces 8
+    0 1 2  1  0 0 0  4
+    3 2 1  1  0 0 0  4
+    2 3 4  1  0 0 0  4
+    5 4 3  1  0 0 0  4
+    6 0 7  1  0 0 0  4
+    2 7 0  1  0 0 0  4
+    7 2 8  1  0 0 0  4
+    4 8 2  1  0 0 0  4
+  aabb     -5.00 -5.00 0.00   5.00 5.00 0.00   -1
+     -5.00 -5.00 0.00   5.00 5.00 0.00   -1
+     -5.00 -5.00 0.00   0.00 5.00 0.00   -1
+     -5.00 -5.00 0.00   0.00 0.00 0.00   0
+     -5.00 0.00 0.00   0.00 5.00 0.00   4
+     0.00 -5.00 0.00   5.00 0.00 0.00   -1
+     0.00 -5.00 0.00   5.00 0.00 0.00   2
+     0.00 -5.00 0.00   5.00 0.00 0.00   3
+     -5.00 -5.00 0.00   5.00 5.00 0.00   -1
+     -5.00 -5.00 0.00   0.00 5.00 0.00   -1
+     -5.00 -5.00 0.00   0.00 0.00 0.00   1
+     -5.00 0.00 0.00   0.00 5.00 0.00   5
+     0.00 0.00 0.00   5.00 5.00 0.00   -1
+     0.00 0.00 0.00   5.00 5.00 0.00   6
+     0.00 0.00 0.00   5.00 5.00 0.00   7
+endnode
+endmodelgeom tbm01_p83_01
+donemodel tbm01_p83_01

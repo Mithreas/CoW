@@ -1,0 +1,28 @@
+2DA V2.0
+
+       Corner1     Edge       Corner2     Height     Model            
+0      Trees       ****       Water       0          TTR01_Z10_01     
+1      Cobble       ****       Water       0          TTR01_Z05_01     
+2      Water       ****       Water       0          TTR01_Z02_01     
+3      Cobble+      ****       Water       0          TTR01_Z07_01     
+4      Trees       ****       Cobble       0          TTR01_Z08_01     
+5      Cobble       ****       Cobble       0          TTR01_Z01_01     
+6      Cobble+      ****       Cobble       0          TTR01_Z06_01     
+7      Trees       ****       Trees       0          TTR01_Z03_01     
+8      Cobble+      ****       Trees       0          TTR01_Z09_01     
+9      Cobble+      ****       Cobble+      1          TTR01_Z01_01     
+10     Cobble       Road       Cobble       0          TTR01_Z12_01     
+11     Cobble       Stream     Cobble       0          TTR01_Z15_01     
+12     Cobble       Wall1      Cobble       0          TTR01_Z13_01     
+13     Cobble       Wall2      Cobble       0          TTR01_Z14_01     
+14     Water       Road       Water       0          TTR01_Z16_01     
+15     Water       ****       ****        0          TTR01_Z02_01     
+16     Cobble       ****       ****        0          TTR01_Z01_01     
+17     Trees       ****       ****        0          TTR01_Z03_01     
+18     Cobble+      ****       ****        1          TTR01_Z01_01     
+19     Cobble+      Road       Cobble+      1          TTR01_Z12_01     
+20     Cobble+      Stream     Cobble+      1          TTR01_Z15_01     
+21     Cobble+      Wall1      Cobble+      1          TTR01_Z13_01     
+22     Cobble+      Wall2      Cobble+      1          TTR01_Z14_01     
+23     Trees+      ****       Trees       0          TTR01_Z17_01     
+24     Cobble+      Hills      Cobble       0          ttr01_z22_02

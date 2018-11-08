@@ -1,0 +1,29 @@
+bumpyshinytexture ttr01__env
+bumpmaptexture shinywater
+
+proceduretype arturo
+channelscale 4
+0
+0
+0
+0
+	
+channeltranslate 4
+0
+0
+1
+0.5
+
+distort 1
+arturowidth 32
+arturoheight 32
+distortionamplitude 6
+speed 20
+
+defaultheight 64
+defaultwidth 64
+
+downsamplemin 0
+downsamplemax 2
+
+alphamean 0.999

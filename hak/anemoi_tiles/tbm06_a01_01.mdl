@@ -1,0 +1,196 @@
+#Exported from 3ds max by MDL Plug-in Suite 1.0b
+#http://www.bricksbuilder.com/nwn/utils/
+#MAXMODEL ASCII
+# model: tbm06_A01_01
+filedependancy Unknown
+newmodel tbm06_A01_01
+setsupermodel tbm06_A01_01 NULL
+classification Tile
+setanimationscale 1.0
+#MAXGEOM  ASCII
+beginmodelgeom tbm06_A01_01
+node dummy tbm06_A01_01
+  parent NULL
+endnode
+node light tbm06_A01_01ml2
+  parent tbm06_A01_01
+  position 2.99 3.54 2.26791
+  orientation 0 0 0 0
+  wirecolor 0.0273438 0.0273438 0.0273438
+    radius 5
+    multiplier 1
+    color 0.00392157 0.00392157 0.00392157
+    ambientOnly 0
+    nDynamicType 0
+    affectDynamic 1
+    shadow 0
+    lightpriority 5
+    lensflares 0
+    fadingLight 1
+endnode
+node light tbm06_A01_01ml1
+  parent tbm06_A01_01
+  position 0 0 5
+  orientation 0 0 0 0
+  wirecolor 0.0273438 0.0273438 0.0273438
+    radius 14
+    multiplier 1
+    color 0 0 0
+    ambientOnly 0
+    nDynamicType 0
+    affectDynamic 1
+    shadow 0
+    lightpriority 5
+    lensflares 0
+    fadingLight 1
+endnode
+node trimesh A15_113
+  parent tbm06_A01_01
+  position 0 0 0
+  orientation 0 0 0 0
+  wirecolor 0.894531 0.894531 0.894531
+  ambient 1 1 1
+  diffuse 1 1 1
+  specular 0 0 0
+  shininess 1
+  bitmap TTR01_grass02
+  render 1
+  Shadow 1
+  beaming 0
+  transparencyhint 0
+  tilefade 0
+  rotatetexture 1
+  verts 25
+    2.5 -5 0
+    5 -5 0
+    2.5 -2.5 0
+    5 -2.5 0
+    2.5 0 0
+    5 0 0
+    2.5 2.5 0
+    5 2.5 0
+    2.5 5 0
+    5 5 0
+    0 -5 0
+    0 -2.5 0
+    0 0 0
+    0 2.5 0
+    0 5 0
+    -2.5 -5 0
+    -2.5 -2.5 0
+    -2.5 0 0
+    -2.5 2.5 0
+    -2.5 5 0
+    -5 -5 0
+    -5 -2.5 0
+    -5 0 0
+    -5 2.5 0
+    -5 5 0
+  faces 32
+    0 1 2  1  0 1 2  0
+    3 2 1  1  3 2 1  0
+    2 3 4  1  2 3 4  0
+    5 4 3  1  5 4 3  0
+    4 5 6  1  4 5 6  0
+    7 6 5  1  7 6 5  0
+    6 7 8  1  6 7 8  0
+    9 8 7  1  9 8 7  0
+    10 0 11  1  10 0 11  0
+    2 11 0  1  2 11 0  0
+    11 2 12  1  11 2 12  0
+    4 12 2  1  4 12 2  0
+    12 4 13  1  12 4 13  0
+    6 13 4  1  6 13 4  0
+    13 6 14  1  13 6 14  0
+    8 14 6  1  8 14 6  0
+    15 10 16  1  15 10 16  0
+    11 16 10  1  11 16 10  0
+    16 11 17  1  16 11 17  0
+    12 17 11  1  12 17 11  0
+    17 12 18  1  17 12 18  0
+    13 18 12  1  13 18 12  0
+    18 13 19  1  18 13 19  0
+    14 19 13  1  14 19 13  0
+    20 15 21  1  20 15 21  0
+    16 21 15  1  16 21 15  0
+    21 16 22  1  21 16 22  0
+    17 22 16  1  17 22 16  0
+    22 17 23  1  22 17 23  0
+    18 23 17  1  18 23 17  0
+    23 18 24  1  23 18 24  0
+    19 24 18  1  19 24 18  0
+  tverts 25
+    11 16.5 0
+    11.5 16.5 0
+    11 17 0
+    11.5 17 0
+    11 17.5 0
+    11.5 17.5 0
+    11 18 0
+    11.5 18 0
+    11 18.5 0
+    11.5 18.5 0
+    10.5 16.5 0
+    10.5 17 0
+    10.5 17.5 0
+    10.5 18 0
+    10.5 18.5 0
+    10 16.5 0
+    10 17 0
+    10 17.5 0
+    10 18 0
+    10 18.5 0
+    9.5 16.5 0
+    9.5 17 0
+    9.5 17.5 0
+    9.5 18 0
+    9.5 18.5 0
+endnode
+node aabb Plane508
+  parent tbm06_A01_01
+  position 0 0 0
+  orientation 0 0 0 0
+  wirecolor 0.894531 0.894531 0.894531
+  ambient 0.2 0.2 0.2
+  diffuse 0.8 0.8 0.8
+  specular 0 0 0
+  shininess 1
+  bitmap NULL
+  verts 9
+    -5 0 0
+    -5 -5 0
+    0 0 0
+    0 -5 0
+    5 0 0
+    5 -5 0
+    -5 5 0
+    0 5 0
+    5 5 0
+  faces 8
+    0 1 2  1  0 0 0  3
+    3 2 1  1  0 0 0  4
+    2 3 4  1  0 0 0  4
+    5 4 3  1  0 0 0  4
+    6 0 7  1  0 0 0  3
+    2 7 0  1  0 0 0  3
+    7 2 8  1  0 0 0  3
+    4 8 2  1  0 0 0  4
+  aabb     -5.00 -5.00 0.00   5.00 5.00 0.00   -1
+     -5.00 -5.00 0.00   5.00 5.00 0.00   -1
+     -5.00 -5.00 0.00   0.00 5.00 0.00   -1
+     -5.00 -5.00 0.00   0.00 0.00 0.00   0
+     -5.00 0.00 0.00   0.00 5.00 0.00   4
+     -5.00 -5.00 0.00   5.00 0.00 0.00   -1
+     -5.00 -5.00 0.00   0.00 0.00 0.00   1
+     0.00 -5.00 0.00   5.00 0.00 0.00   3
+     -5.00 -5.00 0.00   5.00 5.00 0.00   -1
+     -5.00 0.00 0.00   5.00 5.00 0.00   -1
+     -5.00 0.00 0.00   0.00 5.00 0.00   5
+     0.00 0.00 0.00   5.00 5.00 0.00   6
+     0.00 -5.00 0.00   5.00 5.00 0.00   -1
+     0.00 -5.00 0.00   5.00 0.00 0.00   2
+     0.00 0.00 0.00   5.00 5.00 0.00   7
+endnode
+endmodelgeom tbm06_A01_01
+donemodel tbm06_A01_01
+

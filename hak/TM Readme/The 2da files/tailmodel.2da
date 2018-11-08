@@ -1,0 +1,729 @@
+2DA V2.0
+
+      LABEL                                          MODEL             ENVMAP
+0     None                                           ****              ****
+1     Lizard                                         c_tailliz         default
+2     Bone                                           c_tailbone        ****
+3     Devil                                          c_taildevil       default
+4     "Dragon, Brass"                                c_tail_brs        default
+5     "Dragon, Bronze"                               c_tail_brz        default
+6     "Dragon, Copper"                               c_tail_cop        default
+7     "Dragon, Silver"                               c_tail_sil        default
+8     "Dragon, Gold"                                 c_tail_gol        default
+9     "Dragon, Black"                                c_tail_blk        ****
+10    "Dragon, Blue"                                 c_tail_blu        ****
+11    "Dragon, Green"                                c_tail_grn        ****
+12    "Dragon, Red"                                  c_tail_red        ****
+13    "Dragon, White"                                c_tail_whi        ****
+14    NullTail                                       c_nulltail        default
+15    "Horse, Walnut"                                c_horse1          default
+16    "Horse, Walnut, saddle"                        c_horse1a         default
+17    "Horse, Walnut, saddle, packs"                 c_horse1b         default
+18    "Horse, Walnut, leather barding"               c_horse1c1        default
+19    "Horse, Walnut, scale mail barding"            c_horse1c2        default
+20    "Horse, Walnut, chain barding"                 c_horse1c3        default
+21    "Horse, Walnut, purple barding"                c_horse1c4        default
+22    "Horse, Walnut, red barding"                   c_horse1c5        default
+23    "Horse, Walnut, leather barding, packs"        c_horse1d1        default
+24    "Horse, Walnut, scale mail barding, packs"     c_horse1d2        default
+25    "Horse, Walnut, chain barding, packs"          c_horse1d3        default
+26    "Horse, Walnut, purple barding, packs"         c_horse1d4        default
+27    "Horse, Walnut, red barding, packs"            c_horse1d5        default
+28    "Horse, Gunpowder"                             c_horse2          default
+29    "Horse, Gunpowder, saddle"                     c_horse2a         default
+30    "Horse, Gunpowder, saddle, packs"              c_horse2b         default
+31    "Horse, Gunpowder, leather barding"            c_horse2c1        default
+32    "Horse, Gunpowder, scale mail barding"         c_horse2c2        default
+33    "Horse, Gunpowder, chain barding"              c_horse2c3        default
+34    "Horse, Gunpowder, purple barding"             c_horse2c4        default
+35    "Horse, Gunpowder, red barding"                c_horse2c5        default
+36    "Horse, Gunpowder, leather barding, packs"     c_horse2d1        default
+37    "Horse, Gunpowder, scale mail barding, packs"  c_horse2d2        default
+38    "Horse, Gunpowder, chain barding, packs"       c_horse2d3        default
+39    "Horse, Gunpowder, purple barding, packs"      c_horse2d4        default
+40    "Horse, Gunpowder, red barding, packs"         c_horse2d5        default
+41    "Horse, Spotted"                               c_horse3          default
+42    "Horse, Spotted, saddle"                       c_horse3a         default
+43    "Horse, Spotted, saddle, packs"                c_horse3b         default
+44    "Horse, Spotted, leather barding"              c_horse3c1        default
+45    "Horse, Spotted, scale mail barding"           c_horse3c2        default
+46    "Horse, Spotted, chain barding"                c_horse3c3        default
+47    "Horse, Spotted, purple barding"               c_horse3c4        default
+48    "Horse, Spotted, red barding"                  c_horse3c5        default
+49    "Horse, Spotted, leather barding, packs"       c_horse3d1        default
+50    "Horse, Spotted, scale mail barding, packs"    c_horse3d2        default
+51    "Horse, Spotted, chain barding, packs"         c_horse3d3        default
+52    "Horse, Spotted, purple barding, packs"        c_horse3d4        default
+53    "Horse, Spotted, red barding, packs"           c_horse3d5        default
+54    "Horse, Black"                                 c_horse4          default
+55    "Horse, Black, saddle"                         c_horse4a         default
+56    "Horse, Black, saddle, packs"                  c_horse4b         default
+57    "Horse, Black, leather barding"                c_horse4c1        default
+58    "Horse, Black, scale mail barding"             c_horse4c2        default
+59    "Horse, Black, chain barding"                  c_horse4c3        default
+60    "Horse, Black, purple barding"                 c_horse4c4        default
+61    "Horse, Black, red barding"                    c_horse4c5        default
+62    "Horse, Black, leather barding, packs"         c_horse4d1        default
+63    "Horse, Black, scale mail barding, packs"      c_horse4d2        default
+64    "Horse, Black, chain barding, packs"           c_horse4d3        default
+65    "Horse, Black, purple barding, packs"          c_horse4d4        default
+66    "Horse, Black, red barding, packs"             c_horse4d5        default
+67    "Nightmare, barding"                           c_horse5          default
+68    "Nightmare, saddle"                            c_horse5a         default
+69    Nightmare                                      c_horse5b         default
+70    "Horse, Jousting, Purple cloth"                c_horse_j1        default
+71    "Horse, Jousting, Blue and gold cloth"         c_horse_j2        default
+72    "Horse, Jousting, Black and white cloth"       c_horse_j3        default
+73    "Horse, Jousting, Red and yellow cloth"        c_horse_j4        default
+74    "Horse, Jousting, Red and black Striped cloth" c_horse_j5        default
+75    "Horse, Jousting, Green cloth"                 c_horse_j6        default
+76    "Horse, Jousting, Blue and pink cloth"         c_horse_j7        default
+77    "Horse, Jousting, Red and gold brick cloth"    c_horse_j8        default
+78    "Horse, Jousting, Black cloth"                 c_horse_j9        default
+79    "Horse, Jousting, Cyan and white cloth"        c_horse_j10       default
+80    "Horse, Jousting, White cloth"                 c_horse_j11       default
+81    "Halfling, NPC, Female"                        c_yNPC_a_f01      default
+82    "Halfling, NPC, Male"                          c_yNPC_a_m01      default
+83    "Azer, Female"                                 c_azergirl        evmap_azer
+84    "Azer, Male"                                   c_azerman         evmap_azer
+85    "Druegar, Cleric"                              c_yDurgCleric     default
+86    "Druegar, Fighter"                             c_yDurgFight      default
+87    "Duergar, Chief"                               c_yduechf         default
+88    "Duergar, Slave"                               c_ydueslv         default
+89    "Dwarf, NPC, Female"                           c_yNPC_d_f01      default
+90    "Dwarf, NPC, Male"                             c_yNPC_d_m01      default
+91    "Svirf, Female"                                c_ysvirfgirl      default
+92    "Svirf, Male"                                  c_ysvirfman       default
+93    "Drow, Matron"                                 c_drowmat         default
+94    "Drow, Cleric"                                 c_yDroCleric      default
+95    "Drow, Female, 1"                              c_ydrofem1        default
+96    "Drow, Female, 2"                              c_ydrofem2        default
+97    "Drow, Fighter"                                c_yDroFight       default
+98    "Drow, Slave"                                  c_ydrobeg         default
+99    "Drow, Warrior, 1"                             c_ydrowar         default
+100   "Drow, Warrior, 2"                             c_ydrowar2        default
+101   "Drow, Warrior, 3"                             c_ydrowep         default
+102   "Drow, Wizard"                                 c_yDroWiz         default
+103   "Elf, NPC, Female"                             c_yNPC_e_f01      default
+104   "Elf, NPC, Male, 01"                           c_yNPC_e_m01      default
+105   "Elf, NPC, Male, 02"                           c_yNPC_e_m02      default
+106   "Gnome, NPC, Female"                           c_yNPC_g_f01      default
+107   "Gnome, NPC, Male"                             c_yNPC_g_m01      default
+108   "Half-Orc, NPC, Female"                        c_yNPC_o_f01      default
+109   "Half-Orc, NPC, Male, 01"                      c_yNPC_o_m01      default
+110   "Half-Orc, NPC, Male, 02"                      c_yNPC_o_M02      default
+111   "Bartender"                                    c_yBartender      default
+112   "Begger"                                       c_yBegger         default
+113   "Blood, Sailer"                                c_yBloodSail      default
+114   "Convict"                                      c_yConvict        default
+115   "Cult, Member"                                 c_yCult           default
+116   "Dryad"                                        c_dryad           ****
+117   "Female, 01"                                   c_yFem01          default
+118   "Female, 02"                                   c_yFem02          default
+119   "Female, 03"                                   c_yFem03          default
+120   "Female, 04"                                   c_yFem04          default
+121   "House, Guard"                                 c_yHouse          default
+122   "Human, NPC, Female, 01"                       c_yNPC_h_f01      default
+123   "Human, NPC, Female, 02"                       c_yNPC_h_f02      default
+124   "Human, NPC, Female, 03"                       c_yNPC_h_f03      default
+125   "Human, NPC, Female, 04"                       c_yNPC_h_f04      default
+126   "Human, NPC, Female, 05"                       c_yNPC_h_f05      default
+127   "Human, NPC, Female, 06"                       c_yNPC_h_f06      default
+128   "Human, NPC, Female, 07"                       c_yNPC_h_f07      default
+129   "Human, NPC, Female, 08"                       c_yNPC_h_f08      default
+130   "Human, NPC, Female, 09"                       c_yNPC_h_f09      default
+131   "Human, NPC, Female, 10"                       c_yNPC_h_f10      default
+132   "Human, NPC, Female, 11"                       c_yNPC_h_f11      default
+133   "Human, NPC, Female, 12"                       c_yNPC_h_f12      default
+134   "Human, NPC, Male, 01"                         c_yNPC_h_m01      default
+135   "Human, NPC, Male, 02"                         c_yNPC_h_m02      default
+136   "Human, NPC, Male, 03"                         c_yNPC_h_m03      default
+137   "Human, NPC, Male, 04"                         c_yNPC_h_m04      default
+138   "Human, NPC, Male, 05"                         c_yNPC_h_m05      default
+139   "Human, NPC, Male, 06"                         c_yNPC_h_m06      default
+140   "Human, NPC, Male, 07"                         c_yNPC_h_m07      default
+141   "Human, NPC, Male, 08"                         c_yNPC_h_m08      default
+142   "Human, NPC, Male, 09"                         c_yNPC_h_m09      default
+143   "Human, NPC, Male, 10"                         c_yNPC_h_m10      default
+144   "Human, NPC, Male, 11"                         c_yNPC_h_m11      default
+145   "Human, NPC, Male, 12"                         c_yNPC_h_m12      default
+146   "Human, NPC, Male, 13"                         c_yNPC_h_m13      default
+147   "Human, NPC, Male, 14"                         c_yNPC_h_m14      default
+148   "Human, NPC, Male, 15"                         c_yNPC_h_m15      default
+149   "Human, NPC, Male, 16"                         c_yNPC_h_m16      default
+150   "Human, NPC, Male, 17"                         c_yNPC_h_m17      default
+151   "Human, NPC, Male, 18"                         c_yNPC_h_m18      default
+152   "Inn, Keeper"                                  c_yInnkeep        default
+153   "Kid, Female"                                  c_yKid_f          default
+154   "Kid, Male"                                    c_yKid_m          default
+155   "Luskan, Guard"                                c_yLuskguard      default
+156   "Male, 01"                                     c_yMale01         default
+157   "Male, 02"                                     c_yMale02         default
+158   "Male, 03"                                     c_yMale03         default
+159   "Male, 04"                                     c_yMale04         default
+160   "Male, 05"                                     c_yMale05         default
+161   "Medusa"                                       c_medusa          default
+162   "NW, Militia, Member"                          c_yNWN_militia    default
+163   "Nymph"                                        c_nymph           ****
+164   "Old, Man"                                     c_yOld_m          default
+165   "Old, Woman"                                   c_yOld_f          default
+166   "PDK, Archer, Female"                          c_archer_f        default
+167   "PDK, Archer, Male"                            c_archer_m        default
+168   "PDK, Blade, Female"                           c_blade_f         default
+169   "PDK, Blade, Male"                             c_blade_m         default
+170   "Plague, Victim"                               c_ySick           default
+171   "Prostitute, 01"                               c_yPro01          default
+172   "Prostitute, 02"                               c_yPro02          default
+173   "Sea, Hag"                                     c_seahag          ****
+174   "Shop, Keeper"                                 c_yShopkeep       default
+175   "Succubus"                                     c_dmsucubus       ****
+176   "Uthgard, Elk, Tribe"                          c_yUth_elk        default
+177   "Uthgard, Tiger, Tribe"                        c_yUth_Tiger      default
+178   "Waitress"                                     c_yWaitress       default
+179   "Caladnei"                                     c_caladeni        default
+180   "Hagatha"                                      c_hagatha         default
+181   "Halaster"                                     c_halaster        default
+182   "Lord, Antoine"                                c_antoine         ****
+183   "Masterius"                                    c_masterius       ****
+184   "Masterius, Full, Power"                       c_masteriusP      ****
+185   "NWN, Aarin"                                   c_aarin           default
+186   "NWN, Aribeth"                                 c_aribeth         default
+187   "NWN, Aribeth, Evil"                           c_aribeth_evil    default
+188   "NWN, Haedraline"                              c_haedraline      default
+189   "NWN, Maugrim"                                 c_maugrim         default
+190   "NWN, Morag"                                   c_morag           default
+191   "NWN, Nasher"                                  c_nasher          default
+192   "NWN, Sedos"                                   c_sedos           default
+193   "Witch, King, Disguised"                       c_wkdisguised     default
+194   "XP1, HeurodisLich"                            c_heurodis        default
+195   "Gnoll, Warrior"                               c_gnoll           default
+196   "Gnoll, Wiz"                                   c_gnollwiz        default
+197   "Hobgoblin, Warrior"                           c_hob             default
+198   "Hobgoblin, Wizard"                            c_hobwiz          default
+199   "Bugbear, A"                                   c_bugbearA        default
+200   "Bugbear, B"                                   c_bugbearB        default
+201   "Bugbear, Chieftain, A"                        c_bugchiefA       default
+202   "Bugbear, Chieftain, B"                        c_bugchiefB       default
+203   "Bugbear, Shaman, A"                           c_bugwizA         default
+204   "Bugbear, Shaman, B"                           c_bugwizB         default
+205   None                                           ****              ****
+206   "Goblin, Chief, A"                             c_gobchiefA       ****
+207   "Goblin, Chief, B"                             c_gobchiefB       ****
+208   "Goblin, A"                                    c_goblinA         ****
+209   "Goblin, B"                                    c_goblinB         ****
+210   "Goblin, Shaman, A"                            c_gobwizA         ****
+211   "Goblin, Shaman, B"                            c_gobwizB         ****
+212   "Orc, A"                                       c_orcA            ****
+213   "Orc, B"                                       c_orcB            ****
+214   "Orc, Chieftain, A"                            c_orcchiefA       ****
+215   "Orc, Chieftain, B"                            c_orcchiefB       ****
+216   "Orc, Shaman, A"                               c_orcwizA         ****
+217   "Orc, Shaman, B"                               c_orcwizB         ****
+218   "Kobold, A"                                    c_kobA            ****
+219   "Kobold, B"                                    c_kobB            ****
+220   "Kobold, Chief, A"                             c_kobchiefA       ****
+221   "Kobold, Chief, B"                             c_kobchiefB       ****
+222   "Kobold, Shaman, A"                            c_kobwizA         ****
+223   "Kobold, Shaman, B"                            c_kobwizB         ****
+224   "Asabi, Shaman"                                c_asabmage        default
+225   "Lizardfolk, Shaman, A"                        c_OldMageA        default
+226   "Lizardfolk, Shaman, B"                        c_OldMageB        default
+227   "Asabi, Chieftain"                             c_asabchief       default
+228   "Lizardfolk, Warrior, A"                       c_OldChiefA       default
+229   "Lizardfolk, Warrior, B"                       c_OldChiefB       default
+230   "Lizardfolk, B"                                c_OldWarB         default
+231   "Asabi, Warrior"                               c_asabwar         default
+232   "Lizardfolk, A"                                c_OldWarA         default
+233   "Yuan, Ti"                                     c_yuan_ti         default
+234   "Yuan, Ti, Chieften"                           c_yuanchief       default
+235   "Yuan, Ti, Wizard"                             c_yuanwiz         default
+236   "Troglodyte"                                   c_troglodyte      default
+237   "Troglodyte, Cleric"                           c_troglodyte_c    default
+238   "Troglodyte, Warrior"                          c_troglodyte_w    default
+239   "Rakshasa, Bear, Male"                         c_rak_bearA       default
+240   "Rakshasa, Tiger, Male"                        c_rak_tigerA      default
+241   "Rakshasa, Tiger, Female"                      c_rak_tigerB      default
+242   "Rakshasa, Wolf, Male"                         c_rak_wolfA       default
+243   "Sahuagin"                                     c_sahuagin        default
+244   "Sahuagin, Cleric"                             c_sahuagin_c      default
+245   "Sahuagin, Leader"                             c_sahuagin_l      default
+246   "Satyr"                                        c_satyr           default
+247   "Satyr, Archer"                                c_satyrarcher     default
+248   "Satyr, Warrior"                               c_satyrwarrior    default
+249   "Bodak"                                        c_bodak           ****
+250   "Doom, Knight"                                 c_doomkght        default
+251   "Ghast"                                        c_Ghast           ****
+252   "Ghoul"                                        c_ghoul           ****
+253   "Ghoul, Lord"                                  c_GhoulLord       ****
+254   "Lich"                                         c_Lich            default
+255   "Helmed, Horror"                               c_helmhorr        ****
+256   "Mohrg"                                        c_mohrg           ****
+257   "Mummy, Common"                                c_mum_com         default
+258   "Mummy, Fighter, 2"                            c_mum_fight02     default
+259   "Mummy, Warrior"                               c_mum_fight03     default
+260   "Mummy, Greater"                               c_mum_priest01    default
+261   "Vampire, Female"                              c_vampire_f       default
+262   "Vampire, Male"                                c_vampire_m       default
+263   "Shadow"                                       c_shadow          ****
+264   "Shadow, Fiend"                                c_shfiend         ****
+265   "Skeleton, Mage"                               c_skel_mage01     default
+266   "Skeleton, Chieftain"                          c_skel_chief01    default
+267   "Skeleton, Common"                             c_skel_com01      default
+268   "Skeleton, Priest"                             c_skel_priest01   default
+269   "Skeleton, Warrior, 1"                         c_skel_war02      default
+270   "Skeleton, Warrior, 2"                         c_skel_war03      default
+271   "Skeleton, Warrior"                            c_skel_war01      default
+272   "Wight"                                        c_wight           ****
+273   "Zombie"                                       c_zomb_com        ****
+274   "Zombie, Rotting"                              c_zomb_rot        default
+275   "Zombie, Warrior, 1"                           c_zomb_war01      default
+276   "Zombie, Warrior, 2"                           c_zomb_war02      default
+277   "Zombie, Tyrant, Fog"                          c_zomb_tyr        ****
+278   "Bat, Horror"                                  c_bathorror       ****
+279   "Golem, Diamond"                               c_goldiamond      dlag__ref01
+280   "Golem, Emerald"                               c_golemerald      dlag__ref01
+281   "Golem, Ruby"                                  c_golruby         dlag__ref01
+282   ****                                           ****              ****
+283   "Golem, Adamantium"                            c_golada          default
+284   "Golem, Demonflesh"                            c_GolDem          ****
+285   "Golem, Iron"                                  c_goliron         ****
+286   "Golem, Mithril"                               c_golmit          ****
+287   "Balor"                                        c_demon           default
+288   "Devil"                                        c_devil           ****
+289   "Drider"                                       c_drider          ****
+290   "Drider, Female"                               c_driderfem       ****
+291   "Drider, Chief"                                c_driderchf       ****
+292   "Ettin"                                        c_ettin           ****
+293   "Formian, Myrmarch"                            c_formmyr         evmap_irrid
+294   "Formian, Queen"                               c_formqueen       ****
+295   "Formian, Warrior"                             c_formwar         ****
+296   "Formian, Worker"                              c_formwrk         ****
+297   "GelatinousCube"                               c_jelly           default
+298   "Giant, Hill"                                  c_gnthill         ****
+299   "Giant, Mountain"                              c_gntmount        ****
+300   "Giant, Fire"                                  c_gntfire         default
+301   "Giant, Fire, Female"                          c_gntfirefem      default
+302   "Giant, Frost"                                 c_gntfrost        default
+303   "Giant, Frost, Female"                         c_gntfrstfem      default
+304   "Minotaur, Chieftain"                          c_minochief       default
+305   "Minogon"                                      c_minogon         default
+306   "Minotaur"                                     c_minotaur        default
+307   "Minotaur, Shaman"                             c_minowiz         default
+308   "Ogre"                                         c_ogreA           default
+309   "Ogre, Chieftain"                              c_ogrechiefA      default
+310   "Ogre, Mage"                                   c_ogremageA       default
+311   "Ogre, ChieftainB"                             c_ogrechiefB      default
+312   "Ogre, Elite"                                  c_Ogre35          ****
+313   "Ogre, MageB"                                  c_ogremageB       default
+314   "OgreB"                                        c_ogreB           default
+315   "Stinger, Chieftain"                           c_stingchief      ****
+316   "Stinger"                                      c_stinger         ****
+317   "Stinger, Mage"                                c_stingmage       default
+318   "Stinger, Warrior"                             c_stingwar        ****
+319   "Wereboar"                                     c_wereboar        ****
+320   ****                                           ****              ****
+321   "Dracolich"                                    c_dracolich       ****
+322   "Dragon, Black"                                c_DrgBlack        ****
+323   "Dragon, Blue"                                 c_DrgBlue         ****
+324   "Dragon, Brass"                                c_DrgBrass        default
+325   "Dragon, Bronze"                               c_DrgBrnz         default
+326   "Dragon, Copper"                               c_DrgCopp         default
+327   "Dragon, Gold"                                 c_DrgGold         default
+328   "Dragon, Green"                                c_DrgGreen        ****
+329   "Dragon, Mist"                                 c_drgmist         ****
+330   "Dragon, Pris"                                 c_drgprism        default
+331   "Dragon, Red"                                  c_DrgRed          ****
+332   "Dragon, Shadow"                               c_drgshad         ****
+333   "Dragon, Silver"                               c_DrgSilv         default
+334   "Dragon, White"                                c_DrgWhite        ****
+335   "Golem, Bone"                                  c_golbone         default
+336   "Golem, Clay"                                  c_GolClay         ****
+337   "Golem, Flesh"                                 c_golflesh        ****
+338   "Golem, Stone"                                 c_GolStone        ****
+339   "Elemental, Air"                               c_air             ****
+340   "Elemental, Air, Elder"                        c_aireld          ****
+341   "Elemental, Earth"                             c_earth           ****
+342   "Elemental, Earth, Elder"                      c_eartheld        ****
+343   "Elemental, Fire"                              c_fire            ****
+344   "Elemental, Fire, Elder"                       c_fireeld         ****
+345   "Elemental, Water"                             c_water           ****
+346   "Elemental, Water, Elder"                      c_waterEld        ****
+347   "Badger, Dire"                                 c_direbadg        ****
+348   "Bat"                                          c_a_bat           ****
+349   "Badger"                                       c_badger          ****
+350   "Bear, Brown"                                  c_bearbrwn        ****
+351   "Boar"                                         c_boar            ****
+352   "Bear, Black"                                  c_bearblck        ****
+353   "Bear, Dire"                                   c_beardire        ****
+354   "Bear, Kodiak"                                 c_bearkodi        ****
+355   "Bear, Polar"                                  c_bearpolar       ****
+356   "Boar, Dire"                                   c_direboar        ****
+357   "Chicken"                                      c_a_chicken       ****
+358   "Snake, Cobra"                                 c_cobra01         ****
+359   "Snake, Black, Cobra"                          c_cobra02         ****
+360   "Snake, Gold, Cobra"                           c_cobra03         ****
+361   "Cow"                                          c_a_cow           ****
+362   "Deep, Rothe"                                  c_deeprothe       ****
+363   "Deer"                                         c_a_deer          ****
+364   "Deer, Stag"                                   c_a_deerwhite     ****
+365   "Rat, Dire"                                    c_direrat         ****
+366   "Cat, Cougar"                                  c_cat             ****
+367   "Cat, Crag, Cat"                               c_cat_crag        ****
+368   "Cat, Cat, Dire"                               c_cat_dire        ****
+369   "Cat, Jaguar"                                  c_cat_jag         ****
+370   "Cat, Krenshar"                                c_cat_kren        ****
+371   "Cat, Leopard"                                 c_cat_lep         ****
+372   "Cat, Lion"                                    c_cat_lion        ****
+373   "Cat, Panther"                                 c_cat_panth       ****
+374   "Cat, MPanther"                                c_cat_mpanth      ****
+375   "Ox"                                           c_a_ox            ****
+376   "Parrot"                                       c_a_parrot        ****
+377   "Penguin"                                      c_a_penguin       ****
+378   "Falcon"                                       c_a_bird_rap      ****
+379   "Rat"                                          c_rat             ****
+380   "Raven"                                        c_a_bird_rav      ****
+381   "Seagull, Flying"                              c_seagull_f       ****
+382   "Seagull, Walking"                             c_seagull_w       ****
+383   "Shark, Goblin"                                c_sharkgb         default
+384   "Shark, Hammerhead"                            c_sharkhm         default
+385   "Shark, Mako"                                  c_sharkmk         default
+386   "Dog, Blinkdog"                                c_blinkdog        ****
+387   "Dog, Dire, Wolf"                              c_direwolf        ****
+388   "Dog"                                          c_dog             ****
+389   "Dog, Fenhound"                                c_fenhound        ****
+390   "Dog, Hell, Hound"                             c_hellhound       ****
+391   "Dog, Shadow, Mastif"                          c_shmastif        ****
+392   "Dog, Wolf"                                    c_wolf            ****
+393   "Dog, Winter, Wolf"                            c_WolfWint        ****
+394   "Dog, Worg"                                    c_worg            ****
+395   "Maggris"                                      c_maggris         ****
+396   "Harat"                                        c_harat           ****
+397   "Harat, Small"                                 c_harat_sm        default
+398   "Beholder, GZhorb"                             c_gzhorb          ****
+399   "Mephisto, Big"                                c_devilbig        ****
+400   "Mephisto, Norm"                               c_devilsmall      ****
+401   "Allip"                                        c_allip           ****
+402   "arch, target"                                 c_archtarget      ****
+403   "Beetle, Stag"                                 c_btlstag         evmap_irrid
+404   "Lantern, Archon"                              c_clantern        ****
+405   "Will, O, Wisp"                                c_willowisp       ****
+406   "Beetle, Fire"                                 c_btlfire         ****
+407   "Beetle, Slicer"                               c_btlslicer       ****
+408   "Beetle, Stink"                                c_btlstink        ****
+409   "Beholder"                                     c_behold          ****
+410   "Beholder, Mother"                             c_beholdboss      ****
+411   "Beholder, Eyeball"                            c_beholdeye       ****
+412   "Beholder, Mage"                               c_beholdwiz       ****
+413   "objectBoat"                                   C_BoatHack        default
+414   "Bulette"                                      c_bulette         ****
+415   "animated, chest"                              c_chest           ****
+416   "Cockatrice"                                   c_cocktrc         ****
+417   "Curst, Swordsman"                             c_curst           ****
+418   "Demi, Lich"                                   c_demilich        default
+419   "Fairy"                                        c_Fairy           ****
+420   "Gargoyle"                                     c_gargoyle        ****
+421   "Grey, Render"                                 c_greyrend        ****
+422   "Shield, Guardian"                             c_shguard         ****
+423   "Gorgon"                                       c_gorgon          ****
+424   "Gray, Ooze"                                   c_ooze_b01        default
+425   "Gynosphinx"                                   c_gynosphinx      ****
+426   "Manticore"                                    c_manticore       ****
+427   "Sphinx"                                       c_sphinx          ****
+428   "Werecat"                                      c_werecat         ****
+429   "Harpy"                                        c_harpy           ****
+430   "Vrock"                                        c_dmvrock         ****
+431   "Hook, Horror"                                 c_horror          ****
+432   "Quasit"                                       c_dmquasit        ****
+433   "Imp"                                          c_imp             ****
+434   "Mephit, Air"                                  c_mepair          ****
+435   "Mephit, Dust"                                 c_mepdust         ****
+436   "Mephit, Earth"                                c_mepearth        ****
+437   "Mephit, Fire"                                 c_mepfire         ****
+438   "Mephit, Ice"                                  c_mepice          ****
+439   "Mephit, Magma"                                c_mepmagma        ****
+440   "Mephit, Ooze"                                 c_mepooze         ****
+441   "Mephit, Salt"                                 c_mepsalt         ****
+442   "Mephit, Steam"                                c_mepsteam        ****
+443   "Mephit, Water"                                c_mepwater        ****
+444   "War, Devourer"                                c_devo_01         ****
+445   "Skeletal, Devourer"                           c_devo_02         default
+446   "Intellect, Devourer"                          c_devour          ****
+447   "Basilisk"                                     c_basilisk        ****
+448   "Mindflayer"                                   c_mindflayer      default
+449   "Mindflayer, Alhoon"                           c_mindalhoon      default
+450   "Mindflayer2"                                  c_mindflayer2     default
+451   "Ochre, Jelly, Large"                          c_ooze_a01        default
+452   "Ochre, Jelly, Medium"                         c_ooze_a03        default
+453   "Ochre, Jelly, Small"                          c_ooze_a05        default
+454   "Wyrmling, Black"                              c_wyrmlblk        ****
+455   "Wyrmling, Blue"                               c_wyrmlblu        ****
+456   "Wyrmling, Brass"                              c_wyrmlbrs        ****
+457   "Wyrmling, Bronze"                             c_wyrmlbrz        ****
+458   "Wyrmling, Copper"                             c_wyrmlcop        ****
+459   "Wyrmling, Gold"                               c_wyrmlgld        ****
+460   "Wyrmling, Green"                              c_wyrmlgrn        ****
+461   "Wyrmling, Red"                                c_wyrmlred        ****
+462   "Wyrmling, Silver"                             c_wyrmlsil        ****
+463   "Wyrmling, White"                              c_wyrmlwht        ****
+464   "Slaad, Blue"                                  c_slaadbl         ****
+465   "Slaad, Death"                                 c_slaaddth        ****
+466   "Slaad, Gray"                                  c_slaadgray       ****
+467   "Slaad, Green"                                 c_slaadgrn        ****
+468   "Slaad, Red"                                   c_slaadred        ****
+469   "Slaad, Black"                                 c_slaadba         ****
+470   "Slaad, White"                                 c_slaadwh         ****
+471   "Spectre"                                      c_spectre         ****
+472   "Spider, Demon"                                c_demonspid       ****
+473   "Aranea"                                       c_aranea          ****
+474   "Spider, Dire"                                 c_spiddire        ****
+475   "Spider, Giant"                                c_spidgiant       ****
+476   "Spider, Phase"                                c_spidphase       ****
+477   "Spider, Sword"                                c_spidswrd        default
+478   "Spider, Wraith"                               c_spidwra         ****
+479   "Ettercap"                                     c_ettercap        ****
+480   "Troll"                                        c_troll           ****
+481   "Troll, Chieftain"                             c_trollchief      ****
+482   "Troll, Shaman"                                c_trollwiz        ****
+483   "Umberhulk"                                    c_umberhulk       evmap_irrid
+484   "Wererat"                                      c_wererat         ****
+485   "Werewolf"                                     c_werewolf        ****
+486   "Wraith"                                       c_wraith          ****
+487   "Wyvern, Adult"                                c_wyvern_a        ****
+488   "Wyvern, Great"                                c_wyvern_g        ****
+489   "Wyvern, Juvenile"                             c_wyvern_j        ****
+490   "Wyvern, Young"                                c_wyvern_y        ****
+491   *****                                          *****             ****
+492   *****                                          *****             ****
+493   *****                                          *****             ****
+494   *****                                          *****             ****
+495   *****                                          *****             ****
+496   *****                                          *****             ****
+497   *****                                          *****             ****
+498   *****                                          *****             ****
+499   *****                                          *****             ****
+500   *****                                          *****             ****
+501   *****                                          *****             ****
+502   *****                                          *****             ****
+503   *****                                          *****             ****
+504   *****                                          *****             ****
+505   *****                                          *****             ****
+506   *****                                          *****             ****
+507   *****                                          *****             ****
+508   *****                                          *****             ****
+509   *****                                          *****             ****
+510   *****                                          *****             ****
+511   *****                                          *****             ****
+512   *****                                          *****             ****
+513   *****                                          *****             ****
+514   *****                                          *****             ****
+515   *****                                          *****             ****
+516   *****                                          *****             ****
+517   *****                                          *****             ****
+518   *****                                          *****             ****
+519   *****                                          *****             ****
+520   *****                                          *****             ****
+521   *****                                          *****             ****
+522   *****                                          *****             ****
+523   *****                                          *****             ****
+524   *****                                          *****             ****
+525   *****                                          *****             ****
+526   *****                                          *****             ****
+527   *****                                          *****             ****
+528   *****                                          *****             ****
+529   *****                                          *****             ****
+530   *****                                          *****             ****
+531   *****                                          *****             ****
+532   *****                                          *****             ****
+533   *****                                          *****             ****
+534   *****                                          *****             ****
+535   *****                                          *****             ****
+536   *****                                          *****             ****
+537   *****                                          *****             ****
+538   *****                                          *****             ****
+539   *****                                          *****             ****
+540   *****                                          *****             ****
+541   *****                                          *****             ****
+542   *****                                          *****             ****
+543   *****                                          *****             ****
+544   *****                                          *****             ****
+545   *****                                          *****             ****
+546   *****                                          *****             ****
+547   *****                                          *****             ****
+548   *****                                          *****             ****
+549   *****                                          *****             ****
+550   *****                                          *****             ****
+551   *****                                          *****             ****
+552   *****                                          *****             ****
+553   *****                                          *****             ****
+554   *****                                          *****             ****
+555   *****                                          *****             ****
+556   *****                                          *****             ****
+557   *****                                          *****             ****
+558   *****                                          *****             ****
+559   *****                                          *****             ****
+560   *****                                          *****             ****
+561   *****                                          *****             ****
+562   *****                                          *****             ****
+563   *****                                          *****             ****
+564   *****                                          *****             ****
+565   *****                                          *****             ****
+566   *****                                          *****             ****
+567   *****                                          *****             ****
+568   *****                                          *****             ****
+569   *****                                          *****             ****
+570   *****                                          *****             ****
+571   *****                                          *****             ****
+572   *****                                          *****             ****
+573   *****                                          *****             ****
+574   *****                                          *****             ****
+575   *****                                          *****             ****
+576   *****                                          *****             ****
+577   *****                                          *****             ****
+578   *****                                          *****             ****
+579   *****                                          *****             ****
+580   *****                                          *****             ****
+581   *****                                          *****             ****
+582   *****                                          *****             ****
+583   *****                                          *****             ****
+584   *****                                          *****             ****
+585   *****                                          *****             ****
+586   *****                                          *****             ****
+587   *****                                          *****             ****
+588   *****                                          *****             ****
+589   *****                                          *****             ****
+590   *****                                          *****             ****
+591   *****                                          *****             ****
+592   *****                                          *****             ****
+593   *****                                          *****             ****
+594   *****                                          *****             ****
+595   *****                                          *****             ****
+596   *****                                          *****             ****
+597   *****                                          *****             ****
+598   *****                                          *****             ****
+599   *****                                          *****             ****
+600   "Devil, Black"                                 c_tailblack       ****
+601   "Devil, Blue"                                  c_tailblue        ****
+602   "Devil, Fire"                                  c_tailfire        ****
+603   "Devil, Green"                                 c_tailgreen       ****
+604   "Devil, Red"                                   c_tailred         ****
+605   "Devil, White"                                 c_tailice         ****
+606   "Spiked, Black"                                c_tailspike2      ****
+607   "Spiked, Blue"                                 c_tailspike4      ****
+608   "Spiked, Green"                                c_tailspike5      ****
+609   "Spiked, Gray"                                 c_tailspike       ****
+610   "Spiked, Red"                                  c_tailspike3      ****
+611   "Spiked, White"                                c_tailspike1      ****
+612   Bulette                                        c_tailbulette     ****
+613   Gargoyle                                       c_tailgarg        ****
+614   "Lizardfolk, 1"                                c_magetail        ****
+615   "Lizardfolk, 2"                                c_tailomge        ****
+616   "Lizardfolk, 3"                                c_tailowar        ****
+617   Manticore                                      c_tailmanticore   ****
+618   Minotaur                                       c_tailmino        ****
+619   Scorpion                                       c_tailscorpion    ****
+620   Scorpion_R                                     c_tailscorpionr   ****
+621   Scorpion_G                                     c_tailscorpiong   ****
+622   "Whip Tail"                                    c_tailwhip        ****
+623   Falcon                                         c_tailfalcon      ****
+624   Raven                                          c_tailraven       ****
+625   Cat                                            zep_tailcat       ****
+626   Fox                                            c_tailfluffy_a    ****   
+627   Jaguar                                         zep_tailjag2      ****
+628   Leopard                                        c_tailfeline_a    ****   
+629   "Snow Leopard"                                 c_tailfeline_b    ****   
+630   Tiger                                          c_tailfeline_c    ****   
+631   "White Tiger"                                  c_tailfeline_d    **** 
+632   Wolf                                           c_tailfluffy_c    ****
+633   Lizard_plt                                     c_t_liz_plt       ****
+634   Devil_plt                                      c_t_devil_plt     ****
+635   Dust                                           rockexpld01       ****
+636   Caltrops                                       vdr_caltrops      ****
+637   Smoke                                          vdr_smoke         ****
+638   "Smoke, Overhead (laggy)"                      vim_mentcloud     ****
+639   "Smoke, Ghost 2"                               vdr_ghostsmoke2   ****
+640   "Mage Sparkles"                                vdr_magearmor2    ****
+641   "Big Red Hand"                                 vff_rayhand       ****
+642   "Blue Flag"                                    vfx_flagblue      ****
+643   "Purple Flag"                                  vfx_flagpurp      ****
+644   "Red Flag"                                     vfx_flagred       ****
+645   "Yellow Flag"                                  vfx_flagyelo      ****
+646   "Combust (flames, laggy)"                      vim_ballfire      ****
+647   "Acid Sparkles"                                vim_shwngacid01   ****
+648   "Cold Sparkles"                                vim_shwngcold01   ****
+649   "Evil Sparkles"                                vim_shwngevil01   ****
+650   "Fire Sparkles"                                vim_shwngfire01   ****
+651   "Mind Sparkles"                                vim_shwngmind01   ****
+652   "Big Arrow"                                    vpr_heavybolt     ****
+653   "Whip fire"                                    wwhip_fxfire      ****
+654   "Ice Shards"                                   vpr_shardice      ****
+655   "Acid Spiral Trace"                            vco_lgspracid01   ****
+656   "Cold Spiral Trace"                            vco_lgsprcold01   ****
+657   "Electric Spiral Trace"                        vco_lgsprelec01   ****
+658   "Evil Spiral Trace"                            vco_lgsprevil01   ****
+659   "Fire Spiral Trace"                            vco_lgsprfire01   ****
+660   "Heal Spiral Trace"                            vco_lgsprheal01   ****
+661   "Mind Spiral Trace"                            vco_lgsprmind01   ****
+662   "Nature Spiral Trace"                          vco_lgsprnatr01   ****
+663   "Odd Spiral Trace"                             vco_lgsprodd01    ****
+664   "Sonic Spiral Trace"                           vco_lgsprsonc01   ****
+665   "Kung Pow"                                     vpr_kngpow        ****
+666   "Bat Pet"                                      c_a_bat           ****
+667   "Lavaspurt"                                    fx_lavaspurt      ****
+668   "Fire Sparkles"                                fx_ref_fire       ****
+669   "Ribbon Trace"                                 fx_ribbon         ****
+670   "Money Sign"                                   gi_store          ****
+671   "Fire (Azer style)"                            vcm_hitfire       ****
+672   "Blue Fog"                                     vco_ato2blue      ****
+673   "Green Fog"                                    vco_ato2gren      ****
+674   "Purple Fog"                                   vco_ato2purp      ****
+675   "Red Fog"                                      vco_ato2red       ****
+676   "Yellow Fog"                                   vco_ato2yelo      ****
+677   Butterflys                                     plc_t02           ****
+678   "Ravelights Acid (fireball summon)"            vco_mebalacid01   ****
+679   "Ravelights Cold (fireball summon)"            vco_mebalcold01   ****
+680   "Ravelights Evil (fireball summon)"            vco_mebalevil01   ****
+681   "Ravelights Fire (fireball summon)"            vco_mebalfire01   ****
+682   "Ravelights Heal (fireball summon)"            vco_mebalheal01   ****
+683   "Ravelights Mind (fireball summon)"            vco_mebalmind01   ****
+684   "Ravelights Natr (fireball summon)"            vco_mebalnatr01   ****
+685   "Ravelights Odd  (fireball summon)"            vco_mebalodd01    ****
+686   "Ravelights Sonc (fireball summon)"            vco_mebalsonc01   ****
+687   Flys                                           vps_bugs          ****
+688   "Acid Summon Trace Rays"                       vco_mehedacid01   ****
+689   "Cold Summon Trace Rays"                       vco_mehedcold01   ****
+690   "Evil Summon Trace Rays"                       vco_mehedevil01   ****
+691   "Fire Summon Trace Rays"                       vco_mehedfire01   ****
+692   "Heal Summon Trace Rays"                       vco_mehedheal01   ****
+693   "Mind Summon Trace Rays"                       vco_mehedmind01   ****
+694   "Natr Summon Trace Rays"                       vco_mehednatr01   ****
+695   "Odd Summon Trace Rays"                        vco_mehedodd01    ****
+696   "Sonc Summon Trace Rays"                       vco_mehedsonc01   ****
+697   "Death Shield Trace"                           vim_protdeath     ****
+698   Destruction                                    vim_destruct      ****
+699   "Blue Flames"                                  vdr_eleshield02   ****
+700   "Purple Rays Trace"                            vim_destruct_l    ****
+701   "Gas Jet Acid"                                 vff_gasacid       ****
+702   "Gas Jet Evil"                                 vff_gasevil       ****
+703   "Gas Jet Fire"                                 vff_gasfire       ****
+704   "Gas Jet Grease"                               vff_gasgrease     ****
+705   "Gas Jet Mind"                                 vff_gasmind       ****
+706   "Gas Jet Nature"                               vff_gasnatr       ****
+707   "Gas Jet Smoke"                                vff_gassmoke      ****
+708   "Colorful Tracer"                              vim_bonabil       ****
+709   "Rays Tracing"                                 vim_bonholy       ****
+710   "Big Bright Green Fog"                         vdr_bigby_int     ****
+711   Waypoint                                       gi_waypoint       ****
+712   "Black Fog"                                    vps_tentacle      ****
+713   "Negative Rays (Tracing, very cool but laggy)" vim_negabil       ****
+714   "Big Cloud"                                    vff_summon1       ****
+715   "Sparkles w/ 4 Tracers"                        vff_summon2       ****
+716   "Body Encasing Sparkles"                       vff_summund       ****
+717   "Hyper Fireball"                               vpr_fireball      ****
+718   "Cold Fountain"                                vim_pulscold      ****
+719   "Fire Fountain"                                vim_pulsfire      ****
+720   "Holy Fountain"                                vim_pulsholy      ****
+721   "Wierd Ray Tracers"                            vim_pulsneg       ****
+722   "Solid Flame Beams (Flame Lash)"               vim_lashfire      ****
+723   "Doom (Stormcloud)"                            vim_magdoom       ****
+724   "Ray Cold"                                     vim_raycold       ****
+725   "Horse, White, Blue Scale Barding"             c_qhorsewc2       default

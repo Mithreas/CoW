@@ -1,0 +1,176 @@
+# Exported from Wayland's NWN Maxscript v0.3b at 2/23/2003 1:47:34 AM
+# mdl file
+#
+filedependancy Unknown
+newmodel ttr10_o02_01
+setsupermodel ttr10_o02_01 NULL
+classification Tile
+setanimationscale 1.0
+beginmodelgeom ttr10_o02_01
+node dummy ttr10_o02_01
+    parent NULL
+endnode
+node light ttr10_o02_01ml1
+    parent ttr10_o02_01
+    position 0.0 0.0 5.0
+    orientation 1.0 0.0 0.0 0.0
+    scale 1.0
+#   Fake light data
+    ambientonly 0
+    shadow 0
+    isdynamic 0
+    affectdynamic 1
+    lightpriority 5
+    fadingLight 1
+    flareradius 0
+    radius 14
+    multiplier 1
+    color 0 0 0	
+endnode
+node light ttr10_o02_01ml2
+    parent ttr10_o02_01
+    position 0.175 -3.90168 3.41088
+    orientation 1.0 0.0 0.0 0.0
+    scale 1.0
+#   Fake light data
+    ambientonly 0
+    shadow 0
+    isdynamic 0
+    affectdynamic 1
+    lightpriority 5
+    fadingLight 1
+    flareradius 0
+    radius 14
+    multiplier 1
+    color 0 0 0	
+endnode
+node aabb CM107
+    parent ttr10_o02_01
+    position 0.0 0.0 0.0
+    orientation 0.0 0.0 -1.0 -1.5708
+    scale 1.0
+    diffuse 0.8000 0.8000 0.8000
+    ambient 0.2000 0.2000 0.2000
+    specular 0.0000 0.0000 0.0000
+    render 0
+    bitmap NULL
+    verts 4
+        -5.0 -5.0 0.0
+        5.0 -5.0 0.0
+        -5.0 5.0 0.0
+        5.0 5.0 0.0
+    faces 2
+        0 1 3 1 3 1 2 14
+        2 0 3 1 0 5 4 14
+    tverts 6
+        1.0 0.5005 0
+        1.4995 1.4995 0
+        1.999 1.999 0
+        1.64879 1.69882 0
+        1.115 0.508234 0
+        1.04601 0.353194 0
+    aabb         -5.0 -5.0 0.0 5.0 5.0 0.0 -1
+        -5.0 -5.0 0.0 5.0 5.0 0.0 1
+        -5.0 -5.0 0.0 5.0 5.0 0.0 0
+endnode
+node trimesh grassplane
+    parent ttr10_o02_01
+    position 0.0 0.0 0.0
+    orientation 1.0 0.0 0.0 0.0
+    scale 1.0
+    shininess 1.000000
+    render 1
+    diffuse 1.0 1.0 1.0
+    ambient 1.0 1.0 1.0
+    specular 0.0 0.0 0.0
+    selfillumcolor 0.0 0.0 0.0
+    alpha 1.0
+    bitmap TTR01_grass02
+    verts 25
+        2.5 -5.0 0.0
+        5.0 -5.0 0.0
+        2.5 -2.5 0.0
+        5.0 -2.5 0.0
+        2.5 0.0 0.0
+        5.0 0.0 0.0
+        2.5 2.5 0.0
+        5.0 2.5 0.0
+        2.5 5.0 0.0
+        5.0 5.0 0.0
+        0.0 -5.0 0.0
+        0.0 -2.5 0.0
+        0.0 0.0 0.0
+        0.0 2.5 0.0
+        0.0 5.0 0.0
+        -2.5 -5.0 0.0
+        -2.5 -2.5 0.0
+        -2.5 0.0 0.0
+        -2.5 2.5 0.0
+        -2.5 5.0 0.0
+        -5.0 -5.0 0.0
+        -5.0 -2.5 0.0
+        -5.0 0.0 0.0
+        -5.0 2.5 0.0
+        -5.0 5.0 0.0
+    faces 32
+        0 1 2 1 0 1 2 1
+        3 2 1 1 3 2 1 1
+        2 3 4 1 2 3 4 1
+        5 4 3 1 5 4 3 1
+        4 5 6 1 4 5 6 1
+        7 6 5 1 7 6 5 1
+        6 7 8 1 6 7 8 1
+        9 8 7 1 9 8 7 1
+        10 0 11 1 10 0 11 1
+        2 11 0 1 2 11 0 1
+        11 2 12 1 11 2 12 1
+        4 12 2 1 4 12 2 1
+        12 4 13 1 12 4 13 1
+        6 13 4 1 6 13 4 1
+        13 6 14 1 13 6 14 1
+        8 14 6 1 8 14 6 1
+        15 10 16 1 15 10 16 1
+        11 16 10 1 11 16 10 1
+        16 11 17 1 16 11 17 1
+        12 17 11 1 12 17 11 1
+        17 12 18 1 17 12 18 1
+        13 18 12 1 13 18 12 1
+        18 13 19 1 18 13 19 1
+        14 19 13 1 14 19 13 1
+        20 15 21 1 20 15 21 1
+        16 21 15 1 16 21 15 1
+        21 16 22 1 21 16 22 1
+        17 22 16 1 17 22 16 1
+        22 17 23 1 22 17 23 1
+        18 23 17 1 18 23 17 1
+        23 18 24 1 23 18 24 1
+        19 24 18 1 19 24 18 1
+    tverts 25
+        13.0 14.5 0
+        13.5 14.5 0
+        13.0 15.0 0
+        13.5 15.0 0
+        13.0 15.5 0
+        13.5 15.5 0
+        13.0 16.0 0
+        13.5 16.0 0
+        13.0 16.5 0
+        13.5 16.5 0
+        12.5 14.5 0
+        12.5 15.0 0
+        12.5 15.5 0
+        12.5 16.0 0
+        12.5 16.5 0
+        12.0 14.5 0
+        12.0 15.0 0
+        12.0 15.5 0
+        12.0 16.0 0
+        12.0 16.5 0
+        11.5 14.5 0
+        11.5 15.0 0
+        11.5 15.5 0
+        11.5 16.0 0
+        11.5 16.5 0
+endnode
+endmodelgeom ttr10_o02_01
+donemodel ttr10_o02_01

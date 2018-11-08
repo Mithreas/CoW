@@ -1,0 +1,73 @@
+#Exported from 3ds max by MDL Plug-in Suite 1.0b
+#http://www.bricksbuilder.com/nwn/utils/
+#MAXMODEL ASCII
+# model: tbml_zz2_01
+filedependancy Unknown
+newmodel tbml_zz2_01
+setsupermodel tbml_zz2_01 NULL
+classification Tile
+setanimationscale 1.0
+#MAXGEOM  ASCII
+beginmodelgeom tbml_zz2_01
+node dummy tbml_zz2_01
+  parent NULL
+endnode
+node trimesh Plane165
+  parent tbml_zz2_01
+  position 0 0 -1
+  orientation 0 0 0 0
+  wirecolor 0.34375 0.34375 0.34375
+  ambient 1 1 1
+  diffuse 1 1 1
+  specular 0 0 0
+  shininess 1
+  bitmap TDE01_lava01
+  render 1
+  Shadow 1
+  beaming 0
+  transparencyhint 1
+  tilefade 0
+  rotatetexture 1
+  verts 4
+    -5 5 0
+    -5 -5 0
+    5 5 0
+    5 -5 0
+  faces 2
+    0 1 2  1  0 1 2  0
+    3 2 1  1  3 2 1  0
+  tverts 4
+    6.00004 -56.0006 0
+    6.00004 -59.0006 0
+    9.00007 -56.0006 0
+    9.00007 -59.0006 0
+endnode
+endmodelgeom tbml_zz2_01
+
+#MAXANIM ASCII
+newanim animloop01 tbml_zz2_01
+  length 3.96667
+  transtime 2
+  animroot tbml_zz2_01
+node dummy tbml_zz2_01
+  parent NULL
+endnode
+node trimesh Plane165
+  parent tbml_zz2_01
+endnode
+event 0  detonate
+doneanim animloop01 tbml_zz2_01
+
+#MAXANIM ASCII
+newanim tiledefault tbml_zz2_01
+  length 0
+  transtime 0
+  animroot tbml_zz2_01
+node dummy tbml_zz2_01
+  parent NULL
+endnode
+node trimesh Plane165
+  parent tbml_zz2_01
+endnode
+doneanim tiledefault tbml_zz2_01
+donemodel tbml_zz2_01

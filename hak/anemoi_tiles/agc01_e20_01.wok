@@ -1,0 +1,22 @@
+#MAXWALKMESH  ASCII
+beginwalkmeshgeom agc01_E20_01 
+node aabb Rectangle998 
+  parent agc01_E20_01 
+  position 0.0 0.0 3.0
+  orientation  0.0 0.0 0.0  0.0
+  wirecolor 0.690196 0.101961 0.101961  
+    verts 4
+     5.0 5.0 -6.10352e-007
+     -5.0 5.0 -6.10352e-007
+     -5.0 -5.0 -6.10352e-007
+     5.0 -5.0 -6.10352e-007
+    faces 2
+     2 3 0  1  0 0 0  7
+     1 2 0  1  0 0 0  7
+aabb    -5.00 -5.00 -0.00   5.00  5.00 -0.00  -1
+    -5.00 -5.00 -0.00   5.00  5.00 -0.00  0
+    -5.00 -5.00 -0.00   5.00  5.00 -0.00  1
+endnode
+endwalkmeshgeom agc01_E20_01 
+
+

@@ -1,0 +1,61 @@
+#Exported from 3ds max by MDL Plug-in Suite 1.0b
+#http://www.bricksbuilder.com/nwn/utils/
+#MAXMODEL ASCII
+# model: TBM17_Z03_01
+filedependancy Unknown
+newmodel TBM17_Z03_01
+setsupermodel TBM17_Z03_01 NULL
+classification Tile
+setanimationscale 1.0
+#MAXGEOM  ASCII
+beginmodelgeom TBM17_Z03_01
+node dummy TBM17_Z03_01
+  parent NULL
+endnode
+node trimesh Plane01_01_01
+  parent TBM17_Z03_01
+  position 0 0 0
+  orientation 0 0 0 0
+  wirecolor 0.113281 0.113281 0.113281
+  ambient 1 1 1
+  diffuse 1 1 1
+  specular 0 0 0
+  shininess 2
+  bitmap bm_snow2
+  verts 11
+    5 -5 0
+    -4.38 -5 0
+    -4.81 -5 0
+    -4.87 -5 0
+    -5 -5 0
+    5 3.65 0
+    5 3.62 0
+    5 5 0
+    5 4.79 0
+    -5 5 0
+    -5 -2.16 0
+  faces 9
+    6 1 0  1  0 1 2  0
+    5 2 1  1  3 4 1  0
+    1 6 5  1  1 0 3  0
+    5 8 3  1  3 5 6  0
+    3 2 5  1  6 4 3  0
+    10 4 3  1  7 8 6  0
+    9 10 3  1  9 7 6  0
+    9 3 8  1  9 6 5  0
+    9 8 7  1  9 5 10  0
+  tverts 11
+    0.931562 0.865196 0
+    0.0919457 0.0449428 0
+    0.931561 0.0449426 0
+    0.931237 0.867946 0
+    0.0481853 0.0449428 0
+    0.931237 0.931236 0
+    0.0428809 0.0428811 0
+    0.0314741 0.300354 0
+    0.031474 0.042881 0
+    0.0314742 0.950065 0
+    0.931237 0.950064 0
+endnode
+endmodelgeom TBM17_Z03_01
+donemodel TBM17_Z03_01

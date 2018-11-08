@@ -1,0 +1,32 @@
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+tm-clothes-v1b-f and tm-clothes-v1b-0
+Release Date:  August 13, 2011  
+
+This hak contains clothing, helms, tails and wings.  
+
+Many smaller haks were combined to create this hak.  Those haks are listed in the tm-clothing-v1b-Credits-and-Honors.txt file.  Please be aware that not all parts of the haks may be included in this one.  Otherwise this hak would be far more massive than it already is.  Large phenotype files are not included.
+
+The hak was constructed using Lisa’s Clothes Horse HotU Padded (August 28, 2003 version) hak with the remaining models added in.
+
+The Roman armor was done by Snambles the Powerful, Destroyer of Worlds, Widowmaker.  Some plt textures done by Michael, Luke and Mistress.  Kudos to all the original vault authors.  Some armor parts were created by Mistress to match other existing body parts.  This was done through plt work.  No actual new models were made.
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Version 1b - *HUGE update*
+- created many MANY icons and fixed many more.  
+- created many male/female body parts to fill in gaps.
+- as needed, ran all models through the armory to generate missing racial parts.  Alas, robes do not work.
+- moved tails, tats and skin type models to the 200+ range.
+- added lots and lots more goodies from the Vault.  See the tm-clothing-v1b-Credits-and-Honors.txt file for a list of the specific Vault authors.
+- converted (where possible) hands and feet to use models that show the fingers/toes.
+- removed heads - those have their own hak now.
+- merged in content from tm-misc-v1a.
+
+Version 1a
+- Never existed
+
+Version .99
+- patch 2 and 3 added
+- lisa's holdables removed
+- added worm's helm
+- added mrxxs's shoulder
+- female human head corrections
+- added wings and tails

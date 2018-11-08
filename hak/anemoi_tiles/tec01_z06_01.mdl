@@ -1,0 +1,90 @@
+#MAXMODEL ASCII
+# model: tec01_z06_01
+filedependancy tec01_z06_01.max
+newmodel tec01_z06_01
+setsupermodel tec01_z06_01 NULL
+classification tile
+setanimationscale 1
+#MAXGEOM  ASCII
+beginmodelgeom tec01_z06_01
+node dummy tec01_z06_01
+  parent NULL
+  #part-number 0
+endnode
+node trimesh Line1887
+  parent tec01_z06_01
+  #part-number 1
+  ambient 1 1 1
+  diffuse 1 1 1
+  specular 0.0500000007 0.0500000007 0.0500000007
+  shininess 26
+  bitmap TTU01_Pit
+  verts 8
+    0 5 0.769999981
+    -5 5 0.769999981
+    -5 0 0.769999981
+    -5 -5 0.769999981
+    5 5 0.769999981
+    0 -5 0.769999981
+    5 0 0.769999981
+    5 -5 0.769999981
+  tverts 11
+    0.499998003 0.0454623997 0
+    2.19271994 0.0454623997 0
+    2.19271994 0.0454623997 0
+    0.741981983 0.0454623997 0
+    -1.19272006 0.0454623997 0
+    -0.928570986 0.0454623997 0
+    0.247620001 0.0454623997 0
+    -0.0305995997 0.0454622991 0
+    -0.928570986 0.0454622991 0
+    1.92857003 0.0454623997 0
+    1.01118004 0.0454622991 0
+  faces 6
+    0 1 2 1 0 1 2 2
+    2 3 0 1 1 3 0 2
+    4 0 3 1 4 0 3 2
+    5 6 4 1 5 6 7 1
+    6 5 7 1 7 8 5 1
+    5 4 3 1 6 9 10 1
+  position 0 0 -3.17000008
+  orientation 0 0 0 0
+endnode
+node dummy tec01_z06_01a
+  parent tec01_z06_01
+  #part-number 2
+  position 0 9.76562023e-006 0
+  orientation 0 0 -1 -1.57079995
+endnode
+node trimesh Plane1105
+  parent tec01_z06_01a
+  #part-number 3
+  ambient 1 1 1
+  diffuse 1 1 1
+  specular 0.0500000007 0.0500000007 0.0500000007
+  shininess 26
+  shadow 0
+  rotatetexture 1
+  bitmap ttd01_water01
+  verts 4
+    -7 3 0
+    -7 -7 0
+    3 -7 0
+    3 3 0
+  tverts 4
+    76 -12 0
+    78 -12 0
+    78 -10 0
+    76 -10 0
+  faces 2
+    0 1 2 1 0 1 2 1
+    2 3 0 1 2 3 0 1
+  position 1.99998999 2 0
+  orientation 0 0 0 0
+  alpha 0.699999988
+  scale 1
+  setfillumcolor 0 0 0
+endnode
+endmodelgeom tec01_z06_01
+
+donemodel tec01_z06_01
