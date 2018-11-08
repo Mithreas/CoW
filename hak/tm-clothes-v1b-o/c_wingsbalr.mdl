@@ -224,8 +224,8 @@ node emitter WingFire25
   blend_sel 2
   Blend Lighten
   spawnType 0
-  xSize 0.15 # 6.0
-  ySize 0.10 # # 50.0
+  xSize 0.15
+  ySize 0.10
   inherit 1
   inherit_local 0
   inheritvel 0
@@ -240,7 +240,7 @@ node emitter WingFire25
   alphaStart 1.0
   alphaEnd 0.0
   sizeStart 0.0
-  sizeEnd 0.1 # 1.5
+  sizeEnd 0.1
   sizeStart_y 0.0
   sizeEnd_y 0.0
   birthrate 12
@@ -291,8 +291,8 @@ node emitter WingFire26
   blend_sel 2
   Blend Lighten
   spawnType 0
-  xSize 0.15 # 6.0
-  ySize 0.10 # # 75.5
+  xSize 0.15
+  ySize 0.10
   inherit 1
   inherit_local 0
   inheritvel 0
@@ -307,7 +307,7 @@ node emitter WingFire26
   alphaStart 1.0
   alphaEnd 0.0
   sizeStart 0.0
-  sizeEnd 0.1 # 1.5
+  sizeEnd 0.1
   sizeStart_y 0.0
   sizeEnd_y 0.0
   birthrate 15
@@ -358,8 +358,8 @@ node emitter WingFire28
   blend_sel 2
   Blend Lighten
   spawnType 0
-  xSize 0.15 # 2.0
-  ySize 0.10 # # 2.0
+  xSize 0.15
+  ySize 0.10
   inherit 1
   inherit_local 0
   inheritvel 0
@@ -425,8 +425,8 @@ node emitter WingFire30
   blend_sel 2
   Blend Lighten
   spawnType 0
-  xSize 0.15 # 2.0
-  ySize 0.10 # # 2.0
+  xSize 0.15
+  ySize 0.10
   inherit 1
   inherit_local 0
   inheritvel 0
@@ -550,8 +550,8 @@ node emitter WingFire21
   blend_sel 2
   Blend Lighten
   spawnType 0
-  xSize 0.15 # 6.0
-  ySize 0.10 # # 50.5
+  xSize 0.15
+  ySize 0.10
   inherit 1
   inherit_local 0
   inheritvel 0
@@ -566,7 +566,7 @@ node emitter WingFire21
   alphaStart 1.0
   alphaEnd 0.0
   sizeStart 0.0
-  sizeEnd 0.1 # 1.5
+  sizeEnd 0.1
   sizeStart_y 0.0
   sizeEnd_y 0.0
   birthrate 4
@@ -617,8 +617,8 @@ node emitter WingFire31
   blend_sel 2
   Blend Lighten
   spawnType 0
-  xSize 0.15 # 2.0
-  ySize 0.10 # # 2.0
+  xSize 0.15
+  ySize 0.10
   inherit 1
   inherit_local 0
   inheritvel 0
@@ -684,8 +684,8 @@ node emitter WingFire32
   blend_sel 2
   Blend Lighten
   spawnType 0
-  xSize 0.15 # 2.0
-  ySize 0.10 # # 2.0
+  xSize 0.15
+  ySize 0.10
   inherit 1
   inherit_local 0
   inheritvel 0
@@ -751,8 +751,8 @@ node emitter WingFire22
   blend_sel 2
   Blend Lighten
   spawnType 0
-  xSize 0.15 # 6.0
-  ySize 0.10 # # 80.0
+  xSize 0.15
+  ySize 0.10
   inherit 1
   inherit_local 0
   inheritvel 0
@@ -767,7 +767,7 @@ node emitter WingFire22
   alphaStart 1.0
   alphaEnd 0.0
   sizeStart 0.0
-  sizeEnd 0.1 # 1.5
+  sizeEnd 0.1
   sizeStart_y 0.0
   sizeEnd_y 0.0
   birthrate 14
@@ -876,8 +876,8 @@ node emitter WingFire12
   blend_sel 2
   Blend Lighten
   spawnType 0
-  xSize 0.15 # 6.0
-  ySize 0.10 # # 50.0
+  xSize 0.15
+  ySize 0.10
   inherit 1
   inherit_local 0
   inheritvel 0
@@ -892,7 +892,7 @@ node emitter WingFire12
   alphaStart 1.0
   alphaEnd 0.0
   sizeStart 0.0
-  sizeEnd 0.1 # 1.5
+  sizeEnd 0.1
   sizeStart_y 0.0
   sizeEnd_y 0.0
   birthrate 4
@@ -943,8 +943,8 @@ node emitter WingFire33
   blend_sel 2
   Blend Lighten
   spawnType 0
-  xSize 0.15 # 2.0
-  ySize 0.10 # # 2.0
+  xSize 0.15
+  ySize 0.10
   inherit 1
   inherit_local 0
   inheritvel 0
@@ -1010,8 +1010,8 @@ node emitter WingFire34
   blend_sel 2
   Blend Lighten
   spawnType 0
-  xSize 0.15 # 2.0
-  ySize 0.10 # # 2.0
+  xSize 0.15
+  ySize 0.10
   inherit 1
   inherit_local 0
   inheritvel 0
@@ -1077,8 +1077,8 @@ node emitter WingFire13
   blend_sel 2
   Blend Lighten
   spawnType 0
-  xSize 0.15 # 6.0
-  ySize 0.10 # # 60.0
+  xSize 0.15
+  ySize 0.10
   inherit 1
   inherit_local 0
   inheritvel 0
@@ -1093,7 +1093,7 @@ node emitter WingFire13
   alphaStart 1.0
   alphaEnd 0.0
   sizeStart 0.0
-  sizeEnd 0.1 # 1.5
+  sizeEnd 0.1
   sizeStart_y 0.0
   sizeEnd_y 0.0
   birthrate 14
@@ -1144,8 +1144,8 @@ node emitter WingFire07
   blend_sel 2
   Blend Lighten
   spawnType 0
-  xSize 0.15 # 2.0
-  ySize 0.10 # # 2.0
+  xSize 0.15
+  ySize 0.10
   inherit 1
   inherit_local 0
   inheritvel 0
@@ -1211,8 +1211,8 @@ node emitter WingFire23
   blend_sel 2
   Blend Lighten
   spawnType 0
-  xSize 0.15 # 6.0
-  ySize 0.10 # # 45.0
+  xSize 0.15
+  ySize 0.10
   inherit 1
   inherit_local 0
   inheritvel 0
@@ -1227,7 +1227,7 @@ node emitter WingFire23
   alphaStart 1.0
   alphaEnd 0.0
   sizeStart 0.0
-  sizeEnd 0.1 # 1.5
+  sizeEnd 0.1
   sizeStart_y 0.0
   sizeEnd_y 0.0
   birthrate 2
@@ -1278,8 +1278,8 @@ node emitter WingFire29
   blend_sel 2
   Blend Lighten
   spawnType 0
-  xSize 0.15 # 6.0
-  ySize 0.10 # # 26.0
+  xSize 0.15
+  ySize 0.10
   inherit 1
   inherit_local 0
   inheritvel 0
@@ -1345,8 +1345,8 @@ node emitter WingFire24
   blend_sel 2
   Blend Lighten
   spawnType 0
-  xSize 0.15 # 6.0
-  ySize 0.10 # # 33.0
+  xSize 0.15
+  ySize 0.10
   inherit 1
   inherit_local 0
   inheritvel 0
@@ -1361,7 +1361,7 @@ node emitter WingFire24
   alphaStart 1.0
   alphaEnd 0.0
   sizeStart 0.0
-  sizeEnd 0.1 # 1.5
+  sizeEnd 0.1
   sizeStart_y 0.0
   sizeEnd_y 0.0
   birthrate 2
@@ -1412,8 +1412,8 @@ node emitter WingFire11
   blend_sel 2
   Blend Lighten
   spawnType 0
-  xSize 0.15 # 2.0
-  ySize 0.10 # # 2.0
+  xSize 0.15
+  ySize 0.10
   inherit 1
   inherit_local 0
   inheritvel 0
@@ -1672,8 +1672,8 @@ node emitter WingFire35
   blend_sel 2
   Blend Lighten
   spawnType 0
-  xSize 0.15 # 6.0
-  ySize 0.10 # # 50.0
+  xSize 0.15
+  ySize 0.10
   inherit 1
   inherit_local 0
   inheritvel 0
@@ -1688,7 +1688,7 @@ node emitter WingFire35
   alphaStart 1.0
   alphaEnd 0.0
   sizeStart 0.0
-  sizeEnd 0.1 # 1.5
+  sizeEnd 0.1
   sizeStart_y 0.0
   sizeEnd_y 0.0
   birthrate 12
@@ -1739,8 +1739,8 @@ node emitter WingFire36
   blend_sel 2
   Blend Lighten
   spawnType 0
-  xSize 0.15 # 2.0
-  ySize 0.10 # # 2.0
+  xSize 0.15
+  ySize 0.10
   inherit 1
   inherit_local 0
   inheritvel 0
@@ -1806,8 +1806,8 @@ node emitter WingFire37
   blend_sel 2
   Blend Lighten
   spawnType 0
-  xSize 0.15 # 6.0
-  ySize 0.10 # # 75.0
+  xSize 0.15
+  ySize 0.10
   inherit 1
   inherit_local 0
   inheritvel 0
@@ -1822,7 +1822,7 @@ node emitter WingFire37
   alphaStart 1.0
   alphaEnd 0.0
   sizeStart 0.0
-  sizeEnd 0.1 # 1.5
+  sizeEnd 0.1
   sizeStart_y 0.0
   sizeEnd_y 0.0
   birthrate 15
@@ -1873,8 +1873,8 @@ node emitter WingFire38
   blend_sel 2
   Blend Lighten
   spawnType 0
-  xSize 0.15 # 2.0
-  ySize 0.10 # # 2.0
+  xSize 0.15
+  ySize 0.10
   inherit 1
   inherit_local 0
   inheritvel 0
@@ -1998,8 +1998,8 @@ node emitter WingFire44
   blend_sel 2
   Blend Lighten
   spawnType 0
-  xSize 0.15 # 2.0
-  ySize 0.10 # # 2.0
+  xSize 0.15
+  ySize 0.10
   inherit 1
   inherit_local 0
   inheritvel 0
@@ -2065,8 +2065,8 @@ node emitter WingFire43
   blend_sel 2
   Blend Lighten
   spawnType 0
-  xSize 0.15 # 6.0
-  ySize 0.10 # # 100.0
+  xSize 0.15
+  ySize 0.10
   inherit 1
   inherit_local 0
   inheritvel 0
@@ -2081,7 +2081,7 @@ node emitter WingFire43
   alphaStart 1.0
   alphaEnd 0.0
   sizeStart 0.0
-  sizeEnd 0.1 # 1.5
+  sizeEnd 0.1
   sizeStart_y 0.0
   sizeEnd_y 0.0
   birthrate 4
@@ -2132,8 +2132,8 @@ node emitter WingFire39
   blend_sel 2
   Blend Lighten
   spawnType 0
-  xSize 0.15 # 6.0
-  ySize 0.10 # # 80.0
+  xSize 0.15
+  ySize 0.10
   inherit 1
   inherit_local 0
   inheritvel 0
@@ -2148,7 +2148,7 @@ node emitter WingFire39
   alphaStart 1.0
   alphaEnd 0.0
   sizeStart 0.0
-  sizeEnd 0.1 # 1.5
+  sizeEnd 0.1
   sizeStart_y 0.0
   sizeEnd_y 0.0
   birthrate 14
@@ -2199,8 +2199,8 @@ node emitter WingFire46
   blend_sel 2
   Blend Lighten
   spawnType 0
-  xSize 0.15 # 2.0
-  ySize 0.10 # # 2.0
+  xSize 0.15
+  ySize 0.10
   inherit 1
   inherit_local 0
   inheritvel 0
@@ -2324,8 +2324,8 @@ node emitter WingFire45
   blend_sel 2
   Blend Lighten
   spawnType 0
-  xSize 0.15 # 6.0
-  ySize 0.10 # # 100.0
+  xSize 0.15
+  ySize 0.10
   inherit 1
   inherit_local 0
   inheritvel 0
@@ -2340,7 +2340,7 @@ node emitter WingFire45
   alphaStart 1.0
   alphaEnd 0.0
   sizeStart 0.0
-  sizeEnd 0.1 # 1.5
+  sizeEnd 0.1
   sizeStart_y 0.0
   sizeEnd_y 0.0
   birthrate 4
@@ -2391,8 +2391,8 @@ node emitter WingFire40
   blend_sel 2
   Blend Lighten
   spawnType 0
-  xSize 0.15 # 2.0
-  ySize 0.10 # # 2.0
+  xSize 0.15
+  ySize 0.10
   inherit 1
   inherit_local 0
   inheritvel 0
@@ -2458,8 +2458,8 @@ node emitter WingFire41
   blend_sel 2
   Blend Lighten
   spawnType 0
-  xSize 0.15 # 6.0
-  ySize 0.10 # # 60.0
+  xSize 0.15
+  ySize 0.10
   inherit 1
   inherit_local 0
   inheritvel 0
@@ -2474,7 +2474,7 @@ node emitter WingFire41
   alphaStart 1.0
   alphaEnd 0.0
   sizeStart 0.0
-  sizeEnd 0.1 # 1.5
+  sizeEnd 0.1
   sizeStart_y 0.0
   sizeEnd_y 0.0
   birthrate 14
@@ -2525,8 +2525,8 @@ node emitter WingFire51
   blend_sel 2
   Blend Lighten
   spawnType 0
-  xSize 0.15 # 2.0
-  ySize 0.10 # # 2.0
+  xSize 0.15
+  ySize 0.10
   inherit 1
   inherit_local 0
   inheritvel 0
@@ -2592,8 +2592,8 @@ node emitter WingFire49
   blend_sel 2
   Blend Lighten
   spawnType 0
-  xSize 0.15 # 6.0
-  ySize 0.10 # # 23.0
+  xSize 0.15
+  ySize 0.10
   inherit 1
   inherit_local 0
   inheritvel 0
@@ -2659,8 +2659,8 @@ node emitter WingFire47
   blend_sel 2
   Blend Lighten
   spawnType 0
-  xSize 0.15 # 6.0
-  ySize 0.10 # # 45.0
+  xSize 0.15
+  ySize 0.10
   inherit 1
   inherit_local 0
   inheritvel 0
@@ -2675,7 +2675,7 @@ node emitter WingFire47
   alphaStart 1.0
   alphaEnd 0.0
   sizeStart 0.0
-  sizeEnd 0.1 # 1.5
+  sizeEnd 0.1
   sizeStart_y 0.0
   sizeEnd_y 0.0
   birthrate 2
@@ -2726,8 +2726,8 @@ node emitter WingFire42
   blend_sel 2
   Blend Lighten
   spawnType 0
-  xSize 0.15 # 2.0
-  ySize 0.10 # # 2.0
+  xSize 0.15
+  ySize 0.10
   inherit 1
   inherit_local 0
   inheritvel 0
@@ -2793,8 +2793,8 @@ node emitter WingFire48
   blend_sel 2
   Blend Lighten
   spawnType 0
-  xSize 0.15 # 6.0
-  ySize 0.10 # # 33.0
+  xSize 0.15
+  ySize 0.10
   inherit 1
   inherit_local 0
   inheritvel 0
@@ -2809,7 +2809,7 @@ node emitter WingFire48
   alphaStart 1.0
   alphaEnd 0.0
   sizeStart 0.0
-  sizeEnd 0.1 # 1.5
+  sizeEnd 0.1
   sizeStart_y 0.0
   sizeEnd_y 0.0
   birthrate 2
@@ -2860,8 +2860,8 @@ node emitter WingFire50
   blend_sel 2
   Blend Lighten
   spawnType 0
-  xSize 0.15 # 2.0
-  ySize 0.10 # # 2.0
+  xSize 0.15
+  ySize 0.10
   inherit 1
   inherit_local 0
   inheritvel 0
