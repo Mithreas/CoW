@@ -1,18 +1,15 @@
 #MAXMODEL ASCII
 # model: pmd0_legr150
-filedependancy pmd0_legr150 NULL.mlk
+filedependancy pmd0_legr150.max
 newmodel pmd0_legr150
 setsupermodel pmd0_legr150 NULL
-classification Character
+classification CHARACTER
 setanimationscale 0
-
-#MAXGEOM ASCII
+#MAXGEOM  ASCII
 beginmodelgeom pmd0_legr150
 node dummy pmd0_legr150
   parent NULL
 endnode
-
 endmodelgeom pmd0_legr150
 
 donemodel pmd0_legr150
-

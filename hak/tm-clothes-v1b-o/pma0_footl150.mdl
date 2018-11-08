@@ -1,18 +1,15 @@
 #MAXMODEL ASCII
 # model: pma0_footl150
-filedependancy pma0_footl150 NULL.mlk
+filedependancy pma0_footl150.max
 newmodel pma0_footl150
 setsupermodel pma0_footl150 NULL
-classification Character
+classification CHARACTER
 setanimationscale 0
-
-#MAXGEOM ASCII
+#MAXGEOM  ASCII
 beginmodelgeom pma0_footl150
 node dummy pma0_footl150
   parent NULL
 endnode
-
 endmodelgeom pma0_footl150
 
 donemodel pma0_footl150
-

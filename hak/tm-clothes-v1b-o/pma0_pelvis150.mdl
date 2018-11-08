@@ -1,18 +1,15 @@
 #MAXMODEL ASCII
 # model: pma0_pelvis150
-filedependancy pma0_pelvis150 NULL.mlk
+filedependancy pma0_pelvis150.max
 newmodel pma0_pelvis150
 setsupermodel pma0_pelvis150 NULL
-classification Character
+classification CHARACTER
 setanimationscale 0
-
-#MAXGEOM ASCII
+#MAXGEOM  ASCII
 beginmodelgeom pma0_pelvis150
 node dummy pma0_pelvis150
   parent NULL
 endnode
-
 endmodelgeom pma0_pelvis150
 
 donemodel pma0_pelvis150
-

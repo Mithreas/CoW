@@ -1,91 +1,77 @@
-# Exported from NWmax 0.7 at 1/16/2005 9:35:20 AM
-# mdl file
-#
-#NWmax MODEL ASCII
+#MAXMODEL ASCII
 # model: c_tailraven
-filedependancy Unknown
+filedependancy c_tailraven.max
 newmodel c_tailraven
 setsupermodel c_tailraven NULL
-classification Character
-setanimationscale 1.0
-#NWmax GEOM  ASCII
+classification CHARACTER
+setanimationscale 1
+#MAXGEOM  ASCII
 beginmodelgeom c_tailraven
 node dummy c_tailraven
   parent NULL
 endnode
 node dummy tail
   parent c_tailraven
-  position 0.0 0.0 0.0
-  orientation 1.0 0.0 0.0 0.0
-  wirecolor 0.101961 0.694118 0.345098 
+  position 0 0 0
+  orientation 0 0 0 0
 endnode
 node trimesh Raptor_tailfeathers
   parent tail
-  position 0.0 0.0294113 0.0191052
-  orientation -1.0 0.0 0.0 -0.514872
-  wirecolor 1.0 1.0 1.0 
-  tilefade 0
-  scale 1.0
-  render 1
-  Shadow 1
-  beaming 0
-  inheritcolor 0
-  selfillumcolor 0.0 0.0 0.0 
-  rotatetexture 0
-  alpha 1.0
-  transparencyhint 0
-  center undefined
-  ambient 1.0 1.0 1.0 
-  diffuse 1.0 1.0 1.0 
-  specular 0.0 0.0 0.0 
-  shininess 28.0
-  selfillumcolor 0.0 0.0 0.0 
+  ambient 1 1 1
+  diffuse 1 1 1
+  specular 0 0 0
+  shininess 28
   bitmap c_a_bird_rav
   verts 11
-    -0.197564 -0.404776 -0.133501
-    -0.0964477 -0.149976 0.0125875
-    0.0 -0.272227 -0.048228
-    0.0 -0.515914 -0.0958907
-    -0.0564408 -0.0195075 0.0379046
-    0.000155244 0.0218778 -0.0501451
-    0.0 -0.223296 0.0170717
-    0.0 -0.0133664 0.0412306
-    0.0964477 -0.149976 0.0125875
-    0.197564 -0.404776 -0.133501
-    0.0564408 -0.0195075 0.0379046
-  faces 18
-    0 1 2  1  0 1 2  2
-    2 3 0  1  2 3 0  2
-    1 4 5  1  1 4 5  2
-    5 2 1  1  5 2 1  2
-    1 0 6  1  6 0 7  1
-    1 6 7  1  6 7 8  1
-    7 4 1  1  8 4 6  1
-    3 6 0  1  3 7 0  5
-    4 7 5  1  4 8 5  6
-    8 9 2  1  9 10 2  2
-    3 2 9  1  3 2 10  2
-    10 8 5  1  11 9 5  2
-    2 5 8  1  2 5 9  2
-    3 9 6  1  3 10 7  1
-    6 8 7  1  7 12 8  1
-    10 7 8  1  11 8 12  1
-    8 6 9  1  12 7 10  5
-    7 10 5  1  8 11 5  6
+      -0.1975640   -0.4047760   -0.1335010
+      -0.0964477   -0.1499760    0.0125875
+       0.0000000   -0.2722270   -0.0482280
+       0.0000000   -0.5159140   -0.0958907
+      -0.0564408   -0.0195075    0.0379046
+       0.0001552    0.0218778   -0.0501451
+       0.0000000   -0.2232960    0.0170717
+       0.0000000   -0.0133664    0.0412306
+       0.0964477   -0.1499760    0.0125875
+       0.1975640   -0.4047760   -0.1335010
+       0.0564408   -0.0195075    0.0379046
   tverts 13
-    0.0489462 0.0934306 0
-    0.160732 0.236358 0
-    0.321949 0.184878 0
-    0.321949 0.00219114 0
-    0.197069 0.372343 0
-    0.314055 0.378693 0
-    0.123652 0.248152 0
-    0.321949 0.184776 0
-    0.314055 0.378249 0
-    0.160923 0.236358 0
-    0.0491369 0.0934305 0
-    0.197259 0.372343 0
-    0.123843 0.248152 0
+       0.0489462    0.0934306  0
+       0.1607320    0.2363580  0
+       0.3219490    0.1848780  0
+       0.3219490    0.0021911  0
+       0.1970690    0.3723430  0
+       0.3140550    0.3786930  0
+       0.1236520    0.2481520  0
+       0.3219490    0.1847760  0
+       0.3140550    0.3782490  0
+       0.1609230    0.2363580  0
+       0.0491369    0.0934305  0
+       0.1972590    0.3723430  0
+       0.1238430    0.2481520  0
+  faces 18
+     0  1  2  1   0  1  2   2
+     2  3  0  1   2  3  0   2
+     1  4  5  1   1  4  5   2
+     5  2  1  1   5  2  1   2
+     1  0  6  1   6  0  7   1
+     1  6  7  1   6  7  8   1
+     7  4  1  1   8  4  6   1
+     3  6  0  1   3  7  0   5
+     4  7  5  1   4  8  5   6
+     8  9  2  1   9 10  2   2
+     3  2  9  1   3  2 10   2
+    10  8  5  1  11  9  5   2
+     2  5  8  1   2  5  9   2
+     3  9  6  1   3 10  7   1
+     6  8  7  1   7 12  8   1
+    10  7  8  1  11  8 12   1
+     8  6  9  1  12  7 10   5
+     7 10  5  1   8 11  5   6
+  position 0 0.0294113 0.0191052
+  orientation -1 0 0 -0.514872
+  scale 1
+  alpha 1
 endnode
 endmodelgeom c_tailraven
+
 donemodel c_tailraven
