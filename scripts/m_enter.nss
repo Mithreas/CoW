@@ -203,13 +203,21 @@ void main()
     SetPanelButtonFlash(oEntering, PANEL_BUTTON_JOURNAL, FALSE);
 
 	AddJournalQuestEntry("intro",1,oEntering, FALSE);
-	AddJournalQuestEntry("city",1,oEntering, FALSE);
-	AddJournalQuestEntry("houses",1,oEntering, FALSE);
-	AddJournalQuestEntry("greatwar",1,oEntering, FALSE);
-	AddJournalQuestEntry("perenor",1,oEntering, FALSE);
-	AddJournalQuestEntry("magic",1,oEntering, FALSE);
 	AddJournalQuestEntry("alignment",1,oEntering, FALSE);
-	AddJournalQuestEntry("honour",1,oEntering, FALSE);
+	AddJournalQuestEntry("greatwar",1,oEntering, FALSE);
+	AddJournalQuestEntry("magic",1,oEntering, FALSE);
+	
+	if (GetRacialType(oEntering) == RACIAL_TYPE_ELF)
+	{
+	  AddJournalQuestEntry("elvenmanners",1,oEntering, FALSE);
+	}
+	else
+	{
+	  AddJournalQuestEntry("city",1,oEntering, FALSE);
+	  AddJournalQuestEntry("houses",1,oEntering, FALSE);
+	  AddJournalQuestEntry("perenor",1,oEntering, FALSE);
+	  AddJournalQuestEntry("honour",1,oEntering, FALSE);
+	}
 	
     if (GetHitDice(oEntering) == 1)
     {

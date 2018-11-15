@@ -924,16 +924,6 @@ void main()
   SetStringValue(QUEST+ITEM_TAG, "cnrhelm5", DB_VARS);
   SetStringValue(QUEST+NUM_ITEMS, "1", DB_VARS);
   
-  QUEST = "hobgob_caves";
-  AddQuest(QUEST, HELP, DB_QUEST);
-  SetStringValue(QUEST+DESCRIPTION,
-   "Ranger Rathendriel has sent a request for help.  He's stationed at the outpost just west of the village.  Please " +
-   "go and see what you can do to help him.", 
-   DB_VARS);
-  SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "04_06", DB_VARS);
-  SetStringValue(QUEST+OTHER_NPC, "qst_rathendriel", DB_VARS);
-  
   QUEST = "cure_ingredients";  
   AddQuest(QUEST, RETRIEVE, DB_QUEST);
   SetStringValue(QUEST+DESCRIPTION,
@@ -946,6 +936,27 @@ void main()
   SetStringValue(QUEST+ITEM_TAG, "cnrginsengroot", DB_VARS);
   SetStringValue(QUEST+NUM_ITEMS, "2", DB_VARS);
   SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  QUEST = "beetlejuice";
+  AddQuest(QUEST, PATROL, DB_QUEST);
+  SetStringValue(QUEST+DESCRIPTION, 
+    "There are often a large number of beetles at the edge of the wastelands to the east.  They can be profitable hunting " +
+	"for one just starting out.  Go there and explore... but do not venture too far into the wasteland, there are strong " +
+	"enemies there.", DB_VARS);
+  SetStringValue(QUEST+AREA_TAGS, "FernEastBorder", DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "25", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "100", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "04_05", DB_VARS);
+  
+  QUEST = "hobgob_caves";
+  AddQuest(QUEST, HELP, DB_QUEST);
+  SetStringValue(QUEST+DESCRIPTION,
+   "Ranger Rathendriel has sent a request for help.  He's stationed at the outpost just west of the village.  Please " +
+   "go and see what you can do to help him.", 
+   DB_VARS);
+  SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "05_08", DB_VARS);
+  SetStringValue(QUEST+OTHER_NPC, "qst_rathendriel", DB_VARS);
   
   QUEST = "make_cure";  
   AddQuest(QUEST, RETRIEVE, DB_QUEST);

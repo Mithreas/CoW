@@ -40,9 +40,9 @@ void main()
 
     if (bStaticLevel)
     {
-       SetLockLockDC(oTreasure, bStaticLevel + 10 + d20());
-       SetTrapDetectDC(oTreasure, bStaticLevel + 10 + d20());
-       SetTrapDisarmDC(oTreasure, bStaticLevel + 10 + d20());
+       SetLockLockDC(oTreasure, Random(bStaticLevel) + 10 + d20());
+       SetTrapDetectDC(oTreasure, Random(bStaticLevel) + 10 + d20());
+       SetTrapDisarmDC(oTreasure, Random(bStaticLevel) + 10 + d20());	
     }
 
     DestroyObject(OBJECT_SELF);

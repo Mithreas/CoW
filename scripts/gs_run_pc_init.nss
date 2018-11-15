@@ -232,19 +232,8 @@ void gsInitialize()
             Log(INIT, "Destroying inventory");
             gsCMDestroyInventory();
 
-            //remove tattoos
-            Log(INIT, "Removing tattoos, tail and wings");
-            SetCreatureBodyPart(CREATURE_PART_LEFT_BICEP,    CREATURE_MODEL_TYPE_SKIN);
-            SetCreatureBodyPart(CREATURE_PART_LEFT_FOREARM,  CREATURE_MODEL_TYPE_SKIN);
-            SetCreatureBodyPart(CREATURE_PART_LEFT_SHIN,     CREATURE_MODEL_TYPE_SKIN);
-            SetCreatureBodyPart(CREATURE_PART_LEFT_THIGH,    CREATURE_MODEL_TYPE_SKIN);
-            SetCreatureBodyPart(CREATURE_PART_RIGHT_BICEP,   CREATURE_MODEL_TYPE_SKIN);
-            SetCreatureBodyPart(CREATURE_PART_RIGHT_FOREARM, CREATURE_MODEL_TYPE_SKIN);
-            SetCreatureBodyPart(CREATURE_PART_RIGHT_SHIN,    CREATURE_MODEL_TYPE_SKIN);
-            SetCreatureBodyPart(CREATURE_PART_RIGHT_THIGH,   CREATURE_MODEL_TYPE_SKIN);
-            SetCreatureBodyPart(CREATURE_PART_TORSO,         CREATURE_MODEL_TYPE_SKIN);
-
             //remove tail
+            Log(INIT, "Removing tail and wings");
             SetCreatureTailType(CREATURE_TAIL_TYPE_NONE);
 
             //remove wings

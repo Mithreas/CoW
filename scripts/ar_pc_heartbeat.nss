@@ -15,8 +15,16 @@ void main()
   location lLast    = GetLocalLocation(OBJECT_SELF, "CURRENT_LOCATION");
 
   if (lLast == lCurrent) 
-  {
-    gsSTAdjustState(GS_ST_STAMINA, 0.1);
+  { 
+    // Recover more quickly when sitting.
+    if (lCurrent == GetLocalLocation(OBJECT_SELF, "MI_SIT_LOCATION"))
+    {
+      gsSTAdjustState(GS_ST_STAMINA, 0.3);    
+    }
+	else
+	{	
+      gsSTAdjustState(GS_ST_STAMINA, 0.1);
+	}  
     return;
   }
 

@@ -132,6 +132,13 @@ void main()
             //Apply the VFX impact and damage effect
             ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
             ApplyEffectToObject(DURATION_TYPE_INSTANT, eDam, oTarget);
+			
+			// FL addition - chance to slow enemy for one round on failed fort save.
+			if (! MySavingThrow(SAVING_THROW_FORT, oTarget, AR_GetSpellSaveDC()))
+			{
+                ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectSlow(), oTarget, RoundsToSeconds(1));
+			  
+			}
         }
     }
     ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eRay, oTarget, 1.7);

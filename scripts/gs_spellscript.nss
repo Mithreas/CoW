@@ -486,6 +486,7 @@ void main()
 
             float fDelay = RoundsToSeconds(nSpellLevel - 1);
 
+			// Removed the below now that we're using stamina instead.
             if (!bWarlock && nSpellLevel > 1)
             {
               // We have to be a bit cunning here.  We can't stop people starting
@@ -497,16 +498,16 @@ void main()
               // server transitions etc work ok.
               // Timestamps are measured in -game- seconds.  A round is six -real- seconds.
              // So use gsTIGetGameTimestamp to convert one to the other.
-              SetLocalInt(OBJECT_SELF, "SP_EXHAUSTED_" + IntToString(nClass), gsTIGetActualTimestamp() + gsTIGetGameTimestamp(FloatToInt(fDelay)));
+              // SetLocalInt(OBJECT_SELF, "SP_EXHAUSTED_" + IntToString(nClass), gsTIGetActualTimestamp() + gsTIGetGameTimestamp(FloatToInt(fDelay)));
               //DelayCommand(fDelay, DeleteLocalInt(OBJECT_SELF, "SP_EXHAUSTED_" + IntToString(nClass)));
-              SendMessageToPC(OBJECT_SELF, "Rest for " +
-                                         IntToString(FloatToInt(fDelay)) +
-                                         "s before casting more spells.");
-              if (fDelay > 45.0f) DelayCommand(fDelay - 45.0f, SendMessageToPC(OBJECT_SELF,"45s until you can cast again."));
-              if (fDelay > 30.0f) DelayCommand(fDelay - 30.0f, SendMessageToPC(OBJECT_SELF,"30s until you can cast again."));
-              if (fDelay > 15.0f) DelayCommand(fDelay - 15.0f, SendMessageToPC(OBJECT_SELF,"15s until you can cast again."));
-              if (fDelay > 5.0f) DelayCommand(fDelay - 5.0f, SendMessageToPC(OBJECT_SELF,"5s until you can cast again."));
-              DelayCommand(fDelay, SendMessageToPC(OBJECT_SELF,"You can now cast spells again."));
+              // SendMessageToPC(OBJECT_SELF, "Rest for " +
+              //                           IntToString(FloatToInt(fDelay)) +
+              //                           "s before casting more spells.");
+              //if (fDelay > 45.0f) DelayCommand(fDelay - 45.0f, SendMessageToPC(OBJECT_SELF,"45s until you can cast again."));
+              //if (fDelay > 30.0f) DelayCommand(fDelay - 30.0f, SendMessageToPC(OBJECT_SELF,"30s until you can cast again."));
+              //if (fDelay > 15.0f) DelayCommand(fDelay - 15.0f, SendMessageToPC(OBJECT_SELF,"15s until you can cast again."));
+              //if (fDelay > 5.0f) DelayCommand(fDelay - 5.0f, SendMessageToPC(OBJECT_SELF,"5s until you can cast again."));
+              //DelayCommand(fDelay, SendMessageToPC(OBJECT_SELF,"You can now cast spells again."));			  
             }
           }
         }
@@ -583,7 +584,7 @@ void main()
         }
         else if (nSpellCastClass == CLASS_TYPE_WIZARD || nSpellCastClass == CLASS_TYPE_SORCERER || nSpellCastClass == CLASS_TYPE_BARD)
         {
-            // Arcanist - arcane spells cost HP.
+            // Arcanist - arcane spells cost stamina.
             int nHP = nLevel;			
 
             // Level 5 Harper-Mages can ignore spell components.

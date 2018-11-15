@@ -939,7 +939,21 @@ void HandleSelection()
 	
     if (selection)
 	{
-	  // Do nothing - just go back. 
+	  if (sPage == GIFT_OPTS)
+	  {
+		// Unselect the last gift chosen (but not previous ones)		
+        string sGift1 = GetLocalString(oPC, VAR_GIFT_1);
+        string sGift2 = GetLocalString(oPC, VAR_GIFT_2);
+        string sGift3 = GetLocalString(oPC, VAR_GIFT_3);
+		
+        if (sGift3 != "") DeleteLocalString(oPC, VAR_GIFT_3);
+        else if (sGift2 != "") DeleteLocalString(oPC, VAR_GIFT_2);
+        else if (sGift1 != "") DeleteLocalString(oPC, VAR_GIFT_1);
+	  }
+      else
+      {	  
+	    // Do nothing - just go back. 
+	  }	
 	}
 	else
 	{
@@ -986,22 +1000,8 @@ void HandleSelection()
 	  }
       else if (sPage == GIFT_OPTS)
       {
-        string sGift1 = GetLocalString(oPC, VAR_GIFT_1);
-        string sGift2 = GetLocalString(oPC, VAR_GIFT_2);
-        string sGift3 = GetLocalString(oPC, VAR_GIFT_3);
-
-		if (!selection)
-		{
-		  // Apply changes.  _ApplyGifts will only apply the newly selected gift.
-          _ApplyGifts();
-        }
-        else
-        {
-		  // Unselect the last gift chosen (but not previous ones)
-          if (sGift3 != "") DeleteLocalString(oPC, VAR_GIFT_3);
-          else if (sGift2 != "") DeleteLocalString(oPC, VAR_GIFT_2);
-          else if (sGift1 != "") DeleteLocalString(oPC, VAR_GIFT_1);
-        }
+        // Apply changes.  _ApplyGifts will only apply the newly selected gift.
+        _ApplyGifts();        
       }	  
 	  else if (sPage == AWARD_OPTS)
 	  {	

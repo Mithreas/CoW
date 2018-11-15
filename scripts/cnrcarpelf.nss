@@ -77,12 +77,12 @@ void main()
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 9);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 90, 90);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpTimbers, "Short Stave of Entwood", "cnrstaveshort1", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpTimbers, "Short Stave of Entwood", "cnrstaveshort4", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrtwigent", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 10, 10);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpTimbers, "Long Stave of Entwood", "cnrstavelong1", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpTimbers, "Long Stave of Entwood", "cnrstavelong4", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrtwigent", 2);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 10, 10);
@@ -131,6 +131,22 @@ void main()
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 10);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 100, 100);
 
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpWeapons, "Entwood Mages' Staff", "wmgst077", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrstavelong4", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cow_gemphen", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "dust_amet", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "dust_fiag", 1);  
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpWeapons, "Duskwood Mages' Staff", "wmgst008", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrstavelong3", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cow_gemgarn", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "dust_alex", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "dust_fluo", 1);  
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 11);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 110, 110);
+  
   //----------------------------ammo--------------------------------------
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpAmmo, "Entwood Arrows", "ca_gen_arrow_ent", 1);

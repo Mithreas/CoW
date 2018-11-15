@@ -194,7 +194,12 @@ void gsSTAdjustState(int nState, float fValue, object oCreature = OBJECT_SELF)
                 FloatToString(fStateNew, 0, 1) + "%)";
 	
     //effect
-    if (GetIsDead(oCreature))       return;
+    if (GetIsDead(oCreature))
+	{
+	  SendMessageToPC(oCreature, sMessage);
+	  return;
+	}
+	
     object oCreator    = GetLocalObject(GetModule(), "GS_ST_CREATOR");
     if (! GetIsObjectValid(oCreator)) return;
     object oSelf       = oCreature;

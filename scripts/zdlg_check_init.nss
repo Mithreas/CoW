@@ -40,7 +40,7 @@ int StartingConditional()
 	  if (GetObjectType(OBJECT_SELF) == OBJECT_TYPE_CREATURE && oSpeaker != OBJECT_SELF && !GetLocalInt(OBJECT_SELF, "dialog_private"))
 	  {
 	    // Public conversation
-        ActionStartConversation(oSpeaker, "zdlg_converse_" + IntToString(nTokenSet), FALSE, FALSE);   
+        ActionStartConversation(oSpeaker, "zdlg_converse_" + IntToString(nTokenSet), FALSE, TRUE);   
 	  }
 	  else
 	  {

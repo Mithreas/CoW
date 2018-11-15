@@ -132,6 +132,10 @@ void PageInit()
         {
 		  SetDlgPrompt("Ah, a Warden come to see me.  Excellent.  Do you want a task?"); 
         }		
+        else if (GetRacialType(oPC) == RACIAL_TYPE_ELF)
+        {
+		  SetDlgPrompt("Be welcome in this place."); 
+        }		
         SetDlgResponseList(GREETING, OBJECT_SELF);
       }
       else
@@ -229,7 +233,7 @@ void PageInit()
     if (sNewQuest == "")
     {
       //Error generating quest, or none left.
-      SetDlgPrompt("Sorry, I don't have anything for you right now.");
+      SetDlgPrompt("Sorry, I don't have anything for you right now.\n\n(Come back once you have gained more experience, or a game day later)");
       SetDlgResponseList(REPLY5, OBJECT_SELF);
     }
     else
@@ -249,13 +253,13 @@ void PageInit()
   else if (sPage == REFUSED)
   {
     Trace(RQUEST, "Player refused quest.");
-    SetDlgPrompt("Disappointing. Well, do you want something else to do?");
+    SetDlgPrompt("Disappointing. Let me know if you wish another task.");
     SetDlgResponseList(REPLY3, OBJECT_SELF);
   }
   else if (sPage == DONE)
   {
     Trace(RQUEST, "Player completed quest.");
-    SetDlgPrompt("Well done. Do you want something else to do?");
+    SetDlgPrompt("Well done.  Let me know if you are ready for another task.");
     SetDlgResponseList(REPLY3, OBJECT_SELF);
   }
   else if (sPage == NOT_DONE)
