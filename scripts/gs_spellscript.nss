@@ -128,6 +128,21 @@ void main()
     //:: Kitito // Spellsword Imbue weapon
     if (GetLocalInt(oHide, "SPELLSWORD") && (oTarget == GetItemInSlot(INVENTORY_SLOT_RIGHTHAND,OBJECT_SELF) || oTarget == GetItemInSlot(INVENTORY_SLOT_LEFTHAND,OBJECT_SELF))) // && miSSImbueSpellList(GetSpellId()) )
     {
+		if (GetSpellSchool(GetSpellId()) == GetLocalInt(oHide, "MI_BLOCKEDSCHOOL1"))
+		{
+			SendMessageToPC (OBJECT_SELF, "You may not imbue weapons using spells from your blocked school.");
+			gsSPSetOverrideSpell();
+			SetModuleOverrideSpellScriptFinished();
+			return;
+		}
+		if(GetIsObjectValid(GetSpellCastItem()))
+		{
+			SendMessageToPC (OBJECT_SELF, "You may not imbue weapons using spells cast from scrolls, wands, or other items.");
+			gsSPSetOverrideSpell();
+			SetModuleOverrideSpellScriptFinished();
+			return;
+		}		
+		
 		if (GetSpellId() == SPELL_MESTILS_ACID_SHEATH ||
 			GetSpellId() == SPELL_ELEMENTAL_SHIELD ||
 			GetSpellId() == SPELL_DEATH_ARMOR)
@@ -146,6 +161,8 @@ void main()
 		}
 		else
 		{
+		    gsSTDoCasterDamage(OBJECT_SELF, gsSPGetSpellLevel(nSpell, GetLastSpellCastClass()));
+		
 			SendMessageToPC (OBJECT_SELF, "Imbue weapon");
 			//int nCasterLevel = GetLevelByClass(CLASS_TYPE_WIZARD);
 			//float fDuration = nCasterLevel*60.0*6.0;

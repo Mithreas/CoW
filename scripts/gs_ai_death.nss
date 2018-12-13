@@ -70,7 +70,7 @@ void gsDropLoot(object oCorpse)
   if (nMortal)
   {
     int nSlot = 0;
-    for (; nSlot < NUM_INVENTORY_SLOTS; nSlot++)
+    for (; nSlot < 14; nSlot++) // Note - slots 14-17 are creature weapon/armour slots, so exclude them.
     {
       oItem = GetItemInSlot(nSlot, oSource);
       if (GetIsObjectValid(oItem))

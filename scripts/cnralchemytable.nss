@@ -393,7 +393,7 @@ void processPotions(string sMenuAlchemyPotions)
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAlchemyPotions, "Potion of Bull's Strength", "NW_IT_MPOTION015", 5);
   CnrRecipeAddComponent(sKeyToRecipe, "cnremptyflask", 1, 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrpepmintleaf", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrHawthornFwr", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrhawthornfwr", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 6);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 60, 60);
 

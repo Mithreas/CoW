@@ -34,9 +34,18 @@ void Init()
   // PC responses to briefing.
   if (GetElementCount(GREETING) == 0)
   {
-    AddStringElement("I'm here to offer my services. Can I help you with anything?", GREETING);
-    AddStringElement("Unfortunately, I'm needed elsewhere. Farewell.", GREETING);
-    AddStringElement("Can you tell me more about the local area?", GREETING);
+    if (GetRacialType(GetPCSpeaker()) == RACIAL_TYPE_ELF)
+	{
+      AddStringElement("It would be good to know if there is any task I might perform to help you.", GREETING);	
+      AddStringElement("Unfortunately, I'm needed elsewhere. Farewell.", GREETING);
+      AddStringElement("I am curious to hear about the local area.", GREETING);
+	}
+	else
+	{
+      AddStringElement("I'm here to offer my services. Can I help you with anything?", GREETING);
+      AddStringElement("Unfortunately, I'm needed elsewhere. Farewell.", GREETING);
+      AddStringElement("Can you tell me more about the local area?", GREETING);
+	}  
   }
 
   // PC responses to task briefing.
@@ -147,12 +156,12 @@ void PageInit()
 
         if (sQuestType == RETRIEVE)
         {
-          SetDlgPrompt("Have you got what I asked for?");
+          SetDlgPrompt("I assume you have what I asked for.");
 
           // Responses
           AddStringElement("Yes, I have it here with me.",
                            REPLY1);
-          AddStringElement("Sorry, can you tell me what I'm meant to fetch again?",
+          AddStringElement("Apologies, I have forgotten what you wanted.",
                            REPLY1);
           AddStringElement("Not yet, sorry.",
                            REPLY1);
@@ -160,19 +169,19 @@ void PageInit()
         }
         else if (sQuestType == KILL)
         {
-          SetDlgPrompt("Is my little problem resolved?");
+          SetDlgPrompt("I take it you have resolved my little problem.");
 
           // Responses
           AddStringElement("Yes... it shouldn't bother you any more.",
                            REPLY1);
-          AddStringElement("Sorry, can you tell me, ah, who your problem was again?",
+          AddStringElement("Sorry, I have forgotten what you needed.",
                            REPLY1);
           AddStringElement("Not yet, sorry.",
                            REPLY1);
         }
         else if (sQuestType == MESSENGER)
         {
-          SetDlgPrompt("Ah, I've been waiting for you. Is everything taken care of?");
+          SetDlgPrompt("Ah, welcome back.  You have dealt with the delivery, I take it.");
 
           // Responses
           AddStringElement("Yes, all done.",
@@ -184,24 +193,24 @@ void PageInit()
         }
         else if (sQuestType == HELP)
         {
-          SetDlgPrompt("Did you sort everything out?");
+          SetDlgPrompt("Good to see you again, I'm sure.  I assume the matter is resolved.");
 
           // Responses
           AddStringElement("Yes, all done.",
                            REPLY1);
-          AddStringElement("Sorry, can you tell me what I'm meant to do again?",
+          AddStringElement("I can't remember who to see...",
                            REPLY1);
           AddStringElement("Not yet, sorry.",
                            REPLY1);
         }
         else if (sQuestType == PATROL)
         {
-          SetDlgPrompt("Do you have a report for me?");
+          SetDlgPrompt("Ah, about time. I am interested to see your report.");
 
           // Responses
-          AddStringElement("Yes, I've been everywhere you asked.",
+          AddStringElement("Yes, I have your report right here.",
                            REPLY1);
-          AddStringElement("Sorry, can you tell me where I'm meant to go again?",
+          AddStringElement("I can't remember where to go...",
                            REPLY1);
           AddStringElement("Not yet, sorry.",
                            REPLY1);
@@ -270,29 +279,29 @@ void PageInit()
 
     if (sQuestType == RETRIEVE)
     {
-      SetDlgPrompt("You don't seem to have what I asked for... do you need a reminder?");
+      SetDlgPrompt("You don't seem to have what I asked for... let me know if you need a reminder.");
     }
     else if (sQuestType == KILL)
     {
-      SetDlgPrompt("I don't believe you have dealt with my problem... do you need a reminder?");
+      SetDlgPrompt("I don't believe you have dealt with my problem... let me know if you need a reminder.");
     }
     else if (sQuestType == MESSENGER)
     {
-      SetDlgPrompt("No, you're not done yet. Do you need reminding of what you're meant to be doing?");
+      SetDlgPrompt("No, you're not done yet.  Let me know if you need a reminder.");
     }
     else if (sQuestType == HELP)
     {
       SetDlgPrompt("I received word only a couple of minutes ago that the " +
-      "problem isn't solved yet. Do you need a reminder of what I asked you to do?");
+      "problem isn't solved yet. Let me know if you need a reminder.");
     }
     else if (sQuestType == PATROL)
     {
-      SetDlgPrompt("Your report doesn't cover all the areas. Do you need a reminder?");
+      SetDlgPrompt("Your report doesn't cover all the areas. Let me know if you need a reminder.");
     }
     else
     {
       SendMessageToPC(oPC,
-                      "You've found a bug. How embarassing. Please report it.");
+                      "You've found a bug. How embarrassing. Please report it.");
       Trace(RQUEST, "!!!Invalid quest type!");
       EndDlg();
     }

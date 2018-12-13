@@ -33,15 +33,15 @@ void main()
 
   CnrPlantInitialize("cnraloeplant", "cnraloeleaf", 2, CNR_FLOAT_DEFAULT_PLANT_RESPAWN_TIME_SECS);
   CnrPlantInitialize("cnrangelicaplant", "cnrangelicaleaf", 2, CNR_FLOAT_DEFAULT_PLANT_RESPAWN_TIME_SECS);
-  CnrPlantInitialize("cnrcalendulaplant", "cnrcalendulaflower", 2, CNR_FLOAT_DEFAULT_PLANT_RESPAWN_TIME_SECS);
+  CnrPlantInitialize("cnrcalendulaplant", "cnrcalendulafwr", 2, CNR_FLOAT_DEFAULT_PLANT_RESPAWN_TIME_SECS);
   CnrPlantInitialize("cnrcatnipplant", "cnrcatnipleaf", 2, CNR_FLOAT_DEFAULT_PLANT_RESPAWN_TIME_SECS);
-  CnrPlantInitialize("cnrchamomileplant", "cnrchamomileflower", 2, CNR_FLOAT_DEFAULT_PLANT_RESPAWN_TIME_SECS);
+  CnrPlantInitialize("cnrchamomileplant", "cnrchamomilefwr", 2, CNR_FLOAT_DEFAULT_PLANT_RESPAWN_TIME_SECS);
   CnrPlantInitialize("cnrcomfreyplant", "cnrcomfreyroot", 2, CNR_FLOAT_DEFAULT_PLANT_RESPAWN_TIME_SECS);
   CnrPlantInitialize("cnrechinaceaplant", "cnrechinacearoot", 2, CNR_FLOAT_DEFAULT_PLANT_RESPAWN_TIME_SECS);
   CnrPlantInitialize("cnrgarlicplant", "cnrgarlicclove", 2, CNR_FLOAT_DEFAULT_PLANT_RESPAWN_TIME_SECS);
   CnrPlantInitialize("cnrgingerplant", "cnrgingerroot", 2, CNR_FLOAT_DEFAULT_PLANT_RESPAWN_TIME_SECS);
   CnrPlantInitialize("cnrginsengplant", "cnrginsengroot", 2, CNR_FLOAT_DEFAULT_PLANT_RESPAWN_TIME_SECS);
-  CnrPlantInitialize("cnrhawthornplant", "cnrhawthornflower", 2, CNR_FLOAT_DEFAULT_PLANT_RESPAWN_TIME_SECS, CNR_INT_ALWAYS_RESPAWN_FRUIT);
+  CnrPlantInitialize("cnrhawthornplant", "cnrhawthornfwr", 2, CNR_FLOAT_DEFAULT_PLANT_RESPAWN_TIME_SECS, CNR_INT_ALWAYS_RESPAWN_FRUIT);
   CnrPlantInitialize("cnrthistleplant", "cnrthistleleaf", 2, CNR_FLOAT_DEFAULT_PLANT_RESPAWN_TIME_SECS);
   CnrPlantInitialize("cnrnettleplant", "cnrnettleleaf", 2, CNR_FLOAT_DEFAULT_PLANT_RESPAWN_TIME_SECS);
   CnrPlantInitialize("cnrpepmintplant", "cnrpepmintleaf", 2, CNR_FLOAT_DEFAULT_PLANT_RESPAWN_TIME_SECS);

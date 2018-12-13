@@ -22,9 +22,9 @@
 18         1871   WeapSpeUnArm          1      138         
 19         433    WeapFinesse           1.2    42          
 20         1795   ImpCritUnArm          1      62          
-21         437    WeaponProfEx          5      44
-22         439    WeaponProfMartial     5      45
-23         441    WeaponProfSim         5      46
+21         437    WeaponProfEx          0.01   44
+22         439    WeaponProfMartial     0.01   45
+23         441    WeaponProfSim         0.01   46
 24         205    ArmProfHvy            5      2
 25         207    ArmProfLgt            5      3
 26         206    ArmProfMed            5      4

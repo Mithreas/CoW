@@ -37,6 +37,8 @@ const string PATH_OPTS       = "ZPI_PATH_OPTIONS";
 const string HEIGHT_OPTS     = "ZPI_HEIGHT_OPTIONS";
 const string AWARD_OPTS      = "ZPI_AWARD_OPTIONS";
 
+const string SPELLSWORD_OPTIONS    = "spellsword options";
+
 const string SU_SELECTIONS   = "ZPI_SU_SELECTIONS"; // Used to record int versions for ease of access later.
 const string BA_SELECTIONS   = "ZPI_BA_SELECTIONS"; // Used to record int versions for ease of access later.
 
@@ -428,11 +430,13 @@ void _ApplyGifts()
 	{
 	  AddGift(oPC, nGift1);
       SetDescription(oAbility, GetDescription(oAbility) + "\nGift 1: " + GetGiftDescription(nGift1));
+	  SetDlgPageString(GIFT_OPTS);
 	}  
 	else if (GetListSize(oAbility, "Gifts") < 2) 
 	{
 	  AddGift(oPC, nGift2);
 	  SetDescription(oAbility, GetDescription(oAbility) + "\nGift 2: " + GetGiftDescription(nGift2));
+	  SetDlgPageString(GIFT_OPTS);
 	}
 	else if (GetListSize(oAbility, "Gifts") < 3) 
 	{
@@ -583,14 +587,14 @@ void _SetUpAllowedPaths()
   {
     AddStringElement(PATH_OF_WARLOCK, PATH_OPTS);
   }
-
+  */
   //::  Wild Mage and Spellsword only for Non-Specialized (General) Wizards.
   if ( GetLevelByClass(CLASS_TYPE_WIZARD, oPC) && NWNX_Creature_GetWizardSpecialization(oPC) == SPELL_SCHOOL_GENERAL )
   {
-    AddStringElement(PATH_OF_WILD_MAGE, PATH_OPTS);
-    //AddStringElement(PATH_OF_SPELLSWORD, PATH_OPTS);
+    //AddStringElement(PATH_OF_WILD_MAGE, PATH_OPTS);
+    AddStringElement(PATH_OF_SPELLSWORD, PATH_OPTS);
   }
-  */
+  
 
   AddStringElement(PATH_NONE, PATH_OPTS);
 }
@@ -711,6 +715,12 @@ void _ApplyPath()
         // Flag that they are a wild mage wiz.
         SendMessageToPC(oPC, "You have selected the Wild Mage School.");
         SetLocalInt(oItem, "WILD_MAGE", TRUE);
+    }
+    else if (sPath == PATH_OF_SPELLSWORD)
+    {
+        // Flag that they are a spellsword.
+        SendMessageToPC(oPC, "You have selected the Spellsword path.");
+        SetDlgPageString(SPELLSWORD_OPTIONS);
     }
 }
 
@@ -903,6 +913,22 @@ void PageInit()
 
     SetDlgResponseList(TOTEM_SELECT);
   } */
+  else if (sPage == SPELLSWORD_OPTIONS)
+  {
+    SetDlgPrompt("In order to specialize in melee combat a Spellsword must give up one school in addition to all summoning abilities.");
+    DeleteList(SPELLSWORD_OPTIONS);
+    AddStringElement("Abjuration",SPELLSWORD_OPTIONS);
+    // AddStringElement("Conjuration", SPELLSWORD_OPTIONS);
+    AddStringElement("Divination", SPELLSWORD_OPTIONS);
+    AddStringElement("Enchantment", SPELLSWORD_OPTIONS);
+    AddStringElement("Evocation", SPELLSWORD_OPTIONS);
+    AddStringElement("Illusion", SPELLSWORD_OPTIONS);
+    AddStringElement("Necromancy", SPELLSWORD_OPTIONS);
+    AddStringElement("Transmutation", SPELLSWORD_OPTIONS);
+    //AddStringElement("Don't play a Spellsword", SPELLSWORD_OPTIONS);
+
+    SetDlgResponseList(SPELLSWORD_OPTIONS);
+  }
   else
   {
     SendMessageToPC(oPC,
@@ -1133,6 +1159,23 @@ void HandleSelection()
     {
       miTOGrantTotem(oPC, selection + 1);
     }
+    EndDlg();
+  }  
+  else if (sPage == SPELLSWORD_OPTIONS)
+  {
+    if ( selection == 0)
+    {
+      miSSSetBlockedSchool(oPC, selection + 1, 1);
+    }
+    else if ( selection < 10)
+    {
+      miSSSetBlockedSchool(oPC, selection + 2, 1);
+    }
+	
+    //block conjuration as second school
+    miSSSetBlockedSchool(oPC, SPELL_SCHOOL_CONJURATION , 2);
+    miSSSetIsSpellsword(oPC);
+    miSSMWPFeat(oPC);
     EndDlg();
   }
 }

@@ -1,5 +1,5 @@
 //::///////////////////////////////////////////////
-//:: inc_spellsword
+//:: mi_inc_spllswrd
 //:: Library: Spellsword
 //:://////////////////////////////////////////////
 /*
@@ -21,9 +21,12 @@
 //:: Created On: July 14, 2017
 //:://////////////////////////////////////////////
 
-// inc_spellsword
+// mi_inc_spllswrd
 //
-// Library with functions for spellsword wizards.
+// Library with functionssforpellsword wizards.
+//
+//
+//
 //
 
 #include "nwnx_creature"
@@ -35,11 +38,11 @@
 #include "inc_item"
 #include "inc_spells"
 #include "inc_effecttags"
+#include "inc_calc_bab"
 #include "inc_spellmatrix"
+#include "inc_bondeditems"
+#include "inc_bondtags"
 #include "x2_inc_itemprop"
-#include "inc_bondeditems"
-#include "inc_bondeditems"
-#include "inc_data_arr_int"
 
 /**********************************************************************
  * PUBLIC FUNCTION PROTOTYPES
@@ -76,10 +79,7 @@ void miSSMWPFeat(object oPC);
 void miSSImbueWeapon(object oPC, int SpellID, object oWeapon, int bFeedback = TRUE);
 //Imbue armour - gives bonus to weapon if a spell is cast on it by a spellsword.
 void miSSImbueArmour(object oPC, int SpellID, object oArmour, int bFeedback = TRUE);
-// calculates the pre epic portion of BAB
-int _Calculate_pre_epic_BAB(object oPC, int bSpellsword = FALSE);
-// calculates the BAB of a class at a set pre-epic level
-int _GetPreEpicBAB(object oPC, int nClass, int nLevel, int bSpellsword = FALSE);
+
 
 /**********************************************************************
  * PUBLIC FUNCTION DEFINITIONS
@@ -90,24 +90,24 @@ int _GetPreEpicBAB(object oPC, int nClass, int nLevel, int bSpellsword = FALSE);
 //Check if spellsword
 int miSSGetIsSpellsword(object oPC)
 {
-    return GetLevelByClass(CLASS_TYPE_WIZARD, oPC) && GetLocalInt(gsPCGetCreatureHide(oPC), "SPELLSWORD");
+    return GetLocalInt(gsPCGetCreatureHide(oPC), "SPELLSWORD");
 }
 
 //------------------------------------------------------------------------------
 //Set SPELLSWORD flag on hide
 void miSSSetIsSpellsword(object oPC)
 {
-    SetLocalInt(gsPCGetCreatureHide(oPC), "SPELLSWORD", 1);
-	SetLocalInt(gsPCGetCreatureHide(oPC), "SS_VER", 1);
+    SetLocalInt(gsPCGetCreatureHide(oPC), "SPELLSWORD", TRUE);
 }
 //------------------------------------------------------------------------------
 //Sets path variables
 void miSSSetPathItem(object oPC)
 {
-    object oAbility = GetItemPossessedBy(oPC, "GS_SU_ABILITY");
+    return; //paths are now set dynamically on examine
+   /* object oAbility = GetItemPossessedBy(oPC, "GS_SU_ABILITY");
     string sPath = "Spellsword";
     SetDescription(oAbility, GetDescription(oAbility) + "\nPath: " + sPath);
-    SetIdentified(oAbility, TRUE);
+    SetIdentified(oAbility, TRUE); */
 }
 
 //------------------------------------------------------------------------------
@@ -130,7 +130,9 @@ void miSSSetBlockedSchool(object oPC, int nSchool, int nNum = 1)
 void miSSCharBonuses(object oPC, int bFeedback)
 {
     int nWizard = GetLevelByClass(CLASS_TYPE_WIZARD, oPC);
-    if(!GetIsPC(oPC) || GetIsDM(oPC) || !nWizard) return;
+    int nCharacterLevel = GetCharacterLevel(oPC);
+		
+	if(!GetIsPC(oPC) || GetIsDM(oPC) || !nWizard) return;
 
     //check if spellsword
     if(miSSGetIsSpellsword(oPC))
@@ -215,6 +217,7 @@ void miSSCharBonuses(object oPC, int bFeedback)
         }
 
         // DAM = 1/2 levels, capped by modified INT BONUS
+		/* UPDATE - INT damage removed.
         if (!bRanged)
         {
             nAbilityMod = (GetAbilityScore(oPC, ABILITY_INTELLIGENCE, FALSE) - 10) / 2;
@@ -238,13 +241,18 @@ void miSSCharBonuses(object oPC, int bFeedback)
             ApplyTaggedEffectToObject(DURATION_TYPE_PERMANENT, SupernaturalEffect(EffectDamageIncrease(nDamage, DAMAGE_TYPE_BLUDGEONING)), oPC, 0.0, EFFECT_TAG_SPELLSWORD);
             if(bFeedback) SendMessageToPC(oPC, "Spellsword Damage Bonus Granted: +" + IntToString(nBonus) + " Damage");
         }
-
+		*/
+		
         // Discipline - +1 / 3 levels
-        if(nWizard >= 3)
+		// UPDATE - Discipline limited to a pure-class 28 bonus.
+		
+        if(nCharacterLevel == nWizard && nWizard >= 28)
         {
-            effect eIncreaseDISC = EffectSkillIncrease(SKILL_DISCIPLINE, nWizard / 3);
+            // effect eIncreaseDISC = EffectSkillIncrease(SKILL_DISCIPLINE, nWizard / 3);
+			effect eIncreaseDISC = EffectSkillIncrease(SKILL_DISCIPLINE, 15);
             ApplyTaggedEffectToObject(DURATION_TYPE_PERMANENT, SupernaturalEffect(eIncreaseDISC), oPC, 0.0, EFFECT_TAG_SPELLSWORD);
-            if(bFeedback) SendMessageToPC(oPC, "Spellsword Skill Bonus Granted: +" + IntToString(nWizard / 3) + " Discipline");
+            // if(bFeedback) SendMessageToPC(oPC, "Spellsword Skill Bonus Granted: +" + IntToString(nWizard / 3) + " Discipline");
+			if(bFeedback) SendMessageToPC(oPC, "Spellsword Skill Bonus Granted: +15 Discipline");
         }
 
     }
@@ -256,7 +264,7 @@ void miSSSetABAPR(object oPC, int bFeedback = TRUE)
 {
     if (miSSGetIsSpellsword(oPC))
     {
-		SendMessageToPC(oPC, ":ABAPR:");
+		//SendMessageToPC(oPC, ":ABAPR:");
         //Find level split for the wizard and non-wizard classes
         int nWizardLevel = GetLevelByClass(CLASS_TYPE_WIZARD, oPC);
         int nCharacterLevel = GetCharacterLevel(oPC);
@@ -314,7 +322,7 @@ void miSSSetABAPR2(object oPC, int bFeedback = TRUE)
 {
     if (miSSGetIsSpellsword(oPC))
     {
-		SendMessageToPC(oPC, ":ABAPR2:");
+		//SendMessageToPC(oPC, ":ABAPR2:");
         //Find level split for the wizard and non-wizard classes
         int nWizardLevel = GetLevelByClass(CLASS_TYPE_WIZARD, oPC);
         int nCharacterLevel = GetCharacterLevel(oPC);
@@ -367,12 +375,7 @@ void miSSSetABAPR2(object oPC, int bFeedback = TRUE)
             {
                 nAttacks =  1 + (( nTargetBAB - 1 ) / 5);
             }
-			int nVersion = GetLocalInt(gsPCGetCreatureHide(oPC), "SS_VER");
-            if (nCharacterLevel >= 22 && nVersion == 0 && nAttacks < 4)
-            {
-                //effect eAttackMod = EffectModifyAttacks(1);
-                nAttacks ++;
-            }
+			
 			SetBaseAttackBonus( nAttacks, oPC); //correctly sets APR however does not show true APR in character sheet.
             if(bFeedback) SendMessageToPC(oPC, "Spellsword Number of Attacks: " + IntToString(nAttacks) + " Attacks");
         }
@@ -435,7 +438,7 @@ void miSSRemoveCharBonuses(object oPC, int bFeedback)
                    || GetEffectType(eEffect) == EFFECT_TYPE_SKILL_INCREASE))
             {
                 RemoveEffect(oPC, eEffect);
-                if(bFeedback) SendMessageToPC(oPC, "Removed effect Type: " + IntToString(GetEffectType(eEffect)));
+                //if(bFeedback) SendMessageToPC(oPC, "Removed effect Type: " + IntToString(GetEffectType(eEffect)));
             }
 
             eEffect = GetNextEffect(oPC);
@@ -452,7 +455,7 @@ void miSSRemoveAB(object oPC, int bFeedback, int bLevelUp = TRUE)
         effect eEffect = GetFirstEffect(oPC);
         while (GetIsEffectValid(eEffect))
         {
-			SendMessageToPC(oPC,"effect" + IntToString(GetEffectType(eEffect)) + "tag" + IntToString(GetIsTaggedEffect(eEffect, EFFECT_TAG_SPELLSWORD)));
+			// SendMessageToPC(oPC,"effect" + IntToString(GetEffectType(eEffect)) + "tag" + IntToString(GetIsTaggedEffect(eEffect, EFFECT_TAG_SPELLSWORD)));
             if (GetIsTaggedEffect(eEffect, EFFECT_TAG_SPELLSWORD) && (GetEffectType(eEffect) == EFFECT_TYPE_ATTACK_INCREASE))
             // if (GetEffectType(eEffect) == EFFECT_TYPE_ATTACK_INCREASE) // use if NWNX not installed
             {
@@ -480,7 +483,7 @@ void miSSApplyBonuses(object oPC, int bFeedback, int bLevelUp = TRUE)
         miSSRemoveAB(oPC, FALSE, TRUE);
 
         //add new effects
-		SendMessageToPC(oPC, ":AB:");
+		//SendMessageToPC(oPC, ":AB:");
         miSSHitpoints(oPC, bLevelUp, bFeedback);
         miSSSetABAPR2(oPC, bFeedback);
         miSSCharBonuses(oPC, bFeedback);
@@ -502,7 +505,7 @@ void miSSReApplyBonuses(object oPC, int bFeedback)
         miSSRemoveAB(oPC, FALSE, TRUE);
 
         //add new effects
-		SendMessageToPC(oPC, ":RAB:");
+		//SendMessageToPC(oPC, ":RAB:");
         miSSCharBonuses(oPC, bFeedback);
         miSSSetABAPR2(oPC, bFeedback);
     }
@@ -571,7 +574,7 @@ void miSSImbueWeapon(object oPC, int SpellID, object oWeapon, int bFeedback = TR
     string sColumn  = "Wiz_Sorc";
     int nSpell      = _arGetCorrectSpellId(GetSpellId());   //::  Get Correct Spell Id from Grouped spells
     int nSpellLevel = StringToInt(Get2DAString("spells", sColumn, nSpell));
-
+	
     int nMetaMagic = GetMetaMagicFeat();
     if (nMetaMagic == METAMAGIC_EXTEND || nMetaMagic == METAMAGIC_SILENT ||  nMetaMagic == METAMAGIC_STILL)
     {
@@ -640,6 +643,12 @@ void miSSImbueWeapon(object oPC, int SpellID, object oWeapon, int bFeedback = TR
 		{
             nCount += 1;
         }
+		else if (GetItemPropertyDurationType(ipProperty) == DURATION_TYPE_TEMPORARY &&
+				 GetItemPropertyType(ipProperty) == ITEM_PROPERTY_DAMAGE_BONUS &&
+				 GetItemPropertyTag(ipProperty) != "SS_IMBUE")
+		{
+			RemoveItemProperty(oItem, ipProperty);  // No more stacking with temp essences.
+		}
         ipProperty = GetNextItemProperty(oItem);
     }
 
@@ -839,9 +848,9 @@ void miSSImbueWeapon(object oPC, int SpellID, object oWeapon, int bFeedback = TR
 
 	SetLocalInt(oHide, sSaveDC, nSaveDC);
     //if(bFeedback) SendMessageToPC(oPC, "DamageType: " + IntToString(nDamageType));
-    AddItemProperty(DURATION_TYPE_TEMPORARY, ItemPropertyDamageBonus(nDamageType, nDamage), oItem, nDuration);
-    AddItemProperty(DURATION_TYPE_TEMPORARY, ItemPropertyVisualEffect(nVFX), oItem, nDuration);
-    AddItemProperty(DURATION_TYPE_TEMPORARY, ItemPropertyOnHitCastSpell(IP_CONST_ONHIT_CASTSPELL_ONHIT_UNIQUEPOWER, nWizard), oItem, nDuration);
+    AddItemProperty(DURATION_TYPE_TEMPORARY, TagItemProperty(ItemPropertyDamageBonus(nDamageType, nDamage), "SS_IMBUE"), oItem, nDuration);
+    AddItemProperty(DURATION_TYPE_TEMPORARY, TagItemProperty(ItemPropertyVisualEffect(nVFX), "SS_IMBUE"), oItem, nDuration);
+    AddItemProperty(DURATION_TYPE_TEMPORARY, TagItemProperty(ItemPropertyOnHitCastSpell(IP_CONST_ONHIT_CASTSPELL_ONHIT_UNIQUEPOWER, nWizard), "SS_IMBUE"), oItem, nDuration);
     //ApplyEffectToObject(DURATION_TYPE_TEMPORARY, SupernaturalEffect(EffectDamageIncrease(nDamage, nDamageType)), oPC, RoundsToSeconds(nWizard));
     if(bFeedback) SendMessageToPC(oPC, "Spellsword Imbue Damage Bonus Granted: +" + nDamageText + " Damage");
 }
@@ -853,6 +862,12 @@ void miSSImbueArmour(object oPC, int SpellID, object oArmour, int bFeedback = TR
     oArmour = IPGetTargetedOrEquippedArmor();
     object oHide = gsPCGetCreatureHide(oPC);
 
+    if (TRUE)
+    {
+        if(bFeedback) SendMessageToPC(oPC, "Armour Imbues have been disabled.");
+        return;
+    }	
+	
     if (oArmour == OBJECT_INVALID)
     {
         if(bFeedback) SendMessageToPC(oPC, "Armour Invalid");
@@ -982,6 +997,14 @@ void miSSImbueArmour(object oPC, int SpellID, object oArmour, int bFeedback = TR
 //Imbue armour - gives bonus to weapon if a spell is cast on it by a spellsword.
 void miSSImbueArmourOLD(object oPC, int SpellID, object oArmour, int bFeedback = TRUE)
 {
+
+    if (TRUE)
+    {
+        if(bFeedback) SendMessageToPC(oPC, "Armour Imbues have been disabled.");
+        return;
+    }
+
+
     oArmour = IPGetTargetedOrEquippedArmor();
     if (oArmour == OBJECT_INVALID)
     {
@@ -1055,7 +1078,7 @@ void miSSImbueArmourOLD(object oPC, int SpellID, object oArmour, int bFeedback =
         }
         default:
         {
-            if(bFeedback) SendMessageToPC(oPC, "You are not able to embue this spell to your armour");
+            if(bFeedback) SendMessageToPC(oPC, "You are not able to imbue this spell to your armour");
             return;
         }
     }
@@ -1073,124 +1096,4 @@ void miSSImbueArmourOLD(object oPC, int SpellID, object oArmour, int bFeedback =
 int miSSGetIASpell(object oArmour)
 {
      return GetLocalInt(oArmour, "SS_IMBUE_ARMOUR_CH");
-}
-
-//------------------------------------------------------------------------------
-// calculates the pre epic portion of BAB
-int _Calculate_pre_epic_BAB(object oPC, int bSpellsword = FALSE)
-{
-    int nBAB;
-    int nMaxLevel = 0;
-
-    //set maximum pre epic level
-    if (GetCharacterLevel(oPC) <= 20)
-    {
-        nMaxLevel = GetCharacterLevel(oPC);
-    }
-    else
-    {
-        nMaxLevel = 20;
-    }
-
-    int nCount;
-
-    int nClass1 = GetClassByPosition(1, oPC);
-    int nClass2 = GetClassByPosition(2, oPC);
-    int nClass3 = GetClassByPosition(3, oPC);
-    int nLevel1 = 0;
-    int nLevel2 = 0;
-    int nLevel3 = 0;
-
-    for (nCount = 1; nCount <= nMaxLevel; nCount++)
-    {
-        int nClass = NWNX_Creature_GetClassByLevel(oPC, nCount);
-        if (nClass == nClass1)
-        {
-            nLevel1++;
-        }
-        else if (nClass == nClass2)
-        {
-            nLevel2++;
-        }
-        else if (nClass == nClass3)
-        {
-            nLevel3++;
-        }
-    }
-
-    nBAB = _GetPreEpicBAB(oPC, nClass1, nLevel1, bSpellsword);
-	SendMessageToPC(oPC, IntToString(nClass1) + ":" + IntToString(nLevel1) + ":" + IntToString(bSpellsword) + ":" + IntToString(nBAB));
-
-    if (nLevel2 > 0)
-    {
-        nBAB += _GetPreEpicBAB(oPC, nClass2, nLevel2, bSpellsword);
-		SendMessageToPC(oPC, IntToString(nClass2) + ":" + IntToString(nLevel2) + ":" + IntToString(bSpellsword) + ":" + IntToString(nBAB));
-    }
-    if (nLevel3 > 0)
-    {
-        nBAB += _GetPreEpicBAB(oPC, nClass3, nLevel3, bSpellsword);
-		SendMessageToPC(oPC, IntToString(nClass3) + ":" + IntToString(nLevel3) + ":" + IntToString(bSpellsword) + ":" + IntToString(nBAB));
-    }
-
-    return nBAB;
-}
-
-//------------------------------------------------------------------------------
-// calculates the BAB of a class at a set level
-int _GetPreEpicBAB(object oPC, int nClass, int nLevel, int bSpellsword = FALSE)
-{
-    int nBAB;
-
-    // works out preepic BAB
-	// only called by the method above, hence will never be called with nLevel >20.
-    switch (nClass)
-    {
-        case CLASS_TYPE_ARCANE_ARCHER:
-        case CLASS_TYPE_BARBARIAN:
-        case CLASS_TYPE_BLACKGUARD:
-        case CLASS_TYPE_DIVINE_CHAMPION:
-        case CLASS_TYPE_DWARVEN_DEFENDER:
-        case CLASS_TYPE_FIGHTER:
-        case CLASS_TYPE_PALADIN:
-        case CLASS_TYPE_PURPLE_DRAGON_KNIGHT:
-        case CLASS_TYPE_RANGER:
-        case CLASS_TYPE_WEAPON_MASTER:
-        {
-            nBAB = nLevel;
-			break;
-        }
-        case CLASS_TYPE_ASSASSIN:
-        case CLASS_TYPE_BARD:
-        case CLASS_TYPE_CLERIC:
-        case CLASS_TYPE_DRAGON_DISCIPLE:
-        case CLASS_TYPE_DRUID:
-        case CLASS_TYPE_HARPER:
-        case CLASS_TYPE_MONK:
-        case CLASS_TYPE_ROGUE:
-        case CLASS_TYPE_SHADOWDANCER:
-        case CLASS_TYPE_SHIFTER:
-        {
-            nBAB = nLevel * 3 / 4;
-			break;
-        }
-        case CLASS_TYPE_PALE_MASTER:
-        case CLASS_TYPE_SORCERER:
-        {
-            nBAB = nLevel / 2;
-			break;
-        }
-        case CLASS_TYPE_WIZARD:
-        {
-            if (bSpellsword)
-            {
-                nBAB = nLevel * 3 / 4;
-            }
-            else
-            {
-                nBAB = nLevel / 2;
-            }
-			break;
-        }
-    }
-    return nBAB;
 }
