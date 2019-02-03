@@ -11,6 +11,7 @@
 // - trainers must be epic level to train epic feats.
 // - trainers must have an arcane level to train spell feats. 
 #include "inc_zdlg"
+#include "inc_skills"
 #include "inc_pc"
 #include "inc_iprop"
 #include "inc_customspells"
@@ -131,19 +132,19 @@ void _CheckSkillAvailable(object oPC, int nSkill)
 {
   int nRank = GetSkillRank(nSkill, oPC, TRUE);
   int nMax = GetHitDice(oPC) + 3;
-  int nClass1 = GetIsClassSkill(GetClassByPosition(1, oPC), nSkill);
+  int nClass1 = miSKGetIsClassSkill(GetClassByPosition(1, oPC), nSkill);
   int nClass2 = GetClassByPosition(2, oPC);
   int nClass3 = -1;
   if(nClass2 == CLASS_TYPE_INVALID)
     nClass2 = -1;
   else
   {
-    nClass2 = GetIsClassSkill(nClass2, nSkill);
+    nClass2 = miSKGetIsClassSkill(nClass2, nSkill);
     nClass3 = GetClassByPosition(3, oPC);
     if(nClass3 == CLASS_TYPE_INVALID)
       nClass3 = -1;
     else
-      nClass3 = GetIsClassSkill(nClass3, nSkill);
+      nClass3 = miSKGetIsClassSkill(nClass3, nSkill);
   }
 
 
@@ -161,6 +162,7 @@ void _DoSkillPointList(object oPC)
   DeleteList(LIST_SK_ID);
   string sPrompt = "Select a skill:";
   sPrompt += "\nSkill points to use: " + IntToString(GetPCSkillPoints(oPC) - GetLocalInt(oPC, "T_SKILL_USED"));
+  sPrompt += "\n\nNOTE: This includes skill points saved on level up - you can spend them here.";
   int x;
   for(x = 0; x <= 27; x++)
   {
@@ -1394,8 +1396,8 @@ void PageInit()
     int nMulti = 1;
     int nCC;
     //class skill
-    if(!(GetIsClassSkill(GetClassByPosition(1, oPC), nSkill) || GetIsClassSkill(GetClassByPosition(2, oPC), nSkill) ||
-       GetIsClassSkill(GetClassByPosition(3, oPC), nSkill)))
+    if(!(miSKGetIsClassSkill(GetClassByPosition(1, oPC), nSkill) || miSKGetIsClassSkill(GetClassByPosition(2, oPC), nSkill) ||
+       miSKGetIsClassSkill(GetClassByPosition(3, oPC), nSkill)))
     {
       nMax /= 2;
       nMulti = 2;
@@ -1748,8 +1750,8 @@ void HandleSelection()
   {
     int nSkill = GetLocalInt(oPC, "T_SEL_SKILL");
     int nMulti = 1;
-    if(!(GetIsClassSkill(GetClassByPosition(1, oPC), nSkill) || GetIsClassSkill(GetClassByPosition(2, oPC), nSkill) ||
-       GetIsClassSkill(GetClassByPosition(3, oPC), nSkill)))
+    if(!(miSKGetIsClassSkill(GetClassByPosition(1, oPC), nSkill) || miSKGetIsClassSkill(GetClassByPosition(2, oPC), nSkill) ||
+       miSKGetIsClassSkill(GetClassByPosition(3, oPC), nSkill)))
        nMulti = 2;
 
     int nORank =  GetLocalInt(oPC, "T_INCREASE_AMT_"+IntToString(nSkill));

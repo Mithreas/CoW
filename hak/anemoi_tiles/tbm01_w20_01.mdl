@@ -1580,7 +1580,7 @@ node trimesh TSH01_K01_01_gr_3_3_0_0
     -1 -0.403598 0
     -1 -0.759398 0
 endnode
-node aabb TSH01_K01_01_gr_3_3_0_0_walkmesh
+node aabb tbm01_w20_012617182801
   parent tbm01_w20_01
   position 0 0 0
   orientation 0 0 -1 -1.5708

@@ -187,7 +187,7 @@ node trimesh NormalStair01
     -0.500001 3 0
     -0.500001 -2 0
 endnode
-node aabb TSH01_Y92_01_gr_3_3_0_0_walkmesh
+node aabb tbm_a70_012657356393
   parent tbm_a70_01
   position -0.00130504 -0.0391924 0
   orientation 0 0 -1 -1.5708

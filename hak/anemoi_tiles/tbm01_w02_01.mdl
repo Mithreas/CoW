@@ -391,7 +391,7 @@ node trimesh Plane280
     2.10001 -17.0002 0
     2.10001 -19.1002 0
 endnode
-node trimesh TSH01_K01_01_gr_3_3_0_0_walkmesh01
+node trimesh tbm01_w02_012972846770
   parent tbm01_w02_01
   position 0 0 0
   orientation 0 0 -1 -1.5708

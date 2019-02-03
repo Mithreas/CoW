@@ -174,7 +174,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE1]
-Model=tbm03_A01_01
+Model=tbm03_a01_01
 TopLeft=Stone0
 TopLeftHeight=0
 TopRight=Stone0
@@ -201,7 +201,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE2]
-Model=tbm03_A02_01
+Model=tbm03_a02_01
 TopLeft=Stone1
 TopLeftHeight=0
 TopRight=Stone1
@@ -228,7 +228,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE3]
-Model=tbm03_A03_01
+Model=tbm03_a03_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone2
@@ -255,7 +255,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE4]
-Model=tbm03_B01_01
+Model=tbm03_b01_01
 TopLeft=Stone0
 TopLeftHeight=0
 TopRight=Stone0
@@ -282,7 +282,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE5]
-Model=tbm03_B02_01
+Model=tbm03_b02_01
 TopLeft=Stone1
 TopLeftHeight=0
 TopRight=Stone1
@@ -309,7 +309,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE6]
-Model=tbm03_B03_01
+Model=tbm03_b03_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone2
@@ -336,7 +336,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE7]
-Model=tbm03_C01_01
+Model=tbm03_c01_01
 TopLeft=Stone0
 TopLeftHeight=0
 TopRight=Stone0
@@ -363,7 +363,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE8]
-Model=tbm03_C02_01
+Model=tbm03_c02_01
 TopLeft=Stone1
 TopLeftHeight=0
 TopRight=Stone1
@@ -390,7 +390,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE9]
-Model=tbm03_C03_01
+Model=tbm03_c03_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone2
@@ -417,7 +417,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE10]
-Model=tbm03_D01_01
+Model=tbm03_d01_01
 TopLeft=Stone1
 TopLeftHeight=0
 TopRight=Stone0
@@ -444,7 +444,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE11]
-Model=tbm03_D02_01
+Model=tbm03_d02_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone1
@@ -471,7 +471,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE12]
-Model=tbm03_D03_01
+Model=tbm03_d03_01
 TopLeft=Stone0
 TopLeftHeight=1
 TopRight=Stone2
@@ -498,7 +498,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE13]
-Model=tbm03_E01_01
+Model=tbm03_e01_01
 TopLeft=Stone0
 TopLeftHeight=0
 TopRight=Stone1
@@ -525,7 +525,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE14]
-Model=tbm03_E02_01
+Model=tbm03_e02_01
 TopLeft=Stone1
 TopLeftHeight=0
 TopRight=Stone2
@@ -552,7 +552,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE15]
-Model=tbm03_E03_01
+Model=tbm03_e03_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone0
@@ -579,7 +579,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE16]
-Model=tbm03_F01_01
+Model=tbm03_f01_01
 TopLeft=Stone0
 TopLeftHeight=0
 TopRight=Stone0
@@ -606,7 +606,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE17]
-Model=tbm03_F02_01
+Model=tbm03_f02_01
 TopLeft=Stone1
 TopLeftHeight=0
 TopRight=Stone1
@@ -633,7 +633,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE18]
-Model=tbm03_F03_01
+Model=tbm03_f03_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone2
@@ -660,7 +660,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE19]
-Model=tbm03_G01_01
+Model=tbm03_g01_01
 TopLeft=Stone0
 TopLeftHeight=0
 TopRight=Stone0
@@ -687,7 +687,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE20]
-Model=tbm03_G02_01
+Model=tbm03_g02_01
 TopLeft=Stone1
 TopLeftHeight=0
 TopRight=Stone1
@@ -714,7 +714,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE21]
-Model=tbm03_G03_01
+Model=tbm03_g03_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone2
@@ -741,7 +741,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE22]
-Model=tbm03_H01_01
+Model=tbm03_h01_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone0
@@ -768,7 +768,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE23]
-Model=tbm03_H02_01
+Model=tbm03_h02_01
 TopLeft=Stone0
 TopLeftHeight=1
 TopRight=Stone1
@@ -795,7 +795,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE24]
-Model=tbm03_H03_01
+Model=tbm03_h03_01
 TopLeft=Stone1
 TopLeftHeight=1
 TopRight=Stone2
@@ -822,7 +822,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE25]
-Model=tbm03_I01_01
+Model=tbm03_i01_01
 TopLeft=Stone0
 TopLeftHeight=0
 TopRight=Stone2
@@ -849,7 +849,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE26]
-Model=tbm03_I02_01
+Model=tbm03_i02_01
 TopLeft=Stone1
 TopLeftHeight=0
 TopRight=Stone0
@@ -876,7 +876,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE27]
-Model=tbm03_I03_01
+Model=tbm03_i03_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone1
@@ -903,7 +903,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE28]
-Model=tbm03_J01_01
+Model=tbm03_j01_01
 TopLeft=Stone0
 TopLeftHeight=0
 TopRight=Stone0
@@ -930,7 +930,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE29]
-Model=tbm03_J02_01
+Model=tbm03_j02_01
 TopLeft=Stone1
 TopLeftHeight=0
 TopRight=Stone1
@@ -957,7 +957,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE30]
-Model=tbm03_J03_01
+Model=tbm03_j03_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone2
@@ -984,7 +984,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE31]
-Model=tbm03_K01_01
+Model=tbm03_k01_01
 TopLeft=Stone0
 TopLeftHeight=0
 TopRight=Stone0
@@ -1011,7 +1011,7 @@ Orientation=90
 ImageMap2D=bm01_o02
 
 [TILE32]
-Model=tbm03_K02_01
+Model=tbm03_k02_01
 TopLeft=Stone1
 TopLeftHeight=0
 TopRight=Stone1
@@ -1038,7 +1038,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE33]
-Model=tbm03_K03_01
+Model=tbm03_k03_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone2
@@ -1065,7 +1065,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE34]
-Model=tbm03_L01_01
+Model=tbm03_l01_01
 TopLeft=Stone0
 TopLeftHeight=1
 TopRight=Stone0
@@ -1092,7 +1092,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE35]
-Model=tbm03_L02_01
+Model=tbm03_l02_01
 TopLeft=Stone1
 TopLeftHeight=1
 TopRight=Stone1
@@ -1119,7 +1119,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE36]
-Model=tbm03_L03_01
+Model=tbm03_l03_01
 TopLeft=Stone2
 TopLeftHeight=1
 TopRight=Stone2
@@ -1146,7 +1146,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE37]
-Model=tbm03_M01_01
+Model=tbm03_m01_01
 TopLeft=Stone0
 TopLeftHeight=0
 TopRight=Stone0
@@ -1173,7 +1173,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE38]
-Model=tbm03_M02_01
+Model=tbm03_m02_01
 TopLeft=Stone1
 TopLeftHeight=0
 TopRight=Stone1
@@ -1200,7 +1200,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE39]
-Model=tbm03_M03_01
+Model=tbm03_m03_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone2
@@ -1227,7 +1227,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE40]
-Model=tbm03_N01_01
+Model=tbm03_n01_01
 TopLeft=Stone1
 TopLeftHeight=0
 TopRight=Stone0
@@ -1254,7 +1254,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE41]
-Model=tbm03_N02_01
+Model=tbm03_n02_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone1
@@ -1281,7 +1281,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE42]
-Model=tbm03_N03_01
+Model=tbm03_n03_01
 TopLeft=Stone0
 TopLeftHeight=1
 TopRight=Stone2
@@ -1308,7 +1308,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE43]
-Model=tbm03_O01_01
+Model=tbm03_o01_01
 TopLeft=Stone0
 TopLeftHeight=0
 TopRight=Stone1
@@ -1335,7 +1335,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE44]
-Model=tbm03_O02_01
+Model=tbm03_o02_01
 TopLeft=Stone1
 TopLeftHeight=0
 TopRight=Stone2
@@ -1362,7 +1362,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE45]
-Model=tbm03_O03_01
+Model=tbm03_o03_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone0
@@ -1389,7 +1389,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE46]
-Model=tbm03_P01_01
+Model=tbm03_p01_01
 TopLeft=Stone0
 TopLeftHeight=0
 TopRight=Stone0
@@ -1416,7 +1416,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE47]
-Model=tbm03_P02_01
+Model=tbm03_p02_01
 TopLeft=Stone1
 TopLeftHeight=0
 TopRight=Stone1
@@ -1443,7 +1443,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE48]
-Model=tbm03_P03_01
+Model=tbm03_p03_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone2
@@ -1470,7 +1470,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE49]
-Model=tbm03_Q01_01
+Model=tbm03_q01_01
 TopLeft=Stone0
 TopLeftHeight=0
 TopRight=Stone2
@@ -1497,7 +1497,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE50]
-Model=tbm03_Q02_01
+Model=tbm03_q02_01
 TopLeft=Stone1
 TopLeftHeight=0
 TopRight=Stone0
@@ -1524,7 +1524,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE51]
-Model=tbm03_Q03_01
+Model=tbm03_q03_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone1
@@ -1551,7 +1551,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE52]
-Model=tbm03_R01_01
+Model=tbm03_r01_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone0
@@ -1578,7 +1578,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE53]
-Model=tbm03_R02_01
+Model=tbm03_r02_01
 TopLeft=Stone0
 TopLeftHeight=1
 TopRight=Stone1
@@ -1605,7 +1605,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE54]
-Model=tbm03_R03_01
+Model=tbm03_r03_01
 TopLeft=Stone1
 TopLeftHeight=1
 TopRight=Stone2
@@ -1632,7 +1632,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE55]
-Model=tbm03_S01_01
+Model=tbm03_s01_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone2
@@ -1659,7 +1659,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE56]
-Model=tbm03_S02_01
+Model=tbm03_s02_01
 TopLeft=Stone0
 TopLeftHeight=1
 TopRight=Stone0
@@ -1686,7 +1686,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE57]
-Model=tbm03_S03_01
+Model=tbm03_s03_01
 TopLeft=Stone1
 TopLeftHeight=1
 TopRight=Stone1
@@ -1713,7 +1713,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE58]
-Model=tbm03_T01_01
+Model=tbm03_t01_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone1
@@ -1740,7 +1740,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE59]
-Model=tbm03_T02_01
+Model=tbm03_t02_01
 TopLeft=Stone0
 TopLeftHeight=1
 TopRight=Stone2
@@ -1767,7 +1767,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE60]
-Model=tbm03_T03_01
+Model=tbm03_t03_01
 TopLeft=Stone1
 TopLeftHeight=1
 TopRight=Stone0
@@ -1794,7 +1794,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE61]
-Model=tbm03_U01_01
+Model=tbm03_u01_01
 TopLeft=Stone1
 TopLeftHeight=0
 TopRight=Stone2
@@ -1821,7 +1821,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE62]
-Model=tbm03_U02_01
+Model=tbm03_u02_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone0
@@ -1848,7 +1848,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE63]
-Model=tbm03_U03_01
+Model=tbm03_u03_01
 TopLeft=Stone0
 TopLeftHeight=1
 TopRight=Stone1
@@ -1875,7 +1875,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE64]
-Model=tbm03_V01_01
+Model=tbm03_v01_01
 TopLeft=Stone1
 TopLeftHeight=0
 TopRight=Stone1
@@ -1902,7 +1902,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE65]
-Model=tbm03_V02_01
+Model=tbm03_v02_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone2
@@ -1929,7 +1929,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE66]
-Model=tbm03_V03_01
+Model=tbm03_v03_01
 TopLeft=Stone0
 TopLeftHeight=1
 TopRight=Stone0
@@ -1956,7 +1956,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE67]
-Model=tbm03_W01_01
+Model=tbm03_w01_01
 TopLeft=Stone0
 TopLeftHeight=1
 TopRight=Stone0
@@ -1983,7 +1983,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE68]
-Model=tbm03_W02_01
+Model=tbm03_w02_01
 TopLeft=Stone1
 TopLeftHeight=1
 TopRight=Stone1
@@ -2010,7 +2010,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE69]
-Model=tbm03_W03_01
+Model=tbm03_w03_01
 TopLeft=Stone2
 TopLeftHeight=1
 TopRight=Stone2
@@ -2037,7 +2037,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE70]
-Model=tbm03_X01_01
+Model=tbm03_x01_01
 TopLeft=Stone0
 TopLeftHeight=0
 TopRight=Stone0
@@ -2064,7 +2064,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE71]
-Model=tbm03_X02_01
+Model=tbm03_x02_01
 TopLeft=Stone1
 TopLeftHeight=0
 TopRight=Stone1
@@ -2091,7 +2091,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE72]
-Model=tbm03_X03_01
+Model=tbm03_x03_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone2
@@ -2118,7 +2118,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE73]
-Model=tbm03_Y01_01
+Model=tbm03_y01_01
 TopLeft=Stone0
 TopLeftHeight=0
 TopRight=Stone0
@@ -2145,7 +2145,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE74]
-Model=tbm03_Y02_01
+Model=tbm03_y02_01
 TopLeft=Stone1
 TopLeftHeight=0
 TopRight=Stone1
@@ -2172,7 +2172,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE75]
-Model=tbm03_Y03_01
+Model=tbm03_y03_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone2
@@ -2199,7 +2199,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE76]
-Model=tbm03_AZ01_01
+Model=tbm03_az01_01
 TopLeft=Stone0
 TopLeftHeight=0
 TopRight=Stone2
@@ -2226,7 +2226,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE77]
-Model=tbm03_AZ02_01
+Model=tbm03_az02_01
 TopLeft=Stone1
 TopLeftHeight=0
 TopRight=Stone0
@@ -2253,7 +2253,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE78]
-Model=tbm03_AZ03_01
+Model=tbm03_az03_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone1
@@ -2280,7 +2280,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE79]
-Model=tbm03_AA01_01
+Model=tbm03_aa01_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone0
@@ -2307,7 +2307,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE80]
-Model=tbm03_AA02_01
+Model=tbm03_aa02_01
 TopLeft=Stone0
 TopLeftHeight=1
 TopRight=Stone1
@@ -2334,7 +2334,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE81]
-Model=tbm03_AA03_01
+Model=tbm03_aa03_01
 TopLeft=Stone1
 TopLeftHeight=1
 TopRight=Stone2
@@ -2361,7 +2361,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE82]
-Model=tbm03_AB01_01
+Model=tbm03_ab01_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone2
@@ -2388,7 +2388,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE83]
-Model=tbm03_AB02_01
+Model=tbm03_ab02_01
 TopLeft=Stone0
 TopLeftHeight=1
 TopRight=Stone0
@@ -2415,7 +2415,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE84]
-Model=tbm03_AB03_01
+Model=tbm03_ab03_01
 TopLeft=Stone1
 TopLeftHeight=1
 TopRight=Stone1
@@ -2442,7 +2442,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE85]
-Model=tbm03_AC01_01
+Model=tbm03_ac01_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone0
@@ -2469,7 +2469,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE86]
-Model=tbm03_AC02_01
+Model=tbm03_ac02_01
 TopLeft=Stone0
 TopLeftHeight=1
 TopRight=Stone1
@@ -2496,7 +2496,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE87]
-Model=tbm03_AC03_01
+Model=tbm03_ac03_01
 TopLeft=Stone1
 TopLeftHeight=1
 TopRight=Stone2
@@ -2523,7 +2523,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE88]
-Model=tbm03_AD01_01
+Model=tbm03_ad01_01
 TopLeft=Stone0
 TopLeftHeight=1
 TopRight=Stone2
@@ -2550,7 +2550,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE89]
-Model=tbm03_AD02_01
+Model=tbm03_ad02_01
 TopLeft=Stone1
 TopLeftHeight=1
 TopRight=Stone0
@@ -2577,7 +2577,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE90]
-Model=tbm03_AD03_01
+Model=tbm03_ad03_01
 TopLeft=Stone2
 TopLeftHeight=1
 TopRight=Stone1
@@ -2604,7 +2604,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE91]
-Model=tbm03_AE01_01
+Model=tbm03_ae01_01
 TopLeft=Stone0
 TopLeftHeight=1
 TopRight=Stone0
@@ -2631,7 +2631,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE92]
-Model=tbm03_AE02_01
+Model=tbm03_ae02_01
 TopLeft=Stone1
 TopLeftHeight=1
 TopRight=Stone1
@@ -2658,7 +2658,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE93]
-Model=tbm03_AE03_01
+Model=tbm03_ae03_01
 TopLeft=Stone2
 TopLeftHeight=1
 TopRight=Stone2
@@ -2685,7 +2685,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE94]
-Model=tbm03_AF01_01
+Model=tbm03_af01_01
 TopLeft=Stone0
 TopLeftHeight=1
 TopRight=Stone0
@@ -2712,7 +2712,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE95]
-Model=tbm03_AF02_01
+Model=tbm03_af02_01
 TopLeft=Stone1
 TopLeftHeight=1
 TopRight=Stone1
@@ -2739,7 +2739,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE96]
-Model=tbm03_AF03_01
+Model=tbm03_af03_01
 TopLeft=Stone2
 TopLeftHeight=1
 TopRight=Stone2
@@ -2766,7 +2766,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE97]
-Model=tbm03_AG01_01
+Model=tbm03_ag01_01
 TopLeft=Stone0
 TopLeftHeight=0
 TopRight=Stone0
@@ -2793,7 +2793,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE98]
-Model=tbm03_AG02_01
+Model=tbm03_ag02_01
 TopLeft=Stone1
 TopLeftHeight=0
 TopRight=Stone1
@@ -2820,7 +2820,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE99]
-Model=tbm03_AG03_01
+Model=tbm03_ag03_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone2
@@ -2847,7 +2847,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE100]
-Model=tbm03_AH01_01
+Model=tbm03_ah01_01
 TopLeft=Stone0
 TopLeftHeight=0
 TopRight=Stone0
@@ -2874,7 +2874,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE101]
-Model=tbm03_AH02_01
+Model=tbm03_ah02_01
 TopLeft=Stone1
 TopLeftHeight=0
 TopRight=Stone1
@@ -2901,7 +2901,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE102]
-Model=tbm03_AH03_01
+Model=tbm03_ah03_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone2
@@ -2928,7 +2928,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE103]
-Model=tbm03_AI01_01
+Model=tbm03_ai01_01
 TopLeft=Stone0
 TopLeftHeight=0
 TopRight=Stone1
@@ -2955,7 +2955,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE104]
-Model=tbm03_AI02_01
+Model=tbm03_ai02_01
 TopLeft=Stone1
 TopLeftHeight=0
 TopRight=Stone2
@@ -2982,7 +2982,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE105]
-Model=tbm03_AI03_01
+Model=tbm03_ai03_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone0
@@ -3009,7 +3009,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE106]
-Model=tbm03_AJ01_01
+Model=tbm03_aj01_01
 TopLeft=Stone1
 TopLeftHeight=0
 TopRight=Stone0
@@ -3036,7 +3036,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE107]
-Model=tbm03_AJ02_01
+Model=tbm03_aj02_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone1
@@ -3063,7 +3063,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE108]
-Model=tbm03_AJ03_01
+Model=tbm03_aj03_01
 TopLeft=Stone0
 TopLeftHeight=1
 TopRight=Stone2
@@ -3090,7 +3090,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE109]
-Model=tbm03_AK01_01
+Model=tbm03_ak01_01
 TopLeft=Stone1
 TopLeftHeight=0
 TopRight=Stone1
@@ -3117,7 +3117,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE110]
-Model=tbm03_AK02_01
+Model=tbm03_ak02_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone2
@@ -3144,7 +3144,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE111]
-Model=tbm03_AK03_01
+Model=tbm03_ak03_01
 TopLeft=Stone0
 TopLeftHeight=1
 TopRight=Stone0
@@ -3171,7 +3171,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE112]
-Model=tbm03_AL01_01
+Model=tbm03_al01_01
 TopLeft=Stone1
 TopLeftHeight=0
 TopRight=Stone0
@@ -3198,7 +3198,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE113]
-Model=tbm03_AL02_01
+Model=tbm03_al02_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone1
@@ -3225,7 +3225,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE114]
-Model=tbm03_AL03_01
+Model=tbm03_al03_01
 TopLeft=Stone0
 TopLeftHeight=1
 TopRight=Stone2
@@ -3252,7 +3252,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE115]
-Model=tbm03_AM01_01
+Model=tbm03_am01_01
 TopLeft=Stone0
 TopLeftHeight=1
 TopRight=Stone1
@@ -3279,7 +3279,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE116]
-Model=tbm03_AM02_01
+Model=tbm03_am02_01
 TopLeft=Stone1
 TopLeftHeight=1
 TopRight=Stone2
@@ -3306,7 +3306,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE117]
-Model=tbm03_AM03_01
+Model=tbm03_am03_01
 TopLeft=Stone2
 TopLeftHeight=1
 TopRight=Stone0
@@ -3333,7 +3333,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE118]
-Model=tbm03_AN01_01
+Model=tbm03_an01_01
 TopLeft=Stone0
 TopLeftHeight=1
 TopRight=Stone0
@@ -3360,7 +3360,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE119]
-Model=tbm03_AN02_01
+Model=tbm03_an02_01
 TopLeft=Stone1
 TopLeftHeight=1
 TopRight=Stone1
@@ -3387,7 +3387,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE120]
-Model=tbm03_AN03_01
+Model=tbm03_an03_01
 TopLeft=Stone2
 TopLeftHeight=1
 TopRight=Stone2
@@ -3414,7 +3414,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE121]
-Model=tbm03_AO01_01
+Model=tbm03_ao01_01
 TopLeft=Stone0
 TopLeftHeight=1
 TopRight=Stone2
@@ -3441,7 +3441,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE122]
-Model=tbm03_AO02_01
+Model=tbm03_ao02_01
 TopLeft=Stone1
 TopLeftHeight=1
 TopRight=Stone0
@@ -3468,7 +3468,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE123]
-Model=tbm03_AO03_01
+Model=tbm03_ao03_01
 TopLeft=Stone2
 TopLeftHeight=1
 TopRight=Stone1
@@ -3495,7 +3495,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE124]
-Model=tbm03_AP01_01
+Model=tbm03_ap01_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone0
@@ -3522,7 +3522,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE125]
-Model=tbm03_AP02_01
+Model=tbm03_ap02_01
 TopLeft=Stone0
 TopLeftHeight=1
 TopRight=Stone1
@@ -3549,7 +3549,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE126]
-Model=tbm03_AP03_01
+Model=tbm03_ap03_01
 TopLeft=Stone1
 TopLeftHeight=1
 TopRight=Stone2
@@ -3576,7 +3576,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE127]
-Model=tbm03_AQ01_01
+Model=tbm03_aq01_01
 TopLeft=Stone0
 TopLeftHeight=1
 TopRight=Stone1
@@ -3603,7 +3603,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE128]
-Model=tbm03_AQ02_01
+Model=tbm03_aq02_01
 TopLeft=Stone1
 TopLeftHeight=1
 TopRight=Stone2
@@ -3630,7 +3630,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE129]
-Model=tbm03_AQ03_01
+Model=tbm03_aq03_01
 TopLeft=Stone2
 TopLeftHeight=1
 TopRight=Stone0
@@ -3657,7 +3657,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE130]
-Model=tbm03_AR01_01
+Model=tbm03_ar01_01
 TopLeft=Stone1
 TopLeftHeight=0
 TopRight=Stone0
@@ -3684,7 +3684,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE131]
-Model=tbm03_AR02_01
+Model=tbm03_ar02_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone1
@@ -3711,7 +3711,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE132]
-Model=tbm03_AR03_01
+Model=tbm03_ar03_01
 TopLeft=Stone0
 TopLeftHeight=1
 TopRight=Stone2
@@ -3738,7 +3738,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE133]
-Model=tbm03_AS01_01
+Model=tbm03_as01_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone1
@@ -3765,7 +3765,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE134]
-Model=tbm03_AS02_01
+Model=tbm03_as02_01
 TopLeft=Stone0
 TopLeftHeight=1
 TopRight=Stone2
@@ -3792,7 +3792,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE135]
-Model=tbm03_AS03_01
+Model=tbm03_as03_01
 TopLeft=Stone1
 TopLeftHeight=1
 TopRight=Stone0
@@ -3819,7 +3819,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE136]
-Model=tbm03_AT01_01
+Model=tbm03_at01_01
 TopLeft=Stone1
 TopLeftHeight=0
 TopRight=Stone2
@@ -3846,7 +3846,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE137]
-Model=tbm03_AT02_01
+Model=tbm03_at02_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone0
@@ -3873,7 +3873,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE138]
-Model=tbm03_AT03_01
+Model=tbm03_at03_01
 TopLeft=Stone0
 TopLeftHeight=1
 TopRight=Stone1
@@ -4233,7 +4233,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_G03
+ImageMap2D=bm01_g03
 
 [TILE151]
 Model=tbm_a19_01
@@ -4261,7 +4261,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_G04
+ImageMap2D=bm01_g04
 
 [TILE152]
 Model=tbm_a20_01
@@ -4289,10 +4289,10 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_G05
+ImageMap2D=bm01_g05
 
 [TILE153]
-Model=tbm03_Y99_01
+Model=tbm03_y99_01
 WalkMesh=msb01
 TopLeft=Stone0
 TopLeftHeight=0
@@ -4319,7 +4319,7 @@ PathNode=C
 Orientation=0
 VisibilityNode=P
 VisibilityOrientation=0
-ImageMap2D=bm01_G07
+ImageMap2D=bm01_g07
 
 [TILE154]
 Model=tbm_a21_01
@@ -4349,7 +4349,7 @@ PathNode=C
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=bm01_G08
+ImageMap2D=bm01_g08
 
 [TILE155]
 Model=tbm_b02_01
@@ -4379,7 +4379,7 @@ PathNode=C
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=bm01_G09
+ImageMap2D=bm01_g09
 
 [TILE156]
 Model=tbm_a22_01
@@ -4409,7 +4409,7 @@ PathNode=I
 Orientation=180
 VisibilityNode=A
 VisibilityOrientation=180
-ImageMap2D=bm01_G11
+ImageMap2D=bm01_g11
 
 [TILE157]
 Model=tbm01_w16_01
@@ -4439,7 +4439,7 @@ PathNode=I
 Orientation=180
 VisibilityNode=A
 VisibilityOrientation=180
-ImageMap2D=bm01_G11
+ImageMap2D=bm01_g11
 
 [TILE158]
 Model=tbm18_b06_01
@@ -4469,7 +4469,7 @@ PathNode=I
 Orientation=180
 VisibilityNode=A
 VisibilityOrientation=180
-ImageMap2D=rbm01_B06
+ImageMap2D=rbm01_b06
 
 [TILE159]
 Model=tbm_a23_01
@@ -4497,7 +4497,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_B01
+ImageMap2D=bm01_b01
 
 [TILE160]
 Model=tbm_a24_01
@@ -4527,7 +4527,7 @@ PathNode=I
 Orientation=180
 VisibilityNode=A
 VisibilityOrientation=180
-ImageMap2D=bm01_B02
+ImageMap2D=bm01_b02
 
 [TILE161]
 Model=tbm_a25_01
@@ -4555,7 +4555,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_B031
+ImageMap2D=bm01_b031
 
 [TILE162]
 Model=tbm_a26_01
@@ -4585,7 +4585,7 @@ PathNode=H
 Orientation=270
 VisibilityNode=A
 VisibilityOrientation=270
-ImageMap2D=bm01_B04
+ImageMap2D=bm01_b04
 
 [TILE163]
 Model=tbm01_w83_01
@@ -4615,7 +4615,7 @@ PathNode=T
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=MITR01_B20
+ImageMap2D=mitr01_b20
 
 [TILE164]
 Model=tbm_a27_01
@@ -4731,7 +4731,7 @@ PathNode=B
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=bm01_I01
+ImageMap2D=bm01_i01
 
 [TILE168]
 Model=tbm_a31_01
@@ -4761,7 +4761,7 @@ PathNode=C
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=bm01_I02
+ImageMap2D=bm01_i02
 
 [TILE169]
 Model=tbm_a32_01
@@ -4791,7 +4791,7 @@ PathNode=E
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=bm01_I03
+ImageMap2D=bm01_i03
 
 [TILE170]
 Model=tbm_a33_01
@@ -4821,7 +4821,7 @@ PathNode=D
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=bm01_I04
+ImageMap2D=bm01_i04
 
 [TILE171]
 Model=tbm_a34_01
@@ -4851,7 +4851,7 @@ PathNode=G
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=bm01_I05
+ImageMap2D=bm01_i05
 
 [TILE172]
 Model=tbm_a35_01
@@ -4881,7 +4881,7 @@ PathNode=S
 Orientation=270
 VisibilityNode=A
 VisibilityOrientation=270
-ImageMap2D=bm01_I11
+ImageMap2D=bm01_i11
 
 [TILE173]
 Model=tbm_a10_01
@@ -4913,7 +4913,7 @@ VisibilityNode=A
 VisibilityOrientation=0
 DoorVisibilityNode=F
 DoorVisibilityOrientation=0
-ImageMap2D=bm01_I17
+ImageMap2D=bm01_i17
 
 [TILE173DOOR0]
 Type=1
@@ -4951,7 +4951,7 @@ PathNode=B
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=bm01_I01
+ImageMap2D=bm01_i01
 
 [TILE175]
 Model=tbm_a37_01
@@ -4981,7 +4981,7 @@ PathNode=C
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=bm01_I02
+ImageMap2D=bm01_i02
 
 [TILE176]
 Model=tbm_a38_01
@@ -5011,7 +5011,7 @@ PathNode=I
 Orientation=180
 VisibilityNode=A
 VisibilityOrientation=180
-ImageMap2D=bm01_B02
+ImageMap2D=bm01_b02
 
 [TILE177]
 Model=tbm_a39_01
@@ -5041,7 +5041,7 @@ PathNode=I
 Orientation=180
 VisibilityNode=A
 VisibilityOrientation=180
-ImageMap2D=bm01_B02
+ImageMap2D=bm01_b02
 
 [TILE178]
 Model=tbm_a40_01
@@ -5071,7 +5071,7 @@ PathNode=J
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=bm01_B032
+ImageMap2D=bm01_b032
 
 [TILE179]
 Model=tbm_a42_01
@@ -5101,7 +5101,7 @@ PathNode=H
 Orientation=270
 VisibilityNode=A
 VisibilityOrientation=270
-ImageMap2D=bm01_B04
+ImageMap2D=bm01_b04
 
 [TILE180]
 Model=tbm_a43_01
@@ -5131,7 +5131,7 @@ PathNode=H
 Orientation=270
 VisibilityNode=A
 VisibilityOrientation=270
-ImageMap2D=bm01_B04
+ImageMap2D=bm01_b04
 
 [TILE181]
 Model=tbm_a44_01
@@ -5159,7 +5159,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_B01
+ImageMap2D=bm01_b01
 
 [TILE182]
 Model=tbm_a45_01
@@ -5187,7 +5187,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_B01
+ImageMap2D=bm01_b01
 
 [TILE183]
 Model=tbm_a47_01
@@ -5215,7 +5215,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_O01
+ImageMap2D=bm01_o01
 
 [TILE184]
 Model=tbm_a48_01
@@ -5271,7 +5271,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_O03
+ImageMap2D=bm01_o03
 
 [TILE186]
 Model=tbm_a50_01
@@ -5299,7 +5299,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_R02
+ImageMap2D=bm01_r02
 
 [TILE187]
 Model=tbm_a51_01
@@ -5327,7 +5327,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_R02
+ImageMap2D=bm01_r02
 
 [TILE188]
 Model=tbm_a52_01
@@ -5355,7 +5355,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_R01
+ImageMap2D=bm01_r01
 
 [TILE189]
 Model=tbm_a02_01
@@ -5383,7 +5383,7 @@ Doors=1
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_S07
+ImageMap2D=bm01_s07
 
 [TILE189DOOR0]
 Type=0
@@ -5418,7 +5418,7 @@ Doors=1
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_T07
+ImageMap2D=bm01_t07
 
 [TILE190DOOR0]
 Type=0
@@ -5453,7 +5453,7 @@ Doors=1
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_O12
+ImageMap2D=bm01_o12
 
 [TILE191DOOR0]
 Type=0
@@ -5488,7 +5488,7 @@ Doors=1
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_O14
+ImageMap2D=bm01_o14
 
 [TILE192DOOR0]
 Type=0
@@ -5523,7 +5523,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=MALL_A01
+ImageMap2D=mall_a01
 
 [TILE194]
 Model=tbm_a53_01
@@ -5551,7 +5551,7 @@ Doors=1
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_S06
+ImageMap2D=bm01_s06
 
 [TILE194DOOR0]
 Type=0
@@ -5586,7 +5586,7 @@ Doors=1
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_T06
+ImageMap2D=bm01_t06
 
 [TILE195DOOR0]
 Type=0
@@ -5658,7 +5658,7 @@ PathNode=C
 Orientation=90
 VisibilityNode=F
 VisibilityOrientation=90
-ImageMap2D=bm01_G19
+ImageMap2D=bm01_g19
 
 [TILE198]
 Model=tbm_a07_01
@@ -5690,7 +5690,7 @@ VisibilityNode=C
 VisibilityOrientation=90
 DoorVisibilityNode=C
 DoorVisibilityOrientation=90
-ImageMap2D=bm01_H19
+ImageMap2D=bm01_h19
 
 
 [TILE198DOOR0]
@@ -5726,7 +5726,7 @@ Doors=0
 Sounds=0
 PathNode=B
 Orientation=0
-ImageMap2D=bm01_J01
+ImageMap2D=bm01_j01
 
 [TILE200]
 Model=tbm_a56_01
@@ -5754,7 +5754,7 @@ Doors=0
 Sounds=0
 PathNode=C
 Orientation=0
-ImageMap2D=bm01_J02
+ImageMap2D=bm01_j02
 
 [TILE201]
 Model=tbm_a57_01
@@ -5782,7 +5782,7 @@ Doors=0
 Sounds=0
 PathNode=E
 Orientation=0
-ImageMap2D=bm01_J03
+ImageMap2D=bm01_j03
 
 [TILE202]
 Model=tbm_a58_01
@@ -5810,7 +5810,7 @@ Doors=0
 Sounds=0
 PathNode=D
 Orientation=0
-ImageMap2D=bm01_J04
+ImageMap2D=bm01_j04
 
 [TILE203]
 Model=tbm_a59_01
@@ -5838,7 +5838,7 @@ Doors=0
 Sounds=0
 PathNode=G
 Orientation=0
-ImageMap2D=bm01_J05
+ImageMap2D=bm01_j05
 
 [TILE204]
 Model=tbm_a60_01
@@ -5868,7 +5868,7 @@ PathNode=S
 Orientation=270
 VisibilityNode=G
 VisibilityOrientation=270
-ImageMap2D=bm01_J11
+ImageMap2D=bm01_j11
 
 [TILE205]
 Model=tbm_a61_01
@@ -5896,7 +5896,7 @@ Doors=0
 Sounds=0
 PathNode=B
 Orientation=0
-ImageMap2D=bm01_J01
+ImageMap2D=bm01_j01
 
 [TILE206]
 Model=tbm_wall2gate
@@ -5928,7 +5928,7 @@ VisibilityNode=A
 VisibilityOrientation=0
 DoorVisibilityNode=A
 DoorVisibilityOrientation=0
-ImageMap2D=bm01_J17
+ImageMap2D=bm01_j17
 
 [TILE206DOOR0]
 Type=2
@@ -5963,7 +5963,7 @@ Doors=0
 Sounds=0
 PathNode=C
 Orientation=0
-ImageMap2D=bm01_J02
+ImageMap2D=bm01_j02
 
 [TILE208]
 Model=tbm_a63_01
@@ -5991,7 +5991,7 @@ Doors=0
 Sounds=0
 PathNode=G
 Orientation=0
-ImageMap2D=bm01_J05
+ImageMap2D=bm01_j05
 
 [TILE209]
 Model=tbm_a65_01
@@ -6019,7 +6019,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_H01
+ImageMap2D=bm01_h01
 
 [TILE210]
 Model=tbm_a66_01
@@ -6047,7 +6047,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_H02
+ImageMap2D=bm01_h02
 
 [TILE211]
 Model=tbm_a67_01
@@ -6075,7 +6075,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_H03
+ImageMap2D=bm01_h03
 
 [TILE212]
 Model=tbm_a68_01
@@ -6103,7 +6103,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_H04
+ImageMap2D=bm01_h04
 
 [TILE213]
 Model=tbm_a69_01
@@ -6131,7 +6131,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_H05
+ImageMap2D=bm01_h05
 
 [TILE214]
 Model=tbm_a70_01
@@ -6161,7 +6161,7 @@ PathNode=F
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=bm01_H07
+ImageMap2D=bm01_h07
 
 [TILE215]
 Model=tbm_a71_01
@@ -6191,7 +6191,7 @@ PathNode=C
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=bm01_H08
+ImageMap2D=bm01_h08
 
 [TILE216]
 Model=tbm_a72_01
@@ -6221,7 +6221,7 @@ PathNode=C
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=bm01_H09
+ImageMap2D=bm01_h09
 
 [TILE217]
 Model=tbm_a73_01
@@ -6251,7 +6251,7 @@ PathNode=I
 Orientation=180
 VisibilityNode=A
 VisibilityOrientation=180
-ImageMap2D=bm01_H11
+ImageMap2D=bm01_h11
 
 [TILE218]
 Model=tbm_a74_01
@@ -6279,7 +6279,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_H12
+ImageMap2D=bm01_h12
 
 [TILE219]
 Model=tbm_a08_01
@@ -6311,7 +6311,7 @@ VisibilityNode=A
 VisibilityOrientation=90
 DoorVisibilityNode=A
 DoorVisibilityOrientation=90
-ImageMap2D=bm01_H18
+ImageMap2D=bm01_h18
 
 [TILE219DOOR0]
 Type=1
@@ -6348,7 +6348,7 @@ PathNode=I
 Orientation=180
 VisibilityNode=A
 VisibilityOrientation=180
-ImageMap2D=MITR01_U19
+ImageMap2D=mitr01_u19
 
 [TILE221]
 Model=tbm_a75_01
@@ -6376,7 +6376,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_H20
+ImageMap2D=bm01_h20
 
 [TILE222]
 Model=tbm01_w85_01
@@ -6404,7 +6404,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=MITR01_K04
+ImageMap2D=mitr01_k04
 
 [TILE223]
 Model=tbm01_w86_01
@@ -6434,7 +6434,7 @@ PathNode=N
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=MITR01_K05
+ImageMap2D=mitr01_k05
 
 [TILE224]
 Model=tbm_a76_01
@@ -6462,7 +6462,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_K12
+ImageMap2D=bm01_k12
 
 [TILE225]
 Model=tbm_a77_01
@@ -6492,7 +6492,7 @@ PathNode=U
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=bm01_K13
+ImageMap2D=bm01_k13
 
 [TILE226]
 Model=tbm01_w87_01
@@ -6524,7 +6524,7 @@ VisibilityNode=A
 VisibilityOrientation=0
 DoorVisibilityNode=A
 DoorVisibilityOrientation=0
-ImageMap2D=MITR01_K17
+ImageMap2D=mitr01_k17
 
 [TILE226DOOR0]
 Type=3
@@ -6561,7 +6561,7 @@ PathNode=H
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=MITR01_K01
+ImageMap2D=mitr01_k01
 
 [TILE228]
 Model=tbm01_w89_01
@@ -6591,7 +6591,7 @@ PathNode=L
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=MITR01_K02
+ImageMap2D=mitr01_k02
 
 [TILE229]
 Model=tbm01_w90_01
@@ -6621,7 +6621,7 @@ PathNode=I
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=MITR01_K03
+ImageMap2D=mitr01_k03
 
 [TILE230]
 Model=tbm_a78_01
@@ -6651,7 +6651,7 @@ PathNode=I
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=bm01_U16
+ImageMap2D=bm01_u16
 
 [TILE231]
 Model=tbm_a14_01
@@ -6679,7 +6679,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_U17
+ImageMap2D=bm01_u17
 
 [TILE232]
 Model=tbm01_w91_01
@@ -6709,7 +6709,7 @@ PathNode=N
 Orientation=180
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=MITR01_V16
+ImageMap2D=mitr01_v16
 
 [TILE233]
 Model=tbm01_w92_01
@@ -6739,7 +6739,7 @@ PathNode=H
 Orientation=270
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=MITR01_V17
+ImageMap2D=mitr01_v17
 
 [TILE234]
 Model=tbm01_w93_01
@@ -6769,10 +6769,10 @@ PathNode=H
 Orientation=270
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=MITR01_V19
+ImageMap2D=mitr01_v19
 
 [TILE235]
-Model=tbm03_Y96_01
+Model=tbm03_y96_01
 WalkMesh=msb01
 TopLeft=Stone0
 TopLeftHeight=0
@@ -6799,10 +6799,10 @@ PathNode=c
 Orientation=270
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=bm01_S03
+ImageMap2D=bm01_s03
 
 [TILE236]
-Model=tbm03_Y97_01
+Model=tbm03_y97_01
 WalkMesh=msb01
 TopLeft=Stone0
 TopLeftHeight=0
@@ -6829,10 +6829,10 @@ PathNode=d
 Orientation=90
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=bm01_T03
+ImageMap2D=bm01_t03
 
 [TILE237]
-Model=tbm03_Y95_01
+Model=tbm03_y95_01
 WalkMesh=msb01
 TopLeft=Stone0
 TopLeftHeight=1
@@ -6861,7 +6861,7 @@ VisibilityNode=A
 VisibilityOrientation=90
 DoorVisibilityNode=A
 DoorVisibilityOrientation=90
-ImageMap2D=bm01_R10
+ImageMap2D=bm01_r10
 
 [TILE237DOOR0]
 Type=57
@@ -6871,7 +6871,7 @@ Z=-0.44
 Orientation=0.0
 
 [TILE238]
-Model=tbm03_Y93_01
+Model=tbm03_y93_01
 WalkMesh=msb01
 TopLeft=Stone0
 TopLeftHeight=0
@@ -6896,10 +6896,10 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_S15
+ImageMap2D=bm01_s15
 
 [TILE239]
-Model=tbm03_Y94_01
+Model=tbm03_y94_01
 WalkMesh=msb01
 TopLeft=Stone0
 TopLeftHeight=0
@@ -6924,10 +6924,10 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_T15
+ImageMap2D=bm01_t15
 
 [TILE240]
-Model=tbm03_Y92_01
+Model=tbm03_y92_01
 WalkMesh=msb01
 TopLeft=Stone0
 TopLeftHeight=0
@@ -6954,10 +6954,10 @@ PathNode=F
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=bm01_H07
+ImageMap2D=bm01_h07
 
 [TILE241]
-Model=tbm03_Y91_01
+Model=tbm03_y91_01
 WalkMesh=msb01
 TopLeft=Stone0
 TopLeftHeight=0
@@ -6984,10 +6984,10 @@ PathNode=E
 Orientation=0
 VisibilityNode=G
 VisibilityOrientation=90
-ImageMap2D=bm01_J08
+ImageMap2D=bm01_j08
 
 [TILE242]
-Model=tbm03_Y90_01
+Model=tbm03_y90_01
 WalkMesh=msb01
 TopLeft=Stone0
 TopLeftHeight=0
@@ -7014,10 +7014,10 @@ PathNode=E
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=bm01_I08
+ImageMap2D=bm01_i08
 
 [TILE243]
-Model=tbm03_Y89_01
+Model=tbm03_y89_01
 WalkMesh=msb01
 TopLeft=Stone0
 TopLeftHeight=0
@@ -7042,7 +7042,7 @@ Doors=1
 Sounds=0
 PathNode=N
 Orientation=180
-ImageMap2D=bm01_R11
+ImageMap2D=bm01_r11
 
 [TILE243DOOR0]
 Type=0
@@ -7079,7 +7079,7 @@ PathNode=A
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=MILKr_o01
+ImageMap2D=milkr_o01
 
 [TILE245]
 Model=tbm02_o02_01
@@ -7107,7 +7107,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=MILKr_o02
+ImageMap2D=milkr_o02
 
 [TILE246]
 Model=tbm02_o04_01
@@ -7135,7 +7135,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=MILKr_o04
+ImageMap2D=milkr_o04
 
 [TILE247]
 Model=tbm02_t01_01
@@ -7163,7 +7163,7 @@ Doors=2
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=MILKr_t01
+ImageMap2D=milkr_t01
 
 [TILE247DOOR0]
 Type=0
@@ -7207,7 +7207,7 @@ Doors=2
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=MILKr_t02
+ImageMap2D=milkr_t02
 
 [TILE248DOOR0]
 Type=0
@@ -7249,7 +7249,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=MILKr_o03
+ImageMap2D=milkr_o03
 
 [TILE250]
 Model=tbm02_o05_01
@@ -7277,7 +7277,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=MILKr_o05
+ImageMap2D=milkr_o05
 
 [TILE251]
 Model=tbm02_o06_01
@@ -7305,7 +7305,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=MILKr_o06
+ImageMap2D=milkr_o06
 
 [TILE252]
 Model=tbm02_o07_01
@@ -7335,7 +7335,7 @@ PathNode=A
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=MILKr_o01
+ImageMap2D=milkr_o01
 
 [TILE252DOOR0]
 Type=0
@@ -7372,7 +7372,7 @@ PathNode=A
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=MILKr_oz1
+ImageMap2D=milkr_oz1
 
 
 [TILE253DOOR0]
@@ -7412,7 +7412,7 @@ VisibilityNode=A
 VisibilityOrientation=0
 DoorVisibilityNode=A
 DoorVisibilityOrientation=0
-ImageMap2D=MILKr_oz2
+ImageMap2D=milkr_oz2
 
 [TILE255]
 Model=tbm03_bmt_01
@@ -7568,7 +7568,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_O05
+ImageMap2D=bm01_o05
 
 [TILE260]
 Model=tbm_a94_01
@@ -7820,7 +7820,7 @@ Doors=1
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_S07
+ImageMap2D=bm01_s07
 
 [TILE268DOOR0]
 Type=0
@@ -8303,7 +8303,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_C01
+ImageMap2D=bm01_c01
 
 [TILE286]
 Model=tbm01_w10_01
@@ -8333,7 +8333,7 @@ PathNode=I
 Orientation=180
 VisibilityNode=A
 VisibilityOrientation=180
-ImageMap2D=bm01_C02
+ImageMap2D=bm01_c02
 
 [TILE287]
 Model=tbm01_w12_01
@@ -8361,7 +8361,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_C031
+ImageMap2D=bm01_c031
 
 [TILE288]
 Model=tbm01_w13_01
@@ -8391,7 +8391,7 @@ PathNode=H
 Orientation=270
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=bm01_C041
+ImageMap2D=bm01_c041
 
 [TILE289]
 Model=tbm01_w09_01
@@ -8419,7 +8419,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_C01
+ImageMap2D=bm01_c01
 
 [TILE290]
 Model=tbm01_w11_01
@@ -8449,7 +8449,7 @@ PathNode=I
 Orientation=180
 VisibilityNode=A
 VisibilityOrientation=180
-ImageMap2D=bm01_C02
+ImageMap2D=bm01_c02
 
 [TILE291]
 Model=ttr01_c03_02
@@ -8479,7 +8479,7 @@ PathNode=J
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=bm01_C032
+ImageMap2D=bm01_c032
 
 [TILE292]
 Model=tbm01_w14_01
@@ -8509,7 +8509,7 @@ PathNode=H
 Orientation=270
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=bm01_C041
+ImageMap2D=bm01_c041
 
 [TILE293]
 Model=tbm01_w01_01
@@ -8539,7 +8539,7 @@ PathNode=Q
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=bm01_A06
+ImageMap2D=bm01_a06
 
 [TILE294]
 Model=tbm01_w02_01
@@ -8569,7 +8569,7 @@ PathNode=R
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=bm01_A07
+ImageMap2D=bm01_a07
 
 [TILE295]
 Model=tbm01_w03_01
@@ -8599,7 +8599,7 @@ PathNode=S
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=bm01_A08
+ImageMap2D=bm01_a08
 
 [TILE296]
 Model=tbm01_w06_01
@@ -8629,7 +8629,7 @@ PathNode=S
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=bm01_A09
+ImageMap2D=bm01_a09
 
 [TILE297]
 Model=tbm01_w05_01
@@ -8659,7 +8659,7 @@ PathNode=R
 Orientation=180
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=bm01_A10
+ImageMap2D=bm01_a10
 
 [TILE298]
 Model=tbm01_w07_01
@@ -8689,7 +8689,7 @@ PathNode=Q
 Orientation=180
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=bm01_A11
+ImageMap2D=bm01_a11
 
 [TILE299]
 Model=tbm01_w27_01
@@ -8717,7 +8717,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_G21
+ImageMap2D=bm01_g21
 
 [TILE300]
 Model=tbm01_w28_01
@@ -8745,7 +8745,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_G22
+ImageMap2D=bm01_g22
 
 [TILE301]
 Model=tbm01_w29_01
@@ -8773,7 +8773,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_G23
+ImageMap2D=bm01_g23
 
 [TILE302]
 Model=tbm01_w30_01
@@ -8801,7 +8801,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_G24
+ImageMap2D=bm01_g24
 
 [TILE303]
 Model=tbm01_w31_01
@@ -8829,7 +8829,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_G25
+ImageMap2D=bm01_g25
 
 [TILE304]
 Model=tbm01_w16_01
@@ -8859,7 +8859,7 @@ PathNode=I
 Orientation=180
 VisibilityNode=A
 VisibilityOrientation=180
-ImageMap2D=bm01_G13
+ImageMap2D=bm01_g13
 
 [TILE305]
 Model=tbm01_w82_01
@@ -8889,7 +8889,7 @@ PathNode=I
 Orientation=180
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=bm01_H13
+ImageMap2D=bm01_h13
 
 [TILE306]
 Model=tbm01_w17_01
@@ -8919,7 +8919,7 @@ PathNode=S
 Orientation=270
 VisibilityNode=A
 VisibilityOrientation=270
-ImageMap2D=bm01_I13
+ImageMap2D=bm01_i13
 
 [TILE307]
 Model=tbm01_w22_01
@@ -8949,7 +8949,7 @@ PathNode=S
 Orientation=270
 VisibilityNode=G
 VisibilityOrientation=270
-ImageMap2D=bm01_J13
+ImageMap2D=bm01_j13
 
 [TILE308]
 Model=tbm01_w24_01
@@ -8979,7 +8979,7 @@ PathNode=U
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=bm01_K14
+ImageMap2D=bm01_k14
 
 [TILE308DOOR0]
 Type=53
@@ -9016,7 +9016,7 @@ PathNode=H
 Orientation=270
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=bm01_C041
+ImageMap2D=bm01_c041
 
 [TILE310]
 Model=tbm01_w18_01
@@ -9046,7 +9046,7 @@ PathNode=D
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=bm01_I07
+ImageMap2D=bm01_i07
 
 [TILE311]
 Model=tbm01_w19_01
@@ -9076,7 +9076,7 @@ PathNode=E
 Orientation=180
 VisibilityNode=A
 VisibilityOrientation=180
-ImageMap2D=bm01_I09
+ImageMap2D=bm01_i09
 
 [TILE312]
 Model=tbm01_w20_01
@@ -9104,10 +9104,10 @@ Doors=0
 Sounds=0
 PathNode=D
 Orientation=0
-ImageMap2D=bm01_J07
+ImageMap2D=bm01_j07
 
 [TILE313]
-Model=tbm03_Y91_01
+Model=tbm03_y91_01
 WalkMesh=msb01
 TopLeft=Stone0
 TopLeftHeight=0
@@ -9134,7 +9134,7 @@ PathNode=E
 Orientation=0
 VisibilityNode=G
 VisibilityOrientation=90
-ImageMap2D=bm01_J08
+ImageMap2D=bm01_j08
 
 [TILE314]
 Model=tbm01_w21_01
@@ -9164,7 +9164,7 @@ PathNode=E
 Orientation=180
 VisibilityNode=G
 VisibilityOrientation=270
-ImageMap2D=bm01_J09
+ImageMap2D=bm01_j09
 
 [TILE315]
 Model=tbm01_w23_01
@@ -9192,7 +9192,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_S05
+ImageMap2D=bm01_s05
 
 [TILE316]
 Model=tbm01_w25_01
@@ -9220,7 +9220,7 @@ Doors=1
 Sounds=0
 PathNode=N
 Orientation=180
-ImageMap2D=bm01_R11
+ImageMap2D=bm01_r11
 
 [TILE316DOOR0]
 Type=53
@@ -9352,7 +9352,7 @@ PathNode=H
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=MITR01_K01
+ImageMap2D=mitr01_k01
 
 [TILE321]
 Model=tbm01_w35_01
@@ -9382,7 +9382,7 @@ PathNode=H
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=MITR01_K01
+ImageMap2D=mitr01_k01
 
 [TILE322]
 Model=tbm01_w36_01
@@ -9412,7 +9412,7 @@ PathNode=L
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=MITR01_K02
+ImageMap2D=mitr01_k02
 
 [TILE323]
 Model=tbm01_w37_01
@@ -9442,7 +9442,7 @@ PathNode=L
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=MITR01_K02
+ImageMap2D=mitr01_k02
 
 [TILE324]
 Model=tbm01_w38_01
@@ -9472,7 +9472,7 @@ PathNode=L
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=MITR01_K02
+ImageMap2D=mitr01_k02
 
 [TILE325]
 Model=tbm01_w39_01
@@ -9502,7 +9502,7 @@ PathNode=I
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=MITR01_K03
+ImageMap2D=mitr01_k03
 
 [TILE326]
 Model=tbm01_w40_01
@@ -9530,7 +9530,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=MITR01_K04
+ImageMap2D=mitr01_k04
 
 [TILE327]
 Model=tbm01_w41_01
@@ -9560,7 +9560,7 @@ PathNode=L
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=MITR01_K05
+ImageMap2D=mitr01_k05
 
 [TILE328]
 Model=tbm01_w42_01
@@ -9588,7 +9588,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_K12
+ImageMap2D=bm01_k12
 
 [TILE329]
 Model=tbm01_w65_01
@@ -10507,7 +10507,7 @@ Doors=1
 Sounds=0
 PathNode=N
 Orientation=180
-ImageMap2D=bm01_R11
+ImageMap2D=bm01_r11
 
 [TILE359DOOR0]
 Type=35
@@ -10542,7 +10542,7 @@ Doors=1
 Sounds=0
 PathNode=N
 Orientation=0
-ImageMap2D=bm01_R11
+ImageMap2D=bm01_r11
 
 [TILE360DOOR0]
 Type=0
@@ -10607,7 +10607,7 @@ PathNode=C
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=bm01_I02
+ImageMap2D=bm01_i02
 
 [TILE363]
 Model=tbm01_w63_01
@@ -10637,7 +10637,7 @@ PathNode=B
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=bm01_I02
+ImageMap2D=bm01_i02
 
 [TILE364]
 Model=tbm01_w64_01
@@ -10665,7 +10665,7 @@ Doors=0
 Sounds=0
 PathNode=C
 Orientation=0
-ImageMap2D=bm01_J02
+ImageMap2D=bm01_j02
 
 [TILE365]
 Model=tbm01_w78_01
@@ -10696,7 +10696,7 @@ Orientation=90
 ImageMap2D=bc01_o19
 
 [TILE366]
-Model=tbm06_A01_01
+Model=tbm06_a01_01
 TopLeft=Grass0
 TopLeftHeight=0
 TopRight=Grass0
@@ -10723,7 +10723,7 @@ Orientation=0
 ImageMap2D=mitr01_o02
 
 [TILE367]
-Model=tbm06_A02_01
+Model=tbm06_a02_01
 TopLeft=Grass0
 TopLeftHeight=0
 TopRight=Stone0
@@ -10750,7 +10750,7 @@ Orientation=0
 ImageMap2D=gcorner01
 
 [TILE368]
-Model=tbm06_A03_01
+Model=tbm06_a03_01
 TopLeft=Grass0
 TopLeftHeight=0
 TopRight=Grass0
@@ -10777,7 +10777,7 @@ Orientation=0
 ImageMap2D=gside01
 
 [TILE369]
-Model=tbm06_A04_01
+Model=tbm06_a04_01
 TopLeft=Grass0
 TopLeftHeight=0
 TopRight=Grass0
@@ -10804,7 +10804,7 @@ Orientation=0
 ImageMap2D=gside02
 
 [TILE370]
-Model=tbm07_A01_01
+Model=tbm07_a01_01
 TopLeft=snow0
 TopLeftHeight=0
 TopRight=snow0
@@ -10831,7 +10831,7 @@ Orientation=0
 ImageMap2D=bm_fullsnow2
 
 [TILE371]
-Model=tbm07_A02_01
+Model=tbm07_a02_01
 TopLeft=snow0
 TopLeftHeight=0
 TopRight=Stone0
@@ -10858,7 +10858,7 @@ Orientation=0
 ImageMap2D=mapsnow1
 
 [TILE372]
-Model=tbm07_A03_01
+Model=tbm07_a03_01
 TopLeft=snow0
 TopLeftHeight=0
 TopRight=snow0
@@ -10885,7 +10885,7 @@ Orientation=0
 ImageMap2D=mapsnow2
 
 [TILE373]
-Model=tbm07_A04_01
+Model=tbm07_a04_01
 TopLeft=snow0
 TopLeftHeight=0
 TopRight=snow0
@@ -10912,7 +10912,7 @@ Orientation=0
 ImageMap2D=mapsnow3
 
 [TILE374]
-Model=tbmr_S01_01
+Model=tbmr_s01_01
 WalkMesh=msb01
 TopLeft=Stone0
 TopLeftHeight=0
@@ -10939,7 +10939,7 @@ PathNode=A
 Orientation=0
 DoorVisibilityNode=A
 DoorVisibilityOrientation=0
-ImageMap2D=tbm01_S01
+ImageMap2D=tbm01_s01
 
 [TILE374DOOR0]
 Type=4
@@ -10949,7 +10949,7 @@ Z=0.07
 Orientation=-90.0
 
 [TILE375]
-Model=tbmr_S02_01
+Model=tbmr_s02_01
 WalkMesh=msb01
 TopLeft=Stone0
 TopLeftHeight=0
@@ -10974,7 +10974,7 @@ Doors=1
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=tbm01_S02
+ImageMap2D=tbm01_s02
 
 [TILE375DOOR0]
 Type=0
@@ -11011,7 +11011,7 @@ PathNode=A
 Orientation=0
 DoorVisibilityNode=A
 DoorVisibilityOrientation=0
-ImageMap2D=tbm01_T01
+ImageMap2D=tbm01_t01
 
 [TILE376DOOR0]
 Type=4
@@ -11046,10 +11046,10 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=tbm01_T02
+ImageMap2D=tbm01_t02
 
 [TILE378]
-Model=tbmr_S08_01
+Model=tbmr_s08_01
 WalkMesh=msb01
 TopLeft=Stone0
 TopLeftHeight=0
@@ -11076,7 +11076,7 @@ PathNode=B
 Orientation=90
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=tbm01_S08
+ImageMap2D=tbm01_s08
 
 [TILE378DOOR0]
 Type=0
@@ -11086,7 +11086,7 @@ Z=0.00
 Orientation=-180.0
 
 [TILE379]
-Model=tbmr_S09_01
+Model=tbmr_s09_01
 WalkMesh=msb01
 TopLeft=Stone0
 TopLeftHeight=0
@@ -11113,7 +11113,7 @@ PathNode=G
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=tbm01_S09
+ImageMap2D=tbm01_s09
 
 [TILE380]
 Model=tbmr_t08_01
@@ -11143,7 +11143,7 @@ PathNode=B
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=tbm01_T08
+ImageMap2D=tbm01_t08
 
 [TILE380DOOR0]
 Type=0
@@ -11180,7 +11180,7 @@ PathNode=G
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=tbm01_T09
+ImageMap2D=tbm01_t09
 
 [TILE382]
 Model=tbmr_t10_01
@@ -11208,10 +11208,10 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=tbm01_T10
+ImageMap2D=tbm01_t10
 
 [TILE383]
-Model=tbmr_S10_01
+Model=tbmr_s10_01
 WalkMesh=msb01
 TopLeft=Stone0
 TopLeftHeight=0
@@ -11236,7 +11236,7 @@ Doors=1
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=tbm01_S10
+ImageMap2D=tbm01_s10
 
 [TILE383DOOR0]
 Type=0
@@ -11246,7 +11246,7 @@ Z=0.00
 Orientation=0.0
 
 [TILE384]
-Model=TBM08_A01_01
+Model=tbm08_a01_01
 WalkMesh=msb01
 TopLeft=Stone0
 TopLeftHeight=1
@@ -11276,7 +11276,7 @@ VisibilityOrientation=0
 ImageMap2D=ropebridge1
 
 [TILE385]
-Model=TBM08_B01_01
+Model=tbm08_b01_01
 WalkMesh=msb01
 TopLeft=Water
 TopLeftHeight=0
@@ -11306,7 +11306,7 @@ VisibilityOrientation=0
 ImageMap2D=ropebridge2
 
 [TILE386]
-Model=TBM08_C01_01
+Model=tbm08_c01_01
 WalkMesh=msb01
 TopLeft=Water
 TopLeftHeight=0
@@ -11336,7 +11336,7 @@ VisibilityOrientation=0
 ImageMap2D=ropebridge2
 
 [TILE387]
-Model=TBM08_D01_01
+Model=tbm08_d01_01
 WalkMesh=msb01
 TopLeft=Water
 TopLeftHeight=0
@@ -11366,7 +11366,7 @@ VisibilityOrientation=0
 ImageMap2D=ropebridge2
 
 [TILE388]
-Model=TBM08_E01_01
+Model=tbm08_e01_01
 WalkMesh=msb01
 TopLeft=Water
 TopLeftHeight=0
@@ -11396,7 +11396,7 @@ VisibilityOrientation=0
 ImageMap2D=ropebridge3
 
 [TILE389]
-Model=TBM09_A01_01
+Model=tbm09_a01_01
 WalkMesh=msb01
 TopLeft=Stone0
 TopLeftHeight=1
@@ -11426,7 +11426,7 @@ VisibilityOrientation=0
 ImageMap2D=rbridge1
 
 [TILE390]
-Model=TBM09_A01_02
+Model=tbm09_a01_02
 WalkMesh=msb01
 TopLeft=Water
 TopLeftHeight=0
@@ -11456,7 +11456,7 @@ VisibilityOrientation=0
 ImageMap2D=rbridge2
 
 [TILE391]
-Model=TBM09_A01_03
+Model=tbm09_a01_03
 WalkMesh=msb01
 TopLeft=Water
 TopLeftHeight=0
@@ -11486,7 +11486,7 @@ VisibilityOrientation=0
 ImageMap2D=rbridge2
 
 [TILE392]
-Model=TBM09_A01_04
+Model=tbm09_a01_04
 WalkMesh=msb01
 TopLeft=Water
 TopLeftHeight=0
@@ -12909,7 +12909,7 @@ Orientation=0
 ImageMap2D=pitmap_011
 
 [TILE440]
-Model=TBM10_A01_01
+Model=tbm10_a01_01
 WalkMesh=msb01
 TopLeft=Stone0
 TopLeftHeight=1
@@ -12939,7 +12939,7 @@ VisibilityOrientation=0
 ImageMap2D=pitbridmap1
 
 [TILE441]
-Model=TBM10_A01_02
+Model=tbm10_a01_02
 WalkMesh=msb01
 TopLeft=Pit
 TopLeftHeight=0
@@ -12969,7 +12969,7 @@ VisibilityOrientation=0
 ImageMap2D=pitbridmap2
 
 [TILE442]
-Model=TBM10_A01_03
+Model=tbm10_a01_03
 WalkMesh=msb01
 TopLeft=Pit
 TopLeftHeight=0
@@ -12999,7 +12999,7 @@ VisibilityOrientation=0
 ImageMap2D=pitbridmap2
 
 [TILE443]
-Model=TBM10_A01_04
+Model=tbm10_a01_04
 WalkMesh=msb01
 TopLeft=Pit
 TopLeftHeight=0
@@ -13646,7 +13646,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_C031
+ImageMap2D=bm01_c031
 
 [TILE465]
 Model=tbml_a14_01
@@ -16272,7 +16272,7 @@ Orientation=0
 ImageMap2D=gcwall3
 
 [TILE554]
-Model=tbm31_Y99_01
+Model=tbm31_y99_01
 WalkMesh=msb01
 TopLeft=Stone0
 TopLeftHeight=0
@@ -16356,7 +16356,7 @@ Orientation=0
 ImageMap2D=cloudmap2
 
 [TILE557]
-Model=tbm23_A01_01
+Model=tbm23_a01_01
 WalkMesh=msb01
 TopLeft=Stone0
 TopLeftHeight=1
@@ -16386,7 +16386,7 @@ VisibilityOrientation=0
 ImageMap2D=ropebridge4
 
 [TILE558]
-Model=tbm23_B01_01
+Model=tbm23_b01_01
 WalkMesh=msb01
 TopLeft=Pit
 TopLeftHeight=0
@@ -16416,7 +16416,7 @@ VisibilityOrientation=0
 ImageMap2D=ropebridge5
 
 [TILE559]
-Model=tbm23_C01_01
+Model=tbm23_c01_01
 WalkMesh=msb01
 TopLeft=Pit
 TopLeftHeight=0
@@ -16446,7 +16446,7 @@ VisibilityOrientation=0
 ImageMap2D=ropebridge5
 
 [TILE560]
-Model=tbm23_D01_01
+Model=tbm23_d01_01
 WalkMesh=msb01
 TopLeft=Pit
 TopLeftHeight=0
@@ -16476,7 +16476,7 @@ VisibilityOrientation=0
 ImageMap2D=ropebridge5
 
 [TILE561]
-Model=tbm23_E01_01
+Model=tbm23_e01_01
 WalkMesh=msb01
 TopLeft=Pit
 TopLeftHeight=0
@@ -16535,7 +16535,7 @@ PathNode=I
 Orientation=180
 VisibilityNode=A
 VisibilityOrientation=180
-ImageMap2D=rbm01_B07
+ImageMap2D=rbm01_b07
 
 [TILE563]
 Model=tbm18_b08_01
@@ -16565,7 +16565,7 @@ PathNode=H
 Orientation=180
 VisibilityNode=I
 VisibilityOrientation=270
-ImageMap2D=rbm01_B08
+ImageMap2D=rbm01_b08
 
 [TILE564]
 Model=tbm18_b09_01
@@ -16595,7 +16595,7 @@ PathNode=H
 Orientation=90
 VisibilityNode=I
 VisibilityOrientation=90
-ImageMap2D=rbm01_B09
+ImageMap2D=rbm01_b09
 
 [TILE565]
 Model=tbm18_b10_01
@@ -16625,7 +16625,7 @@ PathNode=H
 Orientation=180
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=rbm01_B10
+ImageMap2D=rbm01_b10
 
 [TILE566]
 Model=tbm18_b11_01
@@ -16655,7 +16655,7 @@ PathNode=H
 Orientation=90
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=rbm01_B11
+ImageMap2D=rbm01_b11
 
 [TILE567]
 Model=tbm18_c06_01
@@ -16685,7 +16685,7 @@ PathNode=I
 Orientation=180
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=rbm01_C06
+ImageMap2D=rbm01_c06
 
 [TILE568]
 Model=tbm18_c07_01
@@ -16715,7 +16715,7 @@ PathNode=I
 Orientation=180
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=rbm01_C07
+ImageMap2D=rbm01_c07
 
 [TILE569]
 Model=tbm18_c08_01
@@ -16745,7 +16745,7 @@ PathNode=H
 Orientation=180
 VisibilityNode=I
 VisibilityOrientation=270
-ImageMap2D=rbm01_C08
+ImageMap2D=rbm01_c08
 
 [TILE570]
 Model=tbm18_c09_01
@@ -16775,7 +16775,7 @@ PathNode=H
 Orientation=90
 VisibilityNode=I
 VisibilityOrientation=90
-ImageMap2D=rbm01_C09
+ImageMap2D=rbm01_c09
 
 [TILE571]
 Model=tbm18_c10_01
@@ -16805,7 +16805,7 @@ PathNode=H
 Orientation=180
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=rbm01_C10
+ImageMap2D=rbm01_c10
 
 [TILE572]
 Model=tbm18_c11_01
@@ -16835,7 +16835,7 @@ PathNode=H
 Orientation=90
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=rbm01_C11
+ImageMap2D=rbm01_c11
 
 [TILE573]
 Model=tbm18_c13_01
@@ -16865,7 +16865,7 @@ PathNode=T
 Orientation=0
 VisibilityNode=H
 VisibilityOrientation=0
-ImageMap2D=rbm01_C13
+ImageMap2D=rbm01_c13
 
 [TILE574]
 Model=tbm18_c14_01
@@ -16895,7 +16895,7 @@ PathNode=T
 Orientation=0
 VisibilityNode=I
 VisibilityOrientation=0
-ImageMap2D=rbm01_C14
+ImageMap2D=rbm01_c14
 
 [TILE575]
 Model=tbm18_c15_01
@@ -16925,7 +16925,7 @@ PathNode=T
 Orientation=0
 VisibilityNode=J
 VisibilityOrientation=90
-ImageMap2D=rbm01_C15
+ImageMap2D=rbm01_c15
 
 [TILE576]
 Model=tbm18_c16_01
@@ -16955,7 +16955,7 @@ PathNode=T
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=rbm01_C16
+ImageMap2D=rbm01_c16
 
 [TILE577]
 Model=tbm18_d01_01
@@ -16983,7 +16983,7 @@ Doors=0
 Sounds=0
 PathNode=H
 Orientation=0
-ImageMap2D=rbm01_D01
+ImageMap2D=rbm01_d01
 
 [TILE578]
 Model=tbm18_d01_02
@@ -17011,7 +17011,7 @@ Doors=0
 Sounds=0
 PathNode=H
 Orientation=0
-ImageMap2D=rbm01_D01
+ImageMap2D=rbm01_d01
 
 [TILE579]
 Model=tbm18_d02_01
@@ -17039,7 +17039,7 @@ Doors=0
 Sounds=0
 PathNode=I
 Orientation=0
-ImageMap2D=rbm01_D02
+ImageMap2D=rbm01_d02
 
 [TILE580]
 Model=tbm18_d02_02
@@ -17067,7 +17067,7 @@ Doors=0
 Sounds=0
 PathNode=I
 Orientation=0
-ImageMap2D=rbm01_D02
+ImageMap2D=rbm01_d02
 
 [TILE581]
 Model=tbm18_d03_01
@@ -17095,7 +17095,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=rbm01_D031
+ImageMap2D=rbm01_d031
 
 [TILE582]
 Model=tbm18_d03_02
@@ -17123,7 +17123,7 @@ Doors=0
 Sounds=0
 PathNode=J
 Orientation=90
-ImageMap2D=rbm01_D032
+ImageMap2D=rbm01_d032
 
 [TILE583]
 Model=tbm18_d04_01
@@ -17151,7 +17151,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=rbm01_D04
+ImageMap2D=rbm01_d04
 
 [TILE584]
 Model=tbm18_d04_02
@@ -17181,7 +17181,7 @@ PathNode=A
 Orientation=0
 VisibilityNode=J
 VisibilityOrientation=90
-ImageMap2D=rbm01_D04
+ImageMap2D=rbm01_d04
 
 [TILE585]
 Model=tbm18_d06_01
@@ -17211,7 +17211,7 @@ PathNode=Q
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=rbm01_D06
+ImageMap2D=rbm01_d06
 
 [TILE586]
 Model=tbm18_d07_01
@@ -17241,7 +17241,7 @@ PathNode=R
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=rbm01_D07
+ImageMap2D=rbm01_d07
 
 [TILE587]
 Model=tbm18_d08_01
@@ -17271,7 +17271,7 @@ PathNode=S
 Orientation=0
 VisibilityNode=I
 VisibilityOrientation=270
-ImageMap2D=rbm01_D08
+ImageMap2D=rbm01_d08
 
 [TILE588]
 Model=tbm18_d09_01
@@ -17301,7 +17301,7 @@ PathNode=S
 Orientation=180
 VisibilityNode=I
 VisibilityOrientation=90
-ImageMap2D=rbm01_D09
+ImageMap2D=rbm01_d09
 
 [TILE589]
 Model=tbm18_d10_01
@@ -17331,7 +17331,7 @@ PathNode=R
 Orientation=180
 VisibilityNode=A
 VisibilityOrientation=180
-ImageMap2D=rbm01_D10
+ImageMap2D=rbm01_d10
 
 [TILE590]
 Model=tbm18_d11_01
@@ -17361,7 +17361,7 @@ PathNode=Q
 Orientation=180
 VisibilityNode=A
 VisibilityOrientation=180
-ImageMap2D=rbm01_D11
+ImageMap2D=rbm01_d11
 
 [TILE591]
 Model=tbm18_d13_01
@@ -17389,7 +17389,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=rbm01_D13
+ImageMap2D=rbm01_d13
 
 [TILE592]
 Model=tbm18_d14_01
@@ -17417,7 +17417,7 @@ Doors=0
 Sounds=0
 PathNode=I
 Orientation=180
-ImageMap2D=rbm01_D14
+ImageMap2D=rbm01_d14
 
 [TILE593]
 Model=tbm18_d16_01
@@ -17445,7 +17445,7 @@ Doors=0
 Sounds=0
 PathNode=H
 Orientation=270
-ImageMap2D=rbm01_D16
+ImageMap2D=rbm01_d16
 
 [TILE594]
 Model=tbm18_d20_01
@@ -17473,7 +17473,7 @@ Doors=0
 Sounds=0
 PathNode=T
 Orientation=0
-ImageMap2D=MITR01_D20
+ImageMap2D=mitr01_d20
 
 [TILE595]
 Model=tbm18_g15_01
@@ -17503,7 +17503,7 @@ PathNode=I
 Orientation=0
 DoorVisibilityNode=I
 DoorVisibilityOrientation=0
-ImageMap2D=rbm01_G15
+ImageMap2D=rbm01_g15
 
 [TILE595DOOR0]
 Type=65
@@ -17540,7 +17540,7 @@ PathNode=I
 Orientation=0
 DoorVisibilityNode=I
 DoorVisibilityOrientation=0
-ImageMap2D=rbm01_H15
+ImageMap2D=rbm01_h15
 
 [TILE596DOOR0]
 Type=65
@@ -17577,7 +17577,7 @@ PathNode=S
 Orientation=90
 VisibilityNode=I
 VisibilityOrientation=90
-ImageMap2D=rbm01_I15
+ImageMap2D=rbm01_i15
 
 [TILE598]
 Model=tbm18_j15_01
@@ -17605,7 +17605,7 @@ Doors=0
 Sounds=0
 PathNode=S
 Orientation=90
-ImageMap2D=rbm01_J15
+ImageMap2D=rbm01_j15
 
 [TILE599]
 Model=tbm18_k01_01
@@ -17918,7 +17918,7 @@ Doors=0
 Sounds=0
 PathNode=T
 Orientation=0
-ImageMap2D=MITR01_D20
+ImageMap2D=mitr01_d20
 
 [TILE610]
 Model=tbm18_k12_01
@@ -17946,7 +17946,7 @@ Doors=0
 Sounds=0
 PathNode=T
 Orientation=0
-ImageMap2D=MITR01_D20
+ImageMap2D=mitr01_d20
 
 [TILE611]
 Model=tbm18_k13_01
@@ -18174,7 +18174,7 @@ Doors=0
 Sounds=0
 PathNode=T
 Orientation=0
-ImageMap2D=MITR01_D20
+ImageMap2D=mitr01_d20
 
 [TILE619]
 Model=tbm18_k22_01
@@ -18258,7 +18258,7 @@ Doors=0
 Sounds=0
 PathNode=T
 Orientation=0
-ImageMap2D=MITR01_D20
+ImageMap2D=mitr01_d20
 
 [TILE622]
 Model=tbm18_k24_01
@@ -18594,7 +18594,7 @@ Doors=0
 Sounds=0
 PathNode=H
 Orientation=0
-ImageMap2D=MITR01_D01
+ImageMap2D=mitr01_d01
 
 [TILE634]
 Model=tbm15_d01_02
@@ -18622,7 +18622,7 @@ Doors=0
 Sounds=0
 PathNode=H
 Orientation=0
-ImageMap2D=MITR01_D01
+ImageMap2D=mitr01_d01
 
 [TILE635]
 Model=tbm15_d02_01
@@ -18650,7 +18650,7 @@ Doors=0
 Sounds=0
 PathNode=I
 Orientation=0
-ImageMap2D=MITR01_D02
+ImageMap2D=mitr01_d02
 
 [TILE636]
 Model=tbm15_d02_02
@@ -18678,7 +18678,7 @@ Doors=0
 Sounds=0
 PathNode=I
 Orientation=0
-ImageMap2D=MITR01_D02
+ImageMap2D=mitr01_d02
 
 [TILE637]
 Model=tbm15_d03_01
@@ -18706,7 +18706,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=MITR01_D031
+ImageMap2D=mitr01_d031
 
 [TILE638]
 Model=tbm15_d03_02
@@ -18734,7 +18734,7 @@ Doors=0
 Sounds=0
 PathNode=J
 Orientation=90
-ImageMap2D=MITR01_D032
+ImageMap2D=mitr01_d032
 
 [TILE639]
 Model=tbm15_d04_01
@@ -18762,7 +18762,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=MITR01_D04
+ImageMap2D=mitr01_d04
 
 [TILE640]
 Model=tbm15_d04_02
@@ -18792,7 +18792,7 @@ PathNode=A
 Orientation=0
 VisibilityNode=J
 VisibilityOrientation=90
-ImageMap2D=MITR01_D04
+ImageMap2D=mitr01_d04
 
 [TILE641]
 Model=tbm15_g01_01
@@ -18820,7 +18820,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=MITR01_G01
+ImageMap2D=mitr01_g01
 
 [TILE642]
 Model=tbm15_g01_02
@@ -18848,7 +18848,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=MITR01_G01
+ImageMap2D=mitr01_g01
 
 [TILE643]
 Model=tbm15_g02_01
@@ -18876,7 +18876,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=MITR01_G02
+ImageMap2D=mitr01_g02
 
 [TILE644]
 Model=tbm15_g02_02
@@ -18904,7 +18904,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=MITR01_G02
+ImageMap2D=mitr01_g02
 
 [TILE645]
 Model=tbm15_g03_01
@@ -18932,7 +18932,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=MITR01_G03
+ImageMap2D=mitr01_g03
 
 [TILE646]
 Model=tbm15_g04_01
@@ -18960,7 +18960,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=MITR01_G04
+ImageMap2D=mitr01_g04
 
 [TILE647]
 Model=tbm15_g05_01
@@ -18988,7 +18988,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=MITR01_G05
+ImageMap2D=mitr01_g05
 
 [TILE648]
 Model=tbm15_g15_01
@@ -19018,7 +19018,7 @@ PathNode=I
 Orientation=0
 DoorVisibilityNode=I
 DoorVisibilityOrientation=0
-ImageMap2D=MITR01_G15
+ImageMap2D=mitr01_g15
 
 [TILE648DOOR0]
 Type=65
@@ -19053,7 +19053,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=MITR01_G17
+ImageMap2D=mitr01_g17
 
 [TILE650]
 Model=tbm15_g18_01
@@ -19083,7 +19083,7 @@ PathNode=C
 Orientation=90
 VisibilityNode=A
 VisibilityOrientation=90
-ImageMap2D=MITR01_G18
+ImageMap2D=mitr01_g18
 
 [TILE651]
 Model=tbm15_g19_01
@@ -19113,7 +19113,7 @@ PathNode=C
 Orientation=90
 VisibilityNode=F
 VisibilityOrientation=90
-ImageMap2D=MITR01_G19
+ImageMap2D=mitr01_g19
 
 [TILE652]
 Model=tbm15_h01_01
@@ -19141,7 +19141,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=MITR01_H01
+ImageMap2D=mitr01_h01
 
 [TILE653]
 Model=tbm15_h01_02
@@ -19169,7 +19169,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=MITR01_H01
+ImageMap2D=mitr01_h01
 
 [TILE654]
 Model=tbm15_h02_01
@@ -19197,7 +19197,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=MITR01_H02
+ImageMap2D=mitr01_h02
 
 [TILE655]
 Model=tbm15_h02_02
@@ -19225,7 +19225,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=MITR01_H02
+ImageMap2D=mitr01_h02
 
 [TILE656]
 Model=tbm15_h03_01
@@ -19253,7 +19253,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=MITR01_H03
+ImageMap2D=mitr01_h03
 
 [TILE657]
 Model=tbm15_h04_01
@@ -19281,7 +19281,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=MITR01_H04
+ImageMap2D=mitr01_h04
 
 [TILE658]
 Model=tbm15_h05_01
@@ -19309,7 +19309,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=MITR01_H05
+ImageMap2D=mitr01_h05
 
 [TILE659]
 Model=tbm15_h15_01
@@ -19339,7 +19339,7 @@ PathNode=I
 Orientation=0
 DoorVisibilityNode=I
 DoorVisibilityOrientation=0
-ImageMap2D=MITR01_H15
+ImageMap2D=mitr01_h15
 
 [TILE659DOOR0]
 Type=65
@@ -19378,7 +19378,7 @@ VisibilityNode=A
 VisibilityOrientation=90
 DoorVisibilityNode=A
 DoorVisibilityOrientation=90
-ImageMap2D=MITR01_H18
+ImageMap2D=mitr01_h18
 
 [TILE660DOOR0]
 Type=1
@@ -19417,7 +19417,7 @@ VisibilityNode=C
 VisibilityOrientation=90
 DoorVisibilityNode=C
 DoorVisibilityOrientation=90
-ImageMap2D=MITR01_H19
+ImageMap2D=mitr01_h19
 
 [TILE661DOOR0]
 Type=2
@@ -19452,7 +19452,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=MITR01_H20
+ImageMap2D=mitr01_h20
 
 [TILE663]
 Model=tbm15_i01_01
@@ -19482,7 +19482,7 @@ PathNode=B
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=MITR01_I01
+ImageMap2D=mitr01_i01
 
 [TILE664]
 Model=tbm15_i01_02
@@ -19512,7 +19512,7 @@ PathNode=B
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=MITR01_I01
+ImageMap2D=mitr01_i01
 
 [TILE665]
 Model=tbm15_i02_01
@@ -19542,7 +19542,7 @@ PathNode=C
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=MITR01_I02
+ImageMap2D=mitr01_i02
 
 [TILE666]
 Model=tbm15_i02_02
@@ -19572,7 +19572,7 @@ PathNode=C
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=MITR01_I02
+ImageMap2D=mitr01_i02
 
 [TILE667]
 Model=tbm15_i03_01
@@ -19602,7 +19602,7 @@ PathNode=E
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=MITR01_I03
+ImageMap2D=mitr01_i03
 
 [TILE668]
 Model=tbm15_i04_01
@@ -19632,7 +19632,7 @@ PathNode=D
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=MITR01_I04
+ImageMap2D=mitr01_i04
 
 [TILE669]
 Model=tbm15_i05_01
@@ -19662,7 +19662,7 @@ PathNode=G
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=MITR01_I05
+ImageMap2D=mitr01_i05
 
 [TILE670]
 Model=tbm15_i15_01
@@ -19692,7 +19692,7 @@ PathNode=S
 Orientation=90
 VisibilityNode=I
 VisibilityOrientation=90
-ImageMap2D=MITR01_I15
+ImageMap2D=mitr01_i15
 
 [TILE671]
 Model=tbm15_j01_01
@@ -19720,7 +19720,7 @@ Doors=0
 Sounds=0
 PathNode=B
 Orientation=0
-ImageMap2D=MITR01_J01
+ImageMap2D=mitr01_j01
 
 [TILE672]
 Model=tbm15_j01_02
@@ -19748,7 +19748,7 @@ Doors=0
 Sounds=0
 PathNode=B
 Orientation=0
-ImageMap2D=MITR01_J01
+ImageMap2D=mitr01_j01
 
 [TILE673]
 Model=tbm15_j02_01
@@ -19776,7 +19776,7 @@ Doors=0
 Sounds=0
 PathNode=C
 Orientation=0
-ImageMap2D=MITR01_J02
+ImageMap2D=mitr01_j02
 
 [TILE674]
 Model=tbm15_j02_02
@@ -19804,7 +19804,7 @@ Doors=0
 Sounds=0
 PathNode=C
 Orientation=0
-ImageMap2D=MITR01_J02
+ImageMap2D=mitr01_j02
 
 [TILE675]
 Model=tbm15_j03_01
@@ -19832,7 +19832,7 @@ Doors=0
 Sounds=0
 PathNode=E
 Orientation=0
-ImageMap2D=MITR01_J03
+ImageMap2D=mitr01_j03
 
 [TILE676]
 Model=tbm15_j04_01
@@ -19860,7 +19860,7 @@ Doors=0
 Sounds=0
 PathNode=D
 Orientation=0
-ImageMap2D=MITR01_J04
+ImageMap2D=mitr01_j04
 
 [TILE677]
 Model=tbm15_j05_01
@@ -19888,7 +19888,7 @@ Doors=0
 Sounds=0
 PathNode=G
 Orientation=0
-ImageMap2D=MITR01_J05
+ImageMap2D=mitr01_j05
 
 [TILE678]
 Model=tbm15_j05_02
@@ -19916,7 +19916,7 @@ Doors=0
 Sounds=0
 PathNode=G
 Orientation=0
-ImageMap2D=MITR01_J05
+ImageMap2D=mitr01_j05
 
 [TILE679]
 Model=tbm15_j15_01
@@ -19944,7 +19944,7 @@ Doors=0
 Sounds=0
 PathNode=S
 Orientation=90
-ImageMap2D=MITR01_J15
+ImageMap2D=mitr01_j15
 
 [TILE680]
 Model=tbm15_i02_03
@@ -19974,7 +19974,7 @@ PathNode=C
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=MITR01_I02
+ImageMap2D=mitr01_i02
 
 [TILE681]
 Model=tbm15_i02_04
@@ -20004,7 +20004,7 @@ PathNode=B
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=MITR01_I02
+ImageMap2D=mitr01_i02
 
 [TILE682]
 Model=tbm16_j02_03
@@ -20032,7 +20032,7 @@ Doors=0
 Sounds=0
 PathNode=C
 Orientation=0
-ImageMap2D=MITR01_J02
+ImageMap2D=mitr01_j02
 
 [TILE683]
 Model=tbm15_f02_01
@@ -20060,7 +20060,7 @@ Doors=0
 Sounds=0
 PathNode=I
 Orientation=0
-ImageMap2D=gbm01_D02
+ImageMap2D=gbm01_d02
 
 [TILE684]
 Model=tbm15_f01_01
@@ -20088,10 +20088,10 @@ Doors=0
 Sounds=0
 PathNode=I
 Orientation=0
-ImageMap2D=gbm01_D01
+ImageMap2D=gbm01_d01
 
 [TILE685]
-Model=tbm20_Y92_01
+Model=tbm20_y92_01
 WalkMesh=msb01
 TopLeft=Trees
 TopLeftHeight=0
@@ -20146,7 +20146,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=dbm01_G02
+ImageMap2D=dbm01_g02
 
 [TILE687]
 Model=tbm14_g05_01
@@ -20174,7 +20174,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=dbm01_G05
+ImageMap2D=dbm01_g05
 
 [TILE688]
 Model=tbm14_g05_02
@@ -20202,7 +20202,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=dbm0zz1_G06
+ImageMap2D=dbm0zz1_g06
 
 [TILE689]
 Model=tbm14_h02_01
@@ -20230,7 +20230,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=dbm01_H02
+ImageMap2D=dbm01_h02
 
 [TILE690]
 Model=tbm14_h05_01
@@ -20258,7 +20258,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=dbm01_H05
+ImageMap2D=dbm01_h05
 
 [TILE691]
 Model=tbm14_h05_02
@@ -20286,7 +20286,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=dbm01_H06
+ImageMap2D=dbm01_h06
 
 [TILE692]
 Model=tbm14_i02_01
@@ -20316,7 +20316,7 @@ PathNode=C
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=dbm01_I02
+ImageMap2D=dbm01_i02
 
 [TILE693]
 Model=tbm14_i05_01
@@ -20346,7 +20346,7 @@ PathNode=G
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=dbm01_I05
+ImageMap2D=dbm01_i05
 
 [TILE694]
 Model=tbm14_i05_02
@@ -20376,7 +20376,7 @@ PathNode=G
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=dbm01_I06
+ImageMap2D=dbm01_i06
 
 [TILE695]
 Model=tbm14_j02_01
@@ -20404,7 +20404,7 @@ Doors=0
 Sounds=0
 PathNode=C
 Orientation=0
-ImageMap2D=dbm01_J02
+ImageMap2D=dbm01_j02
 
 [TILE696]
 Model=tbm14_j05_01
@@ -20432,7 +20432,7 @@ Doors=0
 Sounds=0
 PathNode=G
 Orientation=0
-ImageMap2D=dbm01_J05
+ImageMap2D=dbm01_j05
 
 [TILE697]
 Model=tbm14_j05_02
@@ -20460,7 +20460,7 @@ Doors=0
 Sounds=0
 PathNode=G
 Orientation=0
-ImageMap2D=dbm01_J06
+ImageMap2D=dbm01_j06
 
 [TILE698]
 Model=tbm26_a01_01
@@ -21720,7 +21720,7 @@ Doors=0
 Sounds=0
 PathNode=T
 Orientation=0
-ImageMap2D=MITR01_D20
+ImageMap2D=mitr01_d20
 
 [TILE742]
 Model=tbm18_d21_01
@@ -21748,7 +21748,7 @@ Doors=0
 Sounds=0
 PathNode=T
 Orientation=0
-ImageMap2D=MITR01_D20
+ImageMap2D=mitr01_d20
 
 [TILE743]
 Model=tbm04_l01_01
@@ -22388,7 +22388,7 @@ Orientation=0
 ImageMap2D=bfr01_26
 
 [TILE765]
-Model=tbm12_F01_01
+Model=tbm12_f01_01
 WalkMesh=msb01
 TopLeft=TreePlatform
 TopLeftHeight=0
@@ -22423,7 +22423,7 @@ Z=11.00
 Orientation=-90.0
 
 [TILE766]
-Model=tbm12_F02_01
+Model=tbm12_f02_01
 WalkMesh=msb01
 TopLeft=TreePlatform
 TopLeftHeight=0
@@ -22570,7 +22570,7 @@ Orientation=90
 ImageMap2D=bfr01_30
 
 [TILE771]
-Model=tbm13_K01_01
+Model=tbm13_k01_01
 TopLeft=Stone0
 TopLeftHeight=0
 TopRight=Stone0
@@ -22597,7 +22597,7 @@ Orientation=90
 ImageMap2D=bm01_o02
 
 [TILE772]
-Model=tbm13_K02_01
+Model=tbm13_k02_01
 TopLeft=Stone1
 TopLeftHeight=0
 TopRight=Stone1
@@ -22624,7 +22624,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE773]
-Model=tbm13_K03_01
+Model=tbm13_k03_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone2
@@ -22651,7 +22651,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE774]
-Model=tbm13_A01_01
+Model=tbm13_a01_01
 TopLeft=Stone0
 TopLeftHeight=0
 TopRight=Stone0
@@ -22678,7 +22678,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE775]
-Model=tbm13_A02_01
+Model=tbm13_a02_01
 TopLeft=Stone1
 TopLeftHeight=0
 TopRight=Stone1
@@ -22705,7 +22705,7 @@ Orientation=0
 ImageMap2D=bm01_o02
 
 [TILE776]
-Model=tbm13_A03_01
+Model=tbm13_a03_01
 TopLeft=Stone2
 TopLeftHeight=0
 TopRight=Stone2
@@ -22757,7 +22757,7 @@ Doors=0
 Sounds=0
 PathNode=T
 Orientation=0
-ImageMap2D=MITR01_D20
+ImageMap2D=mitr01_d20
 
 [TILE778]
 Model=tbm18_d23_01
@@ -22785,10 +22785,10 @@ Doors=0
 Sounds=0
 PathNode=T
 Orientation=0
-ImageMap2D=MITR01_D20
+ImageMap2D=mitr01_d20
 
 [TILE779]
-Model=tbm17_A01_01
+Model=tbm17_a01_01
 TopLeft=white0
 TopLeftHeight=0
 TopRight=white0
@@ -22815,7 +22815,7 @@ Orientation=0
 ImageMap2D=bm_fullsnow2
 
 [TILE780]
-Model=tbm17_A02_01
+Model=tbm17_a02_01
 TopLeft=white0
 TopLeftHeight=0
 TopRight=Stone0
@@ -22842,7 +22842,7 @@ Orientation=0
 ImageMap2D=mapsnow1
 
 [TILE781]
-Model=tbm17_A03_01
+Model=tbm17_a03_01
 TopLeft=white0
 TopLeftHeight=0
 TopRight=white0
@@ -22869,7 +22869,7 @@ Orientation=0
 ImageMap2D=mapsnow2
 
 [TILE782]
-Model=tbm17_A04_01
+Model=tbm17_a04_01
 TopLeft=white0
 TopLeftHeight=0
 TopRight=white0
@@ -23105,7 +23105,7 @@ PathNode=I
 Orientation=0
 DoorVisibilityNode=I
 DoorVisibilityOrientation=0
-ImageMap2D=rbm01_G15
+ImageMap2D=rbm01_g15
 
 [TILE789DOOR0]
 Type=65
@@ -23141,7 +23141,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=MILKr_o05
+ImageMap2D=milkr_o05
 
 [TILE790DOOR0]
 Type=0
@@ -23176,7 +23176,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=MILKr_o07
+ImageMap2D=milkr_o07
 
 [TILE792]
 Model=tbm02_o11_01
@@ -23204,7 +23204,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=MILKr_o08
+ImageMap2D=milkr_o08
 
 [TILE793]
 Model=tbm02_o12_01
@@ -23234,7 +23234,7 @@ PathNode=A
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=MILKr_o01
+ImageMap2D=milkr_o01
 
 [TILE794]
 Model=tbm02_o13_01
@@ -23264,7 +23264,7 @@ PathNode=A
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=MILKr_o01
+ImageMap2D=milkr_o01
 
 [TILE795]
 Model=tbm0z_w27_01
@@ -23292,7 +23292,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_G26
+ImageMap2D=bm01_g26
 
 [TILE796]
 Model=tbm0z_w28_01
@@ -23320,7 +23320,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_G27
+ImageMap2D=bm01_g27
 
 [TILE797]
 Model=tbm0z_w29_01
@@ -23348,7 +23348,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_G28
+ImageMap2D=bm01_g28
 
 [TILE798]
 Model=tbm0z_w30_01
@@ -23376,7 +23376,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_G27
+ImageMap2D=bm01_g27
 
 [TILE799]
 Model=tbm0z_w31_01
@@ -23404,7 +23404,7 @@ Doors=0
 Sounds=0
 PathNode=A
 Orientation=0
-ImageMap2D=bm01_G27
+ImageMap2D=bm01_g27
 
 [TILE800]
 Model=tbm01_w96_01
@@ -23776,7 +23776,7 @@ PathNode=Q
 Orientation=180
 VisibilityNode=A
 VisibilityOrientation=180
-ImageMap2D=rbm01_D12
+ImageMap2D=rbm01_d12
 
 [TILE813]
 Model=tbm01_wz8_01
@@ -23862,7 +23862,7 @@ PathNode=R
 Orientation=180
 VisibilityNode=A
 VisibilityOrientation=180
-ImageMap2D=rbm01_D033
+ImageMap2D=rbm01_d033
 
 [TILE816]
 Model=tbm24_a01_01
@@ -24135,7 +24135,7 @@ VisibilityOrientation=180
 ImageMap2D=quarry8
 
 [TILE825]
-Model=tbm25_A01_01
+Model=tbm25_a01_01
 WalkMesh=msb01
 TopLeft=Stone0
 TopLeftHeight=0
@@ -24165,7 +24165,7 @@ VisibilityOrientation=180
 ImageMap2D=watercave1
 
 [TILE826]
-Model=tbm25_A02_01
+Model=tbm25_a02_01
 WalkMesh=msb01
 TopLeft=Water
 TopLeftHeight=0
@@ -24288,7 +24288,7 @@ Doors=0
 Sounds=0
 PathNode=I
 Orientation=0
-ImageMap2D=rbm04_D02
+ImageMap2D=rbm04_d02
 
 [TILE830]
 Model=tbm21_a02_01
@@ -24316,10 +24316,10 @@ Doors=0
 Sounds=0
 PathNode=T
 Orientation=0
-ImageMap2D=rbm04_D01
+ImageMap2D=rbm04_d01
 
 [TILE831]
-Model=tbm27_A01_01
+Model=tbm27_a01_01
 WalkMesh=msb01
 TopLeft=Trees
 TopLeftHeight=0
@@ -24349,7 +24349,7 @@ VisibilityOrientation=0
 ImageMap2D=smxb_01_01
 
 [TILE832]
-Model=tbm27_A02_01
+Model=tbm27_a02_01
 WalkMesh=msb01
 TopLeft=Trees
 TopLeftHeight=0
@@ -24386,7 +24386,7 @@ Z=17.03
 Orientation=180.0
 
 [TILE833]
-Model=tbm27_A03_01
+Model=tbm27_a03_01
 WalkMesh=msb01
 TopLeft=Trees
 TopLeftHeight=0
@@ -24416,7 +24416,7 @@ VisibilityOrientation=0
 ImageMap2D=smxb_03_01
 
 [TILE834]
-Model=tbm27_A01_02
+Model=tbm27_a01_02
 WalkMesh=msb01
 TopLeft=Water
 TopLeftHeight=0
@@ -24446,7 +24446,7 @@ VisibilityOrientation=0
 ImageMap2D=smxb_01_2a
 
 [TILE835]
-Model=tbm27_A02_02
+Model=tbm27_a02_02
 WalkMesh=msb01
 TopLeft=Water
 TopLeftHeight=0
@@ -24483,7 +24483,7 @@ Z=17.03
 Orientation=180.0
 
 [TILE836]
-Model=tbm27_A03_02
+Model=tbm27_a03_02
 WalkMesh=msb01
 TopLeft=Water
 TopLeftHeight=0
@@ -24513,7 +24513,7 @@ VisibilityOrientation=0
 ImageMap2D=smxb_03_2a
 
 [TILE837]
-Model=tbm27_A01_11
+Model=tbm27_a01_11
 WalkMesh=msb01
 TopLeft=Stone0
 TopLeftHeight=1
@@ -24543,7 +24543,7 @@ VisibilityOrientation=0
 ImageMap2D=smx3_01_11
 
 [TILE838]
-Model=tbm27_A02_11
+Model=tbm27_a02_11
 WalkMesh=msb01
 TopLeft=Stone0
 TopLeftHeight=1
@@ -24580,7 +24580,7 @@ Z=5.13
 Orientation=180.0
 
 [TILE839]
-Model=tbm27_A03_11
+Model=tbm27_a03_11
 WalkMesh=msb01
 TopLeft=Stone0
 TopLeftHeight=1
@@ -24610,7 +24610,7 @@ VisibilityOrientation=0
 ImageMap2D=smxb_03_11
 
 [TILE840]
-Model=tbm30_A01_01
+Model=tbm30_a01_01
 WalkMesh=msb01
 TopLeft=Pit
 TopLeftHeight=0
@@ -24640,7 +24640,7 @@ VisibilityOrientation=0
 ImageMap2D=smxp_01_01
 
 [TILE841]
-Model=tbm30_A02_01
+Model=tbm30_a02_01
 WalkMesh=msb01
 TopLeft=Pit
 TopLeftHeight=0
@@ -24677,7 +24677,7 @@ Z=17.03
 Orientation=180.0
 
 [TILE842]
-Model=tbm30_A03_01
+Model=tbm30_a03_01
 WalkMesh=msb01
 TopLeft=Pit
 TopLeftHeight=0
@@ -24707,7 +24707,7 @@ VisibilityOrientation=0
 ImageMap2D=smxp_03_01
 
 [TILE843]
-Model=tbm29_A01_02
+Model=tbm29_a01_02
 WalkMesh=msb01
 TopLeft=Lava
 TopLeftHeight=0
@@ -24737,7 +24737,7 @@ VisibilityOrientation=0
 ImageMap2D=smxl_01_01
 
 [TILE844]
-Model=tbm29_A02_02
+Model=tbm29_a02_02
 WalkMesh=msb01
 TopLeft=Lava
 TopLeftHeight=0
@@ -24774,7 +24774,7 @@ Z=17.03
 Orientation=180.0
 
 [TILE845]
-Model=tbm29_A03_02
+Model=tbm29_a03_02
 WalkMesh=msb01
 TopLeft=Lava
 TopLeftHeight=0
@@ -24806,7 +24806,7 @@ ImageMap2D=smxl_03_01
 
 
 [TILE846]
-Model=tbm28_A01_02
+Model=tbm28_a01_02
 WalkMesh=msb01
 TopLeft=Cloud0
 TopLeftHeight=0
@@ -24836,7 +24836,7 @@ VisibilityOrientation=0
 ImageMap2D=smxb_01_2a
 
 [TILE847]
-Model=tbm28_A02_02
+Model=tbm28_a02_02
 WalkMesh=msb01
 TopLeft=Cloud0
 TopLeftHeight=0
@@ -24873,7 +24873,7 @@ Z=17.03
 Orientation=180.0
 
 [TILE848]
-Model=tbm28_A03_02
+Model=tbm28_a03_02
 WalkMesh=msb01
 TopLeft=Cloud0
 TopLeftHeight=0

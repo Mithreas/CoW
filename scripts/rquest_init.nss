@@ -288,7 +288,9 @@ void main()
   QUEST = "patrol_city";
   AddQuest(QUEST, PATROL, DB_QUEST);
   SetStringValue(QUEST+DESCRIPTION,
-   "I've heard there's trouble at the South Gates. Could you go there and check?",
+   "I've heard there's trouble at the South Gates. Could you go there and check? " +
+   "Careful not to upset the guards, don't be a hero.  Just find out what's going on " +
+   "and come back and tell me.",
    DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "75", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "2000", DB_VARS);
@@ -527,7 +529,7 @@ void main()
    + "plenty.",
    DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "100", DB_VARS);
-  SetStringValue(QUEST+REWARD_XP, "1000", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "2000", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
   SetStringValue(QUEST+LEVEL_RANGE, "01_02", DB_VARS);
   SetStringValue(QUEST+ITEM_TAG, "X1_WMGRENADE005", DB_VARS);
@@ -746,8 +748,8 @@ void main()
 	"Please can you head up to the docks and let me know whether it's arrived?  Just follow the road north.", DB_VARS);
   SetStringValue(QUEST+AREA_TAGS, "PerVilDocks", DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "25", DB_VARS);
-  SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "03_04", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "1000", DB_VARS);
+  SetStringValue(QUEST+LEVEL_RANGE, "01_04", DB_VARS);
   
   QUEST = "cure_potion";
   AddQuest(QUEST, RETRIEVE, DB_QUEST);

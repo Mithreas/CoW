@@ -616,6 +616,9 @@ int IsQuestComplete(object oPC, int bFinish = FALSE)
   }
   else if (sQuestType == PATROL)
   {
+    string sAreaList = GetLocalString(oCache, sQuest+AREA_TAGS);
+	ParseAreaList(sAreaList);
+	
     string sArea = GetFirstStringElement(AREA_LIST);
     nDone = 1;
     while (sArea != "")

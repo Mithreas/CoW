@@ -33,13 +33,6 @@ void main()
 
 
 ////////////////////////////////////////////////////////////////////////////////
-
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTinkerMisc, "Compound Bow Cam", "cnrbowcam", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnringotiro", 1);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
-  CnrRecipeSetRecipeAbilityPercentages(sKeyToRecipe, 0, 50, 0, 50, 0, 0);
-
   /////////////////////Belts for gemsetting////////////////////////
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTinkerBelts, "Iron Buckled Belt", "ca_1belt", 1);

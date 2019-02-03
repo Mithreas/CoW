@@ -99,7 +99,7 @@ node trimesh Mesh239
     9 0.458909 0
     12 0.465791 0
 endnode
-node aabb TSH01_M01_01_gr_3_3_3_0_walkmesh
+node aabb tbm01_p08_012622949974
   parent tbm01_p08_01
   position 0 0 0
   orientation 0 0 -1 -1.5708
@@ -394,7 +394,7 @@ node light tbm01_w08_01ml1
     lensflares 0
     fadingLight 0
 endnode
-node trimesh TSH01_M01_01_gr_3_3_3_0_walkmesh01
+node trimesh tbm01_p08_012979269303
   parent tbm01_p08_01
   position 0 0 0
   orientation 0 0 -1 -1.5708

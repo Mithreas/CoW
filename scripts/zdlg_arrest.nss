@@ -61,6 +61,13 @@ void PageInit()
 
 }
 
+void ExitJail(object oExitWP)
+{
+  SendMessageToPC(OBJECT_SELF, "Your sentence has been served.  You are free to go.");
+  ClearAllActions();
+  JumpToLocation(GetLocation(oExitWP));
+}
+
 void HandleSelection()
 {
   int selection  = GetDlgSelection();
@@ -104,7 +111,7 @@ void HandleSelection()
           + "be released after 15 (RL) minutes. Do not log out, or you won't "
           + "be released at all!))");
           DelayCommand(900.0,
-                      AssignCommand(oPC, JumpToLocation(GetLocation(oExitWP))));
+                      AssignCommand(oPC, ExitJail(oExitWP)));
 
           EndDlg();
           break;

@@ -587,7 +587,7 @@ node trimesh Rectangle82
     0.819125 0.872545 0
     0.749376 0.87425 0
 endnode
-node trimesh TSH01_K01_01_gr_3_3_0_0_walkmesh01
+node trimesh tbm18_c07_012972846770
   parent tbm18_c07_01
   position 0 0 -12.047
   orientation 0 0 0 0

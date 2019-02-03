@@ -640,7 +640,7 @@ node light tbm07_cl1_08ml1
     lensflares 0
     fadingLight 0
 endnode
-node trimesh TSH01_J01_01_gr_3_0_0_0_walkmesh01
+node trimesh tbm07_cl1_082967866030
   parent tbm07_cl1_08
   position 0 0.0474999 0
   orientation 0 0 -1 -1.5708

@@ -665,7 +665,7 @@ node light tbm0z_w27_01ml2
     lensflares 0
     fadingLight 0
 endnode
-node trimesh TSH01_K01_01_gr_3_3_0_0_walkmesh01
+node trimesh tbm0z_w27_012972846770
   parent tbm0z_w27_01
   position 0 0 0
   orientation 0 0 -1 -1.5708

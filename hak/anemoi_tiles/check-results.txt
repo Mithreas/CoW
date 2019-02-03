@@ -1,0 +1,155 @@
+C:\NeverwinterNights\github\CoW\hak\anemoi_tiles>check-mdls.pl
+....................................................................................................................................................................................................................................................................................................................................................................
+!Missing node aabb: agc01_z01_01.mdl but has wok file.
+!Missing node aabb: agc01_z02_01.mdl but has wok file.
+!Missing node aabb: agc01_z03_01.mdl but has wok file.
+!Missing node aabb: agc01_z04_01.mdl but has wok file.
+!Missing node aabb: agc01_z05_01.mdl but has wok file.
+!Missing node aabb: agc01_z06_01.mdl but has wok file.
+!Missing node aabb: agc01_z07_01.mdl but has wok file.
+!Missing node aabb: agc01_z08_01.mdl but has wok file.
+!Missing node aabb: agc01_z09_01.mdl but has wok file.
+!Missing node aabb: agc01_z10_01.mdl but has wok file.
+!Missing node aabb: agc01_z11_01.mdl but has wok file.
+!Missing node aabb: agc01_z12_01.mdl but has wok file.
+!Missing node aabb: agc01_z13_01.mdl but has wok file.
+!Missing node aabb: agc01_z14_01.mdl but has wok file.
+!Missing node aabb: agc01_z15_01.mdl but has wok file.
+!Missing node aabb: agc01_z16_01.mdl but has wok file.
+!Missing node aabb: agc01_z17_01.mdl but has wok file...........................
+!Missing node aabb: eld01_a19_01.mdl and missing wok file............................................................................
+!Missing node aabb: eld01_g19_01.mdl and missing wok file..............
+!Missing node aabb: eld01_h07_02.mdl and missing wok file...................................................................
+!Missing node aabb: eld01_u01_01.mdl and missing wok file.
+!Missing node aabb: eld01_u02_01.mdl and missing wok file.
+!Missing node aabb: eld01_v01_01.mdl and missing wok file.
+!Missing node aabb: eld01_v02_01.mdl and missing wok file.
+!Missing node aabb: eld01_y20_01.mdl but has wok file.
+!Missing node aabb: eld01_z01_01.mdl but has wok file.
+!Missing node aabb: eld01_z02_01.mdl but has wok file.
+!Missing node aabb: eld01_z03_01.mdl but has wok file.
+!Missing node aabb: eld01_z04_01.mdl but has wok file.
+!Missing node aabb: eld01_z05_01.mdl but has wok file.
+!Missing node aabb: eld01_z06_01.mdl but has wok file.
+!Missing node aabb: eld01_z07_01.mdl but has wok file.
+!Missing node aabb: eld01_z08_01.mdl but has wok file.
+!Missing node aabb: eld01_z09_01.mdl but has wok file.
+!Missing node aabb: eld01_z10_01.mdl but has wok file..........................................................................................................................................................................................................................................................................................................................
+!Missing node aabb: phf01_z06_01.mdl and missing wok file.
+!Missing node aabb: phf01_z07_01.mdl and missing wok file.
+!Missing node aabb: phf01_z09_01.mdl and missing wok file.
+!Missing node aabb: phf01_z14_01.mdl and missing wok file.
+!Missing node aabb: phf01_z15_01.mdl and missing wok file.
+!Missing node aabb: phf01_z16_01.mdl and missing wok file.
+!Missing node aabb: phf01_z17_01.mdl and missing wok file.
+!Missing node aabb: phf01_z18_01.mdl and missing wok file.
+!Missing node aabb: phf01_z19_01.mdl and missing wok file...........................................................................................................................................................................
+!Missing node aabb: tbm01_w60_01.mdl and missing wok file.
+!Missing node aabb: tbm01_w61_01.mdl and missing wok file.................................
+!Missing node aabb: tbm01_w94_01.mdl and missing wok file.
+!Missing node aabb: tbm01_w95_01.mdl and missing wok file...............
+!Missing node aabb: tbm01_zzb_01.mdl and missing wok file.
+!Missing node aabb: tbm01_zzb_02.mdl and missing wok file.
+!Missing node aabb: tbm01_zzz_01.mdl and missing wok file..................
+!Missing node aabb: tbm02_z01_01.mdl but has wok file................................................................................................................................................
+!Missing classification Tile: tbm03_y93_01.mdl
+.
+!Missing classification Tile: tbm03_y94_01.mdl
+..
+!Missing classification Tile: tbm03_y96_01.mdl
+.
+!Missing classification Tile: tbm03_y97_01.mdl
+.
+!Missing classification Tile: tbm03_y98_01.mdl
+..
+!Missing node aabb: tbm03_z01_01.mdl and missing wok file........................................
+!Missing node aabb: tbm04_w01_01.mdl and missing wok file...
+!Missing node aabb: tbm05_z01_01.mdl and missing wok file.
+!Missing node aabb: tbm05_z02_01.mdl and missing wok file.....
+!Missing node aabb: tbm06_z01_01.mdl and missing wok file.
+!Missing node aabb: tbm06_z03_01.mdl and missing wok file.........................
+!Missing node aabb: tbm07_cl1_z1.mdl and missing wok file...
+!Missing node aabb: tbm07_z01_01.mdl and missing wok file.
+!Missing node aabb: tbm07_z03_01.mdl and missing wok file.
+!Missing node aabb: tbm07_zc1_01.mdl and missing wok file.
+!Missing node aabb: tbm07_zc3_01.mdl and missing wok file.
+!Missing node aabb: tbm07_zl1_14.mdl and missing wok file........................
+!Missing node aabb: tbm11_g12_99.mdl and missing wok file................
+!Missing node aabb: tbm12_z01_01.mdl and missing wok file.
+!Missing node aabb: tbm12_z02_01.mdl and missing wok file.
+!Missing node aabb: tbm12_z03_01.mdl and missing wok file.
+!Missing node aabb: tbm12_z04_01.mdl and missing wok file......................................................................
+!Missing node aabb: tbm15_z03_01.mdl and missing wok file.
+!Missing node aabb: tbm15_z08_01.mdl and missing wok file.
+!Missing node aabb: tbm15_z12_01.mdl and missing wok file.
+!Missing node aabb: tbm15_z13_01.mdl and missing wok file.
+!Missing node aabb: tbm15_z14_01.mdl and missing wok file.
+!Missing node aabb: tbm15_z15_01.mdl and missing wok file......
+!Missing node aabb: tbm17_z01_01.mdl and missing wok file.
+!Missing node aabb: tbm17_z03_01.mdl and missing wok file...................................
+!Missing node aabb: tbm18_d20_01.mdl and missing wok file.
+!Missing node aabb: tbm18_d21_01.mdl and missing wok file.
+!Missing node aabb: tbm18_d22_01.mdl and missing wok file.
+!Missing node aabb: tbm18_d23_01.mdl and missing wok file...............
+!Missing node aabb: tbm18_k11_01.mdl and missing wok file.
+!Missing node aabb: tbm18_k12_01.mdl and missing wok file........
+!Missing node aabb: tbm18_k20_01.mdl and missing wok file...
+!Missing node aabb: tbm18_k23_01.mdl and missing wok file............
+!Missing node aabb: tbm18_z01_01.mdl and missing wok file.
+!Missing node aabb: tbm18_z02_01.mdl and missing wok file.
+!Missing node aabb: tbm18_z03_01.mdl and missing wok file.
+!Missing node aabb: tbm18_z04_01.mdl and missing wok file...............................................
+!Missing node aabb: tbm26_z01_01.mdl and missing wok file.
+!Missing node aabb: tbm26_z02_01.mdl and missing wok file.
+!Missing node aabb: tbm26_z03_01.mdl and missing wok file..........................
+!Missing node aabb: tbmc_zz1_01.mdl and missing wok file.
+!Missing node aabb: tbmc_zz2_01.mdl and missing wok file.
+!Missing node aabb: tbml_a01_01.mdl and missing wok file.............................................................
+!Missing node aabb: tbml_a62_01.mdl and missing wok file.
+!Missing node aabb: tbml_a63_01.mdl and missing wok file....................
+!Missing node aabb: tbml_zz1_01.mdl and missing wok file.
+!Missing node aabb: tbml_zz2_01.mdl and missing wok file.
+!Missing node aabb: tbml_zz3_01.mdl and missing wok file.
+!Missing node aabb: tbml_zz4_01.mdl and missing wok file...........................................................................................
+!Missing node aabb: tbm_a88_01.mdl and missing wok file.
+!Missing node aabb: tbm_a89_01.mdl and missing wok file.
+!Missing node aabb: tbm_a90_01.mdl and missing wok file.
+!Missing node aabb: tbm_a91_01.mdl and missing wok file.
+!Missing node aabb: tbm_a92_01.mdl and missing wok file.
+!Missing node aabb: tbm_a93_01.mdl and missing wok file...........................
+!Missing node aabb: tbm_p92_01.mdl and missing wok file.
+!Missing node aabb: tbm_p93_01.mdl and missing wok file.
+!Missing node aabb: tbm_p94_01.mdl and missing wok file..............................................................................................................................................................................................................................................................................................................................................................
+!Missing node aabb: tec01_y01_01.mdl and missing wok file.
+!Missing node aabb: tec01_y02_01.mdl and missing wok file.
+!Missing node aabb: tec01_y03_01.mdl and missing wok file.
+!Missing node aabb: tec01_y04_01.mdl and missing wok file.
+!Missing node aabb: tec01_z01_01.mdl and missing wok file.
+!Missing node aabb: tec01_z02_01.mdl and missing wok file.
+!Missing node aabb: tec01_z03_01.mdl and missing wok file.
+!Missing node aabb: tec01_z04_01.mdl and missing wok file.
+!Missing node aabb: tec01_z05_01.mdl and missing wok file.
+!Missing node aabb: tec01_z06_01.mdl and missing wok file......
+!Missing node aabb: tec01_z12_01.mdl and missing wok file...
+!Missing node aabb: tec01_z15_01.mdl and missing wok file.
+!Missing node aabb: tec01_z16_01.mdl and missing wok file.
+!Missing node aabb: tec01_z17_01.mdl and missing wok file.
+!Missing node aabb: tec01_z18_01.mdl and missing wok file.
+!Missing node aabb: tec01_z19_01.mdl and missing wok file..........
+!Missing classification Tile: tin01_f01_09.mdl
+..
+!Missing classification Tile: tin01_f02_04.mdl
+.
+!Missing classification Tile: tin01_f04_03.mdl
+..
+!Missing classification Tile: tin01_g03_02.mdl
+.
+!Missing classification Tile: tin01_g04_02.mdl
+.........................
+!Missing classification Tile: tin01_q04_03.mdl
+.......
+!Missing classification Tile: tin01_s04_02.mdl
+...
+!Missing classification Tile: tin01_s16_02.mdl
+.
+!Missing classification Tile: tin01_s16_03.mdl

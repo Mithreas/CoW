@@ -234,7 +234,7 @@ node light tbml_a09_01ml2
     lensflares 0
     fadingLight 0
 endnode
-node aabb TSH01_M01_01_gr_3_3_3_0_walkmesh
+node aabb tbml_a09_012622949974
   parent tbml_a09_01
   position 0 0 0
   orientation 0 0 -1 -1.5708
@@ -513,7 +513,7 @@ node aabb TSH01_M01_01_gr_3_3_3_0_walkmesh
      4.38 3.75 14.50   5.00 5.00 15.00   71
      4.38 3.76 14.30   5.00 5.00 15.00   70
 endnode
-node trimesh TSH01_M01_01_gr_3_3_3_0_walkmesh01
+node trimesh tbml_a09_012979269303
   parent tbml_a09_01
   position 0 0 0
   orientation 0 0 -1 -1.5708
@@ -910,10 +910,10 @@ endnode
 node light tbml_a09_01ml2
   parent tbml_a09_01
 endnode
-node trimesh TSH01_M01_01_gr_3_3_3_0_walkmesh
+node trimesh tbml_a09_012622949974
   parent tbml_a09_01
 endnode
-node trimesh TSH01_M01_01_gr_3_3_3_0_walkmesh01
+node trimesh tbml_a09_012979269303
   parent tbml_a09_01
 endnode
 event 0  detonate
@@ -945,10 +945,10 @@ endnode
 node light tbml_a09_01ml2
   parent tbml_a09_01
 endnode
-node trimesh TSH01_M01_01_gr_3_3_3_0_walkmesh
+node trimesh tbml_a09_012622949974
   parent tbml_a09_01
 endnode
-node trimesh TSH01_M01_01_gr_3_3_3_0_walkmesh01
+node trimesh tbml_a09_012979269303
   parent tbml_a09_01
 endnode
 doneanim tiledefault tbml_a09_01

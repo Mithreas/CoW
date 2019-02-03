@@ -791,7 +791,7 @@ node emitter FX_LavaBase01
     Splat 0
     chunkName FX_LavaSpurt
 endnode
-node trimesh TSH01_J01_01_gr_3_0_0_0_walkmesh01
+node trimesh tbml_a04_012967866030
   parent tbml_a04_01
   position 0 0 0
   orientation 0 0 -1 -1.5708
@@ -1172,7 +1172,7 @@ endnode
 node emitter FX_LavaBase01
   parent tbml_a04_01a
 endnode
-node trimesh TSH01_J01_01_gr_3_0_0_0_walkmesh01
+node trimesh tbml_a04_012967866030
   parent tbml_a04_01
 endnode
 event 0  detonate
@@ -1210,7 +1210,7 @@ endnode
 node emitter FX_LavaBase01
   parent tbml_a04_01a
 endnode
-node trimesh TSH01_J01_01_gr_3_0_0_0_walkmesh01
+node trimesh tbml_a04_012967866030
   parent tbml_a04_01
 endnode
 doneanim tiledefault tbml_a04_01

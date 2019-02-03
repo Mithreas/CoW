@@ -1115,7 +1115,7 @@ node trimesh TSH01_M01_01_gr_3_3_3_0
     0.000499547 0.25025 0
     0.000499517 0.125375 0
 endnode
-node aabb TSH01_M01_01_gr_3_3_3_0_walkmesh
+node aabb tbm18_k26_012622949974
   parent tbm18_k26_01
   position 0 0 0
   orientation 0 0 0 0

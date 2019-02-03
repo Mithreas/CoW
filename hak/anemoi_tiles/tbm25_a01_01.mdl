@@ -12,7 +12,7 @@ beginmodelgeom tbm25_A01_01
 node dummy tbm25_A01_01
   parent NULL
 endnode
-node trimesh TSH01_K01_01_gr_3_3_0_0_walkmesh01_02
+node trimesh tbm25_a01_013539405683
   parent tbm25_A01_01
   position 0.00656647 -0.179054 7.41
   orientation 0 0 0 0

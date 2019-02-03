@@ -1,4 +1,6 @@
 // Spawns neutral rats in the area. They'll run away if approached.
+// Placeables can spawn something else instead by specifying the resref
+// in an mi_resref variable.
 #include "inc_area"
 
 void main()
@@ -10,13 +12,16 @@ void main()
     int i            = 0;
     int c            = 5;
 
+	string sResRef   = GetLocalString(OBJECT_SELF, "mi_resref");
+	if (sResRef == "") sResRef = "smallrat";
+	
     for (; i < c; i++)
     {
         vPosition.x = IntToFloat(Random(nSizeX) + 1);
         vPosition.y = IntToFloat(Random(nSizeY) + 1);
 
         CreateObject(OBJECT_TYPE_CREATURE,
-		             "smallrat",
+		             sResRef,
                      Location(oArea, vPosition, 0.0));
     }
 }

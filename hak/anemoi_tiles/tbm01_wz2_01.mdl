@@ -129,7 +129,7 @@ node trimesh Plane566
     13.8001 -0.200012 0
     13.8001 -2.00003 0
 endnode
-node aabb TSH01_M01_01_gr_3_3_3_0_walkmesh
+node aabb tbm01_wz2_012622949974
   parent tbm01_wz2_01
   position 0 0 0
   orientation 0 0 -1 -1.5708
@@ -424,7 +424,7 @@ node light tbm01_wz2_01ml1
     lensflares 0
     fadingLight 0
 endnode
-node trimesh TSH01_M01_01_gr_3_3_3_0_walkmesh01
+node trimesh tbm01_wz2_012979269303
   parent tbm01_wz2_01
   position 0 0 0
   orientation 0 0 -1 -1.5708

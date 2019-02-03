@@ -12,7 +12,7 @@ beginmodelgeom tbm01_w44_01
 node dummy tbm01_w44_01
   parent NULL
 endnode
-node aabb TSH01_K01_01_gr_3_3_0_0_walkmesh
+node aabb tbm01_w44_012617182801
   parent tbm01_w44_01
   position 0 0 0
   orientation 0 0 0 0
@@ -663,7 +663,7 @@ node trimesh Mesh2489
     0.373725 0.719862 0
     0.620354 0.642457 0
 endnode
-node trimesh TSH01_K01_01_gr_3_3_0_0_walkmesh01
+node trimesh tbm01_w44_012972846770
   parent tbm01_w44_01
   position 0 0 0
   orientation 0 0 0 0

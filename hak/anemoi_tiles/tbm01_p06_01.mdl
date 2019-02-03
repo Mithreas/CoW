@@ -44,7 +44,7 @@ node light tbm01_p06_01ml1
     lensflares 0
     fadingLight 0
 endnode
-node trimesh TSH01_J01_01_gr_3_0_0_0_walkmesh01
+node trimesh tbm01_p06_012967866030
   parent tbm01_p06_01
   position 0 0 0
   orientation 0 0 0 0

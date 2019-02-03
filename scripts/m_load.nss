@@ -10,6 +10,7 @@
 #include "inc_divination"
 #include "inc_factions"
 #include "inc_perspeople"
+#include "inc_skills"
 #include "inc_xfer"
 #include "nwnx_admin"
 #include "nwnx_alts"
@@ -242,6 +243,7 @@ void main()
     DelayCommand(4.0, miDVShuffleDeck());
     DelayCommand(5.0, gsWOSetup());
     DelayCommand(6.0, md_DoWeaponSpecific());
+	DelayCommand(7.0, miSKInitialise());
     // ]--
 
     NWNX_Chat_RegisterChatScript("ar_chat");

@@ -108,6 +108,11 @@ void main()
   CnrRecipeAddComponent(sKeyToRecipe, "cnrstaveshort1", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpMisc, "Compound Bow Cam", "cnrbowcam", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotiro", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
   
   //----------------------------weapons--------------------------------------
 

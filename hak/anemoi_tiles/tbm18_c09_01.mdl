@@ -715,7 +715,7 @@ node light tbm18_c09_01ml2
     lensflares 0
     fadingLight 1
 endnode
-node trimesh TSH01_J01_01_gr_3_0_0_0_walkmesh01
+node trimesh tbm18_c09_012967866030
   parent tbm18_c09_01
   position 0 0 -16.2025
   orientation 0 0 0 0

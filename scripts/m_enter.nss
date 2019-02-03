@@ -3,7 +3,6 @@
 #include "inc_external"
 #include "inc_zombie"
 #include "inc_common"
-#include "inc_death"
 #include "inc_effect"
 #include "inc_language"
 #include "inc_shop"
@@ -316,9 +315,6 @@ void main()
       {
         // Migration code.
         miWAStripStaffAbilities(oStaff);
-
-        //dunshine: this caused all code below here not to fire:
-        //return;
       }
     }
 
@@ -333,12 +329,6 @@ void main()
     if (miAZGetContractByVictim(gsPCGetPlayerID(oEntering)).nValue)
     {
       gvdAZMessenger(gsPCGetPlayerID(oEntering));
-      //WriteTimestampedLogEntry("ASSASSIN WARNING FOR: " + GetName(oEntering) + " with ID " + gsPCGetPlayerID(oEntering));
-      //FloatingTextStringOnCreature("There is a bounty on your head!", oEntering, FALSE);
-      //SendMessageToPC(oEntering, "Someone has put a contract out on you!  Assassins may be trying to hunt you down, be on your guard.  " +
-      //  "You can buy out your contract at the Guild of Assassins.  Guild assassins do not " +
-      //  "need to interactively RP with you before attacking, but still need to follow all " +
-      //  "other rules of engagement (e.g. hostile before attack).");
     }
 
     object oHide = gsPCGetCreatureHide(oEntering);
@@ -367,31 +357,6 @@ void main()
 
       SetLocalInt(oHide, "gvd_artifact_legacy_checked", 1);
     }
-
-    // Dunshine: this is not used, but was done already so let's save it in case we ever want to use it:
-    /*
-    // Artifact restriction (1 allowed to be worn at the same time)
-    int iArtifacts = 0;
-    float fDelay = 0.5;
-    for (iItem = 0; iItem < NUM_INVENTORY_SLOTS; ++iItem) {
-      oItem = GetItemInSlot(iItem, oEntering);
-      if (GetIsObjectValid(oItem)) {
-        if ((GetLocalInt(oItem, "gvd_artifact_legacy") == 1) || (GetLocalInt(oItem, "gvd_artifact_legacy_confirmed") == 1)) {
-          if (iArtifacts > 0) {
-            if (iArtifacts == 1) {
-              FloatingTextStringOnCreature("The power inside the artefacts is too much for you to equip more then one of them at the same time", oEntering);
-              ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectCutsceneParalyze(), oEntering, 1.5);
-            }
-            DelayCommand(fDelay, AssignCommand(oEntering, gsUnequipItem(oItem)));
-            fDelay = fDelay + 0.1;
-          }
-          iArtifacts = iArtifacts + 1;
-        }
-      }
-    }
-    // set this to the total equipped, since the unequip script will lower the number to 1 automatically soon after
-    SetLocalInt(oEntering, "GVD_ARTIFACTS_COUNT", iArtifacts);
-    */
 
     // Dunshine: always remove captured lasso object from PC when logging in
     DeleteLocalObject(oEntering, "gvd_lasso_capture");

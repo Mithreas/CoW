@@ -12,6 +12,8 @@
   "title".
 
   rep_factionRep - holds the scores for the factions.
+  
+  Also includes utility methods for individual NPC reputation management. 
 
 */
 #include "inc_backgrounds"
@@ -21,6 +23,8 @@
 #include "inc_pc"
 const string REP = "REPUTATION"; // for tracing
 const string RANKS = "RANKS"; // for tracing
+
+const string NPC_CASTE = "NPC_CASTE";
 
 /* Database names */
 const string DB_VALUES     = "rep_pcrep";
@@ -95,6 +99,16 @@ string GetRankName(string sFaction, int nRank);
 
 // Get the score needed for this rank.
 int GetRepNeededForRank(string sFaction, int nRank);
+
+// Get how oNPC feels about oPC.  0-100.  Inherit faction default
+// if no personal overrides yet.
+int GetNPCRep(object oNPC, object oPC);
+
+// Adjust how oNPC feels about oPC.  
+void AdjustNPCRep(object oNPC, object oPC, int nAmount);
+
+// Determine the caste of an NPC (commoner, soldier, merchant, noble). 
+int GetNPCCaste(object oNPC);
 
 /* Function implementation */
 // Get the PC's rank number based on their rep score.
@@ -394,5 +408,66 @@ void SetPCFaction(object oPC, int nFaction)
   miBAApplyBackground(oPC, nFaction);
 }
 
-//void main() {}
+int GetNPCCaste(object oNPC)
+{
+  // Note: this method may belong in inc_backgrounds where PC castes are handled.  
+  // Check for override/cache.
+  int nCaste = GetLocalInt(oNPC, NPC_CASTE);
+  if (nCaste)
+  {
+    return nCaste - 1;
+  }
+  
+  if (GetIsDefender(oNPC))
+  {
+    nCaste = CASTE_WARRIOR;
+  }
+  else if (GetDistanceBetween(oNPC, GetNearestObject(OBJECT_TYPE_STORE, oNPC)) < 10.0f)
+  {
+    nCaste = CASTE_MERCHANT;
+  }
+  else if (GetLevelByClass(CLASS_TYPE_COMMONER, oNPC))
+  {
+    nCaste = CASTE_PEASANT;
+  }
+  else
+  {
+    nCaste = CASTE_NOBILITY;
+  }
+  
+  SetLocalInt(oNPC, NPC_CASTE, nCaste + 1);
+  return nCaste;
+}
 
+int GetNPCRep(object oNPC, object oPC)
+{
+  string sVarName = "REP_PCREP_" + gsPCGetPlayerID(oPC);
+  int nRep        = GetLocalInt(oNPC, sVarName);
+  
+  if (!nRep)
+  {
+    nRep = GetReputation(oNPC, oPC);
+	if (nRep == 0) SetLocalInt(oNPC, sVarName, -1);
+	else SetLocalInt(oNPC, sVarName, -1);
+  }
+  
+  if (nRep == -1) nRep = 0;
+  return nRep;
+}
+
+void AdjustNPCRep(object oNPC, object oPC, int nAmount)
+{
+  string sVarName = "REP_PCREP_" + gsPCGetPlayerID(oPC);
+  int    nRep     = GetNPCRep(oNPC, oPC);
+  
+  nRep += nAmount;
+  
+  // Reputation has a min of 0 and a max of 100.
+  if (nRep < 0) nRep = 0;
+  if (nRep > 100) nRep = 100;
+  
+  // We store 0 as -1 to distinguish between hostile and not set.
+  if (nRep == 0) nRep = -1;
+  
+  SetLocalInt(oNPC, sVarName, nRep); 
+}

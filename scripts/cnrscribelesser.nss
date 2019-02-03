@@ -393,11 +393,11 @@ void main()
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuLevel5Scrolls, "Ultra Vision", "NW_IT_SPARSCR214", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuLevel5Scrolls, "Ultravision", "NW_IT_SPARSCR214", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "x2_it_cfm_bscrl", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrInkL", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "dust_phen", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "CNR_RECIPE_SPELL", 1, SPELL_CLARITY);
+  CnrRecipeAddComponent(sKeyToRecipe, "CNR_RECIPE_SPELL", 1, SPELL_DARKVISION);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
 

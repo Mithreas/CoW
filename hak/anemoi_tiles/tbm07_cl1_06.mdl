@@ -361,7 +361,7 @@ node trimesh Line316
     0 0.6665 0
     0 0.461437 0
 endnode
-node trimesh TSH01_K01_01_gr_3_3_0_0_walkmesh01
+node trimesh tbm07_cl1_062972846770
   parent tbm07_cl1_06
   position 0 0 0
   orientation 0 0 -1 -1.5708

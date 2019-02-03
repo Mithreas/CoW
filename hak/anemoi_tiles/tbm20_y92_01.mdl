@@ -1283,7 +1283,7 @@ node trimesh TSH01_Y92_01_gr_3_3_0_0
     0.673835 0.81317 0
     0.72125 0.889677 0
 endnode
-node aabb TSH01_Y92_01_gr_3_3_0_0_walkmesh
+node aabb tbm20_y92_012657356393
   parent tbm20_Y92_01
   position -0.00130504 -0.0391924 0
   orientation 0 0 -1 -1.5708

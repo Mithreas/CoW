@@ -1,5 +1,6 @@
 /* COMBAT Library by Gigaschatten */
 
+#include "inc_boss"
 #include "inc_names"
 #include "inc_zombie"
 #include "inc_combat2"
@@ -365,7 +366,19 @@ int gsCBGetIsInCombat()
 //----------------------------------------------------------------
 int gsCBGetIsFollowing(object oObject = OBJECT_SELF)
 {
-    return GetIsObjectValid(GetLocalObject(oObject, "GS_CB_FOLLOW_TARGET"));
+    // If we're a boss, don't follow our target across areas.
+	object oTarget = GetLocalObject(oObject, "GS_CB_FOLLOW_TARGET");
+    if (GetIsObjectValid(oTarget) && 
+	    gsBOGetIsBossCreature(oObject) && 
+		GetArea(oObject) != GetArea(oTarget))
+	{
+      DeleteLocalObject(oObject, "GS_CB_FOLLOW_TARGET");
+      DeleteLocalInt(oObject, "GS_CB_FOLLOW_COUNTER");
+	  AssignCommand(oObject, ClearAllActions());
+	  return FALSE;
+	}	
+	
+    return GetIsObjectValid(oTarget);
 }
 //----------------------------------------------------------------
 object gsCBGetCreatureAtLocation(location lLocation,

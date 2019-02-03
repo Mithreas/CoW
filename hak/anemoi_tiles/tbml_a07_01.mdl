@@ -399,7 +399,7 @@ node light tbml_a07_01ml2
     lensflares 0
     fadingLight 0
 endnode
-node trimesh TSH01_J01_01_gr_3_0_0_0_walkmesh01
+node trimesh tbml_a07_012967866030
   parent tbml_a07_01
   position 0 0 0
   orientation 0 0 0 0
@@ -740,7 +740,7 @@ endnode
 node light tbml_a07_01ml2
   parent tbml_a07_01
 endnode
-node trimesh TSH01_J01_01_gr_3_0_0_0_walkmesh01
+node trimesh tbml_a07_012967866030
   parent tbml_a07_01
 endnode
 event 0  detonate
@@ -775,7 +775,7 @@ endnode
 node light tbml_a07_01ml2
   parent tbml_a07_01
 endnode
-node trimesh TSH01_J01_01_gr_3_0_0_0_walkmesh01
+node trimesh tbml_a07_012967866030
   parent tbml_a07_01
 endnode
 doneanim tiledefault tbml_a07_01

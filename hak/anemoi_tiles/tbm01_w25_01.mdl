@@ -12,7 +12,7 @@ beginmodelgeom tbm01_w25_01
 node dummy tbm01_w25_01
   parent NULL
 endnode
-node aabb TSH01_K01_01_gr_3_3_0_0_walkmesh
+node aabb tbm01_w25_012617182801
   parent tbm01_w25_01
   position 0 0 0
   orientation 0 0 0 0
