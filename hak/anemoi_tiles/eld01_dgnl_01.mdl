@@ -4,7 +4,7 @@
 #NWmax MODEL ASCII
 # model: eld01_DGNL_01
 filedependancy Diagonal Wallspanner.gmax
-newmodel eld01_DGNL_01
+newmodel eld01_dgnl_01
 setsupermodel eld01_DGNL_01 NULL
 classification Tile
 #NWmax GEOM  ASCII

@@ -4,7 +4,7 @@
 #NWmax MODEL ASCII
 # model: eld01_DCW_02
 filedependancy Diagonal Corner Wall v2.gmax
-newmodel eld01_DCW_02
+newmodel eld01_dcw_02
 setsupermodel eld01_DCW_02 NULL
 classification Tile
 #NWmax GEOM  ASCII

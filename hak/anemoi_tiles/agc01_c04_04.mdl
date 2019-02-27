@@ -1,7 +1,7 @@
 #MAXMODEL ASCII
 # model: agc01_C04_04
 filedependancy agc01_C04_04.max
-newmodel agc01_C04_04
+newmodel agc01_c04_04
 setsupermodel agc01_C04_04 NULL
 classification TILE
 setanimationscale 1

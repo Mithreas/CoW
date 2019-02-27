@@ -3,7 +3,7 @@
 #MAXMODEL ASCII
 # model: SMX02_A04_06
 filedependancy CaravelRuralWinterDocked.max
-newmodel SMX02_A04_06
+newmodel smx02_a04_06
 setsupermodel SMX02_A04_06 NULL
 classification Tile
 setanimationscale 1.0

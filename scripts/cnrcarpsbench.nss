@@ -29,6 +29,7 @@ void main()
   string sMenuCarpBolts = CnrRecipeAddSubMenu("cnrcarpsbench", "Bolts");
   string sMenuCarpBows = CnrRecipeAddSubMenu("cnrcarpsbench", "Bows");
   string sMenuCarpShields = CnrRecipeAddSubMenu("cnrcarpsbench", "Shields");
+  string sMenuCarpFurn = CnrRecipeAddSubMenu("cnrcarpsbench", "Furniture");
   string sMenuCarpHouse = CnrRecipeAddSubMenu("cnrcarpsbench", "House Items");
 
   string sMenuBows1 = CnrRecipeAddSubMenu(sMenuCarpBows, "Irl");
@@ -328,7 +329,233 @@ void main()
   CnrRecipeAddComponent(sKeyToRecipe, "dust_topa", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 14);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 140, 140);
+  
+  //----------------------------furniture--------------------------------------  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Stool", "wt_item_stool", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 10, 10);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Chair", "gs_item033", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 2);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 20, 20);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Signpost", "gs_item060", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 2);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Signboard (small)", "gs_item066", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 3);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Sturdy Chair", "wt_item_chair1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 2);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 2);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Black Chair", "wt_item_chair2", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank2", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 2);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Bench (simple)", "wt_item_bench3", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 2);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Bench (with brace)", "wt_item_bench2", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 2);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Cot", "wt_item_cot1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrcloth", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Wooden Throne", "gs_item116", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 3);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Signboard (hanging)", "wt_item_sign1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotond", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
+    
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Bench (large)", "wt_item_bench1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 3);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Couch", "gs_item034", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrcotton", 2);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
+    
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Lecturn", "wt_item_lecturn", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 2);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Signboard (medium)", "wt_item_sign3", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 2);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Simple Table", "wt_item_tbl1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 2);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Round Wooden Table", "gs_item036", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 2);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Bookcase", "wt_item_bkcase1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 3);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Armoire", "fx_armoire", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 3);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Chest of Drawers", "fx_drawers", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 3);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 6);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 60, 60);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Wooden Pillar", "wt_item_pllrwood", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 4);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 6);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 60, 60);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Bed", "gs_item067", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrcotton", 2);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrcloth", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 6);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 60, 60);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Torch Stand", "wt_item_trch1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrLumpOfCoal", 2);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 6);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 60, 60);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Message Board", "gs_item059", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 3);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 7);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 70, 70); 
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Dice Table", "wt_item1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank2", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 7);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 70, 70); 
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Impaled Monster Head", "ir_impmonhead", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 2);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 20, 20); 
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Skull Pole", "ir_impmonhead001", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40); 
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Combat Dummy", "wt_item_dummy1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 2);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrcotton", 2);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40); 
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Keg", "wt_item_keg1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 2);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40); 
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Archery Target", "wt_item_target1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 2);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50); 
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Gallows", "wt_item_gllw1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 3);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50); 
 
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Cheval de Frise", "fx_cheval", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 5);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 7);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 70, 70);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Painting 1", "wt_item_pntng1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank3", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 10);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 100, 100); 
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Painting 2", "wt_item_pntng2", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank3", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 10);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 100, 100); 
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture:  Flag (green and white)", "wt_item_flag1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrcloth", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30); 
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture:  Flag (black with red dot)", "wt_item_flag2", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrcloth", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30); 
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture:  Flag (light purple)", "wt_item_flag3", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrcloth", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30); 
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture:  Flag (black and white)", "wt_item_flag4", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrcloth", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30); 
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture:  Flag (purple and white)", "wt_item_flag5", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrcloth", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30); 
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture:  Flag (purple cross)", "wt_item_flag6", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrcloth", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30); 
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture:  Flag (yellow)", "wt_item_flag7", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrcloth", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30); 
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture:  Flag (Jolly Roger)", "wt_item_flag8", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplank1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrcloth", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30); 
+  
   //////////////////////House Items//////////////////////////////////////////////////
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpHouse, "Erenia: Staff of the Gods", "ca_6staere", 1);

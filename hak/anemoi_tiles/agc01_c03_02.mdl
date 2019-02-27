@@ -3,7 +3,7 @@
 #MAXMODEL ASCII
 # model: agc01_C03_02
 filedependancy Diagonalbonusb.max
-newmodel agc01_C03_02
+newmodel agc01_c03_02
 setsupermodel agc01_C03_02 NULL
 classification Tile
 setanimationscale 1.0

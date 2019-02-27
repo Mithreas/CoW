@@ -71,14 +71,14 @@ void main()
                     OBJECT_SELF,
                     FALSE);
         }
-        else if (GetLevelByClass(CLASS_TYPE_CLERIC, oSpeaker) < 17 &&
-                 GetLevelByClass(CLASS_TYPE_DRUID, oSpeaker) < 17 &&
-                 !gsSPReduceCharges(OBJECT_SELF, 5))
-        {
-          FloatingTextStringOnCreature("You don't have enough components to cast that.", OBJECT_SELF, FALSE);
-        }
-        else
-        {
+        else 
+		{
+		  if (GetLevelByClass(CLASS_TYPE_CLERIC, oSpeaker) < 17 &&
+                 GetLevelByClass(CLASS_TYPE_DRUID, oSpeaker) < 17)
+          {
+             gsSTDoCasterDamage(oSpeaker, 5);
+		  }
+		  
           Scrying(oSpeaker, oTarget);
         }
       }

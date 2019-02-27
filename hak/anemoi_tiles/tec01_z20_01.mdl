@@ -1,7 +1,7 @@
 #MAXMODEL ASCII
 # model: tec01_f20_01
 filedependancy tec01_f20_01.max
-newmodel tec01_f20_01
+newmodel tec01_z20_01
 setsupermodel tec01_f20_01 NULL
 classification tile
 setanimationscale 1

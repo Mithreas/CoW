@@ -23,10 +23,7 @@
 
 // mi_inc_spllswrd
 //
-// Library with functionssforpellsword wizards.
-//
-//
-//
+// Library with functions for spellsword wizards.
 //
 
 #include "nwnx_creature"
@@ -48,6 +45,8 @@
  * PUBLIC FUNCTION PROTOTYPES
  **********************************************************************/
 
+//Check whether the Spellsword has purchased the Greater Imbue upgrade.
+int miSSGetHasGreaterImbue(object oP);
 //Check if spellsword
 int miSSGetIsSpellsword(object oPC);
 //Set SPELLSWORD flag on hide
@@ -80,11 +79,24 @@ void miSSImbueWeapon(object oPC, int SpellID, object oWeapon, int bFeedback = TR
 //Imbue armour - gives bonus to weapon if a spell is cast on it by a spellsword.
 void miSSImbueArmour(object oPC, int SpellID, object oArmour, int bFeedback = TRUE);
 
+/* Private function. 
+   Note, this is a copy of AR_GetCasterLevelBonus in inc_customspells, copied here
+   to avoid circular dependencies. */
+int _AR_GetCasterLevelBonus(object oCaster)
+{
+   return GetLocalInt(gsPCGetCreatureHide(oCaster), "AR_BONUS_CASTER_LEVELS");
+}
 
 /**********************************************************************
  * PUBLIC FUNCTION DEFINITIONS
  **********************************************************************/
 
+//------------------------------------------------------------------------------
+//Sawaki: Check if epic spellsword
+int miSSGetHasGreaterImbue(object oPC)
+{
+    return GetLocalInt(gsPCGetCreatureHide(oPC), "SS_GREATER_IMBUE");
+}
 
 //------------------------------------------------------------------------------
 //Check if spellsword
@@ -130,6 +142,7 @@ void miSSSetBlockedSchool(object oPC, int nSchool, int nNum = 1)
 void miSSCharBonuses(object oPC, int bFeedback)
 {
     int nWizard = GetLevelByClass(CLASS_TYPE_WIZARD, oPC);
+	nWizard = nWizard + _AR_GetCasterLevelBonus(oPC);
     int nCharacterLevel = GetCharacterLevel(oPC);
 		
 	if(!GetIsPC(oPC) || GetIsDM(oPC) || !nWizard) return;
@@ -193,8 +206,6 @@ void miSSCharBonuses(object oPC, int bFeedback)
             }
         }
 		
-		
-
         // AC = 1 + 1/6 wizard levels, capped by Base INT mod
         if (bRanged || bTwoHand || oLeftHand != OBJECT_INVALID || bIsMonk)
         {
@@ -379,10 +390,6 @@ void miSSSetABAPR2(object oPC, int bFeedback = TRUE)
 			SetBaseAttackBonus( nAttacks, oPC); //correctly sets APR however does not show true APR in character sheet.
             if(bFeedback) SendMessageToPC(oPC, "Spellsword Number of Attacks: " + IntToString(nAttacks) + " Attacks");
         }
-        //else
-        //{
-        //    if(bFeedback) SendMessageToPC(oPC, "Wizard class less than other classes");
-        //}
     }
 }
 
@@ -455,7 +462,6 @@ void miSSRemoveAB(object oPC, int bFeedback, int bLevelUp = TRUE)
         effect eEffect = GetFirstEffect(oPC);
         while (GetIsEffectValid(eEffect))
         {
-			// SendMessageToPC(oPC,"effect" + IntToString(GetEffectType(eEffect)) + "tag" + IntToString(GetIsTaggedEffect(eEffect, EFFECT_TAG_SPELLSWORD)));
             if (GetIsTaggedEffect(eEffect, EFFECT_TAG_SPELLSWORD) && (GetEffectType(eEffect) == EFFECT_TYPE_ATTACK_INCREASE))
             // if (GetEffectType(eEffect) == EFFECT_TYPE_ATTACK_INCREASE) // use if NWNX not installed
             {
@@ -473,6 +479,7 @@ void miSSRemoveAB(object oPC, int bFeedback, int bLevelUp = TRUE)
 void miSSApplyBonuses(object oPC, int bFeedback, int bLevelUp = TRUE)
 {
     int nWizard = GetLevelByClass(CLASS_TYPE_WIZARD, oPC);
+	nWizard = nWizard + _AR_GetCasterLevelBonus(oPC);
     if(!GetIsPC(oPC) || GetIsDM(oPC) || !nWizard) return;
 
     //check if spellsword
@@ -483,7 +490,6 @@ void miSSApplyBonuses(object oPC, int bFeedback, int bLevelUp = TRUE)
         miSSRemoveAB(oPC, FALSE, TRUE);
 
         //add new effects
-		//SendMessageToPC(oPC, ":AB:");
         miSSHitpoints(oPC, bLevelUp, bFeedback);
         miSSSetABAPR2(oPC, bFeedback);
         miSSCharBonuses(oPC, bFeedback);
@@ -505,7 +511,6 @@ void miSSReApplyBonuses(object oPC, int bFeedback)
         miSSRemoveAB(oPC, FALSE, TRUE);
 
         //add new effects
-		//SendMessageToPC(oPC, ":RAB:");
         miSSCharBonuses(oPC, bFeedback);
         miSSSetABAPR2(oPC, bFeedback);
     }
@@ -525,9 +530,6 @@ void miSSTest(object oPC)
 			SetLocalInt(oRHand, "Elfblade", 1);
             bond_item(oRHand, oPC, BOND_TAG_BLADESINGER, INVENTORY_SLOT_RIGHTHAND);
         }
-
-        //if (GetKnowsFeat(001 ,oPC)) return;
-        //AddKnownFeat(oPC, 001);
     }
 }
 
@@ -562,6 +564,7 @@ void miSSMWPFeat(object oPC)
 void miSSImbueWeapon(object oPC, int SpellID, object oWeapon, int bFeedback = TRUE)
 {
     int nWizard = GetLevelByClass(CLASS_TYPE_WIZARD, oPC);
+	nWizard = nWizard + _AR_GetCasterLevelBonus(oPC);
     object oHide = gsPCGetCreatureHide(oPC);
     object oItem = IPGetTargetedOrEquippedMeleeWeapon();
     if (oItem == OBJECT_INVALID)
@@ -626,12 +629,20 @@ void miSSImbueWeapon(object oPC, int SpellID, object oWeapon, int bFeedback = TR
     int nOnHit;
     int nSpecial = 0;
 
-    //SetLocalInt(oHide, "SS_IMBUE_WEAPON_DC", nSaveDC);
-
-    //if(bFeedback) SendMessageToPC(oPC, "SpellID: " + IntToString(SpellID));
-    //if(bFeedback) SendMessageToPC(oPC, "SpellID: " + IntToString(nSpell));
-
     //Allow 2 imbue spells for epic spellsword
+	//Sawaki: Change nWizard to 25 if Greater Imbue is bought, if not 10
+	int tempWizard = nWizard;
+	
+	if (miSSGetHasGreaterImbue(oPC))
+	{
+		nWizard = 25;
+	}
+	
+	else
+	{
+		nWizard = 10;
+	}
+	
     itemproperty ipProperty = GetFirstItemProperty(oItem);
     int nCount = 0;
 
@@ -653,7 +664,6 @@ void miSSImbueWeapon(object oPC, int SpellID, object oWeapon, int bFeedback = TR
     }
 
     //remove previous imbue
-    //if ((nWizard < 20 && nCount > 1) || nCount > 3)
 	if ((nWizard < 20 && nCount == 1) || nCount == 2)
     {
         nCount = 0;
@@ -674,8 +684,6 @@ void miSSImbueWeapon(object oPC, int SpellID, object oWeapon, int bFeedback = TR
             ipLoop=GetNextItemProperty(oItem);
         }
     }
-
-
 
     switch(SpellID)
     {
@@ -813,9 +821,7 @@ void miSSImbueWeapon(object oPC, int SpellID, object oWeapon, int bFeedback = TR
             return;
         }
     }
-
-
-
+	
     //24 hours
     float nDuration = 24.0*60.0*60.0;
 
@@ -845,13 +851,15 @@ void miSSImbueWeapon(object oPC, int SpellID, object oWeapon, int bFeedback = TR
         SetLocalString(oItem, "RUN_ON_HIT_1", GetStringLowerCase(sScript));
 		nCount = 1;
     }
-
+	
+	//Sawaki: Return nWizard to its real value, to give correct imbue-effect
+	nWizard = tempWizard;
+	
 	SetLocalInt(oHide, sSaveDC, nSaveDC);
     //if(bFeedback) SendMessageToPC(oPC, "DamageType: " + IntToString(nDamageType));
     AddItemProperty(DURATION_TYPE_TEMPORARY, TagItemProperty(ItemPropertyDamageBonus(nDamageType, nDamage), "SS_IMBUE"), oItem, nDuration);
     AddItemProperty(DURATION_TYPE_TEMPORARY, TagItemProperty(ItemPropertyVisualEffect(nVFX), "SS_IMBUE"), oItem, nDuration);
     AddItemProperty(DURATION_TYPE_TEMPORARY, TagItemProperty(ItemPropertyOnHitCastSpell(IP_CONST_ONHIT_CASTSPELL_ONHIT_UNIQUEPOWER, nWizard), "SS_IMBUE"), oItem, nDuration);
-    //ApplyEffectToObject(DURATION_TYPE_TEMPORARY, SupernaturalEffect(EffectDamageIncrease(nDamage, nDamageType)), oPC, RoundsToSeconds(nWizard));
     if(bFeedback) SendMessageToPC(oPC, "Spellsword Imbue Damage Bonus Granted: +" + nDamageText + " Damage");
 }
 
@@ -861,12 +869,6 @@ void miSSImbueArmour(object oPC, int SpellID, object oArmour, int bFeedback = TR
 {
     oArmour = IPGetTargetedOrEquippedArmor();
     object oHide = gsPCGetCreatureHide(oPC);
-
-    if (TRUE)
-    {
-        if(bFeedback) SendMessageToPC(oPC, "Armour Imbues have been disabled.");
-        return;
-    }	
 	
     if (oArmour == OBJECT_INVALID)
     {
@@ -888,6 +890,7 @@ void miSSImbueArmour(object oPC, int SpellID, object oArmour, int bFeedback = TR
     }
 
     int nWizard = GetLevelByClass(CLASS_TYPE_WIZARD, oPC);
+	nWizard = nWizard + _AR_GetCasterLevelBonus(oPC);
 
     if (!bIPExists)
     {
@@ -985,110 +988,12 @@ void miSSImbueArmour(object oPC, int SpellID, object oArmour, int bFeedback = TR
         }
         default:
         {
-            if(bFeedback) SendMessageToPC(oPC, "You are not able to embue this spell to your armour");
-            return;
-        }
-    }
-    if(bFeedback) SendMessageToPC(oPC, "Spell added to armour: " + sSpell);
-
-}
-
-//------------------------------------------------------------------------------
-//Imbue armour - gives bonus to weapon if a spell is cast on it by a spellsword.
-void miSSImbueArmourOLD(object oPC, int SpellID, object oArmour, int bFeedback = TRUE)
-{
-
-    if (TRUE)
-    {
-        if(bFeedback) SendMessageToPC(oPC, "Armour Imbues have been disabled.");
-        return;
-    }
-
-
-    oArmour = IPGetTargetedOrEquippedArmor();
-    if (oArmour == OBJECT_INVALID)
-    {
-        if(bFeedback) SendMessageToPC(oPC, "Armour Invalid");
-        return;
-    }
-
-    //remove old casting
-//    itemproperty ipLoop = GetFirstItemProperty(oArmour);
-
-//    while (GetIsItemPropertyValid(ipLoop))
-//    {
-//        if(GetItemPropertyType(ipLoop) == ITEM_PROPERTY_ONHITCASTSPELL)
-//        {
-//            RemoveItemProperty(oArmour, ipLoop);
-//        }
-//        ipLoop=GetNextItemProperty(oArmour);
-//    }
-
-    int nWizard = GetLevelByClass(CLASS_TYPE_WIZARD, oPC);
-    //int nSpell      = _arGetCorrectSpellId(GetSpellId());   //::  Get Correct Spell Id from Grouped spells
-
-//    if(bFeedback) SendMessageToPC(oPC, "SpellID: " + IntToString(SpellID));
-//    if(bFeedback) SendMessageToPC(oPC, "SpellID: " + IntToString(nSpell));
-
-    string sScript = "SS_IM_A";
-    IPSafeAddItemProperty(oArmour, ItemPropertyOnHitCastSpell(IP_CONST_ONHIT_CASTSPELL_ONHIT_UNIQUEPOWER, nWizard), 0.0f, X2_IP_ADDPROP_POLICY_REPLACE_EXISTING);
-
-    string sSpell = "";
-    switch(SpellID)
-    {
-        case SPELL_SHIELD:
-        {
-            sSpell = "Shield";
-            break;
-        }
-        case SPELL_SHADOW_SHIELD:
-        {
-            sSpell = "Shadow Shield";
-            break;
-        }
-        case SPELL_MAGE_ARMOR:
-        {
-            sSpell = "Mage Armour";
-            break;
-        }
-        case SPELL_MESTILS_ACID_SHEATH:
-        {
-            sSpell = "Acid Sheath";
-            break;
-        }
-        case SPELL_ELEMENTAL_SHIELD:
-        {
-            sSpell = "Elemental Shield";
-            break;
-        }
-        case SPELL_STONESKIN:
-        {
-            sSpell = "Stoneskin";
-            break;
-        }
-        case SPELL_GREATER_STONESKIN:
-        {
-            sSpell = "Greater Stoneskin";
-            break;
-        }
-        case SPELL_PREMONITION:
-        {
-            sSpell = "Premonition";
-            break;
-        }
-        default:
-        {
             if(bFeedback) SendMessageToPC(oPC, "You are not able to imbue this spell to your armour");
             return;
         }
     }
-    SetLocalString(oArmour, "RUN_ON_HIT_2", GetStringLowerCase(sScript));
-    SetLocalInt(oArmour, "SS_IMBUE_ARMOUR_CH", SpellID);
-    //24 hours
-    float nDuration = 24.0*60.0*60.0;
     if(bFeedback) SendMessageToPC(oPC, "Spell added to armour: " + sSpell);
-    //AddItemProperty(DURATION_TYPE_TEMPORARY, ItemPropertyOnHitCastSpell(IP_CONST_ONHIT_CASTSPELL_ONHIT_UNIQUEPOWER, nWizard), oArmour, nDuration);
-    //AddItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyOnHitCastSpell(IP_CONST_ONHIT_CASTSPELL_ONHIT_UNIQUEPOWER, nWizard), oArmour);
+
 }
 
 //------------------------------------------------------------------------------

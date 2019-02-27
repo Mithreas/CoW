@@ -3,7 +3,7 @@
 #MAXMODEL ASCII
 # model: SMX01_A03_01
 filedependancy VikshipRuralFloating.max
-newmodel SMX01_A03_01
+newmodel smx01_a03_01
 setsupermodel SMX01_A03_01 NULL
 classification Tile
 setanimationscale 1.0

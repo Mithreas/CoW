@@ -28,7 +28,6 @@ void main()
   string sMenuTailorPaddArm = CnrRecipeAddSubMenu("cnrtailorstable", "Padded Armour");
   string sMenuTailorKits = CnrRecipeAddSubMenu("cnrtailorstable", "Healing Kits");
   string sMenuTailorSlings = CnrRecipeAddSubMenu("cnrtailorstable", "Slings");
-  string sMenuTailorGloves = CnrRecipeAddSubMenu("cnrtailorstable", "Gloves");
   string sMenuTailorProducts = CnrRecipeAddSubMenu("cnrtailorstable", "Products");
   string sMenuTailorHouse = CnrRecipeAddSubMenu("cnrtailorstable", "House Items");
 
@@ -75,20 +74,42 @@ void main()
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 10, 10);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorProducts, "Cotton Cloak", "cnrcloak", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrcloth", 1, 0);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorProducts, "Fixture: Cushions", "gs_item375", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrcloth", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrcotton", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 2);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 20, 20);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorProducts, "Wool Cloak", "maarcl038", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrcloth1", 1, 0);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorProducts, "Fixture: Bedroll", "gs_item309", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrcloth", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrcloth1", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorProducts, "Fixture: Tent", "gs_item309", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrcloth", 3);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorProducts, "Silk Cloak", "maarcl063", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrcloth2", 1, 0);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorProducts, "Fixture: Rug (round blue)", "wt_item_rug1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrcloth1", 3);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorProducts, "Fixture: Rug (fancy medium)", "wt_item_rug2", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrcloth1", 3);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorProducts, "Fixture: Rug (fancy large)", "wt_item_rug3", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrcloth1", 4);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 6);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 60, 60);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorProducts, "Fixture: Market Stall", "wt_item_stall", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrcloth", 4);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 7);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 70, 70);
 
 ////////////////////////////Clothing////////////////////////////////////////////
 
@@ -104,6 +125,36 @@ void main()
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorClothing, "Silk Clothes", "cloth029", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrcloth2", 2, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 6);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 60, 60);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorClothing, "Cloth Gloves", "cnrglovecloth", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrcloth", 1, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 10, 10);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorClothing, "Gloves (Wool)", "cnrglovewool", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrcloth1", 1, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 2);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 20, 20);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorClothing, "Gloves (Silk)", "cnrglovesilk", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrcloth2", 1, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorClothing, "Cotton Cloak", "cnrcloak", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrcloth", 1, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 2);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 20, 20);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorClothing, "Wool Cloak", "maarcl038", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrcloth1", 1, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorClothing, "Silk Cloak", "maarcl063", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrcloth2", 1, 0);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 6);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 60, 60);
 
@@ -138,23 +189,6 @@ void main()
 
   // Other slings are leather.
 
-
-/////////////////////////////////////Gloves//////////////////////////////////////////////////////
-
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorGloves, "Cloth Gloves", "cnrglovecloth", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrcloth", 1, 0);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 10, 10);
-
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorGloves, "Gloves (Wool)", "cnrglovewool", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrcloth1", 1, 0);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 2);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 20, 20);
-
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTailorGloves, "Gloves (Silk)", "cnrglovesilk", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrcloth2", 1, 0);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
 
 
 

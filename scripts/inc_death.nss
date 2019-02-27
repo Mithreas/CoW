@@ -1,5 +1,6 @@
 #include "inc_bloodstains"
 #include "inc_crime"
+#include "inc_challenge"
 #include "inc_external"
 #include "inc_zombie"
 #include "inc_common"
@@ -226,6 +227,7 @@ void gsDeath()
   if (GetTag(GetArea(oSelf)) != "FeywildBanquet" && 
       FindSubString(GetName(GetArea(oSelf)), "Feywilds") > -1) 
   {
+    CHClearQuestCount(OBJECT_SELF, "CH_Q_FEY");
     ActionJumpToObject(GetObjectByTag("FWB_ENTER"));
   }	
   else 

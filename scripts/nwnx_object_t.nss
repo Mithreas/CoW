@@ -26,6 +26,7 @@ void main()
 
     struct NWNX_Object_LocalVariable lv = NWNX_Object_GetLocalVariable(o, nVarCount);
     report("GetLocalVariable", lv.key == "nwnx_object_test");
+    report("GetLocalVariable", lv.type == NWNX_OBJECT_LOCALVAR_TYPE_INT);
 
     string sObj = ObjectToString(o);
     report("StringToObject", NWNX_Object_StringToObject(sObj) == o);
@@ -52,6 +53,9 @@ void main()
     NWNX_Object_SetCurrentHitPoints(o, nCurrHP + 1);
     report("SetCurrentHitPoints", GetCurrentHitPoints(o) == (nCurrHP + 1));
 
+    string dialog = "nwnxtest";
+    NWNX_Object_SetDialogResref(o, dialog);
+    report("SetDialogResRef/GetDialogResRef", NWNX_Object_GetDialogResref(o) == dialog);
 
     string sPortrait = NWNX_Object_GetPortrait(o);
     report("GetPortrait", sPortrait == "po_Chicken_");
@@ -69,6 +73,7 @@ void main()
     WriteTimestampedLogEntry("Deserialized " + GetName(oDeserialized) + " in " + GetName(GetArea(oDeserialized)));
 
 
-
+    DestroyObject(o);
+    DestroyObject(oDeserialized);
     WriteTimestampedLogEntry("NWNX_Object unit test end.");
 }

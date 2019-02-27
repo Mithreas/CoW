@@ -4,7 +4,7 @@
 #NWmax MODEL ASCII
 # model: eld01_DFWP_01
 filedependancy Diagonal Floor-Wall-Pit.gmax
-newmodel eld01_DFWP_01
+newmodel eld01_dfwp_01
 setsupermodel eld01_DFWP_01 NULL
 classification Tile
 #NWmax GEOM  ASCII

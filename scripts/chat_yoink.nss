@@ -73,12 +73,6 @@ void main()
                     OBJECT_SELF,
                     FALSE);
           }
-          else if (GetLevelByClass(CLASS_TYPE_CLERIC, oSpeaker) < 17 &&
-                   GetLevelByClass(CLASS_TYPE_DRUID, oSpeaker) < 17 &&
-                   GetTotalSpellComponentCharges(oSpeaker) < 5)
-          {
-            FloatingTextStringOnCreature("You don't have enough components to cast that.", OBJECT_SELF, FALSE);
-          }
           else if (GetLocalInt(oSpeaker, "YOINKING"))
           {
             TimelockErrorMessage(OBJECT_SELF, "Yoink");

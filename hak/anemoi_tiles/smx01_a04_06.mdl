@@ -3,7 +3,7 @@
 #MAXMODEL ASCII
 # model: SMX01_A04_06
 filedependancy VikshipRuralWinterDocked.max
-newmodel SMX01_A04_06
+newmodel smx01_a04_06
 setsupermodel SMX01_A04_06 NULL
 classification Tile
 setanimationscale 1.0

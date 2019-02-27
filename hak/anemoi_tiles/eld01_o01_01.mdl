@@ -1,7 +1,7 @@
 #MAXMODEL ASCII
 # model: eld01_O01_01
 filedependancy eld01_O01_01.max
-newmodel eld01_O01_01
+newmodel eld01_o01_01
 setsupermodel eld01_O01_01 NULL
 classification TILE
 setanimationscale 1

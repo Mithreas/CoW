@@ -444,6 +444,7 @@ void miBAApplyBackground(object oPC, int nBackground = -1, int nFirstTime = TRUE
 		break;
       case MI_BA_SHADOW:   	  
         CreateItemOnObject("key_shadow", oPC);
+        CreateItemOnObject("shadow_phil", oPC);
         GiveGoldToCreature(oPC, 250);
 		break;
       case MI_BA_FERNVALE:   	  

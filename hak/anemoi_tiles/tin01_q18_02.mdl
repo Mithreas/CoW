@@ -3,7 +3,7 @@
 #MAXMODEL ASCII
 # model: tin01_Q18_02
 filedependancy Unknown
-newmodel tin01_Q18_02
+newmodel tin01_q18_02
 setsupermodel tin01_Q18_02 NULL
 classification Tile
 setanimationscale 1.0

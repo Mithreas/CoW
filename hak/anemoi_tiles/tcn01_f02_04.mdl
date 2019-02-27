@@ -3,7 +3,7 @@
 #MAXMODEL ASCII
 # model: TCN01_F02_04
 filedependancy AlleyEntry3.max
-newmodel TCN01_F02_04
+newmodel tcn01_f02_04
 setsupermodel TCN01_F02_04 NULL
 classification Tile
 setanimationscale 1.0

@@ -99,7 +99,7 @@ void HandleSelection()
 		}
         else
         {
-        	gsSPReduceCharges(oYoinker, 5);
+        	gsSTDoCasterDamage(oYoinker, 5);
 		}
 		DeleteLocalObject(oYoinker, "YOINK_TARGET");
       }

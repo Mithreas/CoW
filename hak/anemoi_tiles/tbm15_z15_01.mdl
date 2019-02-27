@@ -3,7 +3,7 @@
 #MAXMODEL ASCII
 # model: tbm15_Z15_01
 filedependancy Unknown
-newmodel tbm15_Z15_01
+newmodel tbm15_z15_01
 setsupermodel tbm15_Z15_01 NULL
 classification Tile
 setanimationscale 1.0

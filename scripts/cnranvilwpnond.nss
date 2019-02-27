@@ -27,6 +27,7 @@ void main()
   string sMenu1Double = CnrRecipeAddSubMenu("cnranvilwpnond", "Ondaran Double-Sided");
   string sMenu1Polearms = CnrRecipeAddSubMenu("cnranvilwpnond", "Ondaran Polearms");
   string sMenu1Subs = CnrRecipeAddSubMenu("cnranvilwpnond", "Ondaran Components");
+  string sMenu1Fix = CnrRecipeAddSubMenu("cnranvilwpnond", "Fixtures");
 
   CnrRecipeSetDevicePreCraftingScript("cnranvilwpnond", "cnr_anvil_anim");
   CnrRecipeSetDeviceEquippedTool("cnranvilwpnond", "cnrSmithsHammer", CNR_FLOAT_SMITH_HAMMER_BREAKAGE_PERCENTAGE);
@@ -69,8 +70,6 @@ void main()
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotond", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 10, 10);
-
-
 
   ///////////////// Ondaran Weapons ///////////////
 
@@ -204,6 +203,34 @@ void main()
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
 
+  //////////////////Fixtures//////////////////////////////
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu1Fix, "Fixture: Candelabra", "gs_item035", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotond", 2);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 2);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 20, 20);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu1Fix, "Fixture: Fire Bowl", "gs_item115", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotond", 2);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu1Fix, "Fixture: Standing Mirror", "ir_standmirrorit", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotond", 3);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotsil", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu1Fix, "Fixture: Telescope", "wt_item_tlscp1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotond", 2);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotglass", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 6);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 60, 60);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu1Fix, "Fixture: Torture Rack", "wt_item_tortr1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotond", 4);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 7);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 70, 70);
 }
 
 

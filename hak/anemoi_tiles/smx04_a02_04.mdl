@@ -3,7 +3,7 @@
 #MAXMODEL ASCII
 # model: SMX04_A02_04
 filedependancy Carrack City Exterrior DockedV2.max
-newmodel SMX04_A02_04
+newmodel smx04_a02_04
 setsupermodel SMX04_A02_04 NULL
 classification Tile
 setanimationscale 1.0

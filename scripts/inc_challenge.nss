@@ -9,6 +9,7 @@
 #include "inc_subrace" 
 #include "inc_time"
 #include "nwnx_creature"
+#include "nwnx_object"
 
 const string CHALLENGE      = "CHALLENGE";  // For logging, set MI_DEBUG_CHALLENGE to TRUE on the module
 const string VAR_UNDERWATER = "CH_IS_UNDERWATER";
@@ -333,4 +334,24 @@ void CHSetQuestState(object oPC, object oNPC, int nState, string sCategory = "")
 int CHGetQuestCount(object oPC, string sCategory = "")
 {
   return GetLocalInt(gsPCGetCreatureHide(oPC), VAR_QUEST + sCategory + "_COUNT");
+}
+
+void CHClearQuestCount(object oPC, string sCategory = "")
+{
+  object oHide = gsPCGetCreatureHide(oPC);
+  DeleteLocalInt(oHide, VAR_QUEST + sCategory + "_COUNT");
+  
+  int nCount = 0;
+  struct NWNX_Object_LocalVariable var = NWNX_Object_GetLocalVariable(oHide, nCount);
+  
+  while (nCount < NWNX_Object_GetLocalVariableCount(oHide))
+  {
+    if (var.type == NWNX_OBJECT_LOCALVAR_TYPE_INT && 
+	    GetStringLeft(var.key, GetStringLength(VAR_QUEST + sCategory)) == VAR_QUEST + sCategory)
+	{
+	   // Delay this to avoid disrupting the process of looping through vars.
+	   DelayCommand(0.1, DeleteLocalInt(oHide, var.key)); 
+	}
+    var = NWNX_Object_GetLocalVariable(oHide, ++nCount);
+  }
 }

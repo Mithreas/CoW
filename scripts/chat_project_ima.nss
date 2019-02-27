@@ -79,10 +79,9 @@ void main()
 	        return;
 	    }
 	    // ... and spell components.
-	    else if(GetLevelByClass(CLASS_TYPE_CLERIC, oSpeaker) < 17 && GetLevelByClass(CLASS_TYPE_DRUID, oSpeaker) < 17 && !gsSPReduceCharges(OBJECT_SELF, 5))
+	    else if(GetLevelByClass(CLASS_TYPE_CLERIC, oSpeaker) < 17 && GetLevelByClass(CLASS_TYPE_DRUID, oSpeaker) < 17)
 	    {
-	        FloatingTextStringOnCreature("You don't have enough components to cast that.", OBJECT_SELF, FALSE);
-	        return;
+		    gsSTDoCasterDamage(oSpeaker, 5);
 	    }
 	    
         miDoCastingAnimation(oSpeaker);

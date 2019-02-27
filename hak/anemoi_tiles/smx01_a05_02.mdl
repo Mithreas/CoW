@@ -3,7 +3,7 @@
 #MAXMODEL ASCII
 # model: SMX01_A05_02
 filedependancy VikshipCityExtFloating.max
-newmodel SMX01_A05_02
+newmodel smx01_a05_02
 setsupermodel SMX01_A05_02 NULL
 classification Tile
 setanimationscale 1.0

@@ -3,7 +3,7 @@
 #MAXMODEL ASCII
 # model: agc01_F07_01
 filedependancy DiagonalEntry.max
-newmodel agc01_F07_01
+newmodel agc01_f07_01
 setsupermodel agc01_F07_01 NULL
 classification Tile
 setanimationscale 1.0

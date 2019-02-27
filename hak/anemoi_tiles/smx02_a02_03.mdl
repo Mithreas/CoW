@@ -3,7 +3,7 @@
 #MAXMODEL ASCII
 # model: SMX02_A02_03
 filedependancy CaravelCityFloatingv2.max
-newmodel SMX02_A02_03
+newmodel smx02_a02_03
 setsupermodel SMX02_A02_03 NULL
 classification Tile
 setanimationscale 1.0

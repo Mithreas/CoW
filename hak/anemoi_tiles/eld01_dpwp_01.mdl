@@ -4,7 +4,7 @@
 #NWmax MODEL ASCII
 # model: eld01_DPWP_01
 filedependancy Diagonal Pit-Wall-Pit.gmax
-newmodel eld01_DPWP_01
+newmodel eld01_dpwp_01
 setsupermodel eld01_DPWP_01 NULL
 classification Tile
 #NWmax GEOM  ASCII

@@ -1,7 +1,7 @@
 #Model converted by mdl2ascii
 #For updates/comments check out http://nwn-j3d.sf.net
 filedependancy Unknown
-newmodel TIN01_S16_02
+newmodel tin01_s16_02
 setsupermodel TIN01_S16_02 NULL
 classification Character
 setanimationscale 1.000000

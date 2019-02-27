@@ -3,7 +3,7 @@
 #MAXMODEL ASCII
 # model: tin01_E01_02
 filedependancy 1.max
-newmodel tin01_E01_02
+newmodel tin01_e01_02
 setsupermodel tin01_E01_02 NULL
 classification Tile
 setanimationscale 1.0

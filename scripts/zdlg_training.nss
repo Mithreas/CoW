@@ -10,13 +10,15 @@
 // - trainers can only train in class feats that they have.
 // - trainers must be epic level to train epic feats.
 // - trainers must have an arcane level to train spell feats. 
-#include "inc_zdlg"
-#include "inc_skills"
-#include "inc_pc"
-#include "inc_iprop"
+#include "inc_class"
 #include "inc_customspells"
+#include "inc_iprop"
+#include "inc_pc"
+#include "inc_skills"
+#include "inc_spellsword"
 #include "inc_totem"
 #include "inc_warlock"
+#include "inc_zdlg"
 #include "nwnx_creature"
 #include "nwnx_object"
 #include "nwnx_alts"
@@ -721,6 +723,8 @@ void init_feat_list (object oPC)
         add_feat_to_list(oPC, "Epic Spell Penetration", FEAT_EPIC_SPELL_PENETRATION);
 	  }	
     }
+	
+	if (miSSGetIsSpellsword(oPC)) add_feat_to_list(oPC, "Spellsword Greater Imbue", 10016);
 
     add_feat_to_list(oPC, "Superior Initiative", FEAT_EPIC_SUPERIOR_INITIATIVE);
     //add_feat_to_list(oPC, "Superior Weapon Focus", FEAT_EPIC_SUPERIOR_WEAPON_FOCUS);
@@ -1362,7 +1366,9 @@ void PageInit()
     SetDlgPrompt("You are currently System Level " + IntToString(nSystemLevel) + ". " +
     "\n\nYour current effective level is " + FloatToString(fPCLevel, 4, 1) +
     " so to take another feat will cost you " + IntToString(nGold) + " gp." +
-    "\n\nPick the category of feat you wish to take.");
+    "\n\nPick the category of feat you wish to take.\n\n" +
+	"My classes:\n" + mdGetClassName(GetClassByPosition(1, OBJECT_SELF)) + " " + 
+	mdGetClassName(GetClassByPosition(2, OBJECT_SELF)) + " " + mdGetClassName(GetClassByPosition(3, OBJECT_SELF)));
     SetDlgResponseList(CATEGORIES);
   }
   else if (sPage == PAGE_SELECT_FEAT)
@@ -1617,6 +1623,11 @@ void HandleSelection()
                 miTOSetTotemBonus(miTOGetTotemBonus(oPC) + 2, oPC);
                 break;
               }
+			  case 10016: // Spellsword Greater Imbue
+			  {
+			    SetLocalInt(oHide, "SS_GREATER_IMBUE", TRUE);
+				break;
+			  }
 
               default:
                 break;

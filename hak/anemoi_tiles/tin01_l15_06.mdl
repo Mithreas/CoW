@@ -3,7 +3,7 @@
 #MAXMODEL ASCII
 # model: tin01_L15_06
 filedependancy tinEmptytiles.max
-newmodel tin01_L15_06
+newmodel tin01_l15_06
 setsupermodel tin01_L15_06 NULL
 classification Tile
 setanimationscale 1.0

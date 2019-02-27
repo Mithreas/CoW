@@ -3,7 +3,7 @@
 #MAXMODEL ASCII
 # model: agc01_F03_02
 filedependancy Alleytjoint2.max
-newmodel agc01_F03_02
+newmodel agc01_f03_02
 setsupermodel agc01_F03_02 NULL
 classification Tile
 setanimationscale 1.0

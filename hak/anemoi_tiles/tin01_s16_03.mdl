@@ -3,7 +3,7 @@
 #MAXMODEL ASCII
 # model: TIN01_S16_03
 filedependancy Unknown
-newmodel TIN01_S16_03
+newmodel tin01_s16_03
 setsupermodel TIN01_S16_03 NULL
 classification Character
 setanimationscale 1.0

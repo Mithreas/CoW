@@ -3,7 +3,7 @@
 #MAXMODEL ASCII
 # model: agc01_F04_09
 filedependancy Alley9.max
-newmodel agc01_F04_09
+newmodel agc01_f04_09
 setsupermodel agc01_F04_09 NULL
 classification Tile
 setanimationscale 1.0

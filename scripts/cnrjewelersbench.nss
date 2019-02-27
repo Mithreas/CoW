@@ -22,9 +22,9 @@ void main()
   /////////////////////////////////////////////////////////
   string sMenuGems = CnrRecipeAddSubMenu("cnrJewelersBench", "Polished Gems");
   string sMenuRings = CnrRecipeAddSubMenu("cnrJewelersBench", "Rings");
-  //string sMenuScarabs = CnrRecipeAddSubMenu("cnrJewelersBench", "Brooches");
   //string sMenuNecklaces = CnrRecipeAddSubMenu("cnrJewelersBench", "Necklaces");
   string sMenuAmulets = CnrRecipeAddSubMenu("cnrJewelersBench", "Amulets");
+  string sMenuStone = CnrRecipeAddSubMenu("cnrJewelersBench", "Stonework");
 
   CnrRecipeSetDevicePreCraftingScript("cnrJewelersBench", "cnr_jeweler_anim");
   CnrRecipeSetDeviceInventoryTool("cnrJewelersBench", "cnrGemTools", CNR_FLOAT_GEM_CRAFTERS_TOOLS_BREAKAGE_PERCENTAGE);
@@ -407,4 +407,120 @@ void main()
   CnrRecipeAddComponent(sKeyToRecipe, "cow_gememer", 1, 0);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 18);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 180, 180);  
+
+  /////////////////////////////////////////////////////////
+  // Stonework
+  /////////////////////////////////////////////////////////
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuStone, "Fixture: Stone Vase", "gs_item113", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplainstone", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);  
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuStone, "Fixture: Headstone", "wt_item_hdstn", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplainstone", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);  
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuStone, "Fixture: Stone Sign", "wt_item_sign2", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplainstone", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrmarble", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrgranite", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40); 
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuStone, "Fixture: Stone Throne", "gs_item377", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplainstone", 3);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);  
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuStone, "Fixture: Potted Plant", "gs_item111", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplainstone", 2);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);  
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuStone, "Fixture: Flowers", "gs_item114", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplainstone", 2);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);  
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuStone, "Fixture: Elaborate Stone Table", "ir_illithtabit", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplainstone", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrmarble", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);  
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuStone, "Fixture: Stone Column", "gs_item376", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplainstone", 2);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrmarble", 2);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 6);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 60, 60);  
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuStone, "Fixture: Rune Pillar", "wt_item_pllrrune", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrmarble", 4);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 6);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 60, 60);  
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuStone, "Fixture: Skeletal Throne", "ir_skullseatit", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplainstone", 3);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 7);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 70, 70); 
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuStone, "Fixture: Crystal Ball", "wt_item_ball1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplainstone", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "crystal", 2);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 7);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 70, 70);   
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuStone, "Fixture: Guardian Statue", "gs_item112", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplainstone", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrmarble", 2);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 8);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 80, 80);  
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuStone, "Fixture: Gargoyle", "wt_item_gargoyle", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplainstone", 3);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 8);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 80, 80);  
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuStone, "Fixture: Knight Statue", "wt_item_stattall", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplainstone", 2);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrmarble", 2);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 8);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 80, 80);  
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuStone, "Fixture: Warrior Statue", "gs_item217", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplainstone", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrmarble", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrgranite", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 9);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 90, 90);  
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuStone, "Fixture: Sphynx Statue", "wt_item_sphynx", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplainstone", 2);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrmarble", 4);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 9);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 90, 90);  
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuStone, "Fixture: Marble Altar", "gs_item410", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrmarble", 4);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 10);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 100, 100);  
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuStone, "Fixture: Granite Altar", "gs_item411", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrgranite", 4);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 10);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 100, 100);  
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuStone, "Fixture: Spiked Altar", "wt_item_altar1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrplainstone", 2);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrmarble", 2);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrgranite", 2);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 12);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 120, 120);  
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuStone, "Fixture: Enchantment Basin", "gs_item413", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrmarble", 3);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotele", 2);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 14);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 140, 140);  
 }

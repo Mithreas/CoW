@@ -37,6 +37,12 @@ void main()
                            GetLevelByClass(CLASS_TYPE_CLERIC, oSpeaker) +
                            GetLevelByClass(CLASS_TYPE_DRUID, oSpeaker);
         int nDuration = nCasterLevel / 2;
+		
+		if (GetLevelByClass(CLASS_TYPE_CLERIC, oSpeaker) < 17 &&
+                 GetLevelByClass(CLASS_TYPE_DRUID, oSpeaker) < 17)
+		{
+		    gsSTDoCasterDamage(oSpeaker, 5);
+		}
 
         if ((GetLevelByClass(CLASS_TYPE_CLERIC, oSpeaker) >= 17 ||
              GetLevelByClass(CLASS_TYPE_DRUID, oSpeaker) >= 17)
@@ -47,12 +53,6 @@ void main()
                     "You are not pious enough for " + sDeity + " to grant you that spell now.",
                     OBJECT_SELF,
                     FALSE);
-        }
-        else if (GetLevelByClass(CLASS_TYPE_CLERIC, oSpeaker) < 17 &&
-                 GetLevelByClass(CLASS_TYPE_DRUID, oSpeaker) < 17 &&
-                 !gsSPReduceCharges(OBJECT_SELF, 5))
-        {
-          FloatingTextStringOnCreature("You don't have enough components to cast that.", OBJECT_SELF, FALSE);
         }
         else if (sParams == "teleport")
         {

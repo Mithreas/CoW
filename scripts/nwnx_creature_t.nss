@@ -51,6 +51,13 @@ void main()
 
     report("GetFeatByLevel", NWNX_Creature_GetFeatByLevel(oCreature, 1, nFeatCountLvl1) == FEAT_PLAYER_TOOL_01);
 
+    NWNX_Creature_AddFeat(oCreature, FEAT_STUNNING_FIST);
+    report("GetFeatRemainingUses", NWNX_Creature_GetFeatRemainingUses(oCreature, FEAT_STUNNING_FIST) == 1);
+    NWNX_Creature_SetFeatRemainingUses(oCreature, FEAT_STUNNING_FIST, 0);
+    report("GetFeatRemainingUses", NWNX_Creature_GetFeatRemainingUses(oCreature, FEAT_STUNNING_FIST) == 0);
+
+    int uses = NWNX_Creature_GetFeatTotalUses(oCreature, FEAT_STUNNING_FIST);
+    WriteTimestampedLogEntry("Creature has " + IntToString(uses) + " total uses of STUNNING FIST left");
 
     //
     // SPECIAL ABILITY functions
@@ -85,7 +92,7 @@ void main()
 
 
     int nOldStr = GetAbilityScore(oCreature, ABILITY_STRENGTH, TRUE);
-    NWNX_Creature_SetAbilityScore(oCreature, ABILITY_STRENGTH, 25);
+    NWNX_Creature_SetRawAbilityScore(oCreature, ABILITY_STRENGTH, 25);
     report("SetAbilityScore", nOldStr != GetAbilityScore(oCreature, ABILITY_STRENGTH, TRUE));
     report("SetAbilityScore", 25      == GetAbilityScore(oCreature, ABILITY_STRENGTH, TRUE));
 
@@ -123,6 +130,40 @@ void main()
     report("GetSkillPointsRemaining", nSkillPointsRemaining >= 0);
     NWNX_Creature_SetSkillPointsRemaining(oCreature, nSkillPointsRemaining+1);
     report("SetSkillPointsRemaining", NWNX_Creature_GetSkillPointsRemaining(oCreature) == nSkillPointsRemaining+1);
+
+    int nGold = GetGold(oCreature);
+    NWNX_Creature_SetGold(oCreature, nGold + 100);
+    report("SetGold", GetGold(oCreature) == (nGold+100));
+
+    int nSave = NWNX_Creature_GetBaseSavingThrow(oCreature, SAVING_THROW_WILL);
+    NWNX_Creature_SetBaseSavingThrow(oCreature, SAVING_THROW_WILL, nSave + 10);
+    report("{S,G}etBaseSavingThrow", NWNX_Creature_GetBaseSavingThrow(oCreature, SAVING_THROW_WILL) == nSave+10);
+
+
+    int cls = NWNX_Creature_GetClassByLevel(oCreature, 1);
+    NWNX_Creature_LevelUp(oCreature, cls, 10);
+    report("LevelUp", GetLevelByPosition(1, oCreature) == 11);
+    NWNX_Creature_LevelDown(oCreature, 10);
+    report("LevelDown", GetLevelByPosition(1, oCreature) == 1);
+    NWNX_Creature_SetClassByPosition(oCreature, 0, CLASS_TYPE_ROGUE);
+    NWNX_Creature_LevelUp(oCreature, CLASS_TYPE_ROGUE, 20);
+    NWNX_Creature_LevelUp(oCreature, CLASS_TYPE_ROGUE, 20);
+    NWNX_Creature_LevelUp(oCreature, CLASS_TYPE_ROGUE, 20);
+    NWNX_Creature_LevelUp(oCreature, CLASS_TYPE_ROGUE, 20);
+    report("LevelUp+SetLevelByPosition", GetLevelByPosition(1, oCreature) == 60);
+
+    NWNX_Creature_SetLevelByPosition(oCreature, 0, 1); // Ugh, game uses 1-based indexing here..
+    report("SetLevelByPosition", GetLevelByPosition(1, oCreature) == 1);
+
+    float fCR = GetChallengeRating(oCreature);
+    NWNX_Creature_SetChallengeRating(oCreature, fCR + 1.0);
+    report("SetChallengeRating", GetChallengeRating(oCreature) == (fCR + 1.0));
+
+    int iOldBonus = NWNX_Creature_GetTotalEffectBonus(oCreature, NWNX_CREATURE_BONUS_TYPE_ABILITY, OBJECT_INVALID, 0, 0, -1, -1, -1, ABILITY_STRENGTH);
+    effect eStr = EffectAbilityIncrease(ABILITY_STRENGTH,1);
+    ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eStr, oCreature, 2.0f);
+    int iNewBonus = NWNX_Creature_GetTotalEffectBonus(oCreature, NWNX_CREATURE_BONUS_TYPE_ABILITY, OBJECT_INVALID, 0, 0, -1, -1, -1, ABILITY_STRENGTH);
+    report("GetTotalEffectBonus", iOldBonus+1 == iNewBonus);
 
     WriteTimestampedLogEntry("NWNX_Creature unit test end.");
 }

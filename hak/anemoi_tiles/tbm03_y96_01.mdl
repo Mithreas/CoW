@@ -3,7 +3,7 @@
 #MAXMODEL ASCII
 # model: tbm03_Y96_01
 filedependancy Unknown
-newmodel tbm03_Y96_01
+newmodel tbm03_y96_01
 setsupermodel tbm03_Y96_01 NULL
 classification Character
 setanimationscale 1.0

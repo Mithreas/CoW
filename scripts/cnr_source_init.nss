@@ -50,6 +50,10 @@ void main()
   CnrMinableRockInitialize("cnrrockada", "cnrnuggetada");
   CnrMinableRockInitialize("cnrrocksta", "cnrnuggetsta");
   CnrMinableRockInitialize("cnrdepositcoal", "cnrLumpOfCoal");
+  
+  CnrMinableRockInitialize("cnrrockstone", "cnrplainstone");
+  CnrMinableRockInitialize("cnrrockmarb", "cnrmarble");
+  CnrMinableRockInitialize("cnrrockgran", "cnrgranite");
 
   // This section (new to V3.00) allows for easy setup of feather drops
   // upon the death of the identified bird.

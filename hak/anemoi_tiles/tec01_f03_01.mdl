@@ -1,7 +1,7 @@
 #MAXMODEL ASCII
 # model: tdr01_c33_01
 filedependancy tdr01_c33_01.max
-newmodel tdr01_c33_01
+newmodel tec01_f03_01
 setsupermodel tdr01_c33_01 NULL
 classification tile
 setanimationscale 1

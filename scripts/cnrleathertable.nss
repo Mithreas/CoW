@@ -47,11 +47,15 @@ void main()
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 2);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 20, 20);
 
-
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuLeatherOther, "Bindings", "cnrbindings", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrleathbadg", 1, 0);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 2);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 20, 20);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuLeatherOther, "Bearskin Rug", "wt_item_bearrug", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrhidecuregriz", 1, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 8);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 80, 80);
 
 // HIDE ARMOR
 

@@ -3,7 +3,7 @@
 #MAXMODEL ASCII
 # model: phf01_O02_02
 filedependancy phf01_o02_02.max
-newmodel phf01_O02_02
+newmodel phf01_o02_02
 setsupermodel phf01_O02_02 NULL
 classification Tile
 setanimationscale 1.0

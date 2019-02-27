@@ -3,7 +3,7 @@
 #MAXMODEL ASCII
 # model: TBM08_D01_01
 filedependancy Unknown
-newmodel TBM08_D01_01
+newmodel tbm08_d01_01
 setsupermodel TBM08_D01_01 NULL
 classification Tile
 setanimationscale 1.0
