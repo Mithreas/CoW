@@ -6,7 +6,7 @@
 #
 #NWmaxMODEL ASCII
 # model: pfg0_chest140
-filedependancy pfh0_chest200.gmax
+filedependancy pfh0_chest140.gmax
 newmodel pfg0_chest140
 setsupermodel pfg0_chest140 NULL
 classification Character
@@ -627,7 +627,7 @@ node danglymesh Ring02
     127.0
 endnode
 node danglymesh Chain
-  parent pfg0_chest176
+  parent pfg0_chest140
   position 0.0000000 0.0000000 0.0000000
   orientation 1.0 0.0 0.0 0.0
   wirecolor 1.0 1.0 1.0 

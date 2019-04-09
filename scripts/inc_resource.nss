@@ -150,7 +150,7 @@ void ClearAllFactionResourceChests()
 {
   int nFaction = 0;
 
-  while (nFaction < 6)
+  while (nFaction < 10)
   {
     object oChest = GetObjectByTag(RESOURCE_CHEST + IntToString(nFaction));
 

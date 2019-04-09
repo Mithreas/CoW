@@ -155,27 +155,27 @@ void HandleSelection()
         if (sPage == PAGE_MAIN)
         {
           SetLocalInt(OBJECT_SELF, "DLG_CLASS_I", MI_CL_HARPER_SCOUT);
-          SetLocalString(OBJECT_SELF, "DLG_CLASS", "Harper Scout");
+          SetLocalString(OBJECT_SELF, "DLG_CLASS", "Scout Spy");
         }
         else if (sPage == PAGE_MAGE)
         {
           SetLocalInt(OBJECT_SELF, "DLG_CLASS_I", MI_CL_HARPER_MAGE);
-          SetLocalString(OBJECT_SELF, "DLG_CLASS", "Harper Mage");
+          SetLocalString(OBJECT_SELF, "DLG_CLASS", "Scout Mage");
         }
         else if (sPage == PAGE_PRIEST)
         {
           SetLocalInt(OBJECT_SELF, "DLG_CLASS_I", MI_CL_HARPER_PRIEST);
-          SetLocalString(OBJECT_SELF, "DLG_CLASS", "Harper Priest");
+          SetLocalString(OBJECT_SELF, "DLG_CLASS", "Scout Priest");
         }
         else if (sPage == PAGE_PARAGON)
         {
           SetLocalInt(OBJECT_SELF, "DLG_CLASS_I", MI_CL_HARPER_PARAGON);
-          SetLocalString(OBJECT_SELF, "DLG_CLASS", "Harper Paragon");
+          SetLocalString(OBJECT_SELF, "DLG_CLASS", "Scout Paragon");
         }
         else if (sPage == PAGE_MASTER)
         {
           SetLocalInt(OBJECT_SELF, "DLG_CLASS_I", MI_CL_HARPER_MASTER);
-          SetLocalString(OBJECT_SELF, "DLG_CLASS", "Master Harper");
+          SetLocalString(OBJECT_SELF, "DLG_CLASS", "Master Scout");
         }
         SetDlgPageString(PAGE_CONFIRM);
         break;

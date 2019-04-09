@@ -64,9 +64,16 @@ void main()
 			}
 		  }		  
 		}
+		else if (d20() == 1 && !GetIsReactionTypeHostile(oPC) && GetLocalInt(OBJECT_SELF, "ENT_GRUMPY"))
+		{
+		  FloatingTextStringOnCreature("Uh oh.", oPC);
+		  SetIsTemporaryEnemy(oPC, OBJECT_SELF, TRUE, 30.0f);
+          ClearAllActions();		  
+		}
 		else if (!GetIsReactionTypeHostile(oPC))
 		{
 		  FloatingTextStringOnCreature("Break off twigs and bark bare handed, or you anger the ent!", oPC);
+		  SetLocalInt(OBJECT_SELF, "ENT_GRUMPY", TRUE);
 		  ClearAllActions();
 		}
 

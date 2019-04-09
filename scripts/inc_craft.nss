@@ -1695,8 +1695,6 @@ int gsCRGetCraftSkillByItemType(object oItem, int bMundaneProperty)
   {
     case BASE_ITEM_ARMOR:
     case BASE_ITEM_BRACER:
-      nRetVal = CNR_TRADESKILL_ARMOR_CRAFTING;
-      break;
     case BASE_ITEM_LARGESHIELD:
     case BASE_ITEM_TOWERSHIELD:
     case BASE_ITEM_SMALLSHIELD:
@@ -1894,7 +1892,7 @@ int gsCRGetMaterialSkillBonus(object oItem)
 	  // No bonus.
 	  break;
 	default:
-      nBonus = nQuality - 6; // penality for poor quality, zero for average, bonus above that. 	
+      nBonus = nQuality - 6; // penalty for poor quality, zero for average, bonus above that. 	
 	  break;
   }
  
@@ -2013,7 +2011,7 @@ int gsCRGetMaterialBaseValue(object oItem)
         nBaseCost = 2000;
         break;
 	  case 18: // chitin
-	    nBaseCost = 6000;
+	    nBaseCost = 5000;
 		break;
       case 20: // wyvern
       case 21: // dragonhides

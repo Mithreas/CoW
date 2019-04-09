@@ -73,43 +73,43 @@ int gsTIGetTimestamp(int nYear, int nMonth = 0, int nDay = 0, int nHour = 0, int
     if (nYear) nYear -= GetLocalInt(GetModule(), "GS_YEAR");
 
 	// For historical reasons we multiply by 10x (Giga's calculation but now depended on in the module). 
-    return 10 * 
+    return 10 * (
 	       60 * MINUTES_PER_HOUR * 24 * 30 * 12 * nYear +
              60 * MINUTES_PER_HOUR * 24 * 30 * nMonth +
                60 * MINUTES_PER_HOUR * 24 * nDay +
                 60 * MINUTES_PER_HOUR * nHour +
                  60 * nMinute +
-                   nSecond;
+                   nSecond);
 }
 //----------------------------------------------------------------
 int gsTIGetYear(int nTimestamp)
 {
-    return GetLocalInt(GetModule(), "GS_YEAR") + nTimestamp / 29030400;
+    return GetLocalInt(GetModule(), "GS_YEAR") + nTimestamp / (10 * 60 * MINUTES_PER_HOUR * 24 * 30 * 12);
 }
 //----------------------------------------------------------------
 int gsTIGetAbsoluteYear(int nTimestamp)
 {
-    return nTimestamp / 29030400;
+    return nTimestamp / (10 * 60 * MINUTES_PER_HOUR * 24 * 30 * 12);
 }
 //----------------------------------------------------------------
 int gsTIGetMonth(int nTimestamp)
 {
-    return nTimestamp % 29030400 / 2419200 + 1;
+    return nTimestamp % (10 * 60 * MINUTES_PER_HOUR * 24 * 30 * 12) / (10 * 60 * MINUTES_PER_HOUR * 24 * 30) + 1;
 }
 //----------------------------------------------------------------
 int gsTIGetDay(int nTimestamp)
 {
-    return nTimestamp % 2419200 / 86400 + 1;
+    return nTimestamp % (10 * 60 * MINUTES_PER_HOUR * 24 * 30) / (10 * 60 * MINUTES_PER_HOUR * 24) + 1;
 }
 //----------------------------------------------------------------
 int gsTIGetHour(int nTimestamp)
 {
-    return nTimestamp % 86400 / 3600;
+    return nTimestamp % (10 * 60 * MINUTES_PER_HOUR * 24) / (10 * 60 * MINUTES_PER_HOUR);
 }
 //----------------------------------------------------------------
 int gsTIGetMinute(int nTimestamp)
 {
-    return nTimestamp % 3600 / 60;
+    return nTimestamp % (10 * 60 * MINUTES_PER_HOUR) / 60;
 }
 //----------------------------------------------------------------
 int gsTIGetSecond(int nTimestamp = 0)
@@ -119,21 +119,21 @@ int gsTIGetSecond(int nTimestamp = 0)
 //----------------------------------------------------------------
 int gsTIGetGameTimestamp(int nTimestamp = 0)
 {
-    float fFloat = HoursToSeconds(1) / 3600.0;
+    float fFloat = HoursToSeconds(1) / 9000.0;
 
     return FloatToInt(IntToFloat(nTimestamp) / fFloat);
 }
 //----------------------------------------------------------------
 int gsTIGetRealTimestamp(int nTimestamp = 0)
 {
-    float fFloat = HoursToSeconds(1) / 3600.0;
+    float fFloat = HoursToSeconds(1) / 9000.0;
 
     return FloatToInt(IntToFloat(nTimestamp) * fFloat);
 }
 //----------------------------------------------------------------
 int gsTIGetActualGameMinute()
 {
-    float fFloat = 3600.0 / HoursToSeconds(1);
+    float fFloat = 9000.0 / HoursToSeconds(1);
 
     return FloatToInt((IntToFloat(GetTimeMinute()) + IntToFloat(GetTimeSecond()) / 60) * fFloat);
 }
@@ -164,8 +164,8 @@ void gsTISetDayTime(object oObject = OBJECT_SELF, int nDayTime = GS_TI_DAYTIME_C
 //----------------------------------------------------------------
 int gsTIGetFullHour(int nTimestamp)
 {
-    int nNth = nTimestamp % 3600;
-    if (nNth / 60 >= 15) return nTimestamp - nNth + 3600;
+    int nNth = nTimestamp % (10 * 60 * MINUTES_PER_HOUR);
+    if (nNth / 60 >= 15) return nTimestamp - nNth + (10 * 60 * MINUTES_PER_HOUR);
     else                 return nTimestamp - nNth;
 }
 //----------------------------------------------------------------
@@ -180,40 +180,40 @@ string gsTIGetPresentableTime(int nTime=0)
   switch (gsTIGetMonth(nTime))
   {
     case 1:
-      sDate += " - Month 1 (Hammer (Deepwinter)) - Year ";
+      sDate += " - Month 1 (Darkrule) - Year ";
       break;
     case 2:
-      sDate += " - Month 2 (Alturiak) - Year ";
+      sDate += " - Month 2 (Frostwane) - Year ";
       break;
     case 3:
-      sDate += " - Month 3 (Ches) - Year ";
+      sDate += " - Month 3 (Mistborn) - Year ";
       break;
     case 4:
-      sDate += " - Month 4 (Tarsakh) - Year ";
+      sDate += " - Month 4 (Greenshoots) - Year ";
       break;
     case 5:
-      sDate += " - Month 5 (Mirtul) - Year ";
+      sDate += " - Month 5 (Bloomburst) - Year ";
       break;
     case 6:
-      sDate += " - Month 6 (Kythorn) - Year ";
+      sDate += " - Month 6 (Brightsun) - Year ";
       break;
     case 7:
-      sDate += " - Month 7 (Flamerule (Summertide)) - Year ";
+      sDate += " - Month 7 (Flamerule) - Year ";
       break;
     case 8:
-      sDate += " - Month 8 (Elasias (Highsun)) - Year ";
+      sDate += " - Month 8 (Highsun) - Year ";
       break;
     case 9:
-      sDate += " - Month 9 (Eleint) - Year ";
+      sDate += " - Month 9 (Harvest) - Year ";
       break;
     case 10:
-      sDate += " - Month 10 (Marpenoth (Leafall)) - Year ";
+      sDate += " - Month 10 (Leafall) - Year ";
       break;
     case 11:
-      sDate += " - Month 11 (Uktar) - Year ";
+      sDate += " - Month 11 (Stillearth) - Year ";
       break;
     case 12:
-      sDate += " - Month 12 (Nightal) - Year ";
+      sDate += " - Month 12 (Icecrown) - Year ";
       break;
   }
 

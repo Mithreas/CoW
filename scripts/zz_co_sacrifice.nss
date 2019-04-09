@@ -84,30 +84,16 @@ void _DoPrayer (object oPC, object oAltar, object oCleric)
   int nCount = 0;
   object oFlock;
 
-  if (GetIsObjectValid(oCleric) && oCleric != oPC) fPiety += _GetAdjustedPiety(oCleric, nADeity);
-  else if (oCleric == oPC)
+  if (GetIsObjectValid(oCleric) && oCleric != oPC) 
   {
-    // Get all members of flock nearby.
-    nNth = 1;
-    oFlock = GetNearestCreature(CREATURE_TYPE_PLAYER_CHAR, PLAYER_CHAR_IS_PC, oPC, nNth);
-
-    while (GetIsObjectValid(oFlock) &&
-           GetDistanceBetween(oFlock, oPC) <= 20.0f)
-    {
-       if (GetLocalInt(oFlock, "PRAYING"))
-       {
-          fPiety += _GetAdjustedPiety(oFlock, nADeity);
-		  gsSTDoCasterDamage(oFlock, 1);
-		  nCount++;
-       }
-
-       nNth++;
-       oFlock = GetNearestCreature(CREATURE_TYPE_PLAYER_CHAR, PLAYER_CHAR_IS_PC, oPC, nNth);
-    }
+    // Give the cleric their due.
+    gsWOAdjustPiety(oCleric, fPiety);
+    gsSTAdjustHPPool(oCleric, 1);
+	
+    fPiety += _GetAdjustedPiety(oCleric, nADeity);
   }
   
   gsWOAdjustPiety(oPC, fPiety);
-  gsSTAdjustHPPool(oPC, nCount);
   gsSTDoCasterDamage(oPC, 1);
 
   // dunshine: check for corpses nearby (only on permanent altars)
@@ -167,7 +153,7 @@ void _DoRitual (object oCleric, object oAltar)
     }
 
 	SetLocalInt(oCleric, "GS_ACTIVE", TRUE);
-    AssignCommand(oCleric,  _DoPrayer(oCleric, oAltar, oCleric));
+    // AssignCommand(oCleric,  _DoPrayer(oCleric, oAltar, oCleric));
 }
 
 // Cleanup function

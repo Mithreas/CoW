@@ -2787,3 +2787,13 @@ CREATE TABLE `rquest_player_data` (
         `modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         KEY idx (pcid,quest,questset)
         ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+		
+DROP TABLE IF EXISTS `rquest_quests`;
+CREATE TABLE `rquest_quests` (
+        `quest` varchar(32) default NULL,
+        `questset` varchar(64) default NULL,
+        `minlevel` tinyint(4) default 0,
+        `maxlevel` tinyint(4) default 15,
+        `modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        KEY idx (quest,questset)
+        ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;

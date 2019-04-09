@@ -32,6 +32,16 @@ void main()
     object oWarded     = GetLocalObject(oTarget, "PDKWarded");
     string sName       = "";
 
+	int nCL = GetLocalInt(gsPCGetCreatureHide(oPC), "FL_LEVEL") /5;
+    if (nCL < GetLevelByClass(CLASS_TYPE_PURPLE_DRAGON_KNIGHT, oPC))
+	{
+	  nCL = GetLevelByClass(CLASS_TYPE_PURPLE_DRAGON_KNIGHT, oPC);
+	}
+	else if (nCL > 10)
+	{
+	  nCL = 10;
+	}
+	
     // Restore feat use.
     IncrementRemainingFeatUses(OBJECT_SELF, FEAT_PDK_SHIELD);
 
@@ -91,7 +101,7 @@ void main()
 
     // Start building the buff.
     // 5% immunity to all damage + 1% per 2 pdk levels.
-    int nImmunity = 5 + GetLevelByClass(CLASS_TYPE_PURPLE_DRAGON_KNIGHT, oPC) / 2;
+    int nImmunity = 5 + nCL / 2;
     effect eLink = EffectDamageImmunityIncrease(DAMAGE_TYPE_BLUDGEONING, nImmunity);
     eLink = EffectLinkEffects(eLink, EffectDamageImmunityIncrease(DAMAGE_TYPE_SLASHING, nImmunity));
     eLink = EffectLinkEffects(eLink, EffectDamageImmunityIncrease(DAMAGE_TYPE_PIERCING, nImmunity));

@@ -7,12 +7,6 @@ void main()
 
     object oKiller = GetLastHostileActor(oDied);
 
-    if (gsFLGetAreaFlag("PVP", oDied))
-    {
-        DelayCommand(20.0, ApplyResurrection(oDied));
-        return;
-    }
-
     // check for subdual mode
 
     // first check if oKiller = oDied or OBJECT_INVALID, this seems to happen when bleeding to death in gs_m_dying

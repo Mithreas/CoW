@@ -501,11 +501,23 @@ int gsSTGetHPPool(object oCreature)
 //----------------------------------------------------------------
 void gsSTAdjustHPPool(object oCreature, int nAdjust)
 {
+  if (nAdjust == 0) return;
+
   if (GetLocalInt(oCreature, "HP_POOL")) SetLocalInt(oCreature, "HP_POOL", GetLocalInt(oCreature, "HP_POOL") + nAdjust);
   
   object oHide = gsPCGetCreatureHide(oCreature);
   
-  if (GetIsObjectValid(oHide)) SetLocalInt(oHide, "HP_POOL", GetLocalInt(oHide, "HP_POOL") + nAdjust);
+  if (GetIsObjectValid(oHide)) 
+  {  
+    SetLocalInt(oHide, "HP_POOL", GetLocalInt(oHide, "HP_POOL") + nAdjust);
+  
+    string sMessage = "Stamina pool: ";
+    if (nAdjust > 0) sMessage += "<cªÕþ>+";
+    else             sMessage += "<cþ((>";
+    sMessage += IntToString(nAdjust) + ".0 (" + IntToString(GetLocalInt(oHide, "HP_POOL")) + ".0)";
+  
+    SendMessageToPC(oCreature, sMessage);
+  }
 }
 //----------------------------------------------------------------
 void gsSTDoCasterDamage(object oCaster, int nDamage)

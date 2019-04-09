@@ -13,8 +13,7 @@
 /////////////////////////////////////////////////////////
 void main()
 {
-  location locDeath = GetLocation(OBJECT_SELF);
-  string sBirdTag = GetTag(OBJECT_SELF);
-  string sFeatherTag = GetLocalString(GetModule(), sBirdTag + "_FeatherTag");
-  CreateObject(OBJECT_TYPE_ITEM, sFeatherTag, locDeath, FALSE);
+   // Moved to gs_ai_spawn so that feathers can be pickpocketed.  
+   // This script should still be set as the handler, however, to flag that this is a bird.
+   ExecuteScript("gs_ai_death", OBJECT_SELF);
 }

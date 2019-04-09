@@ -142,6 +142,7 @@ const string OTHER_NPC       = "_othernpc";
 const string TYPE            = "_type";
 const string AREA_TAGS       = "_areatags";
 const string ACTIVE_PLAYERS  = "_activeplayers";
+const string QUEST_TYPE      = "_questtype";
 
 // Quest type constants
 const string RETRIEVE        = "RETRIEVE";
@@ -521,7 +522,7 @@ int IsQuestComplete(object oPC, int bFinish = FALSE)
 
   int nDone = 0;
 
-  string sQuestType = GetPersistentString(OBJECT_INVALID, sQuest, sQuestDB);
+  string sQuestType = GetLocalString(oCache, sQuest + QUEST_TYPE);
   Trace(RQUEST, "Got quest type of: " + sQuestType);
 
   if (sQuestType == RETRIEVE)
@@ -838,60 +839,32 @@ string GenerateNewQuest(object oPC, object oNPC)
   }
 
   // Databases.
-  string sQuestDB  = sQuestSet + QUEST_DB;
+  string sQuestDB  = "rquest_quests";
   string sVarsDB   = sQuestSet + QUEST_VAR_DB;
+  string sLevel    = IntToString(GetHitDice(oPC));
   
   object oCache = miDAGetCacheObject(sVarsDB);
 
   int nCount = 1;
 
-  string sSQL = "SELECT name FROM " + sQuestDB + " ORDER BY RAND() LIMIT 15";
+  // Get all quests for this provider where we are within the level range.
+  string sSQL = "SELECT quest FROM " + sQuestDB + " WHERE questset='" + sQuestSet + 
+    "' AND minlevel <= '" + sLevel + "' AND maxlevel >= '" + sLevel + "' ORDER BY RAND()";
   SQLExecDirect(sSQL);
 
-  DeleteList(sQuestDB);
   while (SQLFetch() == SQL_SUCCESS)
   {
-    // Store the list of quests.  We'll make other SQL queries that will
-	// interfere with SQLFetch().
-	AddStringElement(SQLGetData(1), sQuestDB);
-  }
-  
-  string sQuestToTry = GetFirstStringElement(sQuestDB);
-  
-  while (sQuestToTry != "")
-  {
-    Trace(RQUEST, "Got quest: " + sQuestToTry);
+    sQuest = SQLGetData(1);
+    Trace(RQUEST, "Got quest: " + sQuest);
 
     // Is this quest suitable for this PC?
     // Has the PC done it?
-    if (!HasDoneRandomQuest(oPC, sQuestToTry))
+    if (!HasDoneRandomQuest(oPC, sQuest))
     {
       // PC hasn't already done this quest.
-      Trace (RQUEST, "PC hasn't already done quest.");
-
-      // Is this quest in the PC's level range?
-      string sLevelRange = GetLocalString(oCache, sQuestToTry+LEVEL_RANGE);
-      Trace (RQUEST, "Level range for quest: " + sLevelRange);
-
-      // Level range will be something like '01-04'
-      int nMinLevel = StringToInt(GetStringLeft(sLevelRange, 2));
-      int nMaxLevel = StringToInt(GetStringRight(sLevelRange, 2));
-      Trace(RQUEST, "Min level: " + IntToString(nMinLevel));
-      Trace(RQUEST, "Max level: " + IntToString(nMaxLevel));
-      int nPCLevel = GetLevelByPosition(1, oPC) + GetLevelByPosition(2, oPC) +
-                     GetLevelByPosition(3, oPC);
-      if ((sLevelRange == "") || (sLevelRange == "any" ) ||
-	      ((nMinLevel <= nPCLevel) && (nPCLevel <= nMaxLevel)))
-      {
-        Trace(RQUEST, "Selecting quest.");
-	    sQuest = sQuestToTry;
-        break; // PC is within level range.
-      }
-    }
-	
-	nCount++;
-	sQuestToTry = GetStringElement(nCount, sQuestDB);
-  }	
+      Trace (RQUEST, "PC hasn't already done quest, selecting quest.");
+    }	
+  }  
 
   if (sQuest == "")
   {

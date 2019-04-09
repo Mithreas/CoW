@@ -78,6 +78,7 @@ void gsDeath()
   int nPVP        = FALSE;
   int nSuicide    = FALSE;
   int nKiller_RPR = FALSE;
+  int bSafePvP    = gsFLGetAreaFlag("PVP", oSelf);
   
   // PC was set non-commandable above to avoid interruptions
   SetCommandable(TRUE, OBJECT_SELF);
@@ -284,7 +285,7 @@ void gsDeath()
   // Addition by Mithreas - Mark of Despair
   object oMark = GetItemPossessedBy(oSelf, "mi_mark_despair");
 
-  if (((nPVP && nKiller_RPR) || !GetLocalInt(GetModule(), "STATIC_LEVEL")) && GetIsObjectValid(oMark))
+  if (!bSafePvP && ((nPVP && nKiller_RPR) || !GetLocalInt(GetModule(), "STATIC_LEVEL")) && GetIsObjectValid(oMark))
   {
     int nCount = GetLocalInt(oMark, "DEATH_COUNT");
     nCount++;
@@ -306,7 +307,7 @@ void gsDeath()
   // Addition by Mithreas - Mark of Destiny
   oMark = GetItemPossessedBy(oSelf, "mi_mark_destiny");
 
-  if (((nPVP && nKiller_RPR) || !GetLocalInt(GetModule(), "STATIC_LEVEL")) && GetIsObjectValid(oMark))
+  if (!bSafePvP && ((nPVP && nKiller_RPR) || !GetLocalInt(GetModule(), "STATIC_LEVEL")) && GetIsObjectValid(oMark))
   {
     int nCount = GetLocalInt(oMark, "DEATH_COUNT");
     nCount++;

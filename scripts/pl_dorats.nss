@@ -24,4 +24,6 @@ void main()
 		             sResRef,
                      Location(oArea, vPosition, 0.0));
     }
+	
+	DestroyObject(OBJECT_SELF);
 }

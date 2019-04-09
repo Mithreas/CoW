@@ -315,6 +315,8 @@ void RestoreSpellsAfterPolymorph(object oPC);
 // Good to use for certain features we want to force penalties NEP otherwise
 // make the user immune to.
 void RemoveAndReapplyNEP(object oTarget);
+// Returns a random arcane SPELL_ id for the specified level.
+int GetRandomArcaneSpell(int nSpellLevel);
 
 /**********************************************************************
  * PRIVATE FUNCTION PROTOTYPES
@@ -2909,4 +2911,267 @@ int _getIsSpellBookClass(int nClass)  {
            nClass == CLASS_TYPE_BARD ||
            nClass == CLASS_TYPE_PALADIN ||
            nClass == CLASS_TYPE_DRUID;
+}
+
+// 
+// Returns a random arcane SPELL_ id for the specified level.
+//
+int GetRandomArcaneSpell(int nSpellLevel)
+{
+  int nRandom;
+  switch (nSpellLevel)
+  {
+    case 0:
+	{
+	  nRandom = Random(7);
+	  switch (nRandom)
+	  {
+	    case 0: return SPELL_ACID_SPLASH;
+		case 1: return SPELL_DAZE;
+		case 2: return SPELL_ELECTRIC_JOLT;
+		case 3: return SPELL_FLARE;
+		case 4: return SPELL_LIGHT;
+		case 5: return SPELL_RAY_OF_FROST;
+		case 6: return SPELL_RESISTANCE;
+	  }
+	}
+	case 1:
+	{
+	  nRandom = Random(23);
+	  switch (nRandom)
+	  {
+	    case 0: return SPELL_BURNING_HANDS;
+		case 1: return SPELL_CHARM_PERSON;
+		case 2: return SPELL_COLOR_SPRAY;
+		case 3: return SPELL_ENDURE_ELEMENTS;
+		case 4: return SPELL_EXPEDITIOUS_RETREAT;
+		case 5: return SPELL_GREASE;
+		case 6: return SPELL_HORIZIKAULS_BOOM;
+		case 7: return SPELL_ICE_DAGGER;
+		case 8: return SPELL_IDENTIFY;
+		case 9: return SPELL_IRONGUTS;
+		case 10: return SPELL_MAGE_ARMOR;
+		case 11: return SPELL_MAGIC_MISSILE;
+		case 12: return SPELL_MAGIC_WEAPON;
+		case 13: return SPELL_NEGATIVE_ENERGY_RAY;
+		case 14: return SPELL_PROTECTION_FROM_GOOD;
+		case 15: return SPELL_PROTECTION_FROM_EVIL;
+		case 16: return SPELL_RAY_OF_ENFEEBLEMENT;
+		case 17: return SPELL_SCARE;
+		case 18: return SPELL_SHELGARNS_PERSISTENT_BLADE;
+		case 19: return SPELL_SHIELD;
+		case 20: return SPELL_SLEEP;
+		case 21: return SPELL_SUMMON_CREATURE_I;
+		case 22: return SPELL_TRUE_STRIKE;
+	  }
+	}
+	case 2:
+	{
+	  nRandom = Random(28);
+	  switch (nRandom)
+	  {
+	    case 0: return SPELL_BALAGARNSIRONHORN;
+		case 1: return SPELL_BLINDNESS_AND_DEAFNESS;
+		case 2: return SPELL_BULLS_STRENGTH;
+		case 3: return SPELL_CATS_GRACE;
+		case 4: return SPELL_CLOUD_OF_BEWILDERMENT;
+		case 5: return SPELL_COMBUST;
+		case 6: return SPELL_CONTINUAL_FLAME;
+		case 7: return SPELL_DARKNESS;
+		case 8: return SPELL_DEATH_ARMOR;
+		case 9: return SPELL_EAGLE_SPLEDOR;
+		case 10: return SPELL_ENDURANCE;
+		case 11: return SPELL_FLAME_WEAPON;
+		case 12: return SPELL_FOXS_CUNNING;
+		case 13: return SPELL_GEDLEES_ELECTRIC_LOOP;
+		case 14: return SPELL_GHOSTLY_VISAGE;
+		case 15: return SPELL_GHOUL_TOUCH;
+		case 16: return SPELL_INVISIBILITY;
+		case 17: return SPELL_KNOCK;
+		case 18: return SPELL_LESSER_DISPEL;
+		case 19: return SPELL_MELFS_ACID_ARROW;
+		case 20: return SPELL_OWLS_WISDOM;
+		case 21: return SPELL_RESIST_ELEMENTS;
+		case 22: return SPELL_SEE_INVISIBILITY;
+		case 23: return SPELL_STONE_BONES;
+		case 24: return SPELL_SUMMON_CREATURE_II;
+		case 25: return SPELL_TASHAS_HIDEOUS_LAUGHTER;
+		case 26: return SPELL_DARKVISION;
+		case 27: return SPELL_WEB;
+	  }
+	}
+	case 3:
+	{
+	  nRandom = Random(24);
+	  switch (nRandom)
+	  {
+	    case 0: return SPELL_CLAIRAUDIENCE_AND_CLAIRVOYANCE;
+		case 1: return SPELL_CLARITY;
+		case 2: return SPELL_DISPEL_MAGIC;
+		case 3: return SPELL_DISPLACEMENT;
+		case 4: return SPELL_FIND_TRAPS;
+		case 5: return SPELL_FIREBALL;
+		case 6: return SPELL_FLAME_ARROW;
+		case 7: return SPELL_GREATER_MAGIC_WEAPON;
+		case 8: return SPELL_GUST_OF_WIND;
+		case 9: return SPELL_HASTE;
+		case 10: return SPELL_HOLD_PERSON;
+		case 11: return SPELL_INVISIBILITY_SPHERE;
+		case 12: return SPELL_KEEN_EDGE;
+		case 13: return SPELL_LIGHTNING_BOLT;
+		case 14: return SPELL_MAGIC_CIRCLE_AGAINST_EVIL;
+		case 15: return SPELL_MAGIC_CIRCLE_AGAINST_GOOD;
+		case 16: return SPELL_MESTILS_ACID_BREATH;
+		case 17: return SPELL_NEGATIVE_ENERGY_BURST;
+		case 18: return SPELL_PROTECTION_FROM_ELEMENTS;
+		case 19: return SPELL_SCINTILLATING_SPHERE;
+		case 20: return SPELL_SLOW;
+		case 21: return SPELL_STINKING_CLOUD;
+		case 22: return SPELL_SUMMON_CREATURE_III;
+		case 23: return SPELL_VAMPIRIC_TOUCH;
+	  }
+	}
+	case 4:
+	{
+	  nRandom = Random(21);
+	  switch (nRandom)
+	  {
+	    case 0: return SPELL_BESTOW_CURSE;
+		case 1: return SPELL_CHARM_MONSTER;
+		case 2: return SPELL_CONFUSION;
+		case 3: return SPELL_CONTAGION;
+		case 4: return SPELL_ELEMENTAL_SHIELD;
+		case 5: return SPELL_ENERVATION;
+		case 6: return SPELL_EVARDS_BLACK_TENTACLES;
+		case 7: return SPELL_FEAR;
+		case 8: return SPELL_ICE_STORM;
+		case 9: return SPELL_IMPROVED_INVISIBILITY;
+		case 10: return SPELL_ISAACS_LESSER_MISSILE_STORM;
+		case 11: return SPELL_LESSER_SPELL_BREACH;
+		case 12: return SPELL_MINOR_GLOBE_OF_INVULNERABILITY;
+		case 13: return SPELL_PHANTASMAL_KILLER;
+		case 14: return SPELL_POLYMORPH_SELF;
+		case 15: return SPELL_REMOVE_BLINDNESS_AND_DEAFNESS;
+		case 16: return SPELL_REMOVE_CURSE;
+		case 17: return SPELL_SHADOW_CONJURATION_SUMMON_SHADOW;
+		case 18: return SPELL_STONESKIN;
+		case 19: return SPELL_SUMMON_CREATURE_IV;
+		case 20: return SPELL_WALL_OF_FIRE;
+	  }	
+	}
+	case 5:
+	{
+	  nRandom = Random(18);
+	  switch (nRandom)
+	  {
+	    case 0: return SPELL_ANIMATE_DEAD;
+		case 1: return SPELL_BALL_LIGHTNING;
+		case 2: return SPELL_BIGBYS_INTERPOSING_HAND;
+		case 3: return SPELL_CLOUDKILL;
+		case 4: return SPELL_CONE_OF_COLD;
+		case 5: return SPELL_DISMISSAL;
+		case 6: return SPELL_DOMINATE_PERSON;
+		case 7: return SPELL_ENERGY_BUFFER;
+		case 8: return SPELL_FEEBLEMIND;
+		case 9: return SPELL_FIREBRAND;
+		case 10: return SPELL_GREATER_SHADOW_CONJURATION_SUMMON_SHADOW;
+		case 11: return SPELL_HOLD_MONSTER;
+		case 12: return SPELL_LESSER_MIND_BLANK;
+		case 13: return SPELL_LESSER_PLANAR_BINDING;
+		case 14: return SPELL_LESSER_SPELL_MANTLE;
+		case 15: return SPELL_MESTILS_ACID_SHEATH;
+		case 16: return SPELL_MIND_FOG;
+		case 17: return SPELL_SUMMON_CREATURE_V;
+	  }		  
+	}
+	case 6:
+	{
+	  nRandom = Random(20);
+	  switch (nRandom)
+	  {
+	    case 0: return SPELL_ACID_FOG;
+		case 1: return SPELL_BIGBYS_FORCEFUL_HAND;
+		case 2: return SPELL_CHAIN_LIGHTNING;
+		case 3: return SPELL_CIRCLE_OF_DEATH;
+		case 4: return SPELL_ETHEREAL_VISAGE;
+		case 5: return SPELL_FLESH_TO_STONE;
+		case 6: return SPELL_GLOBE_OF_INVULNERABILITY;
+		case 7: return SPELL_GREATER_DISPELLING;
+		case 8: return SPELL_GREATER_SPELL_BREACH;
+		case 9: return SPELL_GREATER_STONESKIN;
+		case 10: return SPELL_ISAACS_GREATER_MISSILE_STORM;
+		case 11: return SPELL_LEGEND_LORE;
+		case 12: return SPELL_MASS_HASTE;
+		case 13: return SPELL_PLANAR_BINDING;
+		case 14: return SPELL_SHADES_SUMMON_SHADOW;
+		case 15: return SPELL_STONE_TO_FLESH;
+		case 16: return SPELL_SUMMON_CREATURE_VI;
+		case 17: return SPELL_TENSERS_TRANSFORMATION;
+		case 18: return SPELL_TRUE_SEEING;
+		case 19: return SPELL_UNDEATH_TO_DEATH;
+	  }		
+	}
+    case 7:
+    {
+	  nRandom = Random(13);
+	  switch (nRandom)
+	  {
+	    case 0: return SPELL_BANISHMENT;
+		case 1: return SPELL_BIGBYS_GRASPING_HAND;
+		case 2: return SPELL_CONTROL_UNDEAD;
+		case 3: return SPELL_DELAYED_BLAST_FIREBALL;
+		case 4: return SPELL_FINGER_OF_DEATH;
+		case 5: return SPELL_GREAT_THUNDERCLAP;
+		case 6: return SPELL_MORDENKAINENS_SWORD;
+		case 7: return SPELL_POWER_WORD_STUN;
+		case 8: return SPELL_PRISMATIC_SPRAY;
+		case 9: return SPELL_PROTECTION_FROM_SPELLS;
+		case 10: return SPELL_SHADOW_SHIELD;
+		case 11: return SPELL_SPELL_MANTLE;
+		case 12: return SPELL_SUMMON_CREATURE_VII;
+	  }	
+    }	
+	case 8:
+    {
+	  nRandom = Random(13);
+	  switch (nRandom)
+	  {
+	    case 0: return SPELL_BIGBYS_CLENCHED_FIST;
+		case 1: return SPELL_BLACKSTAFF;
+		case 2: return SPELL_CREATE_UNDEAD;
+		case 3: return SPELL_GREATER_PLANAR_BINDING;
+		case 4: return SPELL_ETHEREALNESS;
+		case 5: return SPELL_HORRID_WILTING;
+		case 6: return SPELL_INCENDIARY_CLOUD;
+		case 7: return SPELL_MASS_BLINDNESS_AND_DEAFNESS;
+		case 8: return SPELL_MASS_CHARM;
+		case 9: return SPELL_MIND_BLANK;
+		case 10: return SPELL_PREMONITION;
+		case 11: return SPELL_SUMMON_CREATURE_VIII;
+		case 12: return SPELL_SUNBURST;
+	  }	
+    }
+	case 9:
+    {
+	  nRandom = Random(14);
+	  switch (nRandom)
+	  {
+	    case 0: return SPELL_BIGBYS_CRUSHING_HAND;
+		case 1: return SPELL_BLACK_BLADE_OF_DISASTER;
+		case 2: return SPELL_DOMINATE_MONSTER;
+		case 3: return SPELL_ENERGY_DRAIN;
+		case 4: return SPELL_GATE;
+		case 5: return SPELL_GREATER_SPELL_MANTLE;
+		case 6: return SPELL_METEOR_SWARM;
+		case 7: return SPELL_MORDENKAINENS_DISJUNCTION;
+		case 8: return SPELL_POWER_WORD_KILL;
+		case 9: return SPELL_SHAPECHANGE;
+		case 10: return SPELL_SUMMON_CREATURE_IX;
+		case 11: return SPELL_TIME_STOP;
+		case 12: return SPELL_WEIRD;
+	  }	
+    }
+  }
+  
+  return 0;
 }

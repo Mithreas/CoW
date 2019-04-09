@@ -14,6 +14,7 @@
 #include "cnr_config_inc"
 #include "cnr_persist_inc"
 #include "cnr_language_inc"
+#include "inc_iprop"
 #include "inc_reputation"
 #include "inc_worship"
 #include "inc_xp"
@@ -1406,6 +1407,11 @@ int CnrRecipeCalculateEffectiveDC(object oPC, string sDeviceTag, string sKeyToRe
   int nRecipeLevel = CnrRecipeGetRecipeLevelByKey(sKeyToRecipe);
   int nPcLevel = CnrGetPlayerLevel(oPC, sDeviceTag);
   
+  if (nPcLevel >= 0 && GetLocalInt(gsPCGetCreatureHide(oPC), "GIFT_CRAFTSMANSHIP"))
+  {
+    nPcLevel += 1;
+  }
+  
   if (nPcLevel == -1) 
   {
     // this device does not need skill checks. 
@@ -1616,6 +1622,7 @@ void CnrRecipeDisplayCraftingResult(object oPC, object oDevice, string sKeyToRec
   int nRecipeBiQty = CnrRecipeGetRecipeBiproductQtyByKey(sKeyToRecipe);
   int nOnFailBiQty = CnrRecipeGetRecipeOnFailBiproductQtyByKey(sKeyToRecipe);
   int bSpawnItemInDevice = TRUE;
+  object oItem;
   //if (!GetIsPC(oDevice))
   //{
   //  if (GetLocalInt(GetModule(), GetTag(oDevice) + "_SpawnItemInDevice"))
@@ -1645,7 +1652,9 @@ void CnrRecipeDisplayCraftingResult(object oPC, object oDevice, string sKeyToRec
       {
         if (bSpawnItemInDevice)
         {
-          SetIdentified(CreateItemOnObject(sRecipeBiTag, oDevice, 1), TRUE);
+		  oItem = CreateItemOnObject(sRecipeBiTag, oDevice, 1);
+		  gsIPSetOwner(oItem, oPC);
+          SetIdentified(oItem, TRUE);
         }
         else
         {
@@ -1668,7 +1677,9 @@ void CnrRecipeDisplayCraftingResult(object oPC, object oDevice, string sKeyToRec
       {
         if (bSpawnItemInDevice)
         {
-          SetIdentified(CreateItemOnObject(sRecipeTag, oDevice, 1), TRUE);
+		  oItem = CreateItemOnObject(sRecipeTag, oDevice, 1);
+		  gsIPSetOwner(oItem, oPC);
+          SetIdentified(oItem, TRUE);
         }
         else
         {

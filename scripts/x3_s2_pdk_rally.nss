@@ -20,6 +20,16 @@ void main()
 {
     object oPC = OBJECT_SELF;
 
+	int nCL = GetLocalInt(gsPCGetCreatureHide(oPC), "FL_LEVEL") /5;
+    if (nCL < GetLevelByClass(CLASS_TYPE_PURPLE_DRAGON_KNIGHT, oPC))
+	{
+	  nCL = GetLevelByClass(CLASS_TYPE_PURPLE_DRAGON_KNIGHT, oPC);
+	}
+	else if (nCL > 10)
+	{
+	  nCL = 10;
+	}
+	
     // int bProtector = GetLocalInt(gsPCGetCreatureHide(oPC), VAR_PDK) == MI_CL_PDK_PROTECTOR;
     // if (bProtector)
     // {
@@ -54,9 +64,9 @@ void main()
     float fDelay;
     effect eLink;
     int nAB = 1;
-    if (bValiant && GetLevelByClass(CLASS_TYPE_PURPLE_DRAGON_KNIGHT, oPC) > 9)
+    if (bValiant && nCL > 9)
         nAB = 3;
-    else if (bValiant && GetLevelByClass(CLASS_TYPE_PURPLE_DRAGON_KNIGHT, oPC) > 6)
+    else if (bValiant && nCL > 6)
         nAB = 2;
 
     // Charisma limit

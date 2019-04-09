@@ -153,7 +153,7 @@ const int MD_BIT_WARRIOR       = 0x111A8F1;
 const int MD_BIT_THIEF         = 0x201102;
 
 // Harper paths.
-const int MI_CL_HARPER_SCOUT   = 0;
+const int MI_CL_HARPER_SCOUT   = 5; // Not 0 so can check for existence.
 const int MI_CL_HARPER_MAGE    = 1;
 const int MI_CL_HARPER_PRIEST  = 2;
 const int MI_CL_HARPER_PARAGON = 3;

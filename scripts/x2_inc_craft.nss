@@ -445,13 +445,13 @@ int CICraftCheckBrewPotion(object oSpellTarget, object oCaster)
     int nGoldCost = FloatToInt(IntToFloat(nCost) * 0.3); // Arelith cost adjust
 
     // -------------------------------------------------------------------------
-    // Arelith Fixed Level server override.  Make everything cheaper for
+    // Anemoi server override.  Make everything cheaper for
     // characters with 5+ wizard levels.
     // -------------------------------------------------------------------------
-    if (GetLocalInt(GetModule(), "STATIC_LEVEL") &&
-        GetLevelByClass(CLASS_TYPE_WIZARD, oCaster) >=5)
+    if (GetLevelByClass(CLASS_TYPE_WIZARD, oCaster) >=5)
     {
       nGoldCost = nLevel * 15;
+	  if (nGoldCost < 300) nGoldCost = 300;
     }
 
     // -------------------------------------------------------------------------
@@ -570,12 +570,12 @@ int CICraftCheckScribeScroll(object oSpellTarget, object oCaster)
     // characters with 5+ wizard levels.
     // Removed due to exploit (selling back to stores).  Should add min price.
     // -------------------------------------------------------------------------
-    /*
-    if (GetLocalInt(GetModule(), "STATIC_LEVEL") &&
+    
+    if (GetLocalInt(GetModule(), "STATIC_LEVEL") &&	    
         GetLevelByClass(CLASS_TYPE_WIZARD, oCaster) >=5)
     {
       nGoldCost = nLevel * 15;
-    } */
+    } 
 
     // -------------------------------------------------------------------------
     // Does Player have enough gold?
@@ -699,9 +699,9 @@ int CICraftCheckCraftWand(object oSpellTarget, object oCaster)
 
     // -------------------------------------------------------------------------
     // Arelith Fixed Level server override.  Make everything cheaper for
-    // characters with 5+ wizard levels.
+    // characters with 5+ wizard or cleric levels.
     // -------------------------------------------------------------------------
-    if (GetLocalInt(GetModule(), "STATIC_LEVEL") &&
+    if (GetLevelByClass(CLASS_TYPE_CLERIC, oCaster) >=5 ||
         GetLevelByClass(CLASS_TYPE_WIZARD, oCaster) >=5)
     {
       nGoldCost = nLevel * 50;

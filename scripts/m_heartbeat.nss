@@ -154,6 +154,8 @@ void main()
     if (nPreviousDay != nCurrentDay)
     {
         SetLocalInt(OBJECT_SELF, "GS_DAY", nCurrentDay);
+		
+		miPODoNests();
     }
 
     //per hour

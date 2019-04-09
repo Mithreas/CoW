@@ -167,7 +167,7 @@ struct gsCOResults gsCOSave(string sID, object oContainer, int nLimit = GS_LIMIT
           {
             sUseID = "UD_" + sUseID;
           }
-          else if (miXFGetCurrentServer() == SERVER_CORDOR) // currently the same as UD, but leave it here in case we ever seperate the two servers again
+          else if (miXFGetCurrentServer() == SERVER_CORDOR) // currently the same as UD, but leave it here in case we ever separate the two servers again
           {
             sUseID = "CR_" + sUseID;
           }

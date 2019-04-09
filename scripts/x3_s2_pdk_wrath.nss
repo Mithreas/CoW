@@ -25,7 +25,6 @@
 
 void main()
 {
-
     SetRemainingFeatUses(OBJECT_SELF, 1083, 1);
     // Cooldown check.
     if(GetIsTimelocked(OBJECT_SELF, "Oath of Wrath"))
@@ -42,6 +41,16 @@ void main()
 
     object oTarget = GetSpellTargetObject();// Target
 
+	int nCL = GetLocalInt(gsPCGetCreatureHide(oPC), "FL_LEVEL") /5;
+    if (nCL < GetLevelByClass(CLASS_TYPE_PURPLE_DRAGON_KNIGHT, oPC))
+	{
+	  nCL = GetLevelByClass(CLASS_TYPE_PURPLE_DRAGON_KNIGHT, oPC);
+	}
+	else if (nCL > 10)
+	{
+	  nCL = 10;
+	}
+	
     if (oPC == oTarget)
     {
          FloatingTextStringOnCreature("You cannot target yourself using this ability", oPC, FALSE);
@@ -54,7 +63,6 @@ void main()
     }
 
     int nRace   = GetRacialType(oTarget);// Get race of target
-    int nClass  = GetLevelByClass(CLASS_TYPE_PURPLE_DRAGON_KNIGHT, oPC);
     int nDamage;
     int nImmunity;
     int nAttack;
@@ -68,7 +76,7 @@ void main()
 
     // For vanguard: target additionally gains vulnerability to damage
     if (bVanguard) {
-        nImmunity = 5 + nClass;
+        nImmunity = 5 + nCL;
         eACPen = EffectLinkEffects(eACPen, EffectDamageImmunityDecrease(DAMAGE_TYPE_BLUDGEONING, nImmunity));
         eACPen = EffectLinkEffects(eACPen, EffectDamageImmunityDecrease(DAMAGE_TYPE_SLASHING, nImmunity));
         eACPen = EffectLinkEffects(eACPen, EffectDamageImmunityDecrease(DAMAGE_TYPE_PIERCING, nImmunity));
@@ -85,10 +93,10 @@ void main()
 
     //Protector:  Target loses 1AB / 5 PDK levels, gains 2% ASF / PDK level
     if (bProtector) {
-        nAttack = nClass / 5;
+        nAttack = nCL / 5;
         if (nAttack < 1)
             nAttack = 1;
-        nASF = nClass * 2;
+        nASF = nCL * 2;
         eACPen = EffectLinkEffects(eACPen, EffectAttackDecrease(nAttack));
         eACPen = EffectLinkEffects(eACPen, EffectSpellFailure(nASF));
     }
@@ -104,7 +112,7 @@ void main()
     if (bValiant) {
 
         // Create 'versus racial type' effect
-        nDamage = IPGetDamageBonusConstantFromNumber(1 + (nClass / 5));
+        nDamage = IPGetDamageBonusConstantFromNumber(1 + (nCL / 5));
         eDamage = EffectDamageIncrease(nDamage, DAMAGE_TYPE_MAGICAL);
         eDamage = VersusRacialTypeEffect(eDamage, nRace);
 
@@ -135,7 +143,7 @@ void main()
 
 
     // OLD CODE
-    // int nDur    = nClass;// Duration
+    // int nDur    = nCL;// Duration
     // int nBonus  = (GetAbilityScore(oPC, ABILITY_INTELLIGENCE, TRUE) - 10) / 2;// Base INT mod.
     // int nDamage = nBonus;
     // if (nDamage > 5) nDamage += 10; // DAMAGE_* constants are structured oddly.

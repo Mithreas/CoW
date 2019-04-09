@@ -70,8 +70,10 @@ void main()
     int nChar = GetCharacterLevel(oCaster);
     int nOther = nChar - nWizard;
     int nAC = 1;
+	//Sawaki: Anemoi CL scaling implemented.
     if (miSSGetIsSpellsword(oCaster) && (oCaster == oTarget) && (nWizard > nOther))
     {
+		nWizard = nWizard + AR_GetCasterLevelBonus(oCaster);
         RemoveEffectsFromSpell(oTarget, SPELL_EPIC_MAGE_ARMOR);
         if ( nWizard >= 15 )
         {

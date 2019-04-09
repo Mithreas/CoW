@@ -218,7 +218,7 @@ int _gsLAGetCanSpeakLanguage(int nLanguage, object oPC, object oHide, string sTa
          break;
 
     case GS_LA_LANGUAGE_SIGN:
-        if (nSubRace == GS_SU_ELF_DROW)
+        if (nRace == RACIAL_TYPE_HUMAN)
          {
            SetLocalInt(oHide, sTag, 1);
            return TRUE;

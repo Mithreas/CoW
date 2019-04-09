@@ -32,11 +32,17 @@ void main()
         // Modify DC for target's arcane defense feats.
         if (GetHasFeat(FEAT_ARCANE_DEFENSE_ABJURATION, oTarget)) nCasterLevel -= 2;
 
-              // Modify DC if target is Spellsword
-              if (miSSGetIsSpellsword(oTarget)) nCasterLevel -=3;
+        // Modify DC if target is Spellsword
+        if (miSSGetIsSpellsword(oTarget)) nCasterLevel -=3;
 
-              // Modify DC if target has at least 21 paladin levels.
-              if (GetLevelByClass(CLASS_TYPE_PALADIN, oTarget) > 20) nCasterLevel -=3;
+        // Modify DC if target has at least 21 paladin levels.
+        if (GetLevelByClass(CLASS_TYPE_PALADIN, oTarget) > 20) nCasterLevel -=3;
+
+        // Add Harper Scout CL
+        nCasterLevel -= (GetLevelByClass(CLASS_TYPE_HARPER, oTarget));		
+		
+		// Add bonus CL.
+		nCasterLevel -= (AR_GetCasterLevelBonus(oTarget));
 
         //raise event
         nHarmful  = ! GetIsReactionTypeFriendly(oTarget);

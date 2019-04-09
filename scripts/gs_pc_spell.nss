@@ -5,7 +5,7 @@ void main()
 {
     object oTarget = gsPCGetPlayerByID(GetLocalString(OBJECT_SELF, "GS_TARGET"));
 
-    if (GetIsObjectValid(oTarget) && GetTag(GetArea(oTarget)) == "gs_death")
+    if (GetIsObjectValid(oTarget) && GetTag(GetArea(oTarget)) == "GS_AREA_DEATH")
     {
         int nSpell = GetLastSpell();
 	    object oCaster = GetLastSpellCaster();

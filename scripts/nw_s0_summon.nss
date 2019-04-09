@@ -176,7 +176,7 @@ effect SetSummonEffect(int nSpellID, int nUnderdarker)
             break;
         case 3:
             nFNF_Effect = VFX_FNF_SUMMON_MONSTER_1;
-            sSummon = nUnderdarker ? "ca_sum_u_3" : "NW_S_WOLFDIRE";
+            sSummon = nUnderdarker ? "ca_sum_u_3" : "ca_sum_u_3";
             break;
         case 4:
             nFNF_Effect = VFX_FNF_SUMMON_MONSTER_2;
@@ -184,11 +184,11 @@ effect SetSummonEffect(int nSpellID, int nUnderdarker)
             break;
         case 5:
             nFNF_Effect = VFX_FNF_SUMMON_MONSTER_2;
-            sSummon = nUnderdarker ? "ca_sum_u_5" : "NW_S_beardire";
+            sSummon = nUnderdarker ? "ca_sum_u_5" : "ca_sum_u_5";
             break;
         case 6:
             nFNF_Effect = VFX_FNF_SUMMON_MONSTER_2;
-            sSummon = nUnderdarker ? "ca_sum_u_6" : "NW_S_diretiger";
+            sSummon = nUnderdarker ? "ca_sum_u_6" : "ca_sum_u_6";
             break;
         case 7:
             nFNF_Effect = VFX_FNF_SUMMON_MONSTER_3;

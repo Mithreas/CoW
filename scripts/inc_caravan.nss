@@ -12,6 +12,7 @@ const string CARAVANS = "CARAVANS"; // for tracing
 
 const int TRAVEL_TYPE_LAND   = 0;
 const int TRAVEL_TYPE_SEA    = 1;
+const int TRAVEL_TYPE_RANGER = 2;
 
 // Sends the caller to sDestinationTag via a cutscene.
 void miCADoJourney(string sDestinationTag, int bType = TRAVEL_TYPE_LAND);
@@ -90,6 +91,15 @@ void miCADoJourney(string sDestinationTag, int bType = TRAVEL_TYPE_LAND)
 	// Todo: travel duration and ship.
 	AssignCommand(oPC, ActionJumpToObject(GetObjectByTag(sDestinationTag)));
   }	
+  else if (bType == TRAVEL_TYPE_RANGER)
+  {
+    SpeakString("*departs with the ranger*");
+
+    object oCaravan = GetObjectByTag("MICA_CAMERA_2");  
+    miSCDoScrying(oPC, oCaravan, FALSE);
+
+    AssignCommand(oPC, DelayCommand(60.0, miCAArrive(sDestinationTag)));
+  }
   else 
   {
     SpeakString("*departs with the caravan*");

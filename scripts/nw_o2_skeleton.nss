@@ -11,9 +11,11 @@
 //:: Created On:   January 17, 2002
 //:://////////////////////////////////////////////
 #include "inc_common"
+#include "inc_flag"
 void ActionCreate(string sCreature, location lLoc)
 {
-    CreateObject(OBJECT_TYPE_CREATURE, sCreature, lLoc);
+    object oCreature = CreateObject(OBJECT_TYPE_CREATURE, sCreature, lLoc);
+	gsFLSetFlag(GS_FL_ENCOUNTER, oCreature);
 }
 void main()
 {

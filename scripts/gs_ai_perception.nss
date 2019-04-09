@@ -111,7 +111,31 @@ void main()
     {
       SetIsTemporaryFriend(oPerceived);
     }
-
+	
+	// Elf/human(/halfling) emnity.
+	if ( (GetRacialType(OBJECT_SELF) == RACIAL_TYPE_HUMAN || GetRacialType(OBJECT_SELF) == RACIAL_TYPE_HALFLING) && GetRacialType(oPerceived) == RACIAL_TYPE_ELF 
+	     ||
+		 GetRacialType(OBJECT_SELF) == RACIAL_TYPE_ELF && (GetRacialType(oPerceived) == RACIAL_TYPE_HALFLING || GetRacialType(oPerceived) == RACIAL_TYPE_HUMAN) )
+	{
+	    object oPartyMember = GetFirstFactionMember(oPerceived, TRUE);
+		int bHostile = TRUE;
+		
+		while (GetIsObjectValid(oPartyMember))
+		{
+		    if (GetRacialType(oPartyMember) == GetRacialType(OBJECT_SELF))
+			{
+			  bHostile = FALSE;
+			  break;
+			}
+			
+		    oPartyMember = GetNextFactionMember(oPerceived, TRUE);
+		}
+		
+		if (bHostile)
+		{
+			SetIsTemporaryEnemy(oPerceived);		  
+		}
+	}
 
     if (GetIsEnemy(oPerceived) )
     {

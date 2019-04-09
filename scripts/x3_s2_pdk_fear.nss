@@ -28,7 +28,16 @@ void main()
     //Declare main variables.
     object oPC = OBJECT_SELF;
     int bVanguard = GetLocalInt(gsPCGetCreatureHide(oPC), VAR_PDK) == MI_CL_PDK_VANGUARD;
-    int nCL    = GetLevelByClass(CLASS_TYPE_PURPLE_DRAGON_KNIGHT, oPC);
+	
+	int nCL = GetLocalInt(gsPCGetCreatureHide(oPC), "FL_LEVEL") /5;
+    if (nCL < GetLevelByClass(CLASS_TYPE_PURPLE_DRAGON_KNIGHT, oPC))
+	{
+	  nCL = GetLevelByClass(CLASS_TYPE_PURPLE_DRAGON_KNIGHT, oPC);
+	}
+	else if (nCL > 10)
+	{
+	  nCL = 10;
+	}
     // int nUsed  = GetLocalInt(oPC, "PDK_FEAR_USES");
 
     // if (bVanguard && nUsed < nCL)

@@ -11,6 +11,12 @@
     S/GetDlgPageString - gets the current page
     GetPcDlgSpeaker = GetPCSpeaker
     GetDlgSelection - gets user selection (index of the response list)
+	
+  Variables on the caravan master:
+    TRAVEL_TYPE - 0 = normal caravan, 1 = by sea, 2 = ranger escort
+	DEST_NAME_n - the name to display for each destination.  Numbered 1 and up.
+	DEST_TAG_n - the waypoint tag to teleport to for this destination.
+	DEST_KEY_n - optional - require a PC to possess an item with this tag to show this option.
 */
 #include "inc_zdlg"
 #include "inc_subrace"
@@ -34,7 +40,7 @@ void Init()
   // This method is called once, at the start of the conversation.
   int bType = GetLocalInt(OBJECT_SELF, "TRAVEL_TYPE");
 
-  // Options for confirming or cancelling. These are static so we can set them
+  // Options for confirming or canceling. These are static so we can set them
   // up once.
   if (GetElementCount(CONFIRM_OPTIONS) == 0)
   {
@@ -42,20 +48,21 @@ void Init()
     AddStringElement("<cþ  >[Back]</c>", CONFIRM_OPTIONS);
   }
 
-  if (GetElementCount(DESTINATIONS) == 0)
+  // Always rebuild the list now that we have some locked destinations. 
+  DeleteList(DESTINATIONS);
+  
+  int nNth = 1; // Note - DESTINATIONS is 0-based, but the vars are 1-based.
+  string sDest = GetLocalString(OBJECT_SELF, "DEST_NAME_" + IntToString(nNth));
+
+  while (sDest != "")
   {
-    int nNth = 1; // Note - DESTINATIONS is 0-based, but the vars are 1-based.
-    string sDest = GetLocalString(OBJECT_SELF, "DEST_NAME_" + IntToString(nNth));
-
-    while (sDest != "")
-    {
-      AddStringElement(sDest, DESTINATIONS);
-      nNth++;
-      sDest = GetLocalString(OBJECT_SELF, "DEST_NAME_" + IntToString(nNth));
-    }
-
-    AddStringElement("Nowhere, I'll stay here thankyou.", DESTINATIONS);
+    string sKeyTag = GetLocalString(OBJECT_SELF, "DEST_KEY_" + IntToString(nNth));
+    if (sKeyTag == "" || GetIsObjectValid(GetItemPossessedBy(GetPCSpeaker(), sKeyTag))) AddStringElement(sDest, DESTINATIONS);
+    nNth++;
+    sDest = GetLocalString(OBJECT_SELF, "DEST_NAME_" + IntToString(nNth));
   }
+
+  AddStringElement("Nowhere, I'll stay here thankyou.", DESTINATIONS);
 
   if (GetElementCount(DONE) == 0)
   {
@@ -67,6 +74,7 @@ void Init()
     AddStringElement("<c þ >[Continue journey now]</c>", TRAVEL_OPTIONS);
     if (bType == TRAVEL_TYPE_LAND) AddStringElement("<c þ >[Wait for next caravan]</c>", TRAVEL_OPTIONS);
 	if (bType == TRAVEL_TYPE_SEA) AddStringElement("<c þ >[Wait for next ship]</c>", TRAVEL_OPTIONS);
+    if (bType == TRAVEL_TYPE_RANGER) AddStringElement("<c þ >[Wait for next departure]</c>", TRAVEL_OPTIONS);
   }
 }
 
@@ -78,8 +86,12 @@ void PageInit()
   string sDestTag = GetLocalString(oPC, MICA_DESTINATION);
   object oArea    = GetLocalObject(oPC, MICA_AREA);
   string sDest    = GetName(GetArea(GetWaypointByTag(sDestTag)));
-  int bType       = GetLocalInt(OBJECT_SELF, "TRAVEL_TYPE");
-  string sType    = (bType ? "ship" : "caravan");
+  int nType       = GetLocalInt(OBJECT_SELF, "TRAVEL_TYPE");
+  string sType    = "";
+  
+  if (nType == TRAVEL_TYPE_LAND) sType = "caravan";
+  else if (nType == TRAVEL_TYPE_SEA) sType = "ship";
+  else if (nType == TRAVEL_TYPE_RANGER) sType = "ranger";
 
   if (sPage == "")
   {
@@ -121,8 +133,11 @@ void PageInit()
           break;
       }
        
-      SetDlgPrompt("Next " + sType + " ta " + sDest + " leaves " + sNextDept + ".  Jus' " +
-      "be back 'ere afore then, aye?");
+	  if (GetRacialType (OBJECT_SELF) == RACIAL_TYPE_ELF)
+	    SetDlgPrompt("The next departure to " + sDest + " leaves at " + sNextDept + ".  Be ready to depart, for we will not wait.");
+	  else
+        SetDlgPrompt("Next " + sType + " ta " + sDest + " leaves at " + sNextDept + ".  Jus' " +
+          "be back 'ere afore then, aye?");
       SetDlgResponseList(DONE);
     }
     else if (GetLocalInt(oPC, MICA_TRAVELLING))
@@ -132,15 +147,21 @@ void PageInit()
     }
     else
     {
-	  if (bType == TRAVEL_TYPE_LAND)
+	  if (nType == TRAVEL_TYPE_LAND || nType == TRAVEL_TYPE_RANGER)
 	  {
-        SetDlgPrompt("'ullo there!  Ya be wantin' ta travel? I'll be takin' " +
+	    if (GetRacialType (OBJECT_SELF) == RACIAL_TYPE_ELF)
+		  SetDlgPrompt("Welcome.  I can lead you through the wilds... I will depart " +
+		    "after we have given others a chance to join us, every three hours from six " +
+			"in the morning to six in the evening.  We do not travel at night, for I " +
+			"cannot guarantee your safety.  Should you wish to travel, let me know.");
+		else 
+          SetDlgPrompt("'ullo there!  Ya be wantin' ta travel? I'll be takin' " +
       "ye along yer way fer jus' twenty five coins, aye?  Where ye be wantin' "+
       "ta go?\n\nWe go at six an' nine in th'mornin', or noon, or three or six"+
       " in th'evenin', reg'lar.  No sense in bein' out at night, aye.");
       SetDlgResponseList(DESTINATIONS);
 	  }
-	  else if (bType == TRAVEL_TYPE_SEA)
+	  else if (nType == TRAVEL_TYPE_SEA)
 	  {
 	    if (GetRacialType(oPC) != RACIAL_TYPE_HUMAN && !GetIsObjectValid(GetItemPossessedBy(oPC, "permission_sea")))
 		{
@@ -165,19 +186,28 @@ void PageInit()
 
     if (GetGold (oPC) > 24)
     {
-      SetDlgPrompt("Ye want ta go ta " + sDest + "?  Ya sure?");
+	  if (GetRacialType (OBJECT_SELF) == RACIAL_TYPE_ELF)
+	    SetDlgPrompt(sDest + " it is, then.");
+	  else
+        SetDlgPrompt("Ye want ta go ta " + sDest + "?  Ya sure?");
       SetDlgResponseList(CONFIRM_OPTIONS, OBJECT_SELF);
     }
     else
     {
-      SetDlgPrompt("Ye don't be havin' enough coins, mate.");
+	  if (GetRacialType (OBJECT_SELF) == RACIAL_TYPE_ELF)
+	    SetDlgPrompt("You require 25 coins for the supplies we'll need for the journey.");
+	  else
+        SetDlgPrompt("Ye don't be havin' enough coins, mate.");
       DeleteLocalInt(OBJECT_SELF, SELECTION);
       SetDlgResponseList(DONE);
     }
   }
   else if (sPage == TRAVEL_MENU)
   {
-    SetDlgPrompt("Ya wanna carry on wi' yer journey now, or wait a bit?");
+	if (GetRacialType (OBJECT_SELF) == RACIAL_TYPE_ELF)
+	  SetDlgPrompt("Let me know if you wish to continue.");
+	else
+      SetDlgPrompt("Ya wanna carry on wi' yer journey now, or wait a bit?");
     SetDlgResponseList(TRAVEL_OPTIONS);
   }
   else

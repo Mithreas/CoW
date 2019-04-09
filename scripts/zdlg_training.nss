@@ -539,8 +539,6 @@ void init_feat_list (object oPC)
     //add_feat_to_list(oPC, "Auto Still I", FEAT_EPIC_AUTOMATIC_STILL_SPELL_1);
     //add_feat_to_list(oPC, "Auto Still II", FEAT_EPIC_AUTOMATIC_STILL_SPELL_2);
     //add_feat_to_list(oPC, "Auto Still III", FEAT_EPIC_AUTOMATIC_STILL_SPELL_3);
-    if (GetLevelByClass(CLASS_TYPE_RANGER, oPC) || GetLevelByClass(CLASS_TYPE_HARPER, oPC))
-      add_feat_to_list(oPC, "Bane of Enemies", FEAT_EPIC_BANE_OF_ENEMIES);
     add_feat_to_list(oPC, "Blinding Speed", FEAT_EPIC_BLINDING_SPEED);
     //add_feat_to_list(oPC, "Construct Shape", FEAT_EPIC_CONSTRUCT_SHAPE);
     //add_feat_to_list(oPC, "Epic DR (3/-)", FEAT_EPIC_DAMAGE_REDUCTION_3);
@@ -721,10 +719,15 @@ void init_feat_list (object oPC)
         add_feat_to_list(oPC, "Epic Spell Focus: Necromancy", FEAT_EPIC_SPELL_FOCUS_NECROMANCY);
         add_feat_to_list(oPC, "Epic Spell Focus: Transmutation", FEAT_EPIC_SPELL_FOCUS_TRANSMUTATION);
         add_feat_to_list(oPC, "Epic Spell Penetration", FEAT_EPIC_SPELL_PENETRATION);
-	  }	
-    }
+		
+	    if (miSSGetIsSpellsword(oPC)) add_feat_to_list(oPC, "Spellsword Greater Imbue", 10016, TRUE);
+	  }		  
+    }	
 	
-	if (miSSGetIsSpellsword(oPC)) add_feat_to_list(oPC, "Spellsword Greater Imbue", 10016);
+	
+    if ( (GetLevelByClass(CLASS_TYPE_RANGER, oPC) || GetLevelByClass(CLASS_TYPE_HARPER, oPC)) &&
+	     (GetLevelByClass(CLASS_TYPE_RANGER, oNPC) || GetLevelByClass(CLASS_TYPE_HARPER, oNPC)) ) 
+      add_feat_to_list(oPC, "Bane of Enemies", FEAT_EPIC_BANE_OF_ENEMIES);
 
     add_feat_to_list(oPC, "Superior Initiative", FEAT_EPIC_SUPERIOR_INITIATIVE);
     //add_feat_to_list(oPC, "Superior Weapon Focus", FEAT_EPIC_SUPERIOR_WEAPON_FOCUS);
@@ -1218,8 +1221,19 @@ void init_feat_list (object oPC)
     add_feat_to_list(oPC, "Weapon of Choice: Two-bladed Sword", FEAT_WEAPON_OF_CHOICE_TWOBLADEDSWORD, FALSE, CLASS_TYPE_WEAPON_MASTER);
     add_feat_to_list(oPC, "Weapon of Choice: Warhammer", FEAT_WEAPON_OF_CHOICE_WARHAMMER, FALSE, CLASS_TYPE_WEAPON_MASTER);
     add_feat_to_list(oPC, "Weapon of Choice: Whip", FEAT_WEAPON_OF_CHOICE_WHIP, FALSE, CLASS_TYPE_WEAPON_MASTER);
-
   }
+  
+  if (GetLevelByClass(CLASS_TYPE_PURPLE_DRAGON_KNIGHT, oPC) && GetLevelByClass(CLASS_TYPE_PURPLE_DRAGON_KNIGHT, oNPC))
+  {
+    add_feat_to_list(oPC, "Heroic Shield", FEAT_PDK_SHIELD, FALSE, CLASS_TYPE_PURPLE_DRAGON_KNIGHT);
+    add_feat_to_list(oPC, "Rallying Cry", FEAT_PDK_RALLY, FALSE, CLASS_TYPE_PURPLE_DRAGON_KNIGHT);
+    add_feat_to_list(oPC, "Inspire Courage", FEAT_PDK_INSPIRE_1, FALSE, CLASS_TYPE_PURPLE_DRAGON_KNIGHT);
+    if (nPCLevel > 8 && GetKnowsFeat(FEAT_PDK_INSPIRE_1, oPC)) add_feat_to_list(oPC, "Inspire Courage II", FEAT_PDK_INSPIRE_2, FALSE, CLASS_TYPE_PURPLE_DRAGON_KNIGHT);
+    if (nPCLevel > 8) add_feat_to_list(oPC, "Inspire Fear", FEAT_PDK_FEAR, FALSE, CLASS_TYPE_PURPLE_DRAGON_KNIGHT);
+    if (nPCLevel > 10) add_feat_to_list(oPC, "Oath of Wrath", FEAT_PDK_WRATH, FALSE, CLASS_TYPE_PURPLE_DRAGON_KNIGHT);
+    if (nPCLevel > 12) add_feat_to_list(oPC, "Final Stand", FEAT_PDK_STAND, FALSE, CLASS_TYPE_PURPLE_DRAGON_KNIGHT);
+  }
+  
   // Cleric additional domains.  Requires 'level' 10.
   /* These don't work. Sadly.
   if (nPCLevel > 10 && GetLevelByClass(CLASS_TYPE_CLERIC, oPC))

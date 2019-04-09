@@ -23,6 +23,7 @@
 // Database configuration
 const string WIKI_PREFIX             = "lorewiki";
 const string RESEARCH_CATEGORY       = "Human_Research";
+const string RESEARCH_CATEGORY_ELF   = "Elven_Research";
 const string RESEARCH_CATEGORY_L10   = "Lore_10";
 const string RESEARCH_CATEGORY_L20   = "Lore_20";
 
@@ -120,9 +121,32 @@ void GiveResearchInformation(object oPC)
   Trace(TRAINING, "GiveResearchInformation called for PC: " + GetName(oPC));
   
   // TODO: support other races than humans.
+  string sResearchCategory = RESEARCH_CATEGORY;
+  
+  if (GetRacialType(oPC) == RACIAL_TYPE_ELF) 
+  {
+    sResearchCategory = RESEARCH_CATEGORY_ELF;
+	
+	// Possibly give a spell instead if the PC is a Wizard.
+	if (GetLevelByClass(CLASS_TYPE_WIZARD, oPC) && d100() > 90)
+	{
+	  int nMaxLevel = (GetLevelByClass(CLASS_TYPE_WIZARD, oPC) + 1) / 2;
+	  int nSpell = GetRandomArcaneSpell(Random(nMaxLevel + 1));
+	  
+	  Log(TRAINING, "Creating scroll " + IntToString(nSpell) + " for " + GetName(oPC));
+	  object oScroll = CreateItemOnObject("x2_it_cfm_bscrl", oPC, 1, "spell_" + IntToString(nSpell));
+	  
+	  AddItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyCastSpell(IPGetIPConstCastSpellFromSpellID(nSpell), IP_CONST_CASTSPELL_NUMUSES_SINGLE_USE), oScroll);
+	  AddItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyLimitUseByClass(CLASS_TYPE_WIZARD), oScroll);
+	  
+	  SetName(oScroll, "Researched Spell");
+	  SendMessageToPC(oPC, "You researched a spell!");
+	  return;
+	}
+  }
   
   // Query that queries the category links table to get a random article in the correct category. 
-  SQLExecDirect("SELECT a.cl_from FROM " + WIKI_PREFIX + "categorylinks AS a WHERE a.cl_to = '" + RESEARCH_CATEGORY + 
+  SQLExecDirect("SELECT a.cl_from FROM " + WIKI_PREFIX + "categorylinks AS a WHERE a.cl_to = '" + sResearchCategory + 
   "' " + SQLRandom());
   string sPage = "";
   

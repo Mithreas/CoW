@@ -164,7 +164,7 @@ void OnInit()
     dlgAddResponseAction(PG_MAIN_CHARACTER, "Settings");
     dlgAddResponseAction(PG_MAIN_CHARACTER_SETTINGS, "Tells");
     dlgAddResponseAction(PG_MAIN_CHARACTER_SETTINGS, "Reveal party");
-    dlgAddResponseAction(PG_MAIN_CHARACTER, "Trade skills");
+    //dlgAddResponseAction(PG_MAIN_CHARACTER, "Trade skills");
     dlgAddResponseAction(PG_MAIN_CHARACTER, "Deities");
     dlgAddResponseAction(PG_MAIN_CHARACTER, "Languages");
     dlgAddResponseAction(PG_MAIN_CHARACTER, "Factions");
@@ -232,7 +232,7 @@ void OnInit()
     dlgAddResponseAction(PG_MAIN_HELP, "Manuals");
     dlgAddResponseAction(PG_MAIN_HELP, "Chat commands");
     dlgAddResponseAction(PG_MAIN_HELP, "Wiki");
-    dlgAddResponseAction(PG_MAIN_HELP, "Forums");
+    //dlgAddResponseAction(PG_MAIN_HELP, "Forums");
     dlgAddResponseAction(PG_MAIN_HELP, "Updates");
 
 
@@ -492,10 +492,10 @@ void OnSelection(string page)
         {
             ChangeDialoguePage(page, PG_MAIN_CHARACTER_SETTINGS);
         }
-        else if (index == checkedIndex++ /* Trade skills */)
-        {
-            AssignCommand(player, ChangeDialogue("zz_co_crafting"));
-        }
+        //else if (index == checkedIndex++ /* Trade skills */)
+        //{
+        //    AssignCommand(player, ChangeDialogue("zz_co_crafting"));
+        //}
         else if (index == checkedIndex++ /* Deities */)
         {
             AssignCommand(player, ChangeDialogue("zz_co_worship"));

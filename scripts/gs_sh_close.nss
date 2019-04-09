@@ -29,7 +29,7 @@ void _save(object oPC)
           SendMessageToPC(oPC, "<cþN >Note: you can not store gold in these chests.");
         }
 
-        Log(SHOP, GetName(oPC) + " accessed shop " + GetTag(OBJECT_SELF) +
+        Log(SHOP, GetName(oPC) + " accessed shop " + GetLocalString(OBJECT_SELF, "GS_CLASS") + "_" + IntToString(GetLocalInt(OBJECT_SELF, "GS_INSTANCE")) +
               " and left " + IntToString(stResults.nSaved) + " stored.");
     }
 }

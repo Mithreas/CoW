@@ -63,20 +63,16 @@ void main()
         {
         case CREATURE_SIZE_TINY:
         case CREATURE_SIZE_SMALL:
-            SetDroppableFlag(CreateItemOnObject("gs_item895"), TRUE); //skin
-            SetDroppableFlag(CreateItemOnObject("gs_item899"), TRUE); //meat
             break;
 
         case CREATURE_SIZE_MEDIUM:
-            SetDroppableFlag(CreateItemOnObject("gs_item896"), TRUE); //skin
-            SetDroppableFlag(CreateItemOnObject("gs_item898"), TRUE); //meat
+            SetDroppableFlag(CreateItemOnObject("cnranimalmeat"), TRUE); //meat
             break;
 
         case CREATURE_SIZE_LARGE:
         case CREATURE_SIZE_HUGE:
-            SetDroppableFlag(CreateItemOnObject("gs_item854"), TRUE); //skin
-            SetDroppableFlag(CreateItemOnObject("gs_item897"), TRUE); //meat
-            SetDroppableFlag(CreateItemOnObject("gs_item335"), TRUE); //sinew
+            SetDroppableFlag(CreateItemOnObject("cnranimalmeat"), TRUE); //meat
+            SetDroppableFlag(CreateItemOnObject("cnranimalmeat"), TRUE); //meat
             break;
         }
         break;
@@ -158,6 +154,14 @@ void main()
         break;
     }
 
+	if (GetEventScript(oSelf, EVENT_SCRIPT_CREATURE_ON_DEATH) == "cnr_bird_ondeath")
+	{
+		// Configured in cnr_source_init
+		string sBirdTag = GetTag(oSelf);
+		string sFeatherTag = GetLocalString(GetModule(), sBirdTag + "_FeatherTag");
+		SetDroppableFlag(CreateItemOnObject(sFeatherTag), TRUE);
+	}
+
     //listen
     SetListenPattern(oSelf, "GS_AI_ATTACK_TARGET",         10000);
     SetListenPattern(oSelf, "GS_AI_REQUEST_REINFORCEMENT", 10003);
@@ -225,6 +229,11 @@ void main()
     if (GetLocalInt(oSelf, "onspawn_search"))
     {
       SetActionMode(oSelf, ACTION_MODE_DETECT, TRUE);
+    }
+
+    if (GetLocalInt(oSelf, "onspawn_lie"))
+    {
+        AssignCommand(oSelf, PlayAnimation(ANIMATION_LOOPING_DEAD_BACK, 1.0, 999000.0));
     }
 
     if (GetLocalInt(oSelf, "onspawn_vfx"))

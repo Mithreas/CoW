@@ -627,7 +627,7 @@ node danglymesh Ring02
     127.0
 endnode
 node danglymesh Chain
-  parent pfa0_chest176
+  parent pfa0_chest140
   position 0.0000000 0.0000000 0.0000000
   orientation 1.0 0.0 0.0 0.0
   wirecolor 1.0 1.0 1.0 

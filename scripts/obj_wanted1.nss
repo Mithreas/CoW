@@ -14,8 +14,11 @@
 #include "inc_crime"
 void main()
 {
-  int nBounty = GetLocalInt(GetItemActivated(), BOUNTY);
-  SendMessageToPC(GetItemActivator(), "You currently have a bounty of " +
+  object oItem   = GetSpellCastItem();
+  object oPC     = GetItemPossessor(oItem);
+  
+  int nBounty = GetLocalInt(oItem, BOUNTY);
+  SendMessageToPC(oPC, "You currently have a bounty of " +
                                       IntToString(nBounty) +
                                       " on your head!");
 }

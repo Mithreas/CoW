@@ -60,6 +60,8 @@ void main()
   CnrBirdOnDeathInitialize("cnraFalcon", "cnrfeather");
   CnrBirdOnDeathInitialize("cnraRaven", "cnrfeather");
   CnrBirdOnDeathInitialize("cnraOwl", "cnrfeather");
+  CnrBirdOnDeathInitialize("cnraParrot", "cnrfeather");
+  CnrBirdOnDeathInitialize("Chicken", "cnrfeather");
 
   // This section (new to V3.05, similar to CnrBirdOnDeathInitialize) allows
   // for easy setup of item drops upon the death of the identified mob.

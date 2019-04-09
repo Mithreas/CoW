@@ -79,6 +79,9 @@ int miPOGetPopulationRate(string sTag);
 // Helper method to get the active population in an area.
 string miPOGetActivePopulation(object oArea);
 
+// Adds 10 pop to each area for each object tagged MIPO_NEST in it.
+void miPODoNests();
+
 //------------------------------------------------------------------------------
 int miPOGetPopulation(string sTag)
 {
@@ -196,4 +199,17 @@ void miPOAdjustPopulation(string sTag, int nAdjustment)
 string miPOGetActivePopulation(object oArea)
 {
   return GetLocalString(oArea, VAR_POP);
+}
+//------------------------------------------------------------------------------
+void miPODoNests()
+{
+  int nNth = 0;
+  string sPop;
+  object oNest = GetObjectByTag("MIPO_NEST", nNth);
+  
+  while (GetIsObjectValid(oNest))
+  {
+    sPop = GetLocalString(GetArea(oNest), VAR_POP);
+    miPOAdjustPopulation(sPop, 10);
+  }
 }

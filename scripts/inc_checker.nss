@@ -197,7 +197,8 @@ int CoW_HasAllowedClasses(object oPC)
 	  if ((GetLevelByClass(CLASS_TYPE_WIZARD, oPC) && !GetHasPermission(CLASS_TYPE_WIZARD, oPC)) ||
 	      (GetLevelByClass(CLASS_TYPE_SORCERER, oPC) && !GetHasPermission(CLASS_TYPE_SORCERER, oPC)) ||
 		  (GetLevelByClass(CLASS_TYPE_CLERIC, oPC) && !GetHasPermission(CLASS_TYPE_CLERIC, oPC)) ||
-		  (GetLevelByClass(CLASS_TYPE_PALADIN, oPC) && !GetHasPermission(CLASS_TYPE_PALADIN, oPC)))
+		  (GetLevelByClass(CLASS_TYPE_PALADIN, oPC) && !GetHasPermission(CLASS_TYPE_PALADIN, oPC)) ||
+		  (GetLevelByClass(CLASS_TYPE_BLACKGUARD, oPC) && !GetHasPermission(CLASS_TYPE_BLACKGUARD, oPC)))
       {
 	    return FALSE;
 	  }
@@ -210,7 +211,8 @@ int CoW_HasAllowedClasses(object oPC)
 	{
 	  if ((GetLevelByClass(CLASS_TYPE_CLERIC, oPC) && !GetHasPermission(CLASS_TYPE_CLERIC, oPC)) ||
 		  (GetLevelByClass(CLASS_TYPE_PALADIN, oPC) && !GetHasPermission(CLASS_TYPE_PALADIN, oPC)) ||
-		  (GetLevelByClass(CLASS_TYPE_DRUID, oPC) && !GetHasPermission(CLASS_TYPE_DRUID, oPC)))
+		  (GetLevelByClass(CLASS_TYPE_DRUID, oPC) && !GetHasPermission(CLASS_TYPE_DRUID, oPC))||
+		  (GetLevelByClass(CLASS_TYPE_BLACKGUARD, oPC) && !GetHasPermission(CLASS_TYPE_BLACKGUARD, oPC)))
 	  {
 	    return FALSE;
 	  }

@@ -96,10 +96,12 @@ void PageInit()
   // This is the function that sets up the prompts for each page.
   string sPage = GetDlgPageString();
   object oPC   = GetPcDlgSpeaker();
-
+  int bElf     = GetRacialType(OBJECT_SELF) == RACIAL_TYPE_ELF;
+  
+  
   if (sPage == "")
   {
-    SetDlgPrompt("Solkin watch over you, sir. Are you looking to hire?");
+    SetDlgPrompt(bElf ? "I can deploy rangers to watch over our claims in the wilderness, if you can cover their supply costs." : "Solkin watch over you, sir. Are you looking to hire?");
     SetDlgResponseList(MAIN_MENU, OBJECT_SELF);
   }
   else if (sPage == DESCRIPTION)
@@ -110,8 +112,8 @@ void PageInit()
   else if (sPage == HOW_MANY)
   {
     int nCost = GetLocalInt(OBJECT_SELF, COST);
-    SetDlgPrompt("How many of my band do you want? The cost will be " +
-                                  IntToString(nCost) + " for each man I send.");
+    SetDlgPrompt(bElf ? "You will need to indicate how many of my Rangers you wish to supply.  Each will need " + IntToString(nCost) + " for supplies." : 
+	                    "How many of my band do you want? The cost will be " + IntToString(nCost) + " for each man I send.");
     SetDlgResponseList(REPLY_2, OBJECT_SELF);
   }
   else if (sPage == WHERE)
@@ -120,7 +122,12 @@ void PageInit()
     int nCost = GetLocalInt(OBJECT_SELF, COST);
     int nTotalCost = nNum * nCost;
 
-    SetDlgPrompt("That's "+IntToString(nNum)+" of my band for a total cost of "+
+    SetDlgPrompt(bElf ? 
+	             "That's "+IntToString(nNum)+" rangers for a total cost of "+
+                 IntToString(nTotalCost)+".  I assume you have a location in mind " +
+				 "for them to ward.  Somewhere of value that you have claimed for our people."
+	             :
+	             "That's "+IntToString(nNum)+" of my band for a total cost of "+
                  IntToString(nTotalCost)+". Where shall I send them?\n\n"+
                  "(I will only send my men to guard a location for your House. "+
                  "They won't attack an area for you.)");
@@ -153,7 +160,7 @@ void PageInit()
   else
   {
     SendMessageToPC(oPC,
-                    "You've found a bug. How embarassing. Please report it.");
+                    "You've found a bug. How embarrassing. Please report it.");
     EndDlg();
   }
 

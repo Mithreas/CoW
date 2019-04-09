@@ -199,6 +199,9 @@ int _ApplySubRace()
 
     // Have to set a subrace so that the background code can modify it.
     SetSubRace(oSpeaker, gsSUGetRaceName(GetRacialType(oSpeaker)));
+	
+	// Apply the (empty) subrace to avoid this option being available again.
+	gsSUApplyProperty(oProperty, nSubRace, nLevel);
   }
   else
   {
@@ -415,6 +418,7 @@ void _ApplyBackground()
 void _ApplyGifts()
 {
     object oPC      = GetPcDlgSpeaker();
+	object oHide    = gsPCGetCreatureHide(oPC);
 	object oAbility = GetItemPossessedBy(oPC, "GS_SU_ABILITY");
     int nGift1      = GetGiftFromDescription(GetLocalString(oPC, VAR_GIFT_1));
     int nGift2      = GetGiftFromDescription(GetLocalString(oPC, VAR_GIFT_2));
@@ -431,17 +435,20 @@ void _ApplyGifts()
 	  AddGift(oPC, nGift1);
       SetDescription(oAbility, GetDescription(oAbility) + "\nGift 1: " + GetGiftDescription(nGift1));
 	  SetDlgPageString(GIFT_OPTS);
+	  SetLocalInt(oHide, "GIFT_1", nGift1);
 	}  
 	else if (GetListSize(oAbility, "Gifts") < 2) 
 	{
 	  AddGift(oPC, nGift2);
 	  SetDescription(oAbility, GetDescription(oAbility) + "\nGift 2: " + GetGiftDescription(nGift2));
 	  SetDlgPageString(GIFT_OPTS);
+	  SetLocalInt(oHide, "GIFT_2", nGift2);
 	}
 	else if (GetListSize(oAbility, "Gifts") < 3) 
 	{
 	  AddGift(oPC, nGift3);
 	  SetDescription(oAbility, GetDescription(oAbility) + "\nGift 3: " + GetGiftDescription(nGift3));
+	  SetLocalInt(oHide, "GIFT_3", nGift3);
 	}  
 	// If none of the above, this was called in error.
 }
@@ -450,9 +457,10 @@ void _ApplyGifts()
 //Also check for major and minor gifts!
 void _AddGiftIfNotTaken(object oPC, string sGift)
 {
-  string sGift1 = GetLocalString(oPC, VAR_GIFT_1);
-  string sGift2 = GetLocalString(oPC, VAR_GIFT_2);
-  string sGift3 = GetLocalString(oPC, VAR_GIFT_3);
+  object oHide = gsPCGetCreatureHide(oPC);
+  string sGift1 = GetLocalInt(oHide, "GIFT_1") ? GetLocalString(oPC, VAR_GIFT_1) : "";
+  string sGift2 = GetLocalInt(oHide, "GIFT_2") ? GetLocalString(oPC, VAR_GIFT_2) : "";
+  string sGift3 = GetLocalInt(oHide, "GIFT_3") ? GetLocalString(oPC, VAR_GIFT_3) : "";
   int nMajor1 = FindSubString(sGift1, "MAJOR");
   int nMajor2 = FindSubString(sGift2, "MAJOR");
   int nMajor3 = FindSubString(sGift3, "MAJOR");
@@ -574,7 +582,7 @@ void _SetUpAllowedPaths()
 
   if (GetLevelByClass(CLASS_TYPE_SORCERER, oPC))
   {
-    AddStringElement(PATH_OF_TRUE_FIRE, PATH_OPTS);
+    //AddStringElement(PATH_OF_TRUE_FIRE, PATH_OPTS);
     AddStringElement(PATH_OF_SHADOW, PATH_OPTS);
   }
   
@@ -744,7 +752,7 @@ void _SetUpMainOptions()
   if (miBAGetBackground(oPC) == MI_BA_NONE) AddStringElement("Faction options", MAIN_MENU);
   AddStringElement("PC height options", MAIN_MENU);
   if (GetLocalString(oHide, "MI_PATH") == "") AddStringElement("Path options", MAIN_MENU);
-  if (!GetLocalInt(oHide, "GIFTS_APPLIED")) AddStringElement("Gift options", MAIN_MENU);
+  if (!GetLocalInt(oHide, "GIFT_3")) AddStringElement("Gift options", MAIN_MENU);
   if (!GetLocalInt(oHide, "APPLIED_ABILITIES"))  AddStringElement("Subrace options", MAIN_MENU);
   if (GetLocalInt(oPC, "award1") || GetLocalInt(oPC, "award2") || GetLocalInt(oPC, "award3")) AddStringElement("Award options", MAIN_MENU);
   AddStringElement("[Done]", MAIN_MENU);
@@ -942,6 +950,7 @@ void HandleSelection()
   // This method handles what happens when the player selects an option.
   int selection    = GetDlgSelection();
   object oPC       = GetPcDlgSpeaker();
+  object oHide     = gsPCGetCreatureHide(oPC);
   string sPage     = GetDlgPageString();
   int bStaticLevel = GetLocalInt(GetModule(), "STATIC_LEVEL");
 
@@ -1108,24 +1117,28 @@ void HandleSelection()
   else if (sPage == GIFT_OPTS)
   {
     string sGift = GetStringElement(selection, GIFT_OPTS);
-    string sGift1 = GetLocalString(oPC, VAR_GIFT_1);
-    string sGift2 = GetLocalString(oPC, VAR_GIFT_2);
-    string sGift3 = GetLocalString(oPC, VAR_GIFT_3);
+    int nGift1 = GetLocalInt(oHide, "GIFT_1");
+    int nGift2 = GetLocalInt(oHide, "GIFT_2");
+    int nGift3 = GetLocalInt(oHide, "GIFT_3");
 
     int nRPR = gsPCGetRolePlay(oPC);
 
-    if (sGift1 == "")
+    if (!nGift1)
     {
       SetLocalString(oPC, VAR_GIFT_1, sGift);
     }
-    else if (sGift2 == "")
+    else if (!nGift2)
     {
       SetLocalString(oPC, VAR_GIFT_2, sGift);
     }
-    else if (sGift3 == "")
+    else if (!nGift3)
     {
       SetLocalString(oPC, VAR_GIFT_3, sGift);
     }
+	else
+	{
+	  SendMessageToPC(oPC, "Error - you already have three gifts.");
+	}
 
     SetLocalString(OBJECT_SELF, CONFIRM_DESC, GetStringElement(selection, GIFT_OPTS));
 	SetLocalString(OBJECT_SELF, CONFIRM_PAGE, GIFT_OPTS);

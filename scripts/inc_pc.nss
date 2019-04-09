@@ -151,13 +151,13 @@ void gsPCCacheValues(object oPC)
     SetLocalString(oPC, "MI_NATION", SQLGetData(13));
     SetLocalInt(oPC, "MI_AWIA", StringToInt(SQLGetData(14)));
 
-    // Add the PC's race etc.
-    ExecuteScript("mi_dv_setup", oPC);
-
     SetLocalString(oPC, "CDKEY_ID", SQLGetData(16));
     SetLocalString(oPC, "CDKEY_RECORDED", SQLGetData(17));
     SetLocalInt(oPC, "GS_PC_ROLEPLAY", StringToInt(SQLGetData(18)));
     SetLocalInt(oPC, "MI_CZ_LASTVOTE", StringToInt(SQLGetData(19)));
+
+    // Add the PC's race etc.
+    ExecuteScript("mi_dv_setup", oPC);
 
     // Dunshine: cache the explorarion areas for this PC as well
 
@@ -179,8 +179,6 @@ void gsPCCacheValues(object oPC)
       // store concatenated string of object id's as variable on the PC
       SetLocalString(oPC, "GVD_XP_" + SQLGetData(1), "," + SQLGetData(2) + ",");
     }
- 
-
   }
 }
 //----------------------------------------------------------------

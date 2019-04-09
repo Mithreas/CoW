@@ -274,7 +274,7 @@ void gsXPDistributeExperience(object oCreature, int nAmount)
 //----------------------------------------------------------------
 void gsXPGiveExperience(object oCreature, int nAmount, int nFloat = TRUE, int nKill = FALSE)
 {
-    if (nAmount == 0) return;
+    if (nAmount == 0) return;	
 
     // Edit by Mithreas: If the PC is possessing a familiar, give
     // xp/alignment shifts to the PC. --[

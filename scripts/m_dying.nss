@@ -69,7 +69,6 @@ void main()
     AssignCommand(oDying, PlayVoiceChat(VOICE_CHAT_NEARDEATH));
 
     if (GetIsPossessedFamiliar(oDying) ||
-        gsFLGetAreaFlag("PVP", oDying) ||
         fbZGetIsZombie(oDying))
     {
         ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectDeath(), oDying);
