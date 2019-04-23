@@ -4,6 +4,7 @@
 void main()
 {
   if (GetIsDM(OBJECT_SELF)) return;
+  if (!GetIsPC(OBJECT_SELF)) return;
   
   location lCurrent = GetLocation(OBJECT_SELF);
   location lLast    = GetLocalLocation(OBJECT_SELF, "CURRENT_LOCATION");

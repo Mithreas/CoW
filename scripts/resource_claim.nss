@@ -19,7 +19,7 @@ void main()
     // 4th July 06 - removed. Replaced with rep bonus when buying mercs.
     // GiveRepPoints(oPC, 1, GetFactionFromName(GetSubRace(oPC)), TRUE);
 
-    SendMessageToPC(oPC, "You claimed this area for your house.");
+    SendMessageToPC(oPC, "You claimed this area for your faction.");
   }
   else
   {

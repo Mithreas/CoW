@@ -238,16 +238,6 @@ void miCLApplyClassChanges(object oPC)
     switch (nClassType)
     {
       case CLASS_TYPE_SHADOWDANCER:
-        // Shadowdancers get HiPS at level 5.
-        if (GetLevelByClass(CLASS_TYPE_SHADOWDANCER, oPC) < 5)
-        {
-          NWNX_Creature_RemoveFeat(oPC, FEAT_HIDE_IN_PLAIN_SIGHT);
-        }
-        else
-        {
-          AddKnownFeat(oPC, FEAT_HIDE_IN_PLAIN_SIGHT, GetLevelByClassLevel(OBJECT_SELF, CLASS_TYPE_SHADOWDANCER, 5));
-        }
-
         gsIPStackSkill(
           oItem,
           SKILL_HIDE,
@@ -312,7 +302,7 @@ void miCLApplyClassChanges(object oPC)
         NWNX_Creature_RemoveFeat(oPC, 444); // HARPER_INVISIBILITY
 
         // Remove feats only used by scouts
-        if (nHarperType)
+        if (nHarperType != MI_CL_HARPER_SCOUT)
         {
           NWNX_Creature_RemoveFeat(oPC, 437); // DENEIRS_EYE
           NWNX_Creature_RemoveFeat(oPC, 439); // LLIIRAS_HEART
@@ -1372,10 +1362,10 @@ void AddSniperFeats(object oPC)
     }
 }
 
-// Updates HiPS for rangers (i.e. applied in natural areas, not in artifical areas).
+// Updates HiPS for rangers (i.e. applied in natural areas, not in artificial areas).
 void UpdateRangerHiPS(object oPC)
 {
-    if(GetLevelByClass(CLASS_TYPE_RANGER, oPC) < 16 || GetLevelByClass(CLASS_TYPE_SHADOWDANCER, oPC) >= 5) return;
+    if(GetLevelByClass(CLASS_TYPE_RANGER, oPC) < 16 || GetLevelByClass(CLASS_TYPE_SHADOWDANCER, oPC)) return;
 
     if (GetIsAreaNatural(GetArea(oPC)))
     {

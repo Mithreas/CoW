@@ -156,13 +156,13 @@ void main()
   //----------------------------ammo--------------------------------------
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpAmmo, "Entwood Arrows", "ca_gen_arrow_ent", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrtwigent", 3);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrshaft", 2);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrfeather", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 10, 10);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpAmmo, "Entwood Bolts", "ca_gen_bolt_ent", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrtwigent", 3);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrshaft", 2);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrfeather", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 2);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 20, 20);

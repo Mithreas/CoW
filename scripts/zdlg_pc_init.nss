@@ -556,7 +556,7 @@ void _SetUpAllowedPaths()
   if (GetLevelByClass(CLASS_TYPE_RANGER, oPC))
   {
     AddStringElement(PATH_OF_THE_ARCHER, PATH_OPTS);
-    AddStringElement(PATH_OF_THE_SNIPER, PATH_OPTS);
+    //AddStringElement(PATH_OF_THE_SNIPER, PATH_OPTS);
 	PATH_INTRO += 
       "Ranger - Archer: Lose dual wield feats but create a quiver of arrows 1/day.\n" +
       "Ranger - Sniper: Lose dual wield feats but gain point blank shot and rapid shot at level 1\n";
@@ -872,7 +872,7 @@ void PageInit()
     AddStringElement("Reduced ECL", AWARD_OPTS);
     if (nType != 3)
     {
-      AddStringElement(GIFT_OF_SPELL_SHIELDING_DESC, AWARD_OPTS);
+      //AddStringElement(GIFT_OF_SPELL_SHIELDING_DESC, AWARD_OPTS);
     }
     if (nType == 1)
     {

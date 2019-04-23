@@ -549,6 +549,8 @@ void _miWHSetWindStrength(int nWind)
 void _miWHDoWindKnockdown(object oCreature)
 {
     Trace(WEATHER, "Checking whether " + GetName(oCreature) + " is blown over");
+	if (FindSubString(GetName(oCreature), "Air Elemental") > -1) return;
+	
     int nDC = (GetHitDice(oCreature) / 2) + 10;
     int nDiscipline = GetSkillRank(SKILL_DISCIPLINE, oCreature);
     int nReflexSave = GetReflexSavingThrow(oCreature);

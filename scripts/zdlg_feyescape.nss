@@ -50,8 +50,21 @@ void HandleSelection()
 
   if (selection)
   {
+    //destroy corpse
+    object oCorpse = GetLocalObject(oPC, "GS_CORPSE");
+
+    if (GetIsObjectValid(oCorpse)) DestroyObject(oCorpse);
+    DeleteLocalObject(oPC, "GS_CORPSE");
+	
     // Escape!
-    gsCMTeleportToObject(oPC, GetObjectByTag("WP_PVVSWBL_FWEXIT"));
+	if (GetRacialType(oPC) == RACIAL_TYPE_ELF)
+	{
+      gsCMTeleportToObject(oPC, GetObjectByTag("WP_FF_FWEXIT"));
+	}
+	else
+	{
+      gsCMTeleportToObject(oPC, GetObjectByTag("WP_PVVSWBL_FWEXIT"));
+	}  
   }
 
   EndDlg();

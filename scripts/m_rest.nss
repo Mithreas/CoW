@@ -14,7 +14,12 @@ void gsRestMonitor(int nEffect = TRUE)
 
     if (GetCurrentAction() == ACTION_REST)
     {
-        gsSTAdjustState(GS_ST_REST, 2.5);
+	    if (!gsFLGetAreaFlag("REST", OBJECT_SELF) || gsSTGetState(GS_ST_REST) < 25.0)
+		{
+		  // In taverns etc, allow resting to regain stamina and spells freely. 
+          gsSTAdjustState(GS_ST_REST, 2.5);
+		}
+		
         gsSTAdjustState(GS_ST_STAMINA, 5.0);
         gsSTAdjustState(GS_ST_SOBRIETY, 5.0);
 

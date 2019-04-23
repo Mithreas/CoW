@@ -39,16 +39,15 @@ void main()
     {
         if(GetIsTimelocked(oPC, "Hide in Plain Sight"))
         {
-            if(GetKnownFeatLevel(oPC, FEAT_HIDE_IN_PLAIN_SIGHT) >= 5) //the lowest level someone can get the feat
-              NWNX_Creature_RemoveFeat(oPC, FEAT_HIDE_IN_PLAIN_SIGHT);
+            NWNX_Creature_RemoveFeat(oPC, FEAT_HIDE_IN_PLAIN_SIGHT);
         }
         else if(!GetHasFeat(FEAT_HIDE_IN_PLAIN_SIGHT, oPC))
         {
             UpdateRangerHiPS(oPC);
             if(GetIsShadowMage(oPC))
                 AddShadowMageFeats(oPC);
-            if (GetLevelByClass(CLASS_TYPE_SHADOWDANCER, oPC) >= 5)
-                AddKnownFeat(oPC, FEAT_HIDE_IN_PLAIN_SIGHT, GetLevelByClassLevel(oPC, CLASS_TYPE_SHADOWDANCER, 5));
+            if (GetLevelByClass(CLASS_TYPE_SHADOWDANCER, oPC) >= 1)
+                AddKnownFeat(oPC, FEAT_HIDE_IN_PLAIN_SIGHT, GetLevelByClassLevel(oPC, CLASS_TYPE_SHADOWDANCER, 1));
         }
 
         if (GetHasFeat(FEAT_HIDE_IN_PLAIN_SIGHT, oPC))

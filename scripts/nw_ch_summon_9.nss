@@ -59,6 +59,11 @@ void main()
     // Set starting location
     SetAssociateStartLocation();
 
+	if (GetLocalFloat(OBJECT_SELF, "AR_SCALE") > 0.0f)
+	{
+	    SetObjectVisualTransform(OBJECT_SELF, OBJECT_VISUAL_TRANSFORM_SCALE, GetLocalFloat(OBJECT_SELF, "AR_SCALE"));
+	}
+	
     InitializeNPCCooldownAbilities();
     SignalEvent(OBJECT_SELF, EventUserDefined(GS_EV_ON_SPAWN));
 }

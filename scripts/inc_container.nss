@@ -227,6 +227,8 @@ struct gsCOResults gsCOSave(string sID, object oContainer, int nLimit = GS_LIMIT
                     NWNX_SQL_PrepareQuery(sSQL);
                     NWNX_SQL_PreparedObjectFull(0, oItem);
                     NWNX_SQL_ExecutePreparedQuery();
+					
+					Log(CO, sUseID + " saved item: " + GetName(oItem));
 
                     SetStolenFlag(oItem, bShop);
                     SetLocalString(oContainer, "SP_CO_ITEMSTRING", sItemCache);
@@ -242,7 +244,6 @@ struct gsCOResults gsCOSave(string sID, object oContainer, int nLimit = GS_LIMIT
             stResults.nOverflowed++;
             oItem = GetNextItemInInventory(oContainer);
         }
-
 
         if (GetStringLeft(GetTag(oContainer), 12) == "GS_INVENTORY")
         {

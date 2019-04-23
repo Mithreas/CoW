@@ -86,10 +86,11 @@ void main()
             sLine += " / R:" + txtLime + FloatToString(GetLocalFloat(oHide, "GS_ST_REST"), 0, 1) + "</c>";
         // Piety
             sLine += " / P:" + txtLime + FloatToString(GetLocalFloat(oHide, "GS_ST_PIETY"), 0, 1) + "</c>";
-
+        // Stamina
+		    sLine += " / St:" + txtLime + FloatToString(GetLocalFloat(oHide, "GS_ST_STAMINA"), 0, 1) + "</c>";
         // Sobriety, if state is appropriate
         if (GetLocalFloat(oHide, "GS_ST_SOBRIETY") < 99.0)
-            sLine += " / S:" + txtLime + FloatToString(GetLocalFloat(oHide, "GS_ST_SOBRIETY"), 0, 1) + "</c>";
+            sLine += " / Sb:" + txtLime + FloatToString(GetLocalFloat(oHide, "GS_ST_SOBRIETY"), 0, 1) + "</c>";
 
         if (VampireIsVamp(oSpeaker)) {
             // Blood
@@ -125,6 +126,8 @@ void main()
         SendMessageToPC(oSpeaker, GS_T_16777301 + ": " + txtLime + FloatToString(GetLocalFloat(oHide, "GS_ST_REST"), 0, 1) + "%</c>");
         // Piety
         SendMessageToPC(oSpeaker, GS_T_16777592 + ": " + txtLime + FloatToString(GetLocalFloat(oHide, "GS_ST_PIETY"), 0, 1) + "%</c>");
+        // Stamina
+        SendMessageToPC(oSpeaker, "Stamina: " + txtLime + FloatToString(GetLocalFloat(oHide, "GS_ST_STAMINA"), 0, 1) + "%</c>");
 
         // Sobriety, if state is appropriate
         if (GetLocalFloat(oHide, "GS_ST_SOBRIETY") < 99.0)

@@ -852,18 +852,31 @@ string GenerateNewQuest(object oPC, object oNPC)
     "' AND minlevel <= '" + sLevel + "' AND maxlevel >= '" + sLevel + "' ORDER BY RAND()";
   SQLExecDirect(sSQL);
 
+  // Save them in a list so we can make another query to check whether each has been done.
+  DeleteList(sQuestDB);
+  
   while (SQLFetch() == SQL_SUCCESS)
   {
-    sQuest = SQLGetData(1);
-    Trace(RQUEST, "Got quest: " + sQuest);
+    AddStringElement(SQLGetData(1), sQuestDB);
+  }
+
+  string sQuestToTry = GetFirstStringElement(sQuestDB);
+
+  while (sQuestToTry != "")
+  {
+    Trace(RQUEST, "Got quest: " + sQuestToTry);
 
     // Is this quest suitable for this PC?
     // Has the PC done it?
-    if (!HasDoneRandomQuest(oPC, sQuest))
+    if (!HasDoneRandomQuest(oPC, sQuestToTry))
     {
       // PC hasn't already done this quest.
       Trace (RQUEST, "PC hasn't already done quest, selecting quest.");
+	  sQuest = sQuestToTry;
     }	
+	
+	nCount++;
+    sQuestToTry = GetStringElement(nCount, sQuestDB);
   }  
 
   if (sQuest == "")

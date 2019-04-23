@@ -150,7 +150,7 @@ void PageInit()
       else
       {
         // Got a quest. What sort is it?
-        string sQuestType = GetPersistentString(OBJECT_INVALID, sCurrentQuest, sQuestDB);
+        string sQuestType = GetLocalString(oCache, sCurrentQuest + QUEST_TYPE);
         Trace(RQUEST, "Got quest type of: " + sQuestType);
         DeleteList(REPLY1);
 
@@ -274,7 +274,7 @@ void PageInit()
   else if (sPage == NOT_DONE)
   {
     // What sort is our quest?
-    string sQuestType = GetPersistentString(OBJECT_INVALID, sCurrentQuest, sQuestDB);
+    string sQuestType = GetLocalString(oCache, sCurrentQuest + QUEST_TYPE);
     Trace(RQUEST, "Got quest type of: " + sQuestType);
 
     if (sQuestType == RETRIEVE)
@@ -311,7 +311,7 @@ void PageInit()
   else
   {
     SendMessageToPC(oPC,
-                    "You've found a bug. How embarassing. Please report it.");
+                    "You've found a bug. How embarrassing. Please report it.");
     EndDlg();
   }
 

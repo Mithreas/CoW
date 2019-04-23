@@ -88,7 +88,7 @@ void main()
     else
     {
         SummonFromStream(OBJECT_SELF, GetSpellTargetLocation(), TurnsToSeconds(nDuration), STREAM_TYPE_PLANAR, STREAM_PLANAR_TIER_3,
-            nVFX, GetSummonVFXDelay(nVFX));
+            nVFX, GetSummonVFXDelay(nVFX), FALSE, FALSE, gsWOGetDeityPlanarStream(OBJECT_SELF));
     }
 }
 

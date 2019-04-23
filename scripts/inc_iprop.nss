@@ -703,6 +703,9 @@ int gsIPGetCost(object oItem, itemproperty ipProperty)
         SetPlotFlag(oCopy, FALSE);
         SetIdentified(oCopy, TRUE);
         SetStolenFlag(oCopy, FALSE);
+		
+		// Remove all item properties, since stacking properties results in odd values.
+		gsIPRemoveAllProperties(oCopy);
 
         int nCost = GetGoldPieceValue(oCopy);
         gsIPAddItemProperty(oCopy, ipProperty);

@@ -55,7 +55,7 @@ if(!MySavingThrow(SAVING_THROW_REFLEX, oTarget, AR_GetSpellSaveDC(), SAVING_THRO
 {
             int nCasterRoll = d20(1) + 14;
             int nTargetRoll = d20(1) + GetAbilityModifier(ABILITY_STRENGTH, oTarget) + GetSizeModifier(oTarget);
-            // * bullrush succesful, knockdown target for duration of spell
+            // * bullrush successful, knockdown target for duration of spell
             if (nCasterRoll >= nTargetRoll)
             {
                 effect eVis = EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED);
@@ -79,7 +79,7 @@ if(!MySavingThrow(SAVING_THROW_REFLEX, oTarget, AR_GetSpellSaveDC(), SAVING_THRO
                 //Apply the penalty
                 ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, RoundsToSeconds(nDuration));
                 ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eVis, oTarget, RoundsToSeconds(nDuration));
-                // * Bull Rush succesful
+                // * Bull Rush successful
                 FloatingTextStrRefOnCreature(8966,OBJECT_SELF, FALSE);
             }
             else

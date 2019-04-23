@@ -52,7 +52,6 @@ void main()
     //Declare major variables
     object oTarget = GetSpellTargetObject();
     int nLevel = GetCasterLevel(OBJECT_SELF);
-    int nChaDmg;
     effect eEffect;
 
     effect eVis = EffectVisualEffect(VFX_IMP_SUPER_HEROISM);
@@ -60,17 +59,8 @@ void main()
 
     int nCharismaBonus = GetAbilityModifier(ABILITY_CHARISMA);
 
-    // 1.5 damage for 2H weapons.  Paladins and Blackguards only.
-    object oWeapon = GetItemInSlot(INVENTORY_SLOT_RIGHTHAND);
-
-    if (GetIsObjectValid(oWeapon) == TRUE && (GetLevelByClass(CLASS_TYPE_PALADIN) || GetLevelByClass(CLASS_TYPE_BLACKGUARD)) && GetWeaponSize(oWeapon) >= WEAPON_SIZE_TWO_HANDED) {
-        nChaDmg = FloatToInt(nCharismaBonus * 1.5);
-    } else {
-        nChaDmg = nCharismaBonus;
-    }
-
     if (nCharismaBonus>0) {
-        int nDamage1 = IPGetDamageBonusConstantFromNumber(nChaDmg);
+        int nDamage1 = IPGetDamageBonusConstantFromNumber(nCharismaBonus);
 
         effect eDamage1 = EffectDamageIncrease(nDamage1, DAMAGE_TYPE_DIVINE);
         effect eLink = EffectLinkEffects(eDamage1, eDur);

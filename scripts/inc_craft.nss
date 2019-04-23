@@ -239,7 +239,7 @@ float gsCRGetCraftingCostMultiplier(object oPC, object oItem, itemproperty ip);
 int gsCRGetIsValid(object oItem, int nProperty);
 // Returns TRUE if an essence application attempt was successful.  On FL, this
 // can fail if the material isn't magically attuned enough.
-int gsCRGetEssenceApplySuccess(object oItem);
+int gsCRGetEssenceApplySuccess(object oItem, object oCaster = OBJECT_SELF);
 // Returns the base gold cost of an item based on its material property.
 // Used for the FL crafting system to disregard base cost when assessing the
 // item value cap.
@@ -1971,12 +1971,15 @@ int gsCRGetIsValid(object oItem, int nProperty)
   }
 }
 //------------------------------------------------------------------------------
-int gsCRGetEssenceApplySuccess(object oItem)
+int gsCRGetEssenceApplySuccess(object oItem, object oCaster=OBJECT_SELF)
 {
   if (!GetLocalInt(GetModule(), "STATIC_LEVEL")) return TRUE;
 
   int nMultiplier = gsCRGetMaterialMultiplier(gsIPGetMaterialType(oItem), FALSE);
-
+  
+  if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_ENCHANTMENT, oCaster)) nMultiplier += 2;
+  else if (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_ENCHANTMENT, oCaster)) nMultiplier += 1;
+  
   if (d3() <= nMultiplier) return TRUE;
 
   return FALSE;

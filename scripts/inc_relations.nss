@@ -45,6 +45,8 @@ string miREGetWorstEnemy(string sPC);
 void miRERecordCombatHit(object oPCA, object oPCB);
 // Process speech event between two PCs.  
 void miREDoSpeech(object oPCA, object oPCB);
+// Return TRUE if oPCA and oPCB have a relationship.
+int miREHasRelationship(object oPCA, object oPCB);
 
 void miRESetPCEventHandlers(object oPC)
 {
@@ -197,4 +199,35 @@ void miREDoSpeech(object oPCA, object oPCB)
     // NB - relationships are symmetrical, and improve no matter who speaks.
     SetLocalInt(oPCA, "REL_CV_" + sID, nRel);
     SetLocalInt(oPCB, "REL_CV_" + sMyID, nRel);
+}
+
+int miREHasRelationship(object oPCA, object oPCB)
+{
+    // DM check
+    if (GetIsDM(oPCA) || GetIsDMPossessed(oPCA) || 
+	    GetIsDM(oPCB) || GetIsDMPossessed(oPCB))
+      return FALSE;			
+	
+    string sPCb = gsPCGetPlayerID(oPCB);
+    string sPCa = gsPCGetPlayerID(oPCA);
+
+    if (sID == "" || sMyID == "") return;
+
+
+    // A&B should always be in ascending order.
+    if (StringToInt(sPCa) > StringToInt(sPCb))
+    {
+      string sID = sPCa;
+      sPCa = sPCb;
+      sPCb = sID;
+    }
+
+    SQLExecStatement("SELECT value FROM mi_relationships WHERE pc_a=? and pc_b=?", sPCa, sPCb);
+	
+	if (SQLFetch())
+	{
+	  return TRUE;
+	}
+	
+	return FALSE;
 }

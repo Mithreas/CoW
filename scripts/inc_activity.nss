@@ -19,6 +19,7 @@
 #include "inc_spells"
 #include "inc_stacking"
 #include "inc_xp"
+#include "x2_inc_craft"
 
 // Database configuration
 const string WIKI_PREFIX             = "lorewiki";
@@ -134,12 +135,20 @@ void GiveResearchInformation(object oPC)
 	  int nSpell = GetRandomArcaneSpell(Random(nMaxLevel + 1));
 	  
 	  Log(TRAINING, "Creating scroll " + IntToString(nSpell) + " for " + GetName(oPC));
-	  object oScroll = CreateItemOnObject("x2_it_cfm_bscrl", oPC, 1, "spell_" + IntToString(nSpell));
+
+      string sResRef = Get2DAString(X2_CI_2DA_SCROLLS, "Wiz_Sorc", nSpell);
+	  object oScroll;
+      if (sResRef != "")
+      {
+        oScroll = CreateItemOnObject(sResRef,oPC);
+        gsIPSetOwner(oScroll, oPC);
+      }
+
+      if (oScroll == OBJECT_INVALID)
+      {
+        WriteTimestampedLogEntry("x2_inc_craft::CICraftScribeScroll failed - Resref: " + sResRef + " Class: Wiz_Sorc " + " SpellID " + IntToString (nSpell));
+      }
 	  
-	  AddItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyCastSpell(IPGetIPConstCastSpellFromSpellID(nSpell), IP_CONST_CASTSPELL_NUMUSES_SINGLE_USE), oScroll);
-	  AddItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyLimitUseByClass(CLASS_TYPE_WIZARD), oScroll);
-	  
-	  SetName(oScroll, "Researched Spell");
 	  SendMessageToPC(oPC, "You researched a spell!");
 	  return;
 	}

@@ -1576,7 +1576,7 @@ void ar_FaerzressWildMagic(object oPC, object oTarget, location lTarget, int nSp
     //::  Default calculations for non Wild Mages in Faerzress areas.
     //::  Chance for a wild surge:  Larger chance if stronger Faerzress.
     int nChance = d20() + nFaerzressBonus;
-    if ( nChance >= 20 ) {
+    if ( nChance >= 10 ) {
 
         //_arLogMessage("Wild Surge occurrence in " + GetName(oArea) + ", spell cast by " + GetName(oPC, TRUE) + " (True Name)!", TRUE);
         ar_FaerzressWildMagicTable(oPC, oTarget, lTarget, nSpell, nHarmful);

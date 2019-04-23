@@ -35,7 +35,7 @@ void main()
     effect eDur = EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE);
 
     int nCasterLvl = AR_GetCasterLevel(OBJECT_SELF);
-    int nModify = d4() + 1;
+    int nModify = 4;
     float fDuration = HoursToSeconds(nCasterLvl);
     int nMetaMagic = AR_GetMetaMagicFeat();
     //Fire cast spell at event for the specified target
@@ -51,7 +51,7 @@ void main()
     //Check for metamagic conditions
     if (nMetaMagic == METAMAGIC_MAXIMIZE)
     {
-        nModify = 5;
+        nModify = 4;
     }
     if (nMetaMagic == METAMAGIC_EMPOWER)
     {

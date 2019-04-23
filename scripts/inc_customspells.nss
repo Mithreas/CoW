@@ -884,8 +884,11 @@ void miSCDoScrying(object oPC, object oTarg, int bMagical = TRUE)
                   ActionPlayAnimation(ANIMATION_LOOPING_CONJURE1,
                   0.2,
                   3600.00));
-    ChangeToStandardFaction(oCopy, STANDARD_FACTION_COMMONER);
-    ApplyEffectToObject(DURATION_TYPE_TEMPORARY,
+				  
+	ChangeFaction(oCopy, GetObjectByTag("factionexample12")); // plot
+	SetLocalInt(oCopy, "AI_IGNORE", TRUE);
+	
+	ApplyEffectToObject(DURATION_TYPE_TEMPORARY,
                         EffectVisualEffect(VFX_DUR_PROT_PREMONITION),
                         oCopy,
                         3600.0);
@@ -952,10 +955,11 @@ void Send_Image(object oPC,object oTarg, string sText)
 	}
     miSCRemoveInvis (oCopy); // remove existing buff things
     ghost (oCopy);
-    ChangeToStandardFaction(oCopy, STANDARD_FACTION_COMMONER);
+	ChangeFaction(oCopy, GetObjectByTag("factionexample12")); // plot
     SetImmortal(oCopy, TRUE);
     SetPlotFlag(oCopy, TRUE);
     SetActionMode(oCopy, ACTION_MODE_STEALTH, FALSE);
+	SetLocalInt(oCopy, "AI_IGNORE", TRUE);
 
     AssignCommand(GetModule(), DelayCommand(1.0, AssignCommand(oCopy, ActionJumpToObject(oTarg,FALSE))));
     AssignCommand(GetModule(), DelayCommand(1.1, AssignCommand(oCopy, SetFacingPoint(GetPosition(oTarg)))));

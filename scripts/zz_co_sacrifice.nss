@@ -96,6 +96,17 @@ void _DoPrayer (object oPC, object oAltar, object oCleric)
   gsWOAdjustPiety(oPC, fPiety);
   gsSTDoCasterDamage(oPC, 1);
 
+  // If worshiping at an altar consecrated to our deity, restore a spell slot.
+  if (GetLevelByClass(CLASS_TYPE_CLERIC, oPC) && gsWOGetDeityByName(GetDeity(oPC)) == nADeity)
+  {
+    int nMaxLevel = (GetLevelByClass(CLASS_TYPE_CLERIC, oPC) + 1 / 2);
+	int nLevel = GetLocalInt(oPC, "GS_WO_LAST_SPELL_LEVEL_RESTORED") + 1;
+	if (nLevel > nMaxLevel) nLevel = 0;
+	
+    ar_RestoreSpell(oPC, nLevel, CLASS_TYPE_CLERIC);
+	SetLocalInt(oPC, "GS_WO_LAST_SPELL_LEVEL_RESTORED", nLevel);
+  }
+  
   // dunshine: check for corpses nearby (only on permanent altars)
   if (GetStringLeft(GetTag(oAltar),5) != "GS_FX") {
     string sCorpse;

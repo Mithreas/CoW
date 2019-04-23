@@ -565,6 +565,8 @@ int gSPGetCanCastWeaponBuff(object oTargetItem)
   while (GetIsItemPropertyValid(ipProperty))
   {
     if (GetItemPropertyDurationType(ipProperty) == DURATION_TYPE_PERMANENT &&
+	    GetItemPropertyType(ipProperty) != ITEM_PROPERTY_MATERIAL &&
+	    GetItemPropertyType(ipProperty) != ITEM_PROPERTY_QUALITY &&
         !(GetItemPropertyType(ipProperty) == ITEM_PROPERTY_BONUS_FEAT &&
           GetItemPropertySubType(ipProperty) == IP_CONST_FEAT_DISARM_WHIP))
     {

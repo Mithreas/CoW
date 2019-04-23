@@ -88,8 +88,8 @@ void main()
             SetLocalInt(oSpeaker, "YOINKING", TRUE);
             SetLocalObject(oSpeaker, "YOINK_TARGET", oTarget);
             
-            SetTimelock(oSpeaker, 60, "Yoink");
-            AddEventTimelockExpired(oSpeaker, "Yoink", "exe_yoinkrst");
+            SetTimelock(oSpeaker, 60, "Yoink Retry");
+            AddEventTimelockExpired(oSpeaker, "Yoink Retry", "exe_yoinkrst");
             
             AssignCommand(oTarget, ClearAllActions());
             AssignCommand(oTarget, ActionDoCommand(StartDlg(oTarget, oTarget, "zdlg_yoink", TRUE, FALSE)));

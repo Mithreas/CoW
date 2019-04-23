@@ -17,6 +17,7 @@ effect SetSummonEffect(int nSpellID, int nUnderdarker);
 
 #include "inc_customspells"
 #include "inc_warlock"
+#include "inc_worship"
 #include "inc_subrace"
 #include "inc_summons"
 #include "inc_timelock"
@@ -192,19 +193,19 @@ effect SetSummonEffect(int nSpellID, int nUnderdarker)
             break;
         case 7:
             nFNF_Effect = VFX_FNF_SUMMON_MONSTER_3;
-            sSummon = GetElementalStreamBlueprint(OBJECT_SELF, STREAM_ELEMENTAL_TIER_HUGE);
+            sSummon = GetPlanarStreamBlueprint(OBJECT_SELF, STREAM_PLANAR_TIER_3, gsWOGetDeityPlanarStream(OBJECT_SELF));
             break;
         case 8:
             nFNF_Effect = VFX_FNF_SUMMON_MONSTER_3;
-            sSummon = GetElementalStreamBlueprint(OBJECT_SELF, STREAM_ELEMENTAL_TIER_GREATER);
+            sSummon = GetPlanarStreamBlueprint(OBJECT_SELF, STREAM_PLANAR_TIER_4, gsWOGetDeityPlanarStream(OBJECT_SELF));
             break;
         case 9:
             nFNF_Effect = VFX_FNF_SUMMON_MONSTER_3;
-            sSummon = GetElementalStreamBlueprint(OBJECT_SELF, STREAM_ELEMENTAL_TIER_ELDER);
+            sSummon = GetPlanarStreamBlueprint(OBJECT_SELF, STREAM_PLANAR_TIER_5, gsWOGetDeityPlanarStream(OBJECT_SELF));
             break;
         case 10:
             nFNF_Effect = VFX_FNF_SUMMON_MONSTER_3;
-            sSummon = GetElementalStreamBlueprint(OBJECT_SELF, STREAM_ELEMENTAL_TIER_ANCIENT);
+            sSummon = GetPlanarStreamBlueprint(OBJECT_SELF, STREAM_PLANAR_TIER_6, gsWOGetDeityPlanarStream(OBJECT_SELF));
             break;
     }
 

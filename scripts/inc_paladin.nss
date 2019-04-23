@@ -95,41 +95,5 @@ void palCheckWIS(object oPC = OBJECT_SELF)
 
 void palDivineMightCheck(object oEquip, object oPC = OBJECT_SELF)
 {
-    // We're checking to make sure a paladin isn't weapon-swapping
-    // after getting 1.5x divine might damage from using a 2H weapon.
-
-    // Declare variables ahead of the while loop
-    int nChaDmg;
-       int nCharismaBonus;
-       int nDamage;
-       effect eDamage;
-       float fDuration;
-
-    effect eEffect = GetFirstEffect(oPC);
-
-    while (GetIsEffectValid(eEffect))
-    {
-
-        if (GetEffectSpellId(eEffect) == SPELL_DIVINE_MIGHT || GetIsTaggedEffect(eEffect, EFFECT_TAG_DIVINE_MIGHT)) {
-
-            // Equipment changed while Divine might was active.
-            // Remove old effect, then reapply a new effect.
-
-            fDuration = IntToFloat(GetEffectDurationRemaining(eEffect));
-            RemoveEffect(oPC, eEffect);
-
-            // 1.5 damage for 2H weapons.  Paladins and Blackguards only.
-            object oWeapon = GetItemInSlot(INVENTORY_SLOT_RIGHTHAND, oPC);
-            nCharismaBonus = GetAbilityModifier(ABILITY_CHARISMA, oPC);
-            if (GetIsObjectValid(oWeapon) && GetWeaponSize(oWeapon, oPC) >= WEAPON_SIZE_TWO_HANDED)
-                nChaDmg = FloatToInt(nCharismaBonus * 1.5);
-            else
-                nChaDmg = nCharismaBonus;
-
-            nDamage = IPGetDamageBonusConstantFromNumber(nChaDmg);
-            eDamage = EffectDamageIncrease(nDamage, DAMAGE_TYPE_DIVINE);
-            ApplyTaggedEffectToObject(DURATION_TYPE_TEMPORARY, eDamage, oPC, fDuration, EFFECT_TAG_DIVINE_MIGHT);
-        }
-        eEffect = GetNextEffect(oPC);
-    }
+  // retired.
 }

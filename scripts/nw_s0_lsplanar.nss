@@ -15,6 +15,7 @@
 #include "inc_spells"
 #include "inc_sumstream"
 #include "inc_customspells"
+#include "inc_worship"
 
 void main()
 {
@@ -89,7 +90,7 @@ void main()
     else
     {
         SummonFromStream(OBJECT_SELF, GetSpellTargetLocation(), HoursToSeconds(nDuration), STREAM_TYPE_PLANAR, STREAM_PLANAR_TIER_2,
-            nVFX, GetSummonVFXDelay(nVFX));
+            nVFX, GetSummonVFXDelay(nVFX), FALSE, FALSE, gsWOGetDeityPlanarStream(OBJECT_SELF));
     }
 }
 

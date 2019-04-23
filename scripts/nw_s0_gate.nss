@@ -34,5 +34,5 @@ void main()
     int nVFX = GetAlignmentBasedGateVFX();
 
     SummonFromStream(OBJECT_SELF, GetSpellTargetLocation(), RoundsToSeconds(AR_GetCasterLevel(OBJECT_SELF)), STREAM_TYPE_PLANAR, STREAM_PLANAR_TIER_GATE,
-        nVFX, GetSummonVFXDelay(nVFX));
+        nVFX, GetSummonVFXDelay(nVFX), FALSE, FALSE, gsWOGetDeityPlanarStream(OBJECT_SELF));
 }

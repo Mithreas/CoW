@@ -7,7 +7,7 @@
 #include "inc_worship"
 #include "inc_examine"
 
-const string HELP = "If a character has Greater Spell Focus: Transmutation they can teleport.  Use -teleport mark to save a location, and -teleport to return to it later.";
+const string HELP = "If a character has Epic Spell Focus: Transmutation they can teleport.  Use -teleport mark to save a location, and -teleport to return to it later.";
 
 void main()
 {
@@ -30,10 +30,10 @@ void main()
 			SetLocalString(oHide, "ESF_TELEPORT_LOCATION", APSLocationToString(lLocation));
         }
         else {
-            SendMessageToPC(oSpeaker, "<cþ  >You must have Epic Spell Focus in Transmutation to create a temporary portal.");
+            SendMessageToPC(oSpeaker, "<cþ  >You must have Epic Spell Focus in Transmutation to teleport.");
         }
     } else {
-        if (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_TRANSMUTATION, oSpeaker)) {
+        if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_TRANSMUTATION, oSpeaker)) {
             if (!GetIsObjectValid(GetAreaFromLocation(lLocation)))
 			{
 			  FloatingTextStringOnCreature("You must mark a location before you can return to it.", oSpeaker);			  
@@ -59,7 +59,7 @@ void main()
             }
         }
         else {
-            SendMessageToPC(oSpeaker, "<cþ  >You must have Greater Spell Focus in Transmutation to teleport.");
+            SendMessageToPC(oSpeaker, "<cþ  >You must have Epic Spell Focus in Transmutation to teleport.");
         }
     }
     chatVerifyCommand(oSpeaker);

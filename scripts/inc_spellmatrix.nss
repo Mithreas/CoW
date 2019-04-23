@@ -93,6 +93,9 @@ void _arDoChaosMessage(object oCaster, object oTarget, string sMessage);
 //:: CLASS_TYPE_PALADIN or CLASS_TYPE_RANGER.
 void ar_RestoreLastSpell(int nForClass);
 
+//:: Restores the first non-read spell of nSpellLevel for nClass on oCreature.
+void ar_RestoreSpell(object oCreature, int nSpellLevel, int nClass);
+
 //:: Called from Spellhooks, will restore the spell cast by Wizards only.
 void ar_RestoreLastWizardSpell();
 
@@ -930,6 +933,26 @@ void ar_RestoreLastSpell(int nForClass) {
     }
 }
 
+void ar_RestoreSpell(object oCreature, int nSpellLevel, int nClass)
+{
+    //::  Loop Memorized Spells
+    struct NWNX_Creature_MemorisedSpell mss;
+    int nMaxSlots = NWNX_Creature_GetMaxSpellSlots(oCreature, nClass, nSpellLevel);
+    int x;
+	
+    for( x = 0; x <= nMaxSlots; x++ )
+    {
+        mss = NWNX_Creature_GetMemorisedSpell(oCreature, nClass, nSpellLevel, x);
+
+        //::  Found a used spell, so replenish it.
+        if( mss.ready == FALSE) {
+            mss.ready = TRUE;
+            NWNX_Creature_SetMemorisedSpell(oCreature, nClass, nSpellLevel, x, mss);
+            break;
+        }
+    }
+}
+
 void ar_RestoreLastWizardSpell() {
   ar_RestoreLastSpell(CLASS_TYPE_WIZARD);
 }
@@ -968,7 +991,7 @@ void ar_RestoreFavouredSoulSpell()
       mss.ready = FALSE;
       NWNX_Creature_SetMemorisedSpell(OBJECT_SELF, CLASS_TYPE_CLERIC, nSpellLevel, x, mss);
     }
-  }
+  }  
 }
 
 void ar_ApplySummonBonuses(object oCaster) {

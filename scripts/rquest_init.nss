@@ -1039,4 +1039,16 @@ void main()
   SetStringValue(QUEST+REWARD_FAC_REP, "2", DB_VARS);
   SetStringValue(QUEST+LEVEL_RANGE, "07_10", DB_VARS);
   SetStringValue(QUEST+TARGET_TAG, "qst_orc_scout", DB_VARS);  
+  
+  QUEST = "boss_heads";  
+  SetStringValue(QUEST+QUEST_TYPE, RETRIEVE, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION,
+   "The plague has brought more danger to our village, desperate creatures that will not live alongside us and need to be " +
+   "culled.  Bring me two heads from creatures that mean us harm.",
+   DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "200", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
+  SetStringValue(QUEST+ITEM_TAG, "GS_HEAD_EVIL", DB_VARS);
+  SetStringValue(QUEST+NUM_ITEMS, "2", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
 }

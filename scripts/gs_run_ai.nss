@@ -39,12 +39,13 @@ void main()
     //ai setting
     int nMatrix = gsAIGetActionMatrix();
 
-    if (nMatrix & GS_AI_ACTION_TYPE_FOLLOW &&
-        gsCBTalentFollow())
-    {
-        SetAILevel(oSelf, AI_LEVEL_LOW);
-        return;
-    }
+	// Stop NPCs crossing areas for now.  
+    //if (nMatrix & GS_AI_ACTION_TYPE_FOLLOW &&
+    //    gsCBTalentFollow())
+    //{
+    //    SetAILevel(oSelf, AI_LEVEL_LOW);
+    //    return;
+    //}
 
     // Do special behaviors <<++ Added By Space Pirate March 2011
     if (spAIDetermineSpecialBehavior() ||

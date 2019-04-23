@@ -92,7 +92,12 @@ void main()
     // Send image logic.
     else
     {
-        if (GetIsObjectValid(oTarget))
+	
+	    if (!miREHasRelationship(oSpeaker, oTarget))
+	    {
+          SendMessageToPC(oSpeaker, "<cþ£ >You may only send a message to someone you have previously interacted with.");
+	    }
+        else if (GetIsObjectValid(oTarget))
         {
             SetLocalInt(oSpeaker, "MI_SENDING", 1);
             SetLocalObject(oSpeaker, "MI_SEND_TARGET", oTarget);

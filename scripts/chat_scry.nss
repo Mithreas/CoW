@@ -5,6 +5,7 @@
 #include "inc_spell"
 #include "inc_worship"
 #include "inc_examine"
+#include "inc_relations"
 
 const string HELP1 = "<cþôh>-scry </c><cþ£ >[Text]</c>\nUse this to scry on the character named <cþ£ >Text</c>. <cþ£ >Text</c> Need only be the first few letters of a character, so 'Joh' will work on 'John Doe'. You can also send -scry as a tell to someone to scry on that person.";
 const string HELP2 = "\n\nIf you are scrying on a disguised individual, you may use their disguised name to target, without the (Disguised) tag, or their real name if you know it.";
@@ -59,8 +60,14 @@ void main()
       {
         SendMessageToPC(oSpeaker, "<cþ£ >Could not find character: " + sParams);
       }
+	  else if (!miREHasRelationship(oSpeaker, oTarget))
+	  {
+        SendMessageToPC(oSpeaker, "<cþ£ >You may only scry on someone you have previously interacted with.");
+	  }
       else
       {
+
+	    
         if ((GetLevelByClass(CLASS_TYPE_CLERIC, oSpeaker) >= 17 ||
              GetLevelByClass(CLASS_TYPE_DRUID, oSpeaker) >= 17)
              && !gsWOAdjustPiety(oSpeaker, -5.0f, FALSE))

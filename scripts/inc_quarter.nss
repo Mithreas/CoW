@@ -367,7 +367,7 @@ void gsQUSetOwner(object oQuarter, object oPC, int nTimeout = 0)
       nTimeout = GetLocalInt(oQuarter, "GS_TIMEOUT");
 
       // Default to a sensible value if we can't find one configured.
-      if (!nTimeout) nTimeout = 604800;
+      if (!nTimeout) nTimeout = 172800;
 
       // Convert real time to game time.
       nTimeout = gsTIGetGameTimestamp(nTimeout);

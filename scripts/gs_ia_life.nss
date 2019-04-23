@@ -11,16 +11,8 @@ void main()
     if (! GetIsPC(oUsedBy))              return;
     if (GetIsPossessedFamiliar(oUsedBy)) return;
 
-    //timeout, dunshine: no longer use bio db for this, but pc hide
-    //int nTimeout       = gsTIGetGameTimestamp(GetLocalInt(GetModule(), "GS_DEATH_TIMEOUT")) -
-    //                     gsTIGetActualTimestamp() +
-    //                     GetCampaignInt("GS_DEATH_TIMESTAMP", gsPCGetPlayerID(oUsedBy));
     int nTimeout;
     //rollback int PvPDeath = GetLocalInt(gsPCGetCreatureHide(oUsedBy), "SEP_LAST_DEATH_IS_PVP");
-
-    //rollback     // These values should be 20 minutes and 5 minutes respectively.
-    //rollback     int nDeathTimeout = (PvPDeath) ? GetLocalInt(GetModule(), "GS_DEATH_TIMEOUT")*4 : GetLocalInt(GetModule(), "GS_DEATH_TIMEOUT");
-    //rollback     nTimeout = gsTIGetGameTimestamp(nDeathTimeout) + GetLocalInt(gsPCGetCreatureHide(oUsedBy), "GS_DEATH_TIMESTAMP") - gsTIGetActualTimestamp();
 
     // temp logging to detect a bug with crossing servers in the death area, before respawning increasing the time-out, seems something is iffy about the times or variables between the two servers
     WriteTimestampedLogEntry("RESPAWN DEBUG: REPAWN ATTEMPT, SERVER = " + miXFGetCurrentServer()  + ", PC = " + GetName(oUsedBy) + ", GS_DEATH_TIMEOUT = " + IntToString(gsTIGetGameTimestamp(GetLocalInt(GetModule(), "GS_DEATH_TIMEOUT"))) + ", GS_DEATH_TIMESTAMP = " + IntToString(GetLocalInt(gsPCGetCreatureHide(oUsedBy), "GS_DEATH_TIMESTAMP")) + ", gsTIGetActualTimestamp = " + IntToString(gsTIGetActualTimestamp()));

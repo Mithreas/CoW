@@ -40,7 +40,7 @@ void main()
     effect eDur = EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE);
 
     int nMetaMagic = AR_GetMetaMagicFeat();
-    int nRaise = d4(1) + 1;
+    int nRaise = 4;
     int nDuration = AR_GetCasterLevel(OBJECT_SELF);
     //Fire cast spell at event for the specified target
     SignalEvent(oTarget, EventSpellCastAt(OBJECT_SELF, SPELL_FOXS_CUNNING, FALSE));
@@ -55,7 +55,7 @@ void main()
     //Enter Metamagic conditions
     if (nMetaMagic == METAMAGIC_MAXIMIZE)
     {
-        nRaise = 5;//Damage is at max
+        nRaise = 4;//Damage is at max
     }
     else if (nMetaMagic == METAMAGIC_EMPOWER)
     {

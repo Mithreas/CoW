@@ -101,6 +101,12 @@ const int STREAM_PLANAR_YUGOLOTH = 0x08;
 const int STREAM_PLANAR_DEMON = 0x10;
 const int STREAM_PLANAR_ANY = 31; /* STREAM_PLANAR_CELESTIAL | STREAM_PLANAR_SLAAD | STREAM_PLANAR_DEVIL | STREAM_PLANAR_YUGOLOTH | STREAM_PLANAR_DEMON */
 
+// Note - these duplicate/overwrite the names above for backwards compatibility.
+const int STREAM_PLANAR_7DIVINES = 0x01;
+const int STREAM_PLANAR_BALANCE  = 0x02;
+const int STREAM_PLANAR_MAGIC    = 0x04;
+const int STREAM_PLANAR_BEAST    = 0x08;
+
 const int STREAM_UNDEAD_ZOMBIE = 0x0;
 const int STREAM_UNDEAD_GHOUL = 0x01;
 const int STREAM_UNDEAD_ANY = STREAM_UNDEAD_GHOUL;
@@ -188,9 +194,6 @@ int GetActiveSummonStreamAlignmentLawChaos(object oCreature, int nStreamType, in
 // Returns the VFX associated with the active stream alignment (e.g. if
 // demon is the active stream, GATE_VFX_EVIL will be returned).
 int GetAlignmentBasedGateVFX(object oCreature = OBJECT_SELF, int nStreamType = STREAM_TYPE_PLANAR, int nAllowedStreams = STREAM_ELEMENT_ANY);
-// Returns all evil-aligned planar streams adjacent to the blackguard's alignment
-// (e.g. devils and yugoloths for a LE blackguard).
-int GetAvailableBlackguardPlanarStreams(object oCreature);
 // Returns a dragon stream blueprint of the given tier.
 string GetDragonStreamBlueprint(object oCreature, int nTier, int nAllowedStreams = STREAM_ELEMENT_ANY);
 // Returns an elemental stream blueprint of the given tier.
@@ -432,33 +435,6 @@ int GetAlignmentBasedGateVFX(object oCreature = OBJECT_SELF, int nStreamType = S
 }
 
 //::///////////////////////////////////////////////
-//:: GetAvailableBlackguardPlanarStreams
-//:://////////////////////////////////////////////
-/*
-    Returns all evil-aligned planar streams
-    adjacent to the blackguard's alignment
-    (e.g. devils and yugoloths for a LE
-    blackguard).
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: February 28, 2017
-//:://////////////////////////////////////////////
-int GetAvailableBlackguardPlanarStreams(object oCreature)
-{
-    switch(GetAlignmentLawChaos(oCreature))
-    {
-        case ALIGNMENT_LAWFUL:
-            return STREAM_PLANAR_DEVIL | STREAM_PLANAR_YUGOLOTH;
-        case ALIGNMENT_NEUTRAL:
-            return STREAM_PLANAR_DEVIL | STREAM_PLANAR_YUGOLOTH | STREAM_PLANAR_DEMON;
-        case ALIGNMENT_CHAOTIC:
-            return STREAM_PLANAR_YUGOLOTH | STREAM_PLANAR_DEMON;
-    }
-    return 0;
-}
-
-//::///////////////////////////////////////////////
 //:: GetDragonStreamBlueprint
 //:://////////////////////////////////////////////
 /*
@@ -583,7 +559,7 @@ string GetElementalStreamBlueprint(object oCreature, int nTier, int nAllowedStre
         case STREAM_ELEMENTAL_EARTH:
             switch(nTier)
             {
-                case STREAM_ELEMENTAL_TIER_JUVENILE: sBlueprint = "";                break;
+                case STREAM_ELEMENTAL_TIER_JUVENILE: sBlueprint = "sum_earth_ele";   break;
                 case STREAM_ELEMENTAL_TIER_HUGE:     sBlueprint = "nw_s_earthhuge";  break;
                 case STREAM_ELEMENTAL_TIER_GREATER:  sBlueprint = "nw_s_earthgreat"; break;
                 case STREAM_ELEMENTAL_TIER_ELDER:    sBlueprint = "nw_s_earthelder"; break;
@@ -677,10 +653,11 @@ string GetPlanarStreamBlueprint(object oCreature, int nTier, int nAllowedStreams
     }
     else
     {
-        nStream = GetActiveSummonStream(oCreature, STREAM_TYPE_PLANAR);
+	  if (nAllowedStreams & STREAM_PLANAR_7DIVINES) nStream = STREAM_PLANAR_7DIVINES;
+	  else if (nAllowedStreams & STREAM_PLANAR_BALANCE) nStream = STREAM_PLANAR_BALANCE;
+	  else if (nAllowedStreams & STREAM_PLANAR_MAGIC) nStream = STREAM_PLANAR_MAGIC;
+	  else nStream = STREAM_PLANAR_BEAST;
     }
-
-    if(!(nStream & nAllowedStreams)) nStream = STREAM_PLANAR_DEFAULT;
 
     if(nStream == STREAM_PLANAR_DEFAULT)
     {
@@ -700,52 +677,52 @@ string GetPlanarStreamBlueprint(object oCreature, int nTier, int nAllowedStreams
     }
     switch(nStream)
     {
-        case STREAM_PLANAR_CELESTIAL:
+        case STREAM_PLANAR_7DIVINES:
             switch(nTier)
             {
-                case STREAM_PLANAR_TIER_1:    sBlueprint = "sum_cdog";        break;
-                case STREAM_PLANAR_TIER_2:    sBlueprint = "sum_clantern";    break;
-                case STREAM_PLANAR_TIER_3:    sBlueprint = "sum_chound";      break;
-                case STREAM_PLANAR_TIER_4:    sBlueprint = "sum_cavenger";    break;
-                case STREAM_PLANAR_TIER_5:    sBlueprint = "";                break;
-                case STREAM_PLANAR_TIER_6:    sBlueprint = "";                break;
-                case STREAM_PLANAR_TIER_GATE: sBlueprint = "gate_astraldeva"; break;
+                case STREAM_PLANAR_TIER_1:    sBlueprint = "sum_stink_beet";  break;
+                case STREAM_PLANAR_TIER_2:    sBlueprint = "sum_stink_beet";  break;
+                case STREAM_PLANAR_TIER_3:    sBlueprint = "sum_l_plaguebrr"; break;
+                case STREAM_PLANAR_TIER_4:    sBlueprint = "sum_m_plaguebrr"; break;
+                case STREAM_PLANAR_TIER_5:    sBlueprint = "sum_g_plaguebrr"; break;
+                case STREAM_PLANAR_TIER_6:    
+                case STREAM_PLANAR_TIER_GATE: sBlueprint = "sum_angelofdecay"; break;
             }
             break;
-        case STREAM_PLANAR_SLAAD:
+        case STREAM_PLANAR_MAGIC:
             switch(nTier)
             {
-                case STREAM_PLANAR_TIER_1:    sBlueprint = "sum_redslaad";    break;
-                case STREAM_PLANAR_TIER_2:    sBlueprint = "sum_blueslaad";   break;
-                case STREAM_PLANAR_TIER_3:    sBlueprint = "sum_greenslaad";  break;
-                case STREAM_PLANAR_TIER_4:    sBlueprint = "sum_deathslaad";  break;
-                case STREAM_PLANAR_TIER_5:    sBlueprint = "";                break;
-                case STREAM_PLANAR_TIER_6:    sBlueprint = "";                break;
-                case STREAM_PLANAR_TIER_GATE: sBlueprint = "gate_whiteslaad"; break;
+                case STREAM_PLANAR_TIER_1:    sBlueprint = "sum_fire_mephit"; break;
+                case STREAM_PLANAR_TIER_2:    sBlueprint = "sum_fire_mephit"; break;
+                case STREAM_PLANAR_TIER_3:    sBlueprint = "sum_l_phoenix";   break;
+                case STREAM_PLANAR_TIER_4:    sBlueprint = "sum_m_phoenix";   break;
+                case STREAM_PLANAR_TIER_5:    sBlueprint = "sum_g_phoenix";   break;
+                case STREAM_PLANAR_TIER_6:    
+                case STREAM_PLANAR_TIER_GATE: sBlueprint = "sum_e_phoenix";   break;
             }
             break;
-        case STREAM_PLANAR_DEVIL:
+        case STREAM_PLANAR_BALANCE:
             switch(nTier)
             {
-                case STREAM_PLANAR_TIER_1:    sBlueprint = "sum_lemure";    break;
-                case STREAM_PLANAR_TIER_2:    sBlueprint = "nw_s_imp";      break;
-                case STREAM_PLANAR_TIER_3:    sBlueprint = "sum_erinyes";   break;
-                case STREAM_PLANAR_TIER_4:    sBlueprint = "sum_osyluth";   break;
-                case STREAM_PLANAR_TIER_5:    sBlueprint = "sum_gelugon";   break;
-                case STREAM_PLANAR_TIER_6:    sBlueprint = "sum_pitfiend";  break;
+                case STREAM_PLANAR_TIER_1:    sBlueprint = "sum_earth_ele";   break;
+                case STREAM_PLANAR_TIER_2:    sBlueprint = "sum_earth_ele";   break;
+                case STREAM_PLANAR_TIER_3:    sBlueprint = "nw_s_earthhuge";  break;
+                case STREAM_PLANAR_TIER_4:    sBlueprint = "nw_s_earthgreat"; break;
+                case STREAM_PLANAR_TIER_5:    sBlueprint = "nw_s_earthelder"; break;
+                case STREAM_PLANAR_TIER_6:    
                 case STREAM_PLANAR_TIER_GATE: sBlueprint = "gate_pitfiend"; break;
             }
             break;
-        case STREAM_PLANAR_YUGOLOTH:
+        case STREAM_PLANAR_BEAST:
             switch(nTier)
             {
-                case STREAM_PLANAR_TIER_1:    sBlueprint = "sum_arrowbtlloth"; break;
-                case STREAM_PLANAR_TIER_2:    sBlueprint = "sum_xbowbtlloth";  break;
-                case STREAM_PLANAR_TIER_3:    sBlueprint = "sum_marraenoloth"; break;
-                case STREAM_PLANAR_TIER_4:    sBlueprint = "sum_yagnoloth";    break;
-                case STREAM_PLANAR_TIER_5:    sBlueprint = "sum_nycaloth";     break;
-                case STREAM_PLANAR_TIER_6:    sBlueprint = "sum_ultroloth";    break;
-                case STREAM_PLANAR_TIER_GATE: sBlueprint = "gate_ultroloth";   break;
+                case STREAM_PLANAR_TIER_1:    sBlueprint = "ca_sum_u_5";      break;
+                case STREAM_PLANAR_TIER_2:    sBlueprint = "ca_sum_u_5";      break;
+                case STREAM_PLANAR_TIER_3:    sBlueprint = "sum_black_bear";  break;
+                case STREAM_PLANAR_TIER_4:    sBlueprint = "sum_griz_bear";   break;
+                case STREAM_PLANAR_TIER_5:    sBlueprint = "sum_polar_bear";  break;
+                case STREAM_PLANAR_TIER_6:    
+                case STREAM_PLANAR_TIER_GATE: sBlueprint = "sum_dire_bear";   break;
             }
             break;
         case STREAM_PLANAR_DEMON:

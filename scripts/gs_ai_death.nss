@@ -142,8 +142,7 @@ void main()
   int nKiller    = GetIsObjectValid(oKiller) &&
                    GetObjectType(oKiller) == OBJECT_TYPE_CREATURE &&
                    oKiller != oSelf;
-  int nOverride  = gsFLGetAreaFlag("PVP") ||
-                   gsFLGetAreaFlag("OVERRIDE_DEATH");
+  int nOverride  = gsFLGetAreaFlag("OVERRIDE_DEATH");
   int bHasLoot   = TRUE; //GetAbilityScore(oSelf, ABILITY_INTELLIGENCE) >= 6;
 
   // Log NPC death if they're not hostile.

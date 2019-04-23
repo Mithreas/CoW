@@ -121,6 +121,8 @@ string fbWOGetNthPortfolio(int nCategory, int nDeity);
 string fbWOGetAspectName(int nDeity);
 // Convenience method to return the name of the race
 string fbWOGetRacialTypeName(int nDeity);
+// Selects the deity-appropriate planar stream for this PC. 
+int gsWOGetDeityPlanarStream(object oCreature);
 
 object oWOCacheItem = OBJECT_INVALID;
 void __gsWOInitCacheItem()
@@ -135,9 +137,11 @@ int gsWOGetIsDeityAvailable(int nDeity, object oPlayer = OBJECT_SELF)
 {
     if (GetIsDM(oPlayer)) return TRUE;
     if (nDeity == GS_WO_NONE) return TRUE;
-
-
     object oItem = gsPCGetCreatureHide(oPlayer);
+	
+	// Racial restrictions - do these first..
+    if (!GetLocalInt(oItem, "GIFT_OF_UFAVOR") && !gsWOGetIsRacialTypeAllowed(nDeity, oPlayer)) return FALSE;
+
     // Non religious classes can worship anyone.
     if (!gsCMGetHasClass(CLASS_TYPE_CLERIC, oPlayer) &&
         !gsCMGetHasClass(CLASS_TYPE_PALADIN, oPlayer) &&
@@ -147,9 +151,6 @@ int gsWOGetIsDeityAvailable(int nDeity, object oPlayer = OBJECT_SELF)
         !gsCMGetHasClass(CLASS_TYPE_DIVINECHAMPION, oPlayer) &&
         !GetLocalInt(gsPCGetCreatureHide(oPlayer), VAR_FAV_SOUL) &&
         !GetLocalInt(oItem, "GIFT_OF_HOLY")) return TRUE;
-
-    // Racial restrictions.
-    if (!GetLocalInt(oItem, "GIFT_OF_UFAVOR") && !gsWOGetIsRacialTypeAllowed(nDeity, oPlayer)) return FALSE;
 
     // Druids can worship only nature god(desse)s.  Rangers can also, without alignment restrictions
     if ((gsCMGetHasClass(CLASS_TYPE_DRUID, oPlayer) ||
@@ -242,6 +243,35 @@ string gsWOGetNameByDeity(int nDeity)
     return "";
 }
 //----------------------------------------------------------------
+int gsWOGetCategory(int nDeity)
+{
+    switch (nDeity)
+    {
+        case 1:    
+		case 2:    
+		case 3:    
+		case 4:    
+		case 5:    
+		case 6:    
+		case 7:    
+		  return FB_WO_CATEGORY_SEVEN_DIVINES;
+        case 8:    
+		case 21:   
+		case 22:   
+		  return FB_WO_CATEGORY_MAGIC;
+		case 9:    
+		case 10:   
+		case 11:   
+		case 12:   
+		  return FB_WO_CATEGORY_BALANCE;
+		case 99:   
+		default:
+		  return FB_WO_CATEGORY_BEAST_CULTS;
+    }
+
+    return 0;
+}
+//----------------------------------------------------------------
 float gsWOGetPiety(object oPC)
 {
     object oHide = gsPCGetCreatureHide(oPC);
@@ -282,8 +312,6 @@ void gsWOGiveSpellPiety(object oPC, int bHealSpell)
 int gsWOGrantFavor(object oTarget = OBJECT_SELF)
 {
     int GS_WO_TIMEOUT_FAVOR        = 10800; // 3 hours
-    float GS_WO_COST_LESSER_FAVOR    =     5.0f;
-    float GS_WO_COST_GREATER_FAVOR   =    10.0f;
     int GS_WO_PENALTY_PER_LEVEL    =    15;
 
     //deity
@@ -295,31 +323,14 @@ int gsWOGrantFavor(object oTarget = OBJECT_SELF)
         return FALSE;
     }
 
-    //timeout
-    int nTimestamp = gsTIGetActualTimestamp();
-
-    if (GetLocalInt(oTarget, "GS_WO_TIMEOUT_FAVOR") > nTimestamp)
-    {
-        FloatingTextStringOnCreature(gsCMReplaceString(GS_T_16777283, sDeity), oTarget, FALSE);
-        return FALSE;
-    }
-
-    SetLocalInt(oTarget, "GS_WO_TIMEOUT_FAVOR", nTimestamp + GS_WO_TIMEOUT_FAVOR);
-
-    //piety
-    float fPiety  = gsWOGetPiety(oTarget);
-
-    // Removing random chance of triggering.
-    // if (IntToFloat(Random(100)) >= fPiety)
-    // {
-    //    FloatingTextStringOnCreature(gsCMReplaceString(GS_T_16777284, sDeity), oTarget, FALSE);
-    //    return FALSE;
-    // }
+	if (!gsWOGrantBoon(oTarget)) return FALSE;
+	if (gsWOGrantResurrection(oTarget)) return FALSE;
+	if (GetIsDead(oTarget)) return FALSE;
 
     int nFlag      = FALSE;
 
     //greater favor
-    if (fPiety >= GS_WO_COST_GREATER_FAVOR)
+    if (d6() > 3)
     {
         //remove negative effects
         effect eEffect = GetFirstEffect(oTarget);
@@ -370,103 +381,14 @@ int gsWOGrantFavor(object oTarget = OBJECT_SELF)
             eEffect = GetNextEffect(oTarget);
         }
 
-        // int nCurrentHitPoints = GetCurrentHitPoints(oTarget);
-        // int nMaxHitPoints     = GetMaxHitPoints(oTarget);
-
-        //heal
-        // if (nFlag || nCurrentHitPoints < nMaxHitPoints / 3)
-        // {
-        //    ApplyEffectToObject(DURATION_TYPE_INSTANT,
-        //                        EffectHeal(nMaxHitPoints - nCurrentHitPoints),
-        //                        oTarget);
-        //    nFlag = TRUE;
-        //}
-
         if (nHeal > 0)
         {
             ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectHeal(nHeal), oTarget);
             nFlag = TRUE;
         }
 
-        //divine wrath - restricted to religious classes only.
-        int nWRATHDISABLED = TRUE;  // Disabling this feature
-        if (!nFlag && !nWRATHDISABLED &&
-            (gsCMGetHasClass(CLASS_TYPE_CLERIC, oTarget) ||
-             gsCMGetHasClass(CLASS_TYPE_PALADIN, oTarget) ||
-             gsCMGetHasClass(CLASS_TYPE_BLACKGUARD, oTarget)||
-             gsCMGetHasClass(CLASS_TYPE_DRUID, oTarget)||
-             gsCMGetHasClass(CLASS_TYPE_RANGER, oTarget)))
-        {
-            location lLocation = GetLocation(oTarget);
-            object oEnemy      = GetFirstObjectInShape(SHAPE_SPHERE, RADIUS_SIZE_LARGE, lLocation, TRUE);
-            effect eVisual1    = EffectVisualEffect(VFX_FNF_STRIKE_HOLY);
-            effect eVisual2    = EffectVisualEffect(VFX_IMP_SUNSTRIKE);
-            int nDamage        = 0;
-            float fPietyEnemy  = gsWOGetPiety(oEnemy);;
-            int nResistance    = 0;
-            int nNth           = 0;
-
-            while (GetIsObjectValid(oEnemy))
-            {
-                if (GetIsReactionTypeHostile(oEnemy, oTarget) &&
-                    ! gsBOGetIsBossCreature(oEnemy))
-                {
-                    string sDeityEnemy = GetDeity(oEnemy);
-
-                    if (sDeityEnemy != sDeity)
-                    {
-                        if (GetIsPC(oEnemy))
-                        {
-                            nDamage        = d6(FloatToInt(fPiety) * nHitDice / 100);
-                            nResistance    = fPietyEnemy < 1.0 ?
-                                             0 : d6(FloatToInt(fPietyEnemy) * GetHitDice(oEnemy) / 100);
-                        }
-                        else
-                        {
-                            nDamage        = d6(FloatToInt(fPiety));
-                            nResistance    = FloatToInt(gsWOGetPiety(oEnemy)) < 20 ?
-                                             d6(20) : d6(FloatToInt(gsWOGetPiety(oEnemy)));
-                        }
-
-                        //visual effect
-                        ApplyEffectToObject(DURATION_TYPE_INSTANT, eVisual1, oEnemy);
-
-                        if (nResistance < nDamage)
-                        {
-                            FloatingTextStringOnCreature(GS_T_16777481, oEnemy, FALSE);
-
-                            //apply damage
-                            DelayCommand(
-                                1.0,
-                                ApplyEffectToObject(
-                                    DURATION_TYPE_INSTANT,
-                                    EffectLinkEffects(
-                                        eVisual2,
-                                        EffectDamage(
-                                            nDamage - nResistance,
-                                            DAMAGE_TYPE_DIVINE,
-                                            DAMAGE_POWER_ENERGY)),
-                                    oEnemy));
-                        }
-                        else
-                        {
-                            FloatingTextStringOnCreature(GS_T_16777480, oEnemy, FALSE);
-                        }
-
-                        nFlag = TRUE;
-                        nNth++;
-                    }
-                }
-
-                if (nNth >= 3) break; //affects a maximum of 3 creatures
-
-                oEnemy = GetNextObjectInShape(SHAPE_SPHERE, RADIUS_SIZE_LARGE, lLocation, TRUE);
-            }
-        }
-
         if (nFlag)
         {
-            gsWOAdjustPiety(oTarget, -GS_WO_COST_GREATER_FAVOR);
             FloatingTextStringOnCreature(gsCMReplaceString(GS_T_16777285, sDeity), oTarget, FALSE);
             ApplyEffectToObject(DURATION_TYPE_INSTANT,
                                 EffectVisualEffect(VFX_FNF_LOS_HOLY_20),
@@ -483,7 +405,7 @@ int gsWOGrantFavor(object oTarget = OBJECT_SELF)
     }
 
     //lesser favor
-    if (fPiety >= GS_WO_COST_LESSER_FAVOR)
+    else
     {
         //state
         if (gsSTGetState(GS_ST_FOOD, oTarget)  <= 0.0) gsSTAdjustState(GS_ST_FOOD,  25.0);
@@ -516,7 +438,6 @@ int gsWOGrantFavor(object oTarget = OBJECT_SELF)
                             oTarget,
                             600.0);
 
-        gsWOAdjustPiety(oTarget, -GS_WO_COST_LESSER_FAVOR);
         FloatingTextStringOnCreature(gsCMReplaceString(GS_T_16777286, sDeity), oTarget, FALSE);
         ApplyEffectToObject(DURATION_TYPE_INSTANT,
                             EffectVisualEffect(VFX_FNF_LOS_HOLY_10),
@@ -885,4 +806,20 @@ string fbWOGetRacialTypeName(int nDeity)
   }
 
   return sRace;
+}
+//----------------------------------------------------------------
+int gsWOGetDeityPlanarStream(object oCreature)
+{
+    switch(gsWOGetCategory(gsWOGetDeityByName(GetDeity(oCreature))))
+    {
+        case FB_WO_CATEGORY_SEVEN_DIVINES:
+            return STREAM_PLANAR_7DIVINES;
+        case FB_WO_CATEGORY_MAGIC:
+            return STREAM_PLANAR_MAGIC;
+        case FB_WO_CATEGORY_BALANCE:
+            return STREAM_PLANAR_BALANCE;
+		default:
+		    return STREAM_PLANAR_BEAST;
+    }
+    return 0;
 }

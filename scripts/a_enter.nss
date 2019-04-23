@@ -386,7 +386,7 @@ void main()
     if (GetLocalInt(OBJECT_SELF, "MI_DEAD_PEOPLE")) DoDeadPeople();
 
     //remove caravan variable - PC has elected to stay here
-    if (GetTag(OBJECT_SELF) != "OnTheRoad")
+    if (GetTag(OBJECT_SELF) != "OnTheRoad" && GetTag(OBJECT_SELF) != "InTheWoods")
     {
       int nTravelling = GetLocalInt(oEntering, MICA_TRAVELLING);
       if (nTravelling == 2)
@@ -846,7 +846,7 @@ void main()
         // checked correctly.
         string sDeity = GetDeity(oEntering);
 
-        if (sDeity != "" && !gsC2GetHasEffect(EFFECT_TYPE_POLYMORPH, oEntering))
+        if (sDeity != "" && !gsC2GetHasEffect(EFFECT_TYPE_POLYMORPH, oEntering, TRUE))
         {
             int nDeity = gsWOGetDeityByName(sDeity);
 

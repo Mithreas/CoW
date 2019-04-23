@@ -2,7 +2,7 @@
 // Sets the illusion flag for the main combat script.  If an illusion is reduced below 
 // 25% hit points, it vanishes (and drops loot).
 #include "inc_event"
-
+#include "inc_xp"
 //----------------------------------------------------------------
 void main()
 {
@@ -28,6 +28,7 @@ void main()
         if (GetCurrentHitPoints() < GetMaxHitPoints()/4)
         {
 		  SpeakString("**fades away**");
+		  gsXPRewardKill();
           ExecuteScript("gs_ai_death", OBJECT_SELF);
           DestroyObject(OBJECT_SELF);
         }

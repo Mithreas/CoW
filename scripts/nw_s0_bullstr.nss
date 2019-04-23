@@ -10,7 +10,7 @@ void main()
     int nCasterLevel = AR_GetCasterLevel(OBJECT_SELF);
     int nMetaMagic   = AR_GetMetaMagicFeat();
     int nDuration    = nCasterLevel;
-    int nRaise = d4(1) + 1;
+    int nRaise = 4;
     effect eVis = EffectVisualEffect(VFX_IMP_IMPROVE_ABILITY_SCORE);
     effect eDur = EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE);
     effect eRaise;
@@ -32,7 +32,7 @@ void main()
     //Enter Metamagic conditions
     if (nMetaMagic == METAMAGIC_MAXIMIZE)
     {
-        nRaise = 5;//Damage is at max
+        nRaise = 4;//Damage is at max
     }
     else if (nMetaMagic == METAMAGIC_EMPOWER)
     {

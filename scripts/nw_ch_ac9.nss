@@ -107,6 +107,11 @@ void main()
     //SetSpawnInCondition(NW_FLAG_ON_DIALOGUE_EVENT);      //OPTIONAL BEHAVIOR - Fire User Defined Event 1004
     //SetSpawnInCondition(NW_FLAG_DEATH_EVENT);            //OPTIONAL BEHAVIOR - Fire User Defined Event 1007
 
+	if (GetLocalFloat(OBJECT_SELF, "AR_SCALE") > 0.0f)
+	{
+	    SetObjectVisualTransform(OBJECT_SELF, OBJECT_VISUAL_TRANSFORM_SCALE, GetLocalFloat(OBJECT_SELF, "AR_SCALE"));
+	}
+	
     InitializeNPCCooldownAbilities();
     SignalEvent(OBJECT_SELF, EventUserDefined(GS_EV_ON_SPAWN));
 }

@@ -73,9 +73,10 @@ int GetIsNastyWeapon(object oItem)
 //----------------------------------------------------------------
 void main()
 {
-    SignalEvent(OBJECT_SELF, EventUserDefined(GS_EV_ON_PERCEPTION));
-
     object oPerceived = GetLastPerceived();
+    if (GetLocalInt(oPerceived, "AI_IGNORE")) return; // Scrying / sent images.
+	
+    SignalEvent(OBJECT_SELF, EventUserDefined(GS_EV_ON_PERCEPTION));
 
     if (GetLastPerceptionVanished() ||
         GetLastPerceptionInaudible())
@@ -115,7 +116,7 @@ void main()
 	// Elf/human(/halfling) emnity.
 	if ( (GetRacialType(OBJECT_SELF) == RACIAL_TYPE_HUMAN || GetRacialType(OBJECT_SELF) == RACIAL_TYPE_HALFLING) && GetRacialType(oPerceived) == RACIAL_TYPE_ELF 
 	     ||
-		 GetRacialType(OBJECT_SELF) == RACIAL_TYPE_ELF && (GetRacialType(oPerceived) == RACIAL_TYPE_HALFLING || GetRacialType(oPerceived) == RACIAL_TYPE_HUMAN) )
+		 GetRacialType(OBJECT_SELF) == RACIAL_TYPE_ELF && (GetRacialType(oPerceived) == RACIAL_TYPE_HALFLING || GetRacialType(oPerceived) == RACIAL_TYPE_HUMAN) && !GetIsObjectValid(GetItemPossessedBy(oPerceived, "elf_safe_passage")))
 	{
 	    object oPartyMember = GetFirstFactionMember(oPerceived, TRUE);
 		int bHostile = TRUE;
@@ -339,6 +340,29 @@ void main()
         }
       }
     }
+	else if (!GetIsInCombat(OBJECT_SELF) && GetIsDefender(OBJECT_SELF) && GetRacialType(oPerceived) != RACIAL_TYPE_ELF &&
+           (CheckFactionNation(OBJECT_SELF) == NATION_ELF))
+	{
+      object oItem1 = GetItemInSlot(INVENTORY_SLOT_RIGHTHAND, oPerceived);
+      object oItem2 = GetItemInSlot(INVENTORY_SLOT_LEFTHAND, oPerceived);
+
+      if (GetIsNastyWeapon(oItem1) || GetIsNastyWeapon(oItem2))
+      {
+
+        int nNumTimesWarned = GetLocalInt(oPerceived, "elf_weapon_warnings");
+        if (nNumTimesWarned > 9)
+        {
+          SpeakString("You've been warned to put that weapon away often enough.");
+          AddToBounty(NATION_DEFAULT, FINE_DISOBEDIENCE, oPerceived);
+          DeleteLocalInt(oPerceived, "elf_weapon_warnings");
+        }
+        else
+        {
+          SpeakString("Hey, you. You're not allowed to carry weapons in town.");
+          SetLocalInt(oPerceived, "elf_weapon_warnings", nNumTimesWarned + 1);
+        }
+	  }	
+	}
 
     Trace(BOUNTY, "PC sighted by bounty code.");
     int nNation = CheckFactionNation(OBJECT_SELF);

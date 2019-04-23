@@ -544,7 +544,7 @@ void init_feat_list (object oPC)
     //add_feat_to_list(oPC, "Epic DR (3/-)", FEAT_EPIC_DAMAGE_REDUCTION_3);
     //add_feat_to_list(oPC, "Epic DR (6/-)", FEAT_EPIC_DAMAGE_REDUCTION_6);
     //add_feat_to_list(oPC, "Epic DR (9/-)", FEAT_EPIC_DAMAGE_REDUCTION_9);
-    add_feat_to_list(oPC, "Epic Dodge", FEAT_EPIC_DODGE);
+    if (GetKnowsFeat(FEAT_IMPROVED_EVASION, oPC)) add_feat_to_list(oPC, "Epic Dodge", FEAT_EPIC_DODGE); 
     add_feat_to_list(oPC, "Acid Resistance (10)", FEAT_EPIC_ENERGY_RESISTANCE_ACID_1);
     add_feat_to_list(oPC, "Acid Resistance (20)", FEAT_EPIC_ENERGY_RESISTANCE_ACID_2);
     //add_feat_to_list(oPC, "Acid Resistance (30)", FEAT_EPIC_ENERGY_RESISTANCE_ACID_3);
@@ -1138,13 +1138,18 @@ void init_feat_list (object oPC)
 
   if (GetLevelByClass(CLASS_TYPE_HARPER, oPC) && GetLevelByClass(CLASS_TYPE_HARPER, oNPC))
   {
-    add_feat_to_list(oPC, "Sleep", FEAT_HARPER_SLEEP, FALSE, CLASS_TYPE_HARPER);
-    add_feat_to_list(oPC, "Deneir's Eye", FEAT_DENEIRS_EYE, FALSE, CLASS_TYPE_HARPER);
-    add_feat_to_list(oPC, "Lliira's Heart", FEAT_LLIIRAS_HEART, FALSE, CLASS_TYPE_HARPER);
-    add_feat_to_list(oPC, "Cat's Grace", FEAT_HARPER_CATS_GRACE, FALSE, CLASS_TYPE_HARPER);
-    add_feat_to_list(oPC, "Eagle's Splendor", FEAT_HARPER_EAGLES_SPLENDOR, FALSE, CLASS_TYPE_HARPER);
-    if (nPCLevel > 12) add_feat_to_list(oPC, "Craft Harper Item", FEAT_CRAFT_HARPER_ITEM, FALSE, CLASS_TYPE_HARPER);
-    if (nPCLevel > 12) add_feat_to_list(oPC, "Invisibility", FEAT_HARPER_INVISIBILITY, FALSE, CLASS_TYPE_HARPER);
+    int nHarperType  = GetLocalInt(gsPCGetCreatureHide(oPC), VAR_HARPER);
+    // add_feat_to_list(oPC, "Sleep", FEAT_HARPER_SLEEP, FALSE, CLASS_TYPE_HARPER);
+    // if (nPCLevel > 12) add_feat_to_list(oPC, "Invisibility", FEAT_HARPER_INVISIBILITY, FALSE, CLASS_TYPE_HARPER);
+	
+	if(nHarperType == MI_CL_HARPER_SCOUT)
+	{
+      add_feat_to_list(oPC, "Deneir's Eye", FEAT_DENEIRS_EYE, FALSE, CLASS_TYPE_HARPER);
+      add_feat_to_list(oPC, "Lliira's Heart", FEAT_LLIIRAS_HEART, FALSE, CLASS_TYPE_HARPER);
+      add_feat_to_list(oPC, "Cat's Grace", FEAT_HARPER_CATS_GRACE, FALSE, CLASS_TYPE_HARPER);
+      add_feat_to_list(oPC, "Eagle's Splendor", FEAT_HARPER_EAGLES_SPLENDOR, FALSE, CLASS_TYPE_HARPER);
+      if (nPCLevel > 12) add_feat_to_list(oPC, "Craft Harper Item", FEAT_CRAFT_HARPER_ITEM, FALSE, CLASS_TYPE_HARPER);
+	}
   }
 
   if (GetLevelByClass(CLASS_TYPE_PALE_MASTER, oPC) &&
@@ -1168,7 +1173,7 @@ void init_feat_list (object oPC)
     add_feat_to_list(oPC, "Summon Shadow", FEAT_SUMMON_SHADOW, FALSE, CLASS_TYPE_SHADOWDANCER);
     add_feat_to_list(oPC, "Defensive Roll", FEAT_DEFENSIVE_ROLL, FALSE, CLASS_TYPE_SHADOWDANCER);
     add_feat_to_list(oPC, "Slippery Mind", FEAT_SLIPPERY_MIND, FALSE, CLASS_TYPE_SHADOWDANCER);
-    if (nPCLevel > 20) add_feat_to_list(oPC, "Hide in Plain Sight", FEAT_HIDE_IN_PLAIN_SIGHT, FALSE, CLASS_TYPE_SHADOWDANCER);
+    //if (nPCLevel > 20) add_feat_to_list(oPC, "Hide in Plain Sight", FEAT_HIDE_IN_PLAIN_SIGHT, FALSE, CLASS_TYPE_SHADOWDANCER); -- back to granting this at level 1
   }
 
   if (GetLevelByClass(CLASS_TYPE_SHIFTER, oPC) && GetLevelByClass(CLASS_TYPE_SHIFTER, oNPC))

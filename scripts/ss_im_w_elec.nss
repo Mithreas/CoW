@@ -46,7 +46,8 @@ void main()
 	if (gsTIGetActualTimestamp() > nTimer)
 	{
 		SetLocalInt(oSpellOrigin, "SS_IM_W_TM_ELEC", gsTIGetActualTimestamp());
-		ki_DoMissileStorm(nDice, nMaxTargets, nSpell, VFX_IMP_MIRV_ELECTRIC, VFX_IMP_LIGHTNING_S, DAMAGE_TYPE_ELECTRICAL, TRUE, TRUE, nSaveDC);
+		ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectDamage(d4(nDice), DAMAGE_TYPE_ELECTRICAL), oTargetPrimary);
+		//ki_DoMissileStorm(nDice, nMaxTargets, nSpell, VFX_IMP_MIRV_ELECTRIC, VFX_IMP_LIGHTNING_S, DAMAGE_TYPE_ELECTRICAL, TRUE, TRUE, nSaveDC);
 	}
 
 

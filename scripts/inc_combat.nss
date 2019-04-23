@@ -1,4 +1,5 @@
 /* COMBAT Library by Gigaschatten */
+/* COMBAT Library by Gigaschatten */
 
 #include "inc_boss"
 #include "inc_names"
@@ -879,7 +880,8 @@ void gsCBDetermineCombatRound(object oTarget = OBJECT_INVALID)
 	// Feint? NB - this will always return FALSE even if a feint is attempted.
 	if (Random(100) >= 80 && gsCBTalentFeint(oTarget)) return;
 
-    if (Random(100) >= 80 && gsCBTalentDragonWing(oTarget)) return;
+	// Note - wing buffet will actually fire every other time this is called.
+    if (Random(100) >= 60 && gsCBTalentDragonWing(oTarget)) return;
     gsCBTalentAttack(oTarget);
 }
 //----------------------------------------------------------------
@@ -1598,6 +1600,17 @@ int ___gsCBTalentDragonWing(location lLocation)
 {
     if (GetCreatureSize(OBJECT_SELF) != CREATURE_SIZE_HUGE) return FALSE;
 
+	// Avoid doing it two rounds in a row.
+	if (GetLocalInt(OBJECT_SELF, "WINGED"))
+	{
+	  DeleteLocalInt(OBJECT_SELF, "WINGED");
+	  return FALSE;
+	}
+	else
+	{
+	  SetLocalInt(OBJECT_SELF, "WINGED", TRUE);
+	}
+	
     object oTarget = GetFirstObjectInShape(SHAPE_SPHERE, RADIUS_SIZE_COLOSSAL, lLocation);
     int nFlag      = FALSE;
 

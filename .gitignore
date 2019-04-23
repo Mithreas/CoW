@@ -2,7 +2,9 @@
 # Exclude files that have plot secrets in them. 
 scripts/ai_darklady.nss
 scripts/ai_fairyqueen.nss
+scripts/ai_maliavera.nss
 scripts/ai_nymphtalk.nss
+scripts/ai_watchcomm.nss
 
 # Exclude ncs files that creep in. 
 scripts/*.ncs

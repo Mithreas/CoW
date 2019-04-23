@@ -41,7 +41,7 @@ void main()
 
 
     int nMetaMagic = AR_GetMetaMagicFeat();
-    int nRaise = d4(1) + 1;
+    int nRaise = 4;
     int nDuration = AR_GetCasterLevel(OBJECT_SELF);
 
      // Transmutation Buff: add +1 from GSF, +2 from ESF
@@ -54,7 +54,7 @@ void main()
     //Enter Metamagic conditions
     if (nMetaMagic == METAMAGIC_MAXIMIZE)
     {
-        nRaise = 5;//Damage is at max
+        nRaise = 4;//Damage is at max
     }
     else if (nMetaMagic == METAMAGIC_EMPOWER)
     {

@@ -118,7 +118,7 @@ void gsPCCacheValues(object oPC)
   SQLExecStatement("SELECT a.bank, a.c1, a.c2, a.c3, a.c4, a.c5, a.c6, a.c_timeout, " +
     "a.c_points, a.current_location, a.respawn_location, a.subrace_applied, a.nation, " +
     "a.awia, a.subrace, b.id, b.cdkey, b.rp, b.lastvote, a.deleted FROM gs_pc_data AS a LEFT JOIN gs_player_data AS b ON " +
-    "b.id = ? WHERE a.id = ? LIMIT 1", GetPCPublicCDKey(oPC), gsPCGetPlayerID(oPC));
+    "b.id = a.keydata WHERE a.id = ? LIMIT 1", gsPCGetPlayerID(oPC));
 
   if (SQLFetch())
   {

@@ -41,6 +41,7 @@
 // Path lists - FW_Init() sets these up to contain a list of area template resrefs.
 const string FW_PATH_PFWF = "FW_PERENOR_FEYWILDS_FRINGE";
 const string FW_PATH_PFWD = "FW_PERENOR_FEYWILDS_DEEP";
+const string FW_PATH_ELF  = "FW_ELF_FEYWILDS_1";
 const string UC_HOUSES    = "UNDERCITY_HOUSES";
 const string PC_HOUSES    = "PARLI_HOUSES";
 const string ENDS         = "_ENDINGS"; // Added to another list name for the endings.
@@ -102,6 +103,26 @@ void FW_Init()
   AddStringElement("perfeydlifetree", FW_PATH_PFWD + ENDS, oMod); // Tree of Life
   AddStringElement("perfeyddreamend", FW_PATH_PFWD + ENDS, oMod); // Ysera
   AddStringElement("perfeydfqueencrt", FW_PATH_PFWD + ENDS, oMod); // Fairy Queen's Court
+  
+  DeleteList(FW_PATH_ELF, oMod);
+  DeleteList(FW_PATH_ELF + ENDS, oMod);
+  
+  AddStringElement("PerFeyDryad", FW_PATH_ELF, oMod);  // Dryad grove
+  AddStringElement("PerFeyRuins", FW_PATH_ELF, oMod); // Annoyed pixies 
+  AddStringElement("PerFeyLivFor", FW_PATH_ELF, oMod);  // Living Forest
+  AddStringElement("PerFeyWispWood", FW_PATH_ELF, oMod);  // Wispering Woods
+  AddStringElement("PerFeyWispWood2", FW_PATH_ELF, oMod); // Wisps and dead people
+  AddStringElement("PerFeyNymPool", FW_PATH_ELF, oMod); // Riddling nymph
+  AddStringElement("PerFeyMistWood", FW_PATH_ELF, oMod);  // bear and friends.
+  AddStringElement("PerFeyMistWood2", FW_PATH_ELF, oMod);  // wolves
+  AddStringElement("PerFeyMistWood3", FW_PATH_ELF, oMod);  // Illusionary terrain
+  AddStringElement("perfeydwetlands", FW_PATH_ELF, oMod); // Water elementals
+  AddStringElement("perfeydcanyon", FW_PATH_ELF, oMod);   // Air elementals
+  AddStringElement("perfeydmistwoods", FW_PATH_ELF, oMod);   // Old bear
+  AddStringElement("perfeydmistwo001", FW_PATH_ELF, oMod);  // Giant Spiders
+  AddStringElement("perfeyddreamscap", FW_PATH_ELF, oMod);  // Emerald Dreamings
+  AddStringElement("perfeyddreamsca2", FW_PATH_ELF, oMod);  // Emerald Dreamings
+  
   
   // Undercity houses
   DeleteList(UC_HOUSES, oMod);

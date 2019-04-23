@@ -89,6 +89,8 @@ void miCADoJourney(string sDestinationTag, int bType = TRAVEL_TYPE_LAND)
   {
     SpeakString("*departs with the ship*");
 	// Todo: travel duration and ship.
+	
+    SetLocalInt(oPC, MICA_TRAVELLING, 2);
 	AssignCommand(oPC, ActionJumpToObject(GetObjectByTag(sDestinationTag)));
   }	
   else if (bType == TRAVEL_TYPE_RANGER)
