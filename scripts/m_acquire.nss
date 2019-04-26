@@ -390,7 +390,8 @@ void main()
     }
 
     // item removed from container
-    if (!bShop && GetEventScript(oAcquiredFrom, EVENT_SCRIPT_PLACEABLE_ON_OPEN) == "gs_co_open")
+    if ((!bShop && GetEventScript(oAcquiredFrom, EVENT_SCRIPT_PLACEABLE_ON_OPEN) == "gs_co_open") ||
+	    GetStringLeft(GetTag(oAcquiredFrom), 12) == "GS_INVENTORY")
     {
       string sFrom = GetLocalString(oAcquiredFrom, "MD_OPN_ID");
       if(sFrom == "") sFrom = GetTag(oAcquiredFrom);
@@ -410,7 +411,7 @@ void main()
         // Don't destroy the corpse if not, though.
     }
 
-    // check for the aquiring of a slave clamp, if so, add the (Slave) tag behind the name
+    // check for the acquiring of a slave clamp, if so, add the (Slave) tag behind the name
     if (sTag == "gvd_slave_clamp") {
       // add the (Slave) addition to the dynamic name of the PC
       if (GetIsPCDisguised(oAcquiredBy) == TRUE) {

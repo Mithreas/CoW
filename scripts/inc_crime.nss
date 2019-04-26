@@ -83,7 +83,10 @@ const int FACTION_FEY                  = 21;
 const int FACTION_ELF_COMMONER         = 22;
 const int FACTION_ELF_DEFENDER         = 23;
 
-const int NUM_FACTIONS                 = 24;
+const int FACTION_VYVIAN_MERCS         = 24;
+const int FACTION_ELF_MERCS            = 25;
+
+const int NUM_FACTIONS                 = 26;
 
 /* Bounty values for crimes. */
 
@@ -384,6 +387,16 @@ int CheckFactionNation(object oNPC, int nCountMercenaries = FALSE)
       case FACTION_SHADOW_MERCS:
       {
         nNation = NATION_SHADOW;
+        break;
+      }
+	 case FACTION_VYVIAN_MERCS:
+      {
+        nNation = NATION_VYVIAN;
+        break;
+      }
+	 case FACTION_ELF_MERCS:
+      {
+        nNation = NATION_ELF;
         break;
       }
     }

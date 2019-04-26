@@ -28,6 +28,7 @@ void main()
 			ApplyEffectAtLocation(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_HEAD_COLD), GetLocation(oSpeaker));
 			gsSTDoCasterDamage(oSpeaker, 5);
 			SetLocalString(oHide, "ESF_TELEPORT_LOCATION", APSLocationToString(lLocation));
+		    FloatingTextStringOnCreature("You have set your mark here, and can return here as your will dictates.", oSpeaker);	
         }
         else {
             SendMessageToPC(oSpeaker, "<cþ  >You must have Epic Spell Focus in Transmutation to teleport.");

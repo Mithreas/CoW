@@ -6,6 +6,7 @@
 #include "inc_spell"
 #include "inc_worship"
 #include "inc_examine"
+#include "inc_relations"
 #include "inc_timelock"
 
 const string HELP = "<cþôh>-yoink </c><cþ£ >[Text]</c>\nIf a character has Epic Spell Focus: Conjuration, they get a bonus spell once per day that allows them to summon another PC to their location (the summoned PC gets a chance to decline!). The character whose name starts with <cþ£ >[Text]</c> will be summoned, or alternatively you can send this command as a Tell to the target. Using Yoink will consume Piety/Spell Components only if the summoning is successful. If unsuccessful, there is a one-minute cooldown before you can try again.";
@@ -55,7 +56,11 @@ void main()
       if (!GetIsObjectValid(oTarget))
       {
         SendMessageToPC(oSpeaker, "<cþ£ >Could not find character: " + sParams);
-      }
+      }	
+	  else if (!miREHasRelationship(oSpeaker, oTarget))
+	  {
+        SendMessageToPC(oSpeaker, "<cþ£ >You may only summon someone you have previously interacted with.");
+	  }
       else
       {
         // Allow one SUCCESFUL Yoink per rest

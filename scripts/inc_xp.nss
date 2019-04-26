@@ -64,12 +64,12 @@ int gsXPGetIsPrestigeClass(int nClass);
 // Returns xp multiplier for the given party size.
 float GetPartyExperienceMultiplier(float fPartySize);
 // Distributes XP to all PC party members within the given range.
-void _DistributePartyExperience(object oPC, int nAmount, float fRange, object oVictim);
+void _DistributePartyExperience(object oPC, int nAmount, float fRange, object oVictim, string sRandom);
 // Returns a "CR" value for the PC, either the PC's level or the CR of their most
 // powerful summon, whichever is higher.
 float _GetPCChallengeRating(object oPC, float fRange, object oVictim);
 // Counts and returns all party members with range of the given PC as a party struct.
-struct Party _CountParty(struct Party party, object oPC, float fRange, object oVictim);
+struct Party _CountParty(struct Party party, object oPC, float fRange, object oVictim, string sRandom);
 
 //----------------------------------------------------------------
 int _AdjustXPForECL(int nAmount, object oCreatureToReward)
@@ -140,8 +140,12 @@ void gsXPRewardKill(object oVictim = OBJECT_SELF, float fRange = 40.0)
 	
 	if (fRatingVictim < 1.0f) fRatingVictim = 1.0f;
 
+	// Create a random seed in case multiple NPC deaths are being processed at once (e.g. AoE effects) to avoid the "this PC has
+	// been rewarded" flag from firing. 
+	string sRandom = IntToString(Random(99999));
+	
     //compute rating
-    if(oVictim == OBJECT_SELF) party = _CountParty(party, GetLastKiller(), fRange, oVictim);
+    if(oVictim == OBJECT_SELF) party = _CountParty(party, GetLastKiller(), fRange, oVictim, sRandom);
     oCreature   = GetFirstObjectInShape(SHAPE_SPHERE, fRange, lLocation, TRUE);
 
     while (GetIsObjectValid(oCreature))
@@ -152,7 +156,7 @@ void gsXPRewardKill(object oVictim = OBJECT_SELF, float fRange = 40.0)
         {
             if (GetIsPC(oCreature) || GetIsPC(GetMaster(oCreature)))
             {
-                party = _CountParty(party, oCreature, fRange, oVictim);
+                party = _CountParty(party, oCreature, fRange, oVictim, sRandom);
             }
             else
             {
@@ -187,16 +191,16 @@ void gsXPRewardKill(object oVictim = OBJECT_SELF, float fRange = 40.0)
     nExperience = FloatToInt(fExperience);
     if (nExperience <= 0)                    nExperience  = 1;
     else if (gsBOGetIsBossCreature(oVictim)) nExperience *= 4;
-
+	
     //distribute experience
     oCreature   = GetFirstObjectInShape(SHAPE_SPHERE, fRange, lLocation, TRUE);
-
+	
     while (GetIsObjectValid(oCreature))
     {
         if (GetIsPC(oCreature)  &&
             GetIsReactionTypeHostile(oVictim, oCreature))
         {
-            _DistributePartyExperience(oCreature, nExperience, fRange, oVictim);
+            _DistributePartyExperience(oCreature, nExperience, fRange, oVictim, sRandom);
         }
 
         oCreature = GetNextObjectInShape(SHAPE_SPHERE, fRange, lLocation, TRUE);
@@ -208,7 +212,7 @@ void gsXPRewardKill(object oVictim = OBJECT_SELF, float fRange = 40.0)
         // members are in LoS.
         oCreature = GetLastKiller();
         if(GetIsObjectValid(GetMaster(oCreature))) oCreature = GetMaster(oCreature);
-        _DistributePartyExperience(oCreature, nExperience, fRange, oVictim);
+        _DistributePartyExperience(oCreature, nExperience, fRange, oVictim, sRandom);
     }
 }
 //----------------------------------------------------------------
@@ -660,18 +664,18 @@ float GetPartyExperienceMultiplier(float fPartySize)
     return 0.95;
 }
 // Distributes XP to all PC party members within the given range.
-void _DistributePartyExperience(object oPC, int nAmount, float fRange, object oVictim)
+void _DistributePartyExperience(object oPC, int nAmount, float fRange, object oVictim, string sRandom)
 {
     object oMember = GetFirstFactionMember(oPC);
 
     while(GetIsObjectValid(oMember))
     {
-        if(!GetLocalInt(oMember, "PartyXPDistributed") &&
+        if(!GetLocalInt(oMember, "PartyXPDistributed" + sRandom) &&
             ((GetDistanceBetween(oMember, oVictim) <= fRange && GetDistanceBetween(oMember, oVictim) != 0.0 && GetArea(oMember) == GetArea(oVictim)) || oPC == oMember))
         {
             gsXPGiveExperience(oMember, nAmount, TRUE, TRUE);
-            SetLocalInt(oMember, "PartyXPDistributed", TRUE);
-            DelayCommand(0.0, DeleteLocalInt(oMember, "PartyXPDistributed"));
+            SetLocalInt(oMember, "PartyXPDistributed" + sRandom, TRUE);
+            DelayCommand(0.0, DeleteLocalInt(oMember, "PartyXPDistributed" + sRandom));
         }
         oMember = GetNextFactionMember(oPC);
     }
@@ -701,7 +705,7 @@ float _GetPCChallengeRating(object oPC, float fRange, object oVictim)
 }
 
 // Counts and returns all party members with range of the given PC as a party struct.
-struct Party _CountParty(struct Party party, object oPC, float fRange, object oVictim)
+struct Party _CountParty(struct Party party, object oPC, float fRange, object oVictim, string sRandom)
 {
     float fCR;
     object oMember = GetFirstFactionMember(oPC, FALSE);
@@ -711,7 +715,7 @@ struct Party _CountParty(struct Party party, object oPC, float fRange, object oV
         // dunshine: don't count lassoed creatures in the rating calculations
         if (NWNX_Object_GetEventHandler(oMember, CREATURE_EVENT_HEARTBEAT) != "gvd_roped_hb") {
 
-          if(!GetLocalInt(oMember, "PartyMemberCounted") &&
+          if(!GetLocalInt(oMember, "PartyMemberCounted" + sRandom) &&
             ((GetDistanceBetween(oMember, oVictim) <= fRange && GetDistanceBetween(oMember, oVictim) != 0.0 && GetArea(oMember) == GetArea(oVictim)) || oPC == oMember))
           {
             if(GetIsPC(oMember))
@@ -725,8 +729,8 @@ struct Party _CountParty(struct Party party, object oPC, float fRange, object oV
             {
                 party.countAssociates++;
             }
-            SetLocalInt(oMember, "PartyMemberCounted", TRUE);
-            DelayCommand(0.0, DeleteLocalInt(oMember, "PartyMemberCounted"));
+            SetLocalInt(oMember, "PartyMemberCounted" + sRandom, TRUE);
+            DelayCommand(0.0, DeleteLocalInt(oMember, "PartyMemberCounted" + sRandom));
           }
         }
         oMember = GetNextFactionMember(oPC, FALSE);

@@ -211,7 +211,7 @@ int miREHasRelationship(object oPCA, object oPCB)
     string sPCb = gsPCGetPlayerID(oPCB);
     string sPCa = gsPCGetPlayerID(oPCA);
 
-    if (sID == "" || sMyID == "") return;
+    if (sPCb == "" || sPCa == "") return FALSE;
 
 
     // A&B should always be in ascending order.

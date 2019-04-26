@@ -159,7 +159,7 @@ void main()
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpWeapons, "Duskwood Club", "wblcl008", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpWeapons, "Duskwood Club", "wblcl004", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrstaveshort3", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 10);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 100, 100);

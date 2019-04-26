@@ -2,7 +2,7 @@
 #include "inc_examine"
 #include "inc_bonuses"
 
-const string HELP = "Large creatures can activate this mode for two-handing Large melee weapons. Activate by using: <cþôh>-twohand</c>, deactivate by typing the command again. While this mode is active no off-hand can be equipped. Medium sized creatures can also apply Two-handing mode with a Bastard Sword.";
+const string HELP = "Large creatures can activate this mode for two-handing Large melee weapons. Activate by using: <cþôh>-twohand</c>, deactivate by typing the command again. While this mode is active no off-hand can be equipped. Medium sized creatures can also apply Two-handing mode with a Warhammer.";
 
 void main()
 {
@@ -41,7 +41,7 @@ void main()
         }
         else
         {
-            SendMessageToPC(oSpeaker, "<cþ  >Only Large Creatures carrying a Large melee weapon or Medium Creatures carrying a Bastard Sword can activate this mode.");
+            SendMessageToPC(oSpeaker, "<cþ  >Only Large Creatures carrying a Large melee weapon or Medium Creatures carrying a Warhammer can activate this mode.");
         }
     }
 

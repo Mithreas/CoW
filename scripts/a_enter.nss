@@ -404,8 +404,11 @@ void main()
 	// IS_UNDERWATER = 2 means totally underwater (drains stamina very fast, slows PC).
 	if (GetLocalInt(oArea, "IS_UNDERWATER") == 2 && (GetIsPC(oEntering) || GetIsPC(GetMaster(oEntering))))
 	{
-	  _ApplyUnderwaterSpeedPenalty(oEntering);
-	  DoUnderwaterHeartbeat(oEntering);
+	  if (GetAppearanceType(oEntering) != 68 && GetAppearanceType(oEntering) != 69) // Water elemental shapes
+	  {
+	    _ApplyUnderwaterSpeedPenalty(oEntering);
+	    DoUnderwaterHeartbeat(oEntering);
+	  }	
 	}
 
     //clean up area

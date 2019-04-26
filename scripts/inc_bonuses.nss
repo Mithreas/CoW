@@ -594,7 +594,7 @@ int ApplyTwoHandedBonus(object oItem) {
 
     //::  Two-handed bonus
     int bIsMedium           = GetCreatureSize(oPC) == CREATURE_SIZE_MEDIUM;
-    int bIsMediumBastard    = bIsMedium && GetBaseItemType(oItem) == BASE_ITEM_BASTARDSWORD;
+    int bIsMediumBastard    = bIsMedium && GetBaseItemType(oItem) == BASE_ITEM_WARHAMMER;
     int bIsMediumDwarfAxe   = GetRacialType(oPC) == RACIAL_TYPE_DWARF && GetBaseItemType(oItem) == BASE_ITEM_DWARVENWARAXE;
     object oMainHand        = GetItemInSlot(INVENTORY_SLOT_RIGHTHAND, oPC);
 

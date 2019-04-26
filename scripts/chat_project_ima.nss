@@ -5,6 +5,7 @@
 #include "inc_spell"
 #include "inc_worship"
 #include "inc_examine"
+#include "inc_relations"
 #include "inc_spells"
 
 const string HELP_1 = "Use this to project an illusionary image of yourself to a <cÿ× >[Target]</c> or summon one at your side.\n\n";

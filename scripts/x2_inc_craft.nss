@@ -306,7 +306,7 @@ object CICraftCraftWand(object oCreator, int nSpellID )
              AddItemProperty(DURATION_TYPE_PERMANENT,ipLimit,oTarget);
         }
 
-        int nCharges = GetLevelByClass(GetLastSpellCastClass(),OBJECT_SELF) + d20();
+        int nCharges = GetLevelByClass(GetLastSpellCastClass(),OBJECT_SELF) + d20() + GetLocalInt(gsPCGetCreatureHide(OBJECT_SELF), "AR_BONUS_CASTER_LEVELS");
         SetLocalInt(oTarget, "SPELL_CAST_LEVEL", AR_GetCasterLevel(oCreator));
 
         if (nCharges == 0) // stupi cheaters

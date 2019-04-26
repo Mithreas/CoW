@@ -203,6 +203,8 @@ string GetPCFactionRank(object oPC)
   int nRepScore   = GetRepScore(oPC, miBAGetBackground(oPC));
   Trace(RANKS, "PC current rep score: " + IntToString(nRepScore));
 
+  if (nRepScore < 0) return "Outcast";
+  
   // Get PC current rank number
   int nRank = GetPCRank(GetFactionName(miBAGetBackground(oPC)), nRepScore);
   Trace(RANKS, "PC current rank number: " + IntToString(nRank));

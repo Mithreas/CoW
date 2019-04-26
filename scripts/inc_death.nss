@@ -34,6 +34,16 @@ void DoDeath(object oDied, object oKiller)
     // always turn subdual mode off when someone dies
     DeleteLocalInt(oDied, "GVD_SUBDUAL_MODE");
 
+    // if last killer = pc itself, check for a bleed out attack, and grab the killer from a variable instead
+    if (oKiller == oDied) 
+	{
+      if (GetLocalObject(oDied, "GVD_LAST_ATTACKER") != OBJECT_INVALID) 
+	  {
+        // bleed out death, so killer is someone else, use that one
+        oKiller = GetLocalObject(oDied, "GVD_LAST_ATTACKER");
+	  }	
+    }
+	
 	// Bounty system code to clear a player's bounty if they were killed by
     // a guard.
 	// Note: we apply this even if a god save or similar happens.  
