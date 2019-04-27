@@ -281,6 +281,34 @@ object CICraftCraftWand(object oCreator, int nSpellID )
         oTarget = CreateItemOnObject(X2_CI_CRAFTWAND_NEWITEM_RESREF,oCreator);
         AddItemProperty(DURATION_TYPE_PERMANENT,ipProp,oTarget);
         gsIPSetOwner(oTarget, oCreator);
+		
+        switch (nSpellID)//here we make sure to get the base spell for the right name.
+        {
+            case 104:
+            case 105:
+                nSpellID = 322; //magic circle against alignment
+                break;
+            case 138:
+            case 139:
+                nSpellID = 321; //protection from alignment
+                break;
+            case 344:
+            case 345:
+            case 346:
+            case 347:
+            case 348:
+                nSpellID = 159; //shadow conjuration
+                break;
+            case 387:
+            case 388:
+            case 389:
+            case 390:
+            case 391:
+                nSpellID = 130; //polymorph self
+                break;
+        }
+        string sItemLabel = GetStringByStrRef(StringToInt(Get2DAString("spells", "Name", nSpellID)));
+        SetName(oTarget, "Wand of " + sItemLabel);
 
         int nType = CI_GetClassMagicType(GetLastSpellCastClass());
         itemproperty ipLimit;

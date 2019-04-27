@@ -332,7 +332,7 @@ void gsXPGiveExperience(object oCreature, int nAmount, int nFloat = TRUE, int nK
 			
 			// Check for PCs over the "soft cap"
 			// @@@ This probably needs further thought.  But it will do for now.
-			if (GetHitDice(oCreatureToReward) >= GetLocalInt(GetModule(), "STATIC_LEVEL"))
+			if (nKill != 2 && GetHitDice(oCreatureToReward) >= GetLocalInt(GetModule(), "STATIC_LEVEL"))
 			{
 			  // Cap all XP gains at 5.
 			  if (nAmount > 5) nAmount = 5;
@@ -667,13 +667,14 @@ float GetPartyExperienceMultiplier(float fPartySize)
 void _DistributePartyExperience(object oPC, int nAmount, float fRange, object oVictim, string sRandom)
 {
     object oMember = GetFirstFactionMember(oPC);
+	int bKill = (GetLocalInt(oVictim, "RAID_BOSS") ? 2 : TRUE);
 
     while(GetIsObjectValid(oMember))
     {
         if(!GetLocalInt(oMember, "PartyXPDistributed" + sRandom) &&
             ((GetDistanceBetween(oMember, oVictim) <= fRange && GetDistanceBetween(oMember, oVictim) != 0.0 && GetArea(oMember) == GetArea(oVictim)) || oPC == oMember))
         {
-            gsXPGiveExperience(oMember, nAmount, TRUE, TRUE);
+            gsXPGiveExperience(oMember, nAmount, TRUE, bKill);
             SetLocalInt(oMember, "PartyXPDistributed" + sRandom, TRUE);
             DelayCommand(0.0, DeleteLocalInt(oMember, "PartyXPDistributed" + sRandom));
         }

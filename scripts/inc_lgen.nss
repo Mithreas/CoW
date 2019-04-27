@@ -64,6 +64,7 @@ void Tier1_Phase3Common()
     }
     else if (property == PROPERTY_SKILL_BONUS)
     {
+        IntArray_PushBack(OBJECT_SELF, LGEN_MOD1_ARRAY_TAG, SKILL_APPRAISE);
         IntArray_PushBack(OBJECT_SELF, LGEN_MOD1_ARRAY_TAG, SKILL_CONCENTRATION);
         IntArray_PushBack(OBJECT_SELF, LGEN_MOD1_ARRAY_TAG, SKILL_DISCIPLINE);
         IntArray_PushBack(OBJECT_SELF, LGEN_MOD1_ARRAY_TAG, SKILL_HIDE);

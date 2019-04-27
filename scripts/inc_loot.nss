@@ -97,7 +97,7 @@ void InitialiseLootSystem()
     AddBaseItemResRef(BASE_ITEM_ARMOR_AC8, "aarcl008");
     AddBaseItemResRef(BASE_ITEM_ARMOR_AC8, "aarcl019");
     AddBaseItemResRef(BASE_ITEM_ARMOR_AC8, "aarcl029");
-    AddBaseItemResRef(BASE_ITEM_BASTARDSWORD, "nw_wswbs001");
+    //AddBaseItemResRef(BASE_ITEM_BASTARDSWORD, "nw_wswbs001");
     AddBaseItemResRef(BASE_ITEM_BATTLEAXE, "nw_waxbt001");
     AddBaseItemResRef(BASE_ITEM_BELT, "cnrbelt");
     AddBaseItemResRef(BASE_ITEM_BOOTS, "cnrbootsdeer");
@@ -136,8 +136,8 @@ void InitialiseLootSystem()
     AddBaseItemResRef(BASE_ITEM_QUARTERSTAFF, "nw_wdbqs001");
     AddBaseItemResRef(BASE_ITEM_RAPIER, "nw_wswrp001");
     AddBaseItemResRef(BASE_ITEM_RING, "nw_it_mring021");
-    AddBaseItemResRef(BASE_ITEM_SCIMITAR, "nw_wswsc001");
-    AddBaseItemResRef(BASE_ITEM_SCYTHE, "nw_wplsc001");
+    //AddBaseItemResRef(BASE_ITEM_SCIMITAR, "nw_wswsc001");
+    //AddBaseItemResRef(BASE_ITEM_SCYTHE, "nw_wplsc001");
     AddBaseItemResRef(BASE_ITEM_SHORTBOW, "nw_wbwsh001");
     AddBaseItemResRef(BASE_ITEM_SHORTSPEAR, "nw_wplss001");
     AddBaseItemResRef(BASE_ITEM_SHORTSWORD, "nw_wswss001");
@@ -145,7 +145,7 @@ void InitialiseLootSystem()
     AddBaseItemResRef(BASE_ITEM_SLING, "nw_wbwsl001");
     AddBaseItemResRef(BASE_ITEM_SMALLSHIELD, "nw_ashsw001");
     AddBaseItemResRef(BASE_ITEM_TOWERSHIELD, "nw_ashto001");
-    AddBaseItemResRef(BASE_ITEM_TRIDENT, "nw_wpltr001");
+    //AddBaseItemResRef(BASE_ITEM_TRIDENT, "nw_wpltr001");
     AddBaseItemResRef(BASE_ITEM_TWOBLADEDSWORD, "nw_wdbsw001");
     AddBaseItemResRef(BASE_ITEM_WARHAMMER, "nw_wblhw001");
     AddBaseItemResRef(BASE_ITEM_WHIP, "x2_it_wpwhip");

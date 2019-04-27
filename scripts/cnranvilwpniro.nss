@@ -109,89 +109,95 @@ void main()
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Polearms, "Iron Scythe", "wplsc003", 1);
+  //sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Polearms, "Iron Scythe", "wplsc003", 1);
+  //CnrRecipeAddComponent(sKeyToRecipe, "cnrlrgbld2", 1);
+  //CnrRecipeAddComponent(sKeyToRecipe, "cnrshaft", 1);
+  //CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
+  //CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Polearms, "Iron Halberd", "wplhb003", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrlrgbld2", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrshaft", 1);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Blunts, "Iron Mace", "wblml003", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrsmlhea2", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrshaft", 1);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Blunts, "Iron Morningstar", "wblms003", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrmedhea2", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrshaft", 1);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Bladed, "Iron Short Sword", "wswss003", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrsmlbld2", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrbindings", 1);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 6);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 60, 60);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Axes, "Iron Battleaxe", "waxbt003", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrmedbld2", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrshaft", 1);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 6);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 60, 60);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Blunts, "Iron Warhammer", "wblhw003", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrlrghea2", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrshaft", 1);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 7);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 70, 70);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Bladed, "Iron Rapier", "wswrp003", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrmedbld2", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrbindings", 1);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 7);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 70, 70);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Bladed, "Iron Windblade", "wswka003", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrmedbld2", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrbindings", 1);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 8);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 80, 80);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Double, "Iron Dire Mace", "wdbma003", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrsmlhea2", 2);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrshaft", 1);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 8);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 80, 80);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Bladed, "Iron Longsword", "wswls003", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrmedbld2", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrbindings", 1);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 7);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 70, 70);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Axes, "Iron Greataxe", "waxgr003", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrlrgbld2", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrshaft", 1);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 7);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 70, 70);
   
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Double, "Iron Double Axe", "wdbax003", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrmedbld2", 2);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrshaft", 1);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 8);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 80, 80);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Double, "Iron Two-Bladed Sword", "wdbsw003", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrmedbld2", 2);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrshaft", 1);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 8);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 80, 80);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Bladed, "Iron Greatsword", "wswgs003", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrlrgbld2", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrbindings", 1);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 7);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 70, 70);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Blunts, "Iron Shod Club", "wblcl003", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrclub", 1);
@@ -202,14 +208,14 @@ void main()
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Blunts, "Iron Shod Quarterstaff", "wdbqs003", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrqstaff", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrshod2", 2);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Axes, "Iron Waraxe", "wdwraxe003", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrmedbld2", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrshaft", 1);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 6);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 60, 60);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 7);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 70, 70);
 
   //////////////////////House Items//////////////////////////////////////////////////
 

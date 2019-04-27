@@ -359,7 +359,7 @@ struct openStore md_DoAppraise(object oStore, object oMerchant, object oCustomer
       // Modify Maximum Buy price based on Appraise
       int die100 = d100();
       nMaxBuyPrice  = 150 + nCustomerAppraise * 5 + die100;
-      if (nMaxBuyPrice <= (250 + die100))  nMaxBuyPrice = 250 + die100;
+      if (nMaxBuyPrice <= (150 + die100))  nMaxBuyPrice = 250 + die100;
 
       //SendMessageToPC(oCustomer, "DEBUG: Max Buy Price: " + IntToString(nMaxBuyPrice));
       SetLocalInt(oCustomer, "GS_STORE_MAXBUY_" + sThisStore, nMaxBuyPrice);

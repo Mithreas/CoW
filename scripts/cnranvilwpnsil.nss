@@ -102,7 +102,13 @@ void main()
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 6);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 60, 60);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu3Polearms, "Silver Scythe", "wplsc005", 1);
+  //sKeyToRecipe = CnrRecipeCreateRecipe(sMenu3Polearms, "Silver Scythe", "wplsc005", 1);
+  //CnrRecipeAddComponent(sKeyToRecipe, "cnrlrgbld3", 1);
+  //CnrRecipeAddComponent(sKeyToRecipe, "cnrshaft", 1);
+  //CnrRecipeSetRecipeLevel(sKeyToRecipe, 7);
+  //CnrRecipeSetRecipeXP(sKeyToRecipe, 70, 70);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu3Polearms, "Silver Halberd", "wplhb005", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrlrgbld3", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrshaft", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 7);

@@ -18,7 +18,6 @@ void main()
       Date: 17 Apr 06
       Description: Addition to hook into the criminal scripts.
     */
-    SpeakString("Stop, thief! GUARDS!", TALKVOLUME_SHOUT);
     object oItem = GetInventoryDisturbItem(); // The item that was stolen
     object oPickPocketer = GetLastDisturbed();
     int nValue = 0;
@@ -33,6 +32,7 @@ void main()
     if (GetIsPC(oPickPocketer) && nNation != NATION_INVALID)
     {
       Trace(BOUNTY, "Adding to thief's bounty.");
+	  SpeakString("Stop, thief! GUARDS!", TALKVOLUME_SHOUT);
       AddToBounty(nNation, FINE_THEFT + nValue, oPickPocketer);
     }
     else if ((GetAssociateType(oPickPocketer) != ASSOCIATE_TYPE_NONE) &&

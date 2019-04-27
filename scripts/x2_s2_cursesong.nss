@@ -57,6 +57,7 @@ void main()
       {
         // Restore the use of bardsong.
         IncrementRemainingFeatUses(OBJECT_SELF, FEAT_BARD_SONGS);
+        IncrementRemainingFeatUses(OBJECT_SELF, FEAT_CURSE_SONG);
       }
     }
 

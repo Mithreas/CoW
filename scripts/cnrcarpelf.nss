@@ -380,7 +380,7 @@ void main()
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 7);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 70, 70); 
   
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Impaled Monster Head", "ir_impmonhead", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Impaled Monster Head", "ir_itimpaledhead", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrplank4", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 2);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 20, 20); 

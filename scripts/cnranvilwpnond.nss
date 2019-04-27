@@ -101,12 +101,18 @@ void main()
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 2);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 20, 20);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu1Polearms, "Ondaran Scythe", "cnrscythe1", 1);
+  //sKeyToRecipe = CnrRecipeCreateRecipe(sMenu1Polearms, "Ondaran Scythe", "cnrscythe1", 1);
+  //CnrRecipeAddComponent(sKeyToRecipe, "cnrlrgbld1", 1);
+  //CnrRecipeAddComponent(sKeyToRecipe, "cnrshaft", 1);
+  //CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
+  //CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu1Polearms, "Ondaran Halberd", "wplhb002", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrlrgbld1", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrshaft", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
-
+  
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenu1Blunts, "Ondaran Mace", "cnrmace1", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrsmlhea1", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrshaft", 1);
