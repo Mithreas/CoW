@@ -1,3 +1,4 @@
+#include "inc_bonuses"
 #include "inc_combat2"
 #include "inc_common"
 #include "inc_state"
@@ -5,6 +6,12 @@ void main()
 {
   if (GetIsDM(OBJECT_SELF)) return;
   if (!GetIsPC(OBJECT_SELF)) return;
+  
+  if(GetSkillRank(SKILL_PARRY, OBJECT_SELF) >= 10)
+  {
+    RemoveParryBonus(OBJECT_SELF); //always remove it.
+    _AddParryBonus(OBJECT_SELF); //it's already delayed.. hopefully we don't have to delay it again.
+  }
   
   location lCurrent = GetLocation(OBJECT_SELF);
   location lLast    = GetLocalLocation(OBJECT_SELF, "CURRENT_LOCATION");
@@ -32,7 +39,7 @@ void main()
     // Recover more quickly when sitting.
     if (lCurrent == GetLocalLocation(OBJECT_SELF, "MI_SIT_LOCATION"))
     {
-      gsSTAdjustState(GS_ST_STAMINA, 0.3);    
+      gsSTAdjustState(GS_ST_STAMINA, 0.1 + 0.1 * GetMaxHitPoints(OBJECT_SELF) / 10);    
     }
 	else
 	{	

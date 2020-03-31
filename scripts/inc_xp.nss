@@ -308,7 +308,7 @@ void gsXPGiveExperience(object oCreature, int nAmount, int nFloat = TRUE, int nK
 
                 if (nTimeout < nTimestamp)
                 {
-                    nTimeout = nTimestamp + gsTIGetGameTimestamp(86400); //24 hours
+                    nTimeout = nTimestamp + gsTIGetGameTimestamp(60 * 60 * 24); //24 RL hours
                     gsXPSetKillTimeout(oCreatureToReward, nTimeout);
                 }
                 else
@@ -329,15 +329,6 @@ void gsXPGiveExperience(object oCreature, int nAmount, int nFloat = TRUE, int nK
 
             if (nAmount <= 0) nAmount = 1;
 
-			
-			// Check for PCs over the "soft cap"
-			// @@@ This probably needs further thought.  But it will do for now.
-			if (nKill != 2 && GetHitDice(oCreatureToReward) >= GetLocalInt(GetModule(), "STATIC_LEVEL"))
-			{
-			  // Cap all XP gains at 5.
-			  if (nAmount > 5) nAmount = 5;
-			}
-			
             // check for adventure mode
             if (gvd_GetAdventureMode(oCreatureToReward) == 1) {
               // adventure mode is on, give 50% directly, 100% to adv pool
@@ -345,6 +336,16 @@ void gsXPGiveExperience(object oCreature, int nAmount, int nFloat = TRUE, int nK
               nAmount = nAmount / 2;
             }
         }
+	
+		// Check for PCs over the "soft cap"
+		// Max XP from kills is 40 (x4 for bosses), and from traps is 40.  From quests it could be a
+		// a couple of hundred.  Divide by 6 so that you get up to 6 for ordinary mobs, exceptions for bosses
+		// and quests.  Typical XP will be 3 for things of the same level as you.
+		if (nKill != 2 && GetHitDice(oCreatureToReward) >= GetLocalInt(GetModule(), "STATIC_LEVEL"))
+		{
+		  if (nAmount > 5) nAmount /= 6;
+		  if (nAmount < 1) nAmount = 1;
+		}
 
         if (nXP >= nXPLevel)
         {
@@ -708,13 +709,16 @@ float _GetPCChallengeRating(object oPC, float fRange, object oVictim)
 // Counts and returns all party members with range of the given PC as a party struct.
 struct Party _CountParty(struct Party party, object oPC, float fRange, object oVictim, string sRandom)
 {
+    // If we have already counted this PC we will already have counted their party.
+    if (GetLocalInt(oPC, "PartyMemberCounted" + sRandom)) return party; 
+	
     float fCR;
     object oMember = GetFirstFactionMember(oPC, FALSE);
 
     while(GetIsObjectValid(oMember))
     {
         // dunshine: don't count lassoed creatures in the rating calculations
-        if (NWNX_Object_GetEventHandler(oMember, CREATURE_EVENT_HEARTBEAT) != "gvd_roped_hb") {
+        if (GetEventScript(oMember, EVENT_SCRIPT_CREATURE_ON_HEARTBEAT) != "gvd_roped_hb") {
 
           if(!GetLocalInt(oMember, "PartyMemberCounted" + sRandom) &&
             ((GetDistanceBetween(oMember, oVictim) <= fRange && GetDistanceBetween(oMember, oVictim) != 0.0 && GetArea(oMember) == GetArea(oVictim)) || oPC == oMember))

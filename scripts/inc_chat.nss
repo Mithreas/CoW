@@ -978,8 +978,6 @@ string fbDoLooksAndGetString(object first, object second)
     int nInRoll, nBlRoll;
     int bBluffed = FALSE;
 
-
-
     if (first != second && GetIsObjectValid(first) && GetIsObjectValid(second))
     {
         sString = GetTag(second);
@@ -1017,7 +1015,7 @@ string fbDoLooksAndGetString(object first, object second)
                 bBluffed = TRUE;
 
             int polymorphed = GetHasEffect(EFFECT_TYPE_POLYMORPH, second);
-            int disguised = GetIsPCDisguised(second);
+            int disguised = GetIsPCDisguised(second) || GetRacialType(first) == RACIAL_TYPE_SHAPECHANGER;
             int disguiseBroken = disguised && SeeThroughDisguise(second, first, FALSE);
 
             // if (polymorphed)
@@ -1036,8 +1034,8 @@ string fbDoLooksAndGetString(object first, object second)
             // }
             // else
             // {
-              if (disguised && disguiseBroken)
-              {
+            if (disguised && disguiseBroken)
+            {
                 SetLocalInt(first, "MI_LOOK_BROKE_" + ObjectToString(second), TRUE);
                 if (polymorphed) {
                     sMessage += StringToRGBString("Something is off about this creature.  It may be a polymorphed individual!", "599");
@@ -1046,37 +1044,36 @@ string fbDoLooksAndGetString(object first, object second)
                             StringToRGBString(GetName(second), "199") +
                             StringToRGBString("!", "599");
                 }
-              }
+            }
 
-              sMessage += "\n";
+            sMessage += "\n";
 
-              sMessage += GetPCDescriptionAttunement(first, second);
+            sMessage += GetPCDescriptionAttunement(first, second);
 
-              //strength
-              sMessage    += "\n" + txtBlue + "STRENGTH: </c>" + fbCHRateValue(second, "STR", bBluffed);
+            //strength
+            sMessage    += "\n" + txtBlue + "STRENGTH: </c>" + fbCHRateValue(second, "STR", bBluffed);
 
-              //dexterity
-              sMessage    += "\n" + txtBlue + "DEXTERITY: </c>" + fbCHRateValue(second, "DEX", bBluffed);
+            //dexterity
+            sMessage    += "\n" + txtBlue + "DEXTERITY: </c>" + fbCHRateValue(second, "DEX", bBluffed);
 
-              //constitution
-              sMessage    += "\n" + txtBlue + "CONSTITUTION: </c>" + fbCHRateValue(second, "CON", bBluffed);
+            //constitution
+            sMessage    += "\n" + txtBlue + "CONSTITUTION: </c>" + fbCHRateValue(second, "CON", bBluffed);
 
-              //charisma
-              sMessage    += "\n" + txtBlue + "CHARISMA: </c>" + fbCHRateValue(second, "CHA", bBluffed);
+            //charisma
+            sMessage    += "\n" + txtBlue + "CHARISMA: </c>" + fbCHRateValue(second, "CHA", bBluffed);
 
+            sMessage    += "\n";
 
-              sMessage    += "\n";
-
-
-              // Only show the following if undisguised or if the disguise was broken.
-              if (!polymorphed && (!disguised || disguiseBroken)) {
-
+            // Only show the following if undisguised or if the disguise was broken.
+            if (!polymorphed && (!disguised || disguiseBroken)) 
+			{
                 //Add race
                 string sRace;
                 int nSubrace = gsSUGetSubRaceByName(GetSubRace(second));
                 int nFirstRace = GetRacialType(first);
                 int nFirstSubrace = gsSUGetSubRaceByName(GetSubRace(first));
                 int nLore = _CustomLoreCheck(first, FALSE);
+				
                 if(nSubrace == GS_SU_NONE)
                     sRace = gvd_GetRacialTypeName(second);
                 else if(nSubrace == GS_SU_FR_OROG ||
@@ -1123,49 +1120,13 @@ string fbDoLooksAndGetString(object first, object second)
                     nSubrace == GS_SU_HALFLING_LIGHTFOOT ||
                     nSubrace == GS_SU_HALFLING_STRONGHEART))
                     sRace = gsSUGetNameBySubRace(nSubrace);
-               /* else if(nLore >= 30 && (
-                    nSubrace == GS_SU_PLANETOUCHED_AASIMAR ||
-                    nSubrace == GS_SU_PLANETOUCHED_GENASI_AIR ||
-                    nSubrace == GS_SU_PLANETOUCHED_GENASI_EARTH ||
-                    nSubrace == GS_SU_PLANETOUCHED_GENASI_FIRE ||
-                    nSubrace == GS_SU_PLANETOUCHED_GENASI_WATER ||
-                    nSubrace == GS_SU_PLANETOUCHED_TIEFLING))
-                    sRace = gsSUGetNameBySubRace(nSubrace) + " (" + gvd_GetRacialTypeName(second) + ")";
-                else if(nLore >= 30 && nSubrace == GS_SU_DEEP_IMASKARI)
-                    sRace = gsSUGetNameBySubRace(nSubrace);*/
                 else if(nSubrace == GS_SU_DEEP_IMASKARI)
                     sRace = gvd_GetRacialTypeName(second, RACIAL_TYPE_HUMAN);
                 else //race for everyone else
                     sRace = gvd_GetRacialTypeName(second);
 
                 sMessage +=  txtGreen + "\nRacial Type: " + sRace +  "</c>\n";
-                // harper pin - let harpers recognise each other.
-                if (GetIsObjectValid(GetItemPossessedBy(first,
-                      "GS_PERMISSION_CLASS_" + IntToString(CLASS_TYPE_HARPER))) &&
-                    GetIsObjectValid(GetItemPossessedBy(second,
-                      "GS_PERMISSION_CLASS_" + IntToString(CLASS_TYPE_HARPER))))
-                {
-                  sMessage += txtFuchsia + "This character wears a harper pin!</c>\n";
-                }
-
-                // Radiant Heart seals
-                if (GetIsObjectValid(GetItemPossessedBy(second, "ir_radiantseal1")))
-                {
-                    sMessage += "\n" + txtLime + "This character wears the seal of a Squire of the Order of the Radiant Heart.</c>\n";
-                }
-                else if (GetIsObjectValid(GetItemPossessedBy(second, "ir_radiantseal2")))
-                {
-                    sMessage += "\n" + txtLime + "This character wears the seal of a Knight of the Order of the Radiant Heart.</c>\n";
-                }
-
-                object oContract =  GetItemPossessedBy(second, "piratecontract");
-                if((GetLevelByClass(CLASS_TYPE_ROGUE, first) > 7 || GetSkillRank(SKILL_LORE, first) >= 30  || GetIsObjectValid(GetItemPossessedBy(first, "piratecontract"))) &&
-                 GetIsObjectValid(oContract))
-                {
-                   sMessage += "\n" + txtMaroon +  "This character has tattoos marking them as a pirate of Sencliff: " + md_GetPirateNameFromRank(GetLocalInt(oContract, "PIRATE_RANK")) + ".</c>\n";
-                }
-              }
-            // }
+			}
         }
     }
 

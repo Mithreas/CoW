@@ -41,6 +41,7 @@ const int FACTION_VOICE    = NATION_RENERRIN; // 4
 const int FACTION_SHADOW   = NATION_SHADOW;   // 5
 const int FACTION_WARDENS  = NATION_VYVIAN;   // 6
 const int FACTION_FERNVALE = NATION_ELF;      // 7
+const int FACTION_AIREVORN = NATION_AIREVORN; // 8
 
 /* function prototypes */
 // Get the name of this faction from its number.

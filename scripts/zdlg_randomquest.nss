@@ -186,7 +186,7 @@ void PageInit()
           // Responses
           AddStringElement("Yes, all done.",
                            REPLY1);
-          AddStringElement("Sorry, can you tell me what I'm meant to do again?",
+          AddStringElement("Sorry, I have forgotten what you needed.",
                            REPLY1);
           AddStringElement("Not yet, sorry.",
                            REPLY1);
@@ -215,6 +215,18 @@ void PageInit()
           AddStringElement("Not yet, sorry.",
                            REPLY1);
         }
+		else if (sQuestType == CULL)
+		{
+		  SetDlgPrompt("Ah, you are back.  I take it you have done what I asked.");
+		  
+          // Responses
+          AddStringElement("Yes, all done.",
+                           REPLY1);
+          AddStringElement("Sorry, I have forgotten what you needed.",
+                           REPLY1);
+          AddStringElement("Not yet, sorry.",
+                           REPLY1);
+		}
         else
         {
           SendMessageToPC(oPC,

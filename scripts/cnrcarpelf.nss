@@ -118,7 +118,7 @@ void main()
   //----------------------------weapons--------------------------------------
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpWeapons, "Entwood Club", "cnrclub4", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrstaveshort4", 4);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrstaveshort4", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 2);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 20, 20);
 
@@ -129,7 +129,7 @@ void main()
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpWeapons, "Entwood Quarterstaff", "cnrqstaff4", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrstavelong4", 1);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpWeapons, "Duskwood Quarterstaff", "wdbqs004", 1);
@@ -217,12 +217,12 @@ void main()
   CnrRecipeSetRecipeXP(sKeyToRecipe, 120, 120);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuBows1, "Phantom Bow (Shortbow)", "wbwmsh005", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "wbwsh003", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "wbwsh005", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrthreadmit", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "dust_phen", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "dust_garn", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "dust_alex", 1);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 80);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 8);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 80, 80);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuBows1, "Elven Court Bow (Longbow)", "wbwmln005", 1);

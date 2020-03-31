@@ -12,7 +12,6 @@ void main()
 {
   // Persistent people will get set as immortal by the default
   // spawn scripts.  Unset that now.
-  gsFLSetFlag(GS_FL_MORTAL, OBJECT_SELF, FALSE);
   SetIsDestroyable(TRUE, TRUE, FALSE);
 
   if (GetHasActivePlayers(OBJECT_SELF))

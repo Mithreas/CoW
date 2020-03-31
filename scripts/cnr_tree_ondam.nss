@@ -14,7 +14,8 @@
 
 void SpawnNewTree(string sTreeTag, location locTree)
 {
-  CreateObject(OBJECT_TYPE_PLACEABLE, sTreeTag, locTree);
+  object oTree = CreateObject(OBJECT_TYPE_PLACEABLE, sTreeTag, locTree);
+  SetLocalInt(oTree, "GS_STATIC", TRUE);
   DestroyObject(OBJECT_SELF);
 }
 
@@ -56,6 +57,7 @@ void main()
       {
         ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectDeath(), OBJECT_SELF);
         object oSpawner = CreateObject(OBJECT_TYPE_PLACEABLE, "cnrobjectspawner", locTree);
+		SetLocalInt(oSpawner, "GS_STATIC", TRUE);
         AssignCommand(oSpawner, DelayCommand(CNR_FLOAT_WOOD_MINING_TREE_RESPAWN_TIME_SECS, SpawnNewTree(sResref, locTree)));
         DestroyObject(OBJECT_SELF, 2.0); // provide time for death effect
         FloatingTextStringOnCreature(CNR_TEXT_THATS_THE_END_OF_THAT, oDamager);
@@ -65,6 +67,6 @@ void main()
 
     // Create a new tree with full hitpoints
     DestroyObject(OBJECT_SELF);
-    CreateObject(OBJECT_TYPE_PLACEABLE, sResref, locTree);
+    SetLocalInt(CreateObject(OBJECT_TYPE_PLACEABLE, sResref, locTree), "GS_STATIC", TRUE);
   }
 }

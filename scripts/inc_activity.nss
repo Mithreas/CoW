@@ -17,6 +17,7 @@
 #include "inc_log"
 #include "inc_database"
 #include "inc_spells"
+#include "inc_spellsword"
 #include "inc_stacking"
 #include "inc_xp"
 #include "x2_inc_craft"
@@ -121,6 +122,9 @@ void GiveResearchInformation(object oPC)
 {
   Trace(TRAINING, "GiveResearchInformation called for PC: " + GetName(oPC));
   
+  effect eVis = EffectVisualEffect(VFX_IMP_KNOCK);
+  ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oPC);
+  
   // TODO: support other races than humans.
   string sResearchCategory = RESEARCH_CATEGORY;
   
@@ -128,11 +132,27 @@ void GiveResearchInformation(object oPC)
   {
     sResearchCategory = RESEARCH_CATEGORY_ELF;
 	
-	// Possibly give a spell instead if the PC is a Wizard.
-	if (GetLevelByClass(CLASS_TYPE_WIZARD, oPC) && d100() > 90)
+	// Possibly discover a ritual if the PC is a Wizard - 5% chance.
+	if (GetLevelByClass(CLASS_TYPE_WIZARD, oPC) && !miSSGetIsSpellsword(oPC) && d100() > 95)
+	{
+	  CreateItemOnObject("rescarritrenew", oPC);
+	  SendMessageToPC(oPC, "You researched a ritual!");
+	  return;
+	}
+	
+	// Possibly give a spell instead if the PC is a Wizard - 10% chance.
+	else if (GetLevelByClass(CLASS_TYPE_WIZARD, oPC) && d100() > 90)
 	{
 	  int nMaxLevel = (GetLevelByClass(CLASS_TYPE_WIZARD, oPC) + 1) / 2;
 	  int nSpell = GetRandomArcaneSpell(Random(nMaxLevel + 1));
+	  int nCount = 0;
+	  
+	  // 10 attempts to learn a -new- spell.
+      while (GetKnowsSpell(nSpell, oPC, CLASS_TYPE_WIZARD) && nCount < 10)
+      {
+        nSpell = GetRandomArcaneSpell(Random(nMaxLevel + 1));	  
+		nCount ++;
+	  }
 	  
 	  Log(TRAINING, "Creating scroll " + IntToString(nSpell) + " for " + GetName(oPC));
 

@@ -17,7 +17,8 @@
 
 void SpawnNewGemDeposit(string sDepositTag, location locDeposit)
 {
-  CreateObject(OBJECT_TYPE_PLACEABLE, sDepositTag, locDeposit);
+  object oDep = CreateObject(OBJECT_TYPE_PLACEABLE, sDepositTag, locDeposit);
+  SetLocalInt(oDep, "GS_STATIC", TRUE);
   DestroyObject(OBJECT_SELF);
 }
 
@@ -144,6 +145,7 @@ void main()
     {
       ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectDeath(), OBJECT_SELF);
       object oSpawner = CreateObject(OBJECT_TYPE_PLACEABLE, "cnrobjectspawner", locDeposit);
+	  SetLocalInt(oSpawner, "GS_STATIC", TRUE);
       AssignCommand(oSpawner, DelayCommand(CNR_FLOAT_GEM_MINING_DEPOSIT_RESPAWN_TIME_SECS, SpawnNewGemDeposit(sDepositTag, locDeposit)));
       DestroyObject(OBJECT_SELF, 0.5); // provide time for death effect
       FloatingTextStringOnCreature(CNR_TEXT_THATS_THE_END_OF_THAT, oUser);

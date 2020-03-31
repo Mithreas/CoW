@@ -2,7 +2,7 @@
 #include "inc_time"
 #include "inc_generic"
 
-const int GS_TIMEOUT    = 10800; //3 hours
+const int GS_TIMEOUT    =  3600; //1 RL hour
 const int GS_LIMIT_ITEM =     2;
 
 void main()

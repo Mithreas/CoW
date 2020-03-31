@@ -36,7 +36,7 @@ void main()
       AddToBounty(nNation, FINE_THEFT + nValue, oPickPocketer);
     }
     else if ((GetAssociateType(oPickPocketer) != ASSOCIATE_TYPE_NONE) &&
-             GetIsPC(GetMaster(oPickPocketer)))
+             GetIsPC(GetMaster(oPickPocketer)) && nNation != NATION_INVALID)
     {
       // Add to master's bounty.
       Trace(BOUNTY, "Adding to master's bounty.");

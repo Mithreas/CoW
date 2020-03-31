@@ -47,22 +47,25 @@ void main()
 		  else if (!nJuice)
 		  {
 		    CreateItemOnObject("cnrtwigent", oPC);
-			SetLocalInt(OBJECT_SELF, "ENT_WOOD_COUNT", nWood - 1);
+			nWood --;
+			SetLocalInt(OBJECT_SELF, "ENT_WOOD_COUNT", nWood);
 			PlaySound("as_na_branchsnp1");
 		  }
 		  else
 		  {
 		    CreateItemOnObject("cnrbarkent", oPC);
-			SetLocalInt(OBJECT_SELF, "ENT_WOOD_COUNT", --nWood);
-			SetLocalInt(OBJECT_SELF, "ENT_WOOD_COUNT", --nJuice);
-			PlaySound("as_na_branchsnp3");
+			nWood --;
+			nJuice --;
+			SetLocalInt(OBJECT_SELF, "ENT_WOOD_COUNT", nWood);
+			SetLocalInt(OBJECT_SELF, "ENT_JUICE_COUNT", nJuice);
+			PlaySound("as_na_branchsnp3");			
+		  }		
 			
-			if (!nWood)
-			{
-			  // Set timeout for wood regrowth - 5 RL minutes.
-			  SetLocalInt(OBJECT_SELF, "ENT_TIMEOUT", gsTIGetActualTimestamp() + 10 * 60 * 5);
-			}
-		  }		  
+		  if (!nWood)
+		  {
+		    // Set timeout for wood regrowth - 5 RL minutes.
+		    SetLocalInt(OBJECT_SELF, "ENT_TIMEOUT", gsTIGetActualTimestamp() + 60 * 5);
+		  }  
 		}
 		else if (d20() == 1 && !GetIsReactionTypeHostile(oPC) && GetLocalInt(OBJECT_SELF, "ENT_GRUMPY"))
 		{

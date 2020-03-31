@@ -176,27 +176,7 @@ void sepREApplyNewDeathPenalty(object oUsedBy)
     {
         SendMessageToPC(oUsedBy, "The divine power of " + sDeity + " has restored you. It will be some time before you can call upon " + sDeity + " again.");
     }
-    SendMessageToPC(oUsedBy, "It will take several hours for your strength to fully return to you.");
 
-    /* Drains removed for Anemoi
-
-    // Calculate Drain Penalty
-    // Penalty is 1 point per 3 levels by default.
-    int nPenalty = GetHitDice(oUsedBy) / nDrainLevelGrouping;
-
-    // Store values on player
-    object oSave = sepRESaveItem(oUsedBy);
-    SetLocalInt(oSave, "GS_RESPAWN_DRAIN_SURFACE", 1);
-    SetLocalInt(oSave, "GS_RESPAWN_DRAIN_CANDP", 1);
-    SetLocalInt(oSave, "GS_RESPAWN_DRAIN_TIMESTAMP", nTimestamp);
-    SetLocalInt(oSave, "GS_RESPAWN_DRAIN_AMT", nPenalty);
-
-    // make sure death trumps subdual
-    DeleteLocalInt(oSave, "GS_RESPAWN_DRAIN_SUBDUAL");
-
-    // Apply
-     sepREApplyRespawnDrains(oUsedBy, nPenalty);
-	 */
 }
 //---------------------------------------------------------------------------------------------------
 int _sepRECalculateNewDrain(object oPC)

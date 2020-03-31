@@ -1,7 +1,6 @@
 #include "inc_customspells"
 #include "inc_spellsword"
 
-
 void main()
 {
     if (gsSPGetOverrideSpell()) return;
@@ -44,17 +43,24 @@ void main()
         // Modify DC for target's arcane defense feats.
         if (GetHasFeat(FEAT_ARCANE_DEFENSE_ABJURATION, oTarget)) nCasterLevel -= 2;
 
+        // Modify DC if target is Spellsword
+        if (miSSGetIsSpellsword(oTarget)) nCasterLevel -=3;
+
         // Modify DC if target has at least 21 paladin levels.
         if (GetLevelByClass(CLASS_TYPE_PALADIN, oTarget) > 20) nCasterLevel -=3;
 
         // Add Harper Scout CL
-        nCasterLevel -= (GetLevelByClass(CLASS_TYPE_HARPER, oTarget));		
+        nCasterLevel -= (GetLevelByClass(CLASS_TYPE_HARPER, oTarget));			
+		
+		// Add bonus CL.
+		nCasterLevel -= (AR_GetCasterLevelBonus(oTarget));
 		
         //raise event
         nHarmful  = ! GetIsReactionTypeFriendly(oTarget);
         SignalEvent(oTarget, EventSpellCastAt(OBJECT_SELF, nSpell, nHarmful));
 
         //apply
+		if (nCasterLevel < 1) nCasterLevel = 1;
         eEffect1  = EffectLinkEffects(eVisual1, EffectDispelMagicAll(nCasterLevel));
         gsSPApplyEffect(oTarget, eEffect1, nSpell);
         ApplyEffectToObject(DURATION_TYPE_INSTANT, eVisual2, oTarget);

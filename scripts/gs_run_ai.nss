@@ -77,7 +77,7 @@ void main()
         gsC2ClearDamage();
 		
 		// Set a timeout so that creatures don't rest within two RL minutes of combat.
-		SetLocalInt(oSelf, "GS_AI_RECENT_COMBAT", gsTIGetActualTimestamp() + 1200);
+		SetLocalInt(oSelf, "GS_AI_RECENT_COMBAT", gsTIGetActualTimestamp() + 120);
     }
 
     if (nMatrix & GS_AI_ACTION_TYPE_HEAL &&

@@ -22,10 +22,12 @@ void main()
 
     //Play description
     TrainingDescription(oPC);
+	gsSTAdjustState(GS_ST_STAMINA, -1.0f);
+	
     if (GetLocalInt(GetArea(oPC), IS_DOJO))
     {
       Trace(TRAINING, "In dojo.");
-      GiveXP(oPC, TRUE);
+      GiveXP(oPC, TRUE);	  
     }
     else
     {

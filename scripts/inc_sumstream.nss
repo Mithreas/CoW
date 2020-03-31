@@ -109,7 +109,8 @@ const int STREAM_PLANAR_BEAST    = 0x08;
 
 const int STREAM_UNDEAD_ZOMBIE = 0x0;
 const int STREAM_UNDEAD_GHOUL = 0x01;
-const int STREAM_UNDEAD_ANY = STREAM_UNDEAD_GHOUL;
+const int STREAM_UNDEAD_GHOST = 0x02;
+const int STREAM_UNDEAD_ANY = 3; /* STREAM_UNDEAD_GHOST | STREAM_UNDEAD_GHOUL */
 
 const int STREAM_DRAGON_TIER_WYRMLING = 0;
 const int STREAM_DRAGON_TIER_DRAGON_KNIGHT = 1;
@@ -793,8 +794,9 @@ string GetStreamElementName(int nStreamType, int nStreamElement)
         case STREAM_TYPE_UNDEAD:
             switch(nStreamElement)
             {
-                case STREAM_UNDEAD_ZOMBIE: return "Mummy";
-                case STREAM_UNDEAD_GHOUL:  return "Vampire";
+                case STREAM_UNDEAD_ZOMBIE: return "Mindless Corporeal";
+                case STREAM_UNDEAD_GHOUL:  return "Intelligent Corporeal";
+                case STREAM_UNDEAD_GHOST:  return "Incorporeal";
             }
             break;
     }
@@ -1021,11 +1023,21 @@ string GetUndeadStreamBlueprint(object oCreature, int nTier, int nAllowedStreams
         case STREAM_UNDEAD_ZOMBIE:
             switch(nTier)
             {
-                case STREAM_UNDEAD_TIER_1: sBlueprint = "nw_s_zombie";    break;
-                case STREAM_UNDEAD_TIER_2: sBlueprint = "sum_tfzombie";   break;
-                case STREAM_UNDEAD_TIER_3: sBlueprint = "x2_s_mummy";     break;
-                case STREAM_UNDEAD_TIER_4: sBlueprint = "x2_s_mummy_9";   break;
-                case STREAM_UNDEAD_TIER_5: sBlueprint = "sum_dreadmummy"; break;
+                case STREAM_UNDEAD_TIER_1: sBlueprint = "nw_s_zombie";     break;
+                case STREAM_UNDEAD_TIER_2: sBlueprint = "sum_tfzombie";    break;
+                case STREAM_UNDEAD_TIER_3: sBlueprint = "s_undeadwarrior"; break; // Skeleton Warrior
+                case STREAM_UNDEAD_TIER_4: sBlueprint = "s_undeadofficer"; break; // Skeletal Champion
+                case STREAM_UNDEAD_TIER_5: sBlueprint = "sum_dreadmummy";  break;
+            }
+            break;
+        case STREAM_UNDEAD_GHOST:
+            switch(nTier)
+            {
+                case STREAM_UNDEAD_TIER_1: sBlueprint = "s_allip";        break;
+                case STREAM_UNDEAD_TIER_2: sBlueprint = "s_ghost";        break;
+                case STREAM_UNDEAD_TIER_3: sBlueprint = "s_spectre";      break;
+                case STREAM_UNDEAD_TIER_4: sBlueprint = "sum_voidwraith"; break;
+                case STREAM_UNDEAD_TIER_5: sBlueprint = "s_dreadwraith";  break;
             }
             break;
     }

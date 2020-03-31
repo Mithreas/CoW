@@ -27,7 +27,7 @@ void main()
     //make save
     int nSaveDC = GetLocalInt(gsPCGetCreatureHide(oSpellOrigin), "SS_IM_W_DC_ACID");
     int nSpellGroup = 1 + (nSaveDC - (10 + nWizard))/2;
-	int nTimer = GetLocalInt(gsPCGetCreatureHide(oSpellOrigin), "SS_IM_W_TM_ACID") + 2*10;
+	int nTimer = GetLocalInt(gsPCGetCreatureHide(oSpellOrigin), "SS_IM_W_TM_ACID") + 2;
 
     if ((!FortitudeSave(oSpellTarget, nSaveDC, SAVING_THROW_TYPE_ACID)) && (gsTIGetActualTimestamp() > nTimer))
     {

@@ -435,6 +435,10 @@ void main()
       if (sGenQuality == "ENT")
       {
         sName= "Entwood " + sName;
+      }	  
+      if (sGenQuality == "MIT")
+      {
+        sName= "Mithril " + sName;
       }
       SetName(oAmmo, sName);
       SetLocalString(oAmmo, "AMMOTYPE", sName);
@@ -691,7 +695,7 @@ void main()
         if(nNumSigs == 1)
         {
             //Lets put on the timestamp!
-            //We'll do this for a month ahead aproximately
+            //We'll do this for a month ahead approximately
             int nMonth = GetCalendarMonth();
             int nYear = GetCalendarYear();
             SetName(oItem, GetName(oItem) + " (" + IntToString(nMonth) + "/" + IntToString(nYear) + ")");
@@ -922,113 +926,6 @@ void main()
       }
     }
 
-    // added by Dunshine: minogon plant stuff
-    if (sTag == "GVD_MINOGONCARD1") {
-      // activate the minogon device it was used on
-      if (GetStringLeft(GetTag(oTarget),17) == "gvd_minogon_panel") {
-        // succes
-
-        // retrieve the access code from the disc (if any)
-        int iCode = GetLocalInt(oItem, "code");
-        if (iCode == 0) {
-          // variable might be gone due to relog/reset, try the description
-          string sDesc = GetDescription(oItem);
-          if (sDesc != "A disc") {
-            iCode = StringToInt(GetStringRight(sDesc,4)) + 10000;
-          } else {
-            // the player didn't discover the code on the disc yet, so we'll put an hopefully impossible to guess number on the panel
-            // (can't be longer then 4 digits because of the checking function in zdlg_gvd_min_pan, so try a negative number instead, since that's unlikely to be entered)
-            iCode = -974;
-          }
-        }
-
-        SetLocalInt(oTarget,"code", iCode);
-        DestroyObject(oItem);
-        SetLocalInt(oTarget,"active",1);
-        SetName(oTarget,"Active Panel");
-        FloatingTextStringOnCreature("The disc slides into an opening below the panel, it activates and is ready for use now.", oActivator);
-      } else {
-        FloatingTextStringOnCreature("You try to use the disc here, but it doesn't do anything.", oActivator);
-      }
-    }
-    if (sTag == "GVD_MIN_TOOL1") {
-      // magnifying glass, check the target
-      if (GetStringLeft(GetTag(oTarget),15) == "gvd_minogoncard") {
-        // used, on one of the discs, succes
-
-        // check if the disc already has a code
-        int iCode = GetLocalInt(oTarget, "code");
-        if (iCode == 0) {
-          // generate a random access code for the disc (0000 to 9999), store with an 10000 added to it for convenience
-          iCode = 10000 + ((d100(1)-1)*100)+(d100(1)-1);
-          SetLocalInt(oTarget, "code", iCode);
-          SetDescription(oTarget,"A disc with access code " + GetStringRight(IntToString(iCode),4));
-        }
-        FloatingTextStringOnCreature("Using the magnifying glass on the disc reveals a number imprinted on it in tiny letters: " + GetStringRight(IntToString(iCode),4), oActivator);
-
-      } else {
-        // check if used on a treasure chest with a GVD_MAGNIFY_BONUS variable on it
-        int iMagnifyBonus = GetLocalInt(oTarget ,"GVD_MAGNIFY_BONUS");
-        if (iMagnifyBonus > 0) {
-          // lower the lock DC with the bonus amount, and inform the PC of succes
-          SetLockUnlockDC(oTarget, GetLockUnlockDC(oTarget) - iMagnifyBonus);
-          FloatingTextStringOnCreature("Using the magnifying glass on the lock reveals a small mechanism you didn't notice before, you have disabled a part of the complex locking mechanism.", oActivator);
-
-        } else {
-          // check if it was used on Panel number 6, give the PC a hint about the second access code there
-          if (GetTag(oTarget) == "gvd_minogon_panel6") {
-            // the second code for this panel is the current year + month + day numbers combined, so tell the PC that the year numbers are heavily used, the month numbers regular, and the other numbers are not noticeable
-            int nTime = gsTIGetActualTimestamp();
-            string sYear = IntToString(gsTIGetYear(nTime));
-            string sYearDigits = "";
-            int iMonth = gsTIGetMonth(nTime);
-            string sMonthDigits = "";
-            int iNr;
-            string sNr;
-
-            // get numbers used from year first
-            for (iNr = 0; iNr < 10; iNr = iNr + 1) {
-              sNr = IntToString(iNr);
-              if (FindSubString(sYear,sNr) >= 0) {
-                sYearDigits = sYearDigits + sNr + ", ";
-              }
-            }
-
-            // now get numbers used from month
-            if (iMonth > 9) {
-              // check if digit 1 is already in the year digits
-              if (FindSubString(sYearDigits, "1") < 0) {
-                // nope, add it to the month digits then
-                sMonthDigits = sMonthDigits + "1" + ", ";
-              }
-            }
-            // now check the rest of the month number
-            if (iMonth != 11) {
-              sNr = GetStringRight(IntToString(iMonth),1);
-              if (FindSubString(sYearDigits, sNr) < 0) {
-                // always present the numbers going up, to prevent giving away too much in case month = 10
-                if (sNr == "0") {
-                  sMonthDigits = "0, "+ sMonthDigits ;
-                } else {
-                  sMonthDigits = sMonthDigits + sNr + ", ";
-                }
-              }
-            }
-
-            if (sMonthDigits != "") {
-              FloatingTextStringOnCreature("Using the magnifying glass you notice the following digits are heavily used: " + sYearDigits + "and the following digits are regularly used: " + sMonthDigits + "the other digits are used too, but not that regular.", oActivator);
-            } else {
-              FloatingTextStringOnCreature("Using the magnifying glass you notice the following digits are heavily used: " + sYearDigits + "the other digits are used too, but not that regular.", oActivator);
-            }
-
-          } else {
-            // used on something else
-            FloatingTextStringOnCreature("You use the magnifying glass on the object, but it doesn't reveal anything.", oActivator);
-          }
-        }
-      }
-    }
-
     // Some items added by Dunshine
     if (sTag == "GVD_POT_HEAL050") {
       // a half-full potion of heal, raise HP with half the maximum HPs
@@ -1036,7 +933,8 @@ void main()
       ApplyEffectToObject(DURATION_TYPE_INSTANT, eHalfHeal, oActivator);
     }
 
-    if(GetStringLeft(sTag, 11) == "MD_JEWELBOX") {
+    if(GetStringLeft(sTag, 11) == "MD_JEWELBOX") 
+	{
 
       if (oTarget == oActivator) {
         // start a zdlg with the headbag
@@ -1067,8 +965,8 @@ void main()
     }
 
     // keyring container item, two uses, on a base type item key, to store a key on the ring, and self use to retrieve a key through a zdlg
-    if (sTag == "GVD_KEYRING") {
-
+    if (sTag == "GVD_KEYRING") 
+	{
       if (oTarget == oActivator) {
         // start a zdlg with the keyring
         SetLocalString(oActivator, "dialog", "zdlg_gvd_contain");
@@ -1551,6 +1449,14 @@ void main()
 	    // For rubbing onto ents to get their bark to come off.
 	    int nJuice = GetLocalInt(oTarget, "ENT_JUICE_COUNT");
 		SetLocalInt(oTarget, "ENT_JUICE_COUNT", nJuice + GetItemStackSize(oItem));
+	}
+	
+	if (GetStringLeft(sTag, 10) == "MI_RIT_PLC")
+	{
+	    // Ritual circle - place it.
+		CreateObject(OBJECT_TYPE_PLACEABLE, sTag, lLocation);
+		gsCMReduceItem(oItem);
+		return;
 	}
 
 // ---  DM actions only below this line -- //

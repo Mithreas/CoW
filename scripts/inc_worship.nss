@@ -24,8 +24,6 @@ const int GS_WO_NONE = -1;
 // If you want to improve this in the future and have way more time than I do, consider
 // porting this logic to a 2da file or to the mysql database.
 
-// TODO: add Halfling (Nature, Hearth and Home) and Elf (Nature/Magic and War/Magic) religions
-
 //const int GS_WO_EMPEROR                =     1;
 //const int GS_WO_MORRIAN                =     2;
 //const int GS_WO_SOLKIN                 =     3;
@@ -38,6 +36,7 @@ const int GS_WO_NONE = -1;
 //const int GS_WO_ELAKADENCIA            =     10;
 //const int GS_WO_GYGOS_THE_GREEN        =     11;
 //const int GS_WO_ANTLERED_ONE           =     12;
+//const int GS_WO_TRIXIVERIA             =     13;
 //const int GS_WO_STAR_EYED_LADY         =     21;
 //const int GS_WO_AKAVOS_FIRELORD        =     22;
 //const int GS_WO_NPC_BEAST_CULT         =     99;
@@ -60,6 +59,7 @@ string gsWOGetPortfolio(int nDeity)
 	case 10  : sPortfolio = "Elakadencia, Queen of the Fey\n\nThe fey have many kings and queens, each ruling over their own pocket of the Feywilds.  Elakadencia is tall, wise and beautiful with feathered wings of raven black; a powerful and uncompromising champion of the Balance, she receives the unquestioning fealty of her subjects."; break;
 	case 11  : sPortfolio = "Gygos the Green\n\nAlso known as the Green Knight, Gygos is often turned to by those who fight to protect nature or the balance.  He has been known to appear occasionally to turn the tide of a battle or to protect a threatened glade, but otherwise is not known for answering prayers or speaking with his followers."; break;
 	case 12  : sPortfolio = "The Antlered One\n\nThe true name of the Antlered One is lost to time.  An ancient fertility god, he often attracts followers drawn to the physical aspect of his power, but accepts the worship of all who seek to see life spread and grow.  Many farmers worship him first above all."; break;
+	case 13  : sPortfolio = "Queen Trixiveria\n\nThe fey have many kings and queens, each ruling over their own pocket of the Feywilds.  A playful spirit, Trixiveria's lighthearted manner does little to conceal her magical power.  Perhaps more in tune with the twisting magics of the Feywilds than any other, she is often sought out by mortals."; break;
 	case 21  : sPortfolio = "Seravithia the Star-Eyed\n\nAlso known as the Star-Eyed Lady, Seravithia is often hailed as the inventor of magic, the first wizard among the Elven people.  Teaching her first followers how to tap into natural power and weave it into spells, she spent her natural life span discovering and teaching.  Death never claimed her, though her followers now hear from her but rarely."; break;
 	case 22  : sPortfolio = "Akavos Firelord\n\nAscending to godhood during the Great War, Akavos was a mighty battle mage.  His ascension occurred in the middle of a battle during which he was channeling great power... those who have attempted to replicate the feat have not survived.  Naturally gifted with fire magics, he is often worshipped by other pyromancers."; break;
 	case 99  : sPortfolio = ""; break; // Secret, so no info here in case it shows up.
@@ -212,6 +212,7 @@ int gsWOGetDeityByName(string sDeity)
 	if (sDeity == "Elakadencia")             return 10;
 	if (sDeity == "Gygos the Green")         return 11;
 	if (sDeity == "The Antlered One")        return 12;
+	if (sDeity == "Trixiveria")              return 13;
 	if (sDeity == "Seravithia Star-Eyed")    return 21;
 	if (sDeity == "Akavos Firelord")         return 22;
 	if (sDeity == "Beast Cult")              return 99;
@@ -235,6 +236,7 @@ string gsWOGetNameByDeity(int nDeity)
 		case 10:   return "Elakadencia";
 		case 11:   return "Gygos the Green";
 		case 12:   return "The Antlered One";
+		case 13:   return "Trixiveria";
 		case 21:   return "Seravithia Star-Eyed";
 		case 22:   return "Akavos Firelord";
 		case 99:   return "Beast Cult";
@@ -263,6 +265,7 @@ int gsWOGetCategory(int nDeity)
 		case 10:   
 		case 11:   
 		case 12:   
+		case 13:
 		  return FB_WO_CATEGORY_BALANCE;
 		case 99:   
 		default:
@@ -323,9 +326,9 @@ int gsWOGrantFavor(object oTarget = OBJECT_SELF)
         return FALSE;
     }
 
-	if (!gsWOGrantBoon(oTarget)) return FALSE;
 	if (gsWOGrantResurrection(oTarget)) return FALSE;
 	if (GetIsDead(oTarget)) return FALSE;
+	if (!gsWOGrantBoon(oTarget)) return FALSE;
 
     int nFlag      = FALSE;
 
@@ -451,7 +454,7 @@ int gsWOGrantFavor(object oTarget = OBJECT_SELF)
 //----------------------------------------------------------------
 int gsWOGrantBoon(object oTarget = OBJECT_SELF)
 {
-    int GS_WO_TIMEOUT_BOON = 43200; //12 hours
+    int GS_WO_TIMEOUT_BOON = 60 * 60 * 12; //12 hours
     float GS_WO_COST_BOON  =    25.0f;
 
     float fPiety = gsWOGetPiety(oTarget);
@@ -735,6 +738,7 @@ void gsWOSetup()
 	gsWOAddDeity(10, "NG,LN,NN,CN,NE", ASPECT_NATURE + ASPECT_HEARTH_HOME, RACIAL_TYPE_FEY); // Elakadencia
 	gsWOAddDeity(11, "LG,NG,LN,NN,LE,NE", ASPECT_NATURE + ASPECT_WAR_DESTRUCTION, RACIAL_TYPE_ALL); // Gygos the Green
 	gsWOAddDeity(12, "NG,NN,CN,NE,CG,CE", ASPECT_NATURE + ASPECT_HEARTH_HOME, RACIAL_TYPE_ALL); // The Antlered One
+	gsWOAddDeity(12, "NG,NN,CN,NE,CG", ASPECT_NATURE + ASPECT_MAGIC, RACIAL_TYPE_FEY); // Trixiveria
 
     gsWOChangeCategory(FB_WO_CATEGORY_MAGIC);
     gsWOAddDeity(8, "CG,CN,CE", ASPECT_TRICKERY_DECEIT + ASPECT_MAGIC, RACIAL_TYPE_HUMAN); //Dark One

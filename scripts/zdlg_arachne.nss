@@ -69,9 +69,31 @@ void PageInit()
 		break;
 	}
 	
-	CreateItemOnObject("arachnechitin", oPC);
-  
-    SetDlgPrompt("Yes, always. " + sComment);
+	int nEcdysis = GetLocalInt(OBJECT_SELF, "ARACHNE_ECDYSIS_COUNT");
+	int nTimeout = GetLocalInt(OBJECT_SELF, "ARACHNE_TIMEOUT");
+		  
+	if (!nEcdysis && nTimeout < gsTIGetActualTimestamp())
+	{
+		nEcdysis = d20();		    
+	}
+		  
+	if (!nEcdysis)
+	{	    		  
+	  SetDlgPrompt("I have no more chitin spare at the moment.");
+	}	
+	else
+	{
+	  CreateItemOnObject("arachnechitin", oPC);
+	  nEcdysis --;	  
+	  SetLocalInt(OBJECT_SELF, "ARACHNE_ECDYSIS_COUNT", nEcdysis);
+      SetDlgPrompt("Yes, always. " + sComment);
+	  
+	  if (!nEcdysis)
+	  {
+	    SetLocalInt(OBJECT_SELF, "ARACHNE_TIMEOUT", gsTIGetActualTimestamp() + 60 * 5);
+	  }
+	}
+	
     SetDlgResponseList(END, OBJECT_SELF);
   }
   else if (sPage == WEB)

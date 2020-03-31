@@ -65,7 +65,7 @@ void _miCRAddMessageToCrier(string sMessage, int nExpires, object oCrier)
 
 void miCRAddMessage(string sMessage, int nDuration, int bAllCriers = FALSE, object oCrier = OBJECT_SELF)
 {
-  int nTimestamp = gsTIGetActualTimestamp() + 3600 * nDuration;
+  int nTimestamp = gsTIGetActualTimestamp() + 60 * MINUTES_PER_HOUR * nDuration;
 
   if (bAllCriers)
   {
@@ -95,7 +95,7 @@ void miCRAddMessage(string sMessage, int nDuration, int bAllCriers = FALSE, obje
 
 void miCRAddMessageForInstance(string sMessage, int nDuration, string sInstance) {
 
-  int nTimestamp = gsTIGetActualTimestamp() + 3600 * nDuration;
+  int nTimestamp = gsTIGetActualTimestamp() + 60 * MINUTES_PER_HOUR * nDuration;
   string sTimestamp = IntToString(nTimestamp);
   sMessage = SQLEncodeSpecialChars(sMessage);
 

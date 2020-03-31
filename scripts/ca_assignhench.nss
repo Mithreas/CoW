@@ -14,19 +14,19 @@ void main()
     AssignCommand( oHench, ActionForceMoveToObject(oPC) );
 
     // Set default henchman event handlers.
-	NWNX_Object_SetEventHandler(OBJECT_SELF, CREATURE_EVENT_HEARTBEAT, "nw_ch_ac1");
-  	NWNX_Object_SetEventHandler(OBJECT_SELF, CREATURE_EVENT_PERCEPTION, "nw_ch_ac2");
-  	NWNX_Object_SetEventHandler(OBJECT_SELF, CREATURE_EVENT_SPELLCAST, "nw_ch_acb");
-	NWNX_Object_SetEventHandler(OBJECT_SELF, CREATURE_EVENT_ATTACKED, "nw_ch_ac5");
-	NWNX_Object_SetEventHandler(OBJECT_SELF, CREATURE_EVENT_DAMAGED, "nw_ch_ac6");
-	NWNX_Object_SetEventHandler(OBJECT_SELF, CREATURE_EVENT_DISTURBED, "nw_ch_ac8");
-	NWNX_Object_SetEventHandler(OBJECT_SELF, CREATURE_EVENT_ENDCOMBAT, "nw_ch_ac3");
-	NWNX_Object_SetEventHandler(OBJECT_SELF, CREATURE_EVENT_CONVERSATION, "nw_ch_ac4");
-	NWNX_Object_SetEventHandler(OBJECT_SELF, CREATURE_EVENT_SPAWN, "nw_ch_ac9");
-	NWNX_Object_SetEventHandler(OBJECT_SELF, CREATURE_EVENT_RESTED, "");
-	NWNX_Object_SetEventHandler(OBJECT_SELF, CREATURE_EVENT_DEATH, "nw_ch_ac7");
-	NWNX_Object_SetEventHandler(OBJECT_SELF, CREATURE_EVENT_USERDEF, "nw_ch_acd");
-	NWNX_Object_SetEventHandler(OBJECT_SELF, CREATURE_EVENT_BLOCKED, "nw_ch_ace");
+	SetEventScript(OBJECT_SELF, EVENT_SCRIPT_CREATURE_ON_HEARTBEAT, "nw_ch_ac1");
+  	SetEventScript(OBJECT_SELF, EVENT_SCRIPT_CREATURE_ON_NOTICE, "nw_ch_ac2");
+  	SetEventScript(OBJECT_SELF, EVENT_SCRIPT_CREATURE_ON_SPELLCASTAT, "nw_ch_acb");
+	SetEventScript(OBJECT_SELF, EVENT_SCRIPT_CREATURE_ON_MELEE_ATTACKED, "nw_ch_ac5");
+	SetEventScript(OBJECT_SELF, EVENT_SCRIPT_CREATURE_ON_DAMAGED, "nw_ch_ac6");
+	SetEventScript(OBJECT_SELF, EVENT_SCRIPT_CREATURE_ON_DISTURBED, "nw_ch_ac8");
+	SetEventScript(OBJECT_SELF, EVENT_SCRIPT_CREATURE_ON_END_COMBATROUND, "nw_ch_ac3");
+	SetEventScript(OBJECT_SELF, EVENT_SCRIPT_CREATURE_ON_DIALOGUE, "nw_ch_ac4");
+	SetEventScript(OBJECT_SELF, EVENT_SCRIPT_CREATURE_ON_SPAWN_IN, "nw_ch_ac9");
+	SetEventScript(OBJECT_SELF, EVENT_SCRIPT_CREATURE_ON_RESTED, "");
+	SetEventScript(OBJECT_SELF, EVENT_SCRIPT_CREATURE_ON_DEATH, "nw_ch_ac7");
+	SetEventScript(OBJECT_SELF, EVENT_SCRIPT_CREATURE_ON_USER_DEFINED_EVENT, "nw_ch_acd");
+	SetEventScript(OBJECT_SELF, EVENT_SCRIPT_CREATURE_ON_BLOCKED_BY_DOOR, "nw_ch_ace");
 
     SetLocalInt(oHench, "MI_PERSISTS", TRUE);
     SetLocalInt(oHench, "AR_IS_RECRUITED", TRUE);

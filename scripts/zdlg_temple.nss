@@ -175,7 +175,7 @@ void PageInit()
     // Is the PC the owner of the quarter?
     if (gsQUGetIsOwner(oQuarter, oPC))
     {
-      int nTimeout = GetLocalInt(oQuarter, "GS_TIMEOUT");
+      int nTimeout = GetLocalInt(gsQULoad(oQuarter), "GS_TIMEOUT");
       string sPrompt = "This is your Temple. " + (gsQUGetIsForSale(oQuarter) ?
        "It is currently up for sale." : "It is not currently for sale.") +
        "\n\nYour tax bill is currently " + IntToString(gsQUGetTaxAmount(oQuarter)) +
@@ -183,9 +183,9 @@ void PageInit()
        "\n\nYou can customise your Temple " +
        "by placing fixtures in it.  Most Temples also have one or more chests " +
        "in which to permanently store items.  Remember to open a locked door on your quarter " +
-       "once every " + IntToString(nTimeout/86400) + " days, " +
-       IntToString(gsTIGetHour(nTimeout)) + " hours and " +
-       IntToString(gsTIGetMinute(nTimeout)) + " (realtime) or other players " +
+       "once every " + IntToString(nTimeout / (60 * 60 * 24)) + " days, " +
+       IntToString((nTimeout % (60 * 60 * 24))/ (60 * 60)) + " hours and " +
+       IntToString((nTimeout % (60 * 60))/ 60) + " minutes (realtime) or other players " +
        "may take it over.  Your Temple will also become available if you " +
        "run out of money in your bank account for paying rent. " +
        "If you want to share the Temple with someone, " +
@@ -481,7 +481,7 @@ void HandleSelection()
       case 0:   // Do it
       {
         int nCost       = GetLocalInt(oQuarter, "GS_COST") / 2;
-        int nTimeout    = GetLocalInt(oQuarter, "GS_TIMEOUT");
+        int nTimeout    = GetLocalInt(gsQULoad(oQuarter), "GS_TIMEOUT");
 
         if (nCost > GetGold(oPC))
         {
@@ -545,7 +545,7 @@ void HandleSelection()
       case 0:   // Do it
       {
         int nCost       = GetLocalInt(oQuarter, "GS_COST") / 10;
-        int nTimeout    = GetLocalInt(oQuarter, "GS_TIMEOUT");
+        int nTimeout    = GetLocalInt(gsQULoad(oQuarter), "GS_TIMEOUT");
 
         if (nCost > 0)
         {

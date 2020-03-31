@@ -11,12 +11,16 @@ void main()
 
     case GS_EV_ON_COMBAT_ROUND_END:
     {
-        SpeakString("*Raises his arms, calling more stirges into the fray*");
+	    string sSpeak = GetLocalString(OBJECT_SELF, "GS_TEXT");
+		if (sSpeak == "") sSpeak = "*Raises his arms, calling more stirges into the fray*";
+        SpeakString(sSpeak);
         int nCount = d3();
 
+        string sResref = GetLocalString(OBJECT_SELF, "GS_RESREF");
+		if (sResref == "") sResref = "ar_cr_doomstirge";
         while (nCount > 0)
         {
-          CreateObject(OBJECT_TYPE_CREATURE, "ar_cr_doomstirge", GetLocation(OBJECT_SELF), TRUE);
+          CreateObject(OBJECT_TYPE_CREATURE, sResref, GetLocation(OBJECT_SELF), TRUE);
           nCount--;
         }
     }

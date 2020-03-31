@@ -23,7 +23,7 @@ void OnPageInit(string sPage)
 
     // Conversation options
     dlgSetPrompt(txtBlue+"[Select action]</c>");
-    if (dlgGetSpeakeeDataInt("GS_LIGHT") ||
+    if (dlgGetSpeakeeDataInt("GS_FX_LIGHT") ||
         dlgGetSpeakeeDataInt("GS_SIT_CHAIR") ||
         dlgGetSpeakeeDataInt("GS_SIT_FLOOR") ||
         dlgGetSpeakeeDataInt("GS_ALTAR") ||
@@ -54,7 +54,7 @@ void OnSelection(string sPage)
             gsFXWarn(oSpeaker, oFixture);
         }
     }
-    else if (dlgGetSpeakeeDataInt("GS_LIGHT"))
+    else if (dlgGetSpeakeeDataInt("GS_FX_LIGHT"))
     {
         AssignCommand(oSpeaker, ActionPlayAnimation(ANIMATION_LOOPING_GET_MID, 1.0, 1.0));
         SetPlaceableIllumination(OBJECT_SELF, !GetPlaceableIllumination());

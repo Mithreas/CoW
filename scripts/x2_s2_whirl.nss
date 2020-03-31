@@ -25,7 +25,7 @@ void main()
     return;
   }
 
-  SetLocalInt(oPC, "X2_S2_WHIRL_TIMEOUT", nTimestamp + 100);
+  SetLocalInt(oPC, "X2_S2_WHIRL_TIMEOUT", nTimestamp + 10);
   DelayCommand(10.0f, FloatingTextStringOnCreature("You can now use whirlwind again!", oPC));
 
   // * GZ, Sept 09, 2003 - Added dust cloud to improved whirlwind

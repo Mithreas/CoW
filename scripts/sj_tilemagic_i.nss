@@ -1077,6 +1077,7 @@ void SJ_TileMagic_CoverTile(object oArea, int nTile, int nColumn, int nRow, floa
         ApplyEffectToObject(DURATION_TYPE_PERMANENT, eTile, oTile);
 
         SetPlotFlag(oTile, TRUE);
+		SetLocalInt(oTile, "GS_STATIC", TRUE);
     }
     else
     {

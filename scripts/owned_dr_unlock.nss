@@ -11,6 +11,8 @@
   this by setting the BOUNTY var on the object in question. 
 */
 #include "inc_crime"
+#include "inc_combat"
+
 void main()
 {
   int nCount = 1;
@@ -21,6 +23,9 @@ void main()
   {
     return;
   }
+  
+  // Check whether the PC is near the door.  If not, they probably didn't open it...
+  if (GetDistanceBetween(OBJECT_SELF, oPC) > 5.0f) return;
   
   // The PC unlocked this door without using a key.  Spring into action, O forces
   // of law and order.  
@@ -39,6 +44,11 @@ void main()
 	  int nBounty = GetLocalInt(OBJECT_SELF, "BOUNTY");
       AddToBounty(nNation, nBounty ==0 ? FINE_THEFT : nBounty, oPC);
     }
+	else if (GetCanSeeParticularPC(oPC, oNPC))
+	{
+	  SetIsTemporaryEnemy(oPC, oNPC);
+	  AssignCommand(oNPC, gsCBDetermineCombatRound());
+	}
 
     nCount++;
     oNPC = GetNearestCreature(CREATURE_TYPE_PLAYER_CHAR,

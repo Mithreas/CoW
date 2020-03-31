@@ -307,6 +307,7 @@ void main()
 
       // moved this from 6 RL minute to 1 RL minute interval, so the maximum difference between both servers is now 1 RL minute
       miDASetKeyedValue("gs_system", "time", "value", IntToString(nTimestamp));
+	  WriteTimestampedLogEntry("Server time: " + IntToString(nTimestamp));
 
       //::  Added by ActionReplay - Update Guild Ships every RL Minute for more frequent sea encounters.
       ar_UpdateShips();

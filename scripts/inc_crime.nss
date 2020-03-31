@@ -39,8 +39,9 @@ const int NATION_RENERRIN          = 4;
 const int NATION_SHADOW            = 5;
 const int NATION_VYVIAN            = 6;
 const int NATION_ELF               = 7;
+const int NATION_AIREVORN          = 8;
 
-const int NUM_NATIONS              = 8;
+const int NUM_NATIONS              = 9;
 
 /* Tags for nation wanted tokens are root + nation number. */
 
@@ -86,7 +87,13 @@ const int FACTION_ELF_DEFENDER         = 23;
 const int FACTION_VYVIAN_MERCS         = 24;
 const int FACTION_ELF_MERCS            = 25;
 
-const int NUM_FACTIONS                 = 26;
+const int FACTION_INFILTRATORS         = 26;
+
+const int FACTION_AIREVORN_COMMONER    = 27;
+const int FACTION_AIREVORN_DEFENDER    = 28;
+const int FACTION_AIREVORN_MERCS       = 29;
+
+const int NUM_FACTIONS                 = 30;
 
 /* Bounty values for crimes. */
 
@@ -182,6 +189,22 @@ int GetFaction(object oCreature)
 
   if (nFaction == 0)
   {
+    object oFactionExample = GetFirstFactionMember(oCreature, 0);
+
+    while (GetIsObjectValid(oFactionExample))
+    {
+      string sTag = GetTag(oFactionExample);
+      if (GetStringLeft(sTag, 14) == "factionexample")
+	  {
+	    nFaction = StringToInt(GetStringRight(sTag, GetStringLength(sTag) - 14));
+	    SetLocalInt(oCreature, FACTION, nFaction);
+	  }
+      oFactionExample = GetNextFactionMember(oCreature, 0);
+    }
+  }	
+/*
+  if (nFaction == 0)
+  {
     int ii;
     for (ii = 0; ii < NUM_FACTIONS; ii++)
     {
@@ -227,7 +250,7 @@ int GetFaction(object oCreature)
     // Workaround for the fact that an absent variable will return 0.
     Trace(BOUNTY, "Hostile, so correcting value from -1 to 0");
     nFaction = 0;
-  }
+  }*/
 
   Trace(BOUNTY, "Returning faction: " + IntToString(nFaction));
   return nFaction;
@@ -349,14 +372,20 @@ int CheckFactionNation(object oNPC, int nCountMercenaries = FALSE)
 	 case FACTION_VYVIAN_COMMONER:
 	 case FACTION_VYVIAN_DEFENDER:
 	 {
-	    nNation = NATION_VYVIAN;
-		break;
+	   nNation = NATION_VYVIAN;
+	   break;
 	 }
 	 case FACTION_ELF_COMMONER:
 	 case FACTION_ELF_DEFENDER:
 	 {
-	    nNation = NATION_ELF;
-		break;
+	   nNation = NATION_ELF;
+	   break;
+	 }
+	 case FACTION_AIREVORN_COMMONER:
+	 case FACTION_AIREVORN_DEFENDER:
+	 {
+	   nNation = NATION_AIREVORN;
+	   break;
 	 }
      default:
      {
@@ -389,16 +418,21 @@ int CheckFactionNation(object oNPC, int nCountMercenaries = FALSE)
         nNation = NATION_SHADOW;
         break;
       }
-	 case FACTION_VYVIAN_MERCS:
+	  case FACTION_VYVIAN_MERCS:
       {
         nNation = NATION_VYVIAN;
         break;
       }
-	 case FACTION_ELF_MERCS:
+	  case FACTION_ELF_MERCS:
       {
         nNation = NATION_ELF;
         break;
       }
+	  case FACTION_AIREVORN_MERCS:
+	  {
+	    nNation = NATION_AIREVORN;
+		break;
+	  }
     }
   }
 
@@ -422,6 +456,7 @@ int GetIsDefender(object oNPC)
     case FACTION_SHADOW_DEFENDER:
 	case FACTION_VYVIAN_DEFENDER:
 	case FACTION_ELF_DEFENDER:
+	case FACTION_AIREVORN_DEFENDER:
       Trace(BOUNTY, "GetIsDefender returning 1");
       return 1;
   }

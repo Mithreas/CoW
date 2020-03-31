@@ -164,7 +164,7 @@ void gvd_AdventuringXP_XPBonus(object oPC) {
   if (nXP >= nXPLevel) return;
 
   object oHide = gsPCGetCreatureHide(oPC);
-  int iMax = 100;
+  int iMax = 500;
   int iXPPool = GetLocalInt(oHide, "GVD_XP_POOL");
   int iXP;
 
@@ -177,7 +177,7 @@ void gvd_AdventuringXP_XPBonus(object oPC) {
   object oArea = GetArea(oPC);
   if (oArea != OBJECT_INVALID && GetLocalInt(oArea, "TAVERN_SUSTAIN")) 
   {
-    iMax += 100;
+    iMax += 500;
   }  
   
   if (iXPPool > 0) {                        

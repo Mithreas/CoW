@@ -45,7 +45,7 @@ int StartingConditional()
 
             if (bStaticLevel)
             {
-              if (gsCMGetItemValue(oItem) + nBaseCost - gsCRGetMaterialBaseValue(oItem) > GS_CR_FL_MAX_ITEM_VALUE)
+              if ( (gsCMGetItemValue(oItem) + nBaseCost - gsCRGetMaterialBaseValue(oItem)) > GS_CR_FL_MAX_ITEM_VALUE)
               {
                 // Max item value reached.
                 SetCustomToken(100, "This item is too powerful to enchant.");
@@ -91,12 +91,12 @@ int StartingConditional()
                         // Impose a min cost to avoid abusing merchants.  Max possible
                         // merchant buy price is 75% of base value so make this the min
                         // for items under 300g.
-                        if (nBaseItemValue + nCost < 300 && gsCRGetCraftingCostMultiplier(oSpeaker, oItem, ipProperty) < 0.75)
+                        if ( ((gsCMGetItemValue(oItem) + nBaseCost) < 400) && (gsCRGetCraftingCostMultiplier(oSpeaker, oItem, ipProperty) < 0.75))
                         {
                            nCost = FloatToInt(IntToFloat(nBaseCost) * 0.75);
                         }
 
-                        nChance = (nBaseItemValue + nCost) * 100 / GS_LIMIT_COST;
+                        nChance = ((nBaseItemValue + nCost) * 100) / GS_LIMIT_COST;
                         if (nChance >= 100)       nImpossible = TRUE; // No divine intervention.
                         if (nChance < 5)        nChance =   5;
                         else if (nChance > 95) nChance = 95;

@@ -1875,7 +1875,7 @@ void ProjectImage()
 		{ // Female
 			sPortrait = "po_hu_f_99_";	
 		}
-		NWNX_Object_SetPortrait(oImage, sPortrait);	
+		SetPortraitResRef(oImage, sPortrait);	
 	}
 
     _SetProjectImageAI(oImage);
@@ -2613,7 +2613,7 @@ object _CreateStaticVFX(string sName, int nId, location lLocation, float fDurati
     object oVFX = CreateObject(OBJECT_TYPE_PLACEABLE, sStaticSourceTemplate, lLocation, FALSE, "StaticVFX" + IntToString(nId));
 
     SetName(oVFX, sName);
-    NWNX_Object_SetEventHandler(oVFX, SCRIPT_PLACEABLE_ON_HEARTBEAT, STATIC_VFX_ON_HEARTBEAT);
+    SetEventScript(oVFX, EVENT_SCRIPT_PLACEABLE_ON_HEARTBEAT, STATIC_VFX_ON_HEARTBEAT);
     ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectVisualEffect(nVFX1), oVFX, fDuration);
     ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectVisualEffect(nVFX2), oVFX, fDuration);
     AssignCommand(oVFX, DestroyObject(oVFX, fDuration));
@@ -2799,18 +2799,18 @@ void _SetIsCreatureLastSpellCastItemValid(object oCreature, int bIsValid)
 //:://////////////////////////////////////////////
 void _SetProjectImageAI(object oImage)
 {
-    NWNX_Object_SetEventHandler(oImage, CREATURE_SCRIPT_ON_BLOCKED_BY_DOOR, PROJECT_IMAGE_AI_ON_BLOCKED);
-    NWNX_Object_SetEventHandler(oImage, CREATURE_SCRIPT_ON_END_COMBATROUND, PROJECT_IMAGE_AI_ON_COMBAT_ROUND_END);
-    NWNX_Object_SetEventHandler(oImage, CREATURE_SCRIPT_ON_DIALOGUE, PROJECT_IMAGE_AI_ON_CONVERSATION);
-    NWNX_Object_SetEventHandler(oImage, CREATURE_SCRIPT_ON_DAMAGED, PROJECT_IMAGE_AI_ON_DAMAGED);
-    NWNX_Object_SetEventHandler(oImage, CREATURE_SCRIPT_ON_DEATH, PROJECT_IMAGE_AI_ON_DEATH);
-    NWNX_Object_SetEventHandler(oImage, CREATURE_SCRIPT_ON_DISTURBED, PROJECT_IMAGE_AI_ON_DISTURBED);
-    NWNX_Object_SetEventHandler(oImage, CREATURE_SCRIPT_ON_HEARTBEAT, PROJECT_IMAGE_AI_ON_HEARTBEAT);
-    NWNX_Object_SetEventHandler(oImage, CREATURE_SCRIPT_ON_NOTICE, PROJECT_IMAGE_AI_ON_PERCEPTION);
-    NWNX_Object_SetEventHandler(oImage, CREATURE_SCRIPT_ON_MELEE_ATTACKED, PROJECT_IMAGE_AI_ON_PHYSICAL_ATTACKED);
-    NWNX_Object_SetEventHandler(oImage, CREATURE_SCRIPT_ON_RESTED, PROJECT_IMAGE_AI_ON_RESTED);
-    NWNX_Object_SetEventHandler(oImage, CREATURE_SCRIPT_ON_SPELLCASTAT, PROJECT_IMAGE_AI_ON_SPELL_CAST_AT);
-    NWNX_Object_SetEventHandler(oImage, CREATURE_SCRIPT_ON_USER_DEFINED_EVENT, PROJECT_IMAGE_AI_ON_USER_DEFINED);
+    SetEventScript(oImage, EVENT_SCRIPT_CREATURE_ON_BLOCKED_BY_DOOR, PROJECT_IMAGE_AI_ON_BLOCKED);
+    SetEventScript(oImage, EVENT_SCRIPT_CREATURE_ON_END_COMBATROUND, PROJECT_IMAGE_AI_ON_COMBAT_ROUND_END);
+    SetEventScript(oImage, EVENT_SCRIPT_CREATURE_ON_DIALOGUE, PROJECT_IMAGE_AI_ON_CONVERSATION);
+    SetEventScript(oImage, EVENT_SCRIPT_CREATURE_ON_DAMAGED, PROJECT_IMAGE_AI_ON_DAMAGED);
+    SetEventScript(oImage, EVENT_SCRIPT_CREATURE_ON_DEATH, PROJECT_IMAGE_AI_ON_DEATH);
+    SetEventScript(oImage, EVENT_SCRIPT_CREATURE_ON_DISTURBED, PROJECT_IMAGE_AI_ON_DISTURBED);
+    SetEventScript(oImage, EVENT_SCRIPT_CREATURE_ON_HEARTBEAT, PROJECT_IMAGE_AI_ON_HEARTBEAT);
+    SetEventScript(oImage, EVENT_SCRIPT_CREATURE_ON_NOTICE, PROJECT_IMAGE_AI_ON_PERCEPTION);
+    SetEventScript(oImage, EVENT_SCRIPT_CREATURE_ON_MELEE_ATTACKED, PROJECT_IMAGE_AI_ON_PHYSICAL_ATTACKED);
+    SetEventScript(oImage, EVENT_SCRIPT_CREATURE_ON_RESTED, PROJECT_IMAGE_AI_ON_RESTED);
+    SetEventScript(oImage, EVENT_SCRIPT_CREATURE_ON_SPELLCASTAT, PROJECT_IMAGE_AI_ON_SPELL_CAST_AT);
+    SetEventScript(oImage, EVENT_SCRIPT_CREATURE_ON_USER_DEFINED_EVENT, PROJECT_IMAGE_AI_ON_USER_DEFINED);
     ExecuteScript(PROJECT_IMAGE_AI_ON_SPAWN, oImage);
 }
 

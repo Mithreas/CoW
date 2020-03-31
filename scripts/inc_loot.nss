@@ -100,8 +100,8 @@ void InitialiseLootSystem()
     //AddBaseItemResRef(BASE_ITEM_BASTARDSWORD, "nw_wswbs001");
     AddBaseItemResRef(BASE_ITEM_BATTLEAXE, "nw_waxbt001");
     AddBaseItemResRef(BASE_ITEM_BELT, "cnrbelt");
-    AddBaseItemResRef(BASE_ITEM_BOOTS, "cnrbootsdeer");
     AddBaseItemResRef(BASE_ITEM_BOOTS, "cnrboots");
+    AddBaseItemResRef(BASE_ITEM_BOOTS, "cnrbootsdeer");
     AddBaseItemResRef(BASE_ITEM_BOOTS, "cnrbootsdb");
     AddBaseItemResRef(BASE_ITEM_BRACER, "cnrbrac");
     AddBaseItemResRef(BASE_ITEM_CLOAK, "cnrcloak");

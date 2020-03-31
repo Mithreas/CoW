@@ -13,5 +13,5 @@ void main()
 
     if (! gsFLGetFlag(GS_FL_MORTAL))
         gsCMCreateRecreatorAtLocation(GetLocalLocation(OBJECT_SELF, "GS_LOCATION"),
-                                      gsTIGetActualTimestamp() + 43200);
+                                      gsTIGetActualTimestamp() + (60 * 60));
 }

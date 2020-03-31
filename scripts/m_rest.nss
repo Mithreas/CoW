@@ -8,6 +8,37 @@
 #include "inc_tempvars"
 #include "zzdlg_main_inc"
 
+void DoNoctureDream(object oPC)
+{
+  if (GetDeity(oPC) == "Nocturne" && !GetLocalInt(gsPCGetCreatureHide(oPC), "FOUND_NOCTURNE") && d4() == 4)
+  {
+    string sText;
+    switch (d6())
+	{
+	  case 1:
+	    sText = "A whisper comes to you in a dream.  'Find me...!'";
+		break;
+	  case 2:
+	    sText = "You dream of a woman standing before you, her arms open to embrace you.  You realise that she resembles the statue of Nocturne.";
+		break;
+	  case 3:
+	    sText = "You wake refreshed, but with the overwhelming urge to be elsewhere.";
+		break;
+	  case 4:
+	    sText = "You dream of cold snow and warm fires.  You can almost smell the pine needles in the air.";
+		break;
+	  case 5:
+	    sText = "In your dreams, a voice speaks to you.  'Come to me, my disciple.'";
+		break;
+	  case 6:
+	    sText = "Your dreams are warm and comfortable, a sense of belonging and love that is almost tangible.";
+		break;
+	}
+	
+	DelayCommand(1.0f, SendMessageToPC(oPC, sText));
+  }
+}
+//----------------------------------------------------------------
 void gsRestMonitor(int nEffect = TRUE)
 {
     SetCommandable(TRUE);
@@ -167,6 +198,8 @@ void gsDoRest(object oRested, int eventType)
         // Remove yoinking flags
         DeleteLocalInt(oRested, "YOINKING");
         DeleteLocalObject(oRested, "YOINK_TARGET");
+		// Nocturne check.
+		DoNoctureDream(oRested);
         break;
     }
 }

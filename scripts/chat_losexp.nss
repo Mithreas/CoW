@@ -17,6 +17,7 @@
 #include "x3_inc_string"
 #include "inc_examine"
 #include "inc_pc"
+#include "inc_xp"
 
 const string HELP = "This command will remove the amount of XP specified. Eg. -losexp 1500 will remove 1500 from the character. All uses of this function are logged for DM monitoring";
 
@@ -101,7 +102,7 @@ void main()
 			}
 			
 			//remove the xp
-			SetXP(oSpeaker, nSetXP);
+			gsXPGiveExperience(oSpeaker, -nRemoveXP);
 			SendMessageToPC(oSpeaker, "Removed " + IntToString(nRemoveXP) + " experience points.");
 			Log("LOSEXP", "PC " + GetName(oSpeaker) + "has used -losexp " + IntToString(nXPCount) + " times, this time to  remove " + IntToString(nRemoveXP) + " experience points from " + IntToString(nCharXP) + " to " + IntToString(nSetXP) + ".");
 			if (nSetXP < 1000)

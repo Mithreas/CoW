@@ -22,7 +22,7 @@ zdlg_registrar
 #include "ar_utils"
 
 //in game time, how long between a new token is earned
-const int NOBLE_TK_TIMESTAMP        = 29030400; //336 days/IG year
+const int NOBLE_TK_TIMESTAMP        = 7257600; //336 days/IG year
 
 const string LIST_APPLY       = "APPLY";
 const string LIST_DONE        = "DONE";
@@ -352,21 +352,7 @@ void CastVote(object oNation, string sNation, object oPC, string sCandidate)
     return;
   }
   Log(CITIZENSHIP, "!!!VOTING!!! Name: " + GetName(oPC) + " HD: " + IntToString(GetHitDice(oPC)) + " CD KEY:" + sCDKey + " IP: " + GetPCIPAddress(oPC) + " Candidate:" + gsPCGetPlayerName(sCandidate) + " Candidate CDKey: " + sCandKey);
-  // No more than one vote per player per year.
-  // Removed now that people can't jump between nations.
-  /*
-  int nLastVoteTime = gsPCGetLastVote(oPC);
-  int nNow = gsTIGetActualTimestamp();
-  if (gsTIGetAbsoluteYear(nNow - nLastVoteTime) < 0)
-  {
-    SendMessageToPC(oPC, "No more than one vote per player per game year.");
-    return;
-  }
-  else
-  {
-    gsPCSetLastVote(oPC, nNow);
-  }
-  */
+
   int nVoteAddition = 1;
   if(miCZGetCitizenCount(sNation) >= 50 && md_GetIsNoble(oPC, sNation) &  LANDED_NOBLE_INSIDE)
     nVoteAddition = 2;

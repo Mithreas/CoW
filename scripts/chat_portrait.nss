@@ -27,7 +27,7 @@ void main()
   }
   else
   {
-    NWNX_Object_SetPortrait(oSpeaker, sParams);
+    SetPortraitResRef(oSpeaker, sParams);
     SetLocalString(gsPCGetCreatureHide(oSpeaker), "PORTRAIT", sParams);
     UpdatePortraitInDB(oSpeaker, sParams);
   }

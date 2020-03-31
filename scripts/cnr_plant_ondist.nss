@@ -15,7 +15,8 @@
 
 void SpawnNewPlant(string sPlantTag, location locPlant)
 {
-  CreateObject(OBJECT_TYPE_PLACEABLE, sPlantTag, locPlant);
+  object oPlant = CreateObject(OBJECT_TYPE_PLACEABLE, sPlantTag, locPlant);
+  SetLocalInt(oPlant, "GS_STATIC", TRUE);
   DestroyObject(OBJECT_SELF);
 }
 
@@ -47,6 +48,7 @@ void main()
       // if empty, so destroy and respawn the plant
       location locPlant = GetLocation(OBJECT_SELF);
       object oSpawner = CreateObject(OBJECT_TYPE_PLACEABLE, "cnrobjectspawner", locPlant);
+	  SetLocalInt(oSpawner, "GS_STATIC", TRUE);
       AssignCommand(oSpawner, DelayCommand(fSpawnSecs, SpawnNewPlant(sPlantTag, locPlant)));
       DestroyObject(OBJECT_SELF);
       return;

@@ -3,9 +3,10 @@
 #include "inc_loot"
 #include "inc_log"
 
-const int GS_TIMEOUT            = 21600; //6 hours
+const int GS_TIMEOUT            =  3600; //1 RL hour
 const int GS_LIMIT_GOLD         =  2000;
 const int GS_LIMIT_MIN_LOW      =    75;
+const int GS_LIMIT_VALUE_VLOW   =  1000;
 const int GS_LIMIT_VALUE_LOW    =  5000;
 const int GS_LIMIT_VALUE_MEDIUM = 15000;
 const int GS_LIMIT_VALUE_HIGH   = 999999;
@@ -36,16 +37,15 @@ void main()
     //::         is spawned it will never happen again during this server instance.
     if (nTimeout < nTimestamp || !nOpened)
     {
-        int bMimic      = GetLocalInt(OBJECT_SELF, "AR_MIMIC");
-        int bValidChest = sTag == "GS_TREASURE_MEDIUM" || sTag == "GS_TREASURE_HIGH";
+        int nMimic      = GetLocalInt(OBJECT_SELF, "AR_MIMIC");
+        int bValidChest = sTag == "GS_TREASURE_LOW" || sTag == "GS_TREASURE_MEDIUM" || sTag == "GS_TREASURE_HIGH";
         if ( GetLocalInt(OBJECT_SELF, "AR_DISABLED") )  return; //::  Just for safety as there is a slight delay on destroying the chest
-        if ( bMimic && bValidChest && d20() == 20 ) {
+        if ( bValidChest && d20() <= nMimic ) {
             SetLocalInt(OBJECT_SELF, "AR_DISABLED", TRUE);
             spawnMimic(nTimestamp, nTimeout);
             return;
         }
     }
-
 
     if (nTimeout < nTimestamp)
     {
@@ -71,7 +71,13 @@ void main()
             int nNth             = GetStringLength(sTag);
 
             //determine item value range
-            if (GetStringRight(sTag, 4) == "_LOW")
+            if (GetStringRight(sTag, 5) == "_VLOW")
+            {
+                nLimitValue   = GS_LIMIT_VALUE_VLOW;
+                nLimitItem    = GS_LIMIT_ITEM_LOW;
+                sTagInventory = GetStringLeft(sTag, nNth - 5);
+            }
+            else if (GetStringRight(sTag, 4) == "_LOW")
             {
                 nLimitValue   = GS_LIMIT_VALUE_LOW;
                 nLimitItem    = GS_LIMIT_ITEM_LOW;

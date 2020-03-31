@@ -340,7 +340,7 @@ void main()
           DeleteLocalInt(oAcquired, sCDKey + "_TIME");
         }
 
-        if (nTime > (gsTIGetActualTimestamp() - (60 * 60 * 24 * 7 * 10 * 4))) // If time > this time last month, do check
+        if (nTime > (gsTIGetActualTimestamp() - (60 * 60 * 24 * 28))) // Acquired in the last 28 days.
         {
           string sPlayer     = GetPCPlayerName(oAcquiredBy);
           string sIP         = GetPCIPAddress(oAcquiredBy);

@@ -127,7 +127,8 @@ void DoWeatherEffects()
 
       string sResRef = "x3_plc_mist";
 
-      CreateObject(OBJECT_TYPE_PLACEABLE, sResRef, Location(OBJECT_SELF, vPosition, fFacing));
+      object oMist = CreateObject(OBJECT_TYPE_PLACEABLE, sResRef, Location(OBJECT_SELF, vPosition, fFacing));
+	  SetObjectVisualTransform(oMist, OBJECT_VISUAL_TRANSFORM_SCALE, IntToFloat(200 + Random(200)) / 100.0f);
     }
   }
   else if (nWeather == WEATHER_RAIN || nWeather == WEATHER_SNOW)
@@ -181,9 +182,9 @@ void DoDeadPeople()
   }
 
   AssignCommand(oCopy, SetIsDestroyable(FALSE, FALSE, FALSE));
-  ApplyEffectToObject(DURATION_TYPE_PERMANENT, EffectDeath(), oCopy);
-  SetAILevel(oCopy, AI_LEVEL_VERY_LOW);
-  SetPlotFlag(oCopy, TRUE);
+  AssignCommand(oCopy, ApplyEffectToObject(DURATION_TYPE_PERMANENT, EffectDeath(), oCopy));
+  AssignCommand(oCopy, SetPlotFlag(oCopy, TRUE));
+  AssignCommand(oCopy, SetAILevel(oCopy, AI_LEVEL_VERY_LOW));
 
   SetLocalObject(oPC, GetTag(OBJECT_SELF) + "_dead", oCopy);
 }
@@ -584,7 +585,7 @@ void main()
                     int iTimeStampMerchant = GetLocalInt(oObject, "GS_TIMESTAMP");
 
                     //::  Change Merchant every 2nd Day
-                    if ( (nTimestamp - iTimeStampMerchant) > (86400*2) ) {
+                    if ( gsTIGetDay(nTimestamp - iTimeStampMerchant) > 1 ) {
                     //if ( (nTimestamp - iTimeStampMerchant) > 0 ) {
                         SetLocalInt(oObject, "GS_TIMESTAMP", nTimestamp);
 
@@ -622,8 +623,7 @@ void main()
                   // only check once a day (gametime)
                   int iTimeStampTinker = GetLocalInt(oObject,"GS_TIMESTAMP");
                   // use for easy testing: if ((nTimestamp - iTimeStampTinker) > 0) {
-                  if ((nTimestamp - iTimeStampTinker) > 86400) {
-                  // use for live, ingame day: if ((nTimestamp - iTimeStampTinker) > 86400) {
+                  if (gsTIGetDay(nTimestamp - iTimeStampTinker) > 0) {
 
                     // already a Tinker there?
                     if (GetLocalInt(oObject,"iTinker") == 0) {

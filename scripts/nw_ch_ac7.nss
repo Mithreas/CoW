@@ -155,8 +155,9 @@ void main()
                nValue = gsCMGetItemValue(oItem);
 
                // Do not drop items worth more than GS_LIMIT_VALUE or creature items
-               // Also omit items marked as plot.
-               if (!GetPlotFlag(oItem) && nValue <= GS_LIMIT_VALUE && nSlot < 14)
+               // Also omit items marked as plot, and Stolen Treasure.
+               if (!GetPlotFlag(oItem) && ConvertedStackTag(oItem) != "FB_TREASURE" && 
+			       nValue <= GS_LIMIT_VALUE && nSlot < 14)
                {
                  // Leave the item in place to drop.
                }

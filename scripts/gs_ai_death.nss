@@ -21,6 +21,7 @@
 #include "inc_randomquest"
 #include "inc_ranger"
 #include "inc_stacking"
+#include "inc_theft"
 
 const string GS_TEMPLATE_CORPSE  = "gs_placeable016";
 const string GS_BOSS_HEAD_MEGA   = "mon_head_mega";
@@ -32,7 +33,7 @@ const string GS_BOSS_HEAD_MINI   = "mon_head_mini";
 const string GS_BOSS_HEAD_HHIGH  = "hum_head_high";
 const string GS_BOSS_HEAD_HMED   = "hum_head_med";
 const string GS_BOSS_HEAD_HLOW   = "hum_head_low";
-const int GS_TIMEOUT             = 21600; //6 hours
+const int GS_TIMEOUT             = 3600; //1 RL hour
 const int GS_LIMIT_VALUE         = 10000;
 
 void _gsDropLoot()
@@ -41,11 +42,6 @@ void _gsDropLoot()
     SetPlotFlag(oBones, FALSE);
 
     // Always create a corpse object for gold spawns.
-    //if (!GetIsObjectValid(GetFirstItemInInventory()))
-    //{
-    //  DestroyObject(oBones);
-    //  return;
-    //}
 
     DelayCommand(120.0, ExecuteScript("gs_run_destroy", oBones));
 }
@@ -78,8 +74,14 @@ void gsDropLoot(object oCorpse)
         nValue = gsCMGetItemValue(oItem);
 
         // Do not drop items worth more than GS_LIMIT_VALUE or creature items
-        // Also omit items marked as plot.
-        if (!GetPlotFlag(oItem) && nValue <= GS_LIMIT_VALUE && nSlot < 14 && !bRestrict)
+        // Also omit items marked as plot. 
+		if (GetIsObjectValid(gsTHGetStolenFrom(oItem)))
+		{
+		  // This item was stolen from a PC.  Drop it.
+          oLoot = CopyItem(oItem, oCorpse);
+		  gsTHResetStolenItem(oLoot);
+		}
+		else if (!GetPlotFlag(oItem) && nValue <= GS_LIMIT_VALUE && nSlot < 14 && !bRestrict)
         {
           oLoot = CopyItem(oItem, oCorpse);
           if(GetIsItemMundane(oItem)) SetIsItemMundane(oLoot, TRUE);
@@ -108,8 +110,14 @@ void gsDropLoot(object oCorpse)
   {
     nValue = gsCMGetItemValue(oItem);
 
-    if ((nMortal || GetDroppableFlag(oItem)) && nValue < GS_LIMIT_VALUE &&
-      ConvertedStackTag(oItem) != "FB_TREASURE" && !bRestrict)
+	if (GetIsObjectValid(gsTHGetStolenFrom(oItem)))
+	{
+	  // This item was stolen from a PC.  Drop it.
+	  oLoot = CopyItem(oItem, oCorpse);
+	  gsTHResetStolenItem(oLoot);
+	}
+    else if ((nMortal || GetDroppableFlag(oItem)) && nValue < GS_LIMIT_VALUE &&
+      ConvertedStackTag(oItem) != "FB_TREASURE" && !bRestrict && !GetPlotFlag(oItem))
     {
       oLoot = CopyItem(oItem, oCorpse);
       if(GetIsItemMundane(oItem)) SetIsItemMundane(oLoot, TRUE);
@@ -159,10 +167,29 @@ void main()
        " in " + GetName(GetArea(oSelf)));
     }
 	
-	// Random quests hook - have we completed an assassin mission?
-	if (GetIsPlayerActive(oResponsiblePC, GetTag(oSelf)))
-	{
-	  PlayerNoLongerActive(oResponsiblePC, GetTag(oSelf));
+	// Random quests hook - have we completed an assassin or cull mission?
+	object oCreature = GetFirstObjectInShape(SHAPE_SPHERE, 40.0f, GetLocation(OBJECT_SELF), TRUE);
+
+    while (GetIsObjectValid(oCreature))
+    {
+	  if (GetIsPC(oCreature))
+	  {
+	    if (GetIsPlayerActive(oCreature, GetTag(oSelf)))
+	    {
+	      PlayerNoLongerActive(oCreature, GetTag(oSelf));
+	    }
+		
+		if (GetLocalInt(gsPCGetCreatureHide(oCreature), KILL_COUNT) && 
+		    GetTag(oSelf) == GetLocalString(gsPCGetCreatureHide(oCreature), CULL_TAG))
+		{
+		  int nCount = GetLocalInt(gsPCGetCreatureHide(oCreature), KILL_COUNT) - 1;
+		  
+		  SendMessageToPC(oCreature, GetName(oSelf) + " slain.  " + IntToString(nCount) + " remaining for quest.");
+		  SetLocalInt(gsPCGetCreatureHide(oCreature), KILL_COUNT, nCount);
+		}
+	  }
+	  
+	  oCreature = GetNextObjectInShape(SHAPE_SPHERE, 40.0f, GetLocation(OBJECT_SELF), TRUE);
 	}
   }
 

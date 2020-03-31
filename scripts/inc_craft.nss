@@ -506,7 +506,7 @@ int gsCRGetCraftPoints(object oPC)
     {
         // Time to reset crafting points available to oPC.
 
-        nTimeout = nTimestamp + 86400; //24 hours
+        nTimeout = nTimestamp + 86400; //24 hours - note - needs to use gsTI to get right number.
 
         // Septire - Changed this 21/05/2016. The daily remaining crafting points is 50. If they have gift of Craftsmanship, it's 60.
         // nValue   = _gsCRGetSkillPoints(oPC);
@@ -1899,6 +1899,18 @@ int gsCRGetMaterialSkillBonus(object oItem)
   return nBonus; 
 }
 
+int gsCRGetWeightedAbilityBonus(object oPC, string sDeviceTag)
+{
+  float fStr = IntToFloat ((GetAbilityScore(oPC, ABILITY_STRENGTH, TRUE) - 10) / 2) * CnrRecipeGetRecipeAbilityPercentageByKey(sDeviceTag, ABILITY_STRENGTH);
+  float fDex = IntToFloat ((GetAbilityScore(oPC, ABILITY_DEXTERITY, TRUE) - 10) / 2) * CnrRecipeGetRecipeAbilityPercentageByKey(sDeviceTag, ABILITY_DEXTERITY);
+  float fCon = IntToFloat ((GetAbilityScore(oPC, ABILITY_CONSTITUTION, TRUE) - 10) / 2) * CnrRecipeGetRecipeAbilityPercentageByKey(sDeviceTag, ABILITY_CONSTITUTION);
+  float fInt = IntToFloat ((GetAbilityScore(oPC, ABILITY_INTELLIGENCE, TRUE) - 10) / 2) * CnrRecipeGetRecipeAbilityPercentageByKey(sDeviceTag, ABILITY_INTELLIGENCE);
+  float fWis = IntToFloat ((GetAbilityScore(oPC, ABILITY_WISDOM, TRUE) - 10) / 2) * CnrRecipeGetRecipeAbilityPercentageByKey(sDeviceTag, ABILITY_WISDOM);
+  float fCha = IntToFloat ((GetAbilityScore(oPC, ABILITY_CHARISMA, TRUE) - 10) / 2) * CnrRecipeGetRecipeAbilityPercentageByKey(sDeviceTag, ABILITY_CHARISMA);
+
+  return FloatToInt((fStr + fDex + fCon + fInt + fWis + fCha)/100.0f);
+}
+
 //------------------------------------------------------------------------------
 float gsCRGetCraftingCostMultiplier(object oPC, object oItem, itemproperty ip)
 {
@@ -1911,7 +1923,8 @@ float gsCRGetCraftingCostMultiplier(object oPC, object oItem, itemproperty ip)
   // Scale cost by craft skill level and item type.
   int nXP = CnrGetTradeskillXPByType(oPC, gsCRGetCraftSkillByItemType(oItem, nMundaneProperty));
   int nSkill = CnrDetermineTradeskillLevel(nXP);
-  if (nSkill < 3) nSkill = 3;
+  nSkill += gsCRGetWeightedAbilityBonus(oPC, GetTag(OBJECT_SELF));
+  if (nSkill < 3) nSkill = 3;  
   
   // Bonus material.
   nSkill += gsCRGetMaterialSkillBonus(oItem);

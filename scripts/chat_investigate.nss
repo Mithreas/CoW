@@ -89,6 +89,9 @@ void main()
         AssignCommand( oSpeaker, ActionMoveToObject( oInvestigation, FALSE, 0.1 ) );
         AssignCommand( oSpeaker, SetFacingPoint( GetPositionFromLocation( GetLocation( oInvestigation ) ) ) );
         AssignCommand( oSpeaker, ActionPlayAnimation( ANIMATION_LOOPING_GET_MID, 2.0, IntToFloat( d6( 6 ) ) ) );
+		
+        effect eVis = EffectVisualEffect(VFX_IMP_KNOCK);
+        ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oInvestigation);
       }
 
       if (nLore >= nDC1 && nSearch >= nDC1) SendMessageToPC(oSpeaker, sRes1);

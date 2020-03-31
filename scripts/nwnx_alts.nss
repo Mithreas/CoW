@@ -341,8 +341,7 @@ int GetIsWalkable (object oArea, vector vPos) {
 }
 
 int GetKnowsSpell (int nSpellId, object oCreature, int nSpellLevel, int nClass=CLASS_TYPE_INVALID) {
-  if(nClass != CLASS_TYPE_BARD && nClass != CLASS_TYPE_SORCERER) //might work for other classes, this is currently only used for warlocks
-    return 0;
+
   int x;
 
   for(x = 0; x < NWNX_Creature_GetKnownSpellCount(oCreature, nClass, nSpellLevel); x++)

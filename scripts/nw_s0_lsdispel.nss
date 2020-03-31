@@ -49,6 +49,7 @@ void main()
         SignalEvent(oTarget, EventSpellCastAt(OBJECT_SELF, nSpell, nHarmful));
 
         //apply
+		if (nCasterLevel < 1) nCasterLevel = 1;
         eEffect   = EffectLinkEffects(eEffect, EffectDispelMagicAll(nCasterLevel));
         gsSPApplyEffect(oTarget, eEffect, nSpell);
     }

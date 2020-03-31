@@ -19,8 +19,9 @@ const int MI_BA_RENERRIN = 4;
 const int MI_BA_SHADOW   = 5;
 const int MI_BA_WARDEN   = 6;
 const int MI_BA_FERNVALE = 7;
+const int MI_BA_AIREVORN = 8;
 
-const int MI_BA_NUM_BACKGROUNDS = 8;
+const int MI_BA_NUM_BACKGROUNDS = 9;
 
 //Gifts
 const int GIFT_NONE = 0;
@@ -257,6 +258,8 @@ string miBAGetBackgroundName(int nBackground)
       return "Shadow";
     case MI_BA_FERNVALE:
       return "Fernvale";
+    case MI_BA_AIREVORN:
+      return "Airevorn";
   }
 
   return "";
@@ -275,6 +278,7 @@ int miBAGetCasteByBackground(int nBackground)
       return CASTE_NOBILITY;
     case MI_BA_WARDEN:
 	case MI_BA_FERNVALE:
+    case MI_BA_AIREVORN:
       return CASTE_WARRIOR;
   }
 
@@ -311,6 +315,9 @@ string miBAGetBackgroundDescription(int nBackground)
     case MI_BA_FERNVALE:
       sRetVal = "You are a resident of Fernvale Village, an ancient elven settlement.";
       break;  
+    case MI_BA_AIREVORN:
+	  sRetVal = "You are a resident of Airevorn, a small mountain village where Elves and Half-Elves live together in peace.";
+	  break;
   }
 
   // If using castes (server config.2da)
@@ -354,6 +361,8 @@ int miBAGetIsBackgroundLegal(int nBackground, object oPC)
 	  return (GetRacialType(oPC) == RACIAL_TYPE_HALFLING);
 	case MI_BA_FERNVALE:
 	  return (GetRacialType(oPC) == RACIAL_TYPE_ELF);
+    case MI_BA_AIREVORN:
+	  return (GetRacialType(oPC) == RACIAL_TYPE_HALFELF);
 	case MI_BA_IMPERIAL:
     case MI_BA_SHADOW:
 	  return FALSE;  // Can only be acquired during gameplay.
@@ -451,6 +460,11 @@ void miBAApplyBackground(object oPC, int nBackground = -1, int nFirstTime = TRUE
         CreateItemOnObject("key_fernvale", oPC);
         GiveGoldToCreature(oPC, 750);
 		break;
+      case MI_BA_AIREVORN:	  
+	    CreateItemOnObject("aireoutfit", oPC);
+        CreateItemOnObject("key_airevorn", oPC);
+        GiveGoldToCreature(oPC, 750);
+		break;	    
 	  default:
         break;		
 	}

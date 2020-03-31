@@ -52,7 +52,7 @@ void _TakeOverShop()
     return;
   }
 
-  int nTimeout    = GetLocalInt(oSelf, "GS_TIMEOUT");
+  int nTimeout    = GetLocalInt(gsQULoad(oSelf), "GS_TIMEOUT");
 
   if (nCost > 0)
   {
@@ -131,6 +131,7 @@ void OnInit()
 void OnPageInit(string sPage)
 {
   string sPrompt;
+  object oShop = OBJECT_SELF;
 
   string sPirate;
   int nRank = GetLocalInt(OBJECT_SELF, "REQUIRED_PRANK");
@@ -141,7 +142,7 @@ void OnPageInit(string sPage)
   if(sPage == PAGE_OWNER)
   {
     dlgDeactivateResetResponse();
-    int nTimeout = GetLocalInt(OBJECT_SELF, "GS_TIMEOUT");
+    int nTimeout = GetLocalInt(gsQULoad(oShop), "GS_TIMEOUT");
     string sNation = miCZGetBestNationMatch(QUGetNationNameMatch());
 
     sPrompt = "This is your shop.\n\nYou can change your offer by adding " +
@@ -149,18 +150,18 @@ void OnPageInit(string sPage)
               "items can be placed permanently in it. If another player buys " +
               "an item from your shop, the payment is credited to your " +
               "bank account. Items are sold at " +
-              IntToString(gsSHGetSalePrice(OBJECT_SELF)) +
+              IntToString(gsSHGetSalePrice(oShop)) +
               "% of the value. " +
               "Remember to check the inventory at least once every " +
-              IntToString(nTimeout / 86400) + " days, " +
-              IntToString(gsTIGetHour(nTimeout)) + " hours and " +
-              IntToString(gsTIGetMinute(nTimeout)) + " minutes " +
+              IntToString(nTimeout / (60 * 60 * 24)) + " days, " +
+              IntToString((nTimeout % (60 * 60 * 24)) / (60 * 60)) + " hours and " +
+              IntToString((nTimeout % (60 * 60)) / 60) + " minutes " +
               "(realtime) or other players may take over your shop." +
-              "\n\nThe current montly tax cost for the shop is " + IntToString(gsQUGetTaxAmount(OBJECT_SELF)) +
+              "\n\nThe current monthly tax cost for the shop is " + IntToString(gsQUGetTaxAmount(oShop)) +
               " gold.\n\nThe current tax rate for your settlement is " +
               FloatToString(miCZGetTaxRate(sNation) * 100, 6, 2) + "%" +
               "\n\nThis shop is associated with faction " + fbFAGetFactionNameDatabaseID(md_SHLoadFacID())+
-              " and the factions recieves " + md_SHLoadFacTax() + "% of sale revenue.";
+              " and the factions receives " + md_SHLoadFacTax() + "% of sale revenue.";
 
 
      if(!GetElementCount(PAGE_OWNER, dlgGetSpeakingPC()))
@@ -176,10 +177,10 @@ void OnPageInit(string sPage)
    else if(sPage == PAGE_OWNED)
    {
      dlgDeactivateResetResponse();
-     sPrompt = "''"+gsSHGetOwnerName(OBJECT_SELF)+"'s shop''\n\n"+
+     sPrompt = "''"+gsSHGetOwnerName(oShop)+"'s shop''\n\n"+
                "Open the shop inventory to browse the wares. Items are sold at " +
-               IntToString(gsSHGetSalePrice(OBJECT_SELF)) + "% of the value."+
-               "\n\nThe current monthly tax cost for the shop is " + IntToString(gsQUGetTaxAmount(OBJECT_SELF)) +
+               IntToString(gsSHGetSalePrice(oShop)) + "% of the value."+
+               "\n\nThe current monthly tax cost for the shop is " + IntToString(gsQUGetTaxAmount(oShop)) +
                " gold.";
 
      object oPC = dlgGetSpeakingPC();
@@ -195,7 +196,7 @@ void OnPageInit(string sPage)
      {
 
        object oContract = GetItemPossessedBy(oPC, "piratecontract");
-       if(gsSHGetIsAvailable(OBJECT_SELF) && (nRank == 0 || (GetIsObjectValid(oContract) && GetLocalInt(oContract, "PIRATE_RANK") >= nRank)))
+       if(gsSHGetIsAvailable(oShop) && (nRank == 0 || (GetIsObjectValid(oContract) && GetLocalInt(oContract, "PIRATE_RANK") >= nRank)))
          dlgAddResponse(PAGE_OWNED, DLG_DEFAULT_TXT_ACTION_COLOR+"[Take over shop]</c> " +
                      txtBlue+"[Cost " + IntToString(GetLocalInt(OBJECT_SELF, "GS_COST")) +
                      " gold]");
@@ -208,9 +209,9 @@ void OnPageInit(string sPage)
        int nOverride = md_GetHasPowerSettlement(MD_PR2_RVS, oPC, sFactionID, "2");
        if (GetIsDM(oPC) ||
           (sNation != "" && nOverride &&
-           miCZGetHasAuthority(gsPCGetPlayerID(oPC),gsQUGetOwnerID(OBJECT_SELF), sNation, nOverride)))
+           miCZGetHasAuthority(gsPCGetPlayerID(oPC),gsQUGetOwnerID(oShop), sNation, nOverride)))
        {
-         LeaderLog(GetPCSpeaker(), "Checked shop owned by " + gsQUGetOwnerID(OBJECT_SELF));
+         LeaderLog(GetPCSpeaker(), "Checked shop owned by " + gsQUGetOwnerID(oShop));
          dlgAddResponseAction(PAGE_OWNED, RES_REL);
        }
 
@@ -227,7 +228,7 @@ void OnPageInit(string sPage)
    {
      dlgDeactivateResetResponse();
      sPrompt = "This shop is available."+
-               "\n\nThe current monthly tax cost for the shop is " + IntToString(gsQUGetTaxAmount(OBJECT_SELF)) +
+               "\n\nThe current monthly tax cost for the shop is " + IntToString(gsQUGetTaxAmount(oShop)) +
                " gold.";
 
 
@@ -251,10 +252,10 @@ void OnPageInit(string sPage)
    }
    else if(sPage == PAGE_SSP)
    {
-     int nSalePrice = gsSHGetSalePrice(OBJECT_SELF);
+     int nSalePrice = gsSHGetSalePrice(oShop);
      sPrompt = "Items are sold at " + IntToString(nSalePrice) +
                "% of the value.";
-     SetLocalInt(OBJECT_SELF, "GS_SH_SALE_PRICE", nSalePrice);
+     SetLocalInt(oShop, "GS_SH_SALE_PRICE", nSalePrice);
      dlgSetMaximumResponses(15);
      if(!GetElementCount(PAGE_SSP, dlgGetSpeakingPC()))
      {
@@ -279,7 +280,7 @@ void OnPageInit(string sPage)
 
      //This can change during the conversation
      dlgClearResponseList(PAGE_TSA);
-     if(!gsSHGetIsAvailable(OBJECT_SELF))
+     if(!gsSHGetIsAvailable(oShop))
        dlgAddResponseAction(PAGE_TSA, "[Make Available]");
      else
        dlgAddResponseAction(PAGE_TSA, "[Make Unavailable]");
@@ -357,28 +358,27 @@ void OnPageInit(string sPage)
      dlgActivateResetResponse("[Back]");
      sPrompt = "To change an item's price, type the price then select the item. Setting the price to 0 will set the price to the shop's default.";
      dlgClearResponseList(PAGE_DISPLAY_PRICES);
-     object oSelf = OBJECT_SELF;
-     object oShop = GetLocalObject(oSelf, "MD_STORED_SHOP");
-     if(!GetIsObjectValid(oShop))
+     object oShopFront = GetLocalObject(oShop, "MD_STORED_SHOP");
+     if(!GetIsObjectValid(oShopFront))
      {
        //Loop through the placeables
-       string sClass = GetLocalString(oSelf, "GS_CLASS");
-       int nInstance = GetLocalInt(oSelf, "GS_INSTANCE");
+       string sClass = GetLocalString(oShop, "GS_CLASS");
+       int nInstance = GetLocalInt(oShop, "GS_INSTANCE");
 
-       oShop = GetNearestObject(OBJECT_TYPE_PLACEABLE, oSelf);
+       oShopFront = GetNearestObject(OBJECT_TYPE_PLACEABLE, oShop);
        int x = 1;
-       while(GetIsObjectValid(oShop))
+       while(GetIsObjectValid(oShopFront))
        {
          if(sClass == GetLocalString(oShop, "GS_CLASS") && nInstance == GetLocalInt(oShop, "GS_INSTANCE"))
          {
-           SetLocalObject(oSelf, "MD_STORED_SHOP", oShop);
+           SetLocalObject(oShop, "MD_STORED_SHOP", oShopFront);
            break;
          }
-         oShop = GetNearestObject(OBJECT_TYPE_PLACEABLE, oSelf, ++x);
+         oShopFront = GetNearestObject(OBJECT_TYPE_PLACEABLE, oShop, ++x);
        }
      }
 
-     object oItem = GetFirstItemInInventory(oShop);
+     object oItem = GetFirstItemInInventory(oShopFront);
      int y = 0;
      int nValue;
      int nSalePrice  = gsSHGetSalePrice(oShop);
@@ -394,9 +394,9 @@ void OnPageInit(string sPage)
                       txtGreen + " (Stack Size: " + IntToString(GetItemStackSize(oItem)) + ")</c>: " +
                       IntToString(nValue));
 
-       SetLocalObject(oSelf, "MD_SHOP_ITEM"+IntToString(y), oItem);
+       SetLocalObject(oShop, "MD_SHOP_ITEM"+IntToString(y), oItem);
        y++;
-       oItem = GetNextItemInInventory(oShop);
+       oItem = GetNextItemInInventory(oShopFront);
      }
    }
 
@@ -405,6 +405,8 @@ void OnPageInit(string sPage)
 }
 void OnSelection(string sPage)
 {
+  object oSelf = OBJECT_SELF;
+	
   if(sPage == PAGE_OWNER)
   {
     int nSelection = dlgGetSelectionIndex();
@@ -417,7 +419,7 @@ void OnSelection(string sPage)
     case 4: dlgChangePage(PAGE_DISPLAY_PRICES); break;
     case 3: object oPC = dlgGetSpeakingPC();
             string sMsg = gsLIGetLastMessage(oPC);
-            gsQUSetName(OBJECT_SELF, sMsg);
+            gsQUSetName(oSelf, sMsg);
             SendMessageToPC(oPC, "Shop name set to: " + sMsg); break;
 
     }
@@ -426,7 +428,6 @@ void OnSelection(string sPage)
   else if(sPage == PAGE_ABANDON)
   {
     object oPC = dlgGetSpeakingPC();
-    object oSelf = OBJECT_SELF;
     if(gsPCGetPlayerID(oPC) != gsSHGetOwnerID(oSelf) &&
        md_GetHasWrit(oPC, md_GetDatabaseID(
        miCZGetName(miCZGetBestNationMatch(QUGetNationNameMatch())))
@@ -440,7 +441,6 @@ void OnSelection(string sPage)
   }
   else if(sPage == PAGE_SSP)
   {
-    object oSelf = OBJECT_SELF;
     int nSalePrice =  GetLocalInt(oSelf, "GS_SH_SALE_PRICE");
     int nSelection = dlgGetSelectionIndex();
     switch(nSelection)
@@ -461,7 +461,6 @@ void OnSelection(string sPage)
   }
   else if(sPage == PAGE_TSA)
   {
-    object oSelf = OBJECT_SELF;
     gsQUSetIsForSale(oSelf, !gsQUGetIsForSale(oSelf));
   }
   else if(sPage == PAGE_OWNED)

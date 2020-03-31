@@ -18,7 +18,7 @@ int miTRPreHook()
   if (GetIsObjectValid(oCreator) && GetIsPC(oVictim)) {
       nTime = gsTIGetActualTimestamp();
       nStamp = GetLocalInt(oCreator, "TRAP_STACKING_TIMESTAMP");
-      if (nTime - nStamp < 10) {
+      if (nTime - nStamp < 1) {
           SendMessageToPC(oCreator, "A trap failed to trigger due to the proximity of other traps.");
           Log(TRAPS, GetName(oVictim) + " stepped into a trap created by " + GetName(oCreator) + ", but the trap failed to trigger due to Trap Stacking.");
           return TRUE; // avoid the trap

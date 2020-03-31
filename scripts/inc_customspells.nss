@@ -951,7 +951,7 @@ void Send_Image(object oPC,object oTarg, string sText)
 		{ // Female
 			sPortrait = "po_hu_f_99_";	
 		}
-		NWNX_Object_SetPortrait(oCopy, sPortrait);
+		SetPortraitResRef(oCopy, sPortrait);
 	}
     miSCRemoveInvis (oCopy); // remove existing buff things
     ghost (oCopy);

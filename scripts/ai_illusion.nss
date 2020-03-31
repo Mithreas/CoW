@@ -25,11 +25,12 @@ void main()
 
     case GS_EV_ON_DAMAGED:
 //................................................................
-        if (GetCurrentHitPoints() < GetMaxHitPoints()/4)
+        if (GetCurrentHitPoints() < GetMaxHitPoints()/4 && !GetLocalInt(OBJECT_SELF, "DEAD"))
         {
 		  SpeakString("**fades away**");
 		  gsXPRewardKill();
           ExecuteScript("gs_ai_death", OBJECT_SELF);
+		  SetLocalInt(OBJECT_SELF, "DEAD", TRUE);
           DestroyObject(OBJECT_SELF);
         }
 

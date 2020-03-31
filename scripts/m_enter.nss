@@ -187,7 +187,7 @@ void main()
     if (gsPCGetIsPlayerBanned(oEntering))
     {
       SendMessageToAllDMs(gsCMReplaceString(GS_T_16777425, sPlayer, sCDKey, sIP, sName));
-      NWNX_Administration_BootPCWithMessage(oEntering, 10455);
+      BootPC(oEntering, GetStringByStrRef(10455));
 
       // Relink the ban if necessary
       gsPCBanPlayer(oEntering);

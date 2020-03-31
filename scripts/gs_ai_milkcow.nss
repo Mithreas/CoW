@@ -1,4 +1,5 @@
 #include "inc_event"
+#include "inc_time"
 
 void main()
 {
@@ -15,12 +16,36 @@ void main()
         break;
 
     case GS_EV_ON_CONVERSATION:
-        CreateItemOnObject("mi_milk", GetLastSpeaker());
-        SpeakString("Moo!");
+	{
+	    int nMilk    = GetLocalInt(OBJECT_SELF, "COW_MILK_COUNT");
+		int nTimeout = GetLocalInt(OBJECT_SELF, "COW_TIMEOUT");
+				
+		if (!nMilk && nTimeout < gsTIGetActualTimestamp())
+		{
+		  nMilk = d20();		    
+		}
+		
+		if (!nMilk)
+		{	    		  
+          SpeakString("MooOOooo!");
+		}
+		else
+		{
+          CreateItemOnObject("mi_milk", GetLastSpeaker());
+          SpeakString("Moo!");
+		  nMilk--;
+		  SetLocalInt(OBJECT_SELF, "COW_MILK_COUNT", nMilk);
+		}
+
+		if (!nMilk)
+		{
+		  // Set timeout for milk - 5 RL minutes.
+		  SetLocalInt(OBJECT_SELF, "COW_TIMEOUT", gsTIGetActualTimestamp() + 60 * 5);
+		}  		
 //................................................................
 
         break;
-
+    }
     case GS_EV_ON_DAMAGED:
 //................................................................
 

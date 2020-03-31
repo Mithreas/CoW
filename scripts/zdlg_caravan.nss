@@ -165,7 +165,7 @@ void PageInit()
 	  {
 	    if (GetRacialType(oPC) != RACIAL_TYPE_HUMAN && !GetIsObjectValid(GetItemPossessedBy(oPC, "permission_sea")))
 		{
-		  SpeakString("Sorry, no travelling without a certificate of seaworthiness.  Can't risk you sinking the ship.");
+		  SpeakString("Sorry, no traveling without a certificate of seaworthiness.  Can't risk you sinking the ship.");
 		  EndDlg();
 		}
 	    else
@@ -205,9 +205,9 @@ void PageInit()
   else if (sPage == TRAVEL_MENU)
   {
 	if (GetRacialType (OBJECT_SELF) == RACIAL_TYPE_ELF)
-	  SetDlgPrompt("Let me know if you wish to continue.");
+	  SetDlgPrompt("[Beta - can leave immediately] Let me know if you wish to leave now.");
 	else
-      SetDlgPrompt("Ya wanna carry on wi' yer journey now, or wait a bit?");
+      SetDlgPrompt("[Beta - can leave immediately] Ya wanna carry on wi' yer journey now, or wait a bit?");
     SetDlgResponseList(TRAVEL_OPTIONS);
   }
   else
@@ -256,7 +256,7 @@ void HandleSelection()
 		SetLocalInt(oPC, MICA_TYPE, bType);
         TakeGoldFromCreature(25, oPC, TRUE);
 
-        if (GetLocalInt(oPC, MICA_TRAVELLING))
+        if (GetLocalInt(oPC, MICA_TRAVELLING) || TRUE) // BETA - always show leave now.
         {
           sPage = TRAVEL_MENU;
         }

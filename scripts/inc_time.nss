@@ -56,6 +56,9 @@ int GetModuleTime();
 // Complexity here is that GetTimeMinute returns the RL minute since the last 
 // hour.  If set to 6 minutes per hour, possible return values are 0,1,2,3,4,5
 // then it wraps.  So all timestamps need to build up from these values. 
+//
+// In the database we store everything in RL seconds.  So for any RL numbers, uses
+// the timestamp as raw seconds. 
 const int MINUTES_PER_HOUR = 15;
 
 int gsTIGetActualTimestamp()
@@ -72,44 +75,43 @@ int gsTIGetTimestamp(int nYear, int nMonth = 0, int nDay = 0, int nHour = 0, int
 {
     if (nYear) nYear -= GetLocalInt(GetModule(), "GS_YEAR");
 
-	// For historical reasons we multiply by 10x (Giga's calculation but now depended on in the module). 
-    return 10 * (
-	       60 * MINUTES_PER_HOUR * 24 * 30 * 12 * nYear +
+	// Convert everything to RL seconds.  
+    return 60 * MINUTES_PER_HOUR * 24 * 30 * 12 * nYear +
              60 * MINUTES_PER_HOUR * 24 * 30 * nMonth +
                60 * MINUTES_PER_HOUR * 24 * nDay +
                 60 * MINUTES_PER_HOUR * nHour +
                  60 * nMinute +
-                   nSecond);
+                   nSecond;
 }
 //----------------------------------------------------------------
 int gsTIGetYear(int nTimestamp)
 {
-    return GetLocalInt(GetModule(), "GS_YEAR") + nTimestamp / (10 * 60 * MINUTES_PER_HOUR * 24 * 30 * 12);
+    return GetLocalInt(GetModule(), "GS_YEAR") + nTimestamp / (60 * MINUTES_PER_HOUR * 24 * 30 * 12);
 }
 //----------------------------------------------------------------
 int gsTIGetAbsoluteYear(int nTimestamp)
 {
-    return nTimestamp / (10 * 60 * MINUTES_PER_HOUR * 24 * 30 * 12);
+    return nTimestamp / (60 * MINUTES_PER_HOUR * 24 * 30 * 12);
 }
 //----------------------------------------------------------------
 int gsTIGetMonth(int nTimestamp)
 {
-    return nTimestamp % (10 * 60 * MINUTES_PER_HOUR * 24 * 30 * 12) / (10 * 60 * MINUTES_PER_HOUR * 24 * 30) + 1;
+    return nTimestamp % (60 * MINUTES_PER_HOUR * 24 * 30 * 12) / (60 * MINUTES_PER_HOUR * 24 * 30) + 1;
 }
 //----------------------------------------------------------------
 int gsTIGetDay(int nTimestamp)
 {
-    return nTimestamp % (10 * 60 * MINUTES_PER_HOUR * 24 * 30) / (10 * 60 * MINUTES_PER_HOUR * 24) + 1;
+    return nTimestamp % (60 * MINUTES_PER_HOUR * 24 * 30) / (60 * MINUTES_PER_HOUR * 24) + 1;
 }
 //----------------------------------------------------------------
 int gsTIGetHour(int nTimestamp)
 {
-    return nTimestamp % (10 * 60 * MINUTES_PER_HOUR * 24) / (10 * 60 * MINUTES_PER_HOUR);
+    return nTimestamp % (60 * MINUTES_PER_HOUR * 24) / (60 * MINUTES_PER_HOUR);
 }
 //----------------------------------------------------------------
 int gsTIGetMinute(int nTimestamp)
 {
-    return nTimestamp % (10 * 60 * MINUTES_PER_HOUR) / 60;
+    return nTimestamp % (60 * MINUTES_PER_HOUR) / 60;
 }
 //----------------------------------------------------------------
 int gsTIGetSecond(int nTimestamp = 0)
@@ -119,21 +121,17 @@ int gsTIGetSecond(int nTimestamp = 0)
 //----------------------------------------------------------------
 int gsTIGetGameTimestamp(int nTimestamp = 0)
 {
-    float fFloat = HoursToSeconds(1) / 9000.0;
-
-    return FloatToInt(IntToFloat(nTimestamp) / fFloat);
+    return nTimestamp;
 }
 //----------------------------------------------------------------
 int gsTIGetRealTimestamp(int nTimestamp = 0)
 {
-    float fFloat = HoursToSeconds(1) / 9000.0;
-
-    return FloatToInt(IntToFloat(nTimestamp) * fFloat);
+    return nTimestamp;
 }
 //----------------------------------------------------------------
 int gsTIGetActualGameMinute()
 {
-    float fFloat = 9000.0 / HoursToSeconds(1);
+    float fFloat = 900.0 / HoursToSeconds(1);
 
     return FloatToInt((IntToFloat(GetTimeMinute()) + IntToFloat(GetTimeSecond()) / 60) * fFloat);
 }
@@ -164,8 +162,8 @@ void gsTISetDayTime(object oObject = OBJECT_SELF, int nDayTime = GS_TI_DAYTIME_C
 //----------------------------------------------------------------
 int gsTIGetFullHour(int nTimestamp)
 {
-    int nNth = nTimestamp % (10 * 60 * MINUTES_PER_HOUR);
-    if (nNth / 60 >= 15) return nTimestamp - nNth + (10 * 60 * MINUTES_PER_HOUR);
+    int nNth = nTimestamp % (60 * MINUTES_PER_HOUR);
+    if (nNth / 60 >= 15) return nTimestamp - nNth + (60 * MINUTES_PER_HOUR);
     else                 return nTimestamp - nNth;
 }
 //----------------------------------------------------------------

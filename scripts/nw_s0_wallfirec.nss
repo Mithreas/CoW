@@ -30,6 +30,13 @@ void main()
     effect eDam;
     object oTarget;
     object oCaster = GetAreaOfEffectCreator();
+	
+	if (!GetIsObjectValid(oCaster)) 
+	{
+	  WriteTimestampedLogEntry("ERROR - Wall of Fire couldn't find the effect creator!");
+	  return;
+	}
+	
     //Declare and assign personal impact visual effect.
     effect eVis = EffectVisualEffect(VFX_IMP_FLAME_M);
     int nDC = GetSpellSaveDC();

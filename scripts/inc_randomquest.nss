@@ -14,6 +14,7 @@
       another NPC, carry an item from the other NPC to the quest giver, or both.
     * Help NPC. Character must find another NPC and do a quest for them.
     * Patrol areas. Character must visit a number of areas on a patrol.
+	* Cull creatures.  Character must kill X creatures with tag Y. 
 
   @@@ Support more than one quest at a time.
   @@@ Rework the database structure so that there is a single quests table with
@@ -85,6 +86,10 @@
                      questtag_areatags    - Comma separated list of area tags
                                             that the PC must visit.
 
+					 CULL: 
+					 questtag_culltag      - the tag of the creature(s)
+					 questtag_numcreatures - the number to kill
+
 
   Tables that are used by the scripts, and need to be set up (in usual APS
   style) but not populated with data:
@@ -125,6 +130,7 @@ const string QUEST_VAR_DB    = "_vars";
 const string QUEST_PLAYER_DB = "rquest_player_data";
 const string QUEST_DB_NAME   = "QUEST_DB_NAME";
 const string CURRENT_QUEST   = "rand_quest_current_quest";
+const string CULL_TAG        = "_culltag";
 const string DESCRIPTION     = "_description";
 const string REWARD_GOLD     = "_rewardgold";
 const string REWARD_XP       = "_rewardxp";
@@ -135,6 +141,7 @@ const string IS_REPEATABLE   = "_repeatable";
 const string LEVEL_RANGE     = "_levelrange";
 const string ITEM_TAG        = "_itemtag";
 const string NUM_ITEMS       = "_numitems";
+const string NUM_CREATURES   = "_numcreatures";
 const string TARGET_TAG      = "_targettag";
 const string ITEM_TO_GIVE    = "_itemtogive";
 const string ITEM_TO_BRING   = "_itemtobring";
@@ -150,8 +157,10 @@ const string KILL            = "KILL";
 const string MESSENGER       = "MESSENGER";
 const string HELP            = "HELP";
 const string PATROL          = "PATROL";
+const string CULL            = "CULL";
 
 const string AREA_LIST       = "AREA_LIST";
+const string KILL_COUNT      = "RQST_KILL_COUNT";
 
 // Returns TRUE if the PC's current quest is complete. 
 int IsQuestComplete(object oPC, int bFinish = FALSE);
@@ -514,7 +523,6 @@ int IsQuestComplete(object oPC, int bFinish = FALSE)
   }
 
   // Databases.
-  string sQuestDB  = sQuestSet + QUEST_DB;
   string sVarsDB   = sQuestSet + QUEST_VAR_DB;
   
   object oCache = miDAGetCacheObject(sVarsDB);
@@ -645,6 +653,12 @@ int IsQuestComplete(object oPC, int bFinish = FALSE)
       }
     }
   }
+  else if (sQuestType == CULL)
+  {
+    int nKillCount = GetLocalInt(gsPCGetCreatureHide(oPC), KILL_COUNT);
+	
+	nDone = !nKillCount;
+  }
   else
   {
     SendMessageToPC(oPC,
@@ -685,7 +699,6 @@ void TidyQuest(object oPC, object oNPC)
   }
 
   // Databases.
-  string sQuestDB  = sQuestSet + QUEST_DB;
   string sVarsDB   = sQuestSet + QUEST_VAR_DB;
   
   object oCache = miDAGetCacheObject(sVarsDB);
@@ -731,7 +744,7 @@ void TidyQuest(object oPC, object oNPC)
   }	
   else
   {
-    // Put a flag on the PC hide so that they don't try the same quest again for 24 game hours.
+    // Put a flag on the PC hide so that they don't try the same quest again for 24 RL hours.
 	SetLocalInt(gsPCGetCreatureHide(oPC), sQuest, gsTIGetActualTimestamp() + 3600 * 24);
   }
 
@@ -814,10 +827,17 @@ void SetUpQuest(object oPC, object oNPC)
     WaitForPC(oPC, sAreaList);
   }
 
-  if (GetPersistentString(OBJECT_INVALID, sQuest, sQuestDB) == HELP)
+  if (GetLocalString(oCache, sQuest + QUEST_TYPE) == HELP)
   {
     // Note the quest as started.
     SetPersistentInt(oPC, sQuest, 1, 0, DB_MISC_QUESTS);
+  }
+  
+  // Set the target kill count.
+  if (StringToInt(GetLocalString(oCache, sQuest + NUM_CREATURES)))
+  {
+    SetLocalInt(gsPCGetCreatureHide(oPC), KILL_COUNT, StringToInt(GetLocalString(oCache, sQuest + NUM_CREATURES)));
+	SetLocalString(gsPCGetCreatureHide(oPC), CULL_TAG, GetLocalString(oCache, sQuest + CULL_TAG));
   }
 
   // Done.
@@ -912,9 +932,19 @@ int HasDoneRandomQuest(object oPC, string sQuest, object oQuestNPC = OBJECT_SELF
   }
   
   // Check whether this is a repeatable quest that they have done in the last day.
-  
-  if (GetLocalInt(gsPCGetCreatureHide(oPC), sQuest) > gsTIGetActualTimestamp())
+  // Use a 20 hour timeout so that someone can play at the same time each day.
+  int nTimestamp = GetLocalInt(gsPCGetCreatureHide(oPC), sQuest);
+  if (nTimestamp > gsTIGetActualTimestamp())
   {
+    // Check for time reversal.  
+	if (nTimestamp > (gsTIGetActualTimestamp() + 60 * 60 * 24))
+	{
+	  // Timestamp is more than a day in the future, time has gone back.  Reset.
+	  DeleteLocalInt(gsPCGetCreatureHide(oPC), sQuest);
+	  Trace(RQUEST, "Time has gone backwards! Resetting variable.");
+	  return FALSE;
+	}
+	
     Trace(RQUEST, "PC has recently done repeatable quest " + sQuest);
     return TRUE;
   }

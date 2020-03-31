@@ -114,9 +114,9 @@ void main()
     }
 	
 	// Elf/human(/halfling) emnity.
-	if ( (GetRacialType(OBJECT_SELF) == RACIAL_TYPE_HUMAN || GetRacialType(OBJECT_SELF) == RACIAL_TYPE_HALFLING) && GetRacialType(oPerceived) == RACIAL_TYPE_ELF 
+	if ( ((GetRacialType(OBJECT_SELF) == RACIAL_TYPE_HUMAN || GetRacialType(OBJECT_SELF) == RACIAL_TYPE_HALFLING) && !GetIsObjectValid(GetItemPossessedBy(OBJECT_SELF, "elf_safe_passage")) && GetRacialType(oPerceived) == RACIAL_TYPE_ELF )
 	     ||
-		 GetRacialType(OBJECT_SELF) == RACIAL_TYPE_ELF && (GetRacialType(oPerceived) == RACIAL_TYPE_HALFLING || GetRacialType(oPerceived) == RACIAL_TYPE_HUMAN) && !GetIsObjectValid(GetItemPossessedBy(oPerceived, "elf_safe_passage")))
+		 (GetRacialType(OBJECT_SELF) == RACIAL_TYPE_ELF && (GetRacialType(oPerceived) == RACIAL_TYPE_HALFLING || GetRacialType(oPerceived) == RACIAL_TYPE_HUMAN) && !GetIsObjectValid(GetItemPossessedBy(oPerceived, "elf_safe_passage"))))
 	{
 	    object oPartyMember = GetFirstFactionMember(oPerceived, TRUE);
 		int bHostile = TRUE;
@@ -290,6 +290,13 @@ void main()
         ReplaceStringElement(nCurrentIndex, sNewSeen, "MI_SEEN_LIST", oNPC);
         SetLocalInt(oNPC, "_MI_SEEN_LIST_INDEX", nCurrentIndex);
       }
+	  
+	  // Not an enemy and seen - check for pickpocket.
+	  if (GetIsPC(oPerceived) && GetHasFeat(FEAT_SKILL_FOCUS_PICK_POCKET) && d3() == 3)
+	  {
+	    ActionMoveToObject(oPerceived);
+		ActionUseSkill(SKILL_PICK_POCKET, oPerceived);
+	  }
    }
    
   /*

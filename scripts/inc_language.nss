@@ -370,7 +370,7 @@ int gsLAGetCanSpeakLanguage(int nLanguage, object oPC = OBJECT_SELF, int nLearni
         {
           Trace(LANGUAGE, "Time to do some learning.");
 
-          // Only allow +10 per IG hour
+          // Only allow +10 per RL 10 minutes
           int nTimestamp = gsTIGetActualTimestamp();
           string sTime   = "";
           for (nI = 0; nI < 10; nI++)
@@ -378,7 +378,7 @@ int gsLAGetCanSpeakLanguage(int nLanguage, object oPC = OBJECT_SELF, int nLearni
             sI = IntToString(nI);
 
             // dunshine: also check for the x yearly timestamp fix here, which will result in book timestamps which are 50 year-ish ahead of actual timestamp
-            if ((GetLocalInt(oBook, "GS_LA_TIMESTAMP_" + sI) < nTimestamp) || (GetLocalInt(oBook, "GS_LA_TIMESTAMP_" + sI) > (nTimestamp + 3600)))
+            if ((GetLocalInt(oBook, "GS_LA_TIMESTAMP_" + sI) < nTimestamp) || (GetLocalInt(oBook, "GS_LA_TIMESTAMP_" + sI) > (nTimestamp + (60 * 10))))
             {
               sTime = "GS_LA_TIMESTAMP_" + sI;
               break;
@@ -390,7 +390,7 @@ int gsLAGetCanSpeakLanguage(int nLanguage, object oPC = OBJECT_SELF, int nLearni
           {
             nScore ++;
             SetLocalInt(oHide, "PROGRESS_" + IntToString(nLanguage), nScore);
-            SetLocalInt(oBook, sTime, nTimestamp + 3600);
+            SetLocalInt(oBook, sTime, nTimestamp + (60 * 10));
           }
 
           Trace(LANGUAGE, "Timeslot used (none if blank): " + sTime);

@@ -367,7 +367,7 @@ void gsQUSetOwner(object oQuarter, object oPC, int nTimeout = 0)
       nTimeout = GetLocalInt(oQuarter, "GS_TIMEOUT");
 
       // Default to a sensible value if we can't find one configured.
-      if (!nTimeout) nTimeout = 172800;
+      if (!nTimeout) nTimeout = 60 * 60 * 24 * 8; // 8 days
 
       // Convert real time to game time.
       nTimeout = gsTIGetGameTimestamp(nTimeout);
@@ -437,7 +437,8 @@ int gsQUGetIsAvailable(object oQuarter)
       int nLast    = GetLocalInt(oCache, "LAST_USED");
       int nNow     = gsTIGetActualTimestamp();
 
-      Trace(QUARTER, "Checking whether time has expired.  Last touched: " +
+      Log(QUARTER, "Checking whether time has expired for quarter " + sID + 
+	    IntToString(nInstance) + ".  Last touched: " +
         IntToString(nLast) + ", timeout: " + IntToString(nTimeout) + ", now: " +
         IntToString(nNow));
 
@@ -678,9 +679,6 @@ void gsQUOpen(object oQuarter, object oOpener)
   ActionDoCommand(SetLocked(oQuarter, TRUE));
   gsQURetrieveMessages(oQuarter, oOpener);
 }
-
-
-
 
 
 //----------------------------------------------------------------

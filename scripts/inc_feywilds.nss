@@ -42,8 +42,11 @@
 const string FW_PATH_PFWF = "FW_PERENOR_FEYWILDS_FRINGE";
 const string FW_PATH_PFWD = "FW_PERENOR_FEYWILDS_DEEP";
 const string FW_PATH_ELF  = "FW_ELF_FEYWILDS_1";
+const string FW_PATH_ELF2 = "FW_ELF_FEYWILDS_2";
+const string CITY_HOUSES  = "CITY_HOUSES";
 const string UC_HOUSES    = "UNDERCITY_HOUSES";
 const string PC_HOUSES    = "PARLI_HOUSES";
+const string CV_HOUSES    = "CAER_VALA_HOUSES";
 const string ENDS         = "_ENDINGS"; // Added to another list name for the endings.
 
 const string FEYWILDS     = "FEYWILDS"; // for tracing. 
@@ -106,23 +109,40 @@ void FW_Init()
   
   DeleteList(FW_PATH_ELF, oMod);
   DeleteList(FW_PATH_ELF + ENDS, oMod);
+  DeleteList(FW_PATH_ELF2, oMod);
+  DeleteList(FW_PATH_ELF2 + ENDS, oMod);
   
-  AddStringElement("PerFeyDryad", FW_PATH_ELF, oMod);  // Dryad grove
-  AddStringElement("PerFeyRuins", FW_PATH_ELF, oMod); // Annoyed pixies 
-  AddStringElement("PerFeyLivFor", FW_PATH_ELF, oMod);  // Living Forest
-  AddStringElement("PerFeyWispWood", FW_PATH_ELF, oMod);  // Wispering Woods
-  AddStringElement("PerFeyWispWood2", FW_PATH_ELF, oMod); // Wisps and dead people
-  AddStringElement("PerFeyNymPool", FW_PATH_ELF, oMod); // Riddling nymph
-  AddStringElement("PerFeyMistWood", FW_PATH_ELF, oMod);  // bear and friends.
-  AddStringElement("PerFeyMistWood2", FW_PATH_ELF, oMod);  // wolves
-  AddStringElement("PerFeyMistWood3", FW_PATH_ELF, oMod);  // Illusionary terrain
-  AddStringElement("perfeydwetlands", FW_PATH_ELF, oMod); // Water elementals
-  AddStringElement("perfeydcanyon", FW_PATH_ELF, oMod);   // Air elementals
-  AddStringElement("perfeydmistwoods", FW_PATH_ELF, oMod);   // Old bear
-  AddStringElement("perfeydmistwo001", FW_PATH_ELF, oMod);  // Giant Spiders
-  AddStringElement("perfeyddreamscap", FW_PATH_ELF, oMod);  // Emerald Dreamings
-  AddStringElement("perfeyddreamsca2", FW_PATH_ELF, oMod);  // Emerald Dreamings
+  AddStringElement("fernfeyravengrov", FW_PATH_ELF, oMod); // Black Raven grove
+  AddStringElement("fernfeynymphpool", FW_PATH_ELF, oMod); // Riddling nymph
+  AddStringElement("fernfeywispwood1", FW_PATH_ELF, oMod);  // Wispering Woods
+  AddStringElement("fernfeywispwood2", FW_PATH_ELF, oMod); // Wisps and dead people
+  AddStringElement("fernfeymistwood1", FW_PATH_ELF, oMod);  // wolves
+  AddStringElement("fernfeymistwood2", FW_PATH_ELF, oMod);  // bear and friends.
+  AddStringElement("fernfeymistwood3", FW_PATH_ELF, oMod);  // Gigantic spider
+  AddStringElement("fernfeymistwood4", FW_PATH_ELF, oMod); // Giant spiders 
+  AddStringElement("fernfeylivfor", FW_PATH_ELF, oMod);  // Living Forest
+  AddStringElement("fernfeydimgrotto", FW_PATH_ELF, oMod);  // Dim Grotto (scary)
   
+  AddStringElement("fernfeymimics", FW_PATH_ELF + ENDS, oMod); // Mimic chests
+  
+  AddStringElement("fernfeyravengrov", FW_PATH_ELF2, oMod); // Black Raven grove
+  AddStringElement("fernfeynymphpool", FW_PATH_ELF2, oMod); // Riddling nymph
+  AddStringElement("fernfeywispwood1", FW_PATH_ELF2, oMod);  // Wispering Woods
+  AddStringElement("fernfeywispwood2", FW_PATH_ELF2, oMod); // Wisps and dead people
+  AddStringElement("fernfeymistwood1", FW_PATH_ELF2, oMod);  // wolves
+  AddStringElement("fernfeymistwood2", FW_PATH_ELF2, oMod);  // bear and friends.
+  AddStringElement("fernfeymistwood3", FW_PATH_ELF2, oMod);  // Gigantic spider
+  AddStringElement("fernfeymistwood4", FW_PATH_ELF2, oMod); // Giant spiders 
+  AddStringElement("fernfeylivfor", FW_PATH_ELF2, oMod);  // Living Forest
+  AddStringElement("fernfeydimgrotto", FW_PATH_ELF2, oMod);  // Dim Grotto (scary)
+  
+  AddStringElement("fernfeyqueen", FW_PATH_ELF2 + ENDS, oMod); // Queen's Court
+  
+  // Undercity houses
+  DeleteList(CITY_HOUSES, oMod);
+  AddStringElement("cityhouse", CITY_HOUSES, oMod);
+  AddStringElement("cityhouse1", CITY_HOUSES, oMod);
+  AddStringElement("cityhouse2", CITY_HOUSES, oMod);
   
   // Undercity houses
   DeleteList(UC_HOUSES, oMod);
@@ -174,7 +194,19 @@ void FW_Init()
   AddStringElement("pchouse14", PC_HOUSES, oMod);
   AddStringElement("pchouse15", PC_HOUSES, oMod);
   AddStringElement("pchouse15", PC_HOUSES, oMod);
+  AddStringElement("pccellar", PC_HOUSES, oMod);
   
+  // Caer Vala houses
+  DeleteList(CV_HOUSES, oMod);
+  AddStringElement("cvmr_house1", CV_HOUSES, oMod);
+  AddStringElement("cvmr_house2", CV_HOUSES, oMod);
+  AddStringElement("cvmr_house3", CV_HOUSES, oMod);
+  AddStringElement("cvmr_house4", CV_HOUSES, oMod);
+  AddStringElement("cvmr_house1", CV_HOUSES, oMod);
+  AddStringElement("cvmr_house2", CV_HOUSES, oMod);
+  AddStringElement("cvmr_house3", CV_HOUSES, oMod);
+  AddStringElement("cvmr_house4", CV_HOUSES, oMod);
+  AddStringElement("cvmr_house5", CV_HOUSES, oMod);
 }
 
 void FW_GeneratePath(object oTrigger)

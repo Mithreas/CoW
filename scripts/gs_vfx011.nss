@@ -45,5 +45,6 @@ void main()
        SetTrapDisarmDC(oTreasure, Random(bStaticLevel) + 10 + d20());	
     }
 
+    SetLocalInt(oTreasure, "GS_STATIC", TRUE);
     DestroyObject(OBJECT_SELF);
 }

@@ -723,11 +723,13 @@ void init_feat_list (object oPC)
 	    if (miSSGetIsSpellsword(oPC)) add_feat_to_list(oPC, "Spellsword Greater Imbue", 10016, TRUE);
 	  }		  
     }	
-	
-	
-    if ( (GetLevelByClass(CLASS_TYPE_RANGER, oPC) || GetLevelByClass(CLASS_TYPE_HARPER, oPC)) &&
+		
+    if ( GetLevelByClass(CLASS_TYPE_RANGER, oPC) &&
 	     (GetLevelByClass(CLASS_TYPE_RANGER, oNPC) || GetLevelByClass(CLASS_TYPE_HARPER, oNPC)) ) 
-      add_feat_to_list(oPC, "Bane of Enemies", FEAT_EPIC_BANE_OF_ENEMIES);
+      add_feat_to_list(oPC, "Bane of Enemies", FEAT_EPIC_BANE_OF_ENEMIES, FALSE, CLASS_TYPE_RANGER);
+    else if (GetLevelByClass(CLASS_TYPE_HARPER, oPC) && 
+	     (GetLevelByClass(CLASS_TYPE_RANGER, oNPC) || GetLevelByClass(CLASS_TYPE_HARPER, oNPC)) ) 
+      add_feat_to_list(oPC, "Bane of Enemies", FEAT_EPIC_BANE_OF_ENEMIES, FALSE, CLASS_TYPE_HARPER);
 
     add_feat_to_list(oPC, "Superior Initiative", FEAT_EPIC_SUPERIOR_INITIATIVE);
     //add_feat_to_list(oPC, "Superior Weapon Focus", FEAT_EPIC_SUPERIOR_WEAPON_FOCUS);
@@ -784,47 +786,47 @@ void init_feat_list (object oPC)
 
     if (GetLevelByClass(CLASS_TYPE_FIGHTER, oPC) && GetLevelByClass(CLASS_TYPE_FIGHTER, oNPC))
     {
-      add_feat_to_list(oPC, "Epic Weapon Spec: Bastard Sword", FEAT_EPIC_WEAPON_SPECIALIZATION_BASTARDSWORD);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Battleaxe", FEAT_EPIC_WEAPON_SPECIALIZATION_BATTLEAXE);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Club", FEAT_EPIC_WEAPON_SPECIALIZATION_CLUB);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Creature Weapon", FEAT_EPIC_WEAPON_SPECIALIZATION_CREATURE);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Dagger", FEAT_EPIC_WEAPON_SPECIALIZATION_DAGGER);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Dart", FEAT_EPIC_WEAPON_SPECIALIZATION_DART);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Dire Mace", FEAT_EPIC_WEAPON_SPECIALIZATION_DIREMACE);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Double Axe", FEAT_EPIC_WEAPON_SPECIALIZATION_DOUBLEAXE);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Dwarven Waraxe", FEAT_EPIC_WEAPON_SPECIALIZATION_DWAXE);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Greataxe", FEAT_EPIC_WEAPON_SPECIALIZATION_GREATAXE);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Greatsword", FEAT_EPIC_WEAPON_SPECIALIZATION_GREATSWORD);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Halberd", FEAT_EPIC_WEAPON_SPECIALIZATION_HALBERD);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Handaxe", FEAT_EPIC_WEAPON_SPECIALIZATION_HANDAXE);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Heavy Crossbow", FEAT_EPIC_WEAPON_SPECIALIZATION_HEAVYCROSSBOW);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Heavy Flail", FEAT_EPIC_WEAPON_SPECIALIZATION_HEAVYFLAIL);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Kama", FEAT_EPIC_WEAPON_SPECIALIZATION_KAMA);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Katana", FEAT_EPIC_WEAPON_SPECIALIZATION_KATANA);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Kukri", FEAT_EPIC_WEAPON_SPECIALIZATION_KUKRI);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Light Crossbow", FEAT_EPIC_WEAPON_SPECIALIZATION_LIGHTCROSSBOW);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Light Flail", FEAT_EPIC_WEAPON_SPECIALIZATION_LIGHTFLAIL);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Light Hammer", FEAT_EPIC_WEAPON_SPECIALIZATION_LIGHTHAMMER);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Light Mace", FEAT_EPIC_WEAPON_SPECIALIZATION_LIGHTMACE);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Longsword", FEAT_EPIC_WEAPON_SPECIALIZATION_LONGSWORD);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Longbow", FEAT_EPIC_WEAPON_SPECIALIZATION_LONGBOW);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Morningstar", FEAT_EPIC_WEAPON_SPECIALIZATION_MORNINGSTAR);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Rapier", FEAT_EPIC_WEAPON_SPECIALIZATION_RAPIER);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Scimitar", FEAT_EPIC_WEAPON_SPECIALIZATION_SCIMITAR);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Scythe", FEAT_EPIC_WEAPON_SPECIALIZATION_SCYTHE);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Shortsword", FEAT_EPIC_WEAPON_SPECIALIZATION_SHORTSWORD);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Shortbow", FEAT_EPIC_WEAPON_SPECIALIZATION_SHORTBOW);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Shuriken", FEAT_EPIC_WEAPON_SPECIALIZATION_SHURIKEN);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Sickle", FEAT_EPIC_WEAPON_SPECIALIZATION_SICKLE);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Sling", FEAT_EPIC_WEAPON_SPECIALIZATION_SLING);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Spear", FEAT_EPIC_WEAPON_SPECIALIZATION_SHORTSPEAR);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Staff", FEAT_EPIC_WEAPON_SPECIALIZATION_QUARTERSTAFF);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Throwing Axe", FEAT_EPIC_WEAPON_SPECIALIZATION_THROWINGAXE);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Trident", FEAT_EPIC_WEAPON_SPECIALIZATION_TRIDENT);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Two-bladed Sword", FEAT_EPIC_WEAPON_SPECIALIZATION_TWOBLADEDSWORD);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Unarmed Strike", FEAT_EPIC_WEAPON_SPECIALIZATION_UNARMED);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Warhammer", FEAT_EPIC_WEAPON_SPECIALIZATION_WARHAMMER);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Whip", FEAT_EPIC_WEAPON_SPECIALIZATION_WHIP);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Bastard Sword", FEAT_EPIC_WEAPON_SPECIALIZATION_BASTARDSWORD, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Battleaxe", FEAT_EPIC_WEAPON_SPECIALIZATION_BATTLEAXE, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Club", FEAT_EPIC_WEAPON_SPECIALIZATION_CLUB, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Creature Weapon", FEAT_EPIC_WEAPON_SPECIALIZATION_CREATURE, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Dagger", FEAT_EPIC_WEAPON_SPECIALIZATION_DAGGER, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Dart", FEAT_EPIC_WEAPON_SPECIALIZATION_DART, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Dire Mace", FEAT_EPIC_WEAPON_SPECIALIZATION_DIREMACE, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Double Axe", FEAT_EPIC_WEAPON_SPECIALIZATION_DOUBLEAXE, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Dwarven Waraxe", FEAT_EPIC_WEAPON_SPECIALIZATION_DWAXE, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Greataxe", FEAT_EPIC_WEAPON_SPECIALIZATION_GREATAXE, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Greatsword", FEAT_EPIC_WEAPON_SPECIALIZATION_GREATSWORD, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Halberd", FEAT_EPIC_WEAPON_SPECIALIZATION_HALBERD, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Handaxe", FEAT_EPIC_WEAPON_SPECIALIZATION_HANDAXE, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Heavy Crossbow", FEAT_EPIC_WEAPON_SPECIALIZATION_HEAVYCROSSBOW, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Heavy Flail", FEAT_EPIC_WEAPON_SPECIALIZATION_HEAVYFLAIL, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Kama", FEAT_EPIC_WEAPON_SPECIALIZATION_KAMA, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Katana", FEAT_EPIC_WEAPON_SPECIALIZATION_KATANA, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Kukri", FEAT_EPIC_WEAPON_SPECIALIZATION_KUKRI, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Light Crossbow", FEAT_EPIC_WEAPON_SPECIALIZATION_LIGHTCROSSBOW, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Light Flail", FEAT_EPIC_WEAPON_SPECIALIZATION_LIGHTFLAIL, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Light Hammer", FEAT_EPIC_WEAPON_SPECIALIZATION_LIGHTHAMMER, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Light Mace", FEAT_EPIC_WEAPON_SPECIALIZATION_LIGHTMACE, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Longsword", FEAT_EPIC_WEAPON_SPECIALIZATION_LONGSWORD, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Longbow", FEAT_EPIC_WEAPON_SPECIALIZATION_LONGBOW, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Morningstar", FEAT_EPIC_WEAPON_SPECIALIZATION_MORNINGSTAR, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Rapier", FEAT_EPIC_WEAPON_SPECIALIZATION_RAPIER, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Scimitar", FEAT_EPIC_WEAPON_SPECIALIZATION_SCIMITAR, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Scythe", FEAT_EPIC_WEAPON_SPECIALIZATION_SCYTHE, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Shortsword", FEAT_EPIC_WEAPON_SPECIALIZATION_SHORTSWORD, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Shortbow", FEAT_EPIC_WEAPON_SPECIALIZATION_SHORTBOW, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Shuriken", FEAT_EPIC_WEAPON_SPECIALIZATION_SHURIKEN, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Sickle", FEAT_EPIC_WEAPON_SPECIALIZATION_SICKLE, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Sling", FEAT_EPIC_WEAPON_SPECIALIZATION_SLING, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Spear", FEAT_EPIC_WEAPON_SPECIALIZATION_SHORTSPEAR, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Staff", FEAT_EPIC_WEAPON_SPECIALIZATION_QUARTERSTAFF, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Throwing Axe", FEAT_EPIC_WEAPON_SPECIALIZATION_THROWINGAXE, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Trident", FEAT_EPIC_WEAPON_SPECIALIZATION_TRIDENT, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Two-bladed Sword", FEAT_EPIC_WEAPON_SPECIALIZATION_TWOBLADEDSWORD, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Unarmed Strike", FEAT_EPIC_WEAPON_SPECIALIZATION_UNARMED, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Warhammer", FEAT_EPIC_WEAPON_SPECIALIZATION_WARHAMMER, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Whip", FEAT_EPIC_WEAPON_SPECIALIZATION_WHIP, FALSE, CLASS_TYPE_FIGHTER);
     }
   }
 
@@ -913,10 +915,10 @@ void init_feat_list (object oPC)
     if (nPCLevel > 15) add_feat_to_list(oPC, "Barbarian Rage VI", 330, FALSE, CLASS_TYPE_BARBARIAN);
     if (nPCLevel > 19) add_feat_to_list(oPC, "Barbarian Rage VII", 331, FALSE, CLASS_TYPE_BARBARIAN);
 
-    if (nPCLevel > 10) add_feat_to_list(oPC, "Barbarian DR 1", 196, FALSE, CLASS_TYPE_BARBARIAN);
-    if (nPCLevel > 13) add_feat_to_list(oPC, "Barbarian DR 2", 332, FALSE, CLASS_TYPE_BARBARIAN);
-    if (nPCLevel > 16) add_feat_to_list(oPC, "Barbarian DR 3", 333, FALSE, CLASS_TYPE_BARBARIAN);
-    if (nPCLevel > 19) add_feat_to_list(oPC, "Barbarian DR 4", 334, FALSE, CLASS_TYPE_BARBARIAN);
+    if (nPCLevel > 10 && GetLevelByClass(CLASS_TYPE_BARBARIAN, oPC) >= 2) add_feat_to_list(oPC, "Barbarian DR 1", 196, FALSE, CLASS_TYPE_BARBARIAN);
+    if (nPCLevel > 13 && GetLevelByClass(CLASS_TYPE_BARBARIAN, oPC) >= 4) add_feat_to_list(oPC, "Barbarian DR 2", 332, FALSE, CLASS_TYPE_BARBARIAN);
+    if (nPCLevel > 16 && GetLevelByClass(CLASS_TYPE_BARBARIAN, oPC) >= 6) add_feat_to_list(oPC, "Barbarian DR 3", 333, FALSE, CLASS_TYPE_BARBARIAN);
+    if (nPCLevel > 19 && GetLevelByClass(CLASS_TYPE_BARBARIAN, oPC) >= 8) add_feat_to_list(oPC, "Barbarian DR 4", 334, FALSE, CLASS_TYPE_BARBARIAN);
   }
 
   if (GetLevelByClass(CLASS_TYPE_DRUID, oPC) && GetLevelByClass(CLASS_TYPE_DRUID, oNPC))
@@ -984,40 +986,70 @@ void init_feat_list (object oPC)
   if ((GetLevelByClass(CLASS_TYPE_RANGER, oPC) && GetLevelByClass(CLASS_TYPE_RANGER, oNPC)) ||
       (GetLevelByClass(CLASS_TYPE_HARPER, oPC) && GetLevelByClass(CLASS_TYPE_HARPER, oNPC)))
   {
-    add_group_list("Favored Enemy", GROUP_NUMBER_FE, LIST_FE);
-    add_feat_to_list(oPC, "Favored Enemy: Aberration", FEAT_FAVORED_ENEMY_ABERRATION);
-    add_feat_to_list(oPC, "Favored Enemy: Animal", FEAT_FAVORED_ENEMY_ANIMAL);
-    add_feat_to_list(oPC, "Favored Enemy: Beast", FEAT_FAVORED_ENEMY_BEAST);
-    add_feat_to_list(oPC, "Favored Enemy: Construct", FEAT_FAVORED_ENEMY_CONSTRUCT);
-    add_feat_to_list(oPC, "Favored Enemy: Dragon", FEAT_FAVORED_ENEMY_DRAGON);
-    add_feat_to_list(oPC, "Favored Enemy: Dwarf", FEAT_FAVORED_ENEMY_DWARF);
-    add_feat_to_list(oPC, "Favored Enemy: Elemental", FEAT_FAVORED_ENEMY_ELEMENTAL);
-    add_feat_to_list(oPC, "Favored Enemy: Elf", FEAT_FAVORED_ENEMY_ELF);
-    add_feat_to_list(oPC, "Favored Enemy: Fey", FEAT_FAVORED_ENEMY_FEY);
-    add_feat_to_list(oPC, "Favored Enemy: Giant", FEAT_FAVORED_ENEMY_GIANT);
-    add_feat_to_list(oPC, "Favored Enemy: Gnome", FEAT_FAVORED_ENEMY_GNOME);
-    add_feat_to_list(oPC, "Favored Enemy: Goblinoid", FEAT_FAVORED_ENEMY_GOBLINOID);
-    add_feat_to_list(oPC, "Favored Enemy: Half-Elf", FEAT_FAVORED_ENEMY_HALFELF);
-    add_feat_to_list(oPC, "Favored Enemy: Halfling", FEAT_FAVORED_ENEMY_HALFLING);
-    add_feat_to_list(oPC, "Favored Enemy: Half-Orc", FEAT_FAVORED_ENEMY_HALFORC);
-    add_feat_to_list(oPC, "Favored Enemy: Human", FEAT_FAVORED_ENEMY_HUMAN);
-    add_feat_to_list(oPC, "Favored Enemy: Magical Beast", FEAT_FAVORED_ENEMY_MAGICAL_BEAST);
-    add_feat_to_list(oPC, "Favored Enemy: Monstrous Creature", FEAT_FAVORED_ENEMY_MONSTROUS);
-    add_feat_to_list(oPC, "Favored Enemy: Orc", FEAT_FAVORED_ENEMY_ORC);
-    add_feat_to_list(oPC, "Favored Enemy: Outsider", FEAT_FAVORED_ENEMY_OUTSIDER);
-    add_feat_to_list(oPC, "Favored Enemy: Reptilian", FEAT_FAVORED_ENEMY_REPTILIAN);
-    add_feat_to_list(oPC, "Favored Enemy: Shapechanger", FEAT_FAVORED_ENEMY_SHAPECHANGER);
-    add_feat_to_list(oPC, "Favored Enemy: Undead", FEAT_FAVORED_ENEMY_UNDEAD);
-    add_feat_to_list(oPC, "Favored Enemy: Vermin", FEAT_FAVORED_ENEMY_VERMIN);
-
-    SetLocalString(OBJECT_SELF, CURR_LIST, LIST_5);
-
-    if(GetLevelByClass(CLASS_TYPE_RANGER, oPC) && GetLevelByClass(CLASS_TYPE_RANGER, oNPC))
+    if(GetLevelByClass(CLASS_TYPE_RANGER, oPC))
     {
-      add_feat_to_list(oPC, "Summon Animal Companion (Wolf)", FEAT_ANIMAL_COMPANION, FALSE, CLASS_TYPE_RANGER);
-      if (GetKnowsFeat(374, oPC) && !GetKnowsFeat(20, oPC)) add_feat_to_list(oPC, "Improved Dual Wield", FEAT_IMPROVED_TWO_WEAPON_FIGHTING, TRUE, CLASS_TYPE_RANGER); // Custom!
-      add_feat_to_list(oPC, "+4 Ranger levels for nature checks, +4 Animal Empathy", 10014, TRUE);
+		add_group_list("Favored Enemy", GROUP_NUMBER_FE, LIST_FE);
+		add_feat_to_list(oPC, "Favored Enemy: Aberration", FEAT_FAVORED_ENEMY_ABERRATION, FALSE, CLASS_TYPE_RANGER);
+		add_feat_to_list(oPC, "Favored Enemy: Animal", FEAT_FAVORED_ENEMY_ANIMAL, FALSE, CLASS_TYPE_RANGER);
+		add_feat_to_list(oPC, "Favored Enemy: Beast", FEAT_FAVORED_ENEMY_BEAST, FALSE, CLASS_TYPE_RANGER);
+		add_feat_to_list(oPC, "Favored Enemy: Construct", FEAT_FAVORED_ENEMY_CONSTRUCT, FALSE, CLASS_TYPE_RANGER);
+		add_feat_to_list(oPC, "Favored Enemy: Dragon", FEAT_FAVORED_ENEMY_DRAGON, FALSE, CLASS_TYPE_RANGER);
+		add_feat_to_list(oPC, "Favored Enemy: Dwarf", FEAT_FAVORED_ENEMY_DWARF, FALSE, CLASS_TYPE_RANGER);
+		add_feat_to_list(oPC, "Favored Enemy: Elemental", FEAT_FAVORED_ENEMY_ELEMENTAL, FALSE, CLASS_TYPE_RANGER);
+		add_feat_to_list(oPC, "Favored Enemy: Elf", FEAT_FAVORED_ENEMY_ELF, FALSE, CLASS_TYPE_RANGER);
+		add_feat_to_list(oPC, "Favored Enemy: Fey", FEAT_FAVORED_ENEMY_FEY, FALSE, CLASS_TYPE_RANGER);
+		add_feat_to_list(oPC, "Favored Enemy: Giant", FEAT_FAVORED_ENEMY_GIANT, FALSE, CLASS_TYPE_RANGER);
+		add_feat_to_list(oPC, "Favored Enemy: Gnome", FEAT_FAVORED_ENEMY_GNOME, FALSE, CLASS_TYPE_RANGER);
+		add_feat_to_list(oPC, "Favored Enemy: Goblinoid", FEAT_FAVORED_ENEMY_GOBLINOID, FALSE, CLASS_TYPE_RANGER);
+		add_feat_to_list(oPC, "Favored Enemy: Half-Elf", FEAT_FAVORED_ENEMY_HALFELF, FALSE, CLASS_TYPE_RANGER);
+		add_feat_to_list(oPC, "Favored Enemy: Halfling", FEAT_FAVORED_ENEMY_HALFLING, FALSE, CLASS_TYPE_RANGER);
+		add_feat_to_list(oPC, "Favored Enemy: Half-Orc", FEAT_FAVORED_ENEMY_HALFORC, FALSE, CLASS_TYPE_RANGER);
+		add_feat_to_list(oPC, "Favored Enemy: Human", FEAT_FAVORED_ENEMY_HUMAN, FALSE, CLASS_TYPE_RANGER);
+		add_feat_to_list(oPC, "Favored Enemy: Magical Beast", FEAT_FAVORED_ENEMY_MAGICAL_BEAST, FALSE, CLASS_TYPE_RANGER);
+		add_feat_to_list(oPC, "Favored Enemy: Monstrous Creature", FEAT_FAVORED_ENEMY_MONSTROUS, FALSE, CLASS_TYPE_RANGER);
+		add_feat_to_list(oPC, "Favored Enemy: Orc", FEAT_FAVORED_ENEMY_ORC, FALSE, CLASS_TYPE_RANGER);
+		add_feat_to_list(oPC, "Favored Enemy: Outsider", FEAT_FAVORED_ENEMY_OUTSIDER, FALSE, CLASS_TYPE_RANGER);
+		add_feat_to_list(oPC, "Favored Enemy: Reptilian", FEAT_FAVORED_ENEMY_REPTILIAN, FALSE, CLASS_TYPE_RANGER);
+		add_feat_to_list(oPC, "Favored Enemy: Shapechanger", FEAT_FAVORED_ENEMY_SHAPECHANGER, FALSE, CLASS_TYPE_RANGER);
+		add_feat_to_list(oPC, "Favored Enemy: Undead", FEAT_FAVORED_ENEMY_UNDEAD, FALSE, CLASS_TYPE_RANGER);
+		add_feat_to_list(oPC, "Favored Enemy: Vermin", FEAT_FAVORED_ENEMY_VERMIN, FALSE, CLASS_TYPE_RANGER);
+
+		SetLocalString(OBJECT_SELF, CURR_LIST, LIST_5);
+	
+        add_feat_to_list(oPC, "Summon Animal Companion (Wolf)", FEAT_ANIMAL_COMPANION, FALSE, CLASS_TYPE_RANGER);
+        if (GetKnowsFeat(374, oPC) && !GetKnowsFeat(20, oPC)) add_feat_to_list(oPC, "Improved Dual Wield", FEAT_IMPROVED_TWO_WEAPON_FIGHTING, TRUE, CLASS_TYPE_RANGER); // Custom!
+        add_feat_to_list(oPC, "+4 Ranger levels for nature checks, +4 Animal Empathy", 10014, TRUE);
     }
+	else
+	{
+		add_group_list("Favored Enemy", GROUP_NUMBER_FE, LIST_FE);
+		add_feat_to_list(oPC, "Favored Enemy: Aberration", FEAT_FAVORED_ENEMY_ABERRATION, FALSE, CLASS_TYPE_HARPER);
+		add_feat_to_list(oPC, "Favored Enemy: Animal", FEAT_FAVORED_ENEMY_ANIMAL, FALSE, CLASS_TYPE_HARPER);
+		add_feat_to_list(oPC, "Favored Enemy: Beast", FEAT_FAVORED_ENEMY_BEAST, FALSE, CLASS_TYPE_HARPER);
+		add_feat_to_list(oPC, "Favored Enemy: Construct", FEAT_FAVORED_ENEMY_CONSTRUCT, FALSE, CLASS_TYPE_HARPER);
+		add_feat_to_list(oPC, "Favored Enemy: Dragon", FEAT_FAVORED_ENEMY_DRAGON, FALSE, CLASS_TYPE_HARPER);
+		add_feat_to_list(oPC, "Favored Enemy: Dwarf", FEAT_FAVORED_ENEMY_DWARF, FALSE, CLASS_TYPE_HARPER);
+		add_feat_to_list(oPC, "Favored Enemy: Elemental", FEAT_FAVORED_ENEMY_ELEMENTAL, FALSE, CLASS_TYPE_HARPER);
+		add_feat_to_list(oPC, "Favored Enemy: Elf", FEAT_FAVORED_ENEMY_ELF, FALSE, CLASS_TYPE_HARPER);
+		add_feat_to_list(oPC, "Favored Enemy: Fey", FEAT_FAVORED_ENEMY_FEY, FALSE, CLASS_TYPE_HARPER);
+		add_feat_to_list(oPC, "Favored Enemy: Giant", FEAT_FAVORED_ENEMY_GIANT, FALSE, CLASS_TYPE_HARPER);
+		add_feat_to_list(oPC, "Favored Enemy: Gnome", FEAT_FAVORED_ENEMY_GNOME, FALSE, CLASS_TYPE_HARPER);
+		add_feat_to_list(oPC, "Favored Enemy: Goblinoid", FEAT_FAVORED_ENEMY_GOBLINOID, FALSE, CLASS_TYPE_HARPER);
+		add_feat_to_list(oPC, "Favored Enemy: Half-Elf", FEAT_FAVORED_ENEMY_HALFELF, FALSE, CLASS_TYPE_HARPER);
+		add_feat_to_list(oPC, "Favored Enemy: Halfling", FEAT_FAVORED_ENEMY_HALFLING, FALSE, CLASS_TYPE_HARPER);
+		add_feat_to_list(oPC, "Favored Enemy: Half-Orc", FEAT_FAVORED_ENEMY_HALFORC, FALSE, CLASS_TYPE_HARPER);
+		add_feat_to_list(oPC, "Favored Enemy: Human", FEAT_FAVORED_ENEMY_HUMAN, FALSE, CLASS_TYPE_HARPER);
+		add_feat_to_list(oPC, "Favored Enemy: Magical Beast", FEAT_FAVORED_ENEMY_MAGICAL_BEAST, FALSE, CLASS_TYPE_HARPER);
+		add_feat_to_list(oPC, "Favored Enemy: Monstrous Creature", FEAT_FAVORED_ENEMY_MONSTROUS, FALSE, CLASS_TYPE_HARPER);
+		add_feat_to_list(oPC, "Favored Enemy: Orc", FEAT_FAVORED_ENEMY_ORC, FALSE, CLASS_TYPE_HARPER);
+		add_feat_to_list(oPC, "Favored Enemy: Outsider", FEAT_FAVORED_ENEMY_OUTSIDER, FALSE, CLASS_TYPE_HARPER);
+		add_feat_to_list(oPC, "Favored Enemy: Reptilian", FEAT_FAVORED_ENEMY_REPTILIAN, FALSE, CLASS_TYPE_HARPER);
+		add_feat_to_list(oPC, "Favored Enemy: Shapechanger", FEAT_FAVORED_ENEMY_SHAPECHANGER, FALSE, CLASS_TYPE_HARPER);
+		add_feat_to_list(oPC, "Favored Enemy: Undead", FEAT_FAVORED_ENEMY_UNDEAD, FALSE, CLASS_TYPE_HARPER);
+		add_feat_to_list(oPC, "Favored Enemy: Vermin", FEAT_FAVORED_ENEMY_VERMIN, FALSE, CLASS_TYPE_HARPER);
+
+		SetLocalString(OBJECT_SELF, CURR_LIST, LIST_5);
+	}
   }
 
   if (GetLevelByClass(CLASS_TYPE_MONK, oPC) && GetLevelByClass(CLASS_TYPE_MONK, oNPC))
@@ -1058,10 +1090,10 @@ void init_feat_list (object oPC)
   if (GetLevelByClass(CLASS_TYPE_ARCANE_ARCHER, oPC) && GetLevelByClass(CLASS_TYPE_ARCANE_ARCHER, oNPC))
   {
     add_feat_to_list(oPC, "Enchant Arrow 2", FEAT_PRESTIGE_ENCHANT_ARROW_2, FALSE, CLASS_TYPE_ARCANE_ARCHER);
-    add_feat_to_list(oPC, "Enchant Arrow 3", FEAT_PRESTIGE_ENCHANT_ARROW_3, FALSE, CLASS_TYPE_ARCANE_ARCHER);
-    add_feat_to_list(oPC, "Enchant Arrow 4", FEAT_PRESTIGE_ENCHANT_ARROW_4, FALSE, CLASS_TYPE_ARCANE_ARCHER);
-    add_feat_to_list(oPC, "Enchant Arrow 5", FEAT_PRESTIGE_ENCHANT_ARROW_5, FALSE, CLASS_TYPE_ARCANE_ARCHER);
-    add_feat_to_list(oPC, "Enchant Arrow 6", FEAT_PRESTIGE_ENCHANT_ARROW_6, FALSE, CLASS_TYPE_ARCANE_ARCHER);
+    if (GetLevelByClass(CLASS_TYPE_ARCANE_ARCHER, oPC) >= 2) add_feat_to_list(oPC, "Enchant Arrow 3", FEAT_PRESTIGE_ENCHANT_ARROW_3, FALSE, CLASS_TYPE_ARCANE_ARCHER);
+    if (GetLevelByClass(CLASS_TYPE_ARCANE_ARCHER, oPC) >= 2) add_feat_to_list(oPC, "Enchant Arrow 4", FEAT_PRESTIGE_ENCHANT_ARROW_4, FALSE, CLASS_TYPE_ARCANE_ARCHER);
+    if (GetLevelByClass(CLASS_TYPE_ARCANE_ARCHER, oPC) >= 3) add_feat_to_list(oPC, "Enchant Arrow 5", FEAT_PRESTIGE_ENCHANT_ARROW_5, FALSE, CLASS_TYPE_ARCANE_ARCHER);
+    if (GetLevelByClass(CLASS_TYPE_ARCANE_ARCHER, oPC) >= 3) add_feat_to_list(oPC, "Enchant Arrow 6", FEAT_PRESTIGE_ENCHANT_ARROW_6, FALSE, CLASS_TYPE_ARCANE_ARCHER);
     add_feat_to_list(oPC, "Imbue Arrow", FEAT_PRESTIGE_IMBUE_ARROW, FALSE, CLASS_TYPE_ARCANE_ARCHER);
     add_feat_to_list(oPC, "Seeker Arrow 1", FEAT_PRESTIGE_SEEKER_ARROW_1, FALSE, CLASS_TYPE_ARCANE_ARCHER);
     add_feat_to_list(oPC, "Seeker Arrow 2", FEAT_PRESTIGE_SEEKER_ARROW_2, FALSE, CLASS_TYPE_ARCANE_ARCHER);

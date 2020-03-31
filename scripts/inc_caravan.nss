@@ -99,6 +99,8 @@ void miCADoJourney(string sDestinationTag, int bType = TRAVEL_TYPE_LAND)
 
     object oCaravan = GetObjectByTag("MICA_CAMERA_2");  
     miSCDoScrying(oPC, oCaravan, FALSE);
+	
+	AssignCommand(oPC, DelayCommand(30.0, FloatingTextStringOnCreature("Whose woods these are I think I know...", oPC)));
 
     AssignCommand(oPC, DelayCommand(60.0, miCAArrive(sDestinationTag)));
   }

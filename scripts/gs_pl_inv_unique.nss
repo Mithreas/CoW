@@ -291,7 +291,7 @@ string _GetResRefByItemType(int nItemType)
 
     // If the character has discovered an artefact within the past real 24 hours,
     // run the default treasure script (which will assume _HIGH treasure).
-    if (((nTimestamp - nTimestampArtefact) < 864000) || (nTimestampArtefact > nTimestamp))
+    if ((gsTIGetDay(nTimestamp - nTimestampArtefact) < 4) || (nTimestampArtefact > nTimestamp))
     {
         ExecuteScript("gs_pl_inventory", OBJECT_SELF);
         return;

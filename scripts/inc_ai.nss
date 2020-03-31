@@ -304,7 +304,7 @@ int gsAIGetDefaultActionMatrix(object oCreature = OBJECT_SELF)
 	if (!gsENGetIsEncounterCreature() ||
 	    GetChallengeRating(OBJECT_SELF) < 6.0f ||
 		GetFaction(OBJECT_SELF) != 0 || 
-	    !(GetLevelByClass(CLASS_TYPE_RANGER) || GetLevelByClass(CLASS_TYPE_ROGUE)) ||
+		!GetHasFeat(FEAT_SKILL_FOCUS_SET_TRAP, OBJECT_SELF) ||
 	    d6() < 6) 
 	  nMatrix &= ~GS_AI_ACTION_TYPE_TRAP;
 
@@ -583,7 +583,10 @@ int gsAIActionTrap()
   if (nDifficulty > 3) nDifficulty = 3; // epic creatures.
   int nTrapNumber = (4 * (nTrapType - 1)) + nDifficulty; // 0-40
 	
-  CreateTrapAtLocation(nTrapNumber, GetLocation(OBJECT_SELF), 3.0f);
+  object oTrap = CreateTrapAtLocation(nTrapNumber, GetLocation(OBJECT_SELF), 3.0f);
+  SetEventScript(oTrap, EVENT_SCRIPT_TRIGGER_ON_DISARMED, "trap_xp");  
+  SetLocalInt(oTrap, "DYNAMIC_TRAP", TRUE);
+  
   PlayAnimation(ANIMATION_LOOPING_GET_LOW, 1.0, 6.0);
   SetLocalInt(OBJECT_SELF, "GS_AI_TRAPPED", TRUE);
   return TRUE;

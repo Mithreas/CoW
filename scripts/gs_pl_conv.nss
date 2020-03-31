@@ -1,4 +1,5 @@
 void main()
 {
-  ActionStartConversation(GetLastUsedBy());
+  object oSelf = OBJECT_SELF;
+  AssignCommand(GetLastUsedBy(), ActionStartConversation(oSelf));
 }

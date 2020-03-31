@@ -1354,12 +1354,12 @@ float CnrRecipeGetWeightedPcAbility(object oPC, string sDeviceTag, string sKeyTo
   float fRecipeWis = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTag, sKeyToRecipe, ABILITY_WISDOM));
   float fRecipeCha = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTag, sKeyToRecipe, ABILITY_CHARISMA));
 
-  float fPcStr = IntToFloat(GetAbilityScore(oPC, ABILITY_STRENGTH) + GetAbilityModifier(ABILITY_STRENGTH, oPC));
-  float fPcDex = IntToFloat(GetAbilityScore(oPC, ABILITY_DEXTERITY) + GetAbilityModifier(ABILITY_DEXTERITY, oPC));
-  float fPcCon = IntToFloat(GetAbilityScore(oPC, ABILITY_CONSTITUTION) + GetAbilityModifier(ABILITY_CONSTITUTION, oPC));
-  float fPcInt = IntToFloat(GetAbilityScore(oPC, ABILITY_INTELLIGENCE) + GetAbilityModifier(ABILITY_INTELLIGENCE, oPC));
-  float fPcWis = IntToFloat(GetAbilityScore(oPC, ABILITY_WISDOM) + GetAbilityModifier(ABILITY_WISDOM, oPC));
-  float fPcCha = IntToFloat(GetAbilityScore(oPC, ABILITY_CHARISMA) + GetAbilityModifier(ABILITY_CHARISMA, oPC));
+  float fPcStr = IntToFloat(GetAbilityScore(oPC, ABILITY_STRENGTH, TRUE) + (GetAbilityScore(oPC, ABILITY_STRENGTH, TRUE) - 10) / 2);
+  float fPcDex = IntToFloat(GetAbilityScore(oPC, ABILITY_DEXTERITY, TRUE) + (GetAbilityScore(oPC, ABILITY_DEXTERITY, TRUE) - 10) / 2);
+  float fPcCon = IntToFloat(GetAbilityScore(oPC, ABILITY_CONSTITUTION, TRUE) + (GetAbilityScore(oPC, ABILITY_CONSTITUTION, TRUE) - 10) / 2);
+  float fPcInt = IntToFloat(GetAbilityScore(oPC, ABILITY_INTELLIGENCE, TRUE) + (GetAbilityScore(oPC, ABILITY_INTELLIGENCE, TRUE) - 10) / 2);
+  float fPcWis = IntToFloat(GetAbilityScore(oPC, ABILITY_WISDOM, TRUE) + (GetAbilityScore(oPC, ABILITY_WISDOM, TRUE) - 10) / 2);
+  float fPcCha = IntToFloat(GetAbilityScore(oPC, ABILITY_CHARISMA,TRUE) + (GetAbilityScore(oPC, ABILITY_CHARISMA, TRUE) - 10) / 2);
 
   float fPcAbility;
   fPcAbility  = fPcStr * (fRecipeStr/100.0);

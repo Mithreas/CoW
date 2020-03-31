@@ -434,6 +434,8 @@ void gsSHOpenStore(object oStore, object oMerchant, object oCustomer = OBJECT_SE
     SetStoreIdentifyCost(oStore, 50);
   }
 
+  // Add the cleanup script to the store.
+  SetEventScript(oStore, EVENT_SCRIPT_STORE_ON_CLOSE, "mi_closestore");
   OpenStore(oStore, oCustomer, Appraise.nModifierBonusSell, Appraise.nModifierBonusBuy);
 }
 //----------------------------------------------------------------

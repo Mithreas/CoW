@@ -24,7 +24,7 @@ void main()
     //make save
     int nSaveDC = GetLocalInt(gsPCGetCreatureHide(oSpellOrigin), "SS_IM_W_DC_NGTV");
     int nSpellGroup = 1 + (nSaveDC - (10 + nWizard))/2;
-	int nTimer = GetLocalInt(gsPCGetCreatureHide(oSpellOrigin), "SS_IM_W_TM_NGTV") + 2*10;
+	int nTimer = GetLocalInt(gsPCGetCreatureHide(oSpellOrigin), "SS_IM_W_TM_NGTV") + 2;
 
     if ((!WillSave(oSpellTarget, nSaveDC, SAVING_THROW_TYPE_NEGATIVE) && GetObjectType(oSpellTarget) == OBJECT_TYPE_CREATURE) && (gsTIGetActualTimestamp() > nTimer))
     {

@@ -14,7 +14,7 @@ const int GS_ST_REST     = 3;
 const int GS_ST_SOBRIETY = 4;
 const int GS_ST_PIETY    = 5;
 const int GS_ST_BLOOD    = 6; // Used only by vampires
-const int GS_ST_STAMINA  = 7; // Used only by vampires
+const int GS_ST_STAMINA  = 7;
 
 //set initial state of caller
 void gsSTSetInitialState(int bReset = FALSE);

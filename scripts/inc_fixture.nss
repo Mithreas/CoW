@@ -6,7 +6,7 @@
 #include "inc_database"
 #include "inc_seeds"
 #include "inc_subrace"
-
+#include "inc_time"
 
 const string FIXTURES = "FIXTURES"; // for logging
 
@@ -702,7 +702,7 @@ void gvd_SetFixtureRemainsData(object oFixture) {
 
     // if the timestamp is older then 10 RL days, the fixture remains is lost forever so destroy it here
     int iTimestamp = GetLocalInt(GetModule(),"GS_TIMESTAMP");
-    int iDaysOld = ((gsTIGetRealTimestamp(iTimestamp) - gsTIGetRealTimestamp(iRemainsTimestamp)) / 86400);
+    int iDaysOld = gsTIGetDay(gsTIGetRealTimestamp(iTimestamp) - gsTIGetRealTimestamp(iRemainsTimestamp));
     if (iDaysOld > 10) {
       WriteTimestampedLogEntry("FIXTURE REMAINS " + GetName(oFixture) + " in area " + GetTag(GetArea(oFixture)) + " auto-destroyed, not repaired within 10 RL days");
       gsFXDeleteFixture(GetTag(GetArea(oFixture)), oFixture);

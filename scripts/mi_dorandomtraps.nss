@@ -27,6 +27,7 @@ void main()
 	    (GetObjectType(oDoor) == OBJECT_TYPE_PLACEABLE && GetStringLeft(GetTag(oDoor), 11) == "GS_TREASURE") ||
 	    (GetObjectType(oDoor) == OBJECT_TYPE_PLACEABLE && GetStringLeft(GetTag(oDoor), 8) == "GS_ARMOR") ||
 	    (GetObjectType(oDoor) == OBJECT_TYPE_PLACEABLE && GetStringLeft(GetTag(oDoor), 9) == "GS_WEAPON") ||
+	    (GetObjectType(oDoor) == OBJECT_TYPE_PLACEABLE && GetStringLeft(GetTag(oDoor), 11) == "GS_WARDROBE") ||
 	    (GetObjectType(oDoor) == OBJECT_TYPE_PLACEABLE && GetStringLeft(GetTag(oDoor), 7) == "GS_GOLD"))		
     {
       // Remove any existing trap from the door.
@@ -69,6 +70,10 @@ void main()
 
           // ...and recoverable.
           SetTrapRecoverable(oDoor, TRUE);
+		  
+		  // ...and grant XP when disarmed.
+		  SetEventScript(oDoor, EVENT_SCRIPT_DOOR_ON_DISARM, "trap_xp");
+		  SetLocalInt(oDoor, "DYNAMIC_TRAP", TRUE);
         }
 
         if (bLocked) SetLocked(oDoor, TRUE);

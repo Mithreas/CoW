@@ -14,7 +14,8 @@
 
 void SpawnNewRock(string sRockTag, location locRock)
 {
-  CreateObject(OBJECT_TYPE_PLACEABLE, sRockTag, locRock);
+  object oRock = CreateObject(OBJECT_TYPE_PLACEABLE, sRockTag, locRock);
+  SetLocalInt(oRock, "GS_STATIC", TRUE);
   DestroyObject(OBJECT_SELF);
 }
 
@@ -81,6 +82,7 @@ void main()
       {
         ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectDeath(), OBJECT_SELF);
         object oSpawner = CreateObject(OBJECT_TYPE_PLACEABLE, "cnrobjectspawner", locRock);
+		SetLocalInt(oSpawner, "GS_STATIC", TRUE);
         AssignCommand(oSpawner, DelayCommand(CNR_FLOAT_ORE_MINING_DEPOSIT_RESPAWN_TIME_SECS, SpawnNewRock(sRockTag, locRock)));
         DestroyObject(OBJECT_SELF, 2.0); // provide time for death effect
         FloatingTextStringOnCreature(CNR_TEXT_THATS_THE_END_OF_THAT, oDamager);
@@ -89,7 +91,7 @@ void main()
     }
 
     // Create a new rock with full hitpoints
-    CreateObject(OBJECT_TYPE_PLACEABLE, sRockTag, locRock);
+    SetLocalInt(CreateObject(OBJECT_TYPE_PLACEABLE, sRockTag, locRock), "GS_STATIC", TRUE);
     DestroyObject(OBJECT_SELF);
   }
 }

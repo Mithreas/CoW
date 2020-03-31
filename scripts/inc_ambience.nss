@@ -1316,8 +1316,8 @@ void gsAMInitialize()
            TILE_SOURCE_LIGHT_COLOR_PALE_DARK_RED);
 
     gsAMFC(GS_AM_TYPE_SPECIAL_EVIL,
-           0x4D0000, 1,
-           0x4D0000, 1);
+           0x4D0000, 50,
+           0x4D0000, 50);
 
     gsAMS(GS_AM_TYPE_SPECIAL_EVIL,
           SKYBOX_NONE,
@@ -1453,8 +1453,8 @@ void gsAMInitialize()
            TILE_SOURCE_LIGHT_COLOR_PALE_DARK_ORANGE);
 
     gsAMFC(GS_AM_TYPE_SPECIAL_MARS,
-           0xA66634, 2,
-           0xA66634, 2);
+           0xA66634, 50,
+           0xA66634, 50);
 
     gsAMS(GS_AM_TYPE_SPECIAL_MARS,
           SKYBOX_NONE,

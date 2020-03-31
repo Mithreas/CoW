@@ -165,7 +165,7 @@ void main()
     if (nTotalDamage > GetMaxHitPoints() && !GetLocalInt(OBJECT_SELF, "destroyed"))
     {
       SetLocalInt(OBJECT_SELF, "destroyed", 1);
-      int GS_TIMEOUT = 7200; //2 hours
+      int GS_TIMEOUT = 3600; //1 RL hour
       int nExpiration = GetLocalInt(OBJECT_SELF, ORE_EXPIRE);
       int nDbId = GetLocalInt(OBJECT_SELF, "GVD_PLACEABLE_ID");
       gsCMCreateRecreatorAsOreVein(gsTIGetActualTimestamp() + GS_TIMEOUT, sTemplate, nExpiration, nDbId);

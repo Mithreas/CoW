@@ -3,6 +3,7 @@
 //void main() {}
 
 #include "inc_common"
+#include "inc_lootresref"
 #include "inc_pc"
 #include "pg_lists_i"
 
@@ -696,7 +697,14 @@ void gsIPCreateDummyTable(string sTable, int nCount)
 //----------------------------------------------------------------
 int gsIPGetCost(object oItem, itemproperty ipProperty)
 {
-    object oCopy = CopyObject(oItem, GetLocation(oItem));
+    // We can't remove item properties within the execution of a method
+	// (it takes effect afterwards).  So try getting a fresh item of the
+	// same type using the loot gen code.
+	object oCopy = CreateObject(OBJECT_TYPE_ITEM, 
+	                            GetFirstResRefFromBaseItemType(GetBaseItemType(oItem)), 
+	                            GetLocation(oItem));
+	
+	if (!GetIsObjectValid(oCopy)) oCopy = CopyObject(oItem, GetLocation(oItem));
 
     if (GetIsObjectValid(oCopy))
     {
@@ -704,9 +712,6 @@ int gsIPGetCost(object oItem, itemproperty ipProperty)
         SetIdentified(oCopy, TRUE);
         SetStolenFlag(oCopy, FALSE);
 		
-		// Remove all item properties, since stacking properties results in odd values.
-		gsIPRemoveAllProperties(oCopy);
-
         int nCost = GetGoldPieceValue(oCopy);
         gsIPAddItemProperty(oCopy, ipProperty);
         nCost     = GetGoldPieceValue(oCopy) - nCost;

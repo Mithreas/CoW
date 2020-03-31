@@ -24,8 +24,8 @@ void Init()
   {
     AddStringElement("Yes, that's why I'm here.", MAIN_MENU);
     AddStringElement("None, sorry.", MAIN_MENU);
-    AddStringElement("I was wondering whether I can use your tubs and racks?", MAIN_MENU);
-    AddStringElement("Do you have anything for sale?", MAIN_MENU);
+    if (GetRacialType(OBJECT_SELF) == RACIAL_TYPE_HALFLING) AddStringElement("I was wondering whether I can use your tubs and racks?", MAIN_MENU);
+    if (GetRacialType(OBJECT_SELF) == RACIAL_TYPE_HALFLING) AddStringElement("Do you have anything for sale?", MAIN_MENU);
   }
   
   // End of conversation
@@ -43,7 +43,7 @@ void PageInit()
 
   if (sPage == "")
   {
-    SetDlgPrompt("Ho there, adventurer.  Got any hides to sell us?");
+    SetDlgPrompt("Ho there, adventurer.  I buy hides, if you have them.");
     SetDlgResponseList(MAIN_MENU, OBJECT_SELF);
   }
   else if (sPage == PAGE_2)

@@ -27,7 +27,7 @@ void main()
 
     int nSaveDC = GetLocalInt(gsPCGetCreatureHide(oSpellOrigin), "SS_IM_W_DC_ELEC");
     int nSpellGroup = 1 + (nSaveDC - (10 + nWizard))/2;
-	int nTimer = GetLocalInt(gsPCGetCreatureHide(oSpellOrigin), "SS_IM_W_TM_ELEC") + 2*10;
+	int nTimer = GetLocalInt(gsPCGetCreatureHide(oSpellOrigin), "SS_IM_W_TM_ELEC") + 2;
 
     object oTargetPrimary   = GetSpellTargetObject();
     //object oTargetSecondary = OBJECT_INVALID;

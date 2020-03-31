@@ -184,11 +184,6 @@ void ApplyCharacterBonuses(object oPC, int bReapplySpecialAbilities = FALSE, int
         }
     }
 
-    //apply the parry script
-    if(GetSkillRank(SKILL_PARRY, oPC) >= 10)
-    {
-        SetEventScript(oPC, EVENT_SCRIPT_CREATURE_ON_HEARTBEAT, "evt_ply_hb");
-    }
     object oHide = gsPCGetCreatureHide(oPC);
     object oSubraceToken = GetItemPossessedBy(oPC, "GS_SU_ABILITY");
 

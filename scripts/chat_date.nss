@@ -4,7 +4,7 @@
 #include "zzdlg_color_inc"
 
 
-const string HELP = "This command shows the current date, including the Faerunian month and year.  It also shows the approximate time in which crafting points will reset and important meter states.  Using this command with the -s parameter will display the information in a shortened format.";
+const string HELP = "This command shows the current date, including the Faerunian month and year.  It also shows important meter states.  Using this command with the -s parameter will display the information in a shortened format.";
 
 string PresentableCooldown(int nSeconds)
 {
@@ -59,17 +59,6 @@ void main()
         DisplayTextInExamineWindow("-date", HELP);
     } else if (chatGetParams(oSpeaker) == "-s") {
         // Short version of this command.  We'll try to compress info.
-        SendMessageToPC(oSpeaker, gsTIGetPresentableTime());
-        sLine = "CP: " + txtLime + IntToString(gsCRGetCraftPoints(oSpeaker)) + "</c>";
-
-        nTimestamp = gsTIGetActualTimestamp();
-        nTimeout   = gsCRGetCraftTimeout(oSpeaker);
-        if (nTimeout > nTimestamp) {
-            sCooldown = PresentableCooldown((nTimeout - nTimestamp) / 10);
-            sLine += ", Refresh: " + sCooldown;
-    }
-        SendMessageToPC(oSpeaker, sLine);
-
         // Let's show adventuring expees
         int nXP = GetLocalInt(oHide, "GVD_XP_POOL");
         SendMessageToPC(oSpeaker, "ADV XP: " + txtLime + IntToString(nXP) + "</c>");
@@ -100,16 +89,6 @@ void main()
 
     } else {
         SendMessageToPC(oSpeaker, gsTIGetPresentableTime());
-
-        // Let's get our crafting point info.
-        SendMessageToPC(oSpeaker, "Available Crafting Points: " + txtTeal + IntToString(gsCRGetCraftPoints(oSpeaker)) + "</c>");
-        nTimestamp = gsTIGetActualTimestamp();
-        nTimeout   = gsCRGetCraftTimeout(oSpeaker);
-        if (nTimeout > nTimestamp) {
-            sCooldown = PresentableCooldown((nTimeout - nTimestamp) / 10);
-            sCooldown = "Crafting points refresh in " + sCooldown + ".";
-            SendMessageToPC(oSpeaker, sCooldown);
-        }
 
         // Let's show adventuring expees
         int nXP = GetLocalInt(oHide, "GVD_XP_POOL");

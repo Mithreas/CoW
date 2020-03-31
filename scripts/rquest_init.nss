@@ -41,24 +41,27 @@ void main()
   
   // Import all the Renerrin quests.
   sSQL = "INSERT INTO " + DB_QUEST + " (quest, questset, minlevel, maxlevel) VALUES " + 
-   SQLPrepareStatement("(?,?,?,?),", "patrol_city", DB_QUESTSET, "1", "2") + 
-   SQLPrepareStatement("(?,?,?,?),", "train", DB_QUESTSET, "3", "5") + 
-   SQLPrepareStatement("(?,?,?,?),", "drarayne_rats", DB_QUESTSET, "4", "10") + 
-   SQLPrepareStatement("(?,?,?,?),", "loose_hound", DB_QUESTSET, "4", "10") + 
+   SQLPrepareStatement("(?,?,?,?),", "patrol_city", DB_QUESTSET, "1", "2") +
+   SQLPrepareStatement("(?,?,?,?),", "drarayne_rats", DB_QUESTSET, "3", "10") + 
+   SQLPrepareStatement("(?,?,?,?),", "loose_hound", DB_QUESTSET, "3", "10") +  
+   SQLPrepareStatement("(?,?,?,?),", "train", DB_QUESTSET, "4", "6") + 
    SQLPrepareStatement("(?,?,?,?),", "gather_gemstone", DB_QUESTSET, "4", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "make_glass", DB_QUESTSET, "4", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "badger_skin", DB_QUESTSET, "4", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "deliver_to_alian", DB_QUESTSET, "4", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "incriminate_paron_jarian", DB_QUESTSET, "4", "10") + 
-   SQLPrepareStatement("(?,?,?,?),", "kill_arin_meyo", DB_QUESTSET, "4", "10") + 
-   SQLPrepareStatement("(?,?,?,?),", "research_1", DB_QUESTSET, "5", "10") + 
+   SQLPrepareStatement("(?,?,?,?),", "kill_arin_meyo", DB_QUESTSET, "5", "10") + 
+   SQLPrepareStatement("(?,?,?,?),", "research_1", DB_QUESTSET, "5", "10") +  
+   SQLPrepareStatement("(?,?,?,?),", "cull_spiders", DB_QUESTSET, "6", "8") +
    SQLPrepareStatement("(?,?,?,?),", "mountain_patrol", DB_QUESTSET, "6", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "forest_patrol", DB_QUESTSET, "6", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "farm_patrol", DB_QUESTSET, "6", "10") + 
+   SQLPrepareStatement("(?,?,?,?),", "cull_cutthroats", DB_QUESTSET, "9", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "kill_erenia_scout", DB_QUESTSET, "7", "12") +
    SQLPrepareStatement("(?,?,?,?),", "kill_drannis_scout", DB_QUESTSET, "7", "12") + 
    SQLPrepareStatement("(?,?,?,?),", "make_black_powder", DB_QUESTSET, "8", "15") + 
-   SQLPrepareStatement("(?,?,?,?)", "make_gonne", DB_QUESTSET, "10", "15");
+   SQLPrepareStatement("(?,?,?,?)", "make_gonne", DB_QUESTSET, "10", "15") + 
+   SQLPrepareStatement("(?,?,?,?)", "more_gonnes", DB_QUESTSET, "11", "15");
   SQLExecDirect(sSQL);
   
   QUEST = "patrol_city";
@@ -194,6 +197,16 @@ void main()
   SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
   SetStringValue(QUEST+ITEM_TAG, "research_note", DB_VARS);
 
+  QUEST = "cull_spiders";
+  SetStringValue(QUEST+QUEST_TYPE, CULL, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION, "Below the northern part of the Undercity you will find a large spider nest. " +
+  "The spiders are big enough to carry off unwary denizens, so I would like you to cull a dozen of them, please.", DB_VARS);
+  SetStringValue(QUEST+CULL_TAG, "av_DeepSpiders", DB_VARS);
+  SetStringValue(QUEST+NUM_CREATURES, "12", DB_VARS);  
+  SetStringValue(QUEST+REWARD_GOLD, "100", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "100", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+
   QUEST = "mountain_patrol";
   SetStringValue(QUEST+QUEST_TYPE, PATROL, DB_VARS);
   SetStringValue(QUEST+DESCRIPTION,
@@ -229,7 +242,7 @@ void main()
   SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
   SetStringValue(QUEST+AREA_TAGS, "barusbeetlefarm,CrannitCloverFields,crannitcottonfar", DB_VARS);
-
+  
   QUEST = "kill_erenia_scout";
   SetStringValue(QUEST+QUEST_TYPE, KILL, DB_VARS);
   SetStringValue(QUEST+DESCRIPTION,
@@ -264,6 +277,17 @@ void main()
   SetStringValue(QUEST+REWARD_FAC_REP, "2", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "300", DB_VARS);
   SetStringValue(QUEST+ITEM_TAG, "blackpowder", DB_VARS);
+
+  QUEST = "cull_cutthroats";
+  SetStringValue(QUEST+QUEST_TYPE, CULL, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION, "The Undercity has a bad crime problem.  The Imperial Guard do not have the resources " +
+  "to patrol there, so I want you to bring some justice.  Go down there and look like a mark, and deal with any dog who takes the bait. " +
+  "Come back when you've dealt with 20 or more.", DB_VARS);
+  SetStringValue(QUEST+CULL_TAG, "cutthroat", DB_VARS);
+  SetStringValue(QUEST+NUM_CREATURES, "20", DB_VARS);  
+  SetStringValue(QUEST+REWARD_GOLD, "200", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "200", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
   
   QUEST = "make_gonne";
   SetStringValue(QUEST+QUEST_TYPE, RETRIEVE, DB_VARS);
@@ -275,6 +299,16 @@ void main()
   SetStringValue(QUEST+REWARD_FAC_REP, "3", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "350", DB_VARS);
   SetStringValue(QUEST+ITEM_TAG, "gonne", DB_VARS);
+  
+  QUEST = "more_gonnes";
+  SetStringValue(QUEST+QUEST_TYPE, RETRIEVE, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION,
+   "Our House wishes to stockpile more firearms.  Please bring me another Gonne.",
+   DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "250", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
+  SetStringValue(QUEST+ITEM_TAG, "gonne", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
 
   //-------------------------------------------------------------------------------------------
   /* House Drannis Quests */
@@ -283,22 +317,24 @@ void main()
   
   // Import all the Drannis quests.
   sSQL = "INSERT INTO " + DB_QUEST + " (quest, questset, minlevel, maxlevel) VALUES " + 
-   SQLPrepareStatement("(?,?,?,?),", "patrol_city", DB_QUESTSET, "1", "2") + 
-   SQLPrepareStatement("(?,?,?,?),", "train", DB_QUESTSET, "3", "5") + 
-   SQLPrepareStatement("(?,?,?,?),", "drarayne_rats", DB_QUESTSET, "4", "10") + 
-   SQLPrepareStatement("(?,?,?,?),", "loose_hound", DB_QUESTSET, "4", "10") + 
+   SQLPrepareStatement("(?,?,?,?),", "patrol_city", DB_QUESTSET, "1", "2") +
+   SQLPrepareStatement("(?,?,?,?),", "drarayne_rats", DB_QUESTSET, "3", "10") + 
+   SQLPrepareStatement("(?,?,?,?),", "loose_hound", DB_QUESTSET, "3", "10") + 
+   SQLPrepareStatement("(?,?,?,?),", "train", DB_QUESTSET, "4", "6") +  
    SQLPrepareStatement("(?,?,?,?),", "make_glass", DB_QUESTSET, "4", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "gather_wood", DB_QUESTSET, "4", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "gather_ond", DB_QUESTSET, "4", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "guard_arin_meyo", DB_QUESTSET, "4", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "guardposts", DB_QUESTSET, "4", "10") + 
-   SQLPrepareStatement("(?,?,?,?),", "no_agents_allowed", DB_QUESTSET, "5", "10") + 
+   SQLPrepareStatement("(?,?,?,?),", "no_agents_allowed", DB_QUESTSET, "5", "10") +  
+   SQLPrepareStatement("(?,?,?,?),", "cull_spiders", DB_QUESTSET, "6", "8") + 
    SQLPrepareStatement("(?,?,?,?),", "mountain_patrol", DB_QUESTSET, "6", "10") + 
-   SQLPrepareStatement("(?,?,?,?),", "laurisfetter", DB_QUESTSET, "6", "10") + 
+   SQLPrepareStatement("(?,?,?,?),", "laurisfetter", DB_QUESTSET, "6", "10") +
    SQLPrepareStatement("(?,?,?,?),", "kill_erenia_scout", DB_QUESTSET, "7", "12") +
    SQLPrepareStatement("(?,?,?,?),", "kill_renerrin_scout", DB_QUESTSET, "7", "12") + 
    SQLPrepareStatement("(?,?,?,?),", "patrol_darzun_entrance", DB_QUESTSET, "8", "12") + 
    SQLPrepareStatement("(?,?,?,?),", "make_warhammer", DB_QUESTSET, "7", "15") + 
+   SQLPrepareStatement("(?,?,?,?),", "cull_taskmasters", DB_QUESTSET, "9", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "patrol_fire_pits", DB_QUESTSET, "10", "15") + 
    SQLPrepareStatement("(?,?,?,?)", "boss_heads", DB_QUESTSET, "5", "15");
   SQLExecDirect(sSQL);
@@ -446,6 +482,16 @@ void main()
   SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
   SetStringValue(QUEST+AREA_TAGS, "TrallinTinMine,elenduselfurmine,irinironmine", DB_VARS);
 
+  QUEST = "cull_spiders";
+  SetStringValue(QUEST+QUEST_TYPE, CULL, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION, "Below the northern part of the Undercity you will find a large spider nest. " +
+  "The spiders are big enough to carry off unwary denizens, so I would like you to cull a dozen of them, please.", DB_VARS);
+  SetStringValue(QUEST+CULL_TAG, "av_DeepSpiders", DB_VARS);
+  SetStringValue(QUEST+NUM_CREATURES, "12", DB_VARS);  
+  SetStringValue(QUEST+REWARD_GOLD, "100", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "100", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+
   QUEST = "kill_erenia_scout";
   SetStringValue(QUEST+QUEST_TYPE, KILL, DB_VARS);
   SetStringValue(QUEST+DESCRIPTION,
@@ -479,6 +525,16 @@ void main()
   SetStringValue(QUEST+REWARD_XP, "500", DB_VARS);
   SetStringValue(QUEST+AREA_TAGS, "plainsofdarkness", DB_VARS);
   SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+
+  QUEST = "cull_taskmasters";
+  SetStringValue(QUEST+QUEST_TYPE, CULL, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION, "There is a Formian hive somewhere beneath the Undercity.  Their warriors have been sighted " +
+  "scouting out our defenses, and I want you to persuade them to stop.  Kill six of their Taskmasters, that should make them think twice.", DB_VARS);
+  SetStringValue(QUEST+CULL_TAG, "av_FormorianTaskmaster", DB_VARS);
+  SetStringValue(QUEST+NUM_CREATURES, "6", DB_VARS);  
+  SetStringValue(QUEST+REWARD_GOLD, "150", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "150", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
   
   QUEST = "make_warhammer";
   SetStringValue(QUEST+QUEST_TYPE, RETRIEVE, DB_VARS);
@@ -508,10 +564,10 @@ void main()
    "House Drannis takes the defense of the City very seriously.  Bring back two " +
    "heads of creatures from beneath the City that could pose a threat.",
    DB_VARS);
-  SetStringValue(QUEST+REWARD_GOLD, "150", DB_VARS);
-  SetStringValue(QUEST+REWARD_XP, "300", DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "250", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "100", DB_VARS);
   SetStringValue(QUEST+ITEM_TAG, "GS_HEAD_EVIL", DB_VARS);
-  SetStringValue(QUEST+NUM_ITEMS, "2", DB_VARS);
+  SetStringValue(QUEST+NUM_ITEMS, "3", DB_VARS);
   SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
 
   //-------------------------------------------------------------------------------------------
@@ -522,10 +578,10 @@ void main()
   
   // Import all the Erenia quests.
   sSQL = "INSERT INTO " + DB_QUEST + " (quest, questset, minlevel, maxlevel) VALUES " + 
-   SQLPrepareStatement("(?,?,?,?),", "gather_holywater", DB_QUESTSET, "1", "2") + 
-   SQLPrepareStatement("(?,?,?,?),", "train", DB_QUESTSET, "3", "5") + 
-   SQLPrepareStatement("(?,?,?,?),", "drarayne_rats", DB_QUESTSET, "4", "10") + 
-   SQLPrepareStatement("(?,?,?,?),", "loose_hound", DB_QUESTSET, "4", "10") + 
+   SQLPrepareStatement("(?,?,?,?),", "gather_holywater", DB_QUESTSET, "1", "2") +
+   SQLPrepareStatement("(?,?,?,?),", "loose_hound", DB_QUESTSET, "3", "10") + 
+   SQLPrepareStatement("(?,?,?,?),", "drarayne_rats", DB_QUESTSET, "3", "10") + 
+   SQLPrepareStatement("(?,?,?,?),", "train", DB_QUESTSET, "4", "6") +  
    SQLPrepareStatement("(?,?,?,?),", "more_holywater", DB_QUESTSET, "4", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "make_glass", DB_QUESTSET, "4", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "pilgrimage", DB_QUESTSET, "4", "10") + 
@@ -535,9 +591,12 @@ void main()
    SQLPrepareStatement("(?,?,?,?),", "paronjarian", DB_QUESTSET, "4", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "gather_incense", DB_QUESTSET, "4", "10") +  
    SQLPrepareStatement("(?,?,?,?),", "make_cunning_potions", DB_QUESTSET, "4", "10") + 
+   SQLPrepareStatement("(?,?,?,?),", "cull_spiders", DB_QUESTSET, "6", "8") + 
    SQLPrepareStatement("(?,?,?,?),", "forest_patrol", DB_QUESTSET, "6", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "kill_drannis_scout", DB_QUESTSET, "7", "12") +
-   SQLPrepareStatement("(?,?,?,?)", "kill_renerrin_scout", DB_QUESTSET, "7", "12");
+   SQLPrepareStatement("(?,?,?,?)", "kill_renerrin_scout", DB_QUESTSET, "7", "12") +
+   SQLPrepareStatement("(?,?,?,?),", "cull_taskmasters", DB_QUESTSET, "9", "10") + 
+   SQLPrepareStatement("(?,?,?,?)", "sanctify", DB_QUESTSET, "1", "15");
  SQLExecDirect(sSQL);
 
   QUEST = "gather_holywater";
@@ -633,7 +692,6 @@ void main()
   SetStringValue(QUEST+REWARD_GOLD, "1000", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "3", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "04_05", DB_VARS);
   SetStringValue(QUEST+TARGET_TAG, "arin_meyo", DB_VARS);
 
   QUEST = "paronjariandesk";
@@ -644,7 +702,6 @@ void main()
    "his desk and make sure there's nothing untoward in it... his house is near "+
    "the docks, here on Sunrise Isle.", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "04_07", DB_VARS);
   SetStringValue(QUEST+AREA_TAGS, "paronjarianshous", DB_VARS);
   
   QUEST = "patrolcrypts";
@@ -653,7 +710,6 @@ void main()
   "Our brethren guarding the Undercity entrance report that the dead are stirring " +
   "in Ancestors' Rest again.  Please visit the four crypts there and restore peace.",
   DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "04_15", DB_VARS);
   SetStringValue(QUEST+AREA_TAGS, "DarkenedCrypt,hauntedcrypt,OldCrypt,ShadowedCrypt", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "250", DB_VARS);
@@ -665,7 +721,6 @@ void main()
    "Go and see if Cardinal Jarian needs any help. He's usually found in " +
    "the Garden of Contemplation, near the docks.", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "04_06", DB_VARS);
   SetStringValue(QUEST+OTHER_NPC, "paronjarian", DB_VARS);
 
   QUEST = "gather_incense";
@@ -676,7 +731,6 @@ void main()
    DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "600", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "50", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "04_20", DB_VARS);
   SetStringValue(QUEST+ITEM_TAG, "stickofincense", DB_VARS);
   SetStringValue(QUEST+NUM_ITEMS, "2", DB_VARS);
   SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
@@ -691,8 +745,17 @@ void main()
   SetStringValue(QUEST+REWARD_GOLD, "150", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "06_15", DB_VARS);
   SetStringValue(QUEST+AREA_TAGS, "WhisperingWood,DineaDeerReserve", DB_VARS);
+
+  QUEST = "cull_spiders";
+  SetStringValue(QUEST+QUEST_TYPE, CULL, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION, "Below the northern part of the Undercity you will find a large spider nest. " +
+  "The spiders are big enough to carry off unwary denizens, so I would like you to cull a dozen of them, please.", DB_VARS);
+  SetStringValue(QUEST+CULL_TAG, "av_DeepSpiders", DB_VARS);
+  SetStringValue(QUEST+NUM_CREATURES, "12", DB_VARS);  
+  SetStringValue(QUEST+REWARD_GOLD, "100", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "100", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
 
   QUEST = "kill_drannis_scout";
   SetStringValue(QUEST+QUEST_TYPE, KILL, DB_VARS);
@@ -704,7 +767,6 @@ void main()
   SetStringValue(QUEST+REWARD_GOLD, "1000", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "2", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "07_12", DB_VARS);
   SetStringValue(QUEST+TARGET_TAG, "drannis_scout", DB_VARS);
 
   QUEST = "kill_renerrin_scout";
@@ -717,8 +779,17 @@ void main()
   SetStringValue(QUEST+REWARD_GOLD, "1000", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "300", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "2", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "07_12", DB_VARS);
   SetStringValue(QUEST+TARGET_TAG, "renerrin_scout", DB_VARS);
+
+  QUEST = "cull_taskmasters";
+  SetStringValue(QUEST+QUEST_TYPE, CULL, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION, "There is a Formian hive somewhere beneath the Undercity.  Their warriors have been sighted " +
+  "scouting out our defenses, and I want you to persuade them to stop.  Kill six of their Taskmasters, that should make them think twice.", DB_VARS);
+  SetStringValue(QUEST+CULL_TAG, "av_FormorianTaskmaster", DB_VARS);
+  SetStringValue(QUEST+NUM_CREATURES, "6", DB_VARS);  
+  SetStringValue(QUEST+REWARD_GOLD, "150", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "150", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
   
   QUEST = "make_cunning_potions";
   SetStringValue(QUEST+QUEST_TYPE, RETRIEVE, DB_VARS);
@@ -730,10 +801,19 @@ void main()
   SetStringValue(QUEST+REWARD_GOLD, "50", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "150", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "2", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "04_15", DB_VARS);
   SetStringValue(QUEST+ITEM_TAG, "NW_IT_MPOTION009", DB_VARS);
   SetStringValue(QUEST+NUM_ITEMS, "10", DB_VARS);
   
+  QUEST = "sanctify";
+  SetStringValue(QUEST+QUEST_TYPE, PATROL, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION,
+   "The Shrine to the Emperor in the Western part of the Great Wall is an important part of our spiritual defense against Elven magic.  Please " +
+   "visit it and speak a blessing over the altar.  Should anything be amiss, report it to the Guards nearby.", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
+  SetStringValue(QUEST+AREA_TAGS,
+                 "GrWallWestWallInt",
+                 DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
 
   //-------------------------------------------------------------------------------------------
   /* Wardens Quests */
@@ -854,8 +934,8 @@ void main()
   SetStringValue(QUEST+DESCRIPTION,
    "As a Warden, you are expected to help in the defense of the village.  Bring me two heads from creatures that mean us harm.",
    DB_VARS);
-  SetStringValue(QUEST+REWARD_GOLD, "200", DB_VARS);
-  SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "300", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "150", DB_VARS);
   SetStringValue(QUEST+ITEM_TAG, "GS_HEAD_EVIL", DB_VARS);
   SetStringValue(QUEST+NUM_ITEMS, "2", DB_VARS);
   SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
@@ -879,6 +959,7 @@ void main()
   // Import all the Fernvale quests.
   sSQL = "INSERT INTO " + DB_QUEST + " (quest, questset, minlevel, maxlevel) VALUES " + 
    SQLPrepareStatement("(?,?,?,?),", "explore_fernvale", DB_QUESTSET, "1", "2") + 
+   SQLPrepareStatement("(?,?,?,?),", "cull_goblins", DB_QUESTSET, "3", "4") +
    SQLPrepareStatement("(?,?,?,?),", "kill_gobbo_carrier", DB_QUESTSET, "3", "5") + 
    SQLPrepareStatement("(?,?,?,?),", "retrieve_bark", DB_QUESTSET, "3", "5") + 
    SQLPrepareStatement("(?,?,?,?),", "craft_arrows", DB_QUESTSET, "3", "5") + 
@@ -886,10 +967,14 @@ void main()
    SQLPrepareStatement("(?,?,?,?),", "beetlejuice", DB_QUESTSET, "3", "5") + 
    SQLPrepareStatement("(?,?,?,?),", "cure_ingredients", DB_QUESTSET, "4", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "hobgob_caves", DB_QUESTSET, "5", "10") + 
+   SQLPrepareStatement("(?,?,?,?),", "cull_zombies", DB_QUESTSET, "5", "7") +
    SQLPrepareStatement("(?,?,?,?),", "make_cure", DB_QUESTSET, "6", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "ent_bark", DB_QUESTSET, "6", "10") + 
-   SQLPrepareStatement("(?,?,?,?),", "kill_vampire", DB_QUESTSET, "7", "10") + 
-   SQLPrepareStatement("(?,?,?,?)", "boss_heads", DB_QUESTSET, "6", "15");
+   SQLPrepareStatement("(?,?,?,?),", "kill_vampire", DB_QUESTSET, "7", "10") +
+   SQLPrepareStatement("(?,?,?,?),", "cull_scovin", DB_QUESTSET, "8", "10") + 
+   SQLPrepareStatement("(?,?,?,?),", "boss_heads", DB_QUESTSET, "6", "15") +
+   SQLPrepareStatement("(?,?,?,?),", "cull_skelazn", DB_QUESTSET, "10", "15") +
+   SQLPrepareStatement("(?,?,?,?)", "restore_land", DB_QUESTSET, "10", "15");
  SQLExecDirect(sSQL);
   
   QUEST = "explore_fernvale";
@@ -901,7 +986,6 @@ void main()
   SetStringValue(QUEST+AREA_TAGS, "fevCanopy,fevMageGuild,fevRangersGuild,fevtemple", DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "25", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "2000", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "01_02", DB_VARS);
   
   QUEST = "kill_gobbo_carrier";
   SetStringValue(QUEST+QUEST_TYPE, KILL, DB_VARS);
@@ -913,8 +997,17 @@ void main()
   SetStringValue(QUEST+REWARD_GOLD, "250", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "2", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "03_05", DB_VARS);
   SetStringValue(QUEST+TARGET_TAG, "qst_gobcarrier", DB_VARS);
+  
+  QUEST = "cull_goblins";
+  SetStringValue(QUEST+QUEST_TYPE, CULL, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION, "The nearby nest of goblins is infected with the plague.  I need you to " +
+  "reduce their numbers to keep it from spreading; please destroy six diseased goblins.", DB_VARS);
+  SetStringValue(QUEST+CULL_TAG, "diseased_gobbo", DB_VARS);
+  SetStringValue(QUEST+NUM_CREATURES, "6", DB_VARS);  
+  SetStringValue(QUEST+REWARD_GOLD, "100", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "100", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
   
   QUEST = "retrieve_bark";
   SetStringValue(QUEST+QUEST_TYPE, MESSENGER, DB_VARS);
@@ -924,7 +1017,6 @@ void main()
   "bring it back to me.",
   DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "03_05", DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "50", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
   SetStringValue(QUEST+ITEM_TO_BRING, "special_bark", DB_VARS);
@@ -940,7 +1032,6 @@ void main()
 	"Then in the Rangers' Guild you will find a craft station for making arrows.", DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "125", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "03_05", DB_VARS);
   SetStringValue(QUEST+ITEM_TAG, "ca_gen_arrow_ent", DB_VARS);
   SetStringValue(QUEST+NUM_ITEMS, "1", DB_VARS);
   
@@ -952,7 +1043,6 @@ void main()
 	"make a helmet from those plates and bring it to me.", DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "255", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "03_05", DB_VARS);
   SetStringValue(QUEST+ITEM_TAG, "cnrhelm5", DB_VARS);
   SetStringValue(QUEST+NUM_ITEMS, "1", DB_VARS);
   
@@ -964,7 +1054,6 @@ void main()
    DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "100", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "100", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "04_05", DB_VARS);
   SetStringValue(QUEST+ITEM_TAG, "cnrginsengroot", DB_VARS);
   SetStringValue(QUEST+NUM_ITEMS, "2", DB_VARS);
   SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
@@ -978,7 +1067,6 @@ void main()
   SetStringValue(QUEST+AREA_TAGS, "FernEastBorder", DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "25", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "100", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "04_05", DB_VARS);
   
   QUEST = "hobgob_caves";
   SetStringValue(QUEST+QUEST_TYPE, HELP, DB_VARS);
@@ -987,8 +1075,17 @@ void main()
    "go and see what you can do to help him.", 
    DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "05_08", DB_VARS);
   SetStringValue(QUEST+OTHER_NPC, "qst_rathendriel", DB_VARS);
+  
+  QUEST = "cull_zombies";
+  SetStringValue(QUEST+QUEST_TYPE, CULL, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION, "South of the village the land is blighted by the past war, and the dead walk.  We must " +
+  "keep them from getting too close to the village; please destroy six zombies to keep their numbers down.", DB_VARS);
+  SetStringValue(QUEST+CULL_TAG, "NW_ZOMBIE01", DB_VARS);
+  SetStringValue(QUEST+NUM_CREATURES, "6", DB_VARS);  
+  SetStringValue(QUEST+REWARD_GOLD, "100", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "50", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
   
   QUEST = "make_cure";  
   SetStringValue(QUEST+QUEST_TYPE, RETRIEVE, DB_VARS);
@@ -998,7 +1095,6 @@ void main()
    DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "250", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "06_10", DB_VARS);
   SetStringValue(QUEST+ITEM_TAG, "it_mpotion007", DB_VARS);
   SetStringValue(QUEST+NUM_ITEMS, "5", DB_VARS);
   SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
@@ -1013,9 +1109,19 @@ void main()
    DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "250", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "06_10", DB_VARS);
   SetStringValue(QUEST+ITEM_TAG, "cnrbarkent", DB_VARS);
   SetStringValue(QUEST+NUM_ITEMS, "1", DB_VARS);
+  
+  QUEST = "cull_scovin";
+  SetStringValue(QUEST+QUEST_TYPE, CULL, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION, "Our mages are working on cleansing the wasteland to the East.  However, a tribe of Scovin " +
+  "have settled there, and are attacking our mages as they try to do their work.  Please help the mages by thinning the number of " +
+  "Scovin; 12 or so should do it for now.", DB_VARS);
+  SetStringValue(QUEST+CULL_TAG, "ScovinRager", DB_VARS);
+  SetStringValue(QUEST+NUM_CREATURES, "12", DB_VARS);  
+  SetStringValue(QUEST+REWARD_GOLD, "100", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "100", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
   
   QUEST = "kill_vampire";
   SetStringValue(QUEST+QUEST_TYPE, KILL, DB_VARS);
@@ -1025,7 +1131,6 @@ void main()
   SetStringValue(QUEST+REWARD_GOLD, "1000", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "2", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "07_10", DB_VARS);
   SetStringValue(QUEST+TARGET_TAG, "qst_vampire", DB_VARS); 
 
   QUEST = "kill_orc_scout";
@@ -1037,7 +1142,6 @@ void main()
   SetStringValue(QUEST+REWARD_GOLD, "1000", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "2", DB_VARS);
-  SetStringValue(QUEST+LEVEL_RANGE, "07_10", DB_VARS);
   SetStringValue(QUEST+TARGET_TAG, "qst_orc_scout", DB_VARS);  
   
   QUEST = "boss_heads";  
@@ -1050,5 +1154,24 @@ void main()
   SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
   SetStringValue(QUEST+ITEM_TAG, "GS_HEAD_EVIL", DB_VARS);
   SetStringValue(QUEST+NUM_ITEMS, "2", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  QUEST = "restore_land";
+  SetStringValue(QUEST+QUEST_TYPE, HELP, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION,
+   "The wasteland to the East was created during the war.  It will take decades to fully heal, but we must work at it each season. " +
+   "Please gather a group and perform a ritual restoration of a part of the wasteland.", DB_VARS);
+  SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "5000", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "1000", DB_VARS);
+  
+  QUEST = "cull_skelazn";
+  SetStringValue(QUEST+QUEST_TYPE, CULL, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION, "In the valley below the Merivale outpost, there was once a major battle.  Unfortunately the slain do not " +
+  "rest easy, tainting the land and endangering those who would purify it.  Go there and destroy twenty of the Skeleton Ambushers that lurk there; be wary.", DB_VARS);
+  SetStringValue(QUEST+CULL_TAG, "skelazn", DB_VARS);
+  SetStringValue(QUEST+NUM_CREATURES, "20", DB_VARS);  
+  SetStringValue(QUEST+REWARD_GOLD, "100", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
   SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
 }
