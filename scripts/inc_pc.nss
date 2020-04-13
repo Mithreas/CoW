@@ -2,6 +2,7 @@
 #include "inc_time"
 #include "inc_database"
 #include "nwnx_admin"
+#include "nwnx_player"
 //void main() {}
 
 // Database table needs to have the following columns:
@@ -43,6 +44,11 @@
    bl_node             INT(11)      (link to fb_ban_nodes)
    bl_group            INT(11)      (link to fb_ban_groups)
 
+
+   gs_player_map_data
+   arearesref          VARCHAR(16)
+   pcid                INT(11)
+   mapdata             VARCHAR(256)
 */
 
 //return unique id of oPC
@@ -99,13 +105,14 @@ void gsPCBanPlayer(object oPC = OBJECT_INVALID, int bIncludeIP = FALSE, string s
 // Gets the PC's creature hide.  Usually this will be in their CARMOUR slot, but
 // not if they're polymorphed.
 object gsPCGetCreatureHide(object oPC = OBJECT_SELF);
-
 //return old 1.69 CD key that is tied to the EE (1.74+) CD key sEEKey
 string gsPCGetOldCDKey(string sEEKey);
-
 // transfer RPR and Awards from old sCDKey to new sEEKey
 void gsPCMigratePlayerData(string sCDKey, string sEEKey);
-
+// Save minimap progress
+void gsPCSaveMap(object oPC, object oArea);
+// Load minimap progress
+void gsPCLoadMap(object oPC, object oArea);
 
 // Get all information for this PC. Stored in MySQL.  Updated every login (as
 // might have changed on a different server).
@@ -667,8 +674,6 @@ object gsPCGetCreatureHide(object oPC = OBJECT_SELF)
   else return GetItemPossessedBy(oPC, "GS_SU_PROPERTY");
 }
 
-
-
 string gsPCGetOldCDKey(string sEEKey) {
 
   // Dunshine: addded cdkey != as well here, once a playername is tied to both cdkey and eekey and the player updates or changes the eekey
@@ -713,3 +718,31 @@ void gsPCMigratePlayerData(string sCDKey, string sEEKey) {
 
 }
 
+string _gsPCGetMapData(object oPC, object oArea)
+{
+    SQLExecStatement("SELECT mapdata FROM gs_player_map_data WHERE pcid=? AND arearesref=?", gsPCGetPlayerID(oPC), GetResRef(oArea));
+    if (!SQLFetch()) return "";
+    return SQLGetData(1);
+}
+
+// Save minimap progress
+void gsPCSaveMap(object oPC, object oArea)
+{
+  if (GetIsDM(oPC) || GetIsDMPossessed(oPC) || gsPCGetPlayerID(oPC) == "") return;
+  string sMapData = NWNX_Player_GetAreaExplorationState(oPC, oArea);
+
+  if (_gsPCGetMapData(oPC, oArea) == "")
+  {  
+    SQLExecStatement(SQLPrepareStatement("INSERT INTO gs_player_map_data (pcid, arearesref, mapdata) VALUES (?,?,?)", gsPCGetPlayerID(oPC), GetResRef(oArea), sMapData)); 
+  }
+  else
+  {
+    SQLExecStatement(SQLPrepareStatement("UPDATE gs_player_map_data SET mapdata=? WHERE pcid=? AND arearesref=?", sMapData, gsPCGetPlayerID(oPC), GetResRef(oArea))); 
+  }
+}
+// Load minimap progress
+void gsPCLoadMap(object oPC, object oArea)
+{
+  if (GetIsDM(oPC) || GetIsDMPossessed(oPC)) return;
+  NWNX_Player_SetAreaExplorationState(oPC, oArea, _gsPCGetMapData(oPC, oArea));
+}

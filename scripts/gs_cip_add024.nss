@@ -1,6 +1,8 @@
 #include "inc_common"
 #include "inc_craft"
+#include "inc_divination"
 #include "inc_iprop"
+#include "inc_language"
 #include "inc_text"
 #include "inc_worship"
 #include "inc_xp"
@@ -109,6 +111,10 @@ int StartingConditional()
                       SetCustomToken(100, "You don't have enough XP.");
                       return TRUE;
                     }
+					
+					// Making things - divination hook.
+					if (bMundane) miDVGivePoints(oSpeaker, ELEMENT_EARTH, 2.0);
+					else miDVGivePoints(oSpeaker, ELEMENT_AIR, 2.0);
 
                     if (Random(100) < nChance)
                     {
@@ -117,6 +123,10 @@ int StartingConditional()
                         int nAspect = ASPECT_MAGIC;
                         if (bStaticLevel && bMundane) nAspect = ASPECT_KNOWLEDGE_INVENTION;
 
+						// Runic
+						int nRunic = GetLocalInt(oItem, "RUNIC");
+						int nRunicLang = GetLocalInt(oItem, "RUNIC_LANGUAGE");
+
                         if (!nImpossible &&
                             gsWOGetDeityAspect(oSpeaker) & nAspect &&
                             d2() == 2 &&
@@ -124,6 +134,14 @@ int StartingConditional()
                         {
                           FloatingTextStringOnCreature(sDeity + " augments your skill and grants you success.", oSpeaker);
                         }
+						else if (!nImpossible && 
+						         nRunic && 
+						         gsLAGetCanSpeakLanguage(nRunicLang, oSpeaker) &&
+								 !bMundane && 
+								 d2() == 2)
+						{
+						  FloatingTextStringOnCreature("The runes on this item glow brightly for a moment, and the enchantment takes.", oSpeaker);
+						}
                         else
                         {
                           nCost   /= 10;

@@ -604,8 +604,15 @@ int AR_GetCasterLevel(object oCaster=OBJECT_SELF)
   {
     nShadowBonus = GetLevelByClass(CLASS_TYPE_SHADOWDANCER, oCaster);
   }
+  
+  // Anemoi edit - add 1/10 Piety for clerics and paladins.
+  int nPietyBonus = 0;
+  if (GetLastSpellCastClass() == CLASS_TYPE_PALADIN || GetLastSpellCastClass() == CLASS_TYPE_CLERIC)
+  {
+    nPietyBonus = FloatToInt(gsSTGetState(GS_ST_PIETY, oCaster)) / 10;
+  }
 
-  return nCasterLevel + AR_GetCasterLevelBonus(oCaster) + nPMBonus + nHarperBonus + nShadowBonus  + GetTemporaryCasterLevelBonus(oCaster);
+  return nCasterLevel + AR_GetCasterLevelBonus(oCaster) + nPMBonus + nHarperBonus + nShadowBonus  + nPietyBonus + GetTemporaryCasterLevelBonus(oCaster);
 }
 //------------------------------------------------------------------------------
 int AR_GetReflexAdjustedDamage(int nDamage, object oTarget, int nDC, int nSaveType=SAVING_THROW_TYPE_NONE, object oSaveVersus=OBJECT_SELF)

@@ -10,7 +10,7 @@
 //:: Created By: Preston Watamaniuk
 //:: Created On: Sept 27, 2001
 //:://////////////////////////////////////////////
-
+#include "inc_state"
 #include "inc_zombie"
 
 void main()
@@ -25,10 +25,8 @@ void main()
       return;
     }
 
-    //Yep thats it
     SummonFamiliar();
 	
-	// Give the ability a use back. 
-    // Septire - Or don't?
-	// IncrementRemainingFeatUses(OBJECT_SELF, FEAT_SUMMON_FAMILIAR);
+	gsSTDoCasterDamage(OBJECT_SELF, 5);
+	IncrementRemainingFeatUses(OBJECT_SELF, FEAT_SUMMON_FAMILIAR);     // this doesn't seem to work, perhaps because the feat changes to unsummon.  Moving to death script.
 }

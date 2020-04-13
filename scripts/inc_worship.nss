@@ -39,6 +39,9 @@ const int GS_WO_NONE = -1;
 //const int GS_WO_TRIXIVERIA             =     13;
 //const int GS_WO_STAR_EYED_LADY         =     21;
 //const int GS_WO_AKAVOS_FIRELORD        =     22;
+//const int GS_WO_SABATHA_THE_SNEAK      =     23;
+//const int GS_WO_MATHGAR_THE_MIGHTY     =     91;
+//const int GS_WO_VALAROS                =     92;
 //const int GS_WO_NPC_BEAST_CULT         =     99;
 
 string gsWOGetPortfolio(int nDeity)
@@ -62,6 +65,9 @@ string gsWOGetPortfolio(int nDeity)
 	case 13  : sPortfolio = "Queen Trixiveria\n\nThe fey have many kings and queens, each ruling over their own pocket of the Feywilds.  A playful spirit, Trixiveria's lighthearted manner does little to conceal her magical power.  Perhaps more in tune with the twisting magics of the Feywilds than any other, she is often sought out by mortals."; break;
 	case 21  : sPortfolio = "Seravithia the Star-Eyed\n\nAlso known as the Star-Eyed Lady, Seravithia is often hailed as the inventor of magic, the first wizard among the Elven people.  Teaching her first followers how to tap into natural power and weave it into spells, she spent her natural life span discovering and teaching.  Death never claimed her, though her followers now hear from her but rarely."; break;
 	case 22  : sPortfolio = "Akavos Firelord\n\nAscending to godhood during the Great War, Akavos was a mighty battle mage.  His ascension occurred in the middle of a battle during which he was channeling great power... those who have attempted to replicate the feat have not survived.  Naturally gifted with fire magics, he is often worshipped by other pyromancers."; break;
+	case 23  : sPortfolio = "Sabatha the Sneak\n\nSabatha is hailed in Elven mythology as the one who stole the secret of fire from the gods.  An ancient deity, she is hailed as something of a trickster, and her overt worship is looked down on by traditionalists.  Scouts, jesters, those who challenge the status quo, and those who have something to hide often take Sabatha as their patron."; break;
+	case 91  : sPortfolio = "Mathgar the Mighty\n\nLittle is known about Mathgar at this time.  His name is carried south on the lips of traders and trackers, worshiped by many in the frozen North."; break;
+	case 92  : sPortfolio = "Valaros\n\nRumoured to be the First Shapeshifter, and hence the official or unofficial patron of shapeshifters across the world.  Highly secretive, there are very few tales of him... or her... or whatever!"; break;
 	case 99  : sPortfolio = ""; break; // Secret, so no info here in case it shows up.
 	default  : sPortfolio = "No portfolio! Please report this bug."; break;
   }
@@ -215,6 +221,9 @@ int gsWOGetDeityByName(string sDeity)
 	if (sDeity == "Trixiveria")              return 13;
 	if (sDeity == "Seravithia Star-Eyed")    return 21;
 	if (sDeity == "Akavos Firelord")         return 22;
+	if (sDeity == "Sabatha the Sneak")       return 23;
+	if (sDeity == "Magthar the Mighty")      return 91;
+	if (sDeity == "Valaros")                 return 92;
 	if (sDeity == "Beast Cult")              return 99;
 
     return FALSE;
@@ -239,6 +248,9 @@ string gsWOGetNameByDeity(int nDeity)
 		case 13:   return "Trixiveria";
 		case 21:   return "Seravithia Star-Eyed";
 		case 22:   return "Akavos Firelord";
+		case 23:   return "Sabatha the Sneak";
+		case 91:   return "Magthar the Mighty";
+		case 92:   return "Valaros";
 		case 99:   return "Beast Cult";
     }
 
@@ -260,6 +272,7 @@ int gsWOGetCategory(int nDeity)
         case 8:    
 		case 21:   
 		case 22:   
+		case 23:
 		  return FB_WO_CATEGORY_MAGIC;
 		case 9:    
 		case 10:   
@@ -267,6 +280,8 @@ int gsWOGetCategory(int nDeity)
 		case 12:   
 		case 13:
 		  return FB_WO_CATEGORY_BALANCE;
+		case 91:
+		case 92:
 		case 99:   
 		default:
 		  return FB_WO_CATEGORY_BEAST_CULTS;
@@ -314,7 +329,6 @@ void gsWOGiveSpellPiety(object oPC, int bHealSpell)
 //----------------------------------------------------------------
 int gsWOGrantFavor(object oTarget = OBJECT_SELF)
 {
-    int GS_WO_TIMEOUT_FAVOR        = 10800; // 3 hours
     int GS_WO_PENALTY_PER_LEVEL    =    15;
 
     //deity
@@ -328,8 +342,12 @@ int gsWOGrantFavor(object oTarget = OBJECT_SELF)
 
 	if (gsWOGrantResurrection(oTarget)) return FALSE;
 	if (GetIsDead(oTarget)) return FALSE;
-	if (!gsWOGrantBoon(oTarget)) return FALSE;
-
+	if (!gsWOGrantBoon(oTarget)) 
+	{
+	  FloatingTextStringOnCreature(gsCMReplaceString(GS_T_16777284, sDeity), oTarget, FALSE); 
+	  return FALSE;
+    }
+	
     int nFlag      = FALSE;
 
     //greater favor
@@ -454,7 +472,7 @@ int gsWOGrantFavor(object oTarget = OBJECT_SELF)
 //----------------------------------------------------------------
 int gsWOGrantBoon(object oTarget = OBJECT_SELF)
 {
-    int GS_WO_TIMEOUT_BOON = 60 * 60 * 12; //12 hours
+    int GS_WO_TIMEOUT_BOON = 60 * 60 * 3; //3 hours
     float GS_WO_COST_BOON  =    25.0f;
 
     float fPiety = gsWOGetPiety(oTarget);
@@ -462,11 +480,11 @@ int gsWOGrantBoon(object oTarget = OBJECT_SELF)
     string sDeity  = GetDeity(oTarget);
     if (sDeity == "")                                            return FALSE;
     int nTimestamp = gsTIGetActualTimestamp();
-    if (GetLocalInt(oTarget, "GS_WO_TIMEOUT_BOON") > nTimestamp) return FALSE;
-    SetLocalInt(oTarget, "GS_WO_TIMEOUT_BOON", nTimestamp + GS_WO_TIMEOUT_BOON);
     if (IntToFloat(Random(100)) >= fPiety)                       return FALSE;
     if (Random(100) < 5)                                         return FALSE;
     if (fPiety < GS_WO_COST_BOON)                                return FALSE;
+    if (GetLocalInt(oTarget, "GS_WO_TIMEOUT_BOON") > nTimestamp) return FALSE;
+    SetLocalInt(oTarget, "GS_WO_TIMEOUT_BOON", nTimestamp + GS_WO_TIMEOUT_BOON);
 
     gsWOAdjustPiety(oTarget, -GS_WO_COST_BOON);
     return TRUE;
@@ -744,10 +762,13 @@ void gsWOSetup()
     gsWOAddDeity(8, "CG,CN,CE", ASPECT_TRICKERY_DECEIT + ASPECT_MAGIC, RACIAL_TYPE_HUMAN); //Dark One
     gsWOAddDeity(21, "LG,LN,LE,NG,NN,NE,CG,CN,CE", ASPECT_HEARTH_HOME + ASPECT_MAGIC, RACIAL_TYPE_ELF); //Seravithia Star-Eyed
     gsWOAddDeity(22, "LG,LN,LE,NG,NN,NE", ASPECT_WAR_DESTRUCTION + ASPECT_MAGIC, RACIAL_TYPE_ELF); //Akavos Firelord
+    gsWOAddDeity(23, "CG,CN,CE,NG,NN,NE", ASPECT_TRICKERY_DECEIT + ASPECT_MAGIC, RACIAL_TYPE_ELF); //Sabatha the Sneak
 	
     gsWOChangeCategory(FB_WO_CATEGORY_BEAST_CULTS);
-
-    gsWOChangeCategory(FB_WO_CATEGORY_NPC);
+	gsWOAddDeity(91, "LG,LN,NG,NN,LE,NE,CG,CN,CE", ASPECT_WAR_DESTRUCTION + ASPECT_NATURE, RACIAL_TYPE_HUMANOID_MONSTROUS); // Magthar
+	gsWOAddDeity(92, "LG,LN,NG,NN,LE,NE,CG,CN,CE", ASPECT_WAR_DESTRUCTION + ASPECT_TRICKERY_DECEIT, RACIAL_TYPE_SHAPECHANGER); // Valaros
+	
+    gsWOChangeCategory(FB_WO_CATEGORY_NPC);	
 	gsWOAddDeity(99, "LG,NG,CG,LN,NN,CN,LE,NE,CE", ASPECT_NATURE + ASPECT_WAR_DESTRUCTION, RACIAL_TYPE_HUMANOID_MONSTROUS); // NPC beast cults
 
     SetLocalInt(oWOCacheItem, "FB_WO_SETUP", TRUE);

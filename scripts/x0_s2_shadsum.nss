@@ -12,7 +12,7 @@
 //:: Created By: Preston Watamaniuk
 //:: Created On: Oct 26, 2001
 //:://////////////////////////////////////////////
-
+#include "inc_state"
 #include "inc_summons"
 
 void main()
@@ -46,4 +46,6 @@ void main()
 
     //Apply VFX impact and summon effect
     ApplyEffectAtLocation(DURATION_TYPE_TEMPORARY, eSummon, GetSpellTargetLocation(), HoursToSeconds(nDuration));
+	
+	gsSTDoCasterDamage(OBJECT_SELF, nCasterLevel);
 }

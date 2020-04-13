@@ -132,7 +132,7 @@ void main()
         SetLocalInt(oUser, "dmfi_dice_no_animate", n);
         SendMessageToPC(oUser, "Settings: Roll Animations (1 is OFF): "+IntToString(n));
 
-        float f = GetCampaignFloat("dmfi", "dmfi_reputaion", oUser);
+        float f = GetCampaignFloat("dmfi", "dmfi_reputation", oUser);
         SetLocalFloat(oUser, "dmfi_reputation", f);
         SendMessageToPC(oUser, "Settings: Reputation Adjustment: "+FloatToString(f));
 
@@ -195,9 +195,9 @@ void main()
         SetCampaignInt("dmfi", "dmfi_safe_factions", 0, oUser);
         SendMessageToPC(oUser, "Settings: Factions set to BW base behavior");
 
-        SetLocalFloat(oUser, "dmfi_reputation", 5.0);
+        SetLocalFloat(oUser, "dmfi_reputation", 25.0);
         SetCustomToken(20784, "5");
-        SetCampaignFloat("dmfi", "dmfi_reputation", 5.0, oUser);
+        SetCampaignFloat("dmfi", "dmfi_reputation", 25.0, oUser);
         SendMessageToPC(oUser, "Settings: Reputation adjustment: 5");
 
         SetCampaignFloat("dmfi", "dmfi_effectduration", 60.0, oUser);

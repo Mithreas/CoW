@@ -17,6 +17,9 @@
   resref_3 - Erenia mercenaries
   resref_4 - Renerrin mercenaries
   resref_5 - Shadow mercenaries
+  resref_6 - Vyvian mercenaries
+  resref_7 - Fernvale mercenaries
+  resref_8 - Airevorn mercenaries
 
   Make sure you assign the copies of the mercenaries to the correct faction!
   You should also use House colours, too, for easy identification.
@@ -97,11 +100,15 @@ void PageInit()
   string sPage = GetDlgPageString();
   object oPC   = GetPcDlgSpeaker();
   int bElf     = GetRacialType(OBJECT_SELF) == RACIAL_TYPE_ELF;
-  
+  int bEnt     = GetRacialType(OBJECT_SELF) == RACIAL_TYPE_CONSTRUCT;
   
   if (sPage == "")
   {
-    SetDlgPrompt(bElf ? "I can deploy rangers to watch over our claims in the wilderness, if you can cover their supply costs." : "Solkin watch over you, sir. Are you looking to hire?");
+    string sPrompt = "Solkin watch over you, sir. Are you looking to hire?";
+	if (bElf) sPrompt = "I can deploy rangers to watch over our claims in the wilderness, if you can cover their supply costs.";
+	if (bEnt) sPrompt = "The trees cry out for revenge for their slain comrades.  We would be led to war, were you to wish it.";
+  
+    SetDlgPrompt(sPrompt);
     SetDlgResponseList(MAIN_MENU, OBJECT_SELF);
   }
   else if (sPage == DESCRIPTION)

@@ -12,6 +12,7 @@
 //:: Created On: Sep 13, 2002
 //:://////////////////////////////////////////////
 #include "x0_i0_spells"
+#include "inc_state"
 #include "inc_worship"
 
 void main()
@@ -61,7 +62,9 @@ void main()
         ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, RoundsToSeconds(nCharismaBonus));
         ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
 
-        DecrementRemainingFeatUses(OBJECT_SELF, FEAT_TURN_UNDEAD);
+        // DecrementRemainingFeatUses(OBJECT_SELF, FEAT_TURN_UNDEAD); Drain stamina instead
+        gsSTDoCasterDamage(OBJECT_SELF, 5);
+		
     // }
 }
 

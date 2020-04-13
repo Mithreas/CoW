@@ -65,21 +65,6 @@ void main()
         if (nClassType == CLASS_TYPE_INVALID) break;
         nClassLevel = GetLevelByClass(nClassType, oPC);
 
-        bLawful    |=
-          (nClassType == CLASS_TYPE_MONK ||
-           nClassType == CLASS_TYPE_PALADIN ||
-           nClassType == CLASS_TYPE_DWARVEN_DEFENDER);
-        bNonLawful |= (nClassType == CLASS_TYPE_BARBARIAN);
-        bEvil      |=
-          (nClassType == CLASS_TYPE_BLACKGUARD ||
-           nClassType == CLASS_TYPE_ASSASSIN);
-        bNonEvil   |=
-          (nClassType == CLASS_TYPE_DIVINE_CHAMPION ||
-           nClassType == CLASS_TYPE_HARPER);
-        bGood      |= (nClassType == CLASS_TYPE_PALADIN);
-        bNonGood   |= (nClassType == CLASS_TYPE_PALE_MASTER);
-        bNeutral   |= (nClassType == CLASS_TYPE_DRUID);
-
         if (nClassLevel < nRequiredLevel)
         {
             if (nClassLevel > gsPCGetMemorizedClassLevel(nNth, oPC))
@@ -113,20 +98,6 @@ void main()
                 FALSE);
             return;
         }
-    }
-
-    // Ensure that there are no alignment conflicts, unless the PC has been
-    // specifically granted permission (5% roll, for example).
-    if (((bLawful && bNonLawful) ||
-         (bGood && (bEvil || bNonGood)) ||
-         (bEvil && bNonEvil) ||
-         (bNeutral && (bLawful && (bEvil || bGood)))) &&
-        !GetLocalInt(oHide, "GS_PC_OVERRIDE_ALIGNMENT_RESTRICTIONS"))
-    {
-      SendMessageToPC(oPC, "Taking a level in that class would cause an illegal alignment combination!");
-      SetXP(oPC, nXPLevel - 1);
-      gsPCMemorizeClassData(oPC);
-      DelayCommand(0.5, SetXP(oPC, nXP));
     }
 
    // Kensai.

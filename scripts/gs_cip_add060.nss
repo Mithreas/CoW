@@ -27,42 +27,22 @@ int StartingConditional()
             int nPropertyStrRef  = GetLocalInt(OBJECT_SELF, "GS_PROPERTY_STRREF");
             string sPropertyName = GetStringByStrRef(nPropertyStrRef);
 
-            if (bStaticLevel)
+            if ( (gsCMGetItemValue(oItem) + nBaseCost - gsCRGetMaterialBaseValue(oItem)) > GS_CR_FL_MAX_ITEM_VALUE)
             {
-              if ( (gsCMGetItemValue(oItem) + nBaseCost - gsCRGetMaterialBaseValue(oItem)) > GS_CR_FL_MAX_ITEM_VALUE)
-              {
                 // Max item value reached.
                 nCost = 0;
                 nChance = 100;
-              }
-              else
-              {
-                nCost = FloatToInt(IntToFloat(nCost) * gsCRGetCraftingCostMultiplier(oSpeaker, oItem, ipProperty));
-              }
             }
             else
             {
-              // Addition by Mithreas. Enchanters are better at enchanting. --[
-              if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_ENCHANTMENT, oSpeaker))
-              {
-                nCost = FloatToInt(IntToFloat(nCost) * 0.65); // 35% discount
-              }
-              else if (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_ENCHANTMENT, oSpeaker))
-              {
-                nCost = FloatToInt(IntToFloat(nCost) * 0.80); // 20% discount
-              }
-              else if (GetHasFeat(FEAT_SPELL_FOCUS_ENCHANTMENT, oSpeaker))
-              {
-                nCost = FloatToInt(IntToFloat(nCost) * 0.90); // 10% discount
-              }
+                nCost = FloatToInt(IntToFloat(nCost) * gsCRGetCraftingCostMultiplier(oSpeaker, oItem, ipProperty));
             }
-            // ]-- End addition.
-
+			
+            int nBaseItemValue = FloatToInt(gsCRGetCraftingCostMultiplier(oSpeaker, oItem, ipProperty)
+                                                * IntToFloat(gsCMGetItemValue(oItem) - gsCRGetMaterialBaseValue(oItem)));
+			
             if (nCost)
             {
-                int nBaseItemValue = FloatToInt(gsCRGetCraftingCostMultiplier(oSpeaker, oItem, ipProperty)
-                                                * IntToFloat(gsCMGetItemValue(oItem) - gsCRGetMaterialBaseValue(oItem)));
-
                 // Impose a min cost to avoid abusing merchants.  Max possible
                 // merchant buy price is 75% of base value so make this the min
                 // for items under 400g.
@@ -75,6 +55,14 @@ int StartingConditional()
                 if (nChance < 5)        nChance =   5;
                 else if (nChance > 95) nChance = 95;
             }
+
+            // Debug content!
+			if (GetPCPlayerName(oSpeaker) == "Mithreas")
+			{
+			  SendMessageToPC(oSpeaker, "Multiplier: " + FloatToString(gsCRGetCraftingCostMultiplier(oSpeaker, oItem, ipProperty)));
+			  SendMessageToPC(oSpeaker, "Property base cost: " + IntToString(nBaseCost));
+			  SendMessageToPC(oSpeaker, "Base item value adjusted for skill and base cost: " + IntToString(nBaseItemValue));			  
+			}
 
             SetCustomToken(818, GetName(oItem));
             SetCustomToken(819, sPropertyName);

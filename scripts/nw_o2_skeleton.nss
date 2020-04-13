@@ -40,6 +40,6 @@ void main()
     SetPlotFlag(OBJECT_SELF, FALSE);
     DestroyObject(OBJECT_SELF, 0.5);
 	
-    gsCMCreateRecreator(10*30*60); // 30 RL minutes
+    // gsCMCreateRecreator(10*30*60); // Removed - applied via the Effect: Skeleton Ambushers GS_ACTIVATOR (pl_doskellies)
    }
 }

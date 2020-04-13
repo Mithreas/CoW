@@ -80,6 +80,9 @@ void DoDeath(object oDied, object oKiller)
 	  SetLocalInt(oDied, "PLOT_KILLED", TRUE);
       ApplyEffectAtLocation(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_FNF_PWKILL), GetLocation(oDied));
 	}
+	
+	miCRResetRep(oDied);	
+	
 }
 
 void gsDeath()

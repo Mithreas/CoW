@@ -176,12 +176,16 @@ int GetHasPermission(int nClass, object oPC)
 
 int CoW_HasAllowedClasses(object oPC)
 {
+  if (GetLevelByClass(CLASS_TYPE_DRAGON_DISCIPLE)) return FALSE;
+  if (GetLevelByClass(CLASS_TYPE_SHIFTER)) return FALSE;
+
   switch (GetRacialType(oPC))
   {
     case RACIAL_TYPE_HUMAN:
 	{
 	  if ((GetLevelByClass(CLASS_TYPE_WIZARD, oPC) && !GetHasPermission(CLASS_TYPE_WIZARD, oPC)) ||
 	      (GetLevelByClass(CLASS_TYPE_SORCERER, oPC) && !GetHasPermission(CLASS_TYPE_SORCERER, oPC)) ||
+	      (GetLevelByClass(CLASS_TYPE_SORCERER, oPC) && !GetHasPermission(CLASS_TYPE_PALE_MASTER, oPC)) ||
 		  (GetLevelByClass(CLASS_TYPE_BARD, oPC) && !GetHasPermission(CLASS_TYPE_BARD, oPC)) ||
 		  (GetLevelByClass(CLASS_TYPE_DRUID, oPC) && !GetHasPermission(CLASS_TYPE_DRUID, oPC)))
       {
@@ -196,6 +200,7 @@ int CoW_HasAllowedClasses(object oPC)
 	{
 	  if ((GetLevelByClass(CLASS_TYPE_WIZARD, oPC) && !GetHasPermission(CLASS_TYPE_WIZARD, oPC)) ||
 	      (GetLevelByClass(CLASS_TYPE_SORCERER, oPC) && !GetHasPermission(CLASS_TYPE_SORCERER, oPC)) ||
+	      (GetLevelByClass(CLASS_TYPE_SORCERER, oPC) && !GetHasPermission(CLASS_TYPE_PALE_MASTER, oPC)) ||
 		  (GetLevelByClass(CLASS_TYPE_CLERIC, oPC) && !GetHasPermission(CLASS_TYPE_CLERIC, oPC)) ||
 		  (GetLevelByClass(CLASS_TYPE_PALADIN, oPC) && !GetHasPermission(CLASS_TYPE_PALADIN, oPC)) ||
 		  (GetLevelByClass(CLASS_TYPE_BLACKGUARD, oPC) && !GetHasPermission(CLASS_TYPE_BLACKGUARD, oPC)))

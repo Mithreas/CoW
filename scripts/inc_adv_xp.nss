@@ -43,7 +43,7 @@ int gvd_GetAdventureMode(object oPC);
 void gvd_AdventuringXP_ForArea(object oPC, object oArea) {
 
   // valid objects?
-  if ((oPC != OBJECT_INVALID) && (oArea != OBJECT_INVALID)) {
+  if ((oPC != OBJECT_INVALID) && !GetIsDM(oPC) && (oArea != OBJECT_INVALID)) {
 
     // get id for the area
     int iAreaID = gvd_GetAreaID(oArea);

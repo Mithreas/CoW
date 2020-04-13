@@ -219,7 +219,7 @@ void _ProcessChat(string sText)
 	{
 	  Say("Why yes, I do know the secret of mithril.  I might even use it for you, if you bring me what I need.");
 	}
-	else if (Contains(sText, "greetings") || Contains(sText, "hello") || Contains(sText, "well met"))
+	else if (Contains(sText, "greetings") || Contains(sText, "hello") || Contains(sText, "well met") || Contains (sText, "hospitality"))
 	{
 	  if (Address(oSpeaker) == "barbarian") UpdateAddress(oSpeaker, "stranger");
 	  Say("Well met and welcome.  Do no harm and you will not be harmed in return.");

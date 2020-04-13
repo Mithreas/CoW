@@ -68,6 +68,11 @@ void main()
 	else fPenalty += 0.2f;
 	if (GetLocalInt(GetArea(OBJECT_SELF), "IS_UNDERWATER")) fPenalty *= 2.0f;
   }
+  else if (GetLocalInt(GetArea(OBJECT_SELF), "IS_UNDERWATER"))
+  {
+    // Moving through water is exhausting.
+	fPenalty += 1.0f;
+  }
   
   if (fPenalty > 0.0f) gsSTAdjustState(GS_ST_STAMINA, -fPenalty);
   

@@ -28,6 +28,7 @@ void main()
 
   string sMenuShield1 = CnrRecipeAddSubMenu(sMenuShields, "Ondaran Shields");
   string sMenuShield3 = CnrRecipeAddSubMenu(sMenuShields, "Silver Shields");
+  string sMenuShield4 = CnrRecipeAddSubMenu(sMenuShields, "Mithril Shields");
 
 
   string sMenuSubs1 = CnrRecipeAddSubMenu(sMenuSubs, "Ondaran Components");
@@ -277,42 +278,42 @@ void main()
 
  /////////////////////Mithril Subcomponents////////////////////////
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuSubs3, "Small Mithril Plates", "cnrsmlplt6", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuSubs4, "Small Mithril Plates", "cnrsmlplt6", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotmit", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 10);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 100, 100);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuSubs3, "Medium Mithril Plates", "cnrmedplt6", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuSubs4, "Medium Mithril Plates", "cnrmedplt6", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotmit", 2);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 11);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 110, 110);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuSubs3, "Large Mithril Plates", "cnrlrgplt6", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuSubs4, "Large Mithril Plates", "cnrlrgplt6", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotmit", 3);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 12);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 120, 120);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuSubs3, "Mithril Chain Rings", "cnrchain6", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuSubs4, "Mithril Chain Rings", "cnrchain6", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotmit", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 11);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 110, 110);
 
   //----------------- Mithril shields -----------------------
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuShield3, "Mithril Buckler", "ashsw006", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuShield4, "Mithril Buckler", "ashsw006", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrsmlplt6", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrshldbuck", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 11);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 110, 110);
 
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuShield3, "Large Mithril Shield", "ashlw006", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuShield4, "Large Mithril Shield", "ashlw006", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrmedplt6", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrshldlarg", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 13);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 130, 130);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuShield3, "Mithril Tower Shield", "ashto006", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuShield4, "Mithril Tower Shield", "ashto006", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrlrgplt6", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrshldtowr", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 15);
@@ -327,14 +328,14 @@ void main()
 
 
   //----------------- Mithril armors -----------------------
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu3Medium, "Mithril Chain Mail", "aarcl032", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu4Medium, "Mithril Chain Mail", "aarcl032", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrchain6", 2);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrthreadmit", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrpadding", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 13);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 130, 130);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu3Medium, "Mithril Scale Mail", "aarcl033", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu4Medium, "Mithril Scale Mail", "aarcl033", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrchain6", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrsmlplt6", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrthreadmit", 1);
@@ -342,21 +343,21 @@ void main()
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 14);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 140, 140);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu3Heavy, "Mithril Banded Mail", "aarcl030", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu4Heavy, "Mithril Banded Mail", "aarcl030", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrsmlplt6", 2);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrthreadmit", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrpadding", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 15);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 150, 150);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu3Heavy, "Mithril Half Plate", "aarcl031", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu4Heavy, "Mithril Half Plate", "aarcl031", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrlrgplt6", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrthreadmit", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrpadding", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 16);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 160, 160);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu3Heavy, "Mithril Full Plate", "aarcl029", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu4Heavy, "Mithril Full Plate", "aarcl029", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrlrgplt6", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrsmlplt6", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrthreadmit", 1);

@@ -12,8 +12,8 @@ void main()
   Trace(TRAINING, "Called research heartbeat script");
   object oPC = OBJECT_SELF;
 
-  Trace(TRAINING, "Checking whether still praying.");
-  // Check if still praying.
+  Trace(TRAINING, "Checking whether still researching.");
+  // Check if still researching.
   location lPCLocation = GetLocation(oPC);
   location lResLoc = GetLocalLocation(oPC, "research_location");
   if (lPCLocation == lResLoc)

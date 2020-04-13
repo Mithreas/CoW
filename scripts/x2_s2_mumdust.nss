@@ -36,5 +36,8 @@ void main()
     if (nMetaMagic == METAMAGIC_EXTEND) nDuration *= 2;
 
     SummonSwarm(OBJECT_SELF, CreateSummonGroup(1, sSummon1, sSummon1, sSummon2), HoursToSeconds(nDuration), VFX_FNF_SUMMON_UNDEAD);
+	
+    ScheduleSummonCooldown(OBJECT_SELF, 300, "Mummy Dust", FEAT_EPIC_SPELL_MUMMY_DUST);
+	gsSTDoCasterDamage(OBJECT_SELF, 15);
 }
 

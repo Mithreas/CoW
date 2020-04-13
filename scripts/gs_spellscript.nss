@@ -259,9 +259,9 @@ void main()
     }
 
     // Unfaithful shadow mages can't cast any arcane spells.
-    if (GetIsShadowMage(OBJECT_SELF) && !bIsMundaneAbility && gsWOGetDeityByName(GetDeity(OBJECT_SELF)) != 2 && miSPGetLastSpellArcane(OBJECT_SELF))
+    if (GetIsShadowMage(OBJECT_SELF) && !bIsMundaneAbility && gsWOGetDeityByName(GetDeity(OBJECT_SELF)) != 8 && gsWOGetDeityByName(GetDeity(OBJECT_SELF)) != 23 && miSPGetLastSpellArcane(OBJECT_SELF))
     {
-      SendMessageToPC (OBJECT_SELF, "Only servants of the Dark One can use shadow magic.");
+      SendMessageToPC (OBJECT_SELF, "Only servants of the Dark One or Sabatha can use shadow magic.");
       gsSPSetOverrideSpell();
       SetModuleOverrideSpellScriptFinished();
       return;

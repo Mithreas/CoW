@@ -473,7 +473,7 @@ void DoControlFunction(int iFaction, object oUser)
                   nReport = GetReputation(oTarget, oAlignTarget);
                   FloatingTextStringOnCreature("Current Reputation: "+ GetName(oAlignTarget) + " vs. " +GetName(oTarget)+": " + IntToString(nReport), oUser);
                   break;
-        case 83:  SetLocalString(oUser, "EffectSetting", "dmfi_reputaion");
+        case 83:  SetLocalString(oUser, "EffectSetting", "dmfi_reputation");
                   CreateSetting(oUser);nMessage = -1; break;
         case 84:  nReport = GetReputation(oAlignTarget, oTarget);
                   FloatingTextStringOnCreature("Current Reputation: "+ GetName(oTarget) + " vs. " +GetName(oAlignTarget)+": " + IntToString(nReport), oUser);

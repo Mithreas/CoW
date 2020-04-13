@@ -23,7 +23,11 @@ void main()
     }
     else
     {
-        if (params == "alwayswalk")
+	    if (GetActionMode(OBJECT_SELF, ACTION_MODE_STEALTH) == TRUE)
+		{
+		  SendMessageToPC(OBJECT_SELF, "You cannot use this in stealth mode.");
+		}
+        else if (params == "alwayswalk")
         {
             int alreadyOn = GetLocalInt(OBJECT_SELF, "ALWAYS_WALK");
             NWNX_Player_SetAlwaysWalk(OBJECT_SELF, alreadyOn ? 0 : 1);

@@ -3,7 +3,7 @@
   Author: Mithreas
   Date: 5/5/18
   Description: Dog-follows-nice-PC-with-meat-until-left-with-whiny-man-with-no
-  -meat-then-runs-away-and-thu-resets-the-quest-script.
+  -meat-then-runs-away-and-thus-resets-the-quest-script.
 
   Framework:
     Needs a waypoint, with tag "WP_bessy". This marks where Bessy starts and
@@ -19,11 +19,12 @@
 void main()
 {
   object oBessy = GetObjectByTag("qst_bessy");
+  object oWP    = GetObjectByTag("WP_bessy");
 
-  if (GetArea(oBessy) == OBJECT_SELF)
+  if (GetArea(oBessy) != GetArea(oWP))
   {
     // We have a wolf, who's come home. And doesn't want to be there.  Run away!
-    location lLoc = GetLocation(GetObjectByTag("WP_bessy"));
+    location lLoc = GetLocation(oWP);
     AssignCommand(oBessy, JumpToLocation(lLoc));
   }
   else

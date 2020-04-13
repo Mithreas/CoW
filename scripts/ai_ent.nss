@@ -28,7 +28,7 @@ void main()
 		object oCreWpn2  = GetItemInSlot(INVENTORY_SLOT_CWEAPON_L, oPC);
 		object oCreWpn3  = GetItemInSlot(INVENTORY_SLOT_CWEAPON_B, oPC);
 		
-		if (!GetIsObjectValid(oWeapon) && !GetIsObjectValid(oCreWpn1) && !GetIsObjectValid(oCreWpn2) && !GetIsObjectValid(oCreWpn3))
+		if (! GetIsReactionTypeHostile(oPC, OBJECT_SELF) && !GetIsObjectValid(oWeapon) && !GetIsObjectValid(oCreWpn1) && !GetIsObjectValid(oCreWpn2) && !GetIsObjectValid(oCreWpn3))
 		{
 		  // Ents don't mind being punched.  
 		  int nWood    = GetLocalInt(OBJECT_SELF, "ENT_WOOD_COUNT");
@@ -63,8 +63,8 @@ void main()
 			
 		  if (!nWood)
 		  {
-		    // Set timeout for wood regrowth - 5 RL minutes.
-		    SetLocalInt(OBJECT_SELF, "ENT_TIMEOUT", gsTIGetActualTimestamp() + 60 * 5);
+		    // Set timeout for wood regrowth - 15 RL minutes.
+		    SetLocalInt(OBJECT_SELF, "ENT_TIMEOUT", gsTIGetActualTimestamp() + 60 * 15);
 		  }  
 		}
 		else if (d20() == 1 && !GetIsReactionTypeHostile(oPC) && GetLocalInt(OBJECT_SELF, "ENT_GRUMPY"))

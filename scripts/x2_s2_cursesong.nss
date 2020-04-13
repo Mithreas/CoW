@@ -16,6 +16,7 @@
 
 #include "inc_pc"
 #include "inc_class"
+#include "inc_state"
 #include "x2_i0_spells"
 
 void main()
@@ -46,20 +47,14 @@ void main()
     int nRanks = GetSkillRank(SKILL_PERFORM);
     int nPerform = nRanks;
     int nDuration = 10; //+ nChr;
-
-    // Harper override.
-    if (GetLocalInt(oHide, VAR_HARPER) == MI_CL_HARPER_MASTER)
-    {
-      int nHarperLevel = GetLevelByClass(CLASS_TYPE_HARPER);
-      nLevel += nHarperLevel;
-
-      if (nHarperLevel > 4)
-      {
-        // Restore the use of bardsong.
-        IncrementRemainingFeatUses(OBJECT_SELF, FEAT_BARD_SONGS);
-        IncrementRemainingFeatUses(OBJECT_SELF, FEAT_CURSE_SONG);
-      }
-    }
+	
+    // Stamina override.
+	int nStamina = 5;
+	if (GetLocalInt(oHide, VAR_HARPER) == MI_CL_HARPER_MASTER && GetLevelByClass(CLASS_TYPE_HARPER, OBJECT_SELF) > 4) nStamina = 1;
+	
+	gsSTDoCasterDamage(OBJECT_SELF, nStamina);
+	IncrementRemainingFeatUses(OBJECT_SELF, FEAT_BARD_SONGS);
+    IncrementRemainingFeatUses(OBJECT_SELF, FEAT_CURSE_SONG);
 
     effect eAttack;
     effect eDamage;

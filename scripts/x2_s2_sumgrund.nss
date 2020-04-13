@@ -8,20 +8,8 @@
      The level of the Pale Master determines the
      type of undead that is summoned.
 
-     Level 9 <= Mummy Warrior
-     Level 10 <= Spectre
-     Level 12 <= Vampire Rogue
-     Level 14 <= Bodak
-     Level 16 <= Ghoul King
-     Level 18 <= Vampire Mage
-     Level 20 <= Skeleton Blackguard
-     Level 22 <= Lich
-     Level 24 <= Lich Lord
-     Level 26 <= Alhoon
-     Level 28 <= Elder Alhoon
-     Level 30 <= Lesser Demi Lich
-
-     Lasts 14 + Casterlevel rounds
+     Anemoi version: summons Tier 2 & 3 undead, 
+	 one copy of each per undead summoner tier.
 */
 //:://////////////////////////////////////////////
 //:: Created By: Andrew Nobbs
@@ -39,13 +27,17 @@ void main()
     location lLocation = GetSpellTargetLocation();
     int nMetaMagic     = AR_GetMetaMagicFeat();
     int nDuration      = 24;
-    string sSummon1 = GetUndeadStreamBlueprint(OBJECT_SELF, GetUndeadSummonerTier());
-    string sSummon2 = GetUndeadStreamBlueprint(OBJECT_SELF, GetUndeadSummonerTier() + 1);
+	int nCount         = GetUndeadSummonerTier();
+    string sSummon1 = GetUndeadStreamBlueprint(OBJECT_SELF, 2);
+    string sSummon2 = GetUndeadStreamBlueprint(OBJECT_SELF, 3);
 
     //duration
     if (nMetaMagic == METAMAGIC_EXTEND) nDuration *= 2;
 
-    SummonSwarm(OBJECT_SELF, CreateSummonGroup(1, sSummon1, sSummon1, sSummon2), HoursToSeconds(nDuration), VFX_FNF_SUMMON_UNDEAD);
+    SummonSwarm(OBJECT_SELF, CreateSummonGroup(nCount, sSummon1, sSummon2), HoursToSeconds(nDuration), VFX_FNF_SUMMON_UNDEAD);
+	
+    ScheduleSummonCooldown(OBJECT_SELF, 300, "Summon Greater Undead", FEAT_SUMMON_GREATER_UNDEAD);
+	gsSTDoCasterDamage(OBJECT_SELF, 10);
 }
 
 

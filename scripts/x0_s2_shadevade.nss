@@ -37,7 +37,7 @@
 //:: Created On: Oct 26, 2001
 //:: Updated for Epic Level: 2003-07-24 Georg
 //:://////////////////////////////////////////////
-
+#include "inc_state"
 
 void main()
 {
@@ -50,6 +50,9 @@ void main()
     {
         switch (nLevel)
         {
+		    case 1:
+			case 2:
+			case 3:			
             case 4:
             case 5: nConceal = 5; nDRAmount = 5; nDRPower = DAMAGE_POWER_PLUS_ONE; nAC = 1; break;
             case 6:
@@ -75,12 +78,15 @@ void main()
             case 50: case 51: case 52: case 53:
             case 54: nConceal = 20; nDRAmount = 26; nDRPower = DAMAGE_POWER_PLUS_FIVE; nAC = 4; break;
         }
-      }
-      else
-      {
-         // static from here
-         nConceal = 20; nDRAmount = 28; nDRPower = DAMAGE_POWER_PLUS_FIVE; nAC = 4;
-      }
+    }
+    else
+    {
+        // static from here
+        nConceal = 20; nDRAmount = 28; nDRPower = DAMAGE_POWER_PLUS_FIVE; nAC = 4;
+    }
+	  
+	gsSTDoCasterDamage(OBJECT_SELF, nAC);
+	
     //Declare effects
     effect eConceal = EffectConcealment(nConceal);
     effect eDR = EffectDamageReduction(nDRAmount, nDRPower);

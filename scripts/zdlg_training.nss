@@ -364,16 +364,19 @@ void init_feat_list (object oPC)
   add_feat_to_list(oPC, "Zen Archery", FEAT_ZEN_ARCHERY);
 
   // Weapon and armor proficiencies, focuses etc
-  add_feat_to_list(oPC, "Light armor", FEAT_ARMOR_PROFICIENCY_LIGHT);
-  add_feat_to_list(oPC, "Medium armor", FEAT_ARMOR_PROFICIENCY_MEDIUM);
-  add_feat_to_list(oPC, "Heavy armor", FEAT_ARMOR_PROFICIENCY_HEAVY);
-  add_feat_to_list(oPC, "Shields", FEAT_SHIELD_PROFICIENCY);
-  add_feat_to_list(oPC, "Simple weapons", FEAT_WEAPON_PROFICIENCY_SIMPLE);
-  add_feat_to_list(oPC, "Martial weapons", FEAT_WEAPON_PROFICIENCY_MARTIAL);
-  add_feat_to_list(oPC, "Exotic weapons", FEAT_WEAPON_PROFICIENCY_EXOTIC);
-
+  if (!GetIsHealer(oPC))
+  {
+    add_feat_to_list(oPC, "Light armor", FEAT_ARMOR_PROFICIENCY_LIGHT);
+    add_feat_to_list(oPC, "Medium armor", FEAT_ARMOR_PROFICIENCY_MEDIUM);
+    add_feat_to_list(oPC, "Heavy armor", FEAT_ARMOR_PROFICIENCY_HEAVY);
+    add_feat_to_list(oPC, "Shields", FEAT_SHIELD_PROFICIENCY);
+    add_feat_to_list(oPC, "Simple weapons", FEAT_WEAPON_PROFICIENCY_SIMPLE);
+    add_feat_to_list(oPC, "Martial weapons", FEAT_WEAPON_PROFICIENCY_MARTIAL);
+    add_feat_to_list(oPC, "Exotic weapons", FEAT_WEAPON_PROFICIENCY_EXOTIC);
+  }
+  
   add_group_list("Weapon Focus", GROUP_NUMBER_WF, LIST_WF);
-  add_feat_to_list(oPC, "Weapon focus: bastard sword", FEAT_WEAPON_FOCUS_BASTARD_SWORD);
+  //add_feat_to_list(oPC, "Weapon focus: bastard sword", FEAT_WEAPON_FOCUS_BASTARD_SWORD);
   add_feat_to_list(oPC, "Weapon focus: battle axe", FEAT_WEAPON_FOCUS_BATTLE_AXE);
   add_feat_to_list(oPC, "Weapon focus: club", FEAT_WEAPON_FOCUS_CLUB);
   add_feat_to_list(oPC, "Weapon focus: creature weapon", FEAT_WEAPON_FOCUS_CREATURE);
@@ -418,7 +421,7 @@ void init_feat_list (object oPC)
   SetLocalString(OBJECT_SELF, CURR_LIST, LIST_2);
   // Improved Crit
   add_group_list("Improved Critical", GROUP_NUMBER_IC, LIST_IC);
-  add_feat_to_list(oPC, "Imp Crit: bastard sword", FEAT_IMPROVED_CRITICAL_BASTARD_SWORD);
+  //add_feat_to_list(oPC, "Imp Crit: bastard sword", FEAT_IMPROVED_CRITICAL_BASTARD_SWORD);
   add_feat_to_list(oPC, "Imp Crit: battle axe", FEAT_IMPROVED_CRITICAL_BATTLE_AXE);
   add_feat_to_list(oPC, "Imp Crit: club", FEAT_IMPROVED_CRITICAL_CLUB);
   add_feat_to_list(oPC, "Imp Crit: creature weapon", FEAT_IMPROVED_CRITICAL_CREATURE);
@@ -617,7 +620,7 @@ void init_feat_list (object oPC)
     if (GetKnowsFeat(344, oPC)) add_feat_to_list(oPC, "Ki Strike 4", 697, FALSE, CLASS_TYPE_MONK);
     if (GetKnowsFeat(697, oPC)) add_feat_to_list(oPC, "Ki Strike 5", 698, FALSE, CLASS_TYPE_MONK);
     //add_feat_to_list(oPC, "Outsider Shape", FEAT_EPIC_OUTSIDER_SHAPE);
-    add_feat_to_list(oPC, "OC: Bastard Sword", FEAT_EPIC_OVERWHELMING_CRITICAL_BASTARDSWORD);
+    //add_feat_to_list(oPC, "OC: Bastard Sword", FEAT_EPIC_OVERWHELMING_CRITICAL_BASTARDSWORD);
     add_feat_to_list(oPC, "OC: Battleaxe", FEAT_EPIC_OVERWHELMING_CRITICAL_BATTLEAXE);
     add_feat_to_list(oPC, "OC: Club", FEAT_EPIC_OVERWHELMING_CRITICAL_CLUB);
     add_feat_to_list(oPC, "OC: Creature Weapon", FEAT_EPIC_OVERWHELMING_CRITICAL_CREATURE);
@@ -719,6 +722,7 @@ void init_feat_list (object oPC)
         add_feat_to_list(oPC, "Epic Spell Focus: Necromancy", FEAT_EPIC_SPELL_FOCUS_NECROMANCY);
         add_feat_to_list(oPC, "Epic Spell Focus: Transmutation", FEAT_EPIC_SPELL_FOCUS_TRANSMUTATION);
         add_feat_to_list(oPC, "Epic Spell Penetration", FEAT_EPIC_SPELL_PENETRATION);
+		add_feat_to_list(oPC, "Mummy Dust", FEAT_EPIC_SPELL_MUMMY_DUST);
 		
 	    if (miSSGetIsSpellsword(oPC)) add_feat_to_list(oPC, "Spellsword Greater Imbue", 10016, TRUE);
 	  }		  
@@ -740,7 +744,7 @@ void init_feat_list (object oPC)
     add_feat_to_list(oPC, "Epic Toughness (+20)", FEAT_EPIC_TOUGHNESS_2);
     //add_feat_to_list(oPC, "Epic Toughness (+20)", FEAT_EPIC_TOUGHNESS_3);
     //add_feat_to_list(oPC, "Epic Toughness (+20)", FEAT_EPIC_TOUGHNESS_4);
-    add_feat_to_list(oPC, "Epic Weapon Focus: Bastard Sword", FEAT_EPIC_WEAPON_FOCUS_BASTARDSWORD);
+    //add_feat_to_list(oPC, "Epic Weapon Focus: Bastard Sword", FEAT_EPIC_WEAPON_FOCUS_BASTARDSWORD);
     add_feat_to_list(oPC, "Epic Weapon Focus: Battleaxe", FEAT_EPIC_WEAPON_FOCUS_BATTLEAXE);
     add_feat_to_list(oPC, "Epic Weapon Focus: Club", FEAT_EPIC_WEAPON_FOCUS_CLUB);
     add_feat_to_list(oPC, "Epic Weapon Focus: Creature Weapon", FEAT_EPIC_WEAPON_FOCUS_CREATURE);
@@ -786,7 +790,7 @@ void init_feat_list (object oPC)
 
     if (GetLevelByClass(CLASS_TYPE_FIGHTER, oPC) && GetLevelByClass(CLASS_TYPE_FIGHTER, oNPC))
     {
-      add_feat_to_list(oPC, "Epic Weapon Spec: Bastard Sword", FEAT_EPIC_WEAPON_SPECIALIZATION_BASTARDSWORD, FALSE, CLASS_TYPE_FIGHTER);
+      //add_feat_to_list(oPC, "Epic Weapon Spec: Bastard Sword", FEAT_EPIC_WEAPON_SPECIALIZATION_BASTARDSWORD, FALSE, CLASS_TYPE_FIGHTER);
       add_feat_to_list(oPC, "Epic Weapon Spec: Battleaxe", FEAT_EPIC_WEAPON_SPECIALIZATION_BATTLEAXE, FALSE, CLASS_TYPE_FIGHTER);
       add_feat_to_list(oPC, "Epic Weapon Spec: Club", FEAT_EPIC_WEAPON_SPECIALIZATION_CLUB, FALSE, CLASS_TYPE_FIGHTER);
       add_feat_to_list(oPC, "Epic Weapon Spec: Creature Weapon", FEAT_EPIC_WEAPON_SPECIALIZATION_CREATURE, FALSE, CLASS_TYPE_FIGHTER);
@@ -940,7 +944,7 @@ void init_feat_list (object oPC)
 
   if (GetLevelByClass(CLASS_TYPE_FIGHTER, oPC) && GetLevelByClass(CLASS_TYPE_FIGHTER, oNPC))
   {
-    add_feat_to_list(oPC, "Weapon Spec: Bastard Sword", FEAT_WEAPON_SPECIALIZATION_BASTARD_SWORD, FALSE, CLASS_TYPE_FIGHTER);
+    //add_feat_to_list(oPC, "Weapon Spec: Bastard Sword", FEAT_WEAPON_SPECIALIZATION_BASTARD_SWORD, FALSE, CLASS_TYPE_FIGHTER);
     add_feat_to_list(oPC, "Weapon Spec: Battleaxe", FEAT_WEAPON_SPECIALIZATION_BATTLE_AXE, FALSE, CLASS_TYPE_FIGHTER);
     add_feat_to_list(oPC, "Weapon Spec: Club", FEAT_WEAPON_SPECIALIZATION_CLUB, FALSE, CLASS_TYPE_FIGHTER);
     add_feat_to_list(oPC, "Weapon Spec: Creature Weapon", FEAT_WEAPON_SPECIALIZATION_CREATURE, FALSE, CLASS_TYPE_FIGHTER);
@@ -1227,7 +1231,7 @@ void init_feat_list (object oPC)
     if (nPCLevel > 15) add_feat_to_list(oPC, "Ki Critical", FEAT_KI_CRITICAL, FALSE, CLASS_TYPE_WEAPON_MASTER);
 
 
-    add_feat_to_list(oPC, "Weapon of Choice: Bastard Sword", FEAT_WEAPON_OF_CHOICE_BASTARDSWORD, FALSE, CLASS_TYPE_WEAPON_MASTER);
+    //add_feat_to_list(oPC, "Weapon of Choice: Bastard Sword", FEAT_WEAPON_OF_CHOICE_BASTARDSWORD, FALSE, CLASS_TYPE_WEAPON_MASTER);
     add_feat_to_list(oPC, "Weapon of Choice: Battleaxe", FEAT_WEAPON_OF_CHOICE_BATTLEAXE, FALSE, CLASS_TYPE_WEAPON_MASTER);
     add_feat_to_list(oPC, "Weapon of Choice: Club", FEAT_WEAPON_OF_CHOICE_CLUB, FALSE, CLASS_TYPE_WEAPON_MASTER);
     add_feat_to_list(oPC, "Weapon of Choice: Dagger", FEAT_WEAPON_OF_CHOICE_DAGGER, FALSE, CLASS_TYPE_WEAPON_MASTER);
@@ -1381,11 +1385,13 @@ void Init()
 
   fPCLevel += fCurrentECL;
   if (fPCLevel < 1.0f) fPCLevel = 1.0f;
-  int nGoldCost = FloatToInt(fPCLevel * 500.0f);
 
   SetLocalFloat(oPC, CURR_LVL, fPCLevel);
+  
+  // Set a minimum cost.
+  if (fPCLevel < 6.0f) fPCLevel = 6.0f;
+  int nGoldCost = FloatToInt(fPCLevel * 500.0f);
   SetLocalInt(oPC, CURR_COST, nGoldCost);
-
 }
 
 

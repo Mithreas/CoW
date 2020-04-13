@@ -47,6 +47,24 @@ int miTRPreHook2(object oCreator, object oVictim)
     SendMessageToPC(oVictim, "...but you saw it, so were able to avoid it.");
     return TRUE;
   }
+  
+  // Exit stealth and alert nearby NPCs. 
+  SetActionMode(oVictim, ACTION_MODE_STEALTH, FALSE);
+  int nCount = d3();
+  int nNearest = 1;
+  while (nCount > 0)
+  {
+    object oNPC = GetNearestCreature(CREATURE_TYPE_PLAYER_CHAR, PLAYER_CHAR_NOT_PC, OBJECT_SELF, nNearest, CREATURE_TYPE_IS_ALIVE, TRUE);
+	nNearest++;
+	
+	if (GetIsObjectValid(GetMaster(oNPC))) continue;
+	if (GetDistanceBetween(oNPC, oVictim) > 25.0f) break;
+	
+	// Tell the NPC to attack the PC, if hostile.
+	if (GetIsReactionTypeHostile(oVictim, oNPC)) AssignCommand(oNPC, ActionAttack(oVictim));
+	
+	nCount--;
+  }
 
   return FALSE; // proceed.
 }

@@ -70,8 +70,9 @@ void InitialiseLootSystem()
 {
     // Set up the resref arrays. We select one of these based on what we want to spawn.
     // These use the expanded base item set in inc_baseitem.
-    AddBaseItemResRef(BASE_ITEM_AMULET, "nw_it_mneck020");
-    AddBaseItemResRef(BASE_ITEM_ARMOR_AC0, "mcloth012");
+    AddBaseItemResRef(BASE_ITEM_AMULET, "nw_it_mneck020"); // copper necklace
+    AddBaseItemResRef(BASE_ITEM_ARMOR, "mcloth012"); // not used by loot, but needed for crafting. 
+    AddBaseItemResRef(BASE_ITEM_ARMOR_AC0, "mcloth012"); // Vesture
     AddBaseItemResRef(BASE_ITEM_ARMOR_AC0, "cloth023");
     AddBaseItemResRef(BASE_ITEM_ARMOR_AC0, "cloth029");
     AddBaseItemResRef(BASE_ITEM_ARMOR_AC1, "mcloth013");
@@ -99,11 +100,16 @@ void InitialiseLootSystem()
     AddBaseItemResRef(BASE_ITEM_ARMOR_AC8, "aarcl029");
     //AddBaseItemResRef(BASE_ITEM_BASTARDSWORD, "nw_wswbs001");
     AddBaseItemResRef(BASE_ITEM_BATTLEAXE, "nw_waxbt001");
-    AddBaseItemResRef(BASE_ITEM_BELT, "cnrbelt");
+    AddBaseItemResRef(BASE_ITEM_BELT, "cnrbelt0"); // "Belt"
+    AddBaseItemResRef(BASE_ITEM_BELT, "cnrbelt1");
+    AddBaseItemResRef(BASE_ITEM_BELT, "cnrbelt2");  
+    AddBaseItemResRef(BASE_ITEM_BELT, "cnrbelt3");
+    AddBaseItemResRef(BASE_ITEM_BELT, "cnrbelt4");
     AddBaseItemResRef(BASE_ITEM_BOOTS, "cnrboots");
     AddBaseItemResRef(BASE_ITEM_BOOTS, "cnrbootsdeer");
     AddBaseItemResRef(BASE_ITEM_BOOTS, "cnrbootsdb");
     AddBaseItemResRef(BASE_ITEM_BRACER, "cnrbrac");
+    AddBaseItemResRef(BASE_ITEM_BRACER, "orcishironbracer");
     AddBaseItemResRef(BASE_ITEM_CLOAK, "cnrcloak");
     AddBaseItemResRef(BASE_ITEM_CLOAK, "maarcl038");
     AddBaseItemResRef(BASE_ITEM_CLOAK, "maarcl035");
@@ -114,14 +120,22 @@ void InitialiseLootSystem()
     AddBaseItemResRef(BASE_ITEM_DIREMACE, "nw_wdbma001");
     AddBaseItemResRef(BASE_ITEM_DOUBLEAXE, "nw_wdbax001");
     AddBaseItemResRef(BASE_ITEM_DWARVENWARAXE, "x2_wdwraxe001");
+    AddBaseItemResRef(BASE_ITEM_GLOVES, "cnrglovecloth0");
     AddBaseItemResRef(BASE_ITEM_GLOVES, "cnrglovecloth");
+    AddBaseItemResRef(BASE_ITEM_GLOVES, "cnrglovewool");
+    AddBaseItemResRef(BASE_ITEM_GLOVES, "cnrglovesilk");
     AddBaseItemResRef(BASE_ITEM_GREATAXE, "nw_waxgr001");
     AddBaseItemResRef(BASE_ITEM_GREATSWORD, "nw_wswgs001");
     AddBaseItemResRef(BASE_ITEM_HALBERD, "nw_wplhb001");
     AddBaseItemResRef(BASE_ITEM_HANDAXE, "nw_waxhn001");
     AddBaseItemResRef(BASE_ITEM_HEAVYCROSSBOW, "nw_wbwxh001");
     AddBaseItemResRef(BASE_ITEM_HEAVYFLAIL, "nw_wblfh001");
-    AddBaseItemResRef(BASE_ITEM_HELMET, "x2_it_arhelm03");
+    AddBaseItemResRef(BASE_ITEM_HELMET, "helmet");
+    AddBaseItemResRef(BASE_ITEM_HELMET, "cnrhelm1");
+    AddBaseItemResRef(BASE_ITEM_HELMET, "cnrhelm2");
+    AddBaseItemResRef(BASE_ITEM_HELMET, "cnrhelm3");
+    AddBaseItemResRef(BASE_ITEM_HELMET, "cnrhelm6");
+    AddBaseItemResRef(BASE_ITEM_HELMET, "cnrhelm7");
     AddBaseItemResRef(BASE_ITEM_KAMA, "nw_wspka001");
     AddBaseItemResRef(BASE_ITEM_KATANA, "nw_wswka001");
     AddBaseItemResRef(BASE_ITEM_KUKRI, "nw_wspku001");
@@ -288,9 +302,9 @@ void CreateProceduralLoot(string template, int context, object container, object
                 if(nRandom <= 20)
                     runicLang = GS_LA_LANGUAGE_ELVEN;
                 else if(nRandom <= 40)
-                    runicLang = GS_LA_LANGUAGE_HALFLING;
-                else if(nRandom <= 55)
                     runicLang = GS_LA_LANGUAGE_DRACONIC;
+                else if(nRandom <= 55)
+                    runicLang = GS_LA_LANGUAGE_ANIMAL;
                 else if(nRandom <= 65)
                 {
                     switch(Random(3))

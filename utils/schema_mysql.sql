@@ -2797,3 +2797,14 @@ CREATE TABLE `rquest_quests` (
         `modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         KEY idx (quest,questset)
         ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+		
+		
+DROP TABLE IF EXISTS `gs_player_map_data`;
+CREATE TABLE `gs_player_map_data` (
+  `pcid` int(11) NOT NULL,
+  `arearesref` varchar(16) NOT NULL,
+  `mapdata` varchar(256) NOT NULL,
+  KEY idx (pcid,arearesref),
+  CONSTRAINT `gs_player_map_data_FK_1` FOREIGN KEY (`pcid`) REFERENCES `gs_pc_data` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;

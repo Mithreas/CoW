@@ -174,6 +174,11 @@ int GetCanSeeParticularPC(object oPC, object oNPC = OBJECT_SELF);
 // oAttacker is a PC.
 //------------------------------------------------------------------------------
 void IWasAttacked(object oNPC, object oAttacker);
+
+//------------------------------------------------------------------------------
+// Resets the reputation of oPC with all commoner, merchant and defender factions.
+//------------------------------------------------------------------------------
+void miCRResetRep(object oPC);
 /* End prototypes. */
 
 /*
@@ -536,4 +541,47 @@ void IWasAttacked(object oNPC, object oAttacker)
       AddToBounty(nNation, FINE_ASSAULT, GetMaster(oAttacker));
     }
   }
+}
+
+void miCRResetRep(object oPC)
+{
+	// Reset reputations with all commoner, merchant and defender factions.
+    object oNPC = GetObjectByTag("factionexample1");
+    AdjustReputation(oPC, oNPC, 50-GetFactionAverageReputation(oNPC, oPC));
+    oNPC        = GetObjectByTag("factionexample2");
+    AdjustReputation(oPC, oNPC, 50-GetFactionAverageReputation(oNPC, oPC));
+    oNPC        = GetObjectByTag("factionexample3");
+    AdjustReputation(oPC, oNPC, 50-GetFactionAverageReputation(oNPC, oPC));
+    oNPC        = GetObjectByTag("factionexample4");
+    AdjustReputation(oPC, oNPC, 50-GetFactionAverageReputation(oNPC, oPC));
+    oNPC        = GetObjectByTag("factionexample5");
+    AdjustReputation(oPC, oNPC, 50-GetFactionAverageReputation(oNPC, oPC));
+    oNPC        = GetObjectByTag("factionexample6");
+    AdjustReputation(oPC, oNPC, 50-GetFactionAverageReputation(oNPC, oPC));
+    oNPC        = GetObjectByTag("factionexample7");
+    AdjustReputation(oPC, oNPC, 50-GetFactionAverageReputation(oNPC, oPC));
+    oNPC        = GetObjectByTag("factionexample8");
+    AdjustReputation(oPC, oNPC, 50-GetFactionAverageReputation(oNPC, oPC));
+    oNPC        = GetObjectByTag("factionexample9");
+    AdjustReputation(oPC, oNPC, 50-GetFactionAverageReputation(oNPC, oPC));
+    oNPC        = GetObjectByTag("factionexample10");
+    AdjustReputation(oPC, oNPC, 50-GetFactionAverageReputation(oNPC, oPC));
+    oNPC        = GetObjectByTag("factionexample11");
+    AdjustReputation(oPC, oNPC, 50-GetFactionAverageReputation(oNPC, oPC));
+    oNPC        = GetObjectByTag("factionexample19");
+    AdjustReputation(oPC, oNPC, 50-GetFactionAverageReputation(oNPC, oPC));
+    oNPC        = GetObjectByTag("factionexample20");
+    AdjustReputation(oPC, oNPC, 50-GetFactionAverageReputation(oNPC, oPC));
+    oNPC        = GetObjectByTag("factionexample22");
+    AdjustReputation(oPC, oNPC, 50-GetFactionAverageReputation(oNPC, oPC));
+    oNPC        = GetObjectByTag("factionexample23");
+    AdjustReputation(oPC, oNPC, 50-GetFactionAverageReputation(oNPC, oPC));
+    oNPC        = GetObjectByTag("factionexample27");
+    AdjustReputation(oPC, oNPC, 50-GetFactionAverageReputation(oNPC, oPC));
+    oNPC        = GetObjectByTag("factionexample28");
+    AdjustReputation(oPC, oNPC, 50-GetFactionAverageReputation(oNPC, oPC));
+	
+	// and the Infiltrators
+    oNPC        = GetObjectByTag("factionexample26");
+    AdjustReputation(oPC, oNPC, 50-GetFactionAverageReputation(oNPC, oPC));
 }

@@ -1452,8 +1452,9 @@ int gsCBTalentTaunt(object oTarget)
 int gsCBTalentFeint(object oTarget)
 {
   if (!GetHasFeat(FEAT_SKILL_FOCUS_HIDE, OBJECT_SELF)) return FALSE;
+  if (GetArea(oTarget) != GetArea(OBJECT_SELF)) return FALSE;
   
-  if (GetDistanceToObject(oTarget) > 2.5) return FALSE;
+  if (GetDistanceToObject(oTarget) > 2.5 || GetDistanceToObject(oTarget) == 0.0f) return FALSE;
 	
   //--------------------------------------------------------------
   // Mimic the effect of Taunt, but for attack bonus.  5 rounds. 

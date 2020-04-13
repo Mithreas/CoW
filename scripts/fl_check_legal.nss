@@ -73,7 +73,7 @@ void main()
   if (GetKnowsFeat(FEAT_MONK_AC_BONUS ,oPC) && GetLevelByClass(CLASS_TYPE_MONK, oPC) < 6 && GetHitDice(oPC) > GetLevelByClass(CLASS_TYPE_MONK, oPC)) NWNX_Creature_RemoveFeat(oPC, FEAT_MONK_AC_BONUS);
 
   // Restore monk AC bonus to characters it was wrongly taken from
-  if (GetLevelByClass(CLASS_TYPE_MONK, oPC) > 6 && !GetKnowsFeat(FEAT_MONK_AC_BONUS ,oPC)) AddKnownFeat(oPC, FEAT_MONK_AC_BONUS);
+  if (GetLevelByClass(CLASS_TYPE_MONK, oPC) >= 6 && !GetKnowsFeat(FEAT_MONK_AC_BONUS ,oPC)) AddKnownFeat(oPC, FEAT_MONK_AC_BONUS);
 
   // Check for sniper path.
   object oAbility  = GetItemPossessedBy(oPC, "GS_SU_ABILITY");

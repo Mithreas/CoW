@@ -31,7 +31,7 @@
 #include "x3_inc_horse"
 #include "inc_zdlg"
 
-const int GS_TIMEOUT   = 2400;  // 4 RT minutes (40 game minutes)
+const int GS_TIMEOUT   = 600;  // 10 RT minutes 
 const string ENTER = "ENTER"; // For logging
 
 void _ApplyUnderwaterSpeedPenalty(object oPC)
@@ -300,11 +300,11 @@ void main()
 	  // yep, area timeout variable is in RT minutes, so convert to gametime seconds
 	  iAreaTimeout = gsTIGetGameTimestamp(iAreaTimeout * 60);
 	}
-	// randomness (range = -1 to +1 RT minute, so -600 to + 600 seconds gametime)
-	iAreaTimeout = iAreaTimeout -600 + Random(1200) + 1;
+	// randomness (range = -1 to +1 RT minute, so -60 to + 60 seconds)
+	iAreaTimeout = iAreaTimeout -60 + Random(120) + 1;
 	// sanitize, minimum of 2 minutes at all times
-	if (iAreaTimeout < 1200) {
-	  iAreaTimeout = 1200;
+	if (iAreaTimeout < 120) {
+	  iAreaTimeout = 120;
 	}
 	
     int nTimestamp     = GetLocalInt(oModule, "GS_TIMESTAMP");
@@ -361,8 +361,7 @@ void main()
 	// CoW addition - reset reputation to 50 with the following factions
 	// - animal faction (faction 17)
 	// - plot faction (faction 12)
-	// - merc factions (13,14,15,16,18)
-	// - imperial commoners and merchants (1,2)
+	// - merc factions (13,14,15,16,18, 24, 25, 29)
 	object oNPC = GetObjectByTag("factionexample17");
     AdjustReputation(oEntering, oNPC, 50-GetFactionAverageReputation(oNPC, oEntering));
     oNPC        = GetObjectByTag("factionexample12");
@@ -377,9 +376,11 @@ void main()
     AdjustReputation(oEntering, oNPC, 50-GetFactionAverageReputation(oNPC, oEntering));
     oNPC        = GetObjectByTag("factionexample17");
     AdjustReputation(oEntering, oNPC, 50-GetFactionAverageReputation(oNPC, oEntering));
-    oNPC        = GetObjectByTag("factionexample1");
+    oNPC        = GetObjectByTag("factionexample24");
     AdjustReputation(oEntering, oNPC, 50-GetFactionAverageReputation(oNPC, oEntering));
-    oNPC        = GetObjectByTag("factionexample2");
+    oNPC        = GetObjectByTag("factionexample25");
+    AdjustReputation(oEntering, oNPC, 50-GetFactionAverageReputation(oNPC, oEntering));
+    oNPC        = GetObjectByTag("factionexample29");
     AdjustReputation(oEntering, oNPC, 50-GetFactionAverageReputation(oNPC, oEntering));
 	
     UpdateRangerHiPS(oEntering);
@@ -831,6 +832,9 @@ void main()
 
     //mortality
     SetImmortal(oEntering, nOverrideDeath);
+	
+	// Minimap
+	gsPCLoadMap(oEntering, OBJECT_SELF);
 
     location lLocationExit = GetLocalLocation(oEntering, "GS_LOCATION");
 

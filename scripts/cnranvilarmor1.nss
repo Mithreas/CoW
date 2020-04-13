@@ -29,17 +29,18 @@ void main()
   string sMenuShield1 = CnrRecipeAddSubMenu(sMenuShields, "Ondaran Shields");
   string sMenuShield2 = CnrRecipeAddSubMenu(sMenuShields, "Iron Shields");
   string sMenuShield3 = CnrRecipeAddSubMenu(sMenuShields, "Silver Shields");
-
+  string sMenuShield7 = CnrRecipeAddSubMenu(sMenuShields, "Steel Shields");
 
   string sMenuSubs1 = CnrRecipeAddSubMenu(sMenuSubs, "Ondaran Components");
   string sMenuSubs2 = CnrRecipeAddSubMenu(sMenuSubs, "Iron Components");
   string sMenuSubs3 = CnrRecipeAddSubMenu(sMenuSubs, "Silver Components");
+  string sMenuSubs7 = CnrRecipeAddSubMenu(sMenuSubs, "Steel Components");
 
   string sMenuArmor1 = CnrRecipeAddSubMenu(sMenuArmor, "Ondaran Armour");
   string sMenuArmor2 = CnrRecipeAddSubMenu(sMenuArmor, "Iron Armour");
   string sMenuArmor3 = CnrRecipeAddSubMenu(sMenuArmor, "Silver Armour");
-  string sMenuArmor4 = CnrRecipeAddSubMenu(sMenuArmor, "Ankheg Armour");
-
+  string sMenuArmor7 = CnrRecipeAddSubMenu(sMenuArmor, "Steel Armour");
+  string sMenuArmor9 = CnrRecipeAddSubMenu(sMenuArmor, "Ankheg Armour");
 
   string sMenu1Medium = CnrRecipeAddSubMenu(sMenuArmor1, "Medium Ondaran");
   string sMenu1Heavy = CnrRecipeAddSubMenu(sMenuArmor1, "Heavy Ondaran");
@@ -49,7 +50,10 @@ void main()
 
   string sMenu3Medium = CnrRecipeAddSubMenu(sMenuArmor3, "Medium Silver");
   string sMenu3Heavy = CnrRecipeAddSubMenu(sMenuArmor3, "Heavy Silver");
-
+  
+  string sMenu7Medium = CnrRecipeAddSubMenu(sMenuArmor7, "Medium Steel");
+  string sMenu7Heavy = CnrRecipeAddSubMenu(sMenuArmor7, "Heavy Steel");
+  
   CnrRecipeSetDevicePreCraftingScript("cnranvilarmor1", "cnr_anvil_anim");
   CnrRecipeSetDeviceEquippedTool("cnranvilarmor1", "cnrSmithsHammer", CNR_FLOAT_SMITH_HAMMER_BREAKAGE_PERCENTAGE);
   CnrRecipeSetDeviceTradeskillType("cnranvilarmor1", CNR_TRADESKILL_ARMOR_CRAFTING);
@@ -333,9 +337,94 @@ void main()
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 7);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 70, 70);
 
+  /////////////////////Steel Subcomponents////////////////////////
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuSubs7, "Small Steel Plates", "cnrsmlplt7", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotste", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 10);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 100, 100);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuSubs7, "Medium Steel Plates", "cnrmedplt7", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotste", 2);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 10);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 100, 100);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuSubs7, "Large Steel Plates", "cnrlrgplt7", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotste", 3);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 10);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 100, 100);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuSubs7, "Steel Chain Rings", "cnrchain7", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotste", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 10);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 100, 100);
+
+
+  //----------------- Steel shields -----------------------
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuShield7, "Steel Buckler", "ashsw004", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrsmlplt7", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrshldbuck", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 11);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 110, 110);
+
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuShield7, "Large Steel Shield", "ashlw004", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrmedplt7", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrshldlarg", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 12);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 120, 120);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuShield7, "Steel Tower Shield", "ashto004", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrlrgplt7", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrshldtowr", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 14);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 140, 140);
+
+
+  //----------------- Steel helm -----------------------
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuHelms, "Steel Helmet", "cnrhelm7", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrsmlplt7", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 11);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 110, 110);
+
+
+  //----------------- Steel armors -----------------------
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu7Medium, "Steel Chain Mail", "aarcl021", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrchain7", 2);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrpadding", 2);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 12);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 120, 120);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu7Medium, "Steel Scale Mail", "aarcl022", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrchain7", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrsmlplt7", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrpadding", 2);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 12);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 120, 120);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu7Heavy, "Steel Banded Mail", "aarcl018", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrsmlplt7", 2);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrpadding", 2);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 13);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 130, 130);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu7Heavy, "Steel Half Plate", "aarcl020", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrlrgplt7", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrpadding", 2);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 15);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 150, 150);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu7Heavy, "Steel Full Plate", "aarcl019", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrlrgplt7", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrsmlplt7", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrpadding", 2);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 17);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 170, 170);
+
   //----------------- Ankheg armor -----------------------
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuArmor4, "Ankheg Full Plate", "aarcl028", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuArmor9, "Ankheg Full Plate", "aarcl028", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "AnkhegShell", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrpadding", 2);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 15);

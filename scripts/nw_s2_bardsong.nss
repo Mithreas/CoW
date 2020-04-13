@@ -21,6 +21,7 @@ bugfix by Kovi 2002.07.30
 #include "inc_chatutils"
 #include "inc_zombie"
 #include "inc_class"
+#include "inc_state"
 #include "x0_i0_spells"
 
 void main()
@@ -56,21 +57,12 @@ void main()
     int nLevel = GetLevelByClass(CLASS_TYPE_BARD) + GetLocalInt(oHide, "FL_BONUS_BARD_LEVELS");
     int bCuresLycanthropy = FALSE;
 	
-	// Harper override.
-    if (GetLocalInt(oHide, VAR_HARPER) == MI_CL_HARPER_MASTER)
-	{
-	  int nHarperLevel = GetLevelByClass(CLASS_TYPE_HARPER);
-	  nLevel += nHarperLevel;
-	  	    
-      if (nHarperLevel > 1)
-		bCuresLycanthropy = TRUE;
-		
-	  if (nHarperLevel > 4)
-      {
-	    // Restore the use of bardsong.
-	    IncrementRemainingFeatUses(OBJECT_SELF, FEAT_BARD_SONGS);
-	  }
-	}
+    // Stamina override.
+	int nStamina = 5;
+	if (GetLocalInt(oHide, VAR_HARPER) == MI_CL_HARPER_MASTER && GetLevelByClass(CLASS_TYPE_HARPER, OBJECT_SELF) > 4) nStamina = 1;
+	
+	gsSTDoCasterDamage(OBJECT_SELF, nStamina);
+	IncrementRemainingFeatUses(OBJECT_SELF, FEAT_BARD_SONGS);
 			    	
     int nRanks = GetSkillRank(SKILL_PERFORM);
     int nChr = GetAbilityModifier(ABILITY_CHARISMA);

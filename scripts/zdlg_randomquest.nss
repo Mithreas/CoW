@@ -254,7 +254,7 @@ void PageInit()
     if (sNewQuest == "")
     {
       //Error generating quest, or none left.
-      SetDlgPrompt("Sorry, I don't have anything for you right now.\n\n(Come back once you have gained more experience, or a game day later)");
+      SetDlgPrompt("Sorry, I don't have anything for you right now.\n\n(Come back next level, or a RL day later)");
       SetDlgResponseList(REPLY5, OBJECT_SELF);
     }
     else
@@ -310,6 +310,10 @@ void PageInit()
     {
       SetDlgPrompt("Your report doesn't cover all the areas. Let me know if you need a reminder.");
     }
+	else if (sQuestType == CULL)
+	{
+	  SetDlgPrompt("I believe I asked you for more than that.  You're not finished yet.");
+	}
     else
     {
       SendMessageToPC(oPC,

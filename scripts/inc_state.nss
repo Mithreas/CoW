@@ -168,8 +168,10 @@ void gsSTAdjustState(int nState, float fValue, object oCreature = OBJECT_SELF)
         return;
     }
 
-    //adjustment
+    //adjustment	
     object oHide = gsPCGetCreatureHide(oCreature);
+	if (!GetIsPC(oCreature)) oHide = oCreature;
+	
     float fState    = GetLocalFloat(oHide, sState);
     float fStateOld = fState;
     float fStateNew = fState + fValue;

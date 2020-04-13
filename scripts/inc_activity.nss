@@ -20,6 +20,7 @@
 #include "inc_spellsword"
 #include "inc_stacking"
 #include "inc_xp"
+#include "nwnx_player"
 #include "x2_inc_craft"
 
 // Database configuration
@@ -299,6 +300,23 @@ void GivePrayerBoon(object oPC)
   {
     SendMessageToPC(oPC, "(( You don't have a deity to pray to! ))");
     return;
+  }
+  
+  // If monk, restore a use of stunning fist or quivering palm.
+  int nMonk = GetLevelByClass(CLASS_TYPE_MONK, oPC);
+  
+  if (nMonk)
+  {
+    if (NWNX_Creature_GetFeatRemainingUses(oPC, FEAT_STUNNING_FIST) < nMonk)
+	{
+	  IncrementRemainingFeatUses(oPC, FEAT_STUNNING_FIST);
+	  SendMessageToPC(oPC, "Stunning Fist use restored.");
+	}
+	else if (GetKnowsFeat(FEAT_QUIVERING_PALM, oPC) && !NWNX_Creature_GetFeatRemainingUses(oPC, FEAT_QUIVERING_PALM))
+	{
+	  IncrementRemainingFeatUses(oPC, FEAT_QUIVERING_PALM);
+	  SendMessageToPC(oPC, "Quivering Palm use restored.");
+	}
   }
 
   // 25% chance of raising a nearby dead PC.

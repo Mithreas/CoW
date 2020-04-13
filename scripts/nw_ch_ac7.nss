@@ -189,7 +189,7 @@ void main()
             effect eDam = EffectDamage(nDam);
             FloatingTextStrRefOnCreature(63489, GetMaster(), FALSE);
             ApplyEffectToObject(DURATION_TYPE_PERMANENT, eDam, GetMaster());
-            DecrementRemainingFeatUses(GetMaster(), FEAT_SUMMON_FAMILIAR);
+            // DecrementRemainingFeatUses(GetMaster(), FEAT_SUMMON_FAMILIAR); - don't do this. 
         }
     }
 

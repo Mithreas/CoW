@@ -88,7 +88,8 @@ void main()
         ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
     }
 
-    DecrementRemainingFeatUses(OBJECT_SELF, FEAT_TURN_UNDEAD);
+    // DecrementRemainingFeatUses(OBJECT_SELF, FEAT_TURN_UNDEAD);  -- Don't do this, stamina drain instead
+    gsSTDoCasterDamage(OBJECT_SELF, 5);
 }
 
 

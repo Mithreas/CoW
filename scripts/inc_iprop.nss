@@ -1,7 +1,6 @@
 /* ITEM PROPERTY Library by Gigaschatten */
 
 //void main() {}
-
 #include "inc_common"
 #include "inc_lootresref"
 #include "inc_pc"
@@ -700,6 +699,7 @@ int gsIPGetCost(object oItem, itemproperty ipProperty)
     // We can't remove item properties within the execution of a method
 	// (it takes effect afterwards).  So try getting a fresh item of the
 	// same type using the loot gen code.
+	// TODO - for armour these have base properties!  So need "clean" methods.
 	object oCopy = CreateObject(OBJECT_TYPE_ITEM, 
 	                            GetFirstResRefFromBaseItemType(GetBaseItemType(oItem)), 
 	                            GetLocation(oItem));

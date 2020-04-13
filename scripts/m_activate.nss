@@ -1448,7 +1448,7 @@ void main()
 	{
 	    // For rubbing onto ents to get their bark to come off.
 	    int nJuice = GetLocalInt(oTarget, "ENT_JUICE_COUNT");
-		SetLocalInt(oTarget, "ENT_JUICE_COUNT", nJuice + GetItemStackSize(oItem));
+		SetLocalInt(oTarget, "ENT_JUICE_COUNT", nJuice + 1); // Only uses one instance each time. 
 	}
 	
 	if (GetStringLeft(sTag, 10) == "MI_RIT_PLC")

@@ -88,6 +88,7 @@ void WarCry()
 		  else
 		  {
 		    object oCreature = CopyObject(oTarget, GetLocation(oTarget));
+			RemoveHenchman(GetMaster(oCreature), oCreature);
 			ChangeFaction(oCreature, GetObjectByTag("factionexample0"));
 			AssignCommand(oCreature, gsCBDetermineCombatRound(GetMaster(oTarget)));
             ApplyEffectAtLocation(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_UNSUMMON), GetLocation(oTarget));

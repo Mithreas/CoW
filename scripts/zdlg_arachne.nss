@@ -90,7 +90,8 @@ void PageInit()
 	  
 	  if (!nEcdysis)
 	  {
-	    SetLocalInt(OBJECT_SELF, "ARACHNE_TIMEOUT", gsTIGetActualTimestamp() + 60 * 5);
+	    // 15 minute timeout.
+	    SetLocalInt(OBJECT_SELF, "ARACHNE_TIMEOUT", gsTIGetActualTimestamp() + 60 * 15);
 	  }
 	}
 	

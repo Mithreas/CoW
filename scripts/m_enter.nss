@@ -500,6 +500,9 @@ void main()
 	{
 	    SetObjectVisualTransform(oEntering, OBJECT_VISUAL_TRANSFORM_SCALE, GetLocalFloat(oEntering, "AR_SCALE"));
 	}
+	
+	// Cutscene ghost all PCs, to make dealing with lots of summons less annoying.
+	ApplyEffectToObject(DURATION_TYPE_PERMANENT, SupernaturalEffect(EffectCutsceneGhost()), oEntering);
 }
 
 void _FixXPECL(object oPC, int nSubRace)

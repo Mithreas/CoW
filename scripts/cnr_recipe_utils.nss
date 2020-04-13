@@ -14,6 +14,7 @@
 #include "cnr_config_inc"
 #include "cnr_persist_inc"
 #include "cnr_language_inc"
+#include "inc_divination"
 #include "inc_iprop"
 #include "inc_reputation"
 #include "inc_worship"
@@ -1617,6 +1618,9 @@ void CnrRecipeDisplayCraftingResult(object oPC, object oDevice, string sKeyToRec
   {
     gsWOAdjustPiety(oPC, nBatchCount * 0.2f);
   }
+  
+  // Divination hook - increase Earth by number of batches. 
+  miDVGivePoints(oPC, ELEMENT_EARTH, IntToFloat(nBatchCount));
 
   string sRecipeBiTag = CnrRecipeGetRecipeBiproductTagByKey(sKeyToRecipe);
   int nRecipeBiQty = CnrRecipeGetRecipeBiproductQtyByKey(sKeyToRecipe);

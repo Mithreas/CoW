@@ -12,21 +12,11 @@
 //:://////////////////////////////////////////////
 #include "inc_zombie"
 #include "inc_divination"
+#include "inc_state"
 #include "inc_totem"
 
 void main()
 {
-    object oCollar = GetItemPossessedBy(OBJECT_SELF, "dogcollar");
-
-    if (oCollar == OBJECT_INVALID)
-    {
-      FloatingTextStringOnCreature("You don't have a dog to call!", OBJECT_SELF);
-    }
-    else
-    {
-      SummonAnimalCompanion();
-    }
-  
     if (fbZGetIsZombie(OBJECT_SELF))
     {
         FloatingTextStringOnCreature("... that's the first time your animal companion has ignored you. You feel saddened and alone.", OBJECT_SELF, FALSE);
@@ -41,5 +31,6 @@ void main()
 
     miDVGivePoints(OBJECT_SELF, ELEMENT_LIFE, 25.0);
     SummonAnimalCompanion(OBJECT_SELF);
-    ScheduleSummonCooldown(OBJECT_SELF, 600, "Animal Companion", FEAT_ANIMAL_COMPANION);
+	gsSTDoCasterDamage(OBJECT_SELF, 5);
+	IncrementRemainingFeatUses(OBJECT_SELF, FEAT_ANIMAL_COMPANION);  	
 }

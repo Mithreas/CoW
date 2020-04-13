@@ -356,10 +356,18 @@ struct openStore md_DoAppraise(object oStore, object oMerchant, object oCustomer
           break;
         }
       }
-      // Modify Maximum Buy price based on Appraise
-      int die100 = d100();
-      nMaxBuyPrice  = 150 + nCustomerAppraise * 5 + die100;
-      if (nMaxBuyPrice <= (150 + die100))  nMaxBuyPrice = 250 + die100;
+      // Modify Maximum Buy price based on Appraise scores and reaction.      
+	  // Note that the PC's Appraise here is limited by the NPC's Appraise - low level
+	  // merchants won't dare to buy more expensive things. 
+      nMaxBuyPrice  = 175;
+	  int nReaction = GetSkillRank(SKILL_PERSUADE, oCustomer, FALSE);
+	  if (bRacesMatch) nReaction += 25;
+	  if (bNationMatch) nReaction += 25;
+	  if (nReaction > 50) nReaction = 50;
+	  
+	  nMaxBuyPrice += nReaction;
+	  if (nCustomerAppraise > nMerchantAppraise) nMaxBuyPrice += 5*nMerchantAppraise;
+	  else nMaxBuyPrice += 5*nCustomerAppraise;	   
 
       //SendMessageToPC(oCustomer, "DEBUG: Max Buy Price: " + IntToString(nMaxBuyPrice));
       SetLocalInt(oCustomer, "GS_STORE_MAXBUY_" + sThisStore, nMaxBuyPrice);

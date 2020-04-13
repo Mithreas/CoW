@@ -565,8 +565,7 @@ void _SetUpAllowedPaths()
   if (!GetLevelByClass(CLASS_TYPE_SORCERER, oPC) &&
       !GetLevelByClass(CLASS_TYPE_DRUID, oPC) &&
       !GetLevelByClass(CLASS_TYPE_CLERIC, oPC) &&
-      !GetLevelByClass(CLASS_TYPE_WIZARD, oPC) &&
-      !GetLevelByClass(CLASS_TYPE_BARD, oPC))
+      !GetLevelByClass(CLASS_TYPE_WIZARD, oPC))
   {
     AddStringElement(PATH_OF_THE_KENSAI, PATH_OPTS);
 	PATH_INTRO += 
@@ -580,6 +579,13 @@ void _SetUpAllowedPaths()
     AddStringElement(PATH_OF_TOTEM, PATH_OPTS);
   }
 
+  if (GetLevelByClass(CLASS_TYPE_BARD, oPC) && GetAlignmentGoodEvil(oPC) != ALIGNMENT_GOOD)
+  {
+    AddStringElement(PATH_OF_WARLOCK, PATH_OPTS);
+  }
+  
+  */
+
   if (GetLevelByClass(CLASS_TYPE_SORCERER, oPC))
   {
     //AddStringElement(PATH_OF_TRUE_FIRE, PATH_OPTS);
@@ -591,11 +597,6 @@ void _SetUpAllowedPaths()
     AddStringElement(PATH_OF_SHADOW, PATH_OPTS);
   }
 
-  if (GetLevelByClass(CLASS_TYPE_BARD, oPC) && GetAlignmentGoodEvil(oPC) != ALIGNMENT_GOOD)
-  {
-    AddStringElement(PATH_OF_WARLOCK, PATH_OPTS);
-  }
-  */
   //::  Wild Mage and Spellsword only for Non-Specialized (General) Wizards.
   if ( GetLevelByClass(CLASS_TYPE_WIZARD, oPC) && NWNX_Creature_GetWizardSpecialization(oPC) == SPELL_SCHOOL_GENERAL )
   {

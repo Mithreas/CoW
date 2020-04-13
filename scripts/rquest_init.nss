@@ -44,7 +44,7 @@ void main()
    SQLPrepareStatement("(?,?,?,?),", "patrol_city", DB_QUESTSET, "1", "2") +
    SQLPrepareStatement("(?,?,?,?),", "drarayne_rats", DB_QUESTSET, "3", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "loose_hound", DB_QUESTSET, "3", "10") +  
-   SQLPrepareStatement("(?,?,?,?),", "train", DB_QUESTSET, "4", "6") + 
+   SQLPrepareStatement("(?,?,?,?),", "train", DB_QUESTSET, "3", "6") + 
    SQLPrepareStatement("(?,?,?,?),", "gather_gemstone", DB_QUESTSET, "4", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "make_glass", DB_QUESTSET, "4", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "badger_skin", DB_QUESTSET, "4", "10") + 
@@ -60,7 +60,7 @@ void main()
    SQLPrepareStatement("(?,?,?,?),", "kill_erenia_scout", DB_QUESTSET, "7", "12") +
    SQLPrepareStatement("(?,?,?,?),", "kill_drannis_scout", DB_QUESTSET, "7", "12") + 
    SQLPrepareStatement("(?,?,?,?),", "make_black_powder", DB_QUESTSET, "8", "15") + 
-   SQLPrepareStatement("(?,?,?,?)", "make_gonne", DB_QUESTSET, "10", "15") + 
+   SQLPrepareStatement("(?,?,?,?),", "make_gonne", DB_QUESTSET, "10", "15") + 
    SQLPrepareStatement("(?,?,?,?)", "more_gonnes", DB_QUESTSET, "11", "15");
   SQLExecDirect(sSQL);
   
@@ -298,7 +298,7 @@ void main()
   SetStringValue(QUEST+REWARD_GOLD, "1000", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "3", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "350", DB_VARS);
-  SetStringValue(QUEST+ITEM_TAG, "gonne", DB_VARS);
+  SetStringValue(QUEST+ITEM_TAG, "Gonne", DB_VARS);
   
   QUEST = "more_gonnes";
   SetStringValue(QUEST+QUEST_TYPE, RETRIEVE, DB_VARS);
@@ -307,7 +307,7 @@ void main()
    DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "250", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
-  SetStringValue(QUEST+ITEM_TAG, "gonne", DB_VARS);
+  SetStringValue(QUEST+ITEM_TAG, "Gonne", DB_VARS);
   SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
 
   //-------------------------------------------------------------------------------------------
@@ -320,7 +320,7 @@ void main()
    SQLPrepareStatement("(?,?,?,?),", "patrol_city", DB_QUESTSET, "1", "2") +
    SQLPrepareStatement("(?,?,?,?),", "drarayne_rats", DB_QUESTSET, "3", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "loose_hound", DB_QUESTSET, "3", "10") + 
-   SQLPrepareStatement("(?,?,?,?),", "train", DB_QUESTSET, "4", "6") +  
+   SQLPrepareStatement("(?,?,?,?),", "train", DB_QUESTSET, "3", "6") +  
    SQLPrepareStatement("(?,?,?,?),", "make_glass", DB_QUESTSET, "4", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "gather_wood", DB_QUESTSET, "4", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "gather_ond", DB_QUESTSET, "4", "10") + 
@@ -369,7 +369,8 @@ void main()
   SetStringValue(QUEST+QUEST_TYPE, RETRIEVE, DB_VARS);
   SetStringValue(QUEST+DESCRIPTION,
    "Maintaining our outposts always takes more wood.  Fetch five Irl branches " +
-   "which our carpenters can use.  You'll need to head outside the city to find it.",
+   "which our carpenters can use.  You'll need to head outside the city to find it, and " +
+   "if you are not proficient with axes, pick up a Crafter's Apron from the crafthall.",
    DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "50", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "50", DB_VARS);
@@ -581,7 +582,7 @@ void main()
    SQLPrepareStatement("(?,?,?,?),", "gather_holywater", DB_QUESTSET, "1", "2") +
    SQLPrepareStatement("(?,?,?,?),", "loose_hound", DB_QUESTSET, "3", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "drarayne_rats", DB_QUESTSET, "3", "10") + 
-   SQLPrepareStatement("(?,?,?,?),", "train", DB_QUESTSET, "4", "6") +  
+   SQLPrepareStatement("(?,?,?,?),", "train", DB_QUESTSET, "3", "6") +  
    SQLPrepareStatement("(?,?,?,?),", "more_holywater", DB_QUESTSET, "4", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "make_glass", DB_QUESTSET, "4", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "pilgrimage", DB_QUESTSET, "4", "10") + 
@@ -594,9 +595,9 @@ void main()
    SQLPrepareStatement("(?,?,?,?),", "cull_spiders", DB_QUESTSET, "6", "8") + 
    SQLPrepareStatement("(?,?,?,?),", "forest_patrol", DB_QUESTSET, "6", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "kill_drannis_scout", DB_QUESTSET, "7", "12") +
-   SQLPrepareStatement("(?,?,?,?)", "kill_renerrin_scout", DB_QUESTSET, "7", "12") +
+   SQLPrepareStatement("(?,?,?,?),", "kill_renerrin_scout", DB_QUESTSET, "7", "12") +
    SQLPrepareStatement("(?,?,?,?),", "cull_taskmasters", DB_QUESTSET, "9", "10") + 
-   SQLPrepareStatement("(?,?,?,?)", "sanctify", DB_QUESTSET, "1", "15");
+   SQLPrepareStatement("(?,?,?,?)", "sanctify", DB_QUESTSET, "10", "15");
  SQLExecDirect(sSQL);
 
   QUEST = "gather_holywater";
@@ -973,6 +974,7 @@ void main()
    SQLPrepareStatement("(?,?,?,?),", "kill_vampire", DB_QUESTSET, "7", "10") +
    SQLPrepareStatement("(?,?,?,?),", "cull_scovin", DB_QUESTSET, "8", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "boss_heads", DB_QUESTSET, "6", "15") +
+   SQLPrepareStatement("(?,?,?,?),", "visit_merivale", DB_QUESTSET, "9", "10") +   
    SQLPrepareStatement("(?,?,?,?),", "cull_skelazn", DB_QUESTSET, "10", "15") +
    SQLPrepareStatement("(?,?,?,?)", "restore_land", DB_QUESTSET, "10", "15");
  SQLExecDirect(sSQL);
@@ -1155,6 +1157,14 @@ void main()
   SetStringValue(QUEST+ITEM_TAG, "GS_HEAD_EVIL", DB_VARS);
   SetStringValue(QUEST+NUM_ITEMS, "2", DB_VARS);
   SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  QUEST = "visit_merivale";
+  SetStringValue(QUEST+QUEST_TYPE, PATROL, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION, 
+    "You should learn the road to Merivale.  Visit the outpost and return to tell me the state of the market there.  Merivale is to "+
+	"the west, through the mountain pass that leads out of our foothills.  The road can be unsafe, so be careful.", DB_VARS);
+  SetStringValue(QUEST+AREA_TAGS, "MeriElvenOutpost", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
   
   QUEST = "restore_land";
   SetStringValue(QUEST+QUEST_TYPE, HELP, DB_VARS);

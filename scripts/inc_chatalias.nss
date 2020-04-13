@@ -87,6 +87,7 @@ void chatInitAliases()
     chatAddAlias("smitegood", "usefeat smitegood");
     chatAddAlias("stunfist", "usefeat stunfist");
     chatAddAlias("undeadgraft", "usefeat undeadgraft");
+    chatAddAlias("mummydust", "usefeat mummydust");
 }
 
 void chatAddAlias(string from /* alias */, string to /* command */)
