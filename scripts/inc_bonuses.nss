@@ -239,8 +239,8 @@ void ApplyCharacterBonuses(object oPC, int bReapplySpecialAbilities = FALSE, int
     // reported move speed bugs.
     DelayCommand(1.0, ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectMovementSpeedDecrease(1), oPC, 0.1));
 
-    // Restrict monk AC bonus to monks that have 6+ monk levels. 
-    if (GetKnowsFeat(FEAT_MONK_AC_BONUS ,oPC) && GetLevelByClass(CLASS_TYPE_MONK, oPC) < 6 && GetHitDice(oPC) > GetLevelByClass(CLASS_TYPE_MONK, oPC)) NWNX_Creature_RemoveFeat(oPC, FEAT_MONK_AC_BONUS);
+    // Restrict monk AC bonus to monks that have 6+ monk levels or majority monk levels(to aid low levels).
+    if (GetKnowsFeat(FEAT_MONK_AC_BONUS ,oPC) && GetLevelByClass(CLASS_TYPE_MONK, oPC) < 6 && (GetCharacterLevel(oPC) - GetLevelByClass(CLASS_TYPE_MONK, oPC)) > GetLevelByClass(CLASS_TYPE_MONK, oPC)) NWNX_Creature_RemoveFeat(oPC, FEAT_MONK_AC_BONUS);
 
     // Restore monk AC bonus to characters it was wrongly taken from
     if (GetLevelByClass(CLASS_TYPE_MONK, oPC) >= 6 && !GetKnowsFeat(FEAT_MONK_AC_BONUS ,oPC)) AddKnownFeat(oPC, FEAT_MONK_AC_BONUS);
