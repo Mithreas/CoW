@@ -431,7 +431,7 @@ void _gsAIActionNone()
         break;
 
     case 6:
-        if (d10() == 10) SpeakOneLinerConversation();
+        // if (d10() == 10) SpeakOneLinerConversation(); removed - leads to lots of "Welcome!" messages. moving to perception. 
         break;
     }
 }

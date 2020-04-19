@@ -189,7 +189,6 @@ void barbSelfRageEffects(int nDuration, object oPC = OBJECT_SELF)
 	// Will Bonus is (Class levels / 4) + 1
     effect eWill = EffectSavingThrowIncrease(SAVING_THROW_WILL, 1 + (nBarbLevels / 4));
 
-	
     // AB Increase
     int nAB = 0;
     if (nBarbLevels >= 12)
@@ -197,7 +196,7 @@ void barbSelfRageEffects(int nDuration, object oPC = OBJECT_SELF)
     else if (nBarbLevels >= 1)
         nAB = 1;
 
-    // Drop AB increase if CON <= 17
+    // Drop AB increase if CON <= 13
     if (nAB > 0 && GetAbilityScore(oPC, ABILITY_CONSTITUTION, TRUE) <= 13)
         nAB = nAB - 1;
 
@@ -507,6 +506,7 @@ void barbWeaponRageEffects(int nDuration, object oPC = OBJECT_SELF)
 
 void barbReApplyBonuses(object oEquip, object oPC = OBJECT_SELF)
 {
+    // Anemoi - this method is no longer called.  (Was referenced in m_equip)
     object oWeapon = GetItemInSlot(INVENTORY_SLOT_RIGHTHAND, oPC);
 
     int nValidWeapon = FALSE;

@@ -203,7 +203,7 @@ int StartingConditional()
            GetDistanceBetween(oFlock, oPC) <= 20.0f)
     {
        if (LineOfSightObject(oPC, oFlock) &&
-	       (GetLevelByClass(CLASS_TYPE_WIZARD, oFlock) || GetLevelByClass(CLASS_TYPE_CLERIC, oFlock) || 
+	       (GetLevelByClass(CLASS_TYPE_WIZARD, oFlock) || GetLevelByClass(CLASS_TYPE_CLERIC, oFlock) || GetLevelByClass(CLASS_TYPE_FAVOURED_SOUL, oFlock) ||
 		    GetLevelByClass(CLASS_TYPE_SORCERER, oFlock) || GetLevelByClass(CLASS_TYPE_BARD, oFlock) || GetLevelByClass(CLASS_TYPE_DRUID, oFlock)))
        {
           AssignCommand(oFlock, PlayAnimation(ANIMATION_LOOPING_CONJURE1, 1.0, 300.0));		  

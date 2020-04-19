@@ -22,6 +22,7 @@ void main()
     object oSpeaker = OBJECT_SELF;
     string sParams = chatGetParams(oSpeaker);
     object oTarget = chatGetTarget(oSpeaker);
+	object oHide = gsPCGetCreatureHide(oSpeaker);
     int nProjectImage = FALSE;
     string sPCID = "";
     string sServer = "";
@@ -41,7 +42,7 @@ void main()
         return;
     }
     // Not available yet. Send error and exit.
-    if(!miSPGetCanCastSpell(oSpeaker, CUSTOM_SPELL_SEND_IMAGE))
+    if(GetLocalInt(oHide, "CUSTOM_SPELL_" + IntToString(CUSTOM_SPELL_SEND_IMAGE)))
     {
         SendMessageToPC(oSpeaker,"<cþ  >You cannot use this ability yet. It's available once per rest.");
         return;
@@ -71,7 +72,7 @@ void main()
     }
 
     // No target, no parameters. Do project image.
-    if(sParams == "" && !GetIsObjectValid(oTarget))
+    if(sParams == "" && !GetIsObjectValid(oTarget) && !GetLocalInt(oHide, "SPELLSWORD"))
     {
     	//Miesny_Jez Reduce Piety/Spell Components only when creating a clone
     	if((GetLevelByClass(CLASS_TYPE_CLERIC, oSpeaker) >= 17 || GetLevelByClass(CLASS_TYPE_DRUID, oSpeaker) >= 17) && !gsWOAdjustPiety(oSpeaker, -5.0, FALSE))
@@ -94,7 +95,7 @@ void main()
     else
     {
 	
-	    if (!miREHasRelationship(oSpeaker, oTarget))
+	    if (sPCID == "" && !miREHasRelationship(oSpeaker, oTarget))
 	    {
           SendMessageToPC(oSpeaker, "<cþ£ >You may only send a message to someone you have previously interacted with.");
 	    }

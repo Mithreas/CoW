@@ -1,0 +1,20 @@
+2DA V2.0                                                         
+                                                                 
+           LABEL          ReqType   ReqParam1        ReqParam2   
+0          Spell          SPELL     3                ****      
+1          ClassCleric    CLASSOR   2                ****
+2          ClassBard      CLASSOR   1                ****
+3          ClassWiz       CLASSOR   10               ****      
+4          ClassSorc      CLASSOR   9                ****     
+5          ClassFS        CLASSOR   40               **** 
+6          ScriptVar      VAR       X2_AllowPalema   0           
+                                                                 
+                                                                 
+                                                                 
+                                                                 
+                                                                 
+                                                                 
+                                                                 
+                                                                 
+                                                                 
+                                                                 

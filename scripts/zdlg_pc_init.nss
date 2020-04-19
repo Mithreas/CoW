@@ -547,10 +547,10 @@ void _SetUpAllowedPaths()
   if (GetLevelByClass(CLASS_TYPE_CLERIC, oPC))
   {
     AddStringElement(PATH_OF_THE_HEALER, PATH_OPTS);
-    AddStringElement(PATH_OF_FAVOURED_SOUL, PATH_OPTS);
+    // AddStringElement(PATH_OF_FAVOURED_SOUL, PATH_OPTS);
 	PATH_INTRO += 
-      "Cleric - Healer: Become a more potent healer, but cannot gain proficiency in armors or weapons other than Simple weapons.\n" +
-      "Cleric - Favoured Soul: Spontaneous casting of cleric spells, but lose Domains, Heavy Armour and Turn Undead. \n";
+      "Cleric - Healer: Become a more potent healer, but cannot gain proficiency in armors or weapons other than Simple weapons.\n";
+       // "Cleric - Favoured Soul: Spontaneous casting of cleric spells, but lose Domains, Heavy Armour and Turn Undead. \n";
   }
 
   if (GetLevelByClass(CLASS_TYPE_RANGER, oPC))
@@ -569,7 +569,7 @@ void _SetUpAllowedPaths()
   {
     AddStringElement(PATH_OF_THE_KENSAI, PATH_OPTS);
 	PATH_INTRO += 
-      "Melee Classes - Kensai: One extra attack, +2 natural AC. May not take levels in wizard, sorcerer, druid or cleric, may not cast spellbook spells, may not use "+
+      "Melee Classes - Kensai: One extra attack, +2 natural AC. May not take levels in wizard, sorcerer, druid, favoured soul or cleric, may not cast spellbook spells, may not use "+
       "potions or bound spells, and are restricted to melee and throwing weapons.\n";
   }
   

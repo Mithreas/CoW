@@ -36,8 +36,11 @@ void main()
    //Declare major variables
     object oTarget = GetSpellTargetObject();
     int nCasterLevel = AR_GetCasterLevel(OBJECT_SELF);
-
-
+	if (nCasterLevel > 15) nCasterLevel = 15;
+	
+	int nDice = 1; 
+	if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nDice = nCasterLevel + 2;
+	
     effect eVis = EffectVisualEffect(VFX_IMP_LIGHTNING_S);
 	if(!GetIsReactionTypeFriendly(oTarget))
 	{
@@ -47,7 +50,7 @@ void main()
         if(!MyResistSpell(OBJECT_SELF, oTarget))
         {
             //Set damage effect
-            effect eBad = EffectDamage(MaximizeOrEmpower(3, 1, AR_GetMetaMagicFeat()), DAMAGE_TYPE_ELECTRICAL);
+            effect eBad = EffectDamage(MaximizeOrEmpower(3, nDice, AR_GetMetaMagicFeat()), DAMAGE_TYPE_ELECTRICAL);
             //Apply the VFX impact and damage effect
             ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
             ApplyEffectToObject(DURATION_TYPE_INSTANT, eBad, oTarget);

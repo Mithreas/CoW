@@ -492,8 +492,23 @@ void processPotions(string sMenuAlchemyPotions)
   CnrRecipeAddComponent(sKeyToRecipe, "cnremptyflask", 1, 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnraloeleaf", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrginsengroot", 1);
-  CnrRecipeSetRecipeLevel(sKeyToRecipe, 14);
-  CnrRecipeSetRecipeXP(sKeyToRecipe, 140, 140);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 16);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 160, 160);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAlchemyPotions, "Potion of Attunement", "mi_potion_attune", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnremptyflask", 1, 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrangelicaleaf", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnraloeleaf", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrchamomilefwr", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrechinacearoot", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrthistleleaf", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrgingerroot", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrginsengroot", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrskullcapleaf", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotgol", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cow_gemsapp", 3);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 18);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 180, 180);
   
   CnrDecrementStackCount(OBJECT_SELF);
 }

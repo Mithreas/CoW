@@ -57,6 +57,7 @@ void main()
     nCasterLvl = 15;
   }
   
+  if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nCasterLvl += 2;
 
   //Declare the spell shape, size and the location.  Capture the first target object in the shape.
   oTarget = GetFirstObjectInShape(SHAPE_SPHERE, RADIUS_SIZE_MEDIUM, GetSpellTargetLocation(), FALSE, OBJECT_TYPE_CREATURE|OBJECT_TYPE_PLACEABLE|OBJECT_TYPE_DOOR);

@@ -37,7 +37,9 @@ void main()
 
    //SpawnScriptDebugger();
     int bStaticLevel   = GetLocalInt(GetModule(), "STATIC_LEVEL");
-    DoMissileStorm(bStaticLevel ? 2 : 1, 10, SPELL_ISAACS_LESSER_MISSILE_STORM);
+	int nMissileMax = 10;
+	if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nMissileMax += 1;
+    DoMissileStorm(bStaticLevel ? 2 : 1, nMissileMax, SPELL_ISAACS_LESSER_MISSILE_STORM);
 }
 
 

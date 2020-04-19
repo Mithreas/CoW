@@ -76,6 +76,8 @@ void main()
     if (nDices > nMaxDice) {
         nDices = nMaxDice;
     }
+	
+	if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nDices += 2;
 
     ApplyEffectAtLocation(DURATION_TYPE_INSTANT, eStrike, GetSpellTargetLocation());
     //Get the first target in the spell area

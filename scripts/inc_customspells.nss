@@ -6,6 +6,7 @@
 #include "inc_class"
 #include "inc_common"
 #include "inc_disguise"
+#include "inc_favsoul"
 #include "inc_generic"
 #include "inc_spells"
 #include "__server_config"
@@ -530,11 +531,10 @@ void miSPClearAllCastSpells(object oCaster)
 int miSPGetLastSpellArcane(object oCaster)
 {
   int nClass = GetLastSpellCastClass();
-  int bFavSoul = miFSGetIsFavoredSoul(oCaster);
 
   return (nClass == CLASS_TYPE_WIZARD ||
           nClass == CLASS_TYPE_SORCERER ||
-          (nClass == CLASS_TYPE_BARD && !bFavSoul));
+          nClass == CLASS_TYPE_BARD);
 }
 //------------------------------------------------------------------------------
 int AR_GetCasterLevel(object oCaster=OBJECT_SELF)
@@ -605,9 +605,9 @@ int AR_GetCasterLevel(object oCaster=OBJECT_SELF)
     nShadowBonus = GetLevelByClass(CLASS_TYPE_SHADOWDANCER, oCaster);
   }
   
-  // Anemoi edit - add 1/10 Piety for clerics and paladins.
+  // Anemoi edit - add 1/10 Piety for clerics, Favoured Souls and paladins.
   int nPietyBonus = 0;
-  if (GetLastSpellCastClass() == CLASS_TYPE_PALADIN || GetLastSpellCastClass() == CLASS_TYPE_CLERIC)
+  if (GetLastSpellCastClass() == CLASS_TYPE_PALADIN || GetLastSpellCastClass() == CLASS_TYPE_FAVOURED_SOUL || GetLastSpellCastClass() == CLASS_TYPE_CLERIC)
   {
     nPietyBonus = FloatToInt(gsSTGetState(GS_ST_PIETY, oCaster)) / 10;
   }
@@ -748,6 +748,7 @@ void miSCRemoveInvis(object oPC, int bAlsoRemoveAudibleEffects = FALSE)
 void stopscry(object oPC, int nHP)
 {
   DeleteLocalInt(oPC, IS_SCRYING);
+  DeleteLocalInt(oPC, "AI_IGNORE");
   AssignCommand(oPC, ClearAllActions(TRUE));
   gsCMStopFollowers(oPC);
   object oCopy = GetLocalObject(oPC, "pccopy");
@@ -848,7 +849,7 @@ void Scrying(object oPC,object oTarg)
   }
 
   // Scry once per rest.
-  if(miSPGetCanCastSpell(oPC, CUSTOM_SPELL_SCRY))
+  if(!GetLocalInt(gsPCGetCreatureHide(oPC), "CUSTOM_SPELL_" + IntToString(CUSTOM_SPELL_SCRY)))
   {
     //@@@ Improve this.
     if(GetCanScry(oTarg))
@@ -910,6 +911,7 @@ void miSCDoScrying(object oPC, object oTarg, int bMagical = TRUE)
   SetCameraMode(oPC, CAMERA_MODE_CHASE_CAMERA);
 
   RemoveAllAssociates(oPC);
+  SetLocalInt(oPC, "AI_IGNORE", TRUE);
 
   DelayCommand(1.0,AssignCommand(oPC,ActionJumpToLocation(GetBehindLocation(oTarg))));
   DelayCommand(2.0,AssignCommand(oPC,ActionForceFollowObject(oTarg,IntToFloat(Random(5)) + 0.5)));

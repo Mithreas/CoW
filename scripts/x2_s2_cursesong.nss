@@ -50,6 +50,7 @@ void main()
 	
     // Stamina override.
 	int nStamina = 5;
+	if (GetHasFeat(FEAT_EXTRA_MUSIC, OBJECT_SELF)) nStamina = 4;
 	if (GetLocalInt(oHide, VAR_HARPER) == MI_CL_HARPER_MASTER && GetLevelByClass(CLASS_TYPE_HARPER, OBJECT_SELF) > 4) nStamina = 1;
 	
 	gsSTDoCasterDamage(OBJECT_SELF, nStamina);
@@ -422,5 +423,4 @@ void main()
 
         oTarget = GetNextObjectInShape(SHAPE_SPHERE, RADIUS_SIZE_COLOSSAL, GetLocation(OBJECT_SELF));
     }
-    DecrementRemainingFeatUses(OBJECT_SELF, FEAT_BARD_SONGS);
 }

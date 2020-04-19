@@ -65,6 +65,7 @@ void main()
             {
                 nCasterLevel = 10;
             }
+	        if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nCasterLevel += 2;
             //Check for racial type undead
             if (GetRacialType(oTarget) == RACIAL_TYPE_UNDEAD)
             {

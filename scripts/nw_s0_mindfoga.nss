@@ -28,8 +28,8 @@ void main()
     float fDelay = GetRandomDelay(1.0, 2.2);
     object oCaster = GetAreaOfEffectCreator();
     int nWillDamage = d6(2);
-
-
+    int nStunDur = 1;
+	if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_ENCHANTMENT, oCaster)) nStunDur = d6(1);
 
     if (gsSPGetIsAffected(GS_SP_TYPE_HARMFUL_SELECTIVE, oCaster, oTarget))
     {
@@ -72,7 +72,10 @@ void main()
                     }
                     else
                     {
-                        DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectDazed(), oTarget, RoundsToSeconds(1)));
+						if (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_ENCHANTMENT, oCaster))
+							DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectStunned(), oTarget, RoundsToSeconds(nStunDur)));
+						else
+							DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectDazed(), oTarget, RoundsToSeconds(1)));
                         DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_DAZED_S), oTarget));
                     }
                     SetLocalInt(oTarget, "SP_MIND_FOG_DMG", nWillDamage);

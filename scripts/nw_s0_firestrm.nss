@@ -46,6 +46,7 @@ void main()
     {
         nCasterLevel == 20;
     }
+	if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nCasterLevel += 2;
     effect eVis = EffectVisualEffect(VFX_IMP_FLAME_M);
     effect eFireStorm = EffectVisualEffect(VFX_FNF_FIRESTORM);
     float fDelay;

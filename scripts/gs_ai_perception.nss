@@ -297,6 +297,12 @@ void main()
 	    ActionMoveToObject(oPerceived);
 		ActionUseSkill(SKILL_PICK_POCKET, oPerceived);
 	  }
+	  else
+	  {
+	    // Maybe say hi. 
+		if (d10() == 10) SpeakOneLinerConversation();
+	  }
+	  
    }
    
   /*

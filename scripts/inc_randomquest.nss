@@ -744,8 +744,8 @@ void TidyQuest(object oPC, object oNPC)
   }	
   else
   {
-    // Put a flag on the PC hide so that they don't try the same quest again for 24 RL hours.
-	SetLocalInt(gsPCGetCreatureHide(oPC), sQuest, gsTIGetActualTimestamp() + 3600 * 24);
+    // Put a flag on the PC hide so that they don't try the same quest again for 20 RL hours.
+	SetLocalInt(gsPCGetCreatureHide(oPC), sQuest, gsTIGetActualTimestamp() + 3600 * 20);
   }
 
   // Remove the quest vars from the PC.

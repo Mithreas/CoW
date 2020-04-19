@@ -61,6 +61,8 @@ void main()
     {
         nMaxMissiles = 10;
     }
+	
+	if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nMaxMissiles += 1;
 
     DoMissileStorm(2, nMaxMissiles, SPELL_ISAACS_GREATER_MISSILE_STORM);
 }

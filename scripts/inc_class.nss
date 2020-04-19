@@ -116,6 +116,7 @@ const string PALE_MASTER = "X2_AllowPalema";
 const string SHADOW_DANCER = "X1_AllowShadow";
 const string SHIFT = "X2_AllowShiftr";
 const string WPN_MASTER = "X2_AllowWM";
+const string CLR_PM = "X4_AllowClrPm";
 
 //Adding class bits here. Makes sense - Mord
 const int MD_BIT_BARB          = 0x01;
@@ -176,7 +177,6 @@ const string PATH_OF_THE_ARCHER = "Path of the Archer";
 const string PATH_OF_THE_SNIPER = "Path of the Sniper";
 const string PATH_OF_THE_TRIBESMAN = "Path of the Tribesman";
 const string PATH_OF_WEAVE_MASTERY = "Path of Weave Mastery";
-const string PATH_OF_FAVORED_SOUL = "Favored Soul"; // Old style, bard based
 const string PATH_OF_FAVOURED_SOUL = "Favoured Soul"; // New style, cleric based
 const string PATH_OF_SHADOW = "Shadow (Weave) Mage";
 const string PATH_OF_WILD_MAGE = "Wild Mage";
@@ -283,13 +283,6 @@ void miCLApplyClassChanges(object oPC)
           // Remove bard song and add Warlock class abilities.
           miWAApplyAbilities(oPC);
         }
-
-        // Favored Souls.
-        if (miFSGetIsFavoredSoul(oPC))
-        {
-          miFSApplyFavoredSoul(oPC);
-        }
-        break;
       }
       case CLASS_TYPE_HARPER:
       {
@@ -338,8 +331,7 @@ void miCLApplyClassChanges(object oPC)
           case MI_CL_HARPER_PARAGON:
             // Remove harper knowledge unless this is a regular bard
             if (! (GetLevelByClass(CLASS_TYPE_BARD, oPC) &&
-                   !miWAGetIsWarlock(oPC) &&
-                   !miFSGetIsFavoredSoul(oPC)))
+                   !miWAGetIsWarlock(oPC)))
               NWNX_Creature_RemoveFeat(oPC, 197); // BardicKnowledge
 
             if (nHarperLevel >= 3)
@@ -859,12 +851,11 @@ int mdConvertClassToBit(int nClass, object oPC=OBJECT_INVALID)
         case CLASS_TYPE_BARD:
             if(miWAGetIsWarlock(oPC))
                 return MD_BIT_WARLOCK;
-            else if(miFSGetIsFavoredSoul(oPC))
-                return MD_BIT_FAVSOUL;
             else
                 return MD_BIT_BARD;
         case CLASS_TYPE_CLERIC: return MD_BIT_CLERIC;
         case CLASS_TYPE_DRUID: return MD_BIT_DRUID;
+		case CLASS_TYPE_FAVOURED_SOUL: return MD_BIT_FAVSOUL;
         case CLASS_TYPE_FIGHTER: return MD_BIT_FIGHT;
         case CLASS_TYPE_MONK: return MD_BIT_MONK;
         case CLASS_TYPE_PALADIN: return MD_BIT_PALADIN;
@@ -897,6 +888,7 @@ string mdGetClassName(int nClass)
         case CLASS_TYPE_BARD: return "Bard";
         case CLASS_TYPE_CLERIC: return "Cleric";
         case CLASS_TYPE_DRUID: return "Druid";
+		case CLASS_TYPE_FAVOURED_SOUL: return "Favoured Soul";
         case CLASS_TYPE_FIGHTER: return "Fighter";
         case CLASS_TYPE_MONK: return "Monk";
         case CLASS_TYPE_PALADIN: return "Paladin";
@@ -926,7 +918,6 @@ string mdGetPathName(int nPathBit)
     switch(nPathBit)
     {
         case MD_BIT_WARLOCK: return "Warlock";
-        case MD_BIT_FAVSOUL: return "Favored Soul";
     }
 
     return "";
@@ -967,8 +958,6 @@ string gvd_GetArelithClassNameByPosition(int iClassPosition, object oPC) {
           // check for subclasses
           if (miWAGetIsWarlock(oPC) != 0) {
             sClassName = "Warlock";
-          } else if (miFSGetIsFavoredSoul(oPC) != 0) {
-            sClassName = "Favored Soul";
           } else {
             sClassName = "Bard";
           }
@@ -986,13 +975,15 @@ string gvd_GetArelithClassNameByPosition(int iClassPosition, object oPC) {
           // check for subclasses
           if (sPath == PATH_OF_THE_HEALER) {
             sClassName = "Healer";
-		  } else if (GetIsFavouredSoul(oPC)) {
-		    sClassName = "Favoured Soul";
           } else {
             sClassName = "Cleric";
           }
           break;
         }
+		case CLASS_TYPE_FAVOURED_SOUL: {		
+		  sClassName = "Favoured Soul";
+		  break;
+		}
         case CLASS_TYPE_DRUID: {
           // check for subclasses
           sSubClass = gvd_GetTotemName(oPC);

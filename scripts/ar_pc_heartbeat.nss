@@ -26,6 +26,7 @@ void main()
   }
   
   int bDiseased = gsC2GetHasEffect(EFFECT_TYPE_DISEASE, OBJECT_SELF, TRUE);
+  int nFighter  = GetLevelByClass(CLASS_TYPE_FIGHTER, OBJECT_SELF);
 
   if (lLast == lCurrent) 
   { 
@@ -39,11 +40,11 @@ void main()
     // Recover more quickly when sitting.
     if (lCurrent == GetLocalLocation(OBJECT_SELF, "MI_SIT_LOCATION"))
     {
-      gsSTAdjustState(GS_ST_STAMINA, 0.1 + 0.1 * GetMaxHitPoints(OBJECT_SELF) / 10);    
+      gsSTAdjustState(GS_ST_STAMINA, 0.1 + 0.1 * nFighter / 2 + 0.1 * GetMaxHitPoints(OBJECT_SELF) / 10);    
     }
 	else
 	{	
-      gsSTAdjustState(GS_ST_STAMINA, 0.1);
+      gsSTAdjustState(GS_ST_STAMINA, 0.1 + 0.1 * nFighter / 2);
 	}  
     return;
   }
@@ -74,7 +75,10 @@ void main()
 	fPenalty += 1.0f;
   }
   
-  if (fPenalty > 0.0f) gsSTAdjustState(GS_ST_STAMINA, -fPenalty);
+  // Fighter bonus - regain 0.1 per tick, even if moving. 
+  if (nFighter) fPenalty -= 0.1f;
+  
+  if (fPenalty != 0.0f) gsSTAdjustState(GS_ST_STAMINA, -fPenalty);
   
   SetLocalLocation(OBJECT_SELF, "CURRENT_LOCATION", lCurrent);
 

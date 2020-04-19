@@ -48,7 +48,7 @@ void OnPageInit(string sPage)
             dlgAddResponseTalk(FB_RESPONSES, "The Seven Divines");
             dlgAddResponseTalk(FB_RESPONSES, "Deities of Nature");
             dlgAddResponseTalk(FB_RESPONSES, "Deities of Magic");
-            //dlgAddResponseTalk(FB_RESPONSES, "Beast Lords");
+            dlgAddResponseTalk(FB_RESPONSES, "Beast Lords");
             dlgAddResponseAction(FB_RESPONSES, "[No deity]");
             dlgDeactivateResetResponse();
             break;
@@ -143,7 +143,6 @@ void OnSelection(string sPage)
                 }
                 // Change deity
                 SetDeity(oSpeaker, "");
-                miFSApplyFavoredSoul(oSpeaker);
             }
             else
             {
@@ -180,7 +179,6 @@ void OnSelection(string sPage)
 
             // Set deity
             SetDeity(oSpeaker, gsWOGetNameByDeity(nDeity));
-            miFSApplyFavoredSoul(oSpeaker);
 
             // Change page
             dlgClearPlayerDataInt(FB_VAR_DEITY);

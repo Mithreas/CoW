@@ -113,6 +113,10 @@ void miCADoJourney(string sDestinationTag, int bType = TRAVEL_TYPE_LAND)
 
     AssignCommand(oPC, DelayCommand(60.0, miCAArrive(sDestinationTag)));
   }	
+  
+  DeleteLocalString(oPC, MICA_DESTINATION);
+  DeleteLocalString(oPC, MICA_TYPE);		
+  
 }
 //------------------------------------------------------------------------------
 void miCADepart(object oCaravan)
@@ -138,8 +142,6 @@ void miCADepart(object oCaravan)
         Trace(CARAVANS, GetName(oPC) + " has destination " + sDestinationTag);
         AssignCommand(oPC, ClearAllActions(TRUE));
         AssignCommand(oPC, miCADoJourney(sDestinationTag, bType));
-        DeleteLocalString(oPC, MICA_DESTINATION);
-        DeleteLocalString(oPC, MICA_TYPE);
       }
     }
 

@@ -47,6 +47,7 @@ void main()
     {
         nCasterLevel = 0;
     }
+	if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nCasterLevel += 2;
     int nDamage = d6(2 + nCasterLevel);
 
     //Enter Metamagic conditions

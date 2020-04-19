@@ -276,8 +276,8 @@ void HandleSelection()
     switch (selection)
     {
       case 0:  // Go now
-        EndDlg();
         AssignCommand(oPC, miCADoJourney(GetLocalString(oPC, MICA_DESTINATION), bType));
+		// fall through to below
       case 1:  // Wait
         EndDlg();
         break;

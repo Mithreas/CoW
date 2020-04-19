@@ -908,8 +908,8 @@ void main()
             AssignCommand(oEntering, ActionStartConversation(oEntering, "gs_su_select", TRUE, FALSE));
         else if (GetLevelByClass(CLASS_TYPE_PURPLE_DRAGON_KNIGHT, oEntering) && !GetLocalInt(gsPCGetCreatureHide(oEntering), VAR_PDK))
             StartDlg(oEntering, oEntering, "zdlg_pdkclass", TRUE, FALSE);
-		else if (GetLevelByClass(CLASS_TYPE_HARPER, oEntering) && !GetLocalInt(gsPCGetCreatureHide(oEntering), VAR_HARPER))
-		    StartDlg(oEntering, oEntering, "zdlg_harperclass",TRUE, FALSE);
+		//else if (GetLevelByClass(CLASS_TYPE_HARPER, oEntering) && !GetLocalInt(gsPCGetCreatureHide(oEntering), VAR_HARPER))
+		//    StartDlg(oEntering, oEntering, "zdlg_harperclass",TRUE, FALSE);
 
         break;
     }

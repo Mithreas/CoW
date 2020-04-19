@@ -28,8 +28,8 @@ void main()
     int nMetaMagic     = AR_GetMetaMagicFeat();
     int nDuration      = 24;
 	int nCount         = GetUndeadSummonerTier();
-    string sSummon1 = GetUndeadStreamBlueprint(OBJECT_SELF, 2);
-    string sSummon2 = GetUndeadStreamBlueprint(OBJECT_SELF, 3);
+    string sSummon1 = GetUndeadStreamBlueprint(OBJECT_SELF, STREAM_UNDEAD_TIER_2);
+    string sSummon2 = GetUndeadStreamBlueprint(OBJECT_SELF, STREAM_UNDEAD_TIER_3);
 
     //duration
     if (nMetaMagic == METAMAGIC_EXTEND) nDuration *= 2;

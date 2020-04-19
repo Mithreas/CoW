@@ -13,6 +13,7 @@
 //:://////////////////////////////////////////////
 
 #include "inc_pc"
+#include "inc_favsoul"
 #include "inc_generic"
 #include "inc_math"
 #include "inc_spells"
@@ -711,7 +712,7 @@ string GetPlanarStreamBlueprint(object oCreature, int nTier, int nAllowedStreams
                 case STREAM_PLANAR_TIER_4:    sBlueprint = "nw_s_earthgreat"; break;
                 case STREAM_PLANAR_TIER_5:    sBlueprint = "nw_s_earthelder"; break;
                 case STREAM_PLANAR_TIER_6:    
-                case STREAM_PLANAR_TIER_GATE: sBlueprint = "gate_pitfiend"; break;
+                case STREAM_PLANAR_TIER_GATE: sBlueprint = "sum_earth_anim"; break;
             }
             break;
         case STREAM_PLANAR_BEAST:
@@ -1062,6 +1063,7 @@ int GetUndeadSummonerTier(object oCreature = OBJECT_SELF)
     int nLevel = GetLevelByClass(CLASS_TYPE_WIZARD, oCreature) +
         GetLevelByClass(CLASS_TYPE_SORCERER, oCreature) +
         GetLevelByClass(CLASS_TYPE_CLERIC, oCreature) +
+		GetLevelByClass(CLASS_TYPE_FAVOURED_SOUL, oCreature) + 
         GetLevelByClass(CLASS_TYPE_PALE_MASTER, oCreature) +
         GetLocalInt(gsPCGetCreatureHide(oCreature), "AR_BONUS_CASTER_LEVELS");;
 

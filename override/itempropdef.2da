@@ -24,7 +24,7 @@
 20         680     DamageImmunity                   IPRP_DAMAGETYPE    2.3     5                 ****           5488         1093          ****
 21         672     DamagePenalty                    ****               0       20                ****           5489         1459          TRUE
 22         674     DamageReduced                    IPRP_PROTECTION    ****    6                 ****           5490         1418          TRUE
-23         681     DamageResist                     IPRP_DAMAGETYPE    ****    7                 ****           5491         1417          ****
+23         681     DamageResist                     IPRP_DAMAGETYPE    ****    7                 ****           5491         1417          TRUE
 24         696     Damage_Vulnerability             IPRP_DAMAGETYPE    0       22                ****           5492         1457          TRUE
 25         748     Dancing_Scimitar                 ****               1       8                 ****           ****         1453          TRUE
 26         1493    Darkvision                       ****               1       0                 ****           5493         84355         ****

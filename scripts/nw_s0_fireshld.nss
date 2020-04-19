@@ -8,6 +8,7 @@ void main()
     effect eEffect;
     int nSpell       = GetSpellId();
     int nCasterLevel = AR_GetCasterLevel(OBJECT_SELF);
+	if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nCasterLevel += 2;
     int nMetaMagic   = AR_GetMetaMagicFeat();
     int nDamage      = nCasterLevel;
     int nDuration    = nCasterLevel;

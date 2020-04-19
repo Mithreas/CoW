@@ -9,6 +9,7 @@ void main()
     int nSpell       = gsSPGetSpellID();
     int nCasterLevel = AR_GetCasterLevel(oCaster);
     if (nCasterLevel > 20) nCasterLevel = 20;
+	if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, oCaster)) nCasterLevel += 2;
     int nMetaMagic   = AR_GetMetaMagicFeat();
     int nDC          = GetSpellSaveDC();
     int nValue       = gsSPGetDamage(nCasterLevel, 6, nMetaMagic);

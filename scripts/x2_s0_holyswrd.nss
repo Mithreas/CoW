@@ -58,6 +58,8 @@ void main()
     {
         nCL += GetLevelByClass(CLASS_TYPE_DIVINECHAMPION, OBJECT_SELF);
     }
+	
+	if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nCL += 2;
 
     int nDuration;
 

@@ -148,11 +148,6 @@ void main()
         return;
     }
 
-    // Favored Soul
-    if (miFSGetIsFavoredSoul(oEquippedBy) || (miWAGetIsWarlock(oEquippedBy) && GetLevelByClass(CLASS_TYPE_BARD, oEquippedBy) > (GetHitDice(oEquippedBy) / 2)))
-    {
-      miFSApplyASFReduction(oEquipped);
-    }
     if(GetBaseItemType(oEquipped) == BASE_ITEM_ARMOR)
     {
         ApplyAutoStillASFReduction(oEquippedBy);
@@ -181,44 +176,11 @@ void main()
                   {
                       RemoveItemProperty(oEquipped, ipProperty);
                   }
-                  else if (bStaticLevel)
-                  {
-                    // FL server - remove all physical resistance.
-                    if (nSubType == IP_CONST_DAMAGETYPE_BLUDGEONING ||
-                           nSubType == IP_CONST_DAMAGETYPE_PIERCING ||
-                           nSubType == IP_CONST_DAMAGETYPE_SLASHING)
-                    {
-                      RemoveItemProperty(oEquipped, ipProperty);
-                    }
-                    break;
-                  }
-                  else if (nSubType == IP_CONST_DAMAGETYPE_BLUDGEONING ||
-                           nSubType == IP_CONST_DAMAGETYPE_PIERCING ||
-                           nSubType == IP_CONST_DAMAGETYPE_SLASHING)
-                  {
-                      RemoveItemProperty(oEquipped, ipProperty);
-                      ipProperty = ItemPropertyDamageImmunity(nSubType, IP_CONST_DAMAGEIMMUNITY_5_PERCENT);
-                      gsIPAddItemProperty(oEquipped, ipProperty);
-                  }
                   break;
 
               case ITEM_PROPERTY_IMMUNITY_DAMAGE_TYPE:
                   if (nSubType == IP_CONST_DAMAGETYPE_MAGICAL)
                       RemoveItemProperty(oEquipped, ipProperty);
-                  else if (bStaticLevel)
-                  {
-                    // Remove physical damage immunity on jewelry.  Avoids
-                    // stacking to 90% total DR.
-                    if ((GetBaseItemType(oEquipped) == BASE_ITEM_AMULET ||
-                         GetBaseItemType(oEquipped) == BASE_ITEM_RING) &&
-                        (nSubType == IP_CONST_DAMAGETYPE_PHYSICAL ||
-                         nSubType == IP_CONST_DAMAGETYPE_BLUDGEONING ||
-                         nSubType == IP_CONST_DAMAGETYPE_PIERCING ||
-                         nSubType == IP_CONST_DAMAGETYPE_SLASHING))
-                    {
-                      RemoveItemProperty(oEquipped, ipProperty);
-                    }
-                  }
                   break;
 
               case ITEM_PROPERTY_DAMAGE_BONUS_VS_ALIGNMENT_GROUP:
@@ -236,9 +198,6 @@ void main()
                       RemoveItemProperty(oEquipped, ipProperty);
                   break;
 
-              case ITEM_PROPERTY_DAMAGE_REDUCTION:
-                  if (!bStaticLevel) RemoveItemProperty(oEquipped, ipProperty);
-                  break;
               }
           }
           ipProperty = GetNextItemProperty(oEquipped);
@@ -396,13 +355,6 @@ void main()
 				float fDuration = 24.0 * 60.0 * 60.0;
 				AddItemProperty(DURATION_TYPE_TEMPORARY, ItemPropertyArcaneSpellFailure(IP_CONST_ARCANE_SPELL_FAILURE_MINUS_5_PERCENT), oEquipped, fDuration);
     		}  
-        }
-
-        //::Cortex-Barbarian Bonuses
-        if (GetLevelByClass(CLASS_TYPE_BARBARIAN, oEquippedBy))
-        {
-            // Re-Applies all Barbarian bonuses
-            barbReApplyBonuses(oEquipped, oEquippedBy);
         }
 
         //::Cortex-Divine Might Check

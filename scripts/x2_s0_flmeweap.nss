@@ -14,6 +14,8 @@ void main()
     int nMetaMagic   = AR_GetMetaMagicFeat();
 
     if(nCasterLevel > 10)               nCasterLevel  = 10;
+	if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nCasterLevel += 2;
+	
     if (nMetaMagic == METAMAGIC_EXTEND) nDuration    *=  2;
 
     object oItem     = IPGetTargetedOrEquippedMeleeWeapon();

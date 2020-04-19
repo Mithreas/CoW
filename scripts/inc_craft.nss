@@ -1702,6 +1702,7 @@ int gsCRGetCraftSkillByItemType(object oItem, int bMundaneProperty)
 	  break;
     case BASE_ITEM_ARROW:
     case BASE_ITEM_BOLT:
+    case BASE_ITEM_CLUB:
     case BASE_ITEM_HEAVYCROSSBOW:
     case BASE_ITEM_LIGHTCROSSBOW:
     case BASE_ITEM_LONGBOW:
@@ -1713,7 +1714,6 @@ int gsCRGetCraftSkillByItemType(object oItem, int bMundaneProperty)
     case BASE_ITEM_BASTARDSWORD:
     case BASE_ITEM_BATTLEAXE:
     case BASE_ITEM_BULLET:
-    case BASE_ITEM_CLUB:
     case BASE_ITEM_DAGGER:
     case BASE_ITEM_DART:
     case BASE_ITEM_DIREMACE:
@@ -2322,7 +2322,6 @@ int mdCRMeetsClassRequirements(struct gsCRRecipe stRecipe, object oPC)
     int nClass;
     object oItem = gsPCGetCreatureHide(oPC);
     int nWarlock = GetLocalInt(oItem, VAR_WARLOCK);
-    int nFavSoul = GetLocalInt(oItem, VAR_FAV_SOUL);
 
     int nLevel = stRecipe.nLevel;
 
@@ -2334,7 +2333,7 @@ int mdCRMeetsClassRequirements(struct gsCRRecipe stRecipe, object oPC)
         for(x = 1; x <= 3; x++)
         {
             nClass = GetClassByPosition(x, oPC);
-            if(nClass == CLASS_TYPE_BARD && (nWarlock || nFavSoul))
+            if(nClass == CLASS_TYPE_BARD && (nWarlock))
                 nClass = -1; //warlocks and favored souls are not bards!
             if(nClass >= 0 && (mdConvertClassToBit(nClass) & stRecipe.nClass))
                 nAddLvl += GetLevelByPosition(x, oPC);
@@ -2342,9 +2341,7 @@ int mdCRMeetsClassRequirements(struct gsCRRecipe stRecipe, object oPC)
 
         if(nWarlock && stRecipe.nClass & MD_BIT_WARLOCK)
             nAddLvl += GetLevelByPosition(CLASS_TYPE_BARD, oPC);
-        else if(nFavSoul && stRecipe.nClass & MD_BIT_FAVSOUL)
-            nAddLvl += GetLevelByPosition(CLASS_TYPE_BARD, oPC);
-
+        
         if(nAddLvl >= nLevel)
             return TRUE;
     }
@@ -2354,15 +2351,13 @@ int mdCRMeetsClassRequirements(struct gsCRRecipe stRecipe, object oPC)
         for(x = 1; x <= 3; x++)
         {
             nClass = GetClassByPosition(x, oPC);
-            if(nClass == CLASS_TYPE_BARD && (nWarlock || nFavSoul))
+            if(nClass == CLASS_TYPE_BARD && (nWarlock))
                 nClass = -1; //warlocks and favored souls are not bards!
             if(nClass >= 0 && (mdConvertClassToBit(nClass) & stRecipe.nClass) && GetLevelByPosition(x, oPC) >= nLevel)
                 return TRUE;
         }
 
         if(nWarlock && stRecipe.nClass & MD_BIT_WARLOCK && GetLevelByClass(CLASS_TYPE_BARD, oPC) >= nLevel)
-            return TRUE;
-        else if(nFavSoul && stRecipe.nClass & MD_BIT_FAVSOUL && GetLevelByClass(CLASS_TYPE_BARD, oPC) >= nLevel)
             return TRUE;
     }
     return FALSE;

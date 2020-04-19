@@ -83,17 +83,17 @@ int _Calculate_pre_epic_BAB(object oPC, int bSpellsword = FALSE)
     }
 
     nBAB = _GetBAB(oPC, nClass1, nLevel1, bSpellsword);
-	SendMessageToPC(oPC, IntToString(nClass1) + ":" + IntToString(nLevel1) + ":" + IntToString(bSpellsword) + ":" + IntToString(nBAB));
+	//SendMessageToPC(oPC, IntToString(nClass1) + ":" + IntToString(nLevel1) + ":" + IntToString(bSpellsword) + ":" + IntToString(nBAB));
 
     if (nLevel2 > 0)
     {
         nBAB += _GetBAB(oPC, nClass2, nLevel2, bSpellsword);
-		SendMessageToPC(oPC, IntToString(nClass2) + ":" + IntToString(nLevel2) + ":" + IntToString(bSpellsword) + ":" + IntToString(nBAB));
+		//SendMessageToPC(oPC, IntToString(nClass2) + ":" + IntToString(nLevel2) + ":" + IntToString(bSpellsword) + ":" + IntToString(nBAB));
     }
     if (nLevel3 > 0)
     {
         nBAB += _GetBAB(oPC, nClass3, nLevel3, bSpellsword);
-		SendMessageToPC(oPC, IntToString(nClass3) + ":" + IntToString(nLevel3) + ":" + IntToString(bSpellsword) + ":" + IntToString(nBAB));
+		//SendMessageToPC(oPC, IntToString(nClass3) + ":" + IntToString(nLevel3) + ":" + IntToString(bSpellsword) + ":" + IntToString(nBAB));
     }
 
     return nBAB;

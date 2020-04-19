@@ -385,7 +385,7 @@ void main()
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 2);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 20, 20); 
   
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Skull Pole", "ir_impmonhead001", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Skull Pole", "ir_itskullpole", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrplank4", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40); 

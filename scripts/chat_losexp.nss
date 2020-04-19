@@ -17,6 +17,7 @@
 #include "x3_inc_string"
 #include "inc_examine"
 #include "inc_pc"
+#include "inc_timelock"
 #include "inc_xp"
 
 const string HELP = "This command will remove the amount of XP specified. Eg. -losexp 1500 will remove 1500 from the character. All uses of this function are logged for DM monitoring";
@@ -30,8 +31,14 @@ void main()
 	int nSetXP = nCharXP;
 	int nXPCount = GetLocalInt(oHide,"LoseXPCount");
 	
+    if(GetIsTimelocked(oSpeaker, "Lose XP"))
+    {
+        TimelockErrorMessage(oSpeaker, "Lose XP");
+	    chatVerifyCommand(oSpeaker);
+        return;
+    }
 	
-        if (sParams == "?" || sParams == "")
+    if (sParams == "?" || sParams == "")
 	{
         DisplayTextInExamineWindow("-losexp", HELP);
 	}
@@ -110,6 +117,7 @@ void main()
 				SendMessageToPC(OBJECT_SELF, StringToRGBString("Do NOT log out at level 1, else you may lose everything in your inventory.",STRING_COLOR_RED));
 			}
 			
+			SetTimelock(oSpeaker, 60 * 60 * 24, "Lose XP", 3600, 600);
 		}
 		else
 		{

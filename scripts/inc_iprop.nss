@@ -457,6 +457,7 @@ void gsIPLoadItemCategoryTable()
         switch (nID)
         {
         case BASE_ITEM_ARMOR:
+		case BASE_ITEM_BRACER:
             sString = "3";
             break;
 

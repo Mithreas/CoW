@@ -262,26 +262,7 @@ void ApplyCharacterBonuses(object oPC, int bReapplySpecialAbilities = FALSE, int
 //:://////////////////////////////////////////////
 void ReapplyASFReductions(object oPC)
 {
-    int nMulti = 0;
-    int nClass2 = GetClassByPosition(2, oPC);
-    if (nClass2 != CLASS_TYPE_INVALID) nMulti = 1;
-
-    miFSRemoveASFReduction(GetItemInSlot(INVENTORY_SLOT_CHEST, oPC));
-    miFSRemoveASFReduction(GetItemInSlot(INVENTORY_SLOT_LEFTHAND, oPC));
-
-    if(miFSGetIsFavoredSoul(oPC))
-    {
-      miFSApplyASFReduction(GetItemInSlot(INVENTORY_SLOT_CHEST, oPC));
-      miFSApplyASFReduction(GetItemInSlot(INVENTORY_SLOT_LEFTHAND, oPC));
-      return;
-    }
-    else if(miWAGetIsWarlock(oPC))
-    {
-      if(miWAGetCasterLevel(oPC) < 6 && nMulti == 1) return;
-
-      miFSApplyASFReduction(GetItemInSlot(INVENTORY_SLOT_CHEST, oPC));
-      miFSApplyASFReduction(GetItemInSlot(INVENTORY_SLOT_LEFTHAND, oPC));
-    }
+   // Do nothing. 	
 }
 
 //::///////////////////////////////////////////////

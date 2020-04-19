@@ -1,5 +1,5 @@
 /* WORSHIP Library by Gigaschatten, heavily modified by Mithreas, Fireboar and others */
-
+#include "inc_favsoul"
 #include "inc_state"
 #include "inc_xp"
 
@@ -129,6 +129,8 @@ string fbWOGetAspectName(int nDeity);
 string fbWOGetRacialTypeName(int nDeity);
 // Selects the deity-appropriate planar stream for this PC. 
 int gsWOGetDeityPlanarStream(object oCreature);
+// Returns the GS_WO_CATEGORY* of nDeity. 
+int gsWOGetCategory(int nDeity);
 
 object oWOCacheItem = OBJECT_INVALID;
 void __gsWOInitCacheItem()
@@ -144,6 +146,12 @@ int gsWOGetIsDeityAvailable(int nDeity, object oPlayer = OBJECT_SELF)
     if (GetIsDM(oPlayer)) return TRUE;
     if (nDeity == GS_WO_NONE) return TRUE;
     object oItem = gsPCGetCreatureHide(oPlayer);
+	 
+	// Favoured Soul.  On Anemoi, Favoured Souls must worship the Seven Divines.
+	if (gsCMGetHasClass(CLASS_TYPE_FAVOURED_SOUL, oPlayer))
+	{
+	  return gsWOGetCategory(nDeity) == FB_WO_CATEGORY_SEVEN_DIVINES;
+	}
 	
 	// Racial restrictions - do these first..
     if (!GetLocalInt(oItem, "GIFT_OF_UFAVOR") && !gsWOGetIsRacialTypeAllowed(nDeity, oPlayer)) return FALSE;
@@ -155,7 +163,6 @@ int gsWOGetIsDeityAvailable(int nDeity, object oPlayer = OBJECT_SELF)
         !gsCMGetHasClass(CLASS_TYPE_DRUID, oPlayer) &&
         !gsCMGetHasClass(CLASS_TYPE_RANGER, oPlayer) &&
         !gsCMGetHasClass(CLASS_TYPE_DIVINECHAMPION, oPlayer) &&
-        !GetLocalInt(gsPCGetCreatureHide(oPlayer), VAR_FAV_SOUL) &&
         !GetLocalInt(oItem, "GIFT_OF_HOLY")) return TRUE;
 
     // Druids can worship only nature god(desse)s.  Rangers can also, without alignment restrictions
@@ -756,7 +763,7 @@ void gsWOSetup()
 	gsWOAddDeity(10, "NG,LN,NN,CN,NE", ASPECT_NATURE + ASPECT_HEARTH_HOME, RACIAL_TYPE_FEY); // Elakadencia
 	gsWOAddDeity(11, "LG,NG,LN,NN,LE,NE", ASPECT_NATURE + ASPECT_WAR_DESTRUCTION, RACIAL_TYPE_ALL); // Gygos the Green
 	gsWOAddDeity(12, "NG,NN,CN,NE,CG,CE", ASPECT_NATURE + ASPECT_HEARTH_HOME, RACIAL_TYPE_ALL); // The Antlered One
-	gsWOAddDeity(12, "NG,NN,CN,NE,CG", ASPECT_NATURE + ASPECT_MAGIC, RACIAL_TYPE_FEY); // Trixiveria
+	gsWOAddDeity(13, "NG,NN,CN,NE,CG", ASPECT_NATURE + ASPECT_MAGIC, RACIAL_TYPE_FEY); // Trixiveria
 
     gsWOChangeCategory(FB_WO_CATEGORY_MAGIC);
     gsWOAddDeity(8, "CG,CN,CE", ASPECT_TRICKERY_DECEIT + ASPECT_MAGIC, RACIAL_TYPE_HUMAN); //Dark One

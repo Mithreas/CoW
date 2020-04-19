@@ -64,6 +64,7 @@ void main()
     {
         nCasterLvl = 25;
     }
+	if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nCasterLvl += 2;
     ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, OBJECT_SELF);
     ApplyEffectAtLocation(DURATION_TYPE_INSTANT, eLOS, GetSpellTargetLocation());
     int bDoNotDoDamage = FALSE;

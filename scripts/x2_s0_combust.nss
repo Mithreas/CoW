@@ -63,6 +63,8 @@ void main()
     {
         nDamage = 10;
     }
+	if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nDamage += 2;
+	
     int nMetaMagic = AR_GetMetaMagicFeat();
     if (nMetaMagic == METAMAGIC_MAXIMIZE)
     {
@@ -86,6 +88,7 @@ void main()
     {
         nDuration = 10;
     }
+	if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nDuration += 2;
 
     //--------------------------------------------------------------------------
     // Setup Effects
@@ -162,6 +165,8 @@ void RunCombustImpact(object oTarget, object oCaster, int nLevel, int nMetaMagic
             {
                 nDamage = 10;
             }
+			if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, oCaster)) nDamage += 2;
+			
             if (nMetaMagic == METAMAGIC_MAXIMIZE)
             {
                 nDamage += 6;

@@ -28,5 +28,5 @@ void main()
     SummonFamiliar();
 	
 	gsSTDoCasterDamage(OBJECT_SELF, 5);
-	IncrementRemainingFeatUses(OBJECT_SELF, FEAT_SUMMON_FAMILIAR);     // this doesn't seem to work, perhaps because the feat changes to unsummon.  Moving to death script.
+	IncrementRemainingFeatUses(OBJECT_SELF, FEAT_SUMMON_FAMILIAR);   
 }

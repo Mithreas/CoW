@@ -44,6 +44,7 @@ void _DoMagicMissile(object oTarget, int nCasterLvl, int nMetaMagic) {
         {
             nMissiles = 5;
         }
+	    if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nMissiles += 1;
         //Make SR Check
         if (!MyResistSpell(OBJECT_SELF, oTarget, fDelay))
         {

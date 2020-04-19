@@ -143,7 +143,7 @@ struct fbCHChat fbCHGetChat()
 
     if (stChat.sText == "-cancel")
     {
-      SendMessageToPC(stChat.oSpeaker, "Cancelled.");
+      SendMessageToPC(stChat.oSpeaker, "Canceled.");
     }
     else
     {
@@ -523,6 +523,8 @@ string fbCHCommandList(object oSpeaker)
     sList += _fbCHPrepareChatCommand("-scry",
       (GetCanScry(oSpeaker) && !GetLocalInt(oHide, "SPELLSWORD")) ? STRING_COLOR_GREEN : STRING_COLOR_RED);
   }
+  
+  sList += _fbCHPrepareChatCommand("-secondwind", GetLevelByClass(CLASS_TYPE_FIGHTER, oSpeaker) ? STRING_COLOR_GREEN : STRING_COLOR_RED);
 
   sList += _fbCHPrepareChatCommand("-soundset",
     GetLocalInt(GetArea(oSpeaker), "MI_RENAME") ? STRING_COLOR_GREEN : STRING_COLOR_RED);

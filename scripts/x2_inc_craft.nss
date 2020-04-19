@@ -199,7 +199,7 @@ int CIGetIsCraftFeatBaseItem(object oItem)
     int nBt = GetBaseItemType(oItem);
     // blank scroll, empty potion, wand
     // Arelith edit: rings, amulets
-    if (nBt == 101 || nBt == 102 || nBt == 103 || nBt == 52 || nBt == 19)
+    if (nBt == 101 || nBt == 102 || nBt == 103 || nBt == 52 || nBt == 45 || nBt == 19)
       return TRUE;
     else
       return FALSE;
@@ -667,7 +667,7 @@ int CICraftCheckScribeScroll(object oSpellTarget, object oCaster)
           gsWOAdjustPiety(oCaster, fPietyCost, FALSE);
         }
 
-        DestroyObject (oSpellTarget);
+        gsCMReduceItem (oSpellTarget);
         FloatingTextStrRefOnCreature(8502, oCaster); // Item Creation successful
         return TRUE;
      }
@@ -1033,6 +1033,7 @@ int CIGetSpellWasUsedForItemCreation(object oSpellTarget)
                            break;
 
                 case 19 :
+				case 45 :
                 case 52 :
                             // FL server - Craft Wondrous Item feat
                            nRet = CICraftCheckCraftWondrous(oSpellTarget, oCaster);

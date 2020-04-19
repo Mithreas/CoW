@@ -27,6 +27,7 @@ void main()
     int nMetaMagic = GetMetaMagicFeat();
     int nDamage;
     int nCasterLevel = AR_GetCasterLevel(GetAreaOfEffectCreator());
+	if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, GetAreaOfEffectCreator())) nCasterLevel += 2;
     effect eDam;
     object oTarget;
     object oCaster = GetAreaOfEffectCreator();

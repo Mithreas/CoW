@@ -40,6 +40,10 @@ void main()
     location dest = GetLocation(GetNearestObjectByTag("MI_CLIMBING_DEST"));
     AssignCommand(oPC, ActionJumpToLocation(dest));
   }
+  else if (GetIsSkillSuccessful(oPC, SKILL_TUMBLE, nDC))
+  {
+    SendMessageToPC(oPC, "<cþ  >You fail to make the climb (DC " + IntToString(nDC) + ") but tumble safely to the ground.");
+  }
   else
   {
     // Falling damage
@@ -50,7 +54,7 @@ void main()
 
     ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectKnockdown(), oPC, 2.0);
 
-    SendMessageToPC(oPC, "<cþ  >You fail to make the climb. Climbing is based " +
+    SendMessageToPC(oPC, "<cþ  >You fail to make the climb (DC " + IntToString(nDC) + "). Climbing is based " +
     "on your strength, dexterity, armour check penalty, and level in suitable " +
     "classes (barbarian, fighter, monk, ranger, rogue, assassin, arcane archer, " +
     "and harper scout).");

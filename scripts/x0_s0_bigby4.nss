@@ -45,6 +45,7 @@ void RunHandImpact(object oTarget, object oCaster)
     }
 
     int nCasterModifiers = GetCasterAbilityModifier(oCaster) + AR_GetCasterLevel(oCaster);
+	if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nCasterModifiers += 2;
     int nCasterRoll = d20(1) + nCasterModifiers + 11 + -1;
     int nTargetRoll = GetAC(oTarget);
     if (nCasterRoll >= nTargetRoll)
@@ -111,6 +112,7 @@ void main()
     }
 
     int nDuration = AR_GetCasterLevel(OBJECT_SELF);
+	if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nDuration += 2;
     int nMetaMagic = AR_GetMetaMagicFeat();
     if (nMetaMagic == METAMAGIC_EXTEND)
     {

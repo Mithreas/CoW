@@ -60,6 +60,8 @@ void main()
     {
         nDamageDice = 5;
     }
+	
+	if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nDamageDice += 1;
     int nDamage;
     //Apply the holy strike VFX
     ApplyEffectAtLocation(DURATION_TYPE_INSTANT, eStrike, GetSpellTargetLocation());

@@ -75,6 +75,8 @@ void main()
     {
         nDuration = 1;
     }
+	if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nDuration += 1;
+	
     effect eSummon = EffectSummonCreature("X2_S_FAERIE001");
     effect eVis = EffectVisualEffect(VFX_FNF_SUMMON_MONSTER_1);
     //Make metamagic check for extend

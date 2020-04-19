@@ -60,6 +60,7 @@ void main()
     {
         nCasterLvl = 30;
     }
+	if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nCasterLvl += 2;
     ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eShake, OBJECT_SELF, RoundsToSeconds(6));
 
     //Apply epicenter explosion on caster

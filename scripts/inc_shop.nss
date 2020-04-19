@@ -386,7 +386,7 @@ struct openStore md_DoAppraise(object oStore, object oMerchant, object oCustomer
         nWinningMaxBuy = nMaxBuyPrice;
     }
 
-    oCustomer = GetNearestCreature(CREATURE_TYPE_PLAYER_CHAR, PLAYER_CHAR_IS_PC, oCustomer, ++x, CREATURE_TYPE_REPUTATION, REPUTATION_TYPE_FRIEND);
+    oCustomer = GetNearestCreature(CREATURE_TYPE_PLAYER_CHAR, PLAYER_CHAR_IS_PC, oCustomer, ++x);
   }
   string sWinner;
   if(nWinningAppraise > 0)

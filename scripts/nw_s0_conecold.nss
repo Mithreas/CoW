@@ -13,6 +13,7 @@ void main()
     int nSpell         = GetSpellId();
     int nCasterLevel   = AR_GetCasterLevel(OBJECT_SELF);
     if (nCasterLevel > 15) nCasterLevel = 15;
+	if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nCasterLevel += 2;
     int nMetaMagic     = AR_GetMetaMagicFeat();
     int nDC            = AR_GetSpellSaveDC();
     int nValue         = 0;

@@ -42,6 +42,7 @@ void main()
     {
         nCasterLevel = 10;
     }
+	if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nCasterLevel += 2;
     int nDamage;
     int nMetaMagic = AR_GetMetaMagicFeat();
     //Set the lightning stream to start at the caster's hands

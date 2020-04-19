@@ -66,6 +66,7 @@ void main()
     //Declare major variables
     object oTarget = GetSpellTargetObject();
     int nDuration = AR_GetCasterLevel(OBJECT_SELF);
+	if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nDuration += 2;
     int nMetaMagic = AR_GetMetaMagicFeat();
 
 
@@ -92,6 +93,7 @@ if(!MySavingThrow(SAVING_THROW_REFLEX, oTarget, AR_GetSpellSaveDC(), SAVING_THRO
             int nCasterRoll = d20(1)
                 + nCasterModifier
                 + AR_GetCasterLevel(OBJECT_SELF) + 12 + -1;
+	        if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nCasterRoll += 2;
             int nTargetRoll = GetAC(oTarget);
 
             // * grapple HIT succesful,
@@ -102,6 +104,7 @@ if(!MySavingThrow(SAVING_THROW_REFLEX, oTarget, AR_GetSpellSaveDC(), SAVING_THRO
 
                 nCasterRoll = d20(1) + nCasterModifier
                     + AR_GetCasterLevel(OBJECT_SELF) + 12 + 4;
+	            if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nCasterRoll += 2;
 
                 nTargetRoll = /*NEED GetBaseAttackBonus*/
                     GetBaseAttackBonus(oTarget) + GetSizeModifier(oTarget)

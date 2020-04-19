@@ -1,5 +1,6 @@
 #include "inc_chatutils"
 #include "inc_examine"
+#include "x0_i0_position"
 void main()
 {
     object oSpeaker = OBJECT_SELF;
@@ -57,10 +58,6 @@ void main()
     {
         AssignCommand(oSpeaker, ActionUseFeat(FEAT_UNDEAD_GRAFT_1, oTarget));
     }
-	else if (params == "mummy dust")
-	{
-	    AssignCommand(oSpeaker, ActionUseFeat(FEAT_EPIC_SPELL_MUMMY_DUST, oTarget));
-	}
     else //on failure, print the help
     {
         DisplayTextInExamineWindow(

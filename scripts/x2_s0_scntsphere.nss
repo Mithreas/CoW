@@ -58,6 +58,8 @@ void main()
     {
         nCasterLvl = 10;
     }
+	if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nCasterLvl += 2;
+	
     //Apply the fireball explosion at the location captured above.
     ApplyEffectAtLocation(DURATION_TYPE_INSTANT, eExplode, lTarget);
     //Declare the spell shape, size and the location.  Capture the first target object in the shape.

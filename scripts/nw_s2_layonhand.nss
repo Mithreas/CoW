@@ -14,10 +14,11 @@
 //:: Created On: Aug 15, 2001
 //:: Updated On: Oct 20, 2003
 //:://////////////////////////////////////////////
-
-#include "inc_zombie"
 #include "nw_i0_spells"
+#include "inc_pc"
+#include "inc_state"
 #include "inc_timelock"
+#include "inc_zombie"
 
 void main()
 {
@@ -47,12 +48,8 @@ void main()
     {
         nChr = 1;
     }
-    int nLevel = GetLevelByClass(CLASS_TYPE_PALADIN);
-
-    //--------------------------------------------------------------------------
-    // July 2003: Add Divine Champion levels to lay on hands ability
-    //--------------------------------------------------------------------------
-    nLevel = nLevel + GetLevelByClass(CLASS_TYPE_DIVINECHAMPION);
+    int nLevel = GetLocalInt(gsPCGetCreatureHide(OBJECT_SELF), "FL_LEVEL") /5;
+	if (nLevel < 5) nLevel = 5;
 
     //--------------------------------------------------------------------------
     // Caluclate the amount to heal, min is 1 hp
@@ -99,6 +96,7 @@ void main()
 
     // Set Cooldown to 10 minutes (10 turns).  Refresh reminder every 2m, final reminder at 30 seconds.
     SetTimelock(OBJECT_SELF, FloatToInt(TurnsToSeconds(10)), "Lay on Hands", 120, 30);
+	gsSTDoCasterDamage(OBJECT_SELF, 5); 
 
 }
 

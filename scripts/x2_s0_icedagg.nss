@@ -54,6 +54,7 @@ void main()
     {
         nCasterLvl = 5;
     }
+	if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nCasterLvl += 2;
     if(!GetIsReactionTypeFriendly(oTarget))
    	{
         //Fire cast spell at event for the specified target

@@ -10,8 +10,9 @@
 //:: Created By:
 //:: Created On:
 //:://////////////////////////////////////////////
-
+#include "inc_pc"
 #include "inc_summons"
+#include "inc_state"
 
 const int FEAT_CREATE_UNDEAD = 474;
 
@@ -30,6 +31,12 @@ void main()
     }
 
     int nLevel = GetLevelByClass(CLASS_TYPE_BLACKGUARD, OBJECT_SELF);
+	
+    if (GetLocalInt(GetModule(), "STATIC_LEVEL") && GetIsPC(OBJECT_SELF))
+    {
+      nLevel = GetLocalInt(gsPCGetCreatureHide(OBJECT_SELF), "FL_LEVEL") /3;
+    }
+	
     effect eSummon;
     float fDelay = 3.0;
     int nDuration = nLevel;
@@ -43,4 +50,6 @@ void main()
         eSummon = EffectSummonCreature("sum_mohrg", VFX_FNF_SUMMON_UNDEAD);
 
     ApplyEffectAtLocation(DURATION_TYPE_TEMPORARY, eSummon, GetSpellTargetLocation(), HoursToSeconds(nDuration));
+	
+	gsSTDoCasterDamage(OBJECT_SELF, 5);
 }

@@ -45,6 +45,7 @@ void main()
     //Declare major variables
     object oCaster = OBJECT_SELF;
     int nCasterLvl = AR_GetCasterLevel(oCaster);
+	if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nCasterLvl += 2;
     int nMetaMagic = AR_GetMetaMagicFeat();
     int nDamage, nDamage2, nDamage3;
     int nVariable = nCasterLvl/3;

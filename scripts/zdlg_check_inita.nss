@@ -12,7 +12,7 @@ int StartingConditional()
 {
     object oSpeaker = GetPCSpeaker();
     Trace(ZDIALOG, "Talking to:" + GetName(oSpeaker) );
-    int nBaseToken = 5200;
+    int nBaseToken = 6200;
     SetLocalInt(oSpeaker, ZDLG_BASE_TOKEN, nBaseToken);
 
     string sOverrideScript = GetLocalString(OBJECT_SELF, VAR_SCRIPT);

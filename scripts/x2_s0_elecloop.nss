@@ -63,6 +63,7 @@ void main()
     {
         nNumDice = 5;
     }
+	if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nNumDice += 1;
 
     //--------------------------------------------------------------------------
     // Loop through all targets

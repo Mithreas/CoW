@@ -58,7 +58,7 @@ void main()
 		  {
 		    ApplyEffectToObject(DURATION_TYPE_PERMANENT, EffectTemporaryHitpoints(nStamina), OBJECT_SELF);
 		    ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_HEALING_G), OBJECT_SELF);
-		  }	
+		  }			  
 		}
 		
 		// PCK_GEM4 - damage reduction effect

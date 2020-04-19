@@ -120,13 +120,12 @@ void main()
     if (! GetIsPC(OBJECT_SELF))              return;
     if (GetIsPossessedFamiliar(OBJECT_SELF)) return;
 
-
     object oHide = gsPCGetCreatureHide();
     object oTarget   = GetSpellTargetObject();
     int nHarmful     = Get2DAString("spells", "HostileSetting", nSpell) == "1";
 
     //:: Kitito // Spellsword Imbue weapon
-    if (GetLocalInt(oHide, "SPELLSWORD") && (oTarget == GetItemInSlot(INVENTORY_SLOT_RIGHTHAND,OBJECT_SELF) || oTarget == GetItemInSlot(INVENTORY_SLOT_LEFTHAND,OBJECT_SELF))) // && miSSImbueSpellList(GetSpellId()) )
+    if (GetLocalInt(oHide, "SPELLSWORD") && GetIsObjectValid(oTarget) && (oTarget == GetItemInSlot(INVENTORY_SLOT_RIGHTHAND,OBJECT_SELF) || oTarget == GetItemInSlot(INVENTORY_SLOT_LEFTHAND,OBJECT_SELF))) // && miSSImbueSpellList(GetSpellId()) )
     {
 		if (GetSpellSchool(GetSpellId()) == GetLocalInt(oHide, "MI_BLOCKEDSCHOOL1"))
 		{
@@ -175,7 +174,7 @@ void main()
 			return;
 		}
     }
-    else if(GetLocalInt(oHide, "SPELLSWORD") && oTarget == GetItemInSlot(INVENTORY_SLOT_CHEST,OBJECT_SELF))
+    else if(GetLocalInt(oHide, "SPELLSWORD") && GetIsObjectValid(oTarget) && oTarget == GetItemInSlot(INVENTORY_SLOT_CHEST,OBJECT_SELF))
     {
 		miSSImbueArmour( OBJECT_SELF, nSpell, oTarget);
         gsSPSetLastSpellHarmful(OBJECT_SELF, nHarmful);
@@ -266,6 +265,15 @@ void main()
       SetModuleOverrideSpellScriptFinished();
       return;
     }
+	
+	// Unfaithful favoured souls /definitely/ can't cast any spells.
+	if (GetLevelByClass(CLASS_TYPE_FAVOURED_SOUL, OBJECT_SELF) && gsWOGetCategory(gsWOGetDeityByName(GetDeity(OBJECT_SELF))) != FB_WO_CATEGORY_SEVEN_DIVINES && GetLastSpellCastClass() == CLASS_TYPE_FAVOURED_SOUL)
+	{
+	  SendMessageToPC(OBJECT_SELF, "Favoured Souls must be faithful to one of the Seven Divines to cast spells.");
+      gsSPSetOverrideSpell();
+      SetModuleOverrideSpellScriptFinished();
+      return;
+	}
 
     //::Kirito-Spellsword path
     if (GetLocalInt(oHide, "SPELLSWORD"))
@@ -378,8 +386,7 @@ void main()
 //   Sorcs halve the delay.
 // - Quickened spells bypass the delay but cannot be cast during it.
 //------------------------------------------------------------------------------
-      int bFavoredSoul = miFSGetIsFavoredSoul(OBJECT_SELF) &&
-                            GetLastSpellCastClass() == CLASS_TYPE_BARD;
+      int bFavoredSoul =  GetLastSpellCastClass() == CLASS_TYPE_FAVOURED_SOUL;
       int bWarlock = miWAGetIsWarlock(OBJECT_SELF) &&
                             GetLastSpellCastClass() == CLASS_TYPE_BARD;
 
@@ -405,6 +412,9 @@ void main()
           case CLASS_TYPE_DRUID:
             sColumn = "Druid";
             break;
+		  case CLASS_TYPE_FAVOURED_SOUL:
+		    sColumn = "Cleric";
+			break;
           case CLASS_TYPE_PALADIN:
             sColumn = "Paladin";
             break;
@@ -463,77 +473,8 @@ void main()
                                  nSpellLevel,
                                  NWNX_Creature_GetMaxSpellSlots(OBJECT_SELF, GetLastSpellCastClass(), nSpellLevel));
 
-          // Timer.
-          int nExhausted = GetLocalInt(OBJECT_SELF, "SP_EXHAUSTED_" + IntToString(nClass));
-
-          if (nExhausted && gsTIGetActualTimestamp() - nExhausted < 0)
-          {
-            SendMessageToPC (OBJECT_SELF, "You cannot cast another spell yet.");
-            gsSPSetOverrideSpell();
-            SetModuleOverrideSpellScriptFinished();
-            return;
-          }
-          else
-          {
-            if (GetMetaMagicFeat() == METAMAGIC_QUICKEN)
-            {
-              nSpellLevel -= 5; // 4 for Quicken, 1 for reduction.
-            }
-            else
-            {
-              // Auto quicken.  Note that auto metamagic feats don't show up in
-              // GetMetaMagicFeat according to the Lexicon, so it won't trigger
-              // here.
-              if (nSpellBaseLevel <= 3 && GetHasFeat(FEAT_EPIC_AUTOMATIC_QUICKEN_1))
-              {
-                // Auto quicken stacks with quicken to reduce cooldowns by 2 rounds.
-                nSpellLevel -= 2;
-              }
-              else if (nSpellBaseLevel <= 6 && GetHasFeat(FEAT_EPIC_AUTOMATIC_QUICKEN_2))
-              {
-                // For level 4-6 spells with AQ2, reduce by 2 rounds
-                nSpellLevel -= 2;
-              }
-              else if (GetHasFeat(FEAT_EPIC_AUTOMATIC_QUICKEN_3))
-              {
-                // For level 7-9 spells with AQ3, reduce by 3 rounds.
-                nSpellLevel -= 3;
-              }
-            }
-
-            float fDelay = RoundsToSeconds(nSpellLevel - 1);
-
-			// Removed the below now that we're using stamina instead.
-            if (!bWarlock && nSpellLevel > 1)
-            {
-              // We have to be a bit cunning here.  We can't stop people starting
-              // to cast spells, just the effect.  So bump the timer a little
-              // (quickened spells cast in around 1s)
-              fDelay += 1.0f;
-
-              // Record the timer relative to the current timestamp.  This ensures
-              // server transitions etc work ok.
-              // Timestamps are measured in -game- seconds.  A round is six -real- seconds.
-             // So use gsTIGetGameTimestamp to convert one to the other.
-              // SetLocalInt(OBJECT_SELF, "SP_EXHAUSTED_" + IntToString(nClass), gsTIGetActualTimestamp() + gsTIGetGameTimestamp(FloatToInt(fDelay)));
-              //DelayCommand(fDelay, DeleteLocalInt(OBJECT_SELF, "SP_EXHAUSTED_" + IntToString(nClass)));
-              // SendMessageToPC(OBJECT_SELF, "Rest for " +
-              //                           IntToString(FloatToInt(fDelay)) +
-              //                           "s before casting more spells.");
-              //if (fDelay > 45.0f) DelayCommand(fDelay - 45.0f, SendMessageToPC(OBJECT_SELF,"45s until you can cast again."));
-              //if (fDelay > 30.0f) DelayCommand(fDelay - 30.0f, SendMessageToPC(OBJECT_SELF,"30s until you can cast again."));
-              //if (fDelay > 15.0f) DelayCommand(fDelay - 15.0f, SendMessageToPC(OBJECT_SELF,"15s until you can cast again."));
-              //if (fDelay > 5.0f) DelayCommand(fDelay - 5.0f, SendMessageToPC(OBJECT_SELF,"5s until you can cast again."));
-              //DelayCommand(fDelay, SendMessageToPC(OBJECT_SELF,"You can now cast spells again."));			  
-            }
-          }
         }
-        else
-        {
-          // Spell list is recorded in gs_a_enter during init.
-          // RestoreReadySpells(OBJECT_SELF, GetLocalString(OBJECT_SELF, "SP_SPELL_LIST"));
-        }
-      }
+      }      
       // New style favoured souls.
       else if (GetLastSpellCastClass() == CLASS_TYPE_CLERIC && GetIsFavouredSoul(OBJECT_SELF))
 	  {
@@ -611,9 +552,13 @@ void main()
 
 			gsSTDoCasterDamage(OBJECT_SELF, nHP);
         }
+		else if (nSpellCastClass == CLASS_TYPE_FAVOURED_SOUL)
+		{
+		    gsSTAdjustState(GS_ST_PIETY, -IntToFloat(nLevel));
+		}
 		
 		// CoW addition - sympathetic cleric magic
-		if (nSpellCastClass == CLASS_TYPE_CLERIC && 
+		if ((nSpellCastClass == CLASS_TYPE_CLERIC || nSpellCastClass == CLASS_TYPE_FAVOURED_SOUL) && 
 		    GetIsObjectValid(GetSpellTargetObject()) && 
 			GetSpellTargetObject() != OBJECT_SELF &&
 			GetObjectType(GetSpellTargetObject()) == OBJECT_TYPE_CREATURE)
@@ -632,7 +577,7 @@ void main()
     } else {
       // cast from item
 
-      // Dunshine: Check for Raise Dead or Ressurection scrolls used, custom piety values for those
+      // Dunshine: Check for Raise Dead or Resurrection scrolls used, custom piety values for those
       if (!GetLocalInt(GetModule(), "STATIC_LEVEL")) {
 
         if (GetBaseItemType(GetSpellCastItem()) == BASE_ITEM_SPELLSCROLL) {

@@ -37,12 +37,13 @@ void main()
 		  
 		  if (!nWood && nTimeout < gsTIGetActualTimestamp())
 		  {
-		    nWood = d20();		    
+		    nWood = d20() + 1;		    
 		  }
 		  
 		  if (!nWood)
 		  {	    		  
 		    FloatingTextStringOnCreature("No more bark or twigs.", oPC);
+			break;
 		  }
 		  else if (!nJuice)
 		  {
@@ -53,7 +54,11 @@ void main()
 		  }
 		  else
 		  {
-		    CreateItemOnObject("cnrbarkent", oPC);
+		    int nCount = d3(1);
+			for (nCount; nCount > 0; nCount--) 
+			{
+		      CreateItemOnObject("cnrbarkent", oPC);
+			}  
 			nWood --;
 			nJuice --;
 			SetLocalInt(OBJECT_SELF, "ENT_WOOD_COUNT", nWood);

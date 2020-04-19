@@ -41,6 +41,7 @@ void main()
     int nDamage =  AR_GetCasterLevel(OBJECT_SELF);
     if (nDamage > 15)
         nDamage = 15;
+	if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nDamage += 2;
 
     DoMissileStorm(nDamage, 15, SPELL_FIREBRAND, VFX_IMP_MIRV_FLAME, VFX_IMP_FLAME_M, DAMAGE_TYPE_FIRE, TRUE, TRUE);
 }

@@ -44,6 +44,7 @@ void main()
     //Declare major variables including Area of Effect Object
     effect eAOE = EffectAreaOfEffect(AOE_MOB_CIRCGOOD, "x0_s0_dirgeEN", "x0_s0_dirgeHB", "x0_s0_dirgeEX");
     int nDuration = AR_GetCasterLevel(OBJECT_SELF);
+	if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nDuration += 2;
     int nMetaMagic = AR_GetMetaMagicFeat();
     effect eImpact = EffectVisualEffect(257);
     effect eCaster = EffectVisualEffect(VFX_DUR_BARD_SONG);

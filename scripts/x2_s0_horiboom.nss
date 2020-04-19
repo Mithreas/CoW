@@ -58,6 +58,8 @@ void main()
     {
         nCasterLvl = 5;
     }
+	if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nCasterLvl += 2;
+	
     if(spellsIsTarget(oTarget, SPELL_TARGET_STANDARDHOSTILE, OBJECT_SELF))
     {
         if(!MyResistSpell(OBJECT_SELF, oTarget))

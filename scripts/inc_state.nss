@@ -1,10 +1,11 @@
 /* STATE Library by Gigaschatten */
 
-#include "inc_zombie"
+#include "inc_favsoul"
 #include "inc_subrace"
 #include "inc_text"
 #include "inc_vampire"
 #include "inc_weather"
+#include "inc_zombie"
 
 //void main() {}
 
@@ -49,8 +50,12 @@ void gsSTSetInitialState(int bReset = FALSE)
       gsSTAdjustState(GS_ST_WATER,     75.0 - gsSTGetState(GS_ST_WATER));
       gsSTAdjustState(GS_ST_STAMINA,   IntToFloat(GetMaxHitPoints(OBJECT_SELF)) - gsSTGetState(GS_ST_STAMINA));
       // NB - do not adjust piety.
+	  
+	  if ((GetLevelByClass(CLASS_TYPE_CLERIC, OBJECT_SELF) || GetLevelByClass(CLASS_TYPE_FAVOURED_SOUL, OBJECT_SELF)) && gsSTGetState(GS_ST_PIETY) == 0.0f)
+		gsSTAdjustState(GS_ST_PIETY, 50.0f);
+	  
     }
-
+	
     if (VampireIsVamp(OBJECT_SELF))
     {
       if (bReset || gsSTGetState(GS_ST_BLOOD) == 0.0)
@@ -112,7 +117,8 @@ void gsSTProcessState()
     }
 
     gsSTAdjustState(GS_ST_SOBRIETY, IntToFloat(GetAbilityScore(OBJECT_SELF, ABILITY_CONSTITUTION)) / 2.0);
-    gsSTAdjustState(GS_ST_PIETY, -0.1); // 2.4% per game day
+	
+	if (!gsCMGetHasClass(CLASS_TYPE_FAVOURED_SOUL)) gsSTAdjustState(GS_ST_PIETY, -0.1); // 2.4% per game day
 }
 //----------------------------------------------------------------
 void gsSTAdjustState(int nState, float fValue, object oCreature = OBJECT_SELF)
@@ -150,6 +156,7 @@ void gsSTAdjustState(int nState, float fValue, object oCreature = OBJECT_SELF)
         break;
 
     case GS_ST_PIETY:
+	    if (gsCMGetHasClass(CLASS_TYPE_FAVOURED_SOUL, oCreature) && fValue > 0.0f) fValue *= 2;
         sState = "GS_ST_PIETY";
         sMessage = GS_T_16777592;
         break;
@@ -525,24 +532,28 @@ void gsSTAdjustHPPool(object oCreature, int nAdjust)
 void gsSTDoCasterDamage(object oCaster, int nDamage)
 {
   int nHPPool  = gsSTGetHPPool(oCaster);
-  int nStamina = FloatToInt(gsSTGetState(GS_ST_STAMINA, oCaster));
+  float fStamina = gsSTGetState(GS_ST_STAMINA, oCaster);
+  float fDamage = IntToFloat(nDamage);
+  int nFighter = GetLevelByClass(CLASS_TYPE_FIGHTER, oCaster);
   
-  if (nHPPool && (nStamina - nDamage < 10))
+  fDamage *= (1 - 0.05 * nFighter);
+  
+  if (nHPPool && (fStamina - fDamage < 10.0f))
   {
-    if (nDamage > nHPPool)
+    if (FloatToInt(fDamage) > nHPPool)
 	{
-	  nDamage -= nHPPool;
+	  fDamage -= IntToFloat(nHPPool);
 	  gsSTAdjustHPPool(oCaster, -nHPPool);
 	}
 	else
 	{
-	  gsSTAdjustHPPool(oCaster, -nDamage);
-	  nDamage = 0;
+	  gsSTAdjustHPPool(oCaster, -FloatToInt(fDamage));
+	  fDamage = 0.0f;
 	}
   }
   
-  if (nDamage)
+  if (fDamage > 0.0f)
   {
-      gsSTAdjustState(GS_ST_STAMINA, -IntToFloat(nDamage));
+      gsSTAdjustState(GS_ST_STAMINA, -fDamage);
   }
 }

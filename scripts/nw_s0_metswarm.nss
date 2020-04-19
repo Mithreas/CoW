@@ -45,6 +45,7 @@ void main()
     int nMetaMagic;
     int nDamage;
     int nCasterLevel = AR_GetCasterLevel(OBJECT_SELF);
+	if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nCasterLevel += 2;
     effect eFire;
     effect eMeteor = EffectVisualEffect(VFX_FNF_METEOR_SWARM);
     effect eVis = EffectVisualEffect(VFX_IMP_FLAME_M);

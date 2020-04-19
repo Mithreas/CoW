@@ -274,6 +274,7 @@ void init_feat_list (object oPC)
      GetLevelByClass(CLASS_TYPE_BARD, oPC) ||
      GetLevelByClass(CLASS_TYPE_CLERIC, oPC) ||
      GetLevelByClass(CLASS_TYPE_DRUID, oPC) ||
+	 GetLevelByClass(CLASS_TYPE_FAVOURED_SOUL, oPC) ||
      GetLevelByClass(CLASS_TYPE_RANGER, oPC) >=4 ||
      GetLevelByClass(CLASS_TYPE_PALADIN, oPC) >= 4)
   {
@@ -700,6 +701,7 @@ void init_feat_list (object oPC)
 
     if (GetLevelByClass(CLASS_TYPE_BARD,oPC) ||
         GetLevelByClass(CLASS_TYPE_CLERIC,oPC) ||
+	    GetLevelByClass(CLASS_TYPE_FAVOURED_SOUL, oPC) ||
         GetLevelByClass(CLASS_TYPE_DRUID,oPC) ||
         GetLevelByClass(CLASS_TYPE_RANGER, oPC) >=4 ||
         GetLevelByClass(CLASS_TYPE_PALADIN, oPC) >= 4 ||
@@ -710,6 +712,7 @@ void init_feat_list (object oPC)
 	      GetLevelByClass(CLASS_TYPE_SORCERER, oNPC) ||
 	      GetLevelByClass(CLASS_TYPE_DRUID, oNPC) ||
 	      GetLevelByClass(CLASS_TYPE_CLERIC, oNPC) ||
+	      GetLevelByClass(CLASS_TYPE_FAVOURED_SOUL, oNPC) ||
 	      GetLevelByClass(CLASS_TYPE_BARD, oNPC))
   
 	  {
@@ -722,7 +725,7 @@ void init_feat_list (object oPC)
         add_feat_to_list(oPC, "Epic Spell Focus: Necromancy", FEAT_EPIC_SPELL_FOCUS_NECROMANCY);
         add_feat_to_list(oPC, "Epic Spell Focus: Transmutation", FEAT_EPIC_SPELL_FOCUS_TRANSMUTATION);
         add_feat_to_list(oPC, "Epic Spell Penetration", FEAT_EPIC_SPELL_PENETRATION);
-		add_feat_to_list(oPC, "Mummy Dust", FEAT_EPIC_SPELL_MUMMY_DUST);
+		if (!GetLevelByClass(CLASS_TYPE_DRUID, oPC)) add_feat_to_list(oPC, "Mummy Dust", FEAT_EPIC_SPELL_MUMMY_DUST);
 		
 	    if (miSSGetIsSpellsword(oPC)) add_feat_to_list(oPC, "Spellsword Greater Imbue", 10016, TRUE);
 	  }		  
@@ -860,6 +863,7 @@ void init_feat_list (object oPC)
      GetLevelByClass(CLASS_TYPE_SORCERER, oPC) ||
      GetLevelByClass(CLASS_TYPE_BARD, oPC) ||
      GetLevelByClass(CLASS_TYPE_CLERIC, oPC) ||
+	 GetLevelByClass(CLASS_TYPE_FAVOURED_SOUL, oPC) ||
      GetLevelByClass(CLASS_TYPE_DRUID, oPC) ||
      GetLevelByClass(CLASS_TYPE_RANGER, oPC) >=4 ||
      GetLevelByClass(CLASS_TYPE_PALADIN, oPC) >= 4)
@@ -1703,7 +1707,7 @@ void HandleSelection()
 
               int x;
               //put on level 1.
-              for(x = 1; x <= GetLocalInt(GetModule(), "STATIC_LEVEL"); x++)
+              for(x = 1; x <= 15; x++)
               {
                 if(NWNX_Creature_GetClassByLevel(oPC, x) == nClass)
                 {
@@ -1715,7 +1719,7 @@ void HandleSelection()
             else if(nClass > -1)
             {
               int x;
-              for(x = 1; x <= GetLocalInt(GetModule(), "STATIC_LEVEL"); x++)
+              for(x = 1; x <= 15; x++)
               {
                 if(NWNX_Creature_GetClassByLevel(oPC, x) == nClass)
                 {

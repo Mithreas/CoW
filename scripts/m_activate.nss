@@ -109,7 +109,8 @@ void main()
     // potion of attunement
     if (sTag == "MI_POTION_ATTUNE")
     {
-        ExecuteScript("wt_attn_activate", oActivator);
+        location lLoc = gsREGetRespawnLocation(oActivator);
+		gsCMTeleportToLocation(oActivator, lLocation, VFX_IMP_AC_BONUS, TRUE);
         return;
     }
 

@@ -32,6 +32,7 @@ void main()
     //Declare major variables
     object oTarget = GetSpellTargetObject();
     int nDuration = AR_GetCasterLevel(OBJECT_SELF);
+	if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nDuration += 2;
     int nMetaMagic = AR_GetMetaMagicFeat();
     effect eVis = EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED);
 

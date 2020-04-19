@@ -24,6 +24,11 @@ void main()
     int nDamage;
     effect eDam;
     object oTarget;
+	
+	object oCaster = GetAreaOfEffectCreator();
+	int nCasterLevel = AR_GetCasterLevel(oCaster);
+	if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, oCaster)) nCasterLevel += 2;
+	
     //Declare and assign personal impact visual effect.
     effect eVis = EffectVisualEffect(VFX_IMP_FLAME_S);
    // effect eSpeed = EffectMovementSpeedDecrease(50);
@@ -42,7 +47,7 @@ void main()
         {
             fDelay = GetRandomDelay(0.5, 2.0);
             //Roll damage.
-            nDamage = d6(4 + AR_GetCasterLevel(GetAreaOfEffectCreator()) / 2);
+            nDamage = d6(4 + nCasterLevel / 2);
             //Enter Metamagic conditions
                /*if (nMetaMagic == METAMAGIC_MAXIMIZE)
                 {

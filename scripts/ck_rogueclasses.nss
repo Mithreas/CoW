@@ -7,7 +7,6 @@
 // 07/24/2003 Artos            Initial release.
 //
 #include "inc_warlock"
-#include "inc_favsoul"
 int StartingConditional()
 {
     object oPC = GetPCSpeaker( );
@@ -23,7 +22,7 @@ int StartingConditional()
         iPassed = 1;
     if((iPassed == 0) && (GetLevelByClass(CLASS_TYPE_ASSASSIN, oPC) >= 3))
         iPassed = 1;
-    if((iPassed == 0) && (GetLevelByClass(CLASS_TYPE_BARD, oPC) >= 10) && !miWAGetIsWarlock(oPC) && !miFSGetIsFavoredSoul(oPC))
+    if((iPassed == 0) && (GetLevelByClass(CLASS_TYPE_BARD, oPC) >= 10) && !miWAGetIsWarlock(oPC))
         iPassed = 1;
     if(iPassed == 0)
         return FALSE;
