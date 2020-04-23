@@ -16,8 +16,8 @@
 12         ResistEnergyFire                      429         0      5                0        
 13         Shield                                32          3      1                0        
 14         ResistEnergyElec                      430         0      10               0        
-15         WeapProfEx                            44          0      1                0        
-16         WeapProfMar                           45          0      1                0        
+15         WeapProfEx                            44          3      1                0        
+16         WeapProfMar                           45          3      1                0        
 17         DefArrow                              8           0      -1               0        
 18         Quicken                               29          0      -1               0        
 19         TwoWeap                               41          0      -1               0        

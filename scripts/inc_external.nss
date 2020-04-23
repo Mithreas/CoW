@@ -190,6 +190,8 @@ void fbEXDeletePC(object oPC)
   DelayCommand(2.5, _Delete(oPC));
   miDASetKeyedValue("gs_pc_data", gsPCGetPlayerID(oPC), "deleted", "1");
   DeleteLocalString(oPC, "GS_PC_ID");
+  DeleteLocalInt(oPC, "GS_FINANCE");
+  DeleteLocalInt(oPC, "GS_SU_APPLIED");
   SetLocalInt(gsPCGetCreatureHide(oPC), "CONFIRM_DELETE", 2);
 }
 //------------------------------------------------------------------------------

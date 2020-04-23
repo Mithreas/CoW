@@ -1,4 +1,5 @@
 #include "inc_checker"
+#include "inc_favsoul"
 #include "inc_log"
 
 // Returns TRUE if the PC is a completely legal first level character, false
@@ -42,6 +43,11 @@ void miCheckIfCharacterIsLegal_1(object oPC)
      nBaseSkillPoints = 4;
      nNumFeats += 7;
      break;
+   case CLASS_TYPE_FAVOURED_SOUL:
+     nBaseHP = 8;
+	 nBaseSkillPoints = 2;
+	 nNumFeats += 7;
+	 break;
    case CLASS_TYPE_FIGHTER:
      nBaseHP = 10;
      nBaseSkillPoints = 2;

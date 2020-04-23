@@ -42,7 +42,7 @@ void miBootAndBanPC (object oPC)
         "Please reinstall your game, removing all client-side modifications, then try again or contact arelith.dm@gmail.com. ");
     SendMessageToAllDMs("<cþ  >" + GetSummarisedPlayerInfo(oPC) + " just created an illegal character and is booted.");
     Error(CHECKER, "<cþ  >" + GetSummarisedPlayerInfo(oPC) + " just created an illegal character and is booted.");
-    //gsPCBanPlayer(oPC, FALSE, GetPCPublicCDKey(oPC), GetPCPlayerName(oPC), GetPCIPAddress(oPC));
+    gsPCBanPlayer(oPC, FALSE, GetPCPublicCDKey(oPC), GetPCPlayerName(oPC), GetPCIPAddress(oPC));
     DelayCommand(5.0, BootPC(oPC));
 }
 

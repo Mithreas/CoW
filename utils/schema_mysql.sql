@@ -2798,7 +2798,6 @@ CREATE TABLE `rquest_quests` (
         KEY idx (quest,questset)
         ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 		
-		
 DROP TABLE IF EXISTS `gs_player_map_data`;
 CREATE TABLE `gs_player_map_data` (
   `pcid` int(11) NOT NULL,
@@ -2806,5 +2805,14 @@ CREATE TABLE `gs_player_map_data` (
   `mapdata` varchar(256) NOT NULL,
   KEY idx (pcid,arearesref),
   CONSTRAINT `gs_player_map_data_FK_1` FOREIGN KEY (`pcid`) REFERENCES `gs_pc_data` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+DROP TABLE IF EXISTS `pw_people_data`;
+CREATE TABLE `pw_people_data` (
+  `waypoint` varchar(64) NOT NULL,
+  `resref` varchar(16) NOT NULL,
+  `num` int(11) NOT NULL,
+  KEY idx (waypoint,resref)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;

@@ -727,7 +727,7 @@ void init_feat_list (object oPC)
         add_feat_to_list(oPC, "Epic Spell Penetration", FEAT_EPIC_SPELL_PENETRATION);
 		if (!GetLevelByClass(CLASS_TYPE_DRUID, oPC)) add_feat_to_list(oPC, "Mummy Dust", FEAT_EPIC_SPELL_MUMMY_DUST);
 		
-	    if (miSSGetIsSpellsword(oPC)) add_feat_to_list(oPC, "Spellsword Greater Imbue", 10016, TRUE);
+	    if (miSSGetIsSpellsword(oPC) && !GetLocalInt(gsPCGetCreatureHide(oPC), "SS_GREATER_IMBUE")) add_feat_to_list(oPC, "Spellsword Greater Imbue", 10016, TRUE);
 	  }		  
     }	
 		
@@ -1391,9 +1391,11 @@ void Init()
   if (fPCLevel < 1.0f) fPCLevel = 1.0f;
 
   SetLocalFloat(oPC, CURR_LVL, fPCLevel);
-  
-  // Set a minimum cost.
-  if (fPCLevel < 6.0f) fPCLevel = 6.0f;
+   
+  // Factor actual class levels out of the cost calculation.
+  // To allow for negative ECL, add 5 to the base cost. 
+  fPCLevel -= IntToFloat(GetHitDice(oPC));
+  fPCLevel += 5.0f;
   int nGoldCost = FloatToInt(fPCLevel * 500.0f);
   SetLocalInt(oPC, CURR_COST, nGoldCost);
 }
@@ -1426,7 +1428,7 @@ void PageInit()
   {
     SetDlgPrompt("You are currently System Level " + IntToString(nSystemLevel) + ". " +
     "\n\nYour current effective level is " + FloatToString(fPCLevel, 4, 1) +
-    " so to take another feat will cost you " + IntToString(nGold) + " gp." +
+    " and to take another feat will cost you " + IntToString(nGold) + " gp." +
     "\n\nPick the category of feat you wish to take.\n\n" +
 	"My classes:\n" + mdGetClassName(GetClassByPosition(1, OBJECT_SELF)) + " " + 
 	mdGetClassName(GetClassByPosition(2, OBJECT_SELF)) + " " + mdGetClassName(GetClassByPosition(3, OBJECT_SELF)));

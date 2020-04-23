@@ -79,6 +79,7 @@ string GetQuestVariableName(int nQuestNum)
 int GetQuestInt (int nQuestNum, object oPC = OBJECT_INVALID)
 {
   if (!GetIsObjectValid(oPC)) oPC = GetPCSpeaker();
+  if (!GetIsObjectValid(oPC)) return 0; // not a dialog
   
   int nQuestInt = GetPersistentInt(oPC,
                                    GetQuestVariableName(nQuestNum),

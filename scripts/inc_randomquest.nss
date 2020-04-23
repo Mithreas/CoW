@@ -330,7 +330,7 @@ void DestroyNPCIfInactive(string sNPCTag)
   if ((sActivePlayers == "") && GetIsObjectValid(oNPC))
   {
     DestroyObject(oNPC);
-    RemovePersistentPerson(GetObjectByTag("WP_"+sNPCTag+"_SPAWN"), sNPCTag);
+    RemovePersistentPerson(GetObjectByTag("WP_"+sNPCTag+"_SPAWN"), GetResRef(oNPC));
   }
 }
 

@@ -28,7 +28,7 @@ void main()
     object oWP = GetLocalObject(OBJECT_SELF, "HOME_WP");
 
     // Don't respawn this NPC when the server resets... he's dead, Jim!
-    RemovePersistentPerson(oWP, GetTag(OBJECT_SELF));
+    RemovePersistentPerson(oWP, GetResRef(OBJECT_SELF));
 
     ExecuteScript("nw_c2_default7", OBJECT_SELF);
   }

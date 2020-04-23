@@ -27,31 +27,39 @@ void main()
 		  int nCount = d3();
 		  object oGhost; 
 		  
-		  while (nCount > 0);
+		  switch (nCount)
 		  {
-		    oGhost = CreateObject(OBJECT_TYPE_CREATURE, "ghost4", GetLocation(OBJECT_SELF));
-			AssignCommand(oGhost, SpeakString("*rises up from the stone floor*"));
-			
-			nCount --;
-		  }
+		    case 3:
+		      oGhost = CreateObject(OBJECT_TYPE_CREATURE, "ghost4", GetLocation(OBJECT_SELF));
+			  AssignCommand(oGhost, SpeakString("*rises up from the stone floor*"));
+			case 2:
+		      oGhost = CreateObject(OBJECT_TYPE_CREATURE, "ghost4", GetLocation(OBJECT_SELF));
+			  AssignCommand(oGhost, SpeakString("*rises up from the stone floor*"));
+			case 1:
+		      oGhost = CreateObject(OBJECT_TYPE_CREATURE, "ghost4", GetLocation(OBJECT_SELF));
+			  AssignCommand(oGhost, SpeakString("*rises up from the stone floor*"));
+			  break;
+		  }			
 		}		
 		
 		// PCK_GEM3 - drain stamina
 		if (GetIsObjectValid(GetObjectByTag("PCK_GEM3")))
 		{
 		  int nStamina = 0;
-		  
-		  object oPC = GetFirstObjectInArea(OBJECT_SELF);
-		  while (GetIsObjectValid(oPC))
+		  int nNth = 1;
+		  object oPC = GetNearestCreature(CREATURE_TYPE_PLAYER_CHAR, PLAYER_CHAR_IS_PC, OBJECT_SELF, nNth);
+		  while (GetIsObjectValid(oPC) && GetDistanceBetween(oPC, OBJECT_SELF) <= 25.0f)
 		  {
-		    if (GetIsPC(oPC) && !GetIsDM(oPC) && GetDistanceBetween(oPC, OBJECT_SELF) <= 25.0f)
+		    if (!GetIsDM(oPC))
 			{
-			  gsSTAdjustState(GS_ST_STAMINA, -5.0f, oPC);
-		      ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_NEGATIVE_ENERGY), OBJECT_SELF);
+			  FloatingTextStringOnCreature("Stamina drained!", oPC, FALSE);
+			  gsSTDoCasterDamage(oPC, 5);
+		      ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_NEGATIVE_ENERGY), oPC);
 			  nStamina += 5;
 			}
 			
-			oPC = GetNextObjectInArea(OBJECT_SELF);
+			nNth++;
+			oPC = GetNearestCreature(CREATURE_TYPE_PLAYER_CHAR, PLAYER_CHAR_IS_PC, OBJECT_SELF, nNth);
 		  }
 		  
 		  if (nStamina)

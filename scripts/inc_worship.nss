@@ -309,6 +309,8 @@ int gsWOAdjustPiety(object oPC, float fAmount, int bReducePietyBelowZero = TRUE)
     float fPiety = gsWOGetPiety(oPC);
 
     if(fAmount < 0.0 && fPiety + fAmount < 0.0 && !bReducePietyBelowZero) return FALSE;
+	
+	if (GetLevelByClass(CLASS_TYPE_FAVOURED_SOUL, oPC) && fAmount > 0.0) fAmount *= 2;
 
     if (fPiety + fAmount > 100.0) fPiety = 100.0;
     else if (fPiety + fAmount < -100.0) fPiety = -100.0;

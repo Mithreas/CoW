@@ -228,34 +228,6 @@ void main()
         DeleteLocalInt(oEntering, "GS_ENABLED");
       }
     }
-	
-	// Migration code - old faction system to new.
-	string sSubRace = GetSubRace(oEntering);
-	if (sSubRace == "House Drannis")
-	{
-	  SetSubRace(oEntering, "Human");
-	  miBAApplyBackground(oEntering, MI_BA_DRANNIS);
-	}
-	else if (sSubRace == "House Erenia")
-	{
-	  SetSubRace(oEntering, "Human");
-	  miBAApplyBackground(oEntering, MI_BA_ERENIA);
-	}
-	else if (sSubRace == "House Renerrin")
-	{
-	  SetSubRace(oEntering, "Human");
-	  miBAApplyBackground(oEntering, MI_BA_RENERRIN);
-	}
-	else if(sSubRace == "Shadow")
-	{
-	  SetSubRace(oEntering, "Human");
-	  miBAApplyBackground(oEntering, MI_BA_SHADOW, TRUE);
-	}
-	else if (sSubRace == "Wardens")
-	{
-	  SetSubRace(oEntering, "Halfling");
-	  miBAApplyBackground(oEntering, MI_BA_WARDEN);
-	}
 
     if (GetLocalInt(oEntering, "GS_ENABLED"))
     {
@@ -481,8 +453,8 @@ void main()
     // -colour_mode: 1 [writes out untranslated text to the console, except for common]
     _CreateDefaultSetting(oEntering, "OUTPUT_COLOUR", 1);
 
-    // -console_mode: 2 [shows the language prefix, except for common]
-    _CreateDefaultSetting(oEntering, "OUTPUT_TO_CONSOLE", 2);
+    // -console_mode: 1 [mirrors all PC chat text to the right hand server window]
+    _CreateDefaultSetting(oEntering, "OUTPUT_TO_CONSOLE", 1);
 
     // -prefix_mode: 1 [colour untranslated text, do not colour translated text]
     _CreateDefaultSetting(oEntering, "OUTPUT_PREFIX", 1);

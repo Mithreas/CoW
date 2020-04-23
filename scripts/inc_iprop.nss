@@ -365,6 +365,7 @@ void gsIPLoadPropertyTable()
 
             nID     = gsIPAddValue(nTableID, "ID", nNth);
             gsIPSetValue(nTableID, nID, "STRREF", StringToInt(sString));
+			WriteTimestampedLogEntry("ItemPropDef: " + GetStringByStrRef(StringToInt(sString)));
 
             sString = Get2DAString("itempropdef", "SubTypeResRef", nNth);
 

@@ -282,6 +282,8 @@ void main()
 
         //requires additional attribute(s) added to creature hide - SPELLSWORD, BlockedSchool1, BlockedSchool2
         //allow healing spells through
+		int bAllow = FALSE;
+		
         switch (GetSpellId())
         {
             case SPELL_CURE_CRITICAL_WOUNDS:
@@ -296,7 +298,7 @@ void main()
             case SPELL_RESURRECTION:
             case SPELL_EPIC_MAGE_ARMOR:
             {
-                return;
+                bAllow = TRUE;
             }
         }
 
@@ -304,17 +306,18 @@ void main()
         if (GetBaseItemType(GetSpellCastItem()) == BASE_ITEM_ENCHANTED_POTION ||
              GetBaseItemType(GetSpellCastItem()) == BASE_ITEM_POTIONS)
         {
-            return;
+            bAllow = TRUE;
         }
 
         //check if the spell comes from a banned school and block it if necessary
-        if ((GetSpellSchool(GetSpellId()) == GetLocalInt(oHide, "MI_BLOCKEDSCHOOL1"))
+		if (!bAllow && 
+            ((GetSpellSchool(GetSpellId()) == GetLocalInt(oHide, "MI_BLOCKEDSCHOOL1"))
                 || (_GetIsSummonSpell(GetSpellId(), TRUE, TRUE)) // blocks all summons/undead/blades/planar
                 //|| (GetSpellSchool(GetSpellId()) == GetLocalInt(oHide, "MI_BLOCKEDSCHOOL2"))// blocks conjuration school
                 || (GetSpellId() == SPELL_EPIC_DRAGON_KNIGHT)
                 || (GetSpellId() == SPELL_EPIC_HELLBALL)
                 || (GetSpellId() == SPELL_EPIC_MUMMY_DUST)
-                || (GetSpellId() == SPELL_EPIC_RUIN))
+                || (GetSpellId() == SPELL_EPIC_RUIN)))
         {
           SendMessageToPC (OBJECT_SELF, "You are prohibited from casting spells of this type.");
           gsSPSetOverrideSpell();

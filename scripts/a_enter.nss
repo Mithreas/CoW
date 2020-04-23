@@ -582,12 +582,13 @@ void main()
                 //::  Added by ActionReplay
                 //::  Dynamic Merchants
                 //::------------------------------------------------------------
-                if ( sString == "AR_DYN_MERCHANT" ) {
+                if ( sString == "AR_DYN_MERCHANT" ) 
+				{
                     int iTimeStampMerchant = GetLocalInt(oObject, "GS_TIMESTAMP");
 
                     //::  Change Merchant every 2nd Day
-                    if ( gsTIGetDay(nTimestamp - iTimeStampMerchant) > 1 ) {
-                    //if ( (nTimestamp - iTimeStampMerchant) > 0 ) {
+                    if ( gsTIGetDay(nTimestamp - iTimeStampMerchant) > 1 ) 
+					{
                         SetLocalInt(oObject, "GS_TIMESTAMP", nTimestamp);
 
                         int nPrevMerchantId     = GetLocalInt(oObject, "AR_DYN_MER_PREV");
@@ -614,113 +615,8 @@ void main()
 
                         string sResRef  = GetLocalString(oObject, "AR_RESREF_" + IntToString(nNewMerchant));
                         DelayCommand(6.0, _arCreateDynamicMerchant(sResRef, oObject));
-                    }
-                }
-                //::------------------------------------------------------------
-
-                // added by Dunshine, check for Tinker Locations
-                if (sString == "WP_gvd_tinker") {
-
-                  // only check once a day (gametime)
-                  int iTimeStampTinker = GetLocalInt(oObject,"GS_TIMESTAMP");
-                  // use for easy testing: if ((nTimestamp - iTimeStampTinker) > 0) {
-                  if (gsTIGetDay(nTimestamp - iTimeStampTinker) > 0) {
-
-                    // already a Tinker there?
-                    if (GetLocalInt(oObject,"iTinker") == 0) {
-
-                      // nope, 10% of one appearing every day
-                      // for testing 100% chance: if (d10(1) < 11) {
-                      if (d10(1) == 1) {
-                      // for live 10% chance: if (d10(1) == 1) {
-                        // a Tinker arrives
-
-                        // check how many Tinkers are available (not occupied elsewhere)
-                        object oTinkerTracker = GetObjectByTag("gvd_tinker_tracker");
-                        int iAvailable = GetLocalInt(oTinkerTracker,"iAvailable");
-
-                        // pick one randomly
-                        int iTinker = Random(iAvailable);
-
-                        // determine the actual tinker
-                        string sAvailable;
-                        if (iAvailable != 7) {
-                          sAvailable = GetLocalString(oTinkerTracker,"sAvailable");
-                          while (GetSubString(sAvailable,iTinker,1) != "1") {
-                            iTinker = iTinker + 1;
-                          }
-                          iTinker = iTinker + 1;
-                        } else {
-                          // all tinkers are available, so tinker is always available
-                          sAvailable = "1111111";
-                          iTinker = iTinker + 1;
-                        }
-
-                        // make selected Tinker unavailable
-                        SetLocalInt(oTinkerTracker, "iAvailable", iAvailable-1);
-                        sAvailable = GetStringLeft(sAvailable,iTinker-1) + "0" + GetStringRight(sAvailable,7-iTinker);
-                        SetLocalString(oTinkerTracker, "sAvailable", sAvailable);
-
-                        // store selected Tinker on waypoint and create the Tinker and his bag
-                        SetLocalInt(oObject,"iTinker",iTinker);
-                        object oTinker = GetObjectByTag("gvd_tinker_template"+IntToString(iTinker));
-                        location locTinker = GetLocation(oObject);
-                        oTinker = CopyObject(oTinker,locTinker,OBJECT_INVALID,"gvd_tinker"+IntToString(iTinker));
-                        SetLocalInt(oTinker,"iTinker",iTinker);
-                        SetLocalString(oTinker,"dialog","zdlg_gvd_tinker");
-
-                        // place bag a bit to the side of the Tinker
-                        float fTinkerDirection = GetFacing(oObject);
-                        vector vTinkerPosition = GetPosition(oObject);
-                        location locBag = Location(GetArea(oObject), vTinkerPosition + AngleToVector(fTinkerDirection + 90) * 0.5, fTinkerDirection);
-
-                        object oTinkerBag = CreateObject(OBJECT_TYPE_PLACEABLE,"gvd_tinker_bag",locBag);
-
-                        // make it static, so it doesn't get cleaned up later by gs_run_cleanarea
-                        SetLocalInt(oTinkerBag, "GS_STATIC", TRUE);
-
-                        // create a daypost waypoint for the Tinker so he doesn't move away from his location
-                        CreateObject(OBJECT_TYPE_WAYPOINT,"gvd_tinker_loc",locTinker,FALSE,"GS_WP_DPOST_gvd_tinker"+IntToString(iTinker));
-
-                      }
-
-                      // next check in 24 hours
-                      SetLocalInt(oObject,"GS_TIMESTAMP", nTimestamp);
-
-                    } else {
-                      // if no one in the area Tinker leaves
-                      if (!gsARGetIsAreaActive(OBJECT_SELF)) {
-                        int iTinker = GetLocalInt(oObject,"iTinker");
-                        object oTinker = GetObjectByTag("gvd_tinker"+IntToString(iTinker));
-                        object oTinkerBag = GetNearestObjectByTag("gvd_tinker_bag", oTinker);
-                        if (oTinkerBag != OBJECT_INVALID) DestroyObject(oTinkerBag);
-                        if (oTinker != OBJECT_INVALID) DestroyObject(oTinker);
-
-                        // remove daypost waypoint as well
-                        oTinker = GetObjectByTag("GS_WP_DPOST_gvd_tinker"+IntToString(iTinker));
-                        if (oTinker != OBJECT_INVALID) DestroyObject(oTinker);
-
-                        // remove variable, so the waypoint is available for another tinker again
-                        DeleteLocalInt(oObject,"iTinker");
-
-                        // update availibity on the tinker tracker as well
-                        object oTinkerTracker = GetObjectByTag("gvd_tinker_tracker");
-                        int iAvailable = GetLocalInt(oTinkerTracker,"iAvailable");
-                        SetLocalInt(oTinkerTracker, "iAvailable", iAvailable-1);
-                        string sAvailable = GetLocalString(oTinkerTracker,"sAvailable");
-                        sAvailable = GetStringLeft(sAvailable,iTinker-1) + "1" + GetStringRight(sAvailable,7-iTinker);
-                        SetLocalString(oTinkerTracker, "sAvailable", sAvailable);
-
-                        // next check in 24 hours
-                        SetLocalInt(oObject,"GS_TIMESTAMP", nTimestamp);
-
-                      } else {
-                        // still people in area, we leave the timestamp unchanged, so the clean-up will happen when all PC have left the area
-                      }
-                    }
-                  }
-                }
-
+					}
+                }					
                 break;
             }
 

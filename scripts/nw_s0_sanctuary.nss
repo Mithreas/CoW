@@ -10,7 +10,7 @@ void main()
     int nSpell       = GetSpellId();
     int nCasterLevel = AR_GetCasterLevel(OBJECT_SELF);
     int nMetaMagic   = AR_GetMetaMagicFeat();
-    int nDuration    = gsFLGetAreaFlag("PVP", oTarget) ? 1 : nCasterLevel;
+    int nDuration    = gsFLGetAreaFlag("PVP", oTarget) ? 5 : nCasterLevel;
 
     //raise event
     SignalEvent(oTarget, EventSpellCastAt(OBJECT_SELF, nSpell, FALSE));

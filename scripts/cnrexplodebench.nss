@@ -12,7 +12,9 @@
 #include "cnr_recipe_utils"
 
 // Todo:
-// Sulphur deposits
+// Dispelling gonne slugs
+// Ondaran dust (silence grenades)
+// 
 
 void main()
 {
