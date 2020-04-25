@@ -1,4 +1,5 @@
 #include "inc_customspells"
+#include "inc_state"
 #include "inc_text"
 #include "inc_timelock"
 
@@ -30,8 +31,8 @@ void main()
     // ]-- end addition.
 
     // Assassin: 2m cooldown, add Exp. Retreat at level 15
-    // Considers feat used if there is no cast item, and the caster level is the same as the assassin's class levels.
-    if (!GetIsObjectValid(oItem) && GetLevelByClass(CLASS_TYPE_ASSASSIN, OBJECT_SELF) == nCasterLevel)
+    // Considers feat used if there is no cast item, and the base caster level is the same as the assassin's class levels.
+    if (!GetIsObjectValid(oItem) && GetLevelByClass(CLASS_TYPE_ASSASSIN, OBJECT_SELF) == GetCasterLevel(OBJECT_SELF))
     {
         // Restore feat use.
         IncrementRemainingFeatUses(OBJECT_SELF, FEAT_PRESTIGE_INVISIBILITY_1);
@@ -42,8 +43,9 @@ void main()
             return;
         }
         SetTimelock(OBJECT_SELF, FloatToInt(TurnsToSeconds(2)), "Assassin Invisibility", 60, 30);
+		gsSTDoCasterDamage(OBJECT_SELF, 5);
 
-        if (GetLevelByClass(CLASS_TYPE_ASSASSIN, OBJECT_SELF) >= 15)
+        if (GetLevelByClass(CLASS_TYPE_ASSASSIN, OBJECT_SELF) >= 5)
         {
             if (GetHasSpellEffect(SPELL_HASTE, OBJECT_SELF) == TRUE) return; // does nothing if caster already has haste
             if (GetHasSpellEffect(SPELL_EXPEDITIOUS_RETREAT, OBJECT_SELF) == TRUE) return; // does nothing if caster already has Expeditious Retreat
@@ -51,7 +53,18 @@ void main()
             ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eFast, OBJECT_SELF, RoundsToSeconds(nCasterLevel));
         }
     }
-
+	else if (!GetIsObjectValid(oItem) && nSpell == 483) // Harper invis
+	{
+        // Restore feat use.
+        IncrementRemainingFeatUses(OBJECT_SELF,  FEAT_HARPER_INVISIBILITY);
+        if(GetIsTimelocked(OBJECT_SELF, "Harper Invisibility"))
+        {
+            TimelockErrorMessage(OBJECT_SELF, "Harper Invisibility");
+            return;
+        }
+        SetTimelock(OBJECT_SELF, FloatToInt(TurnsToSeconds(2)), "Harper Invisibility", 60, 30);
+		gsSTDoCasterDamage(OBJECT_SELF, 5);
+	}
 
     int nMetaMagic   = AR_GetMetaMagicFeat();
     int nDuration    = nCasterLevel;

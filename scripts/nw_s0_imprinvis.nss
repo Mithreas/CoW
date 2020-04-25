@@ -27,6 +27,7 @@ void main()
             TimelockErrorMessage(OBJECT_SELF, "Assassin Improved Invisibility");
             return;
         }
+		gsSTDoCasterDamage(OBJECT_SELF, 8);
         SetTimelock(OBJECT_SELF, FloatToInt(TurnsToSeconds(2)), "Assassin Improved Invisibility", 60, 30);
     }
 

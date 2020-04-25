@@ -13,6 +13,7 @@
 //:://////////////////////////////////////////////
 
 #include "inc_customspells"
+#include "inc_state"
 #include "inc_timelock"
 
 void main()
@@ -35,12 +36,12 @@ void main()
 // End of Spell Cast Hook
 
     // Assassin: 2m cooldown, Swap for Ethereal Visage at level 11
-    // Considers feat used if there is no cast item, and the caster level is the same as the assassin's class levels.
     object oItem = GetSpellCastItem();
-    if (!GetIsObjectValid(oItem) && GetLevelByClass(CLASS_TYPE_ASSASSIN, OBJECT_SELF) == AR_GetCasterLevel(OBJECT_SELF))
+    if (!GetIsObjectValid(oItem) && GetSpellId() == 605)
     {
         // Restore feat use.
         IncrementRemainingFeatUses(OBJECT_SELF, FEAT_PRESTIGE_SPELL_GHOSTLY_VISAGE);
+		
         // Cooldown check.
         if(GetIsTimelocked(OBJECT_SELF, "Assassin Visage"))
         {
@@ -49,15 +50,18 @@ void main()
         }
         SetTimelock(OBJECT_SELF, FloatToInt(TurnsToSeconds(2)), "Assassin Visage", 60, 30);
 
-        if (GetLevelByClass(CLASS_TYPE_ASSASSIN, OBJECT_SELF) >= 11)
+        if (GetLevelByClass(CLASS_TYPE_ASSASSIN, OBJECT_SELF) >= 8)
         {
             // Ethereal Visage
             effect eEther = EffectLinkEffects(EffectVisualEffect(VFX_DUR_ETHEREAL_VISAGE), EffectLinkEffects(EffectDamageReduction(20, DAMAGE_POWER_PLUS_THREE), EffectSpellLevelAbsorption(2)));
             eEther = EffectLinkEffects(eEther, EffectLinkEffects(EffectConcealment(25), EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
 
             ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eEther, OBJECT_SELF, TurnsToSeconds(2));
+			gsSTDoCasterDamage(OBJECT_SELF, 8); 
             return;
         }
+		
+		gsSTDoCasterDamage(OBJECT_SELF, 5); 
     }
 
 

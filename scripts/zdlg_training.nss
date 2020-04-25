@@ -574,7 +574,8 @@ void init_feat_list (object oPC)
     //add_feat_to_list(oPC, "Sonic Resistance (30)", FEAT_EPIC_ENERGY_RESISTANCE_SONIC_3);
     //add_feat_to_list(oPC, "Sonic Resistance (40)", FEAT_EPIC_ENERGY_RESISTANCE_SONIC_4);
     //add_feat_to_list(oPC, "Sonic Resistance (50)", FEAT_EPIC_ENERGY_RESISTANCE_SONIC_5);
-    add_feat_to_list(oPC, "Epic Fiend", FEAT_EPIC_EPIC_FIEND, FALSE, CLASS_TYPE_BLACKGUARD);
+    add_feat_to_list(oPC, "Epic Fiend", FEAT_EPIC_EPIC_FIEND, FALSE, CLASS_TYPE_BLACKGUARD); 
+    add_feat_to_list(oPC, "Epic Shadowlord", FEAT_EPIC_EPIC_SHADOWLORD, FALSE, CLASS_TYPE_SHADOWDANCER);
     add_feat_to_list(oPC, "Epic Fortitude", FEAT_EPIC_FORTITUDE);
     add_feat_to_list(oPC, "Great CHA 1", FEAT_EPIC_GREAT_CHARISMA_1);
     add_feat_to_list(oPC, "Great CHA 2", FEAT_EPIC_GREAT_CHARISMA_2);
@@ -1104,7 +1105,7 @@ void init_feat_list (object oPC)
     if (GetLevelByClass(CLASS_TYPE_ARCANE_ARCHER, oPC) >= 3) add_feat_to_list(oPC, "Enchant Arrow 6", FEAT_PRESTIGE_ENCHANT_ARROW_6, FALSE, CLASS_TYPE_ARCANE_ARCHER);
     add_feat_to_list(oPC, "Imbue Arrow", FEAT_PRESTIGE_IMBUE_ARROW, FALSE, CLASS_TYPE_ARCANE_ARCHER);
     add_feat_to_list(oPC, "Seeker Arrow 1", FEAT_PRESTIGE_SEEKER_ARROW_1, FALSE, CLASS_TYPE_ARCANE_ARCHER);
-    add_feat_to_list(oPC, "Seeker Arrow 2", FEAT_PRESTIGE_SEEKER_ARROW_2, FALSE, CLASS_TYPE_ARCANE_ARCHER);
+    // add_feat_to_list(oPC, "Seeker Arrow 2", FEAT_PRESTIGE_SEEKER_ARROW_2, FALSE, CLASS_TYPE_ARCANE_ARCHER);
     if (nPCLevel > 13) add_feat_to_list(oPC, "Hail of Arrows", FEAT_PRESTIGE_HAIL_OF_ARROWS, FALSE, CLASS_TYPE_ARCANE_ARCHER);
     if (nPCLevel > 16) add_feat_to_list(oPC, "Arrow of Death", FEAT_PRESTIGE_ARROW_OF_DEATH, FALSE, CLASS_TYPE_ARCANE_ARCHER);
   }
@@ -1180,15 +1181,15 @@ void init_feat_list (object oPC)
   {
     int nHarperType  = GetLocalInt(gsPCGetCreatureHide(oPC), VAR_HARPER);
     // add_feat_to_list(oPC, "Sleep", FEAT_HARPER_SLEEP, FALSE, CLASS_TYPE_HARPER);
-    // if (nPCLevel > 12) add_feat_to_list(oPC, "Invisibility", FEAT_HARPER_INVISIBILITY, FALSE, CLASS_TYPE_HARPER);
 	
-	if(nHarperType == MI_CL_HARPER_SCOUT)
+	if(!nHarperType || nHarperType == MI_CL_HARPER_SCOUT)
 	{
       add_feat_to_list(oPC, "Deneir's Eye", FEAT_DENEIRS_EYE, FALSE, CLASS_TYPE_HARPER);
       add_feat_to_list(oPC, "Lliira's Heart", FEAT_LLIIRAS_HEART, FALSE, CLASS_TYPE_HARPER);
       add_feat_to_list(oPC, "Cat's Grace", FEAT_HARPER_CATS_GRACE, FALSE, CLASS_TYPE_HARPER);
       add_feat_to_list(oPC, "Eagle's Splendor", FEAT_HARPER_EAGLES_SPLENDOR, FALSE, CLASS_TYPE_HARPER);
       if (nPCLevel > 12) add_feat_to_list(oPC, "Craft Harper Item", FEAT_CRAFT_HARPER_ITEM, FALSE, CLASS_TYPE_HARPER);
+      if (nPCLevel > 12) add_feat_to_list(oPC, "Invisibility", FEAT_HARPER_INVISIBILITY, FALSE, CLASS_TYPE_HARPER);
 	}
   }
 

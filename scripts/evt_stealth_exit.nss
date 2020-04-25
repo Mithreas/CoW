@@ -1,4 +1,4 @@
-#include "inc_names"
+#include "inc_rename"
 #include "inc_timelock"
 
 void main()
@@ -11,7 +11,9 @@ void main()
         }
 
         SetLocalInt(OBJECT_SELF, "StealthTimer", -1);
+        svSetAffix(OBJECT_SELF, STEALTH_PREFIX, FALSE);
     }
+    else
+        SetName(OBJECT_SELF, GetName(OBJECT_SELF, TRUE));
 
-    fbNARemoveNameModifier(OBJECT_SELF, FB_NA_MODIFIER_STEALTH);
 }

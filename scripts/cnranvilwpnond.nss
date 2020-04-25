@@ -20,7 +20,7 @@ void main()
 
   PrintString("cnranvilwpnond init");
 
-  string sMenu1Ammo = CnrRecipeAddSubMenu("cnranvilwpnond", "Ondaran Bullets and Knives");
+  string sMenu1Ammo = CnrRecipeAddSubMenu("cnranvilwpnond", "Ondaran Slingstones and Knives");
   string sMenu1Axes = CnrRecipeAddSubMenu("cnranvilwpnond", "Ondaran Axes");
   string sMenu1Bladed = CnrRecipeAddSubMenu("cnranvilwpnond", "Ondaran Bladed");
   string sMenu1Blunts = CnrRecipeAddSubMenu("cnranvilwpnond", "Ondaran Blunts");
@@ -73,7 +73,7 @@ void main()
 
   ///////////////// Ondaran Weapons ///////////////
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu1Ammo, "Ondaran Bullets", "cnrbullet1", 99);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu1Ammo, "Ondaran Slingstones", "cnrbullet1", 99);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotond", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 10, 10);

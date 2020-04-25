@@ -5,6 +5,7 @@
 #include "inc_names"
 #include "inc_worship"
 #include "inc_pc"
+#include "inc_rename"
 #include "inc_effect"
 #include "__server_config"
 #include "zzdlg_color_inc"
@@ -144,8 +145,8 @@ void UnDisguisePC(object oPC)
     SetLocalInt(oPC, DISGUISED, 0);
 
     // Remove name modifier.
-    fbNADelaySetName(oPC, "");
-    fbNARemoveNameModifier(oPC, FB_NA_MODIFIER_DISGUISE);
+    svSetPCNameOverride(oPC, "");
+    svSetAffix(oPC, DISGUISE_SUFFIX, FALSE);
 
     miXFUpdatePlayerName(oPC, GetName(oPC));
     RestorePortrait(oPC);
@@ -162,6 +163,12 @@ void UnDisguisePC(object oPC)
       RemoveTaggedEffects(oPC, EFFECT_TAG_DISGUISE);
     }
 
+    string sExist = GetLocalString(oHide, "ORGNPDesc");
+    if(sExist != "")
+    {
+        SetDescription(oPC, sExist);
+        DeleteLocalString(oHide, "ORGNPDesc");
+    }
 }
 
 /* Utility function to disguise a PC */
@@ -169,7 +176,7 @@ void DisguisePC(object oPC, string sName = "")
 {
     FloatingTextStringOnCreature("You are now trying to disguise yourself.",
                                                                      oPC, TRUE);
-    int nPCType = GetRacialType(oPC);
+    object oHide = gsPCGetCreatureHide(oPC);
 
     // Note that the PC is disguised.
     SetLocalInt(oPC, DISGUISED, 1);
@@ -177,14 +184,22 @@ void DisguisePC(object oPC, string sName = "")
     // Change name.
     if (sName != "")
     {
-      fbNADelaySetName(oPC, sName);
+      svSetPCNameOverride(oPC, sName);
+      string sExist = GetLocalString(oHide, "PDesc_"+sName);
+      if(sExist != "")
+      {
+        string sOrgn = GetLocalString(oHide, "ORGNPDesc");
+        if(sOrgn == "") //nothing saved so save it
+            SetLocalString(oHide, "ORGNPDesc", GetDescription(oPC));
+        SetDescription(oPC, sExist);
+      }
+      svSetAffix(oPC, DISGUISE_SUFFIX, TRUE);
     }
 
     miXFUpdatePlayerName(oPC, sName);
     HidePortrait(oPC);
 
     // dunshine: check for disguise kit useage, apply a bluff bonus if so
-    object oHide = gsPCGetCreatureHide(oPC);
     if (GetLocalInt(oHide, "GVD_DISGUISE_KIT_ACTIVE") == 1) {
       ApplyTaggedEffectToObject(DURATION_TYPE_PERMANENT, SupernaturalEffect(EffectSkillIncrease(SKILL_BLUFF, 10)), oPC, 0.0, EFFECT_TAG_DISGUISE);
     }

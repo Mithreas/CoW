@@ -1116,7 +1116,39 @@ int ArcaneArcherCalculateBonus()
     {
         return 0;
     }
-    int nBonus = ((nLevel+1)/2); // every odd level after 1 get +1
+	
+    int nBonus = 0;
+	
+	if (GetKnowsFeat(FEAT_PRESTIGE_ENCHANT_ARROW_7, OBJECT_SELF))
+	{
+	  // Higher level than FL allows, use native bonus.  
+	  nBonus = ((nLevel+1)/2); // every odd level after 1 get +1
+	}
+	else if (GetKnowsFeat(FEAT_PRESTIGE_ENCHANT_ARROW_6, OBJECT_SELF))
+	{
+	  nBonus = 5;
+	}
+	else if (GetKnowsFeat(FEAT_PRESTIGE_ENCHANT_ARROW_5, OBJECT_SELF))
+	{
+	  nBonus = 5;
+	}
+	else if (GetKnowsFeat(FEAT_PRESTIGE_ENCHANT_ARROW_4, OBJECT_SELF))
+	{
+	  nBonus = 4;
+	}
+	else if (GetKnowsFeat(FEAT_PRESTIGE_ENCHANT_ARROW_3, OBJECT_SELF))
+	{
+	  nBonus = 5;
+	}
+	else if (GetKnowsFeat(FEAT_PRESTIGE_ENCHANT_ARROW_2, OBJECT_SELF))
+	{
+	  nBonus = 6;
+	}
+	else if (GetKnowsFeat(FEAT_PRESTIGE_ENCHANT_ARROW_1, OBJECT_SELF))
+	{
+	  nBonus = 1;
+	}
+	
     return nBonus;
 }
 

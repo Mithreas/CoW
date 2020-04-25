@@ -146,6 +146,9 @@ int gsWOGetIsDeityAvailable(int nDeity, object oPlayer = OBJECT_SELF)
     if (GetIsDM(oPlayer)) return TRUE;
     if (nDeity == GS_WO_NONE) return TRUE;
     object oItem = gsPCGetCreatureHide(oPlayer);
+	
+	// Racial restrictions - do these first..
+    if (!GetLocalInt(oItem, "GIFT_OF_UFAVOR") && !gsWOGetIsRacialTypeAllowed(nDeity, oPlayer)) return FALSE;
 	 
 	// Favoured Soul.  On Anemoi, Favoured Souls must worship the Seven Divines.
 	if (gsCMGetHasClass(CLASS_TYPE_FAVOURED_SOUL, oPlayer))
@@ -153,9 +156,6 @@ int gsWOGetIsDeityAvailable(int nDeity, object oPlayer = OBJECT_SELF)
 	  return gsWOGetCategory(nDeity) == FB_WO_CATEGORY_SEVEN_DIVINES;
 	}
 	
-	// Racial restrictions - do these first..
-    if (!GetLocalInt(oItem, "GIFT_OF_UFAVOR") && !gsWOGetIsRacialTypeAllowed(nDeity, oPlayer)) return FALSE;
-
     // Non religious classes can worship anyone.
     if (!gsCMGetHasClass(CLASS_TYPE_CLERIC, oPlayer) &&
         !gsCMGetHasClass(CLASS_TYPE_PALADIN, oPlayer) &&
@@ -180,7 +180,6 @@ int gsWOGetIsDeityAvailable(int nDeity, object oPlayer = OBJECT_SELF)
     //Rangers don't need to follow a nature deity.
     else if(gsCMGetHasClass(CLASS_TYPE_DRUID, oPlayer))
       return FALSE;
-
 
     // Clerics, rangers, paladins, champion of torms and blackguards must obey alignment restrictions.
     //As well as those with the gift of holy & favored souls.

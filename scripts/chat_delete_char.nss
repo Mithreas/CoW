@@ -39,6 +39,11 @@ void main()
        "you want to delete this character? If you type -delete_character again, " +
        "this character will be PERMANENTLY DELETED!!!\n");
       SetLocalInt(oHide, "CONFIRM_DELETE", 1);
+	  
+	  if (GetLocalInt(gsPCGetCreatureHide(oSpeaker), "FL_LEVEL") > 25)
+	  {
+	    SendMessageToPC(oSpeaker, "This character is eligible for an award (SL26+).  The award will be generated automatically when you delete them.");
+	  }
     }
   }
   chatVerifyCommand(oSpeaker);

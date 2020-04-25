@@ -17,7 +17,7 @@ void main()
 
   PrintString("cnranvilwpnste init");
 
-  string sMenu3Ammo = CnrRecipeAddSubMenu("cnranvilwpnste", "Steel Bullets and Knives");
+  string sMenu3Ammo = CnrRecipeAddSubMenu("cnranvilwpnste", "Steel Slingstones and Knives");
   string sMenu3Axes = CnrRecipeAddSubMenu("cnranvilwpnste", "Steel Axes");
   string sMenu3Bladed = CnrRecipeAddSubMenu("cnranvilwpnste", "Steel Bladed");
   string sMenu3Blunts = CnrRecipeAddSubMenu("cnranvilwpnste", "Steel Blunts");
@@ -69,7 +69,7 @@ void main()
 
   ///////////////// Steel Weapons ///////////////
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu3Ammo, "Steel Bullets", "ca_gen_bu_ste", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu3Ammo, "Steel Slingstones", "ca_gen_bu_ste", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotste", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 10);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 100, 100);

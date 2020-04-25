@@ -363,7 +363,7 @@ void main()
       if (GetStringLeft(sTag,9) == "CA_GEN_BU")
       {
         sCreateTag = sCreateTag + "bullet";
-        sName = sName + "Bullets";
+        sName = sName + "Slingstones";
       }
       object oAmmo = CreateItemOnObject(sCreateTag, oActivator, 99);
       itemproperty iGenProperty = GetFirstItemProperty(oItem);
@@ -661,14 +661,25 @@ void main()
       // Archer subclass.
       if (GetLocalInt(gsPCGetCreatureHide(oActivator), "ARCHER"))
       {
+	    string sBase = "ca_gen_arrow";
+		if (GetKnowsFeat(FEAT_WEAPON_FOCUS_HEAVY_CROSSBOW, oActivator) || 
+		    GetKnowsFeat(FEAT_WEAPON_FOCUS_LIGHT_CROSSBOW, oActivator))
+		{
+		  sBase = "ca_gen_bolt";
+		}
+		else if (GetKnowsFeat(FEAT_WEAPON_FOCUS_SLING, oActivator))
+		{
+		  sBase = "ca_gen_bu";
+		}
+	  
         int nLevel = GetLevelByClass(CLASS_TYPE_RANGER, oActivator);
         object oArrows;
         if (nLevel < 5)
-          oArrows = CreateItemOnObject("ca_gen_arrow_iro", oActivator);
+          oArrows = CreateItemOnObject(sBase + "_iro", oActivator);
         else if (nLevel < 10)
-          oArrows = CreateItemOnObject("ca_gen_arrow_ste", oActivator);
+          oArrows = CreateItemOnObject(sBase + "_ste", oActivator);
         else
-          oArrows = CreateItemOnObject("ca_gen_arrow_dam", oActivator);
+          oArrows = CreateItemOnObject(sBase + "_dam", oActivator);
         SetIdentified(oArrows, TRUE);
         SetPlotFlag(oArrows, TRUE);
       }

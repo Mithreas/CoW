@@ -9,6 +9,8 @@
  *
  * Should a name need to be changed for just one person for some reason, that's
  * possible: use SetDynamicName or DeleteDynamicName.
+ *
+ * Note: retired as broken by EE migration, see inc_rename for replacement. 
  */
 
 #include "nwnx_names"

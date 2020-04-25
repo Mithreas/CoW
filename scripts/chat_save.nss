@@ -32,7 +32,7 @@ void main()
 
         if (nTimeout < nTimestamp)
         {
-            nTimeout = nTimestamp + 10 * FloatToInt(TurnsToSeconds(1)); //1 minute
+            nTimeout = nTimestamp + FloatToInt(TurnsToSeconds(1)); //1 minute
 
             SetLocalInt(oSpeaker, "MI_SAVE_TIMEOUT", nTimeout);
 

@@ -290,12 +290,12 @@ void miCLApplyClassChanges(object oPC)
         int nHarperLevel = GetLevelByClass(CLASS_TYPE_HARPER, oPC);
 
         // Remove feats no longer used - Sleep, Invisibility
-        NWNX_Creature_RemoveFeat(oPC, 438); // TYMORAS_SMILE
+        //NWNX_Creature_RemoveFeat(oPC, 438); // TYMORAS_SMILE
         NWNX_Creature_RemoveFeat(oPC, 441); // HARPER_SLEEP
-        NWNX_Creature_RemoveFeat(oPC, 444); // HARPER_INVISIBILITY
+        //NWNX_Creature_RemoveFeat(oPC, 444); // HARPER_INVISIBILITY
 
         // Remove feats only used by scouts
-        if (nHarperType != MI_CL_HARPER_SCOUT)
+        if (nHarperType && nHarperType != MI_CL_HARPER_SCOUT)
         {
           NWNX_Creature_RemoveFeat(oPC, 437); // DENEIRS_EYE
           NWNX_Creature_RemoveFeat(oPC, 439); // LLIIRAS_HEART

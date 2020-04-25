@@ -1,5 +1,6 @@
 #include "inc_customspells"
 #include "inc_spells"
+#include "inc_state"
 #include "inc_timelock"
 void main()
 {
@@ -22,7 +23,7 @@ void main()
 
     // Assassin: 2m cooldown, add Ultravision at level 13
     // Considers feat used if there is no cast item, and the caster level is the same as the assassin's class levels.
-    if (!GetIsObjectValid(oItem) && GetLevelByClass(CLASS_TYPE_ASSASSIN, OBJECT_SELF) == nCasterLevel)
+    if (!GetIsObjectValid(oItem) && GetLevelByClass(CLASS_TYPE_ASSASSIN, OBJECT_SELF) == GetCasterLevel(OBJECT_SELF))
     {
         // Restore feat use.
         IncrementRemainingFeatUses(OBJECT_SELF, FEAT_PRESTIGE_DARKNESS);
@@ -33,8 +34,9 @@ void main()
             return;
         }
         SetTimelock(OBJECT_SELF, FloatToInt(TurnsToSeconds(2)), "Assassin Darkness", 60, 30);
+		gsSTDoCasterDamage(OBJECT_SELF, 2);
 
-        if (GetLevelByClass(CLASS_TYPE_ASSASSIN, OBJECT_SELF) >= 13)
+        if (GetLevelByClass(CLASS_TYPE_ASSASSIN, OBJECT_SELF) >= 8)
         {
             effect eUVEffect = EffectLinkEffects(EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE), EffectLinkEffects(EffectVisualEffect(VFX_DUR_ULTRAVISION), EffectLinkEffects(EffectVisualEffect(VFX_DUR_MAGICAL_SIGHT), EffectUltravision())));
             gsSPApplyEffect(OBJECT_SELF, eUVEffect, SPELL_DARKVISION, HoursToSeconds(nCasterLevel));

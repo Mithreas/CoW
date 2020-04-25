@@ -134,125 +134,46 @@ void gvd_DoRewards(object oPC) {
       // Roll ranges for the various awards, between min and max.
       int nMajorSuccessMaxVal = 0;
       int nMajorSuccessMinVal = 0;
-      int nGreaterSuccessMaxVal = 0;
-      int nGreaterSuccessMinVal = 0;
       int nMediumSuccessMaxVal = 0;
       int nMediumSuccessMinVal = 0;
       int nMinorSuccessMaxVal = 0;
       int nMinorSuccessMinVal = 0;
 
-      int nSpeakerGold = 0;
-      int nGoldPercentileThreshold = 200000;
-      int nGoldPercentileCap = 5;
-      int nPercentileBonus = 0;
-
-      // We can skip gold calculation if the PC is below level 15;
-      if (nLevel > nTier3Roll) {
-        nSpeakerGold = _calculatePCWorth(oPC);
-        // Determine the percentile bonus gain from gold sacrifice
-        nPercentileBonus = nSpeakerGold / nGoldPercentileThreshold;
-
-        // Add flat artefact bonus
-        nPercentileBonus += _calculateArteBonus(oPC);
-
-        // Clamp value 0 <= percentile <= PercentileCap
-        if (nPercentileBonus > nGoldPercentileCap) {
-          nPercentileBonus = nGoldPercentileCap;
-        }
-        if (nPercentileBonus < 0) {
-          nPercentileBonus = 0;
-        }
-      }
       if (nLevel > nTier1Roll) {
-        // 26+ 5% Major, 20% Greater, 75% Medium
-        // 96-100 Major, 76-95 Greater, 1-75 Medium
+        // 26+ 5% Major, 20% Medium, 75% Minor
+        // 96-100 Major, 76-95 Medium, 1-75 Minor
         nMajorSuccessMaxVal = 100;
         nMajorSuccessMinVal = 96;
-        nGreaterSuccessMaxVal = 95;
-        nGreaterSuccessMinVal = 76;
-        nMediumSuccessMaxVal = 75;
-        nMediumSuccessMinVal = 1;
-        nMinorSuccessMaxVal = 0;
-        nMinorSuccessMinVal = 0;
-
-        // Adjust for PercentileBonus
-        if (nPercentileBonus) {
-          // Increase the ranges on the highest awards for this section
-          nMajorSuccessMinVal -= nPercentileBonus;
-          nGreaterSuccessMaxVal -= nPercentileBonus;
-          nGreaterSuccessMinVal -= 2*nPercentileBonus;
-          nMediumSuccessMaxVal -= 2*nPercentileBonus;
-          // Check: Assuming 5% bonus for having 1 million gold,
-          // We should see 10% Major, 25% Greater, 65% Medium
-          // Values should be: 91-100 Major, 66-90, 1-65 Medium
-          // nMajorSuccessMaxVal = 100;
-          // nMajorSuccessMinVal = 96 - 5 = 91 (correct)
-          // nGreaterSuccessMaxVal = 95 - 5 = 90 (correct)
-          // nGreaterSuccessMinVal = 76 - 10 = 66 (correct)
-          // nMediumSuccessMaxVal = 75 - 10 = 65 (correct)
-          // nMediumSuccessMinVal = 1;
-          // nMinorSuccessMaxVal = 0;
-          // nMinorSuccessMinVal = 0;
-        }
-      }
-      else if (nLevel > nTier2Roll) {
-        // 21+ 10% Greater, 35% Medium, 55% Minor
-        // 91-100 Greater, 56-90 Medium, 1-55 Minor
-        nMajorSuccessMaxVal = 0;
-        nMajorSuccessMinVal = 0;
-        nGreaterSuccessMaxVal = 100;
-        nGreaterSuccessMinVal = 91;
-        nMediumSuccessMaxVal = 90;
-        nMediumSuccessMinVal = 56;
-        nMinorSuccessMaxVal = 55;
-        nMinorSuccessMinVal = 1;
-
-        if (nPercentileBonus) {
-          nGreaterSuccessMinVal -= nPercentileBonus;
-          nMediumSuccessMaxVal -= nPercentileBonus;
-          nMediumSuccessMinVal -= 2*nPercentileBonus;
-          nMinorSuccessMaxVal -= 2*nPercentileBonus;
-          // Check:
-          // Assuming 1m gold and 5% we should get this spread:
-          // 15% Greater, 40% Medium, 45% Minor
-          // 86-100 Greater, 46-85 Medium, 1-45 Minor
-          // nGreaterSuccessMaxVal = 100;
-          // nGreaterSuccessMinVal = 91 - 5 = 86 (correct)
-          // nMediumSuccessMaxVal = 90 - 5 = 85 (correct)
-          // nMediumSuccessMinVal = 56 - 10 = 46 (correct)
-          // nMinorSuccessMaxVal = 55 - 10 = 45 (correct)
-          // nMinorSuccessMinVal = 1;
-        }
-      }
-      else if (nLevel > nTier3Roll) {
-        // 16+ 25% Medium, 75% Minor
-        // 76-100 Medium, 1-75 Minor
-        nMajorSuccessMaxVal = 0;
-        nMajorSuccessMinVal = 0;
-        nGreaterSuccessMaxVal = 0;
-        nGreaterSuccessMinVal = 0;
-        nMediumSuccessMaxVal = 100;
+        nMediumSuccessMaxVal = 95;
         nMediumSuccessMinVal = 76;
         nMinorSuccessMaxVal = 75;
         nMinorSuccessMinVal = 1;
 
-        if (nPercentileBonus) {
-          nMediumSuccessMinVal -= nPercentileBonus;
-          nMinorSuccessMaxVal -= nPercentileBonus;
-          // Check:
-          // Assuming 1m gold and 5% we should get this spread:
-          // 30% Medium, 70% Minor
-          // 71-100 Medium, 1-70 Minor
-          // nMediumSuccessMinVal = 76 - 5 = 71 (correct)
-          // nMinorSuccessMaxVal = 75 - 5 = 70 (correct)
-        }
+      }
+      else if (nLevel > nTier2Roll) {
+        // 21+ 50% Medium, 50% Minor
+        // 51-100 Medium, 1-50 Minor
+        nMajorSuccessMaxVal = 0;
+        nMajorSuccessMinVal = 0;
+        nMediumSuccessMaxVal = 100;
+        nMediumSuccessMinVal = 51;
+        nMinorSuccessMaxVal = 50;
+        nMinorSuccessMinVal = 1;
+      }
+      else if (nLevel > nTier3Roll) {
+        // 16+ 5% Medium, 95% Minor
+        // 96-100 Medium, 1-95 Minor
+        nMajorSuccessMaxVal = 0;
+        nMajorSuccessMinVal = 0;
+        nMediumSuccessMaxVal = 100;
+        nMediumSuccessMinVal = 96;
+        nMinorSuccessMaxVal = 95;
+        nMinorSuccessMinVal = 1;
       }
       else {
         // No rewards
         nMajorSuccessMaxVal = 0;
         nMajorSuccessMinVal = 0;
-        nGreaterSuccessMaxVal = 0;
-        nGreaterSuccessMinVal = 0;
         nMediumSuccessMaxVal = 0;
         nMediumSuccessMinVal = 0;
         nMinorSuccessMaxVal = 0;

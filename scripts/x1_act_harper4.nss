@@ -1,9 +1,8 @@
 //::///////////////////////////////////////////////
-//:: x1_act_harper3
-//:: Copyright (c) 2001 Bioware Corp.
+//:: x1_act_harper4
 //:://////////////////////////////////////////////
 /*
-    Creates a Cat's Grace potion.
+    Creates a Potion of Attunement.
 */
 //:://////////////////////////////////////////////
 //:: Created By: Brent
@@ -12,7 +11,7 @@
 
 void main()
 {
-    CreateItemOnObject("NW_IT_MPOTION014", GetPCSpeaker());
+    CreateItemOnObject("mi_potion_attune", GetPCSpeaker());
     effect eVis = EffectVisualEffect(VFX_IMP_HEAD_ODD);
     ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, GetPCSpeaker());
 

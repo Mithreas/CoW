@@ -33,7 +33,7 @@ void main()
     }
 
 // End of Spell Cast Hook
-
+   
 
     int nSpellID = GetSpellId();
     int bOverrideOverpower = GetKnowsFeat(FEAT_DEATH_DOMAIN_POWER, OBJECT_SELF);
@@ -46,4 +46,17 @@ void main()
 /*Critical*/  case 435: case 612: spellsInflictTouchAttack(d8(4), 20, 32, 246, VFX_IMP_HEALING_G, nSpellID, bOverrideOverpower); break;
 
     }
+	
+	if (!GetIsObjectValid(GetSpellCastItem()) && nSpellID == 611)
+	{
+        // Restore feat use.
+        IncrementRemainingFeatUses(OBJECT_SELF, FEAT_INFLICT_SERIOUS_WOUNDS);
+		gsSTDoCasterDamage(OBJECT_SELF, 3);
+	}
+	else if (!GetIsObjectValid(GetSpellCastItem())  && nSpellID == 612)
+	{
+        // Restore feat use.
+        IncrementRemainingFeatUses(OBJECT_SELF, FEAT_INFLICT_CRITICAL_WOUNDS);
+		gsSTDoCasterDamage(OBJECT_SELF, 5);
+	}
 }

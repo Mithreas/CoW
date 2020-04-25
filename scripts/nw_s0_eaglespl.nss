@@ -32,6 +32,13 @@ void main()
 
 // End of Spell Cast Hook
 
+    // Check for Harper version of this spell.
+    if (!GetIsObjectValid(GetSpellCastItem()) && GetSpellId() == 482)
+    {
+        // Restore feat use.
+        IncrementRemainingFeatUses(OBJECT_SELF, FEAT_HARPER_EAGLES_SPLENDOR);
+		gsSTDoCasterDamage(OBJECT_SELF, 5);
+	}	
 
     //Declare major variables
     object oTarget = GetSpellTargetObject();

@@ -20,7 +20,7 @@ void main()
 
   PrintString("cnranvilwpnmit init");
 
-  string sMenu3Ammo = CnrRecipeAddSubMenu("cnranvilwpnmit", "Mithril Bullets and Knives");
+  string sMenu3Ammo = CnrRecipeAddSubMenu("cnranvilwpnmit", "Mithril Slingstones and Knives");
   string sMenu3Axes = CnrRecipeAddSubMenu("cnranvilwpnmit", "Mithril Axes");
   string sMenu3Bladed = CnrRecipeAddSubMenu("cnranvilwpnmit", "Mithril Bladed");
   string sMenu3Blunts = CnrRecipeAddSubMenu("cnranvilwpnmit", "Mithril Blunts");
@@ -72,7 +72,7 @@ void main()
 
   ///////////////// Mithril Weapons ///////////////
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu3Ammo, "Mithril Bullets", "ca_gen_bu_mit", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu3Ammo, "Mithril Slingstones", "ca_gen_bu_mit", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotmit", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 10);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 100, 100);

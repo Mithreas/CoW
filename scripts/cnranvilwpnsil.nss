@@ -20,7 +20,7 @@ void main()
 
   PrintString("cnranvilwpnsil init");
 
-  string sMenu3Ammo = CnrRecipeAddSubMenu("cnranvilwpnsil", "Silver Bullets and Knives");
+  string sMenu3Ammo = CnrRecipeAddSubMenu("cnranvilwpnsil", "Silver Slingstones and Knives");
   string sMenu3Axes = CnrRecipeAddSubMenu("cnranvilwpnsil", "Silver Axes");
   string sMenu3Bladed = CnrRecipeAddSubMenu("cnranvilwpnsil", "Silver Bladed");
   string sMenu3Blunts = CnrRecipeAddSubMenu("cnranvilwpnsil", "Silver Blunts");
@@ -74,7 +74,7 @@ void main()
 
   ///////////////// Silver Weapons ///////////////
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu3Ammo, "Silver Bullets", "ca_gen_bu_sil", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu3Ammo, "Silver Slingstones", "ca_gen_bu_sil", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotsil", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);

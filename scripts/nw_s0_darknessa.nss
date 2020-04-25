@@ -13,7 +13,7 @@ void main()
         return;
     }
 
-    if (oTarget == oCaster)
+    if (gsSPGetIsAffected(GS_SP_TYPE_BENEFICIAL_SELECTIVE, oCaster, oTarget))
     {
         //raise event
         SignalEvent(oTarget, EventSpellCastAt(oCaster, nSpell, FALSE));
@@ -22,7 +22,7 @@ void main()
         eEffect =
             EffectLinkEffects(
                 EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE),
-                EffectInvisibility(INVISIBILITY_TYPE_DARKNESS));
+                EffectConcealment(50));
     }
     else
     {

@@ -28,6 +28,13 @@ void main()
     if (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_TRANSMUTATION, OBJECT_SELF))
         nTransmutation++;
 
+    // Check for Harper version of the spell.
+    if (!GetIsObjectValid(GetSpellCastItem()) && nSpell == 481)
+    {
+        // Restore feat use.
+        IncrementRemainingFeatUses(OBJECT_SELF, FEAT_HARPER_CATS_GRACE);
+		gsSTDoCasterDamage(OBJECT_SELF, 5);
+	}	
 
     //Enter Metamagic conditions
     if (nMetaMagic == METAMAGIC_MAXIMIZE)

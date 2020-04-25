@@ -1,4 +1,4 @@
-#include "inc_names"
+#include "inc_rename"
 #include "inc_timelock"
 #include "inc_divination"
 #include "inc_xfer"
@@ -58,7 +58,10 @@ void main()
         SetLocalInt(oPC, "StealthTimer", 0);
         DelayCommand(6.0, RoundStealthTimerIncrement());
         miDVGivePoints(oPC, ELEMENT_WATER, 1.0);
+		
+        svSetAffix(oPC, STEALTH_PREFIX, TRUE);
     }
+    else
+        SetName(OBJECT_SELF, STEALTH_PREFIX_S + GetName(OBJECT_SELF, TRUE) + "</c>");
 
-    fbNAAddNameModifier(oPC, FB_NA_MODIFIER_STEALTH, "<c°°°>", "</c>");
 }

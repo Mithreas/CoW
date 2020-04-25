@@ -21,6 +21,13 @@ void main()
     //affection check
     if (! gsSPGetIsAffected(GS_SP_TYPE_BENEFICIAL, OBJECT_SELF, oTarget)) return;
 
+    // Check for BG version of the spell.
+    if (!GetIsObjectValid(GetSpellCastItem()) && nSpell == 614)
+    {
+        // Restore feat use.
+        IncrementRemainingFeatUses(OBJECT_SELF, FEAT_BULLS_STRENGTH);
+		gsSTDoCasterDamage(OBJECT_SELF, 5);
+	}	
 
     // Transmutation Buff: add +1 from GSF, +2 from ESF
     int nTransmutation = 0;
