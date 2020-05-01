@@ -36,7 +36,7 @@ void main()
   CnrRecipeSetDevicePreCraftingScript("cnrcarpelf", "cnr_carp_anim");
   CnrRecipeSetDeviceInventoryTool("cnrcarpelf", "cnrCarpsTools", CNR_FLOAT_CARPS_TOOLS_BREAKAGE_PERCENTAGE);
   CnrRecipeSetDeviceTradeskillType("cnrcarpelf", CNR_TRADESKILL_WOOD_CRAFTING);
-  CnrRecipeSetRecipeAbilityPercentages("cnrcarpelf", 50, 0, 0, 0, 50, 0);
+  CnrRecipeSetRecipeAbilityPercentages(IntToString(CNR_TRADESKILL_WOOD_CRAFTING), 50, 0, 0, 0, 50, 0);
 
   ////////////////////////Shields///////////////////////////////////////////
 

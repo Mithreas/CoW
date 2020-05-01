@@ -25,15 +25,20 @@ void main()
 
   CnrRecipeSetDevicePreCraftingScript("cnrtinkerfurnace", "cnr_forge_anim");
   CnrRecipeSetDeviceTradeskillType("cnrtinkerfurnace", CNR_TRADESKILL_CHEMISTRY);
-  CnrRecipeSetRecipeAbilityPercentages("cnrtinkerfurnace", 0, 0, 50, 50, 0, 0); // Con and Int
+  CnrRecipeSetRecipeAbilityPercentages(IntToString(CNR_TRADESKILL_CHEMISTRY), 0, 0, 50, 50, 0, 0); // Con and Int
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTinkerGlass, "Ingot of Glass", "cnringotglass", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrbagofsand", 2);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrbagofsand", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 10, 10);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTinkerGlass, "Five Empty Flasks", "cnremptyflask", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotglass", 2);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 10, 10);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuTinkerGlass, "Empty Potion Bottle", "x2_it_cfm_pbottl", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotglass", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 10, 10);
 

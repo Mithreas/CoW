@@ -30,7 +30,7 @@ void main()
   //CnrRecipeSetDeviceInventoryTool("cnrCuringTub", "cnr");
   //CnrRecipeSetDeviceEquippedTool("cnrCuringTub", "cnr");
   CnrRecipeSetDeviceTradeskillType("cnrcuringtub", CNR_TRADESKILL_TAILORING);
-  CnrRecipeSetRecipeAbilityPercentages("cnrcuringtub", 0, 50, 0, 50, 0, 0);
+  CnrRecipeSetRecipeAbilityPercentages(IntToString(CNR_TRADESKILL_TAILORING), 0, 50, 0, 50, 0, 0);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuHidesSmall, "Cured Badger Hide", "cnrhidecurebadg", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnracidtanning", 1, 0);

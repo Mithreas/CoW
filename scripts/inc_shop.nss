@@ -237,7 +237,7 @@ struct openStore md_DoAppraise(object oStore, object oMerchant, object oCustomer
   int nMaxBuyPrice = 0;
   string sThisStore = ObjectToString(oStore);
   int nCustomerAppraise;
-  int nMerchantAppraise = GetSkillRank(SKILL_APPRAISE, oMerchant, FALSE);
+  int nMerchantAppraise = GetSkillRank(SKILL_APPRAISE, oMerchant, TRUE);
   // Initialization
   if (!GetLocalInt(oStore, "GS_STORE_ENABLED"))
   {

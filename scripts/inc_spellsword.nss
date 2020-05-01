@@ -79,14 +79,6 @@ void miSSImbueWeapon(object oPC, int SpellID, object oWeapon, int bFeedback = TR
 //Imbue armour - gives bonus to weapon if a spell is cast on it by a spellsword.
 void miSSImbueArmour(object oPC, int SpellID, object oArmour, int bFeedback = TRUE);
 
-/* Private function. 
-   Note, this is a copy of AR_GetCasterLevelBonus in inc_customspells, copied here
-   to avoid circular dependencies. */
-int _AR_GetCasterLevelBonus(object oCaster)
-{
-   return GetLocalInt(gsPCGetCreatureHide(oCaster), "AR_BONUS_CASTER_LEVELS");
-}
-
 /**********************************************************************
  * PUBLIC FUNCTION DEFINITIONS
  **********************************************************************/
@@ -142,7 +134,6 @@ void miSSSetBlockedSchool(object oPC, int nSchool, int nNum = 1)
 void miSSCharBonuses(object oPC, int bFeedback)
 {
     int nWizard = GetLevelByClass(CLASS_TYPE_WIZARD, oPC);
-	nWizard = nWizard + _AR_GetCasterLevelBonus(oPC);
     int nCharacterLevel = GetCharacterLevel(oPC);
 		
 	if(!GetIsPC(oPC) || GetIsDM(oPC) || !nWizard) return;
@@ -206,7 +197,7 @@ void miSSCharBonuses(object oPC, int bFeedback)
             }
         }
 		
-        // AC = 1 + 1/6 wizard levels, capped by Base INT mod
+        // AC = 1 + 1/5 wizard levels, capped by Base INT mod
         if (bRanged || bTwoHand || oLeftHand != OBJECT_INVALID || bIsMonk)
         {
             if(bFeedback) SendMessageToPC(oPC, "You cannot manipulate the weave to protect you whilst you hold something in your offhand");
@@ -215,9 +206,9 @@ void miSSCharBonuses(object oPC, int bFeedback)
         {
             nAbilityMod = (GetAbilityScore(oPC, ABILITY_INTELLIGENCE, FALSE) - 10) / 2;
 
-            if (1 + (nWizard / 6) < nAbilityMod)
+            if (1 + (nWizard / 5) < nAbilityMod)
             {
-                nBonus = 1 + (nWizard / 6);
+                nBonus = 1 + (nWizard / 5);
             }
             else
             {
@@ -226,43 +217,12 @@ void miSSCharBonuses(object oPC, int bFeedback)
             ApplyTaggedEffectToObject(DURATION_TYPE_PERMANENT, SupernaturalEffect(EffectACIncrease(nBonus, AC_SHIELD_ENCHANTMENT_BONUS)), oPC, 0.0, EFFECT_TAG_SPELLSWORD);
             if(bFeedback) SendMessageToPC(oPC, "Spellsword AC Bonus Granted: +" + IntToString(nBonus) + " Armor Class");
         }
-
-        // DAM = 1/2 levels, capped by modified INT BONUS
-		/* UPDATE - INT damage removed.
-        if (!bRanged)
+	
+		// UPDATE - Discipline limited to a pure-class bonus.		
+        if(nCharacterLevel == nWizard)
         {
-            nAbilityMod = (GetAbilityScore(oPC, ABILITY_INTELLIGENCE, FALSE) - 10) / 2;
-
-            if ((nWizard / 2) < nAbilityMod)
-            {
-                nBonus = nWizard/2;
-            }
-            else
-            {
-                nBonus = nAbilityMod;
-            }
-
-            int nDamage;
-            if (nBonus <= 5)
-            { nDamage = nBonus; }
-            else if (nBonus <= 20)
-            { nDamage = nBonus + 10;}
-            else if (nBonus > 20)
-            { nDamage = 30; }
-            ApplyTaggedEffectToObject(DURATION_TYPE_PERMANENT, SupernaturalEffect(EffectDamageIncrease(nDamage, DAMAGE_TYPE_BLUDGEONING)), oPC, 0.0, EFFECT_TAG_SPELLSWORD);
-            if(bFeedback) SendMessageToPC(oPC, "Spellsword Damage Bonus Granted: +" + IntToString(nBonus) + " Damage");
-        }
-		*/
-		
-        // Discipline - +1 / 3 levels
-		// UPDATE - Discipline limited to a pure-class 28 bonus.
-		
-        if(nCharacterLevel == nWizard && nWizard >= 28)
-        {
-            // effect eIncreaseDISC = EffectSkillIncrease(SKILL_DISCIPLINE, nWizard / 3);
-			effect eIncreaseDISC = EffectSkillIncrease(SKILL_DISCIPLINE, 15);
+			effect eIncreaseDISC = EffectSkillIncrease(SKILL_DISCIPLINE, nWizard);
             ApplyTaggedEffectToObject(DURATION_TYPE_PERMANENT, SupernaturalEffect(eIncreaseDISC), oPC, 0.0, EFFECT_TAG_SPELLSWORD);
-            // if(bFeedback) SendMessageToPC(oPC, "Spellsword Skill Bonus Granted: +" + IntToString(nWizard / 3) + " Discipline");
 			if(bFeedback) SendMessageToPC(oPC, "Spellsword Skill Bonus Granted: +15 Discipline");
         }
 
@@ -479,7 +439,7 @@ void miSSRemoveAB(object oPC, int bFeedback, int bLevelUp = TRUE)
 void miSSApplyBonuses(object oPC, int bFeedback, int bLevelUp = TRUE)
 {
     int nWizard = GetLevelByClass(CLASS_TYPE_WIZARD, oPC);
-	nWizard = nWizard + _AR_GetCasterLevelBonus(oPC);
+	nWizard = nWizard;
     if(!GetIsPC(oPC) || GetIsDM(oPC) || !nWizard) return;
 
     //check if spellsword
@@ -564,7 +524,7 @@ void miSSMWPFeat(object oPC)
 void miSSImbueWeapon(object oPC, int SpellID, object oWeapon, int bFeedback = TRUE)
 {
     int nWizard = GetLevelByClass(CLASS_TYPE_WIZARD, oPC);
-	nWizard = nWizard + _AR_GetCasterLevelBonus(oPC);
+	nWizard = nWizard + AR_GetCasterLevelBonus(oPC, SpellID);
     object oHide = gsPCGetCreatureHide(oPC);
     object oItem = IPGetTargetedOrEquippedMeleeWeapon();
     if (oItem == OBJECT_INVALID)
@@ -890,7 +850,7 @@ void miSSImbueArmour(object oPC, int SpellID, object oArmour, int bFeedback = TR
     }
 
     int nWizard = GetLevelByClass(CLASS_TYPE_WIZARD, oPC);
-	nWizard = nWizard + _AR_GetCasterLevelBonus(oPC);
+	nWizard = nWizard + AR_GetCasterLevelBonus(oPC, SpellID);
 
     if (!bIPExists)
     {

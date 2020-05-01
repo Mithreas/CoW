@@ -113,8 +113,8 @@ int StartingConditional()
                     }
 					
 					// Making things - divination hook.
-					if (bMundane) miDVGivePoints(oSpeaker, ELEMENT_EARTH, 2.0);
-					else miDVGivePoints(oSpeaker, ELEMENT_AIR, 2.0);
+					if (bMundane) miDVGivePoints(oSpeaker, ELEMENT_EARTH, 4.0);
+					else miDVGivePoints(oSpeaker, ELEMENT_FIRE, 4.0);
 
                     if (Random(100) < nChance)
                     {

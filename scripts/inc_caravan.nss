@@ -5,6 +5,7 @@
 
   Include library for caravan (travel) functions.
 */
+#include "inc_awards"
 #include "inc_customspells"
 #include "inc_log"
 
@@ -28,6 +29,10 @@ int miCAGetCaravanCount();
 // Internal method called from miCADoJourney to make the PC arrive.  Also used
 // by the 'rescue' script.
 void miCAArrive(string sDestinationTag);
+// Check whether a PC is able to cross the sea safely. 
+int miCACanSwim(object oPC);
+// Consumed by the sea.
+void miCADrown(object oPC);
 
 // Variable name - where is the PC going.  See zdlg_caravan.
 const string MICA_DESTINATION = "mica_destination";
@@ -163,3 +168,37 @@ void miCADoDepartures()
   }
 }
 //------------------------------------------------------------------------------
+int miCACanSwim(object oPC)
+{
+  int nRace = GetRacialType(oPC);
+  int nAppearance = GetAppearanceType(oPC);
+  int bArcanist = GetLevelByClass(CLASS_TYPE_SORCERER, oPC) || GetLevelByClass(CLASS_TYPE_WIZARD, oPC);
+  
+  if (nAppearance == 68 || nAppearance == 69) return TRUE;  // Water elemental form
+  
+  if (bArcanist)
+  {
+    // Check for polymorph effects.
+	if (nAppearance == 159 || nAppearance == 167 || nAppearance == 168) return TRUE; // Spider, troll, umber hulk
+	else return FALSE;
+  }
+  
+  if (nRace == RACIAL_TYPE_ELF) return FALSE;  
+  
+  return TRUE;
+}
+//------------------------------------------------------------------------------
+void miCADrown(object oPC)
+{
+  AssignCommand(oPC, ClearAllActions());
+  AssignCommand(oPC, ActionJumpToObject(GetObjectByTag("WATERY_GRAVE")));
+
+  SendMessageToPC(oPC, "You get a little way out onto open water, then a large wave rises up out of nowhere and swallows your boat.  Death follows shortly thereafter.");
+  
+  // rewards
+  gvd_DoRewards(oPC);
+
+  // Delete character.
+  fbEXDeletePC(oPC);
+  SetCommandable(FALSE, oPC);
+}

@@ -1096,6 +1096,7 @@ void HandleSelection()
 
           string sID = gsPCGetCDKeyID(GetPCPublicCDKey(oPC));
           int nAwards = GetLocalInt(oPC, sAward) -1;
+		  SetLocalInt(oPC, sAward, nAwards);
           miDASetKeyedValue("gs_player_data", sID, sAward, IntToString(nAwards));
         }
 	  }

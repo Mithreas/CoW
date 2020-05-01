@@ -2,6 +2,7 @@
   Standard include utility for scripts involving disguised PCs.
   Author: Mithreas
 */
+#include "inc_divination"
 #include "inc_names"
 #include "inc_worship"
 #include "inc_pc"
@@ -124,6 +125,8 @@ int SeeThroughDisguise(object oDisguised,
       // Piety reward
       if (gsWOGetDeityAspect(oDisguised) & ASPECT_TRICKERY_DECEIT)
       gsWOAdjustPiety(oDisguised, 0.1f);
+	  
+	  miDVGivePoints(oDisguised, ELEMENT_WATER, 1.0f);
     }
 
     if (GetIsPC(oSpotter))

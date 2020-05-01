@@ -29,7 +29,13 @@ void main()
     }
     else
     {
-      miDVGivePoints(oSpeaker, ELEMENT_WATER, 10.0);
+      int nTimeout = GetLocalInt(oSpeaker, "WATER_TIMEOUT");
+	  if (gsTIGetActualTimestamp() > nTimeout)
+	  {
+        miDVGivePoints(oSpeaker, ELEMENT_WATER, 8.0);
+	    SetLocalInt(oSpeaker, "WATER_TIMEOUT", gsTIGetActualTimestamp() + 15*60);
+	  }  
+	  
       DelayCommand(5.0, AssignCommand(oSpeaker, DisguisePC(oSpeaker, sParams)));
       SendMessageToPC(oSpeaker, "You take a few moments to disguise yourself. Remember, the disguise system should only be used for disguises, not for aliases.");
     }

@@ -60,7 +60,7 @@ void main()
     int bElder = FALSE;
     int bMonol = FALSE;
     int nTier  = 1;
-
+	
     if (!GetLocalInt(GetModule(),"X3_NO_SHAPESHIFT_SPELL_CHECK"))
     { // check to see if abort due to being mounted
         if (HorseGetIsMounted(oTarget))
@@ -78,6 +78,25 @@ void main()
         bElder = TRUE;
     }
 
+	//-----------------------------------------------------------------
+    // Check for attunement (formed via a pact with a spirit). 
+	// Strength currently unused here but pulled for future expansion.
+	// If attuned, you can't transform to the opposite elemental. 
+    //-----------------------------------------------------------------
+    object oHide = gsPCGetCreatureHide(OBJECT_SELF);
+    int nAttunement = 0;
+    int nStrength = 0;
+    if (GetIsObjectValid(oHide)) 
+    {
+      nAttunement = GetLocalInt(oHide, "ATTUNEMENT");
+	  nStrength = GetLocalInt(oHide, "ATTUNEMENT_STRENGTH");
+    }
+    else
+    {
+      nAttunement = GetLocalInt(OBJECT_SELF, "ATTUNEMENT");
+	  nStrength = GetLocalInt(OBJECT_SELF, "ATTUNEMENT_STRENGTH");
+    }
+
     //::  Remove Auras
     gsSPRemoveEffect(OBJECT_SELF, 761, OBJECT_SELF);    //::  Hellfire Aura
     gsSPRemoveEffect(OBJECT_SELF, 196, OBJECT_SELF);    //::  Aura of Cold
@@ -91,18 +110,26 @@ void main()
         if(nSpell == 397)
         {
             nPoly = POLYMORPH_TYPE_HUGE_FIRE_ELEMENTAL;
+			if (nAttunement == SPELL_SCHOOL_EVOCATION) nPoly = POLYMORPH_TYPE_ELDER_FIRE_ELEMENTAL;
+			if (nAttunement == SPELL_SCHOOL_TRANSMUTATION) nPoly = POLYMORPH_TYPE_ELDER_WATER_ELEMENTAL;
         }
         else if (nSpell == 398)
         {
             nPoly = POLYMORPH_TYPE_HUGE_WATER_ELEMENTAL;
+			if (nAttunement == SPELL_SCHOOL_TRANSMUTATION) nPoly = POLYMORPH_TYPE_ELDER_WATER_ELEMENTAL;
+			if (nAttunement == SPELL_SCHOOL_EVOCATION) nPoly = POLYMORPH_TYPE_ELDER_FIRE_ELEMENTAL;
         }
         else if (nSpell == 399)
         {
             nPoly = POLYMORPH_TYPE_HUGE_EARTH_ELEMENTAL;
+			if (nAttunement == SPELL_SCHOOL_ENCHANTMENT) nPoly = POLYMORPH_TYPE_ELDER_EARTH_ELEMENTAL;
+			if (nAttunement == SPELL_SCHOOL_ILLUSION) nPoly = POLYMORPH_TYPE_ELDER_AIR_ELEMENTAL;
         }
         else if (nSpell == 400)
         {
             nPoly = POLYMORPH_TYPE_HUGE_AIR_ELEMENTAL;
+			if (nAttunement == SPELL_SCHOOL_ILLUSION) nPoly = POLYMORPH_TYPE_ELDER_AIR_ELEMENTAL;
+			if (nAttunement == SPELL_SCHOOL_ENCHANTMENT) nPoly = POLYMORPH_TYPE_ELDER_EARTH_ELEMENTAL;
         }
     }
     //::  Level 20+ Druid (Ancient Elementals)

@@ -22,8 +22,8 @@ void main()
 	if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nCasterLevel += 2;
 
     // Assassin: 2m cooldown, add Ultravision at level 13
-    // Considers feat used if there is no cast item, and the caster level is the same as the assassin's class levels.
-    if (!GetIsObjectValid(oItem) && GetLevelByClass(CLASS_TYPE_ASSASSIN, OBJECT_SELF) == GetCasterLevel(OBJECT_SELF))
+    // Check for Assassin Darkness (spell ID 606).
+    if (!GetIsObjectValid(oItem) && nSpell == 606)
     {
         // Restore feat use.
         IncrementRemainingFeatUses(OBJECT_SELF, FEAT_PRESTIGE_DARKNESS);

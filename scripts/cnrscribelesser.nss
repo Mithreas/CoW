@@ -29,7 +29,7 @@ void main()
   CnrRecipeSetDevicePreCraftingScript("cnrscribelesser", "cnr_enchant_anim");
   //CnrRecipeSetDeviceInventoryTool("cnrscribelesser", "");
   CnrRecipeSetDeviceTradeskillType("cnrscribelesser", CNR_TRADESKILL_INVESTING);
-  CnrRecipeSetRecipeAbilityPercentages("cnrscribelesser", 0, 0, 0, 50, 50, 0);
+  CnrRecipeSetRecipeAbilityPercentages(IntToString(CNR_TRADESKILL_INVESTING), 0, 0, 0, 50, 50, 0);
 
 //Level 1 Scrolls
 

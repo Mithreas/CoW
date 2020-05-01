@@ -13,7 +13,7 @@
 //
 /////////////////////////////////////////////////////////
 #include "cnr_recipe_utils"
-
+#include "inc_common"
 void SpawnNewDiggableDeposit(string sDepositTag, location locDeposit)
 {
   object oDep = CreateObject(OBJECT_TYPE_PLACEABLE, sDepositTag, locDeposit);
@@ -82,7 +82,7 @@ void main()
   // there's a chance the shovel may break
   if (cnr_d100(1) <= CNR_FLOAT_MISC_MINING_DEPOSIT_SHOVEL_BREAKAGE_PERCENTAGE)
   {
-    DestroyObject(oShovel);
+    gsCMReduceItem(oShovel);
     FloatingTextStringOnCreature(CNR_TEXT_YOU_HAVE_BROKEN_YOUR_SHOVEL, oUser);
     SetLocalInt(OBJECT_SELF, "CnrStopRapidClicks", FALSE);
     return;

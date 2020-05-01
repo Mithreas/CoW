@@ -100,6 +100,13 @@ void main()
     {
         nDuration = nDuration *2; //Duration is +100%
     }
+	
+    int nTimeout = GetLocalInt(OBJECT_SELF, "WATER_TIMEOUT");
+	if (GetIsPC(OBJECT_SELF) && gsTIGetActualTimestamp() > nTimeout)
+	{
+      miDVGivePoints(OBJECT_SELF, ELEMENT_WATER, 8.0);
+	  SetLocalInt(OBJECT_SELF, "WATER_TIMEOUT", gsTIGetActualTimestamp() + 15*60);
+	}  
 
     //Determine Polymorph subradial type
     if(nSpell == 401)

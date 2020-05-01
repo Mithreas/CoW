@@ -15,7 +15,7 @@ void main()
 
   CnrRecipeSetDevicePreCraftingScript("cnranvilrune", "cnr_enchant_anim");
   CnrRecipeSetDeviceTradeskillType("cnranvilrune", CNR_TRADESKILL_INVESTING);
-  CnrRecipeSetRecipeAbilityPercentages("cnranvilrune", 0, 0, 0, 50, 50, 0);
+  CnrRecipeSetRecipeAbilityPercentages(IntToString(CNR_TRADESKILL_INVESTING), 0, 0, 0, 50, 50, 0);
 
   // Warding runes lvl 1
 

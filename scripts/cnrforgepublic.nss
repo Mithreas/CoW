@@ -21,7 +21,7 @@ void main()
   // CNR recipes made by cnrForgePublic
   /////////////////////////////////////////////////////////
   CnrRecipeSetDevicePreCraftingScript("cnrforgepublic", "cnr_forge_anim");
-  CnrRecipeSetRecipeAbilityPercentages("cnrforgepublic", 50, 0, 50, 0, 0, 0);
+  CnrRecipeSetRecipeAbilityPercentages("cnrforgepublic", 0, 0, 0, 0, 0, 0);
 
   sKeyToRecipe = CnrRecipeCreateRecipe("cnrforgepublic", "Ondaran Ingot", "cnringotond", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrnuggetond", 1);

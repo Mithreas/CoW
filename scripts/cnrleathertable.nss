@@ -37,7 +37,7 @@ void main()
   CnrRecipeSetDevicePreCraftingScript("cnrleathertable", "cnr_tailor_anim");
   CnrRecipeSetDeviceInventoryTool("cnrleathertable", "cnrSewingKit", CNR_FLOAT_SEWING_KIT_BREAKAGE_PERCENTAGE);
   CnrRecipeSetDeviceTradeskillType("cnrleathertable", CNR_TRADESKILL_TAILORING);
-  CnrRecipeSetRecipeAbilityPercentages("cnrleathertable", 0, 50, 0, 50, 0, 0);
+  CnrRecipeSetRecipeAbilityPercentages(IntToString(CNR_TRADESKILL_TAILORING), 0, 50, 0, 50, 0, 0);
 
 ///////////////////////////////////Other/////////////////////////////////////////
 

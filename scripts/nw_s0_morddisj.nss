@@ -23,12 +23,7 @@ void main()
     // focuses, and give a penalty if the target has arcane defense.
     // Addition by Mithreas - give a bonus to dispel checks based on abjuration
     // focuses.
-    // nCasterLevel += GetSpellDCModifiers(OBJECT_SELF, SPELL_SCHOOL_ABJURATION);
-
-    // New calculation: +1 for SF and GSF, +2 for ESF
-    if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_ABJURATION)) nCasterLevel += 4;
-    else if (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_ABJURATION)) nCasterLevel += 2;
-    else if (GetHasFeat(FEAT_SPELL_FOCUS_ABJURATION)) nCasterLevel += 1;
+    nCasterLevel += GetSpellDCModifiers(OBJECT_SELF, SPELL_SCHOOL_ABJURATION);
 
     int nHarmful       = FALSE;
 
@@ -41,7 +36,7 @@ void main()
     if (GetIsObjectValid(oTarget))
     {
         // Modify DC for target's arcane defense feats.
-        if (GetHasFeat(FEAT_ARCANE_DEFENSE_ABJURATION, oTarget)) nCasterLevel -= 2;
+        if (GetHasFeat(FEAT_ARCANE_DEFENSE_ABJURATION, oTarget)) nCasterLevel -= GetSpellDCModifiers(oTarget, SPELL_SCHOOL_ABJURATION);
 
         // Modify DC if target is Spellsword
         if (miSSGetIsSpellsword(oTarget)) nCasterLevel -=3;

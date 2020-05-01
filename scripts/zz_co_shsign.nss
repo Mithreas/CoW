@@ -369,7 +369,7 @@ void OnPageInit(string sPage)
        int x = 1;
        while(GetIsObjectValid(oShopFront))
        {
-         if(sClass == GetLocalString(oShop, "GS_CLASS") && nInstance == GetLocalInt(oShop, "GS_INSTANCE"))
+         if(sClass == GetLocalString(oShopFront, "GS_CLASS") && nInstance == GetLocalInt(oShopFront, "GS_INSTANCE"))
          {
            SetLocalObject(oShop, "MD_STORED_SHOP", oShopFront);
            break;

@@ -15,7 +15,9 @@
 #include "inc_chatrelay"
 #include "inc_database"
 #include "inc_data_arr"
+#include "inc_divination"
 #include "inc_effect"
+#include "inc_favsoul"
 #include "inc_generic"
 #include "inc_math"
 #include "inc_names"
@@ -29,7 +31,6 @@
 #include "nwnx_admin"
 #include "x0_i0_position"
 #include "x2_inc_switches"
-
 
 /**********************************************************************
  * CONFIG PARAMETERS
@@ -120,9 +121,6 @@ void AddInnateSpell(object oPC, int nSpellId, int nClass = CLASS_TYPE_INVALID, i
 void AddSpontaneousSpell(object oPC, int nSpellId, int nClass, int nSpellLevel = DETERMINE_SPELL_LEVEL_BY_CLASS);
 // Adjusts the DC of a spell as if its spell school was that of nSpellSchool.
 int AdjustSpellDCForSpellSchool(int nDC, int nSpellSchool, int nSpellId = SPELL_ID_UNDEFINED, object oCreator = OBJECT_SELF);
-// Applies the resurrection effect to the creature. Always call this instead of the
-// default ApplyEffect function to ensure that unique bonuses are reapplied to PCs.
-void ApplyResurrection(object oCreature);
 // * Wrapper for GetSpellSaveDC(). Under default conditions, returns the value of the above function.
 // * If an int, DC_OVERRIDE_X, is flagged on the creature (where X corresponds to a spell id),
 // then the DC will be overriden to the given value.
@@ -317,6 +315,10 @@ void RestoreSpellsAfterPolymorph(object oPC);
 void RemoveAndReapplyNEP(object oTarget);
 // Returns a random arcane SPELL_ id for the specified level.
 int GetRandomArcaneSpell(int nSpellLevel);
+// Retrieve any caster level bonus oCaster has; if nSpellID is -1 will use GetSpellId() to generate
+int AR_GetCasterLevelBonus(object oCaster=OBJECT_SELF, int nSpellId = -1);
+// Set a caster level bonus for oCaster.
+void AR_SetCasterLevelBonus(int nBonus, object oCaster=OBJECT_SELF);
 
 /**********************************************************************
  * PRIVATE FUNCTION PROTOTYPES
@@ -482,24 +484,6 @@ int AdjustSpellDCForSpellSchool(int nDC, int nSpellSchool, int nSpellId = SPELL_
         nDC += 2;
 
     return nDC;
-}
-
-//::///////////////////////////////////////////////
-//:: ApplyResurrection
-//:://////////////////////////////////////////////
-/*
-    Applies the resurrection effect to the
-    creature. Always call this instead of the
-    default ApplyEffect function to ensure
-    that unique bonuses are reapplied to PCs.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 6, 2016
-//:://////////////////////////////////////////////
-void ApplyResurrection(object oCreature)
-{
-    ExecuteScript("exe_resurrect", oCreature);
 }
 
 //::///////////////////////////////////////////////
@@ -1823,7 +1807,8 @@ void ProjectImage()
     object oImage = CopyObject(OBJECT_SELF, lSpawn, OBJECT_INVALID, "Sum_Project_Image");
     int nCasterLevel = GetLevelByClass(CLASS_TYPE_CLERIC, OBJECT_SELF) + GetLevelByClass(CLASS_TYPE_DRUID, OBJECT_SELF)
         + GetLevelByClass(CLASS_TYPE_SORCERER, OBJECT_SELF) + GetLevelByClass(CLASS_TYPE_WIZARD, OBJECT_SELF) + 
-			GetLevelByClass(CLASS_TYPE_PALEMASTER, OBJECT_SELF);
+			GetLevelByClass(CLASS_TYPE_PALEMASTER, OBJECT_SELF)  + GetLevelByClass(CLASS_TYPE_FAVOURED_SOUL, OBJECT_SELF) +
+			    GetLevelByClass(CLASS_TYPE_RANGER, OBJECT_SELF)  + GetLevelByClass(CLASS_TYPE_PALADIN, OBJECT_SELF);
 	
 	int nHarperLevel = GetLevelByClass(CLASS_TYPE_HARPER, OBJECT_SELF); // Check for Harper
 	int nSDLevel 	 = GetLevelByClass(CLASS_TYPE_SHADOWDANCER, OBJECT_SELF); //Check for SD
@@ -3174,4 +3159,129 @@ int GetRandomArcaneSpell(int nSpellLevel)
   }
   
   return 0;
+}
+//------------------------------------------------------------------------------
+int _GetOpposingSchool(int nSpellSchool)
+{
+  int nSchool = SPELL_SCHOOL_GENERAL;
+  
+  switch (nSpellSchool)
+  {
+    case SPELL_SCHOOL_CONJURATION:
+	  return SPELL_SCHOOL_NECROMANCY;
+	case SPELL_SCHOOL_NECROMANCY:
+	  return SPELL_SCHOOL_CONJURATION;
+	case SPELL_SCHOOL_ILLUSION:
+	  return SPELL_SCHOOL_ENCHANTMENT;
+	case SPELL_SCHOOL_ENCHANTMENT:
+	  return SPELL_SCHOOL_ILLUSION;
+	case SPELL_SCHOOL_EVOCATION:
+	  return SPELL_SCHOOL_TRANSMUTATION;
+	case SPELL_SCHOOL_TRANSMUTATION:
+	  return SPELL_SCHOOL_EVOCATION;
+  }
+  
+  // Note - in this setup, Abjuration and Divination have no opposed schools.
+  return nSchool;  
+}
+//------------------------------------------------------------------------------
+int _GetRelativeAttunement(object oCaster, int nSpellSchool)
+{
+  switch (nSpellSchool)
+  {
+	case SPELL_SCHOOL_CONJURATION:
+	  return miDVGetRelativeAttunement(oCaster, ELEMENT_LIFE);
+	case SPELL_SCHOOL_ENCHANTMENT:
+	  return miDVGetRelativeAttunement(oCaster, ELEMENT_EARTH);
+	case SPELL_SCHOOL_EVOCATION:
+	  return miDVGetRelativeAttunement(oCaster, ELEMENT_FIRE);
+	case SPELL_SCHOOL_ILLUSION:
+	  return miDVGetRelativeAttunement(oCaster, ELEMENT_AIR);
+	case SPELL_SCHOOL_NECROMANCY:
+	  return miDVGetRelativeAttunement(oCaster, ELEMENT_DEATH);
+	case SPELL_SCHOOL_TRANSMUTATION:
+	  return miDVGetRelativeAttunement(oCaster, ELEMENT_WATER);
+  }
+
+  // Other schools are unaligned. 
+  return 0;
+}
+//------------------------------------------------------------------------------
+int AR_GetCasterLevelBonus(object oCaster=OBJECT_SELF, int nSpellId = -1)
+{
+  if (nSpellId == -1) nSpellId = GetSpellId();
+  int nBonus = 0;
+  
+  //-------------------------------------------------------------
+  // Check for attunement (formed via a pact with a spirit). 
+  //-------------------------------------------------------------
+  object oHide = gsPCGetCreatureHide(oCaster);
+  int nAttunement = 0;
+  int nStrength = 0;
+  if (GetIsObjectValid(oHide)) 
+  {
+    nAttunement = GetLocalInt(oHide, "ATTUNEMENT");
+	nStrength = GetLocalInt(oHide, "ATTUNEMENT_STRENGTH");
+  }
+  else
+  {
+    nAttunement = GetLocalInt(oCaster, "ATTUNEMENT");
+	nStrength = GetLocalInt(oCaster, "ATTUNEMENT_STRENGTH");
+  }
+  
+  if (!nAttunement)
+  {
+    int nMonk = GetLevelByClass(CLASS_TYPE_MONK, oCaster);
+	int nAssassin = GetLevelByClass(CLASS_TYPE_ASSASSIN, oCaster);
+	
+	if (nMonk > nAssassin)
+	{
+	  nAttunement = SPELL_SCHOOL_ENCHANTMENT;
+	  nStrength   = nMonk;
+	}
+	else
+	{
+	  nAttunement = SPELL_SCHOOL_ILLUSION;
+	  nStrength   = nAssassin;
+	}
+  }
+  
+  // Check whether to continue.  
+  if (!nAttunement || !nStrength) return nBonus;
+  
+  int nSchool = GetSpellSchool(nSpellId);
+  
+  //---------------------------------------------------------------
+  // Boost the strength of the attunement if the PC does things
+  // aligned with their patron.  Cap this bonus at spirit strength.
+  //---------------------------------------------------------------
+  int nMyAttunement = _GetRelativeAttunement(oCaster, nAttunement);
+  if (nMyAttunement > nStrength) nMyAttunement = nStrength;
+  nStrength += nMyAttunement;
+  
+  //---------------------------------------------------------------
+  // Apply the bonus based on how closely the school of the spell
+  // used matches our attunement.  If opposed it becomes a 
+  // penalty!
+  //---------------------------------------------------------------
+  if (nSchool == nAttunement)
+  {
+    nBonus = nStrength;
+  }
+  else if (nSchool == _GetOpposingSchool(nAttunement))
+  {
+    nBonus = -1 * nStrength;
+  }
+  else
+  {
+    nBonus = nStrength / 2;
+  }
+
+  return nBonus;
+}
+//------------------------------------------------------------------------------
+void AR_SetCasterLevelBonus(int nBonus, object oCaster=OBJECT_SELF)
+{
+  // No longer used.
+  SetLocalInt(gsPCGetCreatureHide(oCaster), "AR_BONUS_CASTER_LEVELS", nBonus);
 }

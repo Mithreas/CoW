@@ -28,7 +28,7 @@ void main()
   CnrRecipeSetDevicePreCraftingScript("cnrexplodebench", "cnr_alchemy_anim");
   //CnrRecipeSetDeviceInventoryTool("cnrexplodebench", "");
   CnrRecipeSetDeviceTradeskillType("cnrexplodebench", CNR_TRADESKILL_CHEMISTRY);
-  CnrRecipeSetRecipeAbilityPercentages("cnrexplodebench", 0, 0, 50, 50, 0, 0); // CON and INT
+  CnrRecipeSetRecipeAbilityPercentages(IntToString(CNR_TRADESKILL_CHEMISTRY), 0, 0, 50, 50, 0, 0); // CON and INT
   
   string sMenuExplodeBenchExplosives = CnrRecipeAddSubMenu("cnrexplodebench", "Explosive Mixtures");
   string sMenuExplodeBenchWeapons = CnrRecipeAddSubMenu("cnrexplodebench", "Black Powder Weapons");

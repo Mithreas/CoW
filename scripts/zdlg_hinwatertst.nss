@@ -72,7 +72,7 @@ void PageInit()
   }
   else if (sPage == CONFIRM)
   {
-    SetDlgPrompt("Many don't come back from this.  Even the slightest trace of magic in you, and the sea will take you, just like that.  You're really sure you want to try it?\n\n<cþ  >Choosing this option risks permadeath of your character!</c>");
+    SetDlgPrompt("Many don't come back from this.  Even the slightest trace of magic in you, and the sea will take you, just like that.  You're really sure you want to try it?\n\nChoosing this option risks permadeath of your character!");
 	SetDlgResponseList(CONFIRM);
   }
 }

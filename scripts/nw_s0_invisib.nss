@@ -31,8 +31,8 @@ void main()
     // ]-- end addition.
 
     // Assassin: 2m cooldown, add Exp. Retreat at level 15
-    // Considers feat used if there is no cast item, and the base caster level is the same as the assassin's class levels.
-    if (!GetIsObjectValid(oItem) && GetLevelByClass(CLASS_TYPE_ASSASSIN, OBJECT_SELF) == GetCasterLevel(OBJECT_SELF))
+    // Check for Assassin invisibility (spell ID 607)
+    if (!GetIsObjectValid(oItem) && nSpell == 607)
     {
         // Restore feat use.
         IncrementRemainingFeatUses(OBJECT_SELF, FEAT_PRESTIGE_INVISIBILITY_1);

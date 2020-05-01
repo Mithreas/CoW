@@ -35,7 +35,7 @@ void main()
   CnrRecipeSetDeviceInventoryTool("cnrtailorstable", "cnrSewingKit", CNR_FLOAT_SEWING_KIT_BREAKAGE_PERCENTAGE);
   //CnrRecipeSetDeviceEquippedTool("cnrTailorsTable", "cnr");
   CnrRecipeSetDeviceTradeskillType("cnrtailorstable", CNR_TRADESKILL_TAILORING);
-  CnrRecipeSetRecipeAbilityPercentages("cnrtailorstable", 0, 50, 0, 50, 0, 0);
+  CnrRecipeSetRecipeAbilityPercentages(IntToString(CNR_TRADESKILL_TAILORING), 0, 50, 0, 50, 0, 0);
 
 /////////////////////////////Cloths///////////////////////////////////////////
 

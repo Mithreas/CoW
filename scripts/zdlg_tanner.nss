@@ -76,7 +76,6 @@ void PageInit()
 
     GiveGoldToCreature(oPC, nGold);
     if (GetHitDice(oPC) < 6) gsXPGiveExperience(oPC, nGold);
-    miDVGivePoints(GetPCSpeaker(), ELEMENT_WATER, IntToFloat(nCount));
 
     SetDlgPrompt("Nice work.  That'll make some useful stuff.");
     SetDlgResponseList(END, OBJECT_SELF);
@@ -120,7 +119,12 @@ void HandleSelection()
       case 3:
         // Shop
         {
-          miDVGivePoints(GetPCSpeaker(), ELEMENT_WATER, 8.0);
+          int nTimeout = GetLocalInt(oPC, "WATER_TIMEOUT");
+	      if (gsTIGetActualTimestamp() > nTimeout)
+	      {
+            miDVGivePoints(oPC, ELEMENT_WATER, 8.0);
+	        SetLocalInt(oPC, "WATER_TIMEOUT", gsTIGetActualTimestamp() + 15*60);
+	      }  		  
 
           object oStore = GetNearestObject(OBJECT_TYPE_STORE);
           if (GetIsObjectValid(oStore)) gsSHOpenStore(oStore, OBJECT_SELF, oPC);

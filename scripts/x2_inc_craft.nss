@@ -334,8 +334,10 @@ object CICraftCraftWand(object oCreator, int nSpellID )
              AddItemProperty(DURATION_TYPE_PERMANENT,ipLimit,oTarget);
         }
 
-        int nCharges = GetLevelByClass(GetLastSpellCastClass(),OBJECT_SELF) + d20() + GetLocalInt(gsPCGetCreatureHide(OBJECT_SELF), "AR_BONUS_CASTER_LEVELS");
-        SetLocalInt(oTarget, "SPELL_CAST_LEVEL", AR_GetCasterLevel(oCreator));
+		int nCL = AR_GetCasterLevel(oCreator);
+        int nCharges = d20() + nCL;
+        SetLocalInt(oTarget, "SPELL_CAST_LEVEL", nCL);
+		SetDescription(oTarget, GetDescription(oTarget) + "\n\nCaster Level: " + IntToString(nCL));
 
         if (nCharges == 0) // stupi cheaters
         {
@@ -936,17 +938,15 @@ int CICraftCheckCraftWondrous(object oSpellTarget, object oCaster)
     }
 
     AddItemProperty(DURATION_TYPE_PERMANENT, ipSpell, oSpellTarget);
-
+	
     // -------------------------------------------------------------------------
     // Verify Results
     // -------------------------------------------------------------------------
     if (GetItemHasItemProperty(oSpellTarget, ITEM_PROPERTY_CAST_SPELL))
     {
-        //TakeGoldFromCreature(nGoldCost, oCaster, TRUE);
-        gsXPGiveExperience(oCaster, -FloatToInt(nExperienceCost));
-
-        // return the XP cost as adventure XP
-        gvd_AdventuringXP_GiveXP(oCaster, FloatToInt(nExperienceCost), "Crafting");
+	    int nCL = AR_GetCasterLevel(oCaster);
+        SetLocalInt(oSpellTarget, "SPELL_CAST_LEVEL", nCL);
+		SetDescription(oSpellTarget, GetDescription(oSpellTarget) + "\n\nCaster Level: " + IntToString(nCL));
 
         gsIPSetOwner(oSpellTarget, oCaster);
         FloatingTextStrRefOnCreature(8502, oCaster); // Item Creation successful

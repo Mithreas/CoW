@@ -28,7 +28,7 @@ void main()
   CnrRecipeSetDevicePreCraftingScript("cnralchemytable", "cnr_alchemy_anim");
   //CnrRecipeSetDeviceInventoryTool("cnrAlchemyTable", "");
   CnrRecipeSetDeviceTradeskillType("cnralchemytable", CNR_TRADESKILL_IMBUING);
-  CnrRecipeSetRecipeAbilityPercentages("cnralchemytable", 0, 0, 0, 0, 50, 50); // WIS and CHA
+  CnrRecipeSetRecipeAbilityPercentages(IntToString(CNR_TRADESKILL_IMBUING), 0, 0, 0, 0, 50, 50); // WIS and CHA
   
   CnrIncrementStackCount(OBJECT_SELF);
   AssignCommand(OBJECT_SELF, processOils(sMenuAlchemyOils));

@@ -30,7 +30,7 @@ void main()
           return;
 
         // Modify DC for target's arcane defense feats.
-        if (GetHasFeat(FEAT_ARCANE_DEFENSE_ABJURATION, oTarget)) nCasterLevel -= 2;
+        if (GetHasFeat(FEAT_ARCANE_DEFENSE_ABJURATION, oTarget)) nCasterLevel -= GetSpellDCModifiers(oTarget, SPELL_SCHOOL_ABJURATION);
 
         // Modify DC if target is Spellsword
         if (miSSGetIsSpellsword(oTarget)) nCasterLevel -=3;

@@ -38,7 +38,13 @@ void main()
     }
 
 // End of Spell Cast Hook
-
+	
+    int nTimeout = GetLocalInt(OBJECT_SELF, "WATER_TIMEOUT");
+	if (GetIsPC(OBJECT_SELF) && gsTIGetActualTimestamp() > nTimeout)
+	{
+      miDVGivePoints(OBJECT_SELF, ELEMENT_WATER, 8.0);
+	  SetLocalInt(OBJECT_SELF, "WATER_TIMEOUT", gsTIGetActualTimestamp() + 15*60);
+	}  
 
     //Declare major variables
     int nSpell = GetSpellId();

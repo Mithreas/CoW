@@ -3,6 +3,7 @@
 #include "inc_names"
 #include "inc_customspells"
 #include "inc_spell"
+#include "inc_timelock"
 #include "inc_worship"
 #include "inc_examine"
 #include "inc_relations"
@@ -30,6 +31,10 @@ void main()
       SendMessageToPC(oSpeaker, "<cþ  >You must have "+
        "Epic Spell Focus in Divination to be able to scry.");
     }
+	else if (GetIsTimelocked(oSpeaker, "Scry"))
+	{
+	  SendMessageToPC(oSpeaker, "You cannot scry again so soon."); 
+	}	
     else if (sParams == "" && !GetIsObjectValid(oTarget))
     {
       SendMessageToPC(oSpeaker, "<cþ£ >You must specify a name. You only "+
@@ -65,9 +70,7 @@ void main()
         SendMessageToPC(oSpeaker, "<cþ£ >You may only scry on someone you have previously interacted with.");
 	  }
       else
-      {
-
-	    
+      {	    
         if ((GetLevelByClass(CLASS_TYPE_CLERIC, oSpeaker) >= 17 ||
              GetLevelByClass(CLASS_TYPE_DRUID, oSpeaker) >= 17)
              && !gsWOAdjustPiety(oSpeaker, -5.0f, FALSE))
@@ -87,6 +90,7 @@ void main()
 		  }
 		  
           Scrying(oSpeaker, oTarget);
+		  SetTimelock(oSpeaker, 15*60, "Scry", 300, 60);
         }
       }
     }

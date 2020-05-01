@@ -27,7 +27,7 @@ void main()
 //CnrRecipeSetDeviceInventoryTool("cnrHideRack", "cnrSewingKit", CNR_FLOAT_SEWING_KIT_BREAKAGE_PERCENTAGE);
 //CnrRecipeSetDeviceEquippedTool("cnrHideRack", "cnr");
   CnrRecipeSetDeviceTradeskillType("cnrhiderack", CNR_TRADESKILL_TAILORING);
-  CnrRecipeSetRecipeAbilityPercentages("cnrhiderack", 0, 50, 0, 50, 0, 0);
+  CnrRecipeSetRecipeAbilityPercentages(IntToString(CNR_TRADESKILL_TAILORING), 0, 50, 0, 50, 0, 0);
 
 
 //////////////////////////////////////////////////////////////////////////////////////

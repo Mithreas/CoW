@@ -23,7 +23,11 @@ void _RefundGoldLvl(object oPC)
 
   fPCLevel += fCurrentECL;
   if (fPCLevel < 1.0f) fPCLevel = 1.0f;
-  int nGoldCost = FloatToInt(fPCLevel * 1000.0f) - 5000;
+
+  fPCLevel -= IntToFloat(GetHitDice(oPC));
+  fPCLevel += 5.0f;  
+  
+  int nGoldCost = FloatToInt(fPCLevel * 500.0f);
 
   GiveGoldToCreature(oPC, nGoldCost);
 }
@@ -41,7 +45,29 @@ void _Relevel(object oPC)
   DelayCommand(0.5, SetXP(oPC, nXP));
 }
 
+void main()
+{
+  object oPC = OBJECT_SELF;
+  object oHide = gsPCGetCreatureHide(oPC);
+  
+  int nCL = GetLocalInt(oHide, "AR_BONUS_CASTER_LEVELS");
+  
+  if (nCL)
+  {
+    // Refund and remove.
+	DeleteLocalInt(oHide, "AR_BONUS_CASTER_LEVELS");
+	while (nCL > 0)
+	{
+	  _RefundGoldLvl(oPC);
+	  nCL -= 2;
+	}
+	
+	DelayCommand (15.0f, FloatingTextStringOnCreature("Your purchased Caster Level feats have been refunded as they no longer apply.  You will need to bind or pact a spirit to improve your Caster Level", oPC)); 
+  }
+}
 
+
+/* Old code kept for future reference.
 void main()
 {
   object oPC = OBJECT_SELF;
@@ -182,3 +208,4 @@ void main()
   if (GetLevelByClass(CLASS_TYPE_WEAPON_MASTER, oPC) > 6) _Relevel(oPC);
 
 }
+*/

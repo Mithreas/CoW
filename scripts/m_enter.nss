@@ -447,6 +447,9 @@ void main()
         md_SaveSpellLevel(oEntering, 2);
     }
 
+    // Update feats etc.
+    ExecuteScript("fl_check_legal", oEntering);
+
     // TODO: We need a library for settings in general.
     // The below code sets up default values for three settings:
 

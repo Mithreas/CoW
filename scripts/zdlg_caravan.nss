@@ -18,9 +18,9 @@
 	DEST_TAG_n - the waypoint tag to teleport to for this destination.
 	DEST_KEY_n - optional - require a PC to possess an item with this tag to show this option.
 */
-#include "inc_zdlg"
-#include "inc_subrace"
 #include "inc_caravan"
+#include "inc_subrace"
+#include "inc_zdlg"
 
 //------------------------------------------------------------------------------
 // Set up some constants to use for list and variable names.
@@ -163,9 +163,19 @@ void PageInit()
 	  }
 	  else if (nType == TRAVEL_TYPE_SEA)
 	  {
-	    if (GetRacialType(oPC) != RACIAL_TYPE_HUMAN && !GetIsObjectValid(GetItemPossessedBy(oPC, "permission_sea")))
+	    int nAppearance = GetAppearanceType(oPC);
+		
+		if (!miCACanSwim(oPC)) FloatingTextStringOnCreature("Warning - boarding this ship could permanently kill your character!", oPC, FALSE);
+		
+	    if (GetRacialType(oPC) == RACIAL_TYPE_HALFLING && !GetIsObjectValid(GetItemPossessedBy(oPC, "permission_sea")))
 		{
 		  SpeakString("Sorry, no traveling without a certificate of seaworthiness.  Can't risk you sinking the ship.");
+		  EndDlg();
+		}
+		else if (nAppearance > 6 && GetSkillRank(SKILL_BLUFF, oPC, FALSE) < 10 && GetSkillRank(SKILL_PERFORM, oPC, FALSE) < 10)
+		{
+		  // Shapeshifted - need bluff 10 to get on board. 
+		  SpeakString("Eh?  No beasties on board!");
 		  EndDlg();
 		}
 	    else
@@ -247,7 +257,7 @@ void HandleSelection()
     switch (selection)
     {
       case 0:  // OK
-      {
+      {	  
         int nDest = GetLocalInt(OBJECT_SELF, SELECTION) + 1; // 0-based to 1-based list
         string sTag = GetLocalString(OBJECT_SELF, "DEST_TAG_" + IntToString(nDest));
         Trace(CARAVANS, GetName(oPC) + " has paid to travel to " + sTag);
@@ -276,7 +286,8 @@ void HandleSelection()
     switch (selection)
     {
       case 0:  // Go now
-        AssignCommand(oPC, miCADoJourney(GetLocalString(oPC, MICA_DESTINATION), bType));
+	    if (bType == TRAVEL_TYPE_SEA && !miCACanSwim(oPC)) miCADrown(oPC);
+        else AssignCommand(oPC, miCADoJourney(GetLocalString(oPC, MICA_DESTINATION), bType));
 		// fall through to below
       case 1:  // Wait
         EndDlg();

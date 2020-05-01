@@ -3,9 +3,9 @@
 
 #include "inc_location"
 #include "inc_iprop"
+#include "inc_combat2"
 #include "inc_database"
 #include "inc_seeds"
-#include "inc_subrace"
 #include "inc_time"
 
 const string FIXTURES = "FIXTURES"; // for logging
@@ -489,31 +489,17 @@ void gvdFXCreateRemains(object oFixture, object oDamager) {
 
       // and add some clues for -investigate, variable RESULT_1 being the damagetype, RESULT_2 being the race, RESULT_3 being the gender of oDamager
       string sDamageType = gvd_GetLargestDamageDealt(oFixture);
-      int iSubRace = gsSUGetSubRaceByName(GetSubRace(oDamager));
-      string sSubRace = gsSUGetNameBySubRace(iSubRace);
-      
-      // use same logic as in inc_tracks
-      switch (iSubRace)
-      // Override for aasimar, tieflings, genasi and other subraces very
-      // similar culturally and physically to base.
-      {
-        case GS_SU_PLANETOUCHED_AASIMAR:
-        case GS_SU_PLANETOUCHED_GENASI_AIR:
-        case GS_SU_PLANETOUCHED_GENASI_EARTH:
-        case GS_SU_PLANETOUCHED_GENASI_FIRE:
-        case GS_SU_PLANETOUCHED_GENASI_WATER:
-        case GS_SU_PLANETOUCHED_TIEFLING:
-        case GS_SU_ELF_SUN:
-        case GS_SU_ELF_MOON:
-        case GS_SU_HALFLING_LIGHTFOOT:
-        case GS_SU_HALFLING_STRONGHEART:
-        case GS_SU_DWARF_GOLD:
-        case GS_SU_DWARF_SHIELD:
-        case GS_SU_NONE:
-          sSubRace = gsSUGetRaceName(GetRacialType(oDamager));
-          break;
-      }
+      string sSubRace = GetSubRace(oDamager);
+	  
+	  // Remove background, if any.
+      int nPara1 = FindSubString(sSubRace, "(");
 
+      if (nPara1 > -1)
+      {
+        // subrace = player's subrace (player's background)
+        sSubRace = GetStringLeft(sSubRace, nPara1 - 1);
+      }
+      
       // Override for polymorphed.
       if (gsC2GetHasEffect(EFFECT_TYPE_POLYMORPH, oDamager)) sSubRace = "creature";
 

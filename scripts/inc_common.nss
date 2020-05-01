@@ -117,6 +117,9 @@ object gsCMGetCacheItem(string sKey);
 object gsCMGetCacheItemOnObject(string sKey, object oTarget);
 // Copies properties between hides.
 void gsCMCopyPropertiesAndVariables(object oOldSkin, object oNewSkin);
+// Applies the resurrection effect to the creature. Always call this instead of the
+// default ApplyEffect function to ensure that unique bonuses are reapplied to PCs.
+void ApplyResurrection(object oCreature);
 
 //----------------------------------------------------------------
 void _DestroyObject(object oItem)
@@ -288,6 +291,24 @@ void gsCMDestroyObject(object oObject = OBJECT_SELF)
     }
 
     DestroyObject(oObject);
+}
+//----------------------------------------------------------------
+//::///////////////////////////////////////////////
+//:: ApplyResurrection
+//:://////////////////////////////////////////////
+/*
+    Applies the resurrection effect to the
+    creature. Always call this instead of the
+    default ApplyEffect function to ensure
+    that unique bonuses are reapplied to PCs.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Peppermint
+//:: Created On: July 6, 2016
+//:://////////////////////////////////////////////
+void ApplyResurrection(object oCreature)
+{
+    ExecuteScript("exe_resurrect", oCreature);
 }
 //----------------------------------------------------------------
 void gsCMResurrect(object oCreature = OBJECT_SELF)

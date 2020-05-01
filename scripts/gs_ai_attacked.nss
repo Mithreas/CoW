@@ -36,8 +36,6 @@ void main()
       fbZZombify(OBJECT_SELF, oAttacker);
     }
 
-    if (GetIsPC(oAttacker)) miDVGivePoints(oAttacker, ELEMENT_FIRE, 0.2);
-
     if (gsCBGetHasAttackTarget())
     {
         object oTarget = gsCBGetLastAttackTarget();

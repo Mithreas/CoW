@@ -15,9 +15,9 @@ void main()
 
 
     // Assassin: 2m cooldown
-    // Considers feat used if there is no cast item, and the caster level is the same as the assassin's class levels.
+    // Check for Assassin improved invis (spell ID 608)
     object oItem = GetSpellCastItem();
-    if (!GetIsObjectValid(oItem) && GetLevelByClass(CLASS_TYPE_ASSASSIN, OBJECT_SELF) == nCasterLevel)
+    if (!GetIsObjectValid(oItem) && nSpell == 608)
     {
         // Restore feat use.
         IncrementRemainingFeatUses(OBJECT_SELF,  FEAT_PRESTIGE_INVISIBILITY_2);

@@ -38,10 +38,6 @@ const string IS_SCRYING = "MI_IS_SCRYING";
 // Creates a henchman and applies it to oCaster.  If nVisualEffect is set,
 // will play that.
 void miCreateHenchman(string sResRef, object oCaster, int nVisualEffect);
-// Summons undead based on caster's necromantic feats.
-void miSummonUndead(string sResRef, object oCaster, float fDuration, int nVisualEffect = VFX_FNF_SUMMON_UNDEAD);
-// Removes all undead summons.  Use in other summoning spells.
-void miUnsummonUndead(object oCaster);
 // Utility function to return the caster's bonus vs spell resistance. All in one
 // place to make this easy to change if future feats are added.
 int GetSpellPenetrationModifiers(object oCaster);
@@ -61,10 +57,6 @@ void miSPClearAllCastSpells(object oCaster);
 int miSPGetLastSpellArcane(object oCaster);
 //Custom Caster level check  - Wrapper
 int AR_GetCasterLevel(object oCaster=OBJECT_SELF);
-// Retrieve any caster level bonus oCaster has
-int AR_GetCasterLevelBonus(object oCaster=OBJECT_SELF);
-// Set a caster level bonus for oCaster.
-void AR_SetCasterLevelBonus(int nBonus, object oCaster=OBJECT_SELF);
 //Custom Reflex adjusted damage   - Wrapper
 int AR_GetReflexAdjustedDamage(int nDamage, object oTarget, int nDC, int nSaveType=SAVING_THROW_TYPE_NONE, object oSaveVersus=OBJECT_SELF);
 //Meta magic wrapper
@@ -123,202 +115,6 @@ void _SetSpellId(object oCaster, int nSpell, int nSlot)
   else DelayCommand(1.0f, _SetSpellId(oCaster, nSpell, nSlot));
 }
 //------------------------------------------------------------------------------
-void miUnsummonUndead(object oCaster)
-{
-  object oSummon = GetAssociate(ASSOCIATE_TYPE_SUMMONED, oCaster, 1);
-  object oHench1 = GetAssociate(ASSOCIATE_TYPE_HENCHMAN, oCaster, 1);
-  object oHench2 = GetAssociate(ASSOCIATE_TYPE_HENCHMAN, oCaster, 2);
-
-  if (GetIsObjectValid(oSummon) && GetLocalInt(oSummon, SPELL_ID))
-  {
-    RemoveSummonedAssociate(oCaster, oSummon);
-  }
-  else if (GetIsObjectValid(oHench1) && GetLocalInt(oHench1, SPELL_ID))
-  {
-    RemoveHenchman(oCaster, oHench1);
-  }
-  else if (GetIsObjectValid(oHench2) && GetLocalInt(oHench2, SPELL_ID))
-  {
-    RemoveHenchman(oCaster, oHench2);
-  }
-}
-//------------------------------------------------------------------------------
-void miSummonUndead(string sResRef, object oCaster, float fDuration, int nVisualEffect = VFX_FNF_SUMMON_UNDEAD)
-{
-  //----------------------------------------------------------------------------
-  // This method should be used by all summon undead abilities (Animate Dead,
-  // Create Undead, Create Greater Undead, Summon Undead, Summon Greater Undead).
-  //
-  // It needs to be called from a spell script (i.e. GetSpellId() should work!).
-  //
-  // Casters can have up to one minion per Spell Focus in Necromancy (min 1).
-  // The first is summoned as a usual creature (i.e. in the summon slot).
-  // The second and third, if applicable, take up henchman slots.
-  // Each distinct spell can only summon one minion (so casting animate dead
-  // twice won't net you a second minion, even with GSF).
-  // There are three streams of undead (zombie, ghoul and wraith).  Zombie is
-  // the default.  PCs can do rituals to change stream.
-  // There are 4 tiers of creature. Tier 2 kicks in at level 11, Tier 3 at 16,
-  // and Tier 4 when you have the Mummy Dust spell.
-  //----------------------------------------------------------------------------
-
-  // Set up variables.
-  int nSpell = GetSpellId();
-  int nLevel = GetLevelByClass(CLASS_TYPE_WIZARD, oCaster) +
-               GetLevelByClass(CLASS_TYPE_SORCERER, oCaster) +
-               GetLevelByClass(CLASS_TYPE_CLERIC, oCaster) +
-               GetLevelByClass(CLASS_TYPE_PALE_MASTER, oCaster) +
-               AR_GetCasterLevelBonus(oCaster);
-
-  int nTier  = 1;
-
-  if (GetKnowsFeat(FEAT_EPIC_SPELL_MUMMY_DUST, oCaster)) nTier = 4;
-  else if (nLevel > 15) nTier = 3;
-  else if (nLevel > 10) nTier = 2;
-
-  //----------------------------------------------------------------------------
-  // Work out which slot to use for summoning and clean out any creature
-  // already in it.
-  //----------------------------------------------------------------------------
-  int nNumHenchman = 0;
-  if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_NECROMANCY, oCaster)) nNumHenchman = 2;
-  else if (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_NECROMANCY, oCaster)) nNumHenchman = 1;
-
-  object oSummon = GetAssociate(ASSOCIATE_TYPE_SUMMONED, oCaster, 1);
-  object oHench1 = GetAssociate(ASSOCIATE_TYPE_HENCHMAN, oCaster, 1);
-  object oHench2 = GetAssociate(ASSOCIATE_TYPE_HENCHMAN, oCaster, 2);
-
-  int nSlot = 0;
-  //----------------------------------------------------------------------------
-  // If we have a non-undead summon, dismiss it.
-  //----------------------------------------------------------------------------
-  if (GetIsObjectValid(oSummon) && !GetLocalInt(oSummon, SPELL_ID))
-  {
-    RemoveSummonedAssociate(oCaster, oSummon);
-  }
-
-  if (GetIsObjectValid(oSummon) && GetLocalInt(oSummon, SPELL_ID) == nSpell)
-  {
-    RemoveSummonedAssociate(oCaster, oSummon);
-    nSlot = 1;
-  }
-  else if (GetIsObjectValid(oHench1) && GetLocalInt(oHench1, SPELL_ID) == nSpell)
-  {
-    RemoveHenchman(oCaster, oHench1);
-    nSlot = 2;
-  }
-  else if (GetIsObjectValid(oHench2) && GetLocalInt(oHench2, SPELL_ID) == nSpell)
-  {
-    RemoveHenchman(oCaster, oHench2);
-    nSlot = 3;
-  }
-
-  if (!nSlot)
-  {
-    // We are not replacing an existing summon.  Find the first available slot.
-    if (!GetIsObjectValid(oSummon)) nSlot = 1;
-    else if (!GetIsObjectValid(oHench1) && nNumHenchman) nSlot = 2;
-    else if (!GetIsObjectValid(oHench2) && nNumHenchman > 1) nSlot = 3;
-  }
-
-  if (!nSlot)
-  {
-    // We don't have a spare slot!  Dismiss our summon and use slot 1.
-    RemoveSummonedAssociate(oCaster, oSummon);
-    nSlot = 1;
-  }
-
-  // Only PCs can have henchmen without side effects, it seems.
-  if (!GetIsPC(oCaster)) nSlot = 1;
-
-  //----------------------------------------------------------------------------
-  // Determine which creature to summon.
-  //----------------------------------------------------------------------------
-  int nStream;
-  if (!GetIsPC(oCaster)) nStream = d3();
-  else nStream = GetLocalInt(gsPCGetCreatureHide(oCaster), "MI_SP_UNDEAD_STREAM");
-
-  if (!nStream) nStream = STREAM_ZOMBIE;
-
-  // Resref by level.
-  switch (nStream)
-  {
-    case STREAM_ZOMBIE:
-    {
-      switch (nTier)
-      {
-        case 1:
-          sResRef = "nw_s_zombie";
-          break;
-        case 2:
-          sResRef = "nw_s_skeleton";
-          break;
-        case 3:
-          sResRef = "x2_s_mummy";
-          break;
-        case 4:
-          sResRef = "x2_s_mummy_9";
-          break;
-      }
-      break;
-    }
-    case STREAM_GHOUL:
-    {
-      switch (nTier)
-      {
-        case 1:
-          sResRef = "nw_s_ghoul";
-          break;
-        case 2:
-          sResRef = "nw_s_ghast";
-          break;
-        case 3:
-          sResRef = "nw_s_wight";
-          break;
-        case 4:
-          sResRef = "nw_s_vampire";
-          break;
-      }
-      break;
-    }
-    case STREAM_WRAITH:
-    {
-      switch (nTier)
-      {
-        case 1:
-          sResRef = "nw_s_spectre";
-          break;
-        case 2:
-          sResRef = "nw_s_wraith";
-          break;
-        case 3:
-          sResRef = "nw_s_banshee";
-          break;
-        case 4:
-          sResRef = "nw_s_lich";
-          break;
-      }
-      break;
-    }
-  }
-
-  // Actually summon the creature.
-  if (nSlot == 1)
-  {
-    ApplyEffectAtLocation(DURATION_TYPE_TEMPORARY,
-                      EffectSummonCreature(sResRef,nVisualEffect, 0.5, TRUE),
-                          GetSpellTargetLocation(),
-                          fDuration);
-  }
-  else
-  {
-      miCreateHenchman(sResRef, oCaster, nVisualEffect);
-  }
-
-  // Set their spell ID variable.
-  DelayCommand(1.0, _SetSpellId(oCaster, nSpell, nSlot));
-}
-//------------------------------------------------------------------------------
 int GetSpellPenetrationModifiers(object oCaster)
 {
   int nResult = 0;
@@ -348,15 +144,15 @@ int GetSpellDCModifiers(object oCaster, int nSpellSchool)
   {
     case SPELL_SCHOOL_ABJURATION:
     {
-      if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_ABJURATION))
+      if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_ABJURATION, oCaster))
       {
         nResult += 6;
       }
-      else if (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_ABJURATION))
+      else if (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_ABJURATION, oCaster))
       {
         nResult += 4;
       }
-      else if (GetHasFeat(FEAT_SPELL_FOCUS_ABJURATION))
+      else if (GetHasFeat(FEAT_SPELL_FOCUS_ABJURATION, oCaster))
       {
         nResult += 2;
       }
@@ -364,15 +160,15 @@ int GetSpellDCModifiers(object oCaster, int nSpellSchool)
     }
     case SPELL_SCHOOL_CONJURATION:
     {
-      if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_CONJURATION))
+      if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_CONJURATION, oCaster))
       {
         nResult += 6;
       }
-      else if (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_CONJURATION))
+      else if (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_CONJURATION, oCaster))
       {
         nResult += 4;
       }
-      else if (GetHasFeat(FEAT_SPELL_FOCUS_CONJURATION))
+      else if (GetHasFeat(FEAT_SPELL_FOCUS_CONJURATION, oCaster))
       {
         nResult += 2;
       }
@@ -380,15 +176,15 @@ int GetSpellDCModifiers(object oCaster, int nSpellSchool)
     }
     case SPELL_SCHOOL_DIVINATION:
     {
-      if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_DIVINATION))
+      if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_DIVINATION, oCaster))
       {
         nResult += 6;
       }
-      else if (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_DIVINATION))
+      else if (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_DIVINATION, oCaster))
       {
         nResult += 4;
       }
-      else if (GetHasFeat(FEAT_SPELL_FOCUS_DIVINATION))
+      else if (GetHasFeat(FEAT_SPELL_FOCUS_DIVINATION, oCaster))
       {
         nResult += 2;
       }
@@ -396,15 +192,15 @@ int GetSpellDCModifiers(object oCaster, int nSpellSchool)
     }
     case SPELL_SCHOOL_ENCHANTMENT:
     {
-      if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_ENCHANTMENT))
+      if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_ENCHANTMENT, oCaster))
       {
         nResult += 6;
       }
-      else if (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_ENCHANTMENT))
+      else if (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_ENCHANTMENT, oCaster))
       {
         nResult += 4;
       }
-      else if (GetHasFeat(FEAT_SPELL_FOCUS_ENCHANTMENT))
+      else if (GetHasFeat(FEAT_SPELL_FOCUS_ENCHANTMENT, oCaster))
       {
         nResult += 2;
       }
@@ -412,15 +208,15 @@ int GetSpellDCModifiers(object oCaster, int nSpellSchool)
     }
     case SPELL_SCHOOL_EVOCATION:
     {
-      if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION))
+      if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, oCaster))
       {
         nResult += 6;
       }
-      else if (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_EVOCATION))
+      else if (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_EVOCATION, oCaster))
       {
         nResult += 4;
       }
-      else if (GetHasFeat(FEAT_SPELL_FOCUS_EVOCATION))
+      else if (GetHasFeat(FEAT_SPELL_FOCUS_EVOCATION, oCaster))
       {
         nResult += 2;
       }
@@ -433,15 +229,15 @@ int GetSpellDCModifiers(object oCaster, int nSpellSchool)
     }
     case SPELL_SCHOOL_ILLUSION:
     {
-      if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_ILLUSION))
+      if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_ILLUSION, oCaster))
       {
         nResult += 6;
       }
-      else if (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_ILLUSION))
+      else if (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_ILLUSION, oCaster))
       {
         nResult += 4;
       }
-      else if (GetHasFeat(FEAT_SPELL_FOCUS_ILLUSION))
+      else if (GetHasFeat(FEAT_SPELL_FOCUS_ILLUSION, oCaster))
       {
         nResult += 2;
       }
@@ -449,15 +245,15 @@ int GetSpellDCModifiers(object oCaster, int nSpellSchool)
     }
     case SPELL_SCHOOL_NECROMANCY:
     {
-      if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_NECROMANCY))
+      if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_NECROMANCY, oCaster))
       {
         nResult += 6;
       }
-      else if (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_NECROMANCY))
+      else if (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_NECROMANCY, oCaster))
       {
         nResult += 4;
       }
-      else if (GetHasFeat(FEAT_SPELL_FOCUS_NECROMANCY))
+      else if (GetHasFeat(FEAT_SPELL_FOCUS_NECROMANCY, oCaster))
       {
         nResult += 2;
       }
@@ -465,15 +261,15 @@ int GetSpellDCModifiers(object oCaster, int nSpellSchool)
     }
     case SPELL_SCHOOL_TRANSMUTATION:
     {
-      if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_TRANSMUTATION))
+      if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_TRANSMUTATION, oCaster))
       {
         nResult += 6;
       }
-      else if (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_TRANSMUTATION))
+      else if (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_TRANSMUTATION, oCaster))
       {
         nResult += 4;
       }
-      else if (GetHasFeat(FEAT_SPELL_FOCUS_TRANSMUTATION))
+      else if (GetHasFeat(FEAT_SPELL_FOCUS_TRANSMUTATION, oCaster))
       {
         nResult += 2;
       }
@@ -611,8 +407,15 @@ int AR_GetCasterLevel(object oCaster=OBJECT_SELF)
   {
     nPietyBonus = FloatToInt(gsSTGetState(GS_ST_PIETY, oCaster)) / 10;
   }
+  else
+  {
+    nPietyBonus = AR_GetCasterLevelBonus(oCaster);
+  }
 
-  return nCasterLevel + AR_GetCasterLevelBonus(oCaster) + nPMBonus + nHarperBonus + nShadowBonus  + nPietyBonus + GetTemporaryCasterLevelBonus(oCaster);
+  nCasterLevel = nCasterLevel + nPMBonus + nHarperBonus + nShadowBonus  + nPietyBonus + GetTemporaryCasterLevelBonus(oCaster);
+  
+  if (nCasterLevel < 0) nCasterLevel = 0;
+  return nCasterLevel;
 }
 //------------------------------------------------------------------------------
 int AR_GetReflexAdjustedDamage(int nDamage, object oTarget, int nDC, int nSaveType=SAVING_THROW_TYPE_NONE, object oSaveVersus=OBJECT_SELF)
@@ -624,16 +427,6 @@ int AR_GetMetaMagicFeat()
 {
   if(GetObjectType(OBJECT_SELF) == OBJECT_TYPE_AREA_OF_EFFECT) return GetAoEMetaMagic();
   return GetMetaMagicFeat();
-}
-//------------------------------------------------------------------------------
-int AR_GetCasterLevelBonus(object oCaster=OBJECT_SELF)
-{
-  return GetLocalInt(gsPCGetCreatureHide(oCaster), "AR_BONUS_CASTER_LEVELS");
-}
-//------------------------------------------------------------------------------
-void AR_SetCasterLevelBonus(int nBonus, object oCaster=OBJECT_SELF)
-{
-  SetLocalInt(gsPCGetCreatureHide(oCaster), "AR_BONUS_CASTER_LEVELS", nBonus);
 }
 //------------------------------------------------------------------------------
 int miSPGetSRAdjustedDamage(int nDamage, object oTarget, object oCaster = OBJECT_SELF)
@@ -832,9 +625,22 @@ int GetCanSendImage(object oPC)
 //------------------------------------------------------------------------------
 void Scrying(object oPC,object oTarg)
 {
+  // Spell resistance check.
+  object oHide = gsPCGetCreatureHide(oPC);
+  int nCheck = d20() + GetLevelByClass(CLASS_TYPE_WIZARD, oPC) + GetLevelByClass(CLASS_TYPE_BARD, oPC) + GetLevelByClass(CLASS_TYPE_SORCERER, oPC) + 
+                GetLevelByClass(CLASS_TYPE_DRUID, oPC) + GetLevelByClass(CLASS_TYPE_FAVOURED_SOUL, oPC) + GetLevelByClass(CLASS_TYPE_CLERIC, oPC) +
+				  GetLocalInt(oHide, "ATTUNEMENT_STRENGTH") / 2;
+
   if(GetHasSpellEffect(SPELL_SANCTUARY,oTarg) || GetHasSpellEffect(SPELL_INVISIBILITY,oTarg)
          ||GetHasSpellEffect(SPELL_INVISIBILITY_SPHERE,oTarg) 
-         ||GetHasSpellEffect(SPELL_IMPROVED_INVISIBILITY,oTarg) || IsProtected(oTarg))
+         ||GetHasSpellEffect(346,oTarg)  // Shadow conjuration invis
+         ||GetHasSpellEffect(607,oTarg)  // Assassin invis
+         ||GetHasSpellEffect(608,oTarg)  // Assassin imp invis
+         ||GetHasSpellEffect(483,oTarg)  // Harper invis
+         ||GetHasSpellEffect(799,oTarg)  // Vampire invis
+         ||GetHasSpellEffect(SPELL_IMPROVED_INVISIBILITY,oTarg) || IsProtected(oTarg) ||
+		 nCheck < GetSpellResistance(oTarg)
+		 )
          {
          blackout(oPC);
          SendMessageToPC(oPC,"You see nothing.");
@@ -852,8 +658,12 @@ void Scrying(object oPC,object oTarg)
   if(!GetLocalInt(gsPCGetCreatureHide(oPC), "CUSTOM_SPELL_" + IntToString(CUSTOM_SPELL_SCRY)))
   {
     //@@@ Improve this.
-    if(GetCanScry(oTarg))
-          SendMessageToPC(oTarg,"You sense you are being watched from afar.");
+	int nConcentration = GetSkillRank(SKILL_CONCENTRATION, oTarg) + (GetKnowsFeat(FEAT_ARCANE_DEFENSE_DIVINATION, oTarg) ?  5 : 0) + (GetCanScry(oTarg) ?  5 : 0);
+	int nSpellcraft    = GetSkillRank(SKILL_SPELLCRAFT, oTarg) + 6; // ESF Divination required for scrying
+    if( (d20() + nConcentration) > (d20() + nSpellcraft) )
+	{
+        SendMessageToPC(oTarg,"You sense you are being watched from afar.");
+	}	  
     miSCDoScrying(oPC, oTarg);
     miSPHasCastSpell(oPC, CUSTOM_SPELL_SCRY);
   }

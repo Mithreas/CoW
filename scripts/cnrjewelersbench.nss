@@ -29,7 +29,7 @@ void main()
   CnrRecipeSetDevicePreCraftingScript("cnrJewelersBench", "cnr_jeweler_anim");
   CnrRecipeSetDeviceInventoryTool("cnrJewelersBench", "cnrGemTools", CNR_FLOAT_GEM_CRAFTERS_TOOLS_BREAKAGE_PERCENTAGE);
   CnrRecipeSetDeviceTradeskillType("cnrJewelersBench", CNR_TRADESKILL_JEWELRY);
-  CnrRecipeSetRecipeAbilityPercentages("cnrJewelersBench", 0, 50, 0, 0, 0, 50);  // Dex and Cha.
+  CnrRecipeSetRecipeAbilityPercentages(IntToString(CNR_TRADESKILL_JEWELRY), 0, 50, 0, 0, 0, 50);  // Dex and Cha.
 
   /////////////////////////////////////////////////////////
   // Gems

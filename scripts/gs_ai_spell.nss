@@ -11,8 +11,6 @@ void main()
     {
         object oCaster = GetLastSpellCaster();
 
-        if (GetIsPC(oCaster)) miDVGivePoints(oCaster, ELEMENT_FIRE, 0.2);
-
         if (gsCBGetHasAttackTarget())
         {
             object oTarget = gsCBGetLastAttackTarget();

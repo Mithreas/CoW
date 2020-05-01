@@ -29,7 +29,7 @@ void main()
   CnrRecipeSetDevicePreCraftingScript("cnrscribeaverage", "cnr_enchant_anim");
   //CnrRecipeSetDeviceInventoryTool("cnrscribeaverage", "");
   CnrRecipeSetDeviceTradeskillType("cnrscribeaverage", CNR_TRADESKILL_INVESTING);
-  CnrRecipeSetRecipeAbilityPercentages("cnrscribeaverage", 0, 0, 0, 50, 50, 0);
+  CnrRecipeSetRecipeAbilityPercentages(IntToString(CNR_TRADESKILL_INVESTING), 0, 0, 0, 50, 50, 0);
 
 //Level 6 Scrolls
 

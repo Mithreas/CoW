@@ -57,7 +57,13 @@ void main()
 
         SetLocalInt(oPC, "StealthTimer", 0);
         DelayCommand(6.0, RoundStealthTimerIncrement());
-        miDVGivePoints(oPC, ELEMENT_WATER, 1.0);
+		
+		int nTimeout = GetLocalInt(oPC, "AIR_TIMEOUT");
+		if (gsTIGetActualTimestamp() > nTimeout)
+		{
+          miDVGivePoints(oPC, ELEMENT_AIR, 1.0);
+		  SetLocalInt(oPC, "AIR_TIMEOUT", gsTIGetActualTimestamp() + 60);
+		}  
 		
         svSetAffix(oPC, STEALTH_PREFIX, TRUE);
     }

@@ -1,19 +1,5 @@
-#include "inc_awards"
+#include "inc_caravan"
 #include "inc_external"
-void _Drown(object oPC)
-{
-  AssignCommand(oPC, ClearAllActions());
-  AssignCommand(oPC, ActionJumpToObject(GetObjectByTag("WATERY_GRAVE")));
-
-  SendMessageToPC(oPC, "You get a little way out onto open water, then a large wave rises up out of nowhere and swallows your boat.  Death follows shortly thereafter.");
-  
-  // rewards
-  gvd_DoRewards(oPC);
-
-  // Delete character.
-  fbEXDeletePC(oPC);
-  SetCommandable(FALSE, oPC);
-}
 
 void main()
 {
@@ -33,9 +19,9 @@ void main()
             if(iIsGoing)
 			{			
 			    // Check that they are not an arcanist!
-				if (GetLevelByClass(CLASS_TYPE_WIZARD, oObject) || GetLevelByClass(CLASS_TYPE_SORCERER, oObject))
+				if (!miCACanSwim(oObject))
  				{
-				  _Drown(oObject);
+				  miCADrown(oObject);
 			    }
 				else
 				{

@@ -26,7 +26,7 @@ void main()
   CnrRecipeSetDevicePreCraftingScript("cnrritualtable", "cnr_alchemy_anim");
   //CnrRecipeSetDeviceInventoryTool("cnrritualtable", "");
   CnrRecipeSetDeviceTradeskillType("cnrritualtable", CNR_TRADESKILL_INVESTING);
-  CnrRecipeSetRecipeAbilityPercentages("cnrritualtable", 0, 0, 0, 50, 50, 0); // WIS and INT
+  CnrRecipeSetRecipeAbilityPercentages(IntToString(CNR_TRADESKILL_INVESTING), 0, 0, 0, 50, 50, 0); // WIS and INT
   
   string sMenuRituals = CnrRecipeAddSubMenu("cnrritualtable", "Ritual Circles");;
   

@@ -1923,7 +1923,7 @@ float gsCRGetCraftingCostMultiplier(object oPC, object oItem, itemproperty ip)
   // Scale cost by craft skill level and item type.
   int nXP = CnrGetTradeskillXPByType(oPC, gsCRGetCraftSkillByItemType(oItem, nMundaneProperty));
   int nSkill = CnrDetermineTradeskillLevel(nXP);
-  nSkill += gsCRGetWeightedAbilityBonus(oPC, GetTag(OBJECT_SELF));
+  nSkill += gsCRGetWeightedAbilityBonus(oPC, IntToString(gsCRGetCraftSkillByItemType(oItem, nMundaneProperty)));
   if (nSkill < 3) nSkill = 3;  
   
   // Bonus material.

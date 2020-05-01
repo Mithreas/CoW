@@ -92,12 +92,22 @@ void main()
     }
     else if (objectType == OBJECT_TYPE_CREATURE)
     {
-        if (GetIsDM(examiner) || GetIsDM(examinee) || examiner == examinee)
+	
+        if (GetIsDM(examiner) || GetIsDM(examinee))
         {
             return;
         }
-
-        string metaInfo = "";
+		
+        string oldDescription = GetDescription(examinee);
+        SetLocalString(examinee, "MI_LOOK_OLD_DESC", oldDescription);
+		
+	    if (examiner == examinee)
+		{
+		  SetDescription(examinee, oldDescription + ((oldDescription == "") ? ("") : ("\n\n")) + fbDoLooksAndGetString(examiner, examinee));
+		  return;
+		}
+		
+        string metaInfo = "";		
 
         int curTimestamp = gsTIGetActualTimestamp();
         int prevTimestamp = GetLocalInt(examiner, "MI_LOOK_TIMEOUT_" + ObjectToString(examinee));
@@ -137,9 +147,7 @@ void main()
                 metaInfo += GetLocalString(examiner, "MI_LOOK_CACHED_" + ObjectToString(examinee));
             }
         }
-
-        string oldDescription = GetDescription(examinee);
-        SetLocalString(examinee, "MI_LOOK_OLD_DESC", oldDescription);
+		
         SetDescription(examinee, oldDescription + ((oldDescription == "") ? ("") : ("\n\n")) + metaInfo);
 
         if (GetLocalInt(examiner, "MI_LOOK_BROKE_" + ObjectToString(examinee)))

@@ -492,11 +492,11 @@ void _gsAIActionCreature(object oTarget)
 
     switch (Random(6))
     {
-    case 0: SpeakOneLinerConversation();
+    case 0: //SpeakOneLinerConversation();
             ActionPlayAnimation(ANIMATION_LOOPING_TALK_NORMAL, 1.0, IntToFloat(Random(21)) / 10.0 + 2.0);
             break;
 
-    case 1: SpeakOneLinerConversation();
+    case 1: //SpeakOneLinerConversation();
             if (nInferior) ActionPlayAnimation(ANIMATION_LOOPING_TALK_PLEADING,  1.0, IntToFloat(Random(21)) / 10.0 + 2.0);
             else           ActionPlayAnimation(ANIMATION_LOOPING_TALK_FORCEFUL,  1.0, IntToFloat(Random(21)) / 10.0 + 2.0);
             break;

@@ -51,9 +51,7 @@ void Init()
   // PC responses to task briefing.
   if (GetElementCount(MAIN_MENU) == 0)
   {
-    AddStringElement("Yes, I'll do it.", MAIN_MENU);
-    AddStringElement("Sorry, I don't think I'm up to that...",
-                     MAIN_MENU);
+    AddStringElement("Very well.", MAIN_MENU);
   }
 
   // Responses to the second briefing.
@@ -262,6 +260,7 @@ void PageInit()
       Trace(RQUEST, "Got new quest: " + sNewQuest);
       SetDlgPrompt("Here's a task you should be able to do. " +
                    GetLocalString(oCache, sNewQuest + DESCRIPTION));
+	  SetUpQuest(oPC, OBJECT_SELF);			   
       SetDlgResponseList(MAIN_MENU, OBJECT_SELF);
     }
   }
@@ -368,24 +367,10 @@ void HandleSelection()
   }
   else if (sResponseList == MAIN_MENU)
   {
-    switch (selection)
-    {
-      case 0:
-        // Quest accepted. Now set it up...
-        {
-          SetUpQuest(oPC, OBJECT_SELF);
-          EndDlg();
-          break;
-        }
-      case 1:
-        // Quest refused.
-        {
-          TakeRepPoint(oPC, CheckFactionNation(OBJECT_SELF));
-          TidyQuest(oPC, OBJECT_SELF);
-          SetDlgPageString(REFUSED);
-          break;
-        }
-    }
+    // The quest briefing now can't be refused and gets set up immediately. 
+	// This works around various dialog bugs (blame the Arachnes). 
+	// Players can still refuse a quest by speaking with the quest giver again.
+    EndDlg();
   }
   else if (sResponseList == REPLY1)
   {

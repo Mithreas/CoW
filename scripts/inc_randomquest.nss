@@ -865,7 +865,7 @@ string GenerateNewQuest(object oPC, object oNPC)
   
   object oCache = miDAGetCacheObject(sVarsDB);
 
-  int nCount = 1;
+  int nCount = 0;
 
   // Get all quests for this provider where we are within the level range.
   string sSQL = "SELECT quest FROM " + sQuestDB + " WHERE questset='" + sQuestSet + 

@@ -9,7 +9,7 @@
 #include "inc_zdlg"
 #include "nw_i0_generic"
 
-const string MAIN_MENU   = "main_options";
+const string MAIN_MENU   = "arachne_options";
 const string ECDYSIS     = "ecdysis";
 const string WEB         = "web";
 const string THREAD      = "thread";

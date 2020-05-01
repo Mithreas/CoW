@@ -537,7 +537,7 @@ string fbCHCommandList(object oSpeaker)
   if (ALLOW_TELEPORT)
   {
     sList += _fbCHPrepareChatCommand("-teleport",
-      (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_TRANSMUTATION, oSpeaker) && !GetLocalInt(oHide, "SPELLSWORD")) ? STRING_COLOR_GREEN : STRING_COLOR_RED);
+      (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_TRANSMUTATION, oSpeaker) && !GetLocalInt(oHide, "SPELLSWORD")) ? STRING_COLOR_GREEN : STRING_COLOR_RED);
   }
 
   sList += _fbCHPrepareChatCommand("-thrall", VampireIsVamp(oSpeaker) ? STRING_COLOR_RED : STRING_COLOR_GREEN);
@@ -1131,7 +1131,12 @@ string fbDoLooksAndGetString(object first, object second)
 			}
         }
     }
-
+	else if (first == second && GetIsObjectValid(first))
+	{
+		// Allow seers to see their own attunement.
+        sMessage += GetPCDescriptionAttunement(first, second) + "\n";
+	}
+	
     if (sMessage != "")
     {
         sMessage = GetSubString(sMessage, 0, GetStringLength(sMessage) - 1);

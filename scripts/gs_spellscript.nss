@@ -82,6 +82,7 @@ int _GetIsSummonSpell(int nSpellId, int bUndead = 0, int bSwords = 0)
 void main()
 {
     int nSpell = GetSpellId();
+	int nSchool = GetSpellSchool(nSpell);
     int bBypassAntimagic = GetLocalInt(OBJECT_SELF, "BypassAntimagic");
 
     DeleteLocalInt(OBJECT_SELF, "BypassAntimagic");
@@ -127,7 +128,7 @@ void main()
     //:: Kitito // Spellsword Imbue weapon
     if (GetLocalInt(oHide, "SPELLSWORD") && GetIsObjectValid(oTarget) && (oTarget == GetItemInSlot(INVENTORY_SLOT_RIGHTHAND,OBJECT_SELF) || oTarget == GetItemInSlot(INVENTORY_SLOT_LEFTHAND,OBJECT_SELF))) // && miSSImbueSpellList(GetSpellId()) )
     {
-		if (GetSpellSchool(GetSpellId()) == GetLocalInt(oHide, "MI_BLOCKEDSCHOOL1"))
+		if (nSchool == GetLocalInt(oHide, "MI_BLOCKEDSCHOOL1"))
 		{
 			SendMessageToPC (OBJECT_SELF, "You may not imbue weapons using spells from your blocked school.");
 			gsSPSetOverrideSpell();
@@ -221,7 +222,7 @@ void main()
     // slots.
     if (GetLocalInt(oHide, "TRUE_FIRE"))
     {
-      if (Get2DAString("spells","School",GetSpellId()) == "V")
+      if (nSchool == SPELL_SCHOOL_EVOCATION)
       {
         int ii = 0;
         for (ii; ii < 10; ii++)
@@ -249,7 +250,7 @@ void main()
     }
 
     // Shadow mages cannot cast evocation spells (except Darkness).
-    if (GetIsShadowMage(OBJECT_SELF) && GetSpellId() != SPELL_DARKNESS && !bIsMundaneAbility && Get2DAString("spells","School",GetSpellId()) == "V")
+    if (GetIsShadowMage(OBJECT_SELF) && GetSpellId() != SPELL_DARKNESS && !bIsMundaneAbility && nSchool == SPELL_SCHOOL_EVOCATION)
     {
       SendMessageToPC (OBJECT_SELF, "The Shadow Weave does not support Evocation spells (except Darkness).");
       gsSPSetOverrideSpell();
@@ -311,9 +312,9 @@ void main()
 
         //check if the spell comes from a banned school and block it if necessary
 		if (!bAllow && 
-            ((GetSpellSchool(GetSpellId()) == GetLocalInt(oHide, "MI_BLOCKEDSCHOOL1"))
+            ((nSchool == GetLocalInt(oHide, "MI_BLOCKEDSCHOOL1"))
                 || (_GetIsSummonSpell(GetSpellId(), TRUE, TRUE)) // blocks all summons/undead/blades/planar
-                //|| (GetSpellSchool(GetSpellId()) == GetLocalInt(oHide, "MI_BLOCKEDSCHOOL2"))// blocks conjuration school
+                //|| (nSchool == GetLocalInt(oHide, "MI_BLOCKEDSCHOOL2"))// blocks conjuration school
                 || (GetSpellId() == SPELL_EPIC_DRAGON_KNIGHT)
                 || (GetSpellId() == SPELL_EPIC_HELLBALL)
                 || (GetSpellId() == SPELL_EPIC_MUMMY_DUST)
@@ -632,13 +633,15 @@ void main()
     }
 
     // spell is being cast, so log it in the divination system.
-    if (Get2DAString("spells", "School", nSpell) == "N")
+    if (nSchool == SPELL_SCHOOL_NECROMANCY) 
     {
-      miDVGivePoints(OBJECT_SELF, ELEMENT_DEATH, 4.0);
+      miDVGivePoints(OBJECT_SELF, ELEMENT_DEATH, 3.0);
       gsWOGiveSpellPiety(OBJECT_SELF, FALSE);
     }
-    else
+	else if (nSchool == SPELL_SCHOOL_CONJURATION) // Conjuration
     {
+      miDVGivePoints(OBJECT_SELF, ELEMENT_LIFE, 3.0);
+		  
       switch (nSpell)
       {
         case SPELL_CURE_CRITICAL_WOUNDS:
@@ -653,14 +656,37 @@ void main()
         case SPELL_MONSTROUS_REGENERATION:
         case SPELL_REGENERATE:
           gsWOGiveSpellPiety(OBJECT_SELF, TRUE);
-          miDVGivePoints(OBJECT_SELF, ELEMENT_LIFE, 4.0);
           break;
         default:
           gsWOGiveSpellPiety(OBJECT_SELF, FALSE);
-          miDVGivePoints(OBJECT_SELF, ELEMENT_AIR, 1.0);
           break;
       }
     }
+	else if (nSchool == SPELL_SCHOOL_EVOCATION) // Evocation
+	{
+      miDVGivePoints(OBJECT_SELF, ELEMENT_FIRE, 3.0);
+      gsWOGiveSpellPiety(OBJECT_SELF, FALSE);
+	}
+	else if (nSchool == SPELL_SCHOOL_ENCHANTMENT) // Enchantment
+	{
+      miDVGivePoints(OBJECT_SELF, ELEMENT_EARTH, 3.0);
+      gsWOGiveSpellPiety(OBJECT_SELF, FALSE);
+	}
+	else if (nSchool == SPELL_SCHOOL_TRANSMUTATION) // Transmutation
+	{
+      miDVGivePoints(OBJECT_SELF, ELEMENT_WATER, 3.0);
+      gsWOGiveSpellPiety(OBJECT_SELF, FALSE);	
+	}
+	else if (nSchool == SPELL_SCHOOL_ILLUSION) // Illusion
+	{
+	  miDVGivePoints(OBJECT_SELF, ELEMENT_AIR, 3.0);
+      gsWOGiveSpellPiety(OBJECT_SELF, FALSE);
+	}
+	else
+	{
+	  // School is Abjuration or Divination - no elemental alignment. 
+      gsWOGiveSpellPiety(OBJECT_SELF, FALSE);
+	}
 
     //spell information
     gsSPSetLastSpellHarmful(OBJECT_SELF, nHarmful);

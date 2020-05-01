@@ -17,7 +17,7 @@ void main()
   CnrRecipeSetDevicePreCraftingScript("cnrverminetable", "cnr_tailor_anim");
   CnrRecipeSetDeviceInventoryTool("cnrverminetable", "cnrSewingKit", CNR_FLOAT_SEWING_KIT_BREAKAGE_PERCENTAGE);
   CnrRecipeSetDeviceTradeskillType("cnrverminetable", CNR_TRADESKILL_TAILORING);
-  CnrRecipeSetRecipeAbilityPercentages("cnrverminetable", 0, 50, 0, 50, 0, 0);
+  CnrRecipeSetRecipeAbilityPercentages(IntToString(CNR_TRADESKILL_TAILORING), 0, 50, 0, 50, 0, 0);
   
   // Vermine hides and leathers.
 

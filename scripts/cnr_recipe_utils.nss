@@ -1264,15 +1264,16 @@ int CnrRecipeGetRecipeAbilityPercentage(string sDeviceTag, string sKeyToRecipe, 
 string CnrRecipeGetAbilityString(string sDeviceTag, string sKeyToRecipe, int bIncludeLevel)
 {
   if (sKeyToRecipe == "RECIPE_INVALID") return CNR_TEXT_INTELLIGENCE;
+  string sDeviceTradeskillType = IntToString(GetLocalInt(GetModule(), sDeviceTag + "_TradeskillType"));
 
   object oModule = GetModule();
 
-  float fRecipeStr = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTag, sKeyToRecipe, ABILITY_STRENGTH));
-  float fRecipeDex = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTag, sKeyToRecipe, ABILITY_DEXTERITY));
-  float fRecipeCon = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTag, sKeyToRecipe, ABILITY_CONSTITUTION));
-  float fRecipeInt = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTag, sKeyToRecipe, ABILITY_INTELLIGENCE));
-  float fRecipeWis = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTag, sKeyToRecipe, ABILITY_WISDOM));
-  float fRecipeCha = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTag, sKeyToRecipe, ABILITY_CHARISMA));
+  float fRecipeStr = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTradeskillType, sKeyToRecipe, ABILITY_STRENGTH));
+  float fRecipeDex = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTradeskillType, sKeyToRecipe, ABILITY_DEXTERITY));
+  float fRecipeCon = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTradeskillType, sKeyToRecipe, ABILITY_CONSTITUTION));
+  float fRecipeInt = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTradeskillType, sKeyToRecipe, ABILITY_INTELLIGENCE));
+  float fRecipeWis = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTradeskillType, sKeyToRecipe, ABILITY_WISDOM));
+  float fRecipeCha = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTradeskillType, sKeyToRecipe, ABILITY_CHARISMA));
 
   int nAbilityCount = 0;
   if (fRecipeStr > 0.0) { nAbilityCount++; }
@@ -1347,13 +1348,14 @@ float CnrRecipeGetWeightedPcAbility(object oPC, string sDeviceTag, string sKeyTo
   if (sKeyToRecipe == "RECIPE_INVALID") return 14.0;
 
   object oModule = GetModule();
+  string sDeviceTradeskillType = IntToString(GetLocalInt(GetModule(), sDeviceTag + "_TradeskillType"));
   
-  float fRecipeStr = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTag, sKeyToRecipe, ABILITY_STRENGTH));
-  float fRecipeDex = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTag, sKeyToRecipe, ABILITY_DEXTERITY));
-  float fRecipeCon = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTag, sKeyToRecipe, ABILITY_CONSTITUTION));
-  float fRecipeInt = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTag, sKeyToRecipe, ABILITY_INTELLIGENCE));
-  float fRecipeWis = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTag, sKeyToRecipe, ABILITY_WISDOM));
-  float fRecipeCha = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTag, sKeyToRecipe, ABILITY_CHARISMA));
+  float fRecipeStr = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTradeskillType, sKeyToRecipe, ABILITY_STRENGTH));
+  float fRecipeDex = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTradeskillType, sKeyToRecipe, ABILITY_DEXTERITY));
+  float fRecipeCon = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTradeskillType, sKeyToRecipe, ABILITY_CONSTITUTION));
+  float fRecipeInt = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTradeskillType, sKeyToRecipe, ABILITY_INTELLIGENCE));
+  float fRecipeWis = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTradeskillType, sKeyToRecipe, ABILITY_WISDOM));
+  float fRecipeCha = IntToFloat(CnrRecipeGetRecipeAbilityPercentage(sDeviceTradeskillType, sKeyToRecipe, ABILITY_CHARISMA));
 
   float fPcStr = IntToFloat(GetAbilityScore(oPC, ABILITY_STRENGTH, TRUE) + (GetAbilityScore(oPC, ABILITY_STRENGTH, TRUE) - 10) / 2);
   float fPcDex = IntToFloat(GetAbilityScore(oPC, ABILITY_DEXTERITY, TRUE) + (GetAbilityScore(oPC, ABILITY_DEXTERITY, TRUE) - 10) / 2);
@@ -1516,12 +1518,8 @@ void CnrRecipeCreateItemOnObject(string sItemTag, object oTarget, int nQty)
 /////////////////////////////////////////////////////////
 void CnrRecipeDisplayCraftingResult(object oPC, object oDevice, string sKeyToRecipe, int bSuccess, string sResult, int nEffDC, location locPCAtStart, int bWithConvo)
 {
-  // if the PC has moved, then consider it an attempt to abort
-  location locPC = GetLocation(oPC);
-  if (locPC != locPCAtStart)
-  {
-    return;
-  }
+  // Delete the "I am crafting" flag.
+  DeleteLocalInt(oPC, "CNR_CRAFTING");
 
   // Slow this down as a check on grinding.
   int nBatchCount = CnrRecipeCheckComponentAvailability(oPC, oDevice, sKeyToRecipe);
@@ -1619,9 +1617,6 @@ void CnrRecipeDisplayCraftingResult(object oPC, object oDevice, string sKeyToRec
     gsWOAdjustPiety(oPC, nBatchCount * 0.2f);
   }
   
-  // Divination hook - increase Earth by number of batches. 
-  miDVGivePoints(oPC, ELEMENT_EARTH, IntToFloat(nBatchCount));
-
   string sRecipeBiTag = CnrRecipeGetRecipeBiproductTagByKey(sKeyToRecipe);
   int nRecipeBiQty = CnrRecipeGetRecipeBiproductQtyByKey(sKeyToRecipe);
   int nOnFailBiQty = CnrRecipeGetRecipeOnFailBiproductQtyByKey(sKeyToRecipe);
@@ -1735,6 +1730,12 @@ void CnrRecipeDisplayCraftingResult(object oPC, object oDevice, string sKeyToRec
   {
     nNewXP = CnrRecipeGetRecipeLevelByKey(sKeyToRecipe)*10;
 	SetLocalInt(oHide, "GVD_CRAFT_" + sKeyToRecipe, TRUE);
+    miDVGivePoints(oPC, ELEMENT_FIRE, IntToFloat(nNewXP));
+  }
+  else
+  {
+    // Divination hook - increase Earth by number of batches. 
+    miDVGivePoints(oPC, ELEMENT_EARTH, IntToFloat(nBatchCount));
   }
   
   sInfo1 = CNR_TEXT_YOUR_ADVENTURING_XP_INCREASED_BY + IntToString(nNewXP) + ".\n";
@@ -2098,6 +2099,9 @@ int CnrRecipeAttemptToCraft(object oPC, object oDevice, int nRecipeIndex, int bW
 
     fAnimationDelay = GetLocalFloat(oPC, "fCnrAnimationDelay"); // Set by the animation script.
     DelayCommand(fAnimationDelay, CnrRecipeDisplayCraftingResult(oPC, oDevice, sKeyToRecipe, bSuccess, sResult, nEffDC, locPC, bWithConvo));
+	
+	SetLocalInt(oPC, "CNR_CRAFTING", TRUE);
+	DelayCommand(fAnimationDelay, DeleteLocalInt(oPC, "CNR_CRAFTING"));
   }
 
   if (bSuccess)

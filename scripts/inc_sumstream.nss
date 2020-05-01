@@ -1064,10 +1064,13 @@ int GetUndeadSummonerTier(object oCreature = OBJECT_SELF)
         GetLevelByClass(CLASS_TYPE_SORCERER, oCreature) +
         GetLevelByClass(CLASS_TYPE_CLERIC, oCreature) +
 		GetLevelByClass(CLASS_TYPE_FAVOURED_SOUL, oCreature) + 
-        GetLevelByClass(CLASS_TYPE_PALE_MASTER, oCreature) +
-        GetLocalInt(gsPCGetCreatureHide(oCreature), "AR_BONUS_CASTER_LEVELS");;
+        2 * GetLevelByClass(CLASS_TYPE_PALE_MASTER, oCreature) +
+        AR_GetCasterLevelBonus(oCreature);
 
-    if(nLevel > 15) return STREAM_UNDEAD_TIER_3;
+    if(GetKnowsFeat(FEAT_EPIC_SPELL_MUMMY_DUST, oCreature)) nLevel += 5;
+
+    if (nLevel > 30) return STREAM_UNDEAD_TIER_4;
+    else if(nLevel > 20) return STREAM_UNDEAD_TIER_3;
     else if (nLevel > 10) return STREAM_UNDEAD_TIER_2;
     return STREAM_UNDEAD_TIER_1;
 }

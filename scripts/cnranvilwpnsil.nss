@@ -31,7 +31,7 @@ void main()
   CnrRecipeSetDevicePreCraftingScript("cnranvilwpnsil", "cnr_anvil_anim");
   CnrRecipeSetDeviceEquippedTool("cnranvilwpnsil", "cnrSmithsHammer", CNR_FLOAT_SMITH_HAMMER_BREAKAGE_PERCENTAGE);
   CnrRecipeSetDeviceTradeskillType("cnranvilwpnsil", CNR_TRADESKILL_WEAPON_CRAFTING);
-  CnrRecipeSetRecipeAbilityPercentages("cnranvilwpnsil", 50, 50, 0, 0, 0, 0);
+  CnrRecipeSetRecipeAbilityPercentages(IntToString(CNR_TRADESKILL_WEAPON_CRAFTING), 50, 50, 0, 0, 0, 0);
 
   //////////////////Silver Subs//////////////////////////////
 

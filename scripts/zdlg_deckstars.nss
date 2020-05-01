@@ -21,17 +21,19 @@ const string VAR_CARD = "DS_VAR_CARD";
 
 void Init()
 {
+  miDVShuffleDeck();
+
   if (GetElementCount(OPTIONS) == 0)
   {
     AddStringElement("<c þ >[Lay a field]</c>", OPTIONS);
-    AddStringElement("<c þ >[Browse the cards]</c>", OPTIONS);
+    AddStringElement("<c þ >[Browse the cards]</c>", OPTIONS);	
     AddStringElement("<cþ  >[Done]</c>", OPTIONS);
   }
 
   if (GetElementCount(CARDLIST) == 0)
   {
-    AddStringElement("<c þ >[Warlord]</c>", CARDLIST);
-    AddStringElement("<c þ >[Archmage]</c>", CARDLIST);
+    AddStringElement("<c þ >[Artist]</c>", CARDLIST);
+    AddStringElement("<c þ >[Changer of Ways]</c>", CARDLIST);
     AddStringElement("<c þ >[Craftsman]</c>", CARDLIST);
     AddStringElement("<c þ >[Deceiver]</c>", CARDLIST);
     AddStringElement("<c þ >[Lifebringer]</c>", CARDLIST);
@@ -46,14 +48,13 @@ void Init()
     AddStringElement("<c þ >[Soulstealer]</c>", CARDLIST);
     AddStringElement("<c þ >[Judge]</c>", CARDLIST);
     AddStringElement("<c þ >[Artificer]</c>", CARDLIST);
-    AddStringElement("<c þ >[Templar]</c>", CARDLIST);
-    AddStringElement("<c þ >[Scourge]</c>", CARDLIST);
+    AddStringElement("<c þ >[Sire]</c>", CARDLIST);
     AddStringElement("<c þ >[Shaman]</c>", CARDLIST);
     AddStringElement("<c þ >[Undertaker]</c>", CARDLIST);
     AddStringElement("<c  þ>[Go back]</c>", CARDLIST);
 
-    AddStringElement(ASPECT_WARLORD, ASPECTS);
-    AddStringElement(ASPECT_ARCHMAGE, ASPECTS);
+    AddStringElement(ASPECT_ARTIST, ASPECTS);
+    AddStringElement(ASPECT_CHANGER, ASPECTS);
     AddStringElement(ASPECT_CRAFTSMAN, ASPECTS);
     AddStringElement(ASPECT_DECEIVER, ASPECTS);
     AddStringElement(ASPECT_LIFEBRINGER, ASPECTS);
@@ -68,8 +69,7 @@ void Init()
     AddStringElement(ASPECT_SOULSTEALER, ASPECTS);
     AddStringElement(ASPECT_JUDGE, ASPECTS);
     AddStringElement(ASPECT_ARTIFICER, ASPECTS);
-    AddStringElement(ASPECT_TEMPLAR, ASPECTS);
-    AddStringElement(ASPECT_SCOURGE, ASPECTS);
+    AddStringElement(ASPECT_SIRE, ASPECTS);
     AddStringElement(ASPECT_SHAMAN, ASPECTS);
     AddStringElement(ASPECT_UNDERTAKER, ASPECTS);
   }

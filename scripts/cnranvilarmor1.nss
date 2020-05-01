@@ -57,7 +57,7 @@ void main()
   CnrRecipeSetDevicePreCraftingScript("cnranvilarmor1", "cnr_anvil_anim");
   CnrRecipeSetDeviceEquippedTool("cnranvilarmor1", "cnrSmithsHammer", CNR_FLOAT_SMITH_HAMMER_BREAKAGE_PERCENTAGE);
   CnrRecipeSetDeviceTradeskillType("cnranvilarmor1", CNR_TRADESKILL_ARMOR_CRAFTING);
-  CnrRecipeSetRecipeAbilityPercentages("cnranvilarmor1", 50, 0, 50, 0, 0, 0);
+  CnrRecipeSetRecipeAbilityPercentages(IntToString(CNR_TRADESKILL_ARMOR_CRAFTING), 50, 0, 50, 0, 0, 0);
 
   /////////////////////Ondaran Subcomponents////////////////////////
 

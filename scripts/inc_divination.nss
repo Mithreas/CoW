@@ -12,7 +12,7 @@
   - People with Divination spell focus can see which element people are most
     attuned to.
   - The Deck of Stars object can be used for divination.  The cards in the deck
-    consist of a number of titles, such as Archmage.  The character on the
+    consist of a number of titles, such as Trickster.  The character on the
     server with the highest ratio in the element or elements favoured by the
     title will show up on the card as the current holder.  If they are logged
     in, then users of the deck can find out information about what they're up
@@ -46,9 +46,7 @@
   - skin_color
 */
 #include "inc_log"
-#include "inc_subrace"
 #include "inc_relations"
-#include "inc_weather"
 const string DIVINATION = "DIVINATION";
 
 const string ELEMENT_FIRE  = "Fire";
@@ -59,26 +57,25 @@ const string ELEMENT_LIFE  = "Life";
 const string ELEMENT_DEATH = "Death";
 const string LAST_GAINED   = "LAST_GAINED";
 
-const string ASPECT_WARLORD     = "ASPECT_WARLORD";     // Fire
-const string ASPECT_ARCHMAGE    = "ASPECT_ARCHMAGE";    // Air
+const string ASPECT_ARTIFICER   = "ASPECT_ARTIFICER";    // Fire
+const string ASPECT_CHANGER     = "ASPECT_CHANGER_OF_WAYS"; // Water
 const string ASPECT_CRAFTSMAN   = "ASPECT_CRAFTSMAN";   // Earth
-const string ASPECT_DECEIVER    = "ASPECT_DECEIVER";    // Water
+const string ASPECT_DECEIVER    = "ASPECT_DECEIVER";    // Air
 const string ASPECT_LIFEBRINGER = "ASPECT_LIFEBRINGER"; // Life
 const string ASPECT_DEATHSHAND  = "ASPECT_DEATHSHAND";  // Death
+const string ASPECT_ARTIST      = "ASPECT_ARTIST";      // Fire/Air
 const string ASPECT_SMITH       = "ASPECT_SMITH";       // Fire/Earth
-const string ASPECT_SLAYER      = "ASPECT_SLAYER";      // Fire/Water
-const string ASPECT_BATTLEMAGE  = "ASPECT_BATTLEMAGE";  // Fire/Air
 const string ASPECT_MERCHANT    = "ASPECT_MERCHANT";    // Earth/Water
-const string ASPECT_NURTURER    = "ASPECT_NURTURER";    // Earth/Life
 const string ASPECT_TRICKSTER   = "ASPECT_TRICKSTER";   // Air/Water
-const string ASPECT_PROVIDER    = "ASPECT_PROVIDER";    // Water/Life
-const string ASPECT_SOULSTEALER = "ASPECT_SOULSTEALER"; // Air/Death
-const string ASPECT_JUDGE       = "ASPECT_JUDGE";       // Life/Death
-const string ASPECT_ARTIFICER   = "ASPECT_ARTIFICER";   // Earth/Air
-const string ASPECT_SCOURGE     = "ASPECT_SCOURGE";     // Fire/Death
-const string ASPECT_TEMPLAR     = "ASPECT_TEMPLAR";     // Fire/Life
-const string ASPECT_SHAMAN      = "ASPECT_SHAMAN";      // Air/Life
+const string ASPECT_SLAYER      = "ASPECT_SLAYER";      // Death/Water
+const string ASPECT_SOULSTEALER = "ASPECT_SOULSTEALER"; // Death/Air
+const string ASPECT_BATTLEMAGE  = "ASPECT_BATTLEMAGE";  // Fire/Death
 const string ASPECT_UNDERTAKER  = "ASPECT_UNDERTAKER";  // Earth/Death
+const string ASPECT_NURTURER    = "ASPECT_NURTURER";    // Earth/Life
+const string ASPECT_PROVIDER    = "ASPECT_PROVIDER";    // Water/Life
+const string ASPECT_SIRE        = "ASPECT_SIRE";        // Fire/Life
+const string ASPECT_SHAMAN      = "ASPECT_SHAMAN";      // Air/Life
+const string ASPECT_JUDGE       = "ASPECT_JUDGE";       // Life/Death
 
 // Get aspect description.  sAspect should be an ASPECT_* constant. Returns ""
 // on error.
@@ -107,18 +104,19 @@ string miDVGetAttunement(object oPC);
 void miDVListAspectsForDM(object oDM);
 // Send a message to oDM with the Element values of the target PC.
 void batDVListElementsForDM(object oDM, object oTarget);
+// Returns the relative rank (5 = most attuned, 0 = least attuned) of nElement for oPC
+int miDVGetRelativeAttunement(object oPC, string sElement);
 
 string miDVGetAspectDescription(string sAspect)
 {
   if (sAspect == "") return "";
-  if (sAspect == ASPECT_WARLORD) return ("a torn battle-standard");
-  if (sAspect == ASPECT_ARCHMAGE) return ("a silvered and jeweled staff");
+  if (sAspect == ASPECT_ARTIST) return ("a set of painting brushes");
+  if (sAspect == ASPECT_CHANGER) return ("a warped and gnarled staff");
   if (sAspect == ASPECT_CRAFTSMAN) return ("a hammer and nails");
   if (sAspect == ASPECT_LIFEBRINGER) return ("a nimbus of soft blue light");
   if (sAspect == ASPECT_DEATHSHAND) return ("a dried skull");
   if (sAspect == ASPECT_SMITH) return ("an well-beaten anvil");
   if (sAspect == ASPECT_SLAYER) return ("a wickedly curved dagger");
-  if (sAspect == ASPECT_BATTLEMAGE) return ("a nimbus of flame");
   if (sAspect == ASPECT_MERCHANT) return ("a glinting golden coin");
   if (sAspect == ASPECT_NURTURER) return ("a healthy green leaf");
   if (sAspect == ASPECT_TRICKSTER) return ("a mirror suspended in smoke");
@@ -127,8 +125,8 @@ string miDVGetAspectDescription(string sAspect)
   if (sAspect == ASPECT_JUDGE) return ("a bundle of fasces");
   if (sAspect == ASPECT_DECEIVER) return ("a glass theatre masque");
   if (sAspect == ASPECT_ARTIFICER) return ("a halo of clockwork");
-  if (sAspect == ASPECT_SCOURGE) return ("a pyre's corpsesmoke cloud");
-  if (sAspect == ASPECT_TEMPLAR) return ("a sword burning with light");
+  if (sAspect == ASPECT_BATTLEMAGE) return ("a nimbus of flame");
+  if (sAspect == ASPECT_SIRE) return ("a babe wrapped in swaddling");
   if (sAspect == ASPECT_SHAMAN) return ("a mass of charms and feathers");
   if (sAspect == ASPECT_UNDERTAKER) return ("a grave marker");
 
@@ -138,56 +136,7 @@ float miDVGetMultiplier(object oPC, string sElement)
 {
   Trace(DIVINATION, "Getting multiplier for " + GetName(oPC) + " and " + sElement);
   int nRace = GetRacialType(oPC);
-  int nSubrace = gsSUGetSubRaceByName(GetSubRace(oPC));
   float fMultiplier = 1.0;
-
-  switch (nSubrace)
-  {
-    case GS_SU_PLANETOUCHED_GENASI_AIR:
-      if (sElement == ELEMENT_AIR) fMultiplier = 1.2;
-      break;
-    case GS_SU_PLANETOUCHED_GENASI_EARTH:
-      if (sElement == ELEMENT_EARTH) fMultiplier = 1.2;
-      break;
-    case GS_SU_PLANETOUCHED_GENASI_FIRE:
-    case GS_SU_SPECIAL_IMP:
-      if (sElement == ELEMENT_FIRE) fMultiplier = 1.2;
-      break;
-    case GS_SU_PLANETOUCHED_GENASI_WATER:
-      if (sElement == ELEMENT_WATER) fMultiplier = 1.2;
-      break;
-    case GS_SU_PLANETOUCHED_TIEFLING:
-      if (sElement == ELEMENT_FIRE || sElement == ELEMENT_WATER) fMultiplier = 1.1;
-      break;
-    case GS_SU_SPECIAL_FEY:
-      if (sElement == ELEMENT_LIFE) fMultiplier = 1.2;
-      break;
-    case GS_SU_SPECIAL_GOBLIN:
-    case GS_SU_SPECIAL_HOBGOBLIN:
-      if (sElement == ELEMENT_WATER || sElement == ELEMENT_DEATH) fMultiplier = 1.1;
-      break;
-    case GS_SU_SPECIAL_KOBOLD:
-      if (sElement == ELEMENT_EARTH || sElement == ELEMENT_AIR) fMultiplier = 1.1;
-      break;
-    case GS_SU_SPECIAL_RAKSHASA:
-      if (sElement == ELEMENT_WATER || sElement == ELEMENT_AIR) fMultiplier = 1.3;
-      break;
-    case GS_SU_SPECIAL_DRAGON:
-      if (sElement == ELEMENT_EARTH || sElement == ELEMENT_FIRE) fMultiplier = 1.3;
-      break;
-    case GS_SU_SPECIAL_VAMPIRE:
-      if (sElement == ELEMENT_DEATH) fMultiplier = 1.3;
-      break;
-    case GS_SU_SPECIAL_OGRE:
-      if (sElement == ELEMENT_FIRE || sElement == ELEMENT_DEATH) fMultiplier = 1.2;
-      break;
-    case GS_SU_DEEP_IMASKARI:
-      if (sElement == ELEMENT_AIR) fMultiplier = 1.4;
-      break;
-    case GS_SU_DWARF_WILD:
-      if (sElement == ELEMENT_EARTH || sElement == ELEMENT_WATER) fMultiplier = 1.1;
-      break;
-  }
 
   if (fMultiplier != 1.0) return fMultiplier;
 
@@ -197,7 +146,7 @@ float miDVGetMultiplier(object oPC, string sElement)
       if (sElement == ELEMENT_EARTH || sElement == ELEMENT_FIRE) fMultiplier = 1.1;
       break;
     case RACIAL_TYPE_ELF:
-      if (sElement == ELEMENT_AIR) fMultiplier = 1.2;
+      if (sElement == ELEMENT_AIR || sElement == ELEMENT_FIRE) fMultiplier = 1.1;
       break;
     case RACIAL_TYPE_GNOME:
       if (sElement == ELEMENT_EARTH || sElement == ELEMENT_AIR) fMultiplier = 1.2;
@@ -235,6 +184,20 @@ void miDVSavePoints(object oPC)
   Trace(DIVINATION, "Syncing player scores to database for " + GetName(oPC));
   object oHide = gsPCGetCreatureHide(oPC);
 
+  // Check version - migration code. 
+  if (!GetLocalInt(oHide, "MI_DV_VERSION"))
+  {
+    // Wipe points and start over.
+    DeleteLocalFloat(oHide, ELEMENT_FIRE);
+    DeleteLocalFloat(oHide, ELEMENT_EARTH);
+    DeleteLocalFloat(oHide, ELEMENT_WATER);
+    DeleteLocalFloat(oHide, ELEMENT_AIR);
+    DeleteLocalFloat(oHide, ELEMENT_LIFE);
+    DeleteLocalFloat(oHide, ELEMENT_DEATH);
+	SetLocalInt(oHide, "MI_DV_VERSION", 1);
+    Trace(DIVINATION, "Cleared scores, moving to new version.");
+  }
+
   SQLExecStatement("UPDATE gs_pc_data SET fire=?,earth=?,water=?,air=?,life=?,death=? where id=?",
    FloatToString(GetLocalFloat(oHide, ELEMENT_FIRE) + 1.0),
    FloatToString(GetLocalFloat(oHide, ELEMENT_EARTH) + 1.0),
@@ -249,75 +212,74 @@ void miDVShuffleDeck()
 {
   Trace(DIVINATION, "Shuffling the Deck of Stars");
 
-  // Primary cards: warlord (fire), archmage (air), craftsman (earth), deceiver
+  // Primary cards: artificer (fire), deceiver (air), craftsman (earth), Changer of Ways
   // (water), death's hand (death), lifebringer (life).
-  string sWarlord;
-  string sArchmage;
+  string sArtificer;
+  string sChanger;
   string sCraftsman;
   string sDeceiver;
   string sDeathHand;
   string sLifebringer;
   SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (fire+100)/(fire+air+earth+water+life+death+600) DESC, fire DESC LIMIT 1");
-  if (SQLFetch()) sWarlord = SQLGetData(1);
+  if (SQLFetch()) sArtificer = SQLGetData(1);
   SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (air+100)/(fire+air+earth+water+life+death+600) DESC, air DESC LIMIT 1");
-  if (SQLFetch()) sArchmage = SQLGetData(1);
+  if (SQLFetch()) sDeceiver = SQLGetData(1);
   SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (earth+100)/(fire+air+earth+water+life+death+600) DESC, earth DESC LIMIT 1");
   if (SQLFetch()) sCraftsman = SQLGetData(1);
   SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (water+100)/(fire+air+earth+water+life+death+600) DESC, water DESC LIMIT 1");
-  if (SQLFetch()) sDeceiver = SQLGetData(1);
+  if (SQLFetch()) sChanger = SQLGetData(1);
   SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (life+100)/(fire+air+earth+water+life+death+600) DESC, life DESC LIMIT 1");
   if (SQLFetch()) sLifebringer = SQLGetData(1);
   SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (death+100)/(fire+air+earth+water+life+death+600) DESC, death DESC LIMIT 1");
   if (SQLFetch()) sDeathHand = SQLGetData(1);
 
-  // Secondary cards: smith (fire/earth), slayer (fire/death), battlemage (fire/air),
-  // merchant (earth/water), nurturer (earth/life), trickster (water/air),
-  // provider (water/life), soul stealer (air/death), judge (life/death)
+  // Secondary cards: smith (fire/earth), artist (fire/air), trickster (water/air),
+  // merchant (earth/water), nurturer (earth/life),  provider (water/life),
+  // shaman (water/life), sire (fire/life)  
+  // battlemage (fire/death), undertaker (earth/death), slayer (water/death)
+  // soul stealer (air/death), judge (life/death)
+  string sArtist;
   string sSmith;
   string sSlayer;
-  string sBattlemage;
   string sMerchant;
   string sNurturer;
   string sTrickster;
   string sProvider;
   string sSoulStealer;
   string sJudge;
-  string sArtificer;
-  string sScourge;
-  string sTemplar;
+  string sBattlemage;
+  string sSire;
   string sShaman;
   string sUndertaker;
   SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (fire+earth+200)/(fire+air+earth+water+life+death+600) DESC, (fire+earth) DESC LIMIT 1");
   if (SQLFetch()) sSmith = SQLGetData(1);
-  SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (fire+water+200)/(fire+air+earth+water+life+death+600) DESC, (fire+water) DESC LIMIT 1");
-  if (SQLFetch()) sSlayer = SQLGetData(1);
   SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (fire+air+200)/(fire+air+earth+water+life+death+600) DESC, (fire+air) DESC LIMIT 1");
-  if (SQLFetch()) sBattlemage = SQLGetData(1);
+  if (SQLFetch()) sArtist = SQLGetData(1);
   SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (earth+water+200)/(fire+air+earth+water+life+death+600) DESC, (earth+water) DESC LIMIT 1");
   if (SQLFetch()) sMerchant = SQLGetData(1);
-  SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (earth+life+200)/(fire+air+earth+water+life+death+600) DESC, (earth+life) DESC LIMIT 1");
-  if (SQLFetch()) sNurturer = SQLGetData(1);
   SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (water+air+200)/(fire+air+earth+water+life+death+600) DESC, (water+air) DESC LIMIT 1");
   if (SQLFetch()) sTrickster = SQLGetData(1);
+  SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (earth+life+200)/(fire+air+earth+water+life+death+600) DESC, (earth+life) DESC LIMIT 1");
+  if (SQLFetch()) sNurturer = SQLGetData(1);
   SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (water+life+200)/(fire+air+earth+water+life+death+600) DESC, (water+life) DESC LIMIT 1");
   if (SQLFetch()) sProvider = SQLGetData(1);
-  SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (air+death+200)/(fire+air+earth+water+life+death+600) DESC, (air+death) DESC LIMIT 1");
-  if (SQLFetch()) sSoulStealer = SQLGetData(1);
-  SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (life+death+200)/(fire+air+earth+water+life+death+600) DESC, (life+death) DESC LIMIT 1");
-  if (SQLFetch()) sJudge = SQLGetData(1);
-  SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (air+earth+200)/(fire+air+earth+water+life+death+600) DESC, (air+earth) DESC LIMIT 1");
-  if (SQLFetch()) sArtificer = SQLGetData(1);
-  SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (fire+death+200)/(fire+air+earth+water+life+death+600) DESC, (fire+death) DESC LIMIT 1");
-  if (SQLFetch()) sScourge = SQLGetData(1);
   SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (fire+life+200)/(fire+air+earth+water+life+death+600) DESC, (fire+air) DESC LIMIT 1");
-  if (SQLFetch()) sTemplar = SQLGetData(1);
+  if (SQLFetch()) sSire = SQLGetData(1);
   SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (air+life+200)/(fire+air+earth+water+life+death+600) DESC, (air+life) DESC LIMIT 1");
   if (SQLFetch()) sShaman = SQLGetData(1);
+  SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (air+death+200)/(fire+air+earth+water+life+death+600) DESC, (air+death) DESC LIMIT 1");
+  if (SQLFetch()) sSoulStealer = SQLGetData(1);
+  SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (fire+death+200)/(fire+air+earth+water+life+death+600) DESC, (fire+death) DESC LIMIT 1");
+  if (SQLFetch()) sBattlemage = SQLGetData(1);
   SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (earth+death+200)/(fire+air+earth+water+life+death+600) DESC, (earth+death) DESC LIMIT 1");
   if (SQLFetch()) sUndertaker = SQLGetData(1);
+  SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (water+death+200)/(fire+air+earth+water+life+death+600) DESC, (air+earth) DESC LIMIT 1");
+  if (SQLFetch()) sSlayer = SQLGetData(1);
+  SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (life+death+200)/(fire+air+earth+water+life+death+600) DESC, (life+death) DESC LIMIT 1");
+  if (SQLFetch()) sJudge = SQLGetData(1);
 
-  SetLocalString(GetModule(), ASPECT_WARLORD, sWarlord);
-  SetLocalString(GetModule(), ASPECT_ARCHMAGE, sArchmage);
+  SetLocalString(GetModule(), ASPECT_ARTIST, sArtist);
+  SetLocalString(GetModule(), ASPECT_CHANGER, sChanger);
   SetLocalString(GetModule(), ASPECT_CRAFTSMAN, sCraftsman);
   SetLocalString(GetModule(), ASPECT_DECEIVER, sDeceiver);
   SetLocalString(GetModule(), ASPECT_LIFEBRINGER, sLifebringer);
@@ -332,8 +294,7 @@ void miDVShuffleDeck()
   SetLocalString(GetModule(), ASPECT_SOULSTEALER, sSoulStealer);
   SetLocalString(GetModule(), ASPECT_JUDGE, sJudge);
   SetLocalString(GetModule(), ASPECT_ARTIFICER, sArtificer);
-  SetLocalString(GetModule(), ASPECT_SCOURGE, sScourge);
-  SetLocalString(GetModule(), ASPECT_TEMPLAR, sTemplar);
+  SetLocalString(GetModule(), ASPECT_SIRE, sSire);
   SetLocalString(GetModule(), ASPECT_SHAMAN, sShaman);
   SetLocalString(GetModule(), ASPECT_UNDERTAKER, sUndertaker);
 }
@@ -523,8 +484,8 @@ void miDVLayField(object oPlayer)
 
   // Check for PCs active on other servers.  Rather than doing 15 queries, we
   // just do a single one to look for generic activity, and hint to it.
-  string sWarlord     = GetLocalString(GetModule(), ASPECT_WARLORD);
-  string sArchmage    = GetLocalString(GetModule(), ASPECT_ARCHMAGE);
+  string sArtist      = GetLocalString(GetModule(), ASPECT_ARTIST);
+  string sChanger     = GetLocalString(GetModule(), ASPECT_CHANGER);
   string sCraftsman   = GetLocalString(GetModule(), ASPECT_CRAFTSMAN);
   string sDeceiver    = GetLocalString(GetModule(), ASPECT_DECEIVER);
   string sLifebringer = GetLocalString(GetModule(), ASPECT_LIFEBRINGER);
@@ -539,32 +500,31 @@ void miDVLayField(object oPlayer)
   string sSoulStealer = GetLocalString(GetModule(), ASPECT_SOULSTEALER);
   string sJudge       = GetLocalString(GetModule(), ASPECT_JUDGE);
   string sArtificer   = GetLocalString(GetModule(), ASPECT_ARTIFICER);
-  string sTemplar     = GetLocalString(GetModule(), ASPECT_TEMPLAR);
-  string sScourge     = GetLocalString(GetModule(), ASPECT_SCOURGE);
+  string sSire        = GetLocalString(GetModule(), ASPECT_SIRE);
   string sShaman      = GetLocalString(GetModule(), ASPECT_SHAMAN);
   string sUndertaker  = GetLocalString(GetModule(), ASPECT_UNDERTAKER);
 
   SQLExecStatement("SELECT pcid FROM mixf_currentplayers WHERE pcid IN (?,?,?,?,?,?)",
-  sWarlord, sArchmage, sCraftsman, sDeceiver, sLifebringer, sDeathsHand, sSmith);
+  sArtist, sChanger, sCraftsman, sDeceiver, sLifebringer, sDeathsHand, sSmith);
 
   if (SQLFetch())
   {
     nFetch = 1;
 
-    oPC = gsPCGetPlayerByID(sWarlord);
+    oPC = gsPCGetPlayerByID(sArtist);
     if(GetIsObjectValid(oPC))
     {
       string sElement = GetLocalString(gsPCGetCreatureHide(oPC), LAST_GAINED);
-      AssignCommand(oPlayer, ActionSpeakString("The Warlord card plays under " + sElement +
-       miDVGetAreaInfo(oPC) + miDVViewCard(oPlayer, ASPECT_WARLORD)));
+      AssignCommand(oPlayer, ActionSpeakString("The Artist card plays under " + sElement +
+       miDVGetAreaInfo(oPC) + miDVViewCard(oPlayer, ASPECT_ARTIST)));
     }
 
-    oPC = gsPCGetPlayerByID(sArchmage);
+    oPC = gsPCGetPlayerByID(sChanger);
     if(GetIsObjectValid(oPC))
     {
       string sElement = GetLocalString(gsPCGetCreatureHide(oPC), LAST_GAINED);
-      AssignCommand(oPlayer, ActionSpeakString("The Archmage card plays under " + sElement +
-       miDVGetAreaInfo(oPC) + miDVViewCard(oPlayer, ASPECT_ARCHMAGE)));
+      AssignCommand(oPlayer, ActionSpeakString("The Changer of Ways card plays under " + sElement +
+       miDVGetAreaInfo(oPC) + miDVViewCard(oPlayer, ASPECT_CHANGER)));
     }
 
     oPC = gsPCGetPlayerByID(sCraftsman);
@@ -602,7 +562,7 @@ void miDVLayField(object oPlayer)
   
   SQLExecStatement("SELECT pcid FROM mixf_currentplayers WHERE pcid IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
   sSmith, sSlayer, sBattlemage, sMerchant, sNurturer, sTrickster, sProvider,
-  sSoulStealer, sJudge, sArtificer, sTemplar, sScourge, sShaman, sUndertaker);
+  sSoulStealer, sJudge, sArtificer, sSire, sShaman, sUndertaker);
 
   if (!SQLFetch() && nFetch == 0)
   {
@@ -692,20 +652,12 @@ void miDVLayField(object oPlayer)
        miDVGetAreaInfo(oPC) + miDVViewCard(oPlayer, ASPECT_ARTIFICER)));
     }
 
-    oPC = gsPCGetPlayerByID(sScourge);
+    oPC = gsPCGetPlayerByID(sSire);
     if(GetIsObjectValid(oPC))
     {
       string sElement = GetLocalString(gsPCGetCreatureHide(oPC), LAST_GAINED);
-      AssignCommand(oPlayer, ActionSpeakString("The Scourge card plays under " + sElement +
-       miDVGetAreaInfo(oPC) + miDVViewCard(oPlayer, ASPECT_SCOURGE)));
-    }
-
-    oPC = gsPCGetPlayerByID(sTemplar);
-    if(GetIsObjectValid(oPC))
-    {
-      string sElement = GetLocalString(gsPCGetCreatureHide(oPC), LAST_GAINED);
-      AssignCommand(oPlayer, ActionSpeakString("The Templar card plays under " + sElement +
-       miDVGetAreaInfo(oPC) + miDVViewCard(oPlayer, ASPECT_TEMPLAR)));
+      AssignCommand(oPlayer, ActionSpeakString("The Sire card plays under " + sElement +
+       miDVGetAreaInfo(oPC) + miDVViewCard(oPlayer, ASPECT_SIRE)));
     }
 
     oPC = gsPCGetPlayerByID(sShaman);
@@ -743,61 +695,27 @@ string miDVGetAreaInfo(object oPC)
     return " in a dingy cave. ";
   }
 
-  int nHeat     = miWHGetHeatIndex(oArea);
-  int nHumidity = miWHGetHumidity(oArea);
-  int nWind     = miWHGetWindStrength(oArea);
+  int nWeather  = GetWeather(oArea);
   int bStormy   = GetSkyBox(oArea) == SKYBOX_GRASS_STORM;
-  int bAcidRain = GetLocalInt(oArea, VAR_WEATHER_ACID_RAIN);
 
   // Stormy
   if (bStormy) return " under a storm-wracked sky. ";
 
-  // Acid rain
-  else if (bAcidRain) return " under a virulent green sky, the card sizzling slightly! ";
-
-  else if (nHumidity > 7 && nHeat > 3)
-  {
-    // Misty
-    if (nWind < 3) return " under a damp, misty sky. ";
-    // Rainy, hot
-    else if (nHeat > 7) return " under a sky of steaming rainfall, the card warm to the touch. ";
-    // Rainy, normal
-    else return " under a rainy sky. ";
-  }
+  else if (nWeather == WEATHER_RAIN) return " under a rainy sky. ";
 
   // Cold, snowing
-  else if (nHumidity > 7) return " under a snow-flecked sky, the card cool to the touch. ";
+  else if (nWeather == WEATHER_SNOW) return " under a snow-flecked sky, the card cool to the touch. ";
 
-  // Freezing
-  else if (nHeat < 3) return " under a frozen, ice-hued sky, the card cold to the touch. ";
-
-  // Boiling
-  else if (nHeat > 8) return " under a burning, hazy sky, the card hot to the touch. ";
-
-  // Cold (mild, cloudy, foggy)
-  else if (nHeat < 5)
-  {
-    if (nWind < 5)      return " under clear skies, the card cool to the touch. ";
-    else if (nWind < 8) return " under a cloudy sky, the card cool to the touch. ";
-    else                return " under a sky wreathed with fog, the card cool to the touch. ";
-  }
-  // Hot (mild, cloudy, foggy)
-  else if (nHeat > 6)
-  {
-    if (nWind < 5)      return " under clear skies, the card warm to the touch. ";
-    else if (nWind < 8) return " under a cloudy sky, the card warm to the touch. ";
-    else                return " under a sky wreathed with fog, the card warm to the touch. ";
-  }
   // Mild
-  else if (nWind < 5) return " under a beautiful, open sky. ";
-  else if (nWind < 8) return " under a cloudy sky. ";
-  else                return " under a sky wreathed with fog. ";
+  else if (nWeather == WEATHER_CLEAR) return " under a clear sky. ";
+  
+  else return ""; // shouldn't ever hit this!
 }
 
 string miDVGetAspect(object oPC)
 {
-  string sWarlord     = GetLocalString(GetModule(), ASPECT_WARLORD);
-  string sArchmage    = GetLocalString(GetModule(), ASPECT_ARCHMAGE);
+  string sArtist      = GetLocalString(GetModule(), ASPECT_ARTIST);
+  string sChanger     = GetLocalString(GetModule(), ASPECT_CHANGER);
   string sCraftsman   = GetLocalString(GetModule(), ASPECT_CRAFTSMAN);
   string sDeceiver    = GetLocalString(GetModule(), ASPECT_DECEIVER);
   string sLifebringer = GetLocalString(GetModule(), ASPECT_LIFEBRINGER);
@@ -812,15 +730,14 @@ string miDVGetAspect(object oPC)
   string sSoulStealer = GetLocalString(GetModule(), ASPECT_SOULSTEALER);
   string sJudge       = GetLocalString(GetModule(), ASPECT_JUDGE);
   string sArtificer   = GetLocalString(GetModule(), ASPECT_ARTIFICER);
-  string sTemplar     = GetLocalString(GetModule(), ASPECT_TEMPLAR);
-  string sScourge     = GetLocalString(GetModule(), ASPECT_SCOURGE);
+  string sSire        = GetLocalString(GetModule(), ASPECT_SIRE);
   string sShaman      = GetLocalString(GetModule(), ASPECT_SHAMAN);
   string sUndertaker  = GetLocalString(GetModule(), ASPECT_UNDERTAKER);
 
   string sPC = gsPCGetPlayerID(oPC);
 
-  if (sPC == sWarlord) return ASPECT_WARLORD;
-  if (sPC == sArchmage) return ASPECT_ARCHMAGE;
+  if (sPC == sArtist) return ASPECT_ARTIST;
+  if (sPC == sChanger) return ASPECT_CHANGER;
   if (sPC == sCraftsman) return ASPECT_CRAFTSMAN;
   if (sPC == sDeceiver) return ASPECT_DECEIVER;
   if (sPC == sLifebringer) return ASPECT_LIFEBRINGER;
@@ -835,8 +752,7 @@ string miDVGetAspect(object oPC)
   if (sPC == sSoulStealer) return ASPECT_SOULSTEALER;
   if (sPC == sJudge) return ASPECT_JUDGE;
   if (sPC == sArtificer) return ASPECT_ARTIFICER;
-  if (sPC == sTemplar) return ASPECT_TEMPLAR;
-  if (sPC == sScourge) return ASPECT_SCOURGE;
+  if (sPC == sSire) return ASPECT_SIRE;
   if (sPC == sShaman) return ASPECT_SHAMAN;
   if (sPC == sUndertaker) return ASPECT_UNDERTAKER;
 
@@ -894,8 +810,8 @@ string miDVGetAttunement(object oPC)
 void miDVListAspectsForDM(object oDM)
 {
    object oModule = GetModule();
-   string sMessage = "Warlord: " + gsPCGetPlayerName(GetLocalString (oModule, ASPECT_WARLORD)) +
-                    "\nArchmage: " + gsPCGetPlayerName(GetLocalString (oModule, ASPECT_ARCHMAGE)) +
+   string sMessage = "Artificer: " + gsPCGetPlayerName(GetLocalString (oModule, ASPECT_ARTIFICER)) +
+                    "\nChanger of Ways: " + gsPCGetPlayerName(GetLocalString (oModule, ASPECT_CHANGER)) +
                     "\nCraftsman: " + gsPCGetPlayerName(GetLocalString (oModule, ASPECT_CRAFTSMAN)) +
                     "\nDeceiver: " + gsPCGetPlayerName(GetLocalString (oModule, ASPECT_DECEIVER)) +
                     "\nLifebringer: " + gsPCGetPlayerName(GetLocalString (oModule, ASPECT_LIFEBRINGER)) +
@@ -909,9 +825,8 @@ void miDVListAspectsForDM(object oDM)
                     "\nProvider: " + gsPCGetPlayerName(GetLocalString (oModule, ASPECT_PROVIDER)) +
                     "\nSoulstealer: " + gsPCGetPlayerName(GetLocalString (oModule, ASPECT_SOULSTEALER)) +
                     "\nJudge: " + gsPCGetPlayerName(GetLocalString (oModule, ASPECT_JUDGE)) +
-                    "\nArtificer: " + gsPCGetPlayerName(GetLocalString (oModule, ASPECT_ARTIFICER)) +
-                    "\nTemplar: " + gsPCGetPlayerName(GetLocalString (oModule, ASPECT_TEMPLAR)) +
-                    "\nScourge: " + gsPCGetPlayerName(GetLocalString (oModule, ASPECT_SCOURGE)) +
+                    "\nArtist: " + gsPCGetPlayerName(GetLocalString (oModule, ASPECT_ARTIST)) +
+                    "\nSire: " + gsPCGetPlayerName(GetLocalString (oModule, ASPECT_SIRE)) +
                     "\nShaman: " + gsPCGetPlayerName(GetLocalString (oModule, ASPECT_SHAMAN)) +
                     "\nUndertaker: " + gsPCGetPlayerName(GetLocalString (oModule, ASPECT_UNDERTAKER));
    SendMessageToPC(oDM, sMessage);
@@ -929,4 +844,32 @@ void batDVListElementsForDM(object oDM, object oTarget)
 
     string sMessage = "Character: " + GetName(oTarget) + "\nFire: " + IntToString(nFire) + "\nWater: " + IntToString(nWater) + "\nAir: " + IntToString(nAir) + "\nEarth: " + IntToString(nEarth) + "\nLife: " + IntToString(nLife) + "\nDeath: " + IntToString(nDeath);
     SendMessageToPC(oDM, sMessage);
+}
+
+int miDVGetRelativeAttunement(object oPC, string sElement)
+{
+   object oHide = gsPCGetCreatureHide(oPC);
+   float fAttune = GetLocalFloat(oHide, sElement);
+   
+   float fFire = GetLocalFloat(oHide, ELEMENT_FIRE);
+   float fAir = GetLocalFloat(oHide, ELEMENT_AIR);
+   float fWater = GetLocalFloat(oHide, ELEMENT_WATER);
+   float fEarth = GetLocalFloat(oHide, ELEMENT_EARTH);
+   float fLife = GetLocalFloat(oHide, ELEMENT_LIFE);
+   float fDeath = GetLocalFloat(oHide, ELEMENT_DEATH);
+   
+   int nRank = 0;
+   
+   //----------------------------------------------------------------------------------
+   // Obviously one of these will be the element itself so the score should be equal. 
+   // So we should get a score of 0 (lowest) to 5 (highest).
+   //----------------------------------------------------------------------------------
+   if (fFire < fAttune) nRank++;
+   if (fAir < fAttune) nRank++;
+   if (fEarth < fAttune) nRank++;
+   if (fWater < fAttune) nRank++;
+   if (fLife < fAttune) nRank++;
+   if (fDeath < fAttune) nRank++;
+   
+   return nRank;
 }

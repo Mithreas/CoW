@@ -351,7 +351,6 @@ void init_feat_list (object oPC)
   add_feat_to_list(oPC, "Improved Power Attack", FEAT_IMPROVED_POWER_ATTACK);
   add_feat_to_list(oPC, "Improved Unarmed Strike", FEAT_IMPROVED_UNARMED_STRIKE);
   add_feat_to_list(oPC, "Improved 2-Weapon Fighting", FEAT_IMPROVED_TWO_WEAPON_FIGHTING);
-  add_feat_to_list(oPC, "Improved Whirlwind Attack", FEAT_IMPROVED_WHIRLWIND);
   add_feat_to_list(oPC, "Knockdown", FEAT_KNOCKDOWN);
   add_feat_to_list(oPC, "Mobility", FEAT_MOBILITY);
   add_feat_to_list(oPC, "Point Blank Shot", FEAT_POINT_BLANK_SHOT);
@@ -618,6 +617,7 @@ void init_feat_list (object oPC)
     add_feat_to_list(oPC, "Improved Stunning Fist II", FEAT_EPIC_IMPROVED_STUNNING_FIST_2);
     add_feat_to_list(oPC, "Improved Stunning Fist III", FEAT_EPIC_IMPROVED_STUNNING_FIST_3);
     add_feat_to_list(oPC, "Improved Stunning Fist IV", FEAT_EPIC_IMPROVED_STUNNING_FIST_4);
+    add_feat_to_list(oPC, "Improved Whirlwind Attack", FEAT_IMPROVED_WHIRLWIND);
     add_feat_to_list(oPC, "Lasting Inspiration", FEAT_EPIC_LASTING_INSPIRATION);
     if (GetKnowsFeat(344, oPC)) add_feat_to_list(oPC, "Ki Strike 4", 697, FALSE, CLASS_TYPE_MONK);
     if (GetKnowsFeat(697, oPC)) add_feat_to_list(oPC, "Ki Strike 5", 698, FALSE, CLASS_TYPE_MONK);
@@ -855,7 +855,7 @@ void init_feat_list (object oPC)
   add_feat_to_list(oPC, "Uncanny Dodge IV", FEAT_UNCANNY_DODGE_4);
   add_feat_to_list(oPC, "Uncanny Dodge V", FEAT_UNCANNY_DODGE_5);
   add_feat_to_list(oPC, "Uncanny Dodge VI", FEAT_UNCANNY_DODGE_6);
-  if (GetKnowsFeat(FEAT_UNCANNY_DODGE_6, oPC)) add_feat_to_list(oPC, "Uncanny Reflex (cannot be flat footed)", FEAT_UNCANNY_REFLEX);
+  //if (GetKnowsFeat(FEAT_UNCANNY_DODGE_6, oPC)) add_feat_to_list(oPC, "Uncanny Reflex (cannot be flat footed)", FEAT_UNCANNY_REFLEX);
   add_feat_to_list(oPC, "Divine Might", FEAT_DIVINE_MIGHT);
   add_feat_to_list(oPC, "Divine Shield", FEAT_DIVINE_SHIELD);
 
@@ -868,17 +868,7 @@ void init_feat_list (object oPC)
      GetLevelByClass(CLASS_TYPE_DRUID, oPC) ||
      GetLevelByClass(CLASS_TYPE_RANGER, oPC) >=4 ||
      GetLevelByClass(CLASS_TYPE_PALADIN, oPC) >= 4)
-  {
-    if (GetLevelByClass(CLASS_TYPE_WIZARD, oNPC) || GetLevelByClass(CLASS_TYPE_SORCERER, oNPC))
-	{
-      int nCasterLevelBonus = AR_GetCasterLevelBonus(oPC);
-
-      if (nCasterLevelBonus < 12)
-      {
-        add_feat_to_list(oPC, "Caster level increase +2 (New bonus: "+IntToString(nCasterLevelBonus + 2)+")", 10006, TRUE);
-      }
-    }
-	
+  {	
     if (GetLevelByClass(CLASS_TYPE_BARD, oPC) && GetLevelByClass(CLASS_TYPE_BARD, oNPC)) add_feat_to_list(oPC, "Bonus spell slot (Bard)", 10007, TRUE);
     if (GetLevelByClass(CLASS_TYPE_CLERIC, oPC) && GetLevelByClass(CLASS_TYPE_CLERIC, oNPC)) add_feat_to_list(oPC, "Bonus spell slot (Cleric)", 10008, TRUE);
     if (GetLevelByClass(CLASS_TYPE_DRUID, oPC) && GetLevelByClass(CLASS_TYPE_DRUID, oNPC)) add_feat_to_list(oPC, "Bonus spell slot (Druid)", 10009, TRUE);
@@ -1133,7 +1123,7 @@ void init_feat_list (object oPC)
     if (GetKnowsFeat(FEAT_INFLICT_SERIOUS_WOUNDS, oPC))
       add_feat_to_list(oPC, "Inflict Critical Wounds", FEAT_INFLICT_CRITICAL_WOUNDS, FALSE, CLASS_TYPE_BLACKGUARD);
 
-    if (nPCLevel > 20 && GetKnowsFeat(475, oPC))
+    if (nPCLevel > 30 && GetKnowsFeat(475, oPC))
        add_feat_to_list(oPC, "Improved Fiend", FEAT_EPIC_EPIC_FIEND, FALSE, CLASS_TYPE_BLACKGUARD);
   }
 
@@ -1637,7 +1627,7 @@ void HandleSelection()
               }
               case 10006: // Caster level increase
               {
-                AR_SetCasterLevelBonus(AR_GetCasterLevelBonus(oPC) + 2, oPC);
+                // Retired
                 break;
               }
               case 10007: // Bard spell slot

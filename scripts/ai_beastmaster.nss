@@ -72,8 +72,10 @@ void WarCry()
   effect eLink2 = EffectLinkEffects(eVisFear, eFear);
   eLink = EffectLinkEffects(eLink, eDur);
 	
-  object oTarget = GetFirstObjectInShape(SHAPE_SPHERE, RADIUS_SIZE_COLOSSAL, GetLocation(oSelf));
-  while (GetIsObjectValid(oTarget))
+  int nNth = 1;	
+  object oTarget = GetNearestCreature(CREATURE_TYPE_PLAYER_CHAR, PLAYER_CHAR_NOT_PC, OBJECT_SELF, nNth);
+  
+  while (GetIsObjectValid(oTarget) && GetDistanceBetween(oTarget, OBJECT_SELF) <= RADIUS_SIZE_COLOSSAL)
   {
       if (spellsIsTarget(oTarget, SPELL_TARGET_SELECTIVEHOSTILE, oSelf) && oTarget != oSelf)
       {
@@ -111,7 +113,8 @@ void WarCry()
         DelayCommand(0.01, ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, RoundsToSeconds(1)));
 	  }
 	  
-      oTarget = GetNextObjectInShape(SHAPE_SPHERE, RADIUS_SIZE_COLOSSAL, GetLocation(oSelf));
+	  nNth++;
+      oTarget = GetNearestCreature(CREATURE_TYPE_PLAYER_CHAR, PLAYER_CHAR_NOT_PC, OBJECT_SELF, nNth);
   }
 }
 

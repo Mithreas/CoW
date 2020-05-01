@@ -25,7 +25,7 @@ void main()
     }
     else if (objectType == OBJECT_TYPE_CREATURE)
     {
-        if (GetIsDM(examiner) || GetIsDM(examinee) || examiner == examinee)
+        if (GetIsDM(examiner) || GetIsDM(examinee))
         {
             return;
         }
