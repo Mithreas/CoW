@@ -12,5 +12,6 @@ There is a builders' mod zipped in the utils folder. This has out of date script
 
 Building FAQ:
 - All areas should have the a_enter script in OnEnter and a_exit in OnExit
+- Naming convention - tag and resref should be the initials of the area.  E.g. Fernvale - Elven Village has tag and resref fev.  This is then the prefix used for all NPCs, shops etc in the area (and their associated waypoints etc.).  Since resrefs are painful to change later, I suggest giving the area its initials as a name when you create it, and then renaming it to the "friendly" name. 
 - Please don't add any new scripts unless you are certain no script already exists that does what you want.
 - Encounters - you can use NWN encounters but for most purposes we use Gigaschatten ones, which are set up DM side - so just say what creatures you want to spawn where.  Bosses have to be done in game. 
