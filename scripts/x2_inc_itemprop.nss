@@ -589,6 +589,7 @@ int IPGetIsMeleeWeapon(object oItem)
       (nItem == BASE_ITEM_RAPIER) ||
       (nItem == BASE_ITEM_WHIP) ||
       (nItem == BASE_ITEM_SHORTSPEAR) ||
+      (nItem == 54) || // longspear
       (nItem == BASE_ITEM_SHORTSWORD) ||
       (nItem == BASE_ITEM_WARHAMMER)  ||
       (nItem == BASE_ITEM_DWARVENWARAXE) ||
@@ -1239,6 +1240,25 @@ int IPGetWeaponAppearanceType(object oWeapon, int nPart, int nMode)
     {
         if (nMode == X2_IP_WEAPONTYPE_NEXT)
         {
+		    if (GetBaseItemType(oWeapon) == BASE_ITEM_GREATSWORD)
+			{
+			   // Greatsword override - Gemsword and No-Dachi appearances
+               switch (nCurrApp)
+               {
+				 case 1:
+				   return 2;
+				 case 2:
+				   return 3;
+				 case 3:
+				   return 4;
+				 case 4:
+				   return 7;
+				 case 7:
+				   return 19;
+				 case 19:
+				   return 1;
+               }
+			}
             // current appearance is max, return min
             if (nCurrApp == nMax)
             {
@@ -1258,6 +1278,26 @@ int IPGetWeaponAppearanceType(object oWeapon, int nPart, int nMode)
         }
         else                // previous
         {
+		    if (GetBaseItemType(oWeapon) == BASE_ITEM_GREATSWORD)
+			{
+			   // Greatsword override - Gemsword and No-Dachi appearances
+               switch (nCurrApp)
+               {
+				 case 1:
+				   return 19;
+				 case 2:
+				   return 1;
+				 case 3:
+				   return 2;
+				 case 4:
+				   return 3;
+				 case 7:
+				   return 4;
+				 case 19:
+				   return 7;
+               }
+			}
+			
             // current appearance is max, return nMax-1
             if (nCurrApp == nMax)
             {
@@ -1433,6 +1473,10 @@ void _AddItemProperty(itemproperty ip, object oItem)
     newIp = ItemPropertySkillBonus(nSkill, GetItemPropertyCostTableValue(ip) + nBonus);
 
     AddItemProperty(DURATION_TYPE_PERMANENT, newIp, oItem); 
+  }
+  else if (GetItemPropertyType(ip) == ITEM_PROPERTY_DECREASED_AC)
+  {
+    // Do not merge this property - exists for armour balance but shouldn't apply in Wildshape
   }
   else
   {

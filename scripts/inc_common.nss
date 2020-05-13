@@ -8,7 +8,6 @@
 #include "inc_spells"
 #include "x2_inc_itemprop"
 #include "x3_inc_string"
-#include "inc_names"
 #include "inc_stacking"
 
 const string GS_CM_TEMPLATE_RECREATOR         = "gs_placeable034";

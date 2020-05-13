@@ -31,7 +31,7 @@
 */
 #include "inc_citizen"
 #include "inc_finance"
-#include "inc_names"
+#include "inc_rename"
 #include "inc_timelock"
 #include "inc_xfer"
 
@@ -342,7 +342,7 @@ void asApplyDamage(object oPC, object oTarget)
     SetLocalString(oWeapon, sOnHitNum, "im_w_assassinate");
     SetLocalInt(oWeapon, "ASSASSIN_DAMAGE", nDamage);
     SetLocalObject(oWeapon, "ASSASSIN_TARGET", oTarget);
-    SendMessageToPC(oPC, "You prepare to assassinate " + fbNAGetGlobalDynamicName(oTarget) + ".");
+    SendMessageToPC(oPC, "You prepare to assassinate " + svGetPCNameOverride(oTarget) + ".");
 
     int nCooldown = 10;
     if (!GetIsPC(oTarget)) nCooldown = 2;

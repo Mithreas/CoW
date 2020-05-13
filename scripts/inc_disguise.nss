@@ -3,7 +3,6 @@
   Author: Mithreas
 */
 #include "inc_divination"
-#include "inc_names"
 #include "inc_worship"
 #include "inc_pc"
 #include "inc_rename"
@@ -206,8 +205,6 @@ void DisguisePC(object oPC, string sName = "")
     if (GetLocalInt(oHide, "GVD_DISGUISE_KIT_ACTIVE") == 1) {
       ApplyTaggedEffectToObject(DURATION_TYPE_PERMANENT, SupernaturalEffect(EffectSkillIncrease(SKILL_BLUFF, 10)), oPC, 0.0, EFFECT_TAG_DISGUISE);
     }
-
-    fbNAAddNameModifier(oPC, FB_NA_MODIFIER_DISGUISE, "", " (Disguised)");
 }
 
 int GetIsPCDisguised(object oPC)

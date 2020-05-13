@@ -43,6 +43,15 @@ const int FACTION_WARDENS  = NATION_VYVIAN;   // 6
 const int FACTION_FERNVALE = NATION_ELF;      // 7
 const int FACTION_AIREVORN = NATION_AIREVORN; // 8
 
+struct repRank
+{
+  string sFaction;
+  int nRank;
+  string sName;
+  int nScore;
+  int nLevel;
+};
+
 /* function prototypes */
 // Get the name of this faction from its number.
 string GetFactionName(int nFaction);
@@ -89,11 +98,11 @@ void SetPCFaction(object oPC, int nFaction);
 // Return the number of reputation points a PC needs to hit the next level.
 int GetRepPointsNeededToLevel(object oPC);
 
-// Return the name of the PC's current rank
-string GetPCFactionRank(object oPC);
+// Return the the PC's current rank
+struct repRank GetPCFactionRank(object oPC);
 
 // Get the PC's rank number based on their rep score.
-int GetPCRank(string sFaction, int nRepScore);
+struct repRank GetPCRank(string sFaction, int nRepScore);
 
 // Get the name of the PC's current rank.
 string GetRankName(string sFaction, int nRank);
@@ -113,25 +122,30 @@ int GetNPCCaste(object oNPC);
 
 /* Function implementation */
 // Get the PC's rank number based on their rep score.
-int GetPCRank (string sFaction, int nRepScore)
+struct repRank GetPCRank (string sFaction, int nRepScore)
 {
-  string sSQL = "SELECT rank FROM "+DB_RANKS+" WHERE score <= '"+IntToString(nRepScore)+
+  string sSQL = "SELECT rank,score,name,level FROM "+DB_RANKS+" WHERE score <= '"+IntToString(nRepScore)+
                  "' ORDER BY score DESC LIMIT 1";
+
+  struct repRank rank;
 
   Trace(RANKS, "Submitting query " + sSQL);
   SQLExecDirect(sSQL);
 
   if (SQLFetch() == SQL_SUCCESS)
-  {
-    string sCurrentRankScoreAsString = SQLGetData(1);
-    Trace(RANKS, "Got current rank score: " +sCurrentRankScoreAsString);
-    return StringToInt(sCurrentRankScoreAsString);
+  {	
+	rank.sFaction = sFaction;
+	rank.nRank = StringToInt(SQLGetData(1));
+	rank.nScore = StringToInt(SQLGetData(2));
+	rank.sName = SQLGetData(3);
+	rank.nLevel = StringToInt(SQLGetData(3));	
   }
   else
   {
     Trace(RANKS, "Error querying database. No data returned.");
-    return 0;
   }
+  
+  return rank;
 }
 
 // Get the name of the PC's current rank.
@@ -185,35 +199,35 @@ int GetRepPointsNeededToLevel(object oPC)
   Trace(RANKS, "PC current rep score: " + IntToString(nRepScore));
 
   // Get PC current rank number
-  int nRank = GetPCRank(sFaction, nRepScore);
-  Trace(RANKS, "PC current rank: " + IntToString(nRank));
+  struct repRank rRank = GetPCRank(sFaction, nRepScore);
+  Trace(RANKS, "PC current rank: " + IntToString(rRank.nRank));
 
   // Get score needed for next rep score.
-  int nCurrentRankScore = GetRepNeededForRank(sFaction, nRank);
-  int nNextRankScore    = GetRepNeededForRank(sFaction, nRank + 1);
-  Trace(RANKS, "PC current rank score needed: " + IntToString(nCurrentRankScore));
+  int nNextRankScore    = GetRepNeededForRank(sFaction, rRank.nRank + 1);
   Trace(RANKS, "PC next rank score needed: " + IntToString(nNextRankScore));
 
-  return (nNextRankScore - nCurrentRankScore);
+  return (nNextRankScore - nRepScore);
 }
 
-// Return the name of the PC's current rank
-string GetPCFactionRank(object oPC)
+// Return the the PC's current rank
+struct repRank GetPCFactionRank(object oPC)
 {
   // Get PC current rep score
   int nRepScore   = GetRepScore(oPC, miBAGetBackground(oPC));
   Trace(RANKS, "PC current rep score: " + IntToString(nRepScore));
 
-  if (nRepScore < 0) return "Outcast";
+  struct repRank rRank;
+  rRank.sName = "Outcast";
+
+  if (nRepScore < 0) return rRank;
   
   // Get PC current rank number
-  int nRank = GetPCRank(GetFactionName(miBAGetBackground(oPC)), nRepScore);
-  Trace(RANKS, "PC current rank number: " + IntToString(nRank));
+  rRank = GetPCRank(GetFactionName(miBAGetBackground(oPC)), nRepScore);
+  Trace(RANKS, "PC current rank number: " + IntToString(rRank.nRank));
 
   // Get rank name of current rank.
-  string sRank = GetRankName(GetFactionName(miBAGetBackground(oPC)), nRank);
-  Trace(RANKS, "PC current rank name: " + sRank);
-  return sRank;
+  Trace(RANKS, "PC current rank name: " + rRank.sName);
+  return rRank;
 }
 
 string GetFactionName(int nFaction)
@@ -380,8 +394,8 @@ void GiveRepPoints(object oPC, int nAmount, int nFaction = 0, int bParty = 0)
                                                         + IntToString(nAmount));
   }
 
-  string sCurrentRank = GetPCFactionRank(oPC);
-  SendMessageToPC(oPC, "Your current rank is "+sCurrentRank);
+  struct repRank rRank = GetPCFactionRank(oPC);
+  SendMessageToPC(oPC, "Your current rank is "+rRank.sName);
   
   // TODO - give higher ranking keys to PCs who achieve relevant ranks.
 }

@@ -1,4 +1,3 @@
-#include "inc_names"
 #include "inc_disguise"
 #include "nwnx_events"
 #include "nwnx_creature"

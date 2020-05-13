@@ -14,6 +14,7 @@
 
 #include "inc_generic"
 #include "inc_item"
+#include "inc_rename"
 #include "inc_spells"
 #include "inc_string"
 #include "nwnx_alts"
@@ -21,7 +22,6 @@
 #include "nwnx_object"
 #include "nwnx_alts"
 #include "nwnx_admin"
-#include "inc_names"
 
 // Forces the caller to equip the given items.
 void EquipItems(object oArmor, object oHelm, object oWeapon1, object oWeapon2);
@@ -128,14 +128,14 @@ void main()
         ApplyEffectToObject(DURATION_TYPE_PERMANENT, SupernaturalEffect(EffectSpellImmunity(SPELL_WORD_OF_FAITH)), OBJECT_SELF);
 
         SetDescription(OBJECT_SELF, GetDescription(oMaster));
-        SetName(OBJECT_SELF, fbNAGetGlobalDynamicName(oMaster));
+        SetName(OBJECT_SELF, svGetPCNameOverride(oMaster));
         SetPortraitResRef(OBJECT_SELF, GetPortraitResRef(oMaster));
         NWNX_Creature_SetSoundset(OBJECT_SELF, NWNX_Creature_GetSoundset(oMaster));
     }
     else
     {
-        sName = GetSubStringBetween(fbNAGetGlobalDynamicName(oMaster), "", " ");
-        if(sName == "") sName = fbNAGetGlobalDynamicName(oMaster);
+        sName = GetSubStringBetween(svGetPCNameOverride(oMaster), "", " ");
+        if(sName == "") sName = svGetPCNameOverride(oMaster);
         SetName(OBJECT_SELF, PossessiveString(sName) + " Shadow");
     }
 

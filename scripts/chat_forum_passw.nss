@@ -11,6 +11,7 @@ const string HELP = "Used to create a forum password, and to update its password
 
 void main()
 {
+ /* Retired for now.
   object oSpeaker = OBJECT_SELF;
   string sParams = chatGetParams(oSpeaker);
   chatVerifyCommand(oSpeaker);
@@ -77,5 +78,5 @@ void main()
         return;
       }
     }
-  }
+  } */
 }

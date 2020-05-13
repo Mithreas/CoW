@@ -40,7 +40,7 @@ const int GS_WO_NONE = -1;
 //const int GS_WO_STAR_EYED_LADY         =     21;
 //const int GS_WO_AKAVOS_FIRELORD        =     22;
 //const int GS_WO_SABATHA_THE_SNEAK      =     23;
-//const int GS_WO_MATHGAR_THE_MIGHTY     =     91;
+//const int GS_WO_MAGTHAR_THE_MIGHTY     =     91;
 //const int GS_WO_VALAROS                =     92;
 //const int GS_WO_NPC_BEAST_CULT         =     99;
 
@@ -66,7 +66,7 @@ string gsWOGetPortfolio(int nDeity)
 	case 21  : sPortfolio = "Seravithia the Star-Eyed\n\nAlso known as the Star-Eyed Lady, Seravithia is often hailed as the inventor of magic, the first wizard among the Elven people.  Teaching her first followers how to tap into natural power and weave it into spells, she spent her natural life span discovering and teaching.  Death never claimed her, though her followers now hear from her but rarely."; break;
 	case 22  : sPortfolio = "Akavos Firelord\n\nAscending to godhood during the Great War, Akavos was a mighty battle mage.  His ascension occurred in the middle of a battle during which he was channeling great power... those who have attempted to replicate the feat have not survived.  Naturally gifted with fire magics, he is often worshipped by other pyromancers."; break;
 	case 23  : sPortfolio = "Sabatha the Sneak\n\nSabatha is hailed in Elven mythology as the one who stole the secret of fire from the gods.  An ancient deity, she is hailed as something of a trickster, and her overt worship is looked down on by traditionalists.  Scouts, jesters, those who challenge the status quo, and those who have something to hide often take Sabatha as their patron."; break;
-	case 91  : sPortfolio = "Mathgar the Mighty\n\nLittle is known about Mathgar at this time.  His name is carried south on the lips of traders and trackers, worshiped by many in the frozen North."; break;
+	case 91  : sPortfolio = "Magthar the Mighty\n\nLittle is known about Magthar at this time.  His name is carried south on the lips of traders and trackers, worshiped by many in the frozen North."; break;
 	case 92  : sPortfolio = "Valaros\n\nRumoured to be the First Shapeshifter, and hence the official or unofficial patron of shapeshifters across the world.  Highly secretive, there are very few tales of him... or her... or whatever!"; break;
 	case 99  : sPortfolio = ""; break; // Secret, so no info here in case it shows up.
 	default  : sPortfolio = "No portfolio! Please report this bug."; break;

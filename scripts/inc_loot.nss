@@ -116,6 +116,7 @@ void InitialiseLootSystem()
     AddBaseItemResRef(BASE_ITEM_CLOAK, "maarcl036");
     AddBaseItemResRef(BASE_ITEM_CLOAK, "cnrcloak5");
     AddBaseItemResRef(BASE_ITEM_CLUB, "nw_wblcl001");
+    AddBaseItemResRef(BASE_ITEM_DART, "returningdart");
     AddBaseItemResRef(BASE_ITEM_DAGGER, "nw_wswdg001");
     AddBaseItemResRef(BASE_ITEM_DIREMACE, "nw_wdbma001");
     AddBaseItemResRef(BASE_ITEM_DOUBLEAXE, "nw_wdbax001");
@@ -139,7 +140,9 @@ void InitialiseLootSystem()
     AddBaseItemResRef(BASE_ITEM_KAMA, "nw_wspka001");
     AddBaseItemResRef(BASE_ITEM_KATANA, "nw_wswka001");
     AddBaseItemResRef(BASE_ITEM_KUKRI, "nw_wspku001");
-    AddBaseItemResRef(BASE_ITEM_LARGESHIELD, "nw_ashlw001");
+    AddBaseItemResRef(BASE_ITEM_LARGESHIELD, "ashlw007");
+    AddBaseItemResRef(BASE_ITEM_LARGESHIELD, "ashlw008");
+    AddBaseItemResRef(BASE_ITEM_LARGESHIELD, "ashlw009");
     AddBaseItemResRef(BASE_ITEM_LIGHTCROSSBOW, "nw_wbwxl001");
     AddBaseItemResRef(BASE_ITEM_LIGHTFLAIL, "nw_wblfl001");
     AddBaseItemResRef(BASE_ITEM_LIGHTHAMMER, "nw_wblhl001");
@@ -157,8 +160,12 @@ void InitialiseLootSystem()
     AddBaseItemResRef(BASE_ITEM_SHORTSWORD, "nw_wswss001");
     AddBaseItemResRef(BASE_ITEM_SICKLE, "nw_wspsc001");
     AddBaseItemResRef(BASE_ITEM_SLING, "nw_wbwsl001");
-    AddBaseItemResRef(BASE_ITEM_SMALLSHIELD, "nw_ashsw001");
-    AddBaseItemResRef(BASE_ITEM_TOWERSHIELD, "nw_ashto001");
+    AddBaseItemResRef(BASE_ITEM_SMALLSHIELD, "ashsw007");
+    AddBaseItemResRef(BASE_ITEM_SMALLSHIELD, "ashsw008");
+    AddBaseItemResRef(BASE_ITEM_SMALLSHIELD, "ashsw009");
+    AddBaseItemResRef(BASE_ITEM_TOWERSHIELD, "ashto007");
+    AddBaseItemResRef(BASE_ITEM_TOWERSHIELD, "ashto008");
+    AddBaseItemResRef(BASE_ITEM_TOWERSHIELD, "ashto009");
     //AddBaseItemResRef(BASE_ITEM_TRIDENT, "nw_wpltr001");
     AddBaseItemResRef(BASE_ITEM_TWOBLADEDSWORD, "nw_wdbsw001");
     AddBaseItemResRef(BASE_ITEM_WARHAMMER, "nw_wblhw001");

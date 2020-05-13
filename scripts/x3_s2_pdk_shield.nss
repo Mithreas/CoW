@@ -18,7 +18,7 @@
 
 #include "inc_class"
 #include "x0_i0_spells"
-#include "inc_names"
+#include "inc_rename"
 #include "inc_timelock"
 
 void main()
@@ -63,7 +63,7 @@ void main()
     // We are toggling the guard functionality.
     // Do this only if the Heroic Shield Effect is currently active on the target.
     if (GetIsObjectValid(oWard) == TRUE && oWard == oTarget && GetHasFeatEffect(FEAT_PDK_SHIELD, oTarget) == TRUE) {
-        sName = GetIsPC(oTarget) ? fbNAGetGlobalDynamicName(oTarget) : GetName(oTarget);
+        sName = GetIsPC(oTarget) ? svGetPCNameOverride(oTarget) : GetName(oTarget);
 
         if (!GetIsObjectValid(oWarded) || oWarded != oPC) {
             SendMessageToPC(oPC, "You are again guarding " + sName + " from danger.");

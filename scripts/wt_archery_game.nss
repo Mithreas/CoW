@@ -1,4 +1,4 @@
-#include "inc_names"
+#include "inc_rename"
 
 void main()
 {
@@ -6,7 +6,7 @@ void main()
     object oArcher = GetLastAttacker(OBJECT_SELF);
     string sArcherName = "";
     if(GetIsPC(oArcher) == TRUE) {
-        sArcherName = fbNAGetGlobalDynamicName(oArcher);
+        sArcherName = svGetPCNameOverride(oArcher);
     }
     else {
         sArcherName = GetName(oArcher);

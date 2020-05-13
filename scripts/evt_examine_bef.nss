@@ -1,5 +1,5 @@
 #include "inc_chat"
-#include "inc_names"
+#include "inc_rename"
 #include "inc_time"
 #include "inc_item"
 #include "inc_disguise"
@@ -119,7 +119,7 @@ void main()
         else
         {
             metaInfo = StringToRGBString("You try to assess ", "599") +
-                       StringToRGBString(fbNAGetGlobalDynamicName(examinee), "199") +
+                       StringToRGBString(svGetPCNameOverride(examinee), "199") +
                        StringToRGBString(". ", "599");
 
             if (curTimestamp - 1800 >= prevTimestamp) // 180 sec cooldown between attempts.

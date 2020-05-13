@@ -1,6 +1,15 @@
 // mi_gonne
 // Needs its own script so we can call TouchAttackRanged.
+#include "inc_combat"
 #include "inc_customspells"
+void MakeHostile(object oShooter)
+{
+    AdjustReputation(oShooter, OBJECT_SELF, -100);
+    AssignCommand(OBJECT_SELF, ActionAttack(oShooter));
+    SetLocalObject(OBJECT_SELF, "GS_CB_ATTACK_TARGET", oShooter);
+    gsCBDetermineCombatRound(oShooter);
+}
+
 void main()
 {
   object oShooter = OBJECT_SELF;
@@ -57,5 +66,5 @@ void main()
                       EffectVisualEffect(VFX_FNF_SMOKE_PUFF),
                       oShooter,
                       1.0);
-
+  if (GetObjectType(oTarget) == OBJECT_TYPE_CREATURE && !GetIsPC(oTarget)) AssignCommand(oTarget, MakeHostile(oShooter));
 }

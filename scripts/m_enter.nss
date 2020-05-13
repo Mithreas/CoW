@@ -1,5 +1,5 @@
 #include "inc_chatutils"
-#include "inc_names"
+#include "inc_rename"
 #include "inc_external"
 #include "inc_zombie"
 #include "inc_common"
@@ -142,7 +142,7 @@ void main()
     // a new character.
     miCLCheckIsIllegal(oEntering);
     miXFRegisterPlayer(oEntering);
-    miXFUpdatePlayerName(oEntering, fbNAGetGlobalDynamicName(oEntering));
+    miXFUpdatePlayerName(oEntering, svGetPCNameOverride(oEntering));
 
     // Tails.
     if (!GetCreatureTailType(oEntering)) SetCreatureTailType(14, oEntering);

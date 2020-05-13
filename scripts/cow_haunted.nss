@@ -6,6 +6,8 @@ const int TRIGGER_COOLDOWN = 360; // 6 minutes
 void main()
 {
   object oEntering = GetEnteringObject();
+  string sResref   = GetLocalString(OBJECT_SELF, "RESREF");
+  if (sResref == "") sResref = "door_ghost";
 
   if (d6() < 6 || !GetIsPC(oEntering) || GetIsDM(oEntering) || GetModuleTime() < GetLocalInt(OBJECT_SELF, "MI_TRIGGERED_GHOST")) return;
 
@@ -37,7 +39,7 @@ void main()
   FloatingTextStringOnCreature(sText, oEntering, FALSE);
 
   object oGhost = CreateObject(OBJECT_TYPE_CREATURE,
-                               "door_ghost",
+                               sResref,
                                GetLocation(OBJECT_SELF),
                                TRUE);
   gsFLSetFlag(GS_FL_ENCOUNTER, oGhost);

@@ -247,6 +247,13 @@ void main()
     {
         ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectAppear(), oSelf);
     }
+	
+    if (GetLocalInt(oSelf, "onspawn_seeinvis"))
+    {
+        ApplyEffectToObject(DURATION_TYPE_PERMANENT, EffectLinkEffects(
+                EffectVisualEffect(VFX_DUR_MAGICAL_SIGHT),
+                EffectSeeInvisible()), oSelf);
+    }
 
    //::  Visual Effects OnSpawn
    effect eFX;
@@ -395,7 +402,7 @@ void main()
     if (GetLocalInt(oSelf, "onspawn_freeze"))
     {
       AssignCommand(oSelf, ActionPlayAnimation(ANIMATION_LOOPING_PAUSE, 500.0, 99999999999.0));
-      effect eParalyse = SupernaturalEffect(EffectCutsceneParalyze());
+      effect eParalyse = SupernaturalEffect(EffectLinkEffects(EffectVisualEffect(VFX_DUR_FREEZE_ANIMATION), EffectCutsceneParalyze()));
       DelayCommand(1.0, ApplyEffectToObject(DURATION_TYPE_PERMANENT, eParalyse, oSelf));
       SetLocalInt(oSelf, "INANIMATE_OBJECT", 1);
     }

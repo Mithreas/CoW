@@ -1,6 +1,6 @@
 #include "inc_chatutils"
 #include "inc_examine"
-#include "inc_names"
+#include "inc_rename"
 
 const string HELP = "<cþôh>-guard </c><cþ£ >[Text]</c>\n Tells your character to try and intercept attacks on a character whose name starts with <cþ£ >[Text]</c>, or alternatively you can send this command as a tell to the target.  You must stay close to them for this to work!  Turn off guard mode by sending -guard to yourself as a Tell.";
 
@@ -12,8 +12,8 @@ void unhookRelationship(object guard, object ward)
 
 void informBrokenRelationship(object guard, object ward)
 {
-    FloatingTextStringOnCreature("You are no longer guarding " + fbNAGetGlobalDynamicName(ward) + "!", guard, FALSE);
-    FloatingTextStringOnCreature(fbNAGetGlobalDynamicName(guard) + " is no longer guarding you!", ward, FALSE);
+    FloatingTextStringOnCreature("You are no longer guarding " + svGetPCNameOverride(ward) + "!", guard, FALSE);
+    FloatingTextStringOnCreature(svGetPCNameOverride(guard) + " is no longer guarding you!", ward, FALSE);
 }
 
 void hookRelationship(object guard, object ward)
@@ -24,8 +24,8 @@ void hookRelationship(object guard, object ward)
 
 void informNewRelationship(object guard, object ward)
 {
-    FloatingTextStringOnCreature("You are now guarding " + fbNAGetGlobalDynamicName(ward) + "!", guard, FALSE);
-    FloatingTextStringOnCreature(fbNAGetGlobalDynamicName(guard) + " is now guarding you!", ward, FALSE);
+    FloatingTextStringOnCreature("You are now guarding " + svGetPCNameOverride(ward) + "!", guard, FALSE);
+    FloatingTextStringOnCreature(svGetPCNameOverride(guard) + " is now guarding you!", ward, FALSE);
 }
 
 void RemoveGuardAndWard(object me)
@@ -90,7 +90,7 @@ void main()
         int nLength = GetStringLength(sParams);
         while (GetIsObjectValid(oPC))
         {
-          if (GetStringLeft(fbNAGetGlobalDynamicName(oPC), nLength) == sParams)
+          if (GetStringLeft(svGetPCNameOverride(oPC), nLength) == sParams)
           {
             oTarget = oPC;
           }
@@ -109,9 +109,6 @@ void main()
 
         object myNewWard = oTarget;
         RemoveGuardAndWard(me);
-
-
-
 
         object myNewWardsExistingGuard = GetLocalObject(myNewWard, "CURRENT_GUARD");
         object myNewWardsExistingWard = GetLocalObject(myNewWard, "CURRENT_WARD");

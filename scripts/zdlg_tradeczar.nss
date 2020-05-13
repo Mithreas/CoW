@@ -1587,7 +1587,7 @@ void HandleSelection()
                                                1,
                                                "GS_ME_MD_" + sMessageID);
 
-        sRec = fbNAGetGlobalDynamicName(oPC) + " has " + (sPage == PAGE_DONATE ?
+        sRec = svGetPCNameOverride(oPC) + " has " + (sPage == PAGE_DONATE ?
          "donated":"sold") + " the following:\n" + sRec;
         if (GetIsObjectValid(oObject))
         {

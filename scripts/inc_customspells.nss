@@ -401,9 +401,13 @@ int AR_GetCasterLevel(object oCaster=OBJECT_SELF)
     nShadowBonus = GetLevelByClass(CLASS_TYPE_SHADOWDANCER, oCaster);
   }
   
-  // Anemoi edit - add 1/10 Piety for clerics, Favoured Souls and paladins.
+  // Anemoi edit - add 1/10 Piety for clerics, Favoured Souls and paladins, pacts for others.  Mummy Dust needs some special handling as
+  // it's not cast naturally (ditto PM abilities).  
   int nPietyBonus = 0;
-  if (GetLastSpellCastClass() == CLASS_TYPE_PALADIN || GetLastSpellCastClass() == CLASS_TYPE_FAVOURED_SOUL || GetLastSpellCastClass() == CLASS_TYPE_CLERIC)
+  int bDivine = (GetLevelByClass(CLASS_TYPE_CLERIC, oCaster) + GetLevelByClass(CLASS_TYPE_FAVOURED_SOUL, oCaster) + GetLevelByClass(CLASS_TYPE_PALADIN, oCaster)) >
+    (GetLevelByClass(CLASS_TYPE_SORCERER, oCaster) + GetLevelByClass(CLASS_TYPE_WIZARD, oCaster));
+  int bSpecialNecro = (nSpellId == 637 || nSpellId == 623 || nSpellId == 624 || nSpellId == 627); // Mummy Dust, PM animate dead spells	
+  if (GetLastSpellCastClass() == CLASS_TYPE_PALADIN || GetLastSpellCastClass() == CLASS_TYPE_FAVOURED_SOUL || GetLastSpellCastClass() == CLASS_TYPE_CLERIC || (bSpecialNecro && bDivine))
   {
     nPietyBonus = FloatToInt(gsSTGetState(GS_ST_PIETY, oCaster)) / 10;
   }
@@ -623,7 +627,7 @@ int GetCanSendImage(object oPC)
   return FALSE;
 }
 //------------------------------------------------------------------------------
-void Scrying(object oPC,object oTarg)
+int Scrying(object oPC,object oTarg)
 {
   // Spell resistance check.
   object oHide = gsPCGetCreatureHide(oPC);
@@ -645,32 +649,27 @@ void Scrying(object oPC,object oTarg)
          blackout(oPC);
          SendMessageToPC(oPC,"You see nothing.");
          SendMessageToPC(oPC,"Scrying has failed: the target is warded against such divination.");
-         return;
+         return FALSE;
          }
 
   if (GetAreaFromLocation(GetLocation(oTarg)) == OBJECT_INVALID)
   {
     SendMessageToPC(oPC, "You concentrate, but are unable to locate the target.");
-    return;
+    return FALSE;
   }
 
-  // Scry once per rest.
-  if(!GetLocalInt(gsPCGetCreatureHide(oPC), "CUSTOM_SPELL_" + IntToString(CUSTOM_SPELL_SCRY)))
+  // Scry time limiting now handled in chat_scry.
+  int nConcentration = GetSkillRank(SKILL_CONCENTRATION, oTarg) + (GetKnowsFeat(FEAT_ARCANE_DEFENSE_DIVINATION, oTarg) ?  5 : 0) + (GetCanScry(oTarg) ?  5 : 0);
+  int nSpellcraft    = GetSkillRank(SKILL_SPELLCRAFT, oPC) + 6; // ESF Divination required for scrying
+  if( (d20() + nConcentration) > (d20() + nSpellcraft) )
   {
-    //@@@ Improve this.
-	int nConcentration = GetSkillRank(SKILL_CONCENTRATION, oTarg) + (GetKnowsFeat(FEAT_ARCANE_DEFENSE_DIVINATION, oTarg) ?  5 : 0) + (GetCanScry(oTarg) ?  5 : 0);
-	int nSpellcraft    = GetSkillRank(SKILL_SPELLCRAFT, oTarg) + 6; // ESF Divination required for scrying
-    if( (d20() + nConcentration) > (d20() + nSpellcraft) )
-	{
-        SendMessageToPC(oTarg,"You sense you are being watched from afar.");
-	}	  
-    miSCDoScrying(oPC, oTarg);
-    miSPHasCastSpell(oPC, CUSTOM_SPELL_SCRY);
-  }
-  else
-  {
-    SendMessageToPC(oPC,"<cþ  >You need to rest before you can use this ability again.");
-  }
+    SendMessageToPC(oTarg,"You sense you are being watched from afar.");
+  }	
+  
+  miSCDoScrying(oPC, oTarg);
+  miSPHasCastSpell(oPC, CUSTOM_SPELL_SCRY);
+  
+  return TRUE;
 }
 //------------------------------------------------------------------------------
 void miSCDoScrying(object oPC, object oTarg, int bMagical = TRUE)
@@ -759,9 +758,8 @@ void Send_Image(object oPC,object oTarg, string sText)
     if(GetIsPCDisguised(oPC))
 	{
 		SetLocalInt(oCopy, "disguised", 1);
-		sName = fbNAGetGlobalDynamicName(oPC); // Get the Disguised name
-		sName = sName + GetLocalString(oPC, "FB_NA_POST_1"); //Add the dynamic (Disguise) tag
-		SetName(oCopy, sName); //Set Name of the Image, fbNASetDynamicNameForAll will not work here
+		sName = svGetPCNameOverride(oPC); // Get the Disguised name
+		SetName(oCopy, sName); //Set Name of the Image
 		if (GetGender(oPC) == GENDER_MALE) //Hide portrait
 		{ // Male
 			sPortrait = "po_hu_m_99_";	

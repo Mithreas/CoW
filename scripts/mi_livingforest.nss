@@ -1,7 +1,7 @@
 // mi_livingforest
 // Script intended to make a properly scary forest.  Think the Old Forest from
 // LoTR.
-#include "inc_names"
+#include "inc_rename"
 #include "inc_flag"
 
 void _DoQuicksand(object oPC, int nCount = 0)
@@ -11,7 +11,7 @@ void _DoQuicksand(object oPC, int nCount = 0)
                                    oPC);
   int nBonus = (GetDistanceBetween(oPC, oPC2) > 0.0f && GetDistanceBetween(oPC, oPC2) < 1.5f) ? GetAbilityModifier(ABILITY_STRENGTH, oPC2) : 0;
 
-  if (nBonus) FloatingTextStringOnCreature(fbNAGetGlobalDynamicName(oPC2) + " helps you get free", oPC);
+  if (nBonus) FloatingTextStringOnCreature(svGetPCNameOverride(oPC2) + " helps you get free", oPC);
 
   if (d20() + GetAbilityModifier(ABILITY_STRENGTH, oPC) + nBonus > 15 + nCount)
   {

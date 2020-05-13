@@ -1,10 +1,12 @@
 void main()
 {
   if (d6() < 6) return;
+  string sResref   = GetLocalString(OBJECT_SELF, "RESREF");
+  if (sResref == "") sResref = "door_ghost";
 
   SpeakString("Suddenly, the air seems very cold.");
   object oGhost = CreateObject(OBJECT_TYPE_CREATURE,
-                               "door_ghost",
+                               sResref,
                                GetLocation(GetLastOpenedBy()),
                                TRUE);
 

@@ -702,9 +702,8 @@ int gsIPGetCost(object oItem, itemproperty ipProperty)
 	// (it takes effect afterwards).  So try getting a fresh item of the
 	// same type using the loot gen code.
 	// TODO - for armour these have base properties!  So need "clean" methods.
-	object oCopy = CreateObject(OBJECT_TYPE_ITEM, 
-	                            GetFirstResRefFromBaseItemType(GetBaseItemType(oItem)), 
-	                            GetLocation(oItem));
+	object oCopy = CreateItemOnObject(GetFirstResRefFromBaseItemType(GetBaseItemType(oItem)), 
+	                                  GetItemPossessor(oItem));
 	
 	if (!GetIsObjectValid(oCopy)) oCopy = CopyObject(oItem, GetLocation(oItem));
 

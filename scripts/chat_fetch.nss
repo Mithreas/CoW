@@ -1,5 +1,6 @@
 #include "inc_chatutils"
 #include "inc_examine"
+#include "inc_flag"
 #include "inc_timelock"
 
 const string HELP = "-fetch. Pulls all familiars, animal companions, dominated creatures, henchmen, and summons to your side. Please respect the honour system with this tool and don't be a cheeseball.";
@@ -14,13 +15,22 @@ void main()
     }
     else
     {
+        chatVerifyCommand(OBJECT_SELF);
+		
         // Cooldown check.
         if(GetIsTimelocked(OBJECT_SELF, "Fetch Companion"))
         {
             TimelockErrorMessage(OBJECT_SELF, "Fetch Companion");
-            chatVerifyCommand(OBJECT_SELF);
             return;
         }
+		
+		// Override magic area.
+		if (gsFLGetAreaFlag("OVERRIDE_MAGIC"))
+		{
+		  SendMessageToPC(OBJECT_SELF, "This power is disabled in null magic zones to prevent cheeseballing.");
+		  return;
+		}
+		
         int i, j;
         object oAssociate;
         object oSpeaker = OBJECT_SELF;
@@ -40,6 +50,5 @@ void main()
     // Set Cooldown to 2 minutes.  Refresh reminder at 1m, final reminder at 30 seconds.
     SetTimelock(OBJECT_SELF, 120, "Fetch Companion", 60, 30);
     }
-    chatVerifyCommand(OBJECT_SELF);
 }
 

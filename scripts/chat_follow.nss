@@ -1,6 +1,6 @@
 #include "inc_chatutils"
 #include "inc_examine"
-#include "inc_names"
+#include "inc_rename"
 
 const string HELP = "-follow [name]. Follows the provided target if you are within 15 yards of them.";
 
@@ -25,7 +25,7 @@ void main()
             {
                 // dunshine: use dynamic names instead:
                 // if (GetStringLeft(GetName(pc), paramLen) == params)
-                if (GetStringLeft(fbNAGetGlobalDynamicName(pc), paramLen) == params)
+                if (GetStringLeft(svGetPCNameOverride(pc), paramLen) == params)
                 {
                     target = pc;
                     break;
@@ -41,15 +41,15 @@ void main()
         }
         else if (GetArea(OBJECT_SELF) != GetArea(target))
         {
-            SendMessageToPC(OBJECT_SELF, "Character " + fbNAGetGlobalDynamicName(target) + " is in another area!");
+            SendMessageToPC(OBJECT_SELF, "Character " + svGetPCNameOverride(target) + " is in another area!");
         }
         else if (GetDistanceBetween(OBJECT_SELF, target) > YardsToMeters(15.0))
         {
-            SendMessageToPC(OBJECT_SELF, "Character " + fbNAGetGlobalDynamicName(target) + " is too far away!");
+            SendMessageToPC(OBJECT_SELF, "Character " + svGetPCNameOverride(target) + " is too far away!");
         }
         else if (!LineOfSightObject(OBJECT_SELF, target))
         {
-            SendMessageToPC(OBJECT_SELF, "Character " + fbNAGetGlobalDynamicName(target) + " isn't in your line of sight!");
+            SendMessageToPC(OBJECT_SELF, "Character " + svGetPCNameOverride(target) + " isn't in your line of sight!");
         }
         else if (target == OBJECT_SELF)
         {
@@ -58,7 +58,7 @@ void main()
         else
         {
             ActionForceFollowObject(target, 5.0);
-            SendMessageToPC(OBJECT_SELF, "You're now following " + fbNAGetGlobalDynamicName(target) + "!");
+            SendMessageToPC(OBJECT_SELF, "You're now following " + svGetPCNameOverride(target) + "!");
         }
     }
 

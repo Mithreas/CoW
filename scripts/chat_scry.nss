@@ -1,6 +1,6 @@
 #include "__server_config"
 #include "inc_chatutils"
-#include "inc_names"
+#include "inc_rename"
 #include "inc_customspells"
 #include "inc_spell"
 #include "inc_timelock"
@@ -31,9 +31,9 @@ void main()
       SendMessageToPC(oSpeaker, "<cþ  >You must have "+
        "Epic Spell Focus in Divination to be able to scry.");
     }
-	else if (GetIsTimelocked(oSpeaker, "Scry"))
+	else if (gsTIGetActualTimestamp() < GetLocalInt(oSpeaker, "SCRY_TIMEOUT"))
 	{
-	  SendMessageToPC(oSpeaker, "You cannot scry again so soon."); 
+	  SendMessageToPC(oSpeaker, "You cannot scry again so soon.  Allow 15 minutes between scrying attempts."); 
 	}	
     else if (sParams == "" && !GetIsObjectValid(oTarget))
     {
@@ -53,7 +53,7 @@ void main()
           // Search for real name and disguised name, preferring real name.
           if (GetStringLeft(GetName(oPC), nLength) == sParams ||
            (!GetIsObjectValid(oTarget) &&
-           GetStringLeft(fbNAGetGlobalDynamicName(oPC), nLength) == sParams))
+           GetStringLeft(svGetPCNameOverride(oPC), nLength) == sParams))
           {
             oTarget = oPC;
           }
@@ -89,8 +89,7 @@ void main()
              gsSTDoCasterDamage(oSpeaker, 5);
 		  }
 		  
-          Scrying(oSpeaker, oTarget);
-		  SetTimelock(oSpeaker, 15*60, "Scry", 300, 60);
+          if (Scrying(oSpeaker, oTarget)) SetLocalInt(oSpeaker, "SCRY_TIMEOUT", gsTIGetActualTimestamp() + 15 * 60);		  
         }
       }
     }

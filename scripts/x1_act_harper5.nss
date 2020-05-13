@@ -8,8 +8,8 @@
 
 void main()
 {
-    CreateItemOnObject("NW_IT_MPOTION008", GetPCSpeaker());
+    object oPot = CreateItemOnObject("NW_IT_MPOTION008", GetPCSpeaker());
+	SetIdentified(oPot, TRUE);
     effect eVis = EffectVisualEffect(VFX_IMP_HEAD_ODD);
     ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, GetPCSpeaker());
-
 }

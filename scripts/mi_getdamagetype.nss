@@ -14,22 +14,24 @@ void main()
   int nPos  = GetDamageDealtByType(DAMAGE_TYPE_POSITIVE);
   int nSlsh = GetDamageDealtByType(DAMAGE_TYPE_SLASHING);
   int nSon  = GetDamageDealtByType(DAMAGE_TYPE_SONIC);
+  int nPhy  = GetDamageDealtByType(DAMAGE_TYPE_BASE_WEAPON);
 
   // Ordering for ties.
   int nHighest = nAcid;
   string sType    = "Acid";
 
-  if (nBlud > nHighest) sType = "Bludgeoning";
-  if (nCold > nHighest) sType = "Frost";
-  if (nDiv > nHighest)  sType = "Holy";
-  if (nElec > nHighest) sType = "Electrical";
-  if (nFire > nHighest) sType = "Fire";
-  if (nMag > nHighest)  sType = "Magical Force";
-  if (nNeg > nHighest)  sType = "Negative Energy";
-  if (nPrce > nHighest) sType = "Piercing";
-  if (nPos > nHighest)  sType = "Positive Energy";
-  if (nSlsh > nHighest) sType = "Slashing";
-  if (nSon > nHighest)  sType = "Sonic";
+  if (nBlud > nHighest) { sType = "Bludgeoning"; nHighest = nBlud; }
+  if (nCold > nHighest) { sType = "Frost"; nHighest = nCold; }
+  if (nDiv > nHighest)  { sType = "Holy"; nHighest = nDiv; }
+  if (nElec > nHighest) { sType = "Electrical"; nHighest = nElec; }
+  if (nFire > nHighest) { sType = "Fire"; nHighest = nFire; }
+  if (nMag > nHighest)  { sType = "Magical Force"; nHighest = nMag; }
+  if (nNeg > nHighest)  { sType = "Negative Energy"; nHighest = nNeg; }
+  if (nPrce > nHighest) { sType = "Piercing"; nHighest = nPrce; }
+  if (nPos > nHighest)  { sType = "Positive Energy"; nHighest = nPos; }
+  if (nSlsh > nHighest) { sType = "Slashing"; nHighest = nSlsh; }
+  if (nSon > nHighest)  { sType = "Sonic"; nHighest = nSon; }
+  if (nPhy > nHighest)  { sType = "Physical"; nHighest = nPhy; }
 
   SetLocalString(OBJECT_SELF, "MI_DAMAGE_TYPE", sType);
 }

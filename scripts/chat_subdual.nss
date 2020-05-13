@@ -6,6 +6,8 @@ const string HELP = "Allows you to fight in subdual mode, instead of killing you
 
 void main()
 {
+   /* Note - retired, but code left in case I ever want to bring it back. 
+
     object oSpeaker = OBJECT_SELF;
     string sParams = chatGetParams(oSpeaker);
 
@@ -21,5 +23,5 @@ void main()
 
     }
 
-  chatVerifyCommand(oSpeaker);
+  chatVerifyCommand(oSpeaker); */
 }

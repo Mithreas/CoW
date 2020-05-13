@@ -389,15 +389,21 @@ void main()
       DestroyObject(oAcquired);
     }
 
-    // item removed from container
-    if ((!bShop && GetEventScript(oAcquiredFrom, EVENT_SCRIPT_PLACEABLE_ON_OPEN) == "gs_co_open") ||
-	    GetStringLeft(GetTag(oAcquiredFrom), 12) == "GS_INVENTORY")
+	
+    // item removed from container & general cleanup of SLOT_VAR variables.
+    if(!bShop)
     {
-      string sFrom = GetLocalString(oAcquiredFrom, "MD_OPN_ID");
-      if(sFrom == "") sFrom = GetTag(oAcquiredFrom);
+      if (GetEventScript(oAcquiredFrom, EVENT_SCRIPT_PLACEABLE_ON_OPEN) == "gs_co_open" || (GetEventScript(oAcquiredFrom, EVENT_SCRIPT_PLACEABLE_ON_CLOSED) == "gs_co_close"))
+      {
+        string sFrom = GetLocalString(oAcquiredFrom, "MD_OPN_ID");
+        if(sFrom == "") sFrom = GetTag(oAcquiredFrom);
 
-      spCORemove(sFrom, oAcquiredFrom, oAcquired);
+        spCORemove(sFrom, oAcquiredFrom, oAcquired);
+      }
+      else
+        DeleteLocalInt(oAcquired, SLOT_VAR);
     }
+
 
     // corpse picked up
     if (sResRef == GS_TEMPLATE_CORPSE_MALE ||
@@ -413,12 +419,8 @@ void main()
 
     // check for the acquiring of a slave clamp, if so, add the (Slave) tag behind the name
     if (sTag == "gvd_slave_clamp") {
-      // add the (Slave) addition to the dynamic name of the PC
-      if (GetIsPCDisguised(oAcquiredBy) == TRUE) {
-        fbNAAddNameModifier(oAcquiredBy, FB_NA_MODIFIER_DISGUISE, "", " (Disguised Slave)");            
-      } else {
-        fbNAAddNameModifier(oAcquiredBy, FB_NA_MODIFIER_DISGUISE, "", " (Slave)");            
-      }
+        // add the (Slave) addition to the dynamic name of the PC
+        svSetAffix(oAcquiredBy, SLAVE_SUFFIX, TRUE);          
     }
 
 // ............................................ DM Shop & Gold reporting..........................................................................		

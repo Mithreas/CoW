@@ -211,6 +211,7 @@ void miDVSavePoints(object oPC)
 void miDVShuffleDeck()
 {
   Trace(DIVINATION, "Shuffling the Deck of Stars");
+  string sTaken;
 
   // Primary cards: artificer (fire), deceiver (air), craftsman (earth), Changer of Ways
   // (water), death's hand (death), lifebringer (life).
@@ -233,6 +234,8 @@ void miDVShuffleDeck()
   SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (death+100)/(fire+air+earth+water+life+death+600) DESC, death DESC LIMIT 1");
   if (SQLFetch()) sDeathHand = SQLGetData(1);
 
+  sTaken = sArtificer + "," + sDeceiver + "," + sCraftsman + "," + sChanger + "," + sLifebringer + "," + sDeathHand;
+
   // Secondary cards: smith (fire/earth), artist (fire/air), trickster (water/air),
   // merchant (earth/water), nurturer (earth/life),  provider (water/life),
   // shaman (water/life), sire (fire/life)  
@@ -251,31 +254,31 @@ void miDVShuffleDeck()
   string sSire;
   string sShaman;
   string sUndertaker;
-  SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (fire+earth+200)/(fire+air+earth+water+life+death+600) DESC, (fire+earth) DESC LIMIT 1");
+  SQLExecStatement("SELECT id FROM gs_pc_data WHERE id NOT IN (" + sTaken + ") AND modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (fire+earth+200)/(fire+air+earth+water+life+death+600) DESC, (fire+earth) DESC LIMIT 1");
   if (SQLFetch()) sSmith = SQLGetData(1);
-  SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (fire+air+200)/(fire+air+earth+water+life+death+600) DESC, (fire+air) DESC LIMIT 1");
+  SQLExecStatement("SELECT id FROM gs_pc_data WHERE id NOT IN (" + sTaken + ") AND modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (fire+air+200)/(fire+air+earth+water+life+death+600) DESC, (fire+air) DESC LIMIT 1");
   if (SQLFetch()) sArtist = SQLGetData(1);
-  SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (earth+water+200)/(fire+air+earth+water+life+death+600) DESC, (earth+water) DESC LIMIT 1");
+  SQLExecStatement("SELECT id FROM gs_pc_data WHERE id NOT IN (" + sTaken + ") AND modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (earth+water+200)/(fire+air+earth+water+life+death+600) DESC, (earth+water) DESC LIMIT 1");
   if (SQLFetch()) sMerchant = SQLGetData(1);
-  SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (water+air+200)/(fire+air+earth+water+life+death+600) DESC, (water+air) DESC LIMIT 1");
+  SQLExecStatement("SELECT id FROM gs_pc_data WHERE id NOT IN (" + sTaken + ") AND modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (water+air+200)/(fire+air+earth+water+life+death+600) DESC, (water+air) DESC LIMIT 1");
   if (SQLFetch()) sTrickster = SQLGetData(1);
-  SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (earth+life+200)/(fire+air+earth+water+life+death+600) DESC, (earth+life) DESC LIMIT 1");
+  SQLExecStatement("SELECT id FROM gs_pc_data WHERE id NOT IN (" + sTaken + ") AND modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (earth+life+200)/(fire+air+earth+water+life+death+600) DESC, (earth+life) DESC LIMIT 1");
   if (SQLFetch()) sNurturer = SQLGetData(1);
-  SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (water+life+200)/(fire+air+earth+water+life+death+600) DESC, (water+life) DESC LIMIT 1");
+  SQLExecStatement("SELECT id FROM gs_pc_data WHERE id NOT IN (" + sTaken + ") AND modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (water+life+200)/(fire+air+earth+water+life+death+600) DESC, (water+life) DESC LIMIT 1");
   if (SQLFetch()) sProvider = SQLGetData(1);
-  SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (fire+life+200)/(fire+air+earth+water+life+death+600) DESC, (fire+air) DESC LIMIT 1");
+  SQLExecStatement("SELECT id FROM gs_pc_data WHERE id NOT IN (" + sTaken + ") AND modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (fire+life+200)/(fire+air+earth+water+life+death+600) DESC, (fire+air) DESC LIMIT 1");
   if (SQLFetch()) sSire = SQLGetData(1);
-  SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (air+life+200)/(fire+air+earth+water+life+death+600) DESC, (air+life) DESC LIMIT 1");
+  SQLExecStatement("SELECT id FROM gs_pc_data WHERE id NOT IN (" + sTaken + ") AND modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (air+life+200)/(fire+air+earth+water+life+death+600) DESC, (air+life) DESC LIMIT 1");
   if (SQLFetch()) sShaman = SQLGetData(1);
-  SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (air+death+200)/(fire+air+earth+water+life+death+600) DESC, (air+death) DESC LIMIT 1");
+  SQLExecStatement("SELECT id FROM gs_pc_data WHERE id NOT IN (" + sTaken + ") AND modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (air+death+200)/(fire+air+earth+water+life+death+600) DESC, (air+death) DESC LIMIT 1");
   if (SQLFetch()) sSoulStealer = SQLGetData(1);
-  SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (fire+death+200)/(fire+air+earth+water+life+death+600) DESC, (fire+death) DESC LIMIT 1");
+  SQLExecStatement("SELECT id FROM gs_pc_data WHERE id NOT IN (" + sTaken + ") AND modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (fire+death+200)/(fire+air+earth+water+life+death+600) DESC, (fire+death) DESC LIMIT 1");
   if (SQLFetch()) sBattlemage = SQLGetData(1);
-  SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (earth+death+200)/(fire+air+earth+water+life+death+600) DESC, (earth+death) DESC LIMIT 1");
+  SQLExecStatement("SELECT id FROM gs_pc_data WHERE id NOT IN (" + sTaken + ") AND modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (earth+death+200)/(fire+air+earth+water+life+death+600) DESC, (earth+death) DESC LIMIT 1");
   if (SQLFetch()) sUndertaker = SQLGetData(1);
-  SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (water+death+200)/(fire+air+earth+water+life+death+600) DESC, (air+earth) DESC LIMIT 1");
+  SQLExecStatement("SELECT id FROM gs_pc_data WHERE id NOT IN (" + sTaken + ") AND modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (water+death+200)/(fire+air+earth+water+life+death+600) DESC, (air+earth) DESC LIMIT 1");
   if (SQLFetch()) sSlayer = SQLGetData(1);
-  SQLExecStatement("SELECT id FROM gs_pc_data WHERE modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (life+death+200)/(fire+air+earth+water+life+death+600) DESC, (life+death) DESC LIMIT 1");
+  SQLExecStatement("SELECT id FROM gs_pc_data WHERE id NOT IN (" + sTaken + ") AND modified > (DATE_SUB(CURDATE(),INTERVAL 7 DAY)) ORDER BY (life+death+200)/(fire+air+earth+water+life+death+600) DESC, (life+death) DESC LIMIT 1");
   if (SQLFetch()) sJudge = SQLGetData(1);
 
   SetLocalString(GetModule(), ASPECT_ARTIST, sArtist);

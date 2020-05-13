@@ -17,6 +17,7 @@
 #include "inc_iprop"
 #include "inc_craft"
 #include "inc_customspells"
+#include "inc_favsoul"
 #include "x2_inc_itemprop"
 #include "x2_inc_switches"
 #include "inc_pc"
@@ -169,6 +170,8 @@ int CI_GetClassMagicType(int nClass)
         case CLASS_TYPE_CLERIC:
                 return X2_CI_MAGICTYPE_DIVINE; break;
         case CLASS_TYPE_DRUID:
+                return X2_CI_MAGICTYPE_DIVINE; break;
+        case CLASS_TYPE_FAVOURED_SOUL:
                 return X2_CI_MAGICTYPE_DIVINE; break;
         case CLASS_TYPE_PALADIN:
                 return X2_CI_MAGICTYPE_DIVINE; break;
@@ -323,6 +326,8 @@ object CICraftCraftWand(object oCreator, int nSpellID )
              AddItemProperty(DURATION_TYPE_PERMANENT,ipLimit,oTarget);
              ipLimit = ItemPropertyLimitUseByClass(CLASS_TYPE_CLERIC);
              AddItemProperty(DURATION_TYPE_PERMANENT,ipLimit,oTarget);
+             ipLimit = ItemPropertyLimitUseByClass(CLASS_TYPE_FAVOURED_SOUL);
+             AddItemProperty(DURATION_TYPE_PERMANENT,ipLimit,oTarget);
         }
         else if (nType == X2_CI_MAGICTYPE_ARCANE)
         {
@@ -395,6 +400,7 @@ object CICraftScribeScroll(object oCreator, int nSpellID)
        case CLASS_TYPE_SORCERER:
             sClass = "Wiz_Sorc";
             break;
+	   case CLASS_TYPE_FAVOURED_SOUL:
        case CLASS_TYPE_CLERIC:
             sClass = "Cleric";
             break;
@@ -924,7 +930,7 @@ int CICraftCheckCraftWondrous(object oSpellTarget, object oCaster)
             d2() == 2 &&
             gsWOGrantBoon(oCaster) )
         {
-          FloatingTextStringOnCreature(sDeity + " augments your skill and grants you success.", oCaster);
+          FloatingTextStringOnCreature(sDeity + " augments your skill and grants you success.", oCaster, FALSE);
         }
         else
         {

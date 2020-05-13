@@ -211,7 +211,7 @@ void ApplyCharacterBonuses(object oPC, int bReapplySpecialAbilities = FALSE, int
     miTOApplyTotemAbilities(oHide);
     miBAReapplyGifts(oPC, bReapplySpecialAbilities);
     miCLApplyClassChanges(oPC);
-    miCLApplyPathChanges(oPC, bReapplySpecialAbilities, bUpdateNaturalAC);
+    miCLApplyPathChanges(oPC, bReapplySpecialAbilities, bUpdateNaturalAC);	
     miBAApplyBackground(oPC, -1, FALSE); // Moved to after class adjustments so that Dauntless HP stacks with Spellsword/Warlock
     UpdateWeaponBonuses(oPC);
     UpdateLevelBonuses(oPC);
@@ -281,7 +281,6 @@ void ReapplyASFReductions(object oPC)
 //:://////////////////////////////////////////////
 void ReapplyTemporaryCharacterBonuses(object oPC)
 {
-    ReapplyFighterBonuses(oPC);
     ReapplyASFReductions(oPC);
 
     RemoveTaggedEffects(oPC, EFFECT_TAG_TWOHAND);

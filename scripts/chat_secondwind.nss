@@ -16,6 +16,10 @@ void main()
   {
     DisplayTextInExamineWindow("-secondwind", HELP);
   }
+  else if (GetIsDead(OBJECT_SELF))
+  {
+    SendMessageToPC(oSpeaker, "You cannot use this now.");
+  }
   else if (nFighter)
   {
     if(GetIsTimelocked(OBJECT_SELF, "Second Wind"))

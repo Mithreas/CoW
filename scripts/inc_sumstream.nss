@@ -1058,8 +1058,6 @@ string GetUndeadStreamBlueprint(object oCreature, int nTier, int nAllowedStreams
 //:://////////////////////////////////////////////
 int GetUndeadSummonerTier(object oCreature = OBJECT_SELF)
 {
-    if(GetKnowsFeat(FEAT_EPIC_SPELL_MUMMY_DUST, oCreature)) return STREAM_UNDEAD_TIER_4;
-
     int nLevel = GetLevelByClass(CLASS_TYPE_WIZARD, oCreature) +
         GetLevelByClass(CLASS_TYPE_SORCERER, oCreature) +
         GetLevelByClass(CLASS_TYPE_CLERIC, oCreature) +
@@ -1069,9 +1067,9 @@ int GetUndeadSummonerTier(object oCreature = OBJECT_SELF)
 
     if(GetKnowsFeat(FEAT_EPIC_SPELL_MUMMY_DUST, oCreature)) nLevel += 5;
 
-    if (nLevel > 30) return STREAM_UNDEAD_TIER_4;
-    else if(nLevel > 20) return STREAM_UNDEAD_TIER_3;
-    else if (nLevel > 10) return STREAM_UNDEAD_TIER_2;
+    if (nLevel >= 30) return STREAM_UNDEAD_TIER_4;
+    else if(nLevel >= 20) return STREAM_UNDEAD_TIER_3;
+    else if (nLevel >= 10) return STREAM_UNDEAD_TIER_2;
     return STREAM_UNDEAD_TIER_1;
 }
 

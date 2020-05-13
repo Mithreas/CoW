@@ -658,53 +658,51 @@ void btribeCreateTribesmen(object oPC)
     AssignCommand(oTribesman, btribeEquipTribesmanArmor(oGarb));
 
 	// Sawaki, 7-27-2018; TribalLVL determined via RageFeat
-	int nLevel;
-	nLevel = 0;
+	int nLevel = GetLevelByClass(CLASS_TYPE_BARBARIAN, oPC) + GetHitDice(oPC) / 2;
 	
 	if (GetHasFeat(330, oPC)) // barb rage 6
 	{  
-	  nLevel = 12;
+	  nLevel += 6;
 	}
 	else if (GetHasFeat(329, oPC)) // barb rage 5
 	{  
-	  nLevel = 10;
+	  nLevel += 5;
 	}
 	else if (GetHasFeat(328, oPC)) // barb rage 4
 	{  
-	  nLevel = 8;
+	  nLevel += 4;
 	}
 	else if (GetHasFeat(327, oPC))  // barb rage 3
 	{  
-	  nLevel = 6;
+	  nLevel += 3;
 	}
 	else if (GetHasFeat(326, oPC)) // barb rage 2
 	{  
-	  nLevel = 4;
+	  nLevel += 2;
 	}
 	else
 	{ 
-	  nLevel = 3; // barb rage 1 
+	  nLevel += 1; // barb rage 1 
 	}  
 		
-	int nCounter = 0; // counts epicBarb Feats. (so the order doesn't matter) Each Epic feat gives +2 Tribal lvl
-	
+	// +2 per epic rage feat.
 	if (GetHasFeat(869, oPC)) // Mighty Rage
 	{ 
-	  nCounter ++;
+	  nLevel += 2;
 	}
 	
 	if (GetHasFeat(988, oPC)) // Thundering Rage
 	{ 
-	  nCounter ++;
+	  nLevel += 2;
 	}
 	
 	if (GetHasFeat(989, oPC)) // Terrifying Rage
 	{ 
-	  nCounter ++;
+	  nLevel += 2;
 	}
-	
-	nLevel += (nCounter*2);
-	
+		
+    // adds Class-lvls on to the Tribal levels - Sawaki
+    int nCounter;
 	for (nCounter = 0; nCounter < nLevel; nCounter++)
 	{
 	  LevelUpHenchman(oTribesman, CLASS_TYPE_BARBARIAN);

@@ -1,5 +1,4 @@
 #include "cnr_recipe_utils"
-#include "inc_names"
 #include "inc_boss"
 #include "inc_common"
 #include "inc_craft"
@@ -9,6 +8,7 @@
 #include "inc_iprop"
 #include "inc_istate"
 #include "inc_placeable"
+#include "inc_rename"
 #include "inc_state"
 #include "inc_subrace"
 #include "inc_text"
@@ -109,8 +109,9 @@ void main()
     // potion of attunement
     if (sTag == "MI_POTION_ATTUNE")
     {
-        location lLoc = gsREGetRespawnLocation(oActivator);
-		gsCMTeleportToLocation(oActivator, lLocation, VFX_IMP_AC_BONUS, TRUE);
+	    location lLoc = APSStringToLocation(GetLocalString(gsPCGetCreatureHide(oActivator), "ESF_TELEPORT_LOCATION"));
+		if (!GetIsObjectValid(GetAreaFromLocation(lLoc))) lLoc = gsREGetRespawnLocation(oActivator);
+		gsCMTeleportToLocation(oActivator, lLoc, VFX_IMP_AC_BONUS, TRUE);
         return;
     }
 
@@ -776,14 +777,14 @@ void main()
     }
 
     // Climbing rope
-    if (sTag == "MI_CL_ROPE")
+    if (sTag == "cnrrope")
     {
       if (GetObjectType(oTarget) == OBJECT_TYPE_CREATURE &&
           oTarget != oActivator)
       {
         SetLocalObject(oTarget, "MI_CL_HELPER", oActivator);
-        SendMessageToPC(oTarget,fbNAGetGlobalDynamicName(oActivator) + " will help you climb.");
-        SendMessageToPC(oActivator,"You will help " + fbNAGetGlobalDynamicName(oTarget) + " climb.");
+        SendMessageToPC(oTarget,svGetPCNameOverride(oActivator) + " will help you climb.");
+        SendMessageToPC(oActivator,"You will help " + svGetPCNameOverride(oTarget) + " climb.");
       }
       else
       {
@@ -1573,6 +1574,18 @@ void main()
         {
             SetLocalObject(oActivator, "GS_TARGET", oTarget);
             SetLocalString(oActivator, "dialog", "zdlg_dmwand");
+            AssignCommand(oActivator, ActionStartConversation(oActivator, "zdlg_converse", TRUE, FALSE));
+        }
+        return;
+    }
+	
+    //COW controls
+    if (sTag == "DMWAND2")
+    {
+        if (GetIsObjectValid(oTarget) && GetIsPC(oTarget))
+        {
+            SetLocalObject(oActivator, "GS_TARGET", oTarget);
+            SetLocalString(oActivator, "dialog", "zdlg_dmwand2");
             AssignCommand(oActivator, ActionStartConversation(oActivator, "zdlg_converse", TRUE, FALSE));
         }
         return;

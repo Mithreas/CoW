@@ -702,7 +702,7 @@ int chooseTactics(object oIntruder)
     nMagic = nMagic + AdjustBehaviorVariable(nMagic, "X2_L_BEH_MAGIC");
     nOffense = nOffense + AdjustBehaviorVariable(nOffense, "X2_L_BEH_OFFENSE");
     nCompassion = nCompassion + AdjustBehaviorVariable(nCompassion, "X2_L_BEH_COMPASSION");
-
+    //if (GetIsObjectValid(GetMaster(OBJECT_SELF))) SpeakString("Magic " + IntToString(nMagic) + ", Offense " + IntToString(nOffense) + ", Compassion " + IntToString(nCompassion));
 
     // * If invisbile of any sort, become Defensive and
     // * magical to use any buffs you may have
@@ -811,7 +811,6 @@ int chooseTactics(object oIntruder)
     if (TalentDragonCombat(oIntruder)) {return 99;}
     if (TalentMeleeAttack(oIntruder) == TRUE) return 99;
 
-
     object oHostile = GetNearestSeenEnemy();
 
     // * Feb 17 2003: This error could happen in the situation that someone
@@ -824,6 +823,7 @@ int chooseTactics(object oIntruder)
         //SpeakString("BUG!!!!!!!!!!!!!!!!!!!!!!!! (Let Brent Knowles know about this. Supply savegame) Nothing valid to do !!!!!!!!!!!!!!!!!!!!!");
         //SpeakString("BUG!! Magic " + IntToString(nMagic) + " Compassion " + IntToString(nCompassion) + " Offense " + IntToString(nOffense));
     }
+	
     return 1;
 
 } // * END of choosetactics
@@ -908,7 +908,9 @@ void DetermineCombatRound(object oIntruder = OBJECT_INVALID, int nAI_Difficulty 
     int bIsPCAssociate = GetAssociateType(OBJECT_SELF) != ASSOCIATE_TYPE_NONE && GetIsPC(GetFactionLeader(OBJECT_SELF));
     int bAssociateAttack = GetLocalInt(OBJECT_SELF, "Lib_Associates_LastAction") == 1 || !GetLocalInt(OBJECT_SELF, "Lib_Associates_AIDeactivated");
     object oAssociateAttackTarget = GetLocalObject(OBJECT_SELF, "Lib_Associates_AttackTarget");
-
+    
+    // if (GetIsObjectValid(GetMaster(OBJECT_SELF))) SpeakString("Determining combat round, target " + GetName(oIntruder));
+	
     // If we're an associate and we haven't been given the go ahead to attack, then do not fight
     // unless we're attacked first.
     if(bIsPCAssociate && !bAssociateAttack && !GetIsObjectValid(GetLastHostileActor()))
@@ -1021,7 +1023,7 @@ void DetermineCombatRound(object oIntruder = OBJECT_INVALID, int nAI_Difficulty 
     }
 
     __TurnCombatRoundOn(TRUE);
-
+    
     // ----------------------------------------------------------------------------------------
     // DetermineCombatRound: ACTIONS
     // ----------------------------------------------------------------------------------------

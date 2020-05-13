@@ -7,7 +7,7 @@
     The conversation file for distorted mirros
 */
 //:://////////////////////////////////////////////
-//:: Created By: Mordeorn
+//:: Created By: Morderon
 //:: Created On: 12/11/2010 Added spellbook save: 04/23/2012
 //:://////////////////////////////////////////////
 #include "zzdlg_main_inc"
@@ -827,7 +827,14 @@ void onSave()
     dlgAddResponse(SAVE_MENU, "Save 3");
     dlgAddResponse(SAVE_MENU, "Save 4");
     dlgAddResponse(SAVE_MENU, "Save 5");
-  }
+    dlgAddResponse(SAVE_MENU, "Save 6");
+    dlgAddResponse(SAVE_MENU, "Save 7");
+    dlgAddResponse(SAVE_MENU, "Save 8");
+    dlgAddResponse(SAVE_MENU, "Save 9");
+    dlgAddResponse(SAVE_MENU, "Save 10");
+    dlgAddResponse(SAVE_MENU, "Save 11");
+    dlgAddResponse(SAVE_MENU, "Save 12");
+  }	
   else
     dlgSetPrompt("You have no outfit equipped");
 

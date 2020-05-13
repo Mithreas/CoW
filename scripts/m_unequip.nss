@@ -41,12 +41,7 @@ void main()
 
     //::  If two-handed mode is active we have to remove bonus
     //::  Have to delay so slots get cleared
-    DelayCommand(0.1, DoTwoHandedBonusCheck(oUnequippedBy, oUnequipped));
-    
-    if (GetLevelByClass(CLASS_TYPE_FIGHTER, oUnequippedBy))
-    {
-      miRemoveFighterBonuses(oUnequipped);
-    }
+    DelayCommand(0.1, DoTwoHandedBonusCheck(oUnequippedBy, oUnequipped));    
 
 	//::Kirito-Mounted Combat
 	if (IPGetIsMeleeWeapon(oUnequipped) || GetWeaponRanged(oUnequipped))

@@ -320,12 +320,6 @@ void main()
                 break;
            }
         }
-        int bFighter = GetLevelByClass(CLASS_TYPE_FIGHTER, oEquippedBy);
-        // Figher bonuses.
-        if (bFighter)
-        {
-            miCLApplyFighterBonuses(oEquipped, oEquippedBy);
-        }
 
         //::Kirito-Spellsword path
         if (miSSGetIsSpellsword(oEquippedBy))

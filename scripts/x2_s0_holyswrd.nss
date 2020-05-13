@@ -83,7 +83,7 @@ void main()
     IPSafeAddItemProperty(oItem, ItemPropertyEnhancementBonus(5), RoundsToSeconds(nDuration), X2_IP_ADDPROP_POLICY_IGNORE_EXISTING);
 
     // 1d6 Divine Damage versus Evil
-    IPSafeAddItemProperty(oItem, ItemPropertyDamageBonusVsAlign(IP_CONST_ALIGNMENTGROUP_EVIL, IP_CONST_DAMAGETYPE_DIVINE, IP_CONST_DAMAGEBONUS_1d6), RoundsToSeconds(nDuration), X2_IP_ADDPROP_POLICY_REPLACE_EXISTING);
+    IPSafeAddItemProperty(oItem, ItemPropertyDamageBonus(IP_CONST_DAMAGETYPE_DIVINE, IP_CONST_DAMAGEBONUS_1d6), RoundsToSeconds(nDuration), X2_IP_ADDPROP_POLICY_REPLACE_EXISTING);
 
     // Add 16 SR
     ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectSpellResistanceIncrease(16), oPossessor, RoundsToSeconds(nDuration));

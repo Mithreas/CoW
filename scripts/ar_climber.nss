@@ -8,7 +8,7 @@
 //::  Extended from Mith's climbing system!
 
 
-#include "inc_names"
+#include "inc_rename"
 #include "inc_climb"
 void main()
 {
@@ -29,7 +29,7 @@ void main()
   }
   else
   {
-    FloatingTextStringOnCreature(fbNAGetGlobalDynamicName(oHelper) + " helps you with the climb.", oPC);
+    FloatingTextStringOnCreature(svGetPCNameOverride(oHelper) + " helps you with the climb.", oPC);
   }
 
   int nArmorCheckPenalty = miCBGetArmorCheckPenalty(oPC);

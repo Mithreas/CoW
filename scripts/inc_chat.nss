@@ -242,14 +242,14 @@ void fbCHDistributeMessage(object oSpeaker, string sText, int nChannel)
     }
   }
   string sMessage = sChannel + txtSilver + " [" + GetName(GetArea(oSpeaker)) +
-                    "]</c> " + txtYellow + GetName(oSpeaker) +
+                    "]</c> " + txtYellow + GetName(oSpeaker, TRUE) +
                     (GetIsPCDisguised(oSpeaker)? " (Disguised) </c>" : " </c>") +
                     sColorCode + "[" + sRoleplayRating + "]</c> " +
                     gsLAGetLanguageColor(GetLocalInt(oSpeaker, "CHAT_LANGUAGE")) +
                     sLanguageName + "</c>: " + txtWhite + sText + "</c>";
 
   string sHighlight = sChannel + txtSilver + " [" + GetName(GetArea(oSpeaker)) +
-                      "]</c> " + txtYellow + GetName(oSpeaker) +
+                      "]</c> " + txtYellow + GetName(oSpeaker, TRUE) +
                       (GetIsPCDisguised(oSpeaker)? " (Disguised) </c>" : " </c>") +
                       sColorCode + "[" + sRoleplayRating + "]</c> " +
                       gsLAGetLanguageColor(GetLocalInt(oSpeaker, "CHAT_LANGUAGE")) +
@@ -420,17 +420,12 @@ string fbCHCommandList(object oSpeaker)
 
   string sList = "Player options:\n\n";
 
-  sList += _fbCHPrepareChatCommand("-adventure", STRING_COLOR_GREEN);
-
   sList += _fbCHPrepareChatCommand("-associate", STRING_COLOR_GREEN);
 
   sList += _fbCHPrepareChatCommand("-balance",
     GetLevelByClass(CLASS_TYPE_DRUID, oSpeaker) ? STRING_COLOR_GREEN : STRING_COLOR_RED);
 
   sList += _fbCHPrepareChatCommand("-blind", STRING_COLOR_GREEN);
-
-  sList += _fbCHPrepareChatCommand("-chaos",
-      (GetLocalInt(gsPCGetCreatureHide(oSpeaker), "WILD_MAGE") && GetLevelByClass(CLASS_TYPE_WIZARD, oSpeaker) >= 9) ? STRING_COLOR_GREEN : STRING_COLOR_RED);
 
   sList += _fbCHPrepareChatCommand("-cleanup", STRING_COLOR_GREEN);
 
@@ -470,14 +465,10 @@ string fbCHCommandList(object oSpeaker)
   sList += _fbCHPrepareChatCommand("-emote", STRING_COLOR_GREEN);
   sList += _fbCHPrepareChatCommand("-emote_style", STRING_COLOR_GREEN);
 
-  sList += _fbCHPrepareChatCommand("-fate",
-    (GetLocalInt(gsPCGetCreatureHide(oSpeaker), "WILD_MAGE") && GetLevelByClass(CLASS_TYPE_WIZARD, oSpeaker) >= 21) ? STRING_COLOR_GREEN :
-     STRING_COLOR_RED);
-
   sList += _fbCHPrepareChatCommand("-factions", STRING_COLOR_GREEN);
   sList += _fbCHPrepareChatCommand("-fetch", STRING_COLOR_GREEN);
   sList += _fbCHPrepareChatCommand("-follow", STRING_COLOR_GREEN);
-  sList += _fbCHPrepareChatCommand("-forum_password", STRING_COLOR_GREEN);
+  // sList += _fbCHPrepareChatCommand("-forum_password", STRING_COLOR_GREEN);
   sList += _fbCHPrepareChatCommand("-guard", STRING_COLOR_GREEN);
   sList += _fbCHPrepareChatCommand("-helm", STRING_COLOR_GREEN);
   sList += _fbCHPrepareChatCommand("-hood", STRING_COLOR_GREEN);
@@ -488,6 +479,7 @@ string fbCHCommandList(object oSpeaker)
   sList += _fbCHPrepareChatCommand("-losexp", STRING_COLOR_GREEN);
   sList += _fbCHPrepareChatCommand("-makesafe", STRING_COLOR_GREEN);
   sList += _fbCHPrepareChatCommand("-manual", STRING_COLOR_GREEN);
+  sList += _fbCHPrepareChatCommand("-meditate", STRING_COLOR_GREEN);
   sList += _fbCHPrepareChatCommand("-mimic", STRING_COLOR_GREEN);
   sList += _fbCHPrepareChatCommand("-move_fixture", STRING_COLOR_GREEN);
 
@@ -510,7 +502,8 @@ string fbCHCommandList(object oSpeaker)
     sList += _fbCHPrepareChatCommand("-project_image",
       (GetCanSendImage(oSpeaker) && !GetLocalInt(oHide, "SPELLSWORD")) ? STRING_COLOR_GREEN : STRING_COLOR_RED);
   }
-
+  
+  sList += _fbCHPrepareChatCommand("-research", STRING_COLOR_GREEN);
   sList += _fbCHPrepareChatCommand("-respite", (GetIsHealer(oSpeaker) && GetLevelByClass(CLASS_TYPE_CLERIC, oSpeaker) >= 28) ? STRING_COLOR_GREEN : STRING_COLOR_RED);
   sList += _fbCHPrepareChatCommand("-reveal", STRING_COLOR_GREEN);
   sList += _fbCHPrepareChatCommand("-revealparty", STRING_COLOR_GREEN);
@@ -526,14 +519,19 @@ string fbCHCommandList(object oSpeaker)
   
   sList += _fbCHPrepareChatCommand("-secondwind", GetLevelByClass(CLASS_TYPE_FIGHTER, oSpeaker) ? STRING_COLOR_GREEN : STRING_COLOR_RED);
 
+  sList += _fbCHPrepareChatCommand("-sense", 
+             (GetLevelByClass(CLASS_TYPE_BARD, oSpeaker) || 
+			  GetLevelByClass(CLASS_TYPE_DRUID, oSpeaker) ||
+			  GetLevelByClass(CLASS_TYPE_RANGER, oSpeaker) ||
+			  GetLevelByClass(CLASS_TYPE_SORCERER, oSpeaker) ||
+			  GetLevelByClass(CLASS_TYPE_WIZARD, oSpeaker)) ? STRING_COLOR_GREEN : STRING_COLOR_RED);
+			  
   sList += _fbCHPrepareChatCommand("-soundset",
     GetLocalInt(GetArea(oSpeaker), "MI_RENAME") ? STRING_COLOR_GREEN : STRING_COLOR_RED);
   sList += _fbCHPrepareChatCommand("-stream", STRING_COLOR_GREEN);
-  sList += _fbCHPrepareChatCommand("-subdual", STRING_COLOR_GREEN);
-
-  sList += _fbCHPrepareChatCommand("-surge",
-      GetLocalInt(gsPCGetCreatureHide(oSpeaker), "WILD_MAGE") ? STRING_COLOR_GREEN : STRING_COLOR_RED);
-
+  
+   // sList += _fbCHPrepareChatCommand("-subdual", STRING_COLOR_GREEN);
+  
   if (ALLOW_TELEPORT)
   {
     sList += _fbCHPrepareChatCommand("-teleport",
@@ -550,12 +548,12 @@ string fbCHCommandList(object oSpeaker)
       nSubRace == GS_SU_GNOME_FOREST || nSubRace == GS_SU_DWARF_WILD || nSubRace == GS_SU_ELF_WILD || nSubRace == GS_SU_ELF_WOOD) ?
       STRING_COLOR_GREEN : STRING_COLOR_RED);
   }
+  
+  sList += _fbCHPrepareChatCommand("-train", STRING_COLOR_GREEN);
 
   sList += _fbCHPrepareChatCommand("-twohand",
       GetCreatureSize(oSpeaker) >= CREATURE_SIZE_MEDIUM ? STRING_COLOR_GREEN : STRING_COLOR_RED);
 
-  sList += _fbCHPrepareChatCommand("-unrelent", STRING_COLOR_GREEN);
-  sList += _fbCHPrepareChatCommand("-updates", STRING_COLOR_GREEN);
   sList += _fbCHPrepareChatCommand("-usefeat", STRING_COLOR_GREEN);
   sList += _fbCHPrepareChatCommand("-vampire", VampireIsVamp(oSpeaker) ? STRING_COLOR_GREEN : STRING_COLOR_RED);
   sList += _fbCHPrepareChatCommand("-walk", STRING_COLOR_GREEN);
@@ -565,8 +563,6 @@ string fbCHCommandList(object oSpeaker)
     sList += _fbCHPrepareChatCommand("-ward",
       (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_ABJURATION, oSpeaker) && !GetLocalInt(oHide, "SPELLSWORD")) ? STRING_COLOR_GREEN : STRING_COLOR_RED);
   }
-
-  sList += _fbCHPrepareChatCommand("-warlock", miWAGetIsWarlock(oSpeaker) ? STRING_COLOR_GREEN : STRING_COLOR_RED);
 
   if (ALLOW_YOINKING)
   {
@@ -736,7 +732,7 @@ void _fbCHOutputFinalText(object speaker, object observer, int channel, string u
     // If consoleMode == 2, we output untranslated to the main window and translated to the combat window if it isn't common.
     // If consoleMode == 3, we output translated to the main window and untranslated to the combat window.
     // If consoleMode == 4, we output translated to the main window and untranslated to the combat window if it isn't common.
-    string consoleOutput = chatGetChannelName(channel) + " " + txtWhite + fbNAGetGlobalDynamicName(speaker) + "</c> " +
+    string consoleOutput = chatGetChannelName(channel) + " " + txtWhite + svGetPCNameOverride(speaker) + "</c> " +
         languageNamePrefix;
 
     int consoleMode = GetLocalInt(gsPCGetCreatureHide(observer), "OUTPUT_TO_CONSOLE");
@@ -895,7 +891,7 @@ int fbCHSpeak(struct fbCHChat stChat)
             )
     {
         fbCHMute(stChat.oSpeaker);
-        SendMessageToPC(stChat.oSpeaker, txtRed + fbNAGetGlobalDynamicName(stChat.oTarget) +
+        SendMessageToPC(stChat.oSpeaker, txtRed + svGetPCNameOverride(stChat.oTarget) +
         " has chosen not to receive Tells, by typing -notells. Your message was not delivered.</c>");
     }
     // Speaker has blocked target. Carry on, with a warning.

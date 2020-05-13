@@ -48,7 +48,7 @@ void main()
         fClosestDistance = fDistance;
       }
     }
-    if (GetIsObjectValid(oNPC)) {
+    if (GetIsObjectValid(oNPC) && !GetLocalInt(oNPC, "INANIMATE_OBJECT")) {
       fDistance = GetDistanceBetween(oNPC, oSpeaker);
       if (fDistance < fClosestDistance) {
         iClosest = INVEST_NPC;

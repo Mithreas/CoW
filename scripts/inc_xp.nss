@@ -339,12 +339,12 @@ void gsXPGiveExperience(object oCreature, int nAmount, int nFloat = TRUE, int nK
 	
 		// Check for PCs over the "soft cap"
 		// Max XP from kills is 40 (x4 for bosses), and from traps is 40.  From quests it could be a
-		// a couple of hundred.  Divide by 6 so that you get up to 6 for ordinary mobs, exceptions for bosses
-		// and quests.  Typical XP will be 3 for things of the same level as you.
+		// a couple of hundred.  Divide by 6 and add 1 so that you get up to 7 for ordinary mobs, exceptions 
+		// for bosses and quests.  Typical XP will be 4 for things of the same level as you.
 		if (nKill != 2 && GetHitDice(oCreatureToReward) >= GetLocalInt(GetModule(), "STATIC_LEVEL"))
 		{
-		  if (nAmount > 5) nAmount /= 6;
-		  if (nAmount < 1) nAmount = 1;
+		  nAmount /= 6;
+		  nAmount += 1;
 		}
 
         if (nXP >= nXPLevel)

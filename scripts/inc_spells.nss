@@ -20,7 +20,7 @@
 #include "inc_favsoul"
 #include "inc_generic"
 #include "inc_math"
-#include "inc_names"
+#include "inc_rename"
 #include "inc_pc"
 #include "inc_string"
 #include "inc_tempvars"
@@ -48,19 +48,19 @@ const int ALLOW_NPC_AOE_OVERLAP = FALSE;
 const string ERROR_INSUFFICIENT_SPELLSLOTS = "You do not have enough %s spell slots remaining to cast that spontaneous spell.";
 
 // Scripts for the project image summon.
-const string PROJECT_IMAGE_AI_ON_BLOCKED =           "x0_ch_hen_block";
-const string PROJECT_IMAGE_AI_ON_COMBAT_ROUND_END =  "x0_ch_hen_combat";
-const string PROJECT_IMAGE_AI_ON_CONVERSATION =      "x0_ch_hen_conv";
-const string PROJECT_IMAGE_AI_ON_DAMAGED =           "x0_ch_hen_damage";
+const string PROJECT_IMAGE_AI_ON_BLOCKED =           "NW_CH_AC1";
+const string PROJECT_IMAGE_AI_ON_COMBAT_ROUND_END =  "NW_CH_AC3";
+const string PROJECT_IMAGE_AI_ON_CONVERSATION =      "NW_CH_AC4";
+const string PROJECT_IMAGE_AI_ON_DAMAGED =           "NW_CH_AC6";
 const string PROJECT_IMAGE_AI_ON_DEATH =             "";
-const string PROJECT_IMAGE_AI_ON_DISTURBED =         "x0_ch_hen_distrb";
+const string PROJECT_IMAGE_AI_ON_DISTURBED =         "NW_C2_AC8";
 const string PROJECT_IMAGE_AI_ON_HEARTBEAT =         "hrt_unsummon";
-const string PROJECT_IMAGE_AI_ON_PERCEPTION =        "x0_ch_hen_percep";
-const string PROJECT_IMAGE_AI_ON_PHYSICAL_ATTACKED = "x0_ch_hen_attack";
+const string PROJECT_IMAGE_AI_ON_PERCEPTION =        "NW_CH_AC2";
+const string PROJECT_IMAGE_AI_ON_PHYSICAL_ATTACKED = "NW_CH_AC5";
 const string PROJECT_IMAGE_AI_ON_RESTED =            "rst_unsummon";
-const string PROJECT_IMAGE_AI_ON_SPAWN =             "x0_ch_hen_spawn";
-const string PROJECT_IMAGE_AI_ON_SPELL_CAST_AT =     "x2_hen_spell";
-const string PROJECT_IMAGE_AI_ON_USER_DEFINED =      "mj_ai_projimag";
+const string PROJECT_IMAGE_AI_ON_SPAWN =             "NW_CH_AC9";
+const string PROJECT_IMAGE_AI_ON_SPELL_CAST_AT =     "NW_CH_ACB";
+const string PROJECT_IMAGE_AI_ON_USER_DEFINED =      "NW_CH_ACD";
 
 // Blueprint created as a source for static VFX (e.g. vfx on glyph of warding).
 const string BLUEPRINT_STATIC_VFX = "gs_null";
@@ -1849,8 +1849,7 @@ void ProjectImage()
     if(GetLocalInt(OBJECT_SELF, "disguised")) 
 	{
 		SetLocalInt(oImage, "disguised", 1);
-		sName = fbNAGetGlobalDynamicName(OBJECT_SELF); // Get the Disguised name
-		sName = sName + GetLocalString(OBJECT_SELF, "FB_NA_POST_1"); //Add the dynamic (Disguise) tag
+		sName = svGetPCNameOverride(OBJECT_SELF); // Get the Disguised name
 		SetName(oImage, sName); //Set Name of the Image, fbNASetDynamicNameForAll will not work here
 		if (GetGender(OBJECT_SELF) == GENDER_MALE) //Hide portrait
 		{ // Male

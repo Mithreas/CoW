@@ -1,7 +1,19 @@
-#include "inc_common"
-#include "inc_container"
+/**
+  AI script for spirits
+  Author: Mithreas
+  Date: 30th April 2020
+  
+  Spirits vanish to all players on spawn, but when they perceive a player with a 
+  relevant class, they appear for that player.  
+  
+  Spirits also don't move or engage in other AI behaviours.  
+  
+  Relevant classes are bard/druid/ranger/sorc/wizard.
+*/
+#include "inc_ai"
 #include "inc_event"
-#include "inc_item"
+#include "inc_behaviors"
+#include "nwnx_visibility"
 
 void main()
 {
@@ -40,14 +52,27 @@ void main()
     case GS_EV_ON_HEART_BEAT:
 //................................................................
         ExecuteScript("gs_run_ai", OBJECT_SELF);
-
         break;
 
     case GS_EV_ON_PERCEPTION:
 //................................................................
+    {
+	    object oPC   = GetLastPerceived();
+	    if (!GetIsPC(oPC) || GetIsDM(oPC) || !GetLastPerceptionSeen()) return;
+	    
+		if (GetLevelByClass(CLASS_TYPE_BARD, oPC) ||
+		    GetLevelByClass(CLASS_TYPE_DRUID, oPC) ||
+			GetLevelByClass(CLASS_TYPE_RANGER, oPC) ||
+			GetLevelByClass(CLASS_TYPE_SORCERER, oPC) ||
+			GetLevelByClass(CLASS_TYPE_WIZARD, oPC))
+	    {
+		  // Reset explicitly to try and make this more reliable.
+		  NWNX_Visibility_SetVisibilityOverride(oPC, OBJECT_SELF, NWNX_VISIBILITY_DEFAULT);
+		  NWNX_Visibility_SetVisibilityOverride(oPC, OBJECT_SELF, NWNX_VISIBILITY_VISIBLE);
+		}
 
         break;
-
+    }
     case GS_EV_ON_PHYSICAL_ATTACKED:
 //................................................................
 
@@ -59,44 +84,9 @@ void main()
         break;
 
     case GS_EV_ON_SPAWN:
+	    NWNX_Visibility_SetVisibilityOverride(OBJECT_INVALID, OBJECT_SELF, NWNX_VISIBILITY_DM_ONLY);
+		DelayCommand (1.0f, gsAIClearActionMatrix());
 //................................................................
-        if (Random(100) >= 90)
-        {
-            //create treasure
-            string sTag       = GetTag(OBJECT_SELF);
-            sTag              = "GS_INVENTORY_" + GetStringRight(sTag, GetStringLength(sTag) - 3);
-            object oInventory = GetObjectByTag(sTag);
-
-            if (GetIsObjectValid(oInventory))
-            {
-                object oItem = GetFirstItemInInventory(oInventory);
-                int nValue   = 0;
-
-                while (GetIsObjectValid(oItem))
-                {
-                    nValue = gsCMGetItemValue(oItem);
-
-                    if (nValue <= 2500 && Random(100) >= 95)
-                    {
-                        object oCopy = gsCMCopyItem(oItem, OBJECT_SELF);
-                        if(GetIsItemMundane(oItem)) SetIsItemMundane(oCopy, TRUE);
-
-                        if (GetIsObjectValid(oCopy))
-                        {
-                            SetIdentified(oCopy, nValue <= 100);
-                            SetStolenFlag(oCopy, FALSE);
-							DeleteLocalInt(oCopy, SLOT_VAR);
-                        }
-
-                        break;
-                    }
-
-                    oItem = GetNextItemInInventory(oInventory);
-                    if (! GetIsObjectValid(oItem)) oItem = GetFirstItemInInventory(oInventory);
-                }
-            }
-        }
-
         break;
 
     case GS_EV_ON_SPELL_CAST_AT:
@@ -104,4 +94,5 @@ void main()
 
         break;
     }
+    RunSpecialBehaviors(GetUserDefinedEventNumber());
 }

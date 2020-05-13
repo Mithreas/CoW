@@ -2073,7 +2073,7 @@ int CnrRecipeAttemptToCraft(object oPC, object oDevice, int nRecipeIndex, int bW
     if (gsWOGetDeityAspect(oPC) & ASPECT_KNOWLEDGE_INVENTION &&
         gsWOGrantBoon(oPC) )
     {
-      FloatingTextStringOnCreature(sDeity + " intercedes to aid your work.", oPC);
+      FloatingTextStringOnCreature(sDeity + " intercedes to aid your work.", oPC, FALSE);
     }
     else
     {

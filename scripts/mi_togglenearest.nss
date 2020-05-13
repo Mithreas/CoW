@@ -1,6 +1,7 @@
 void main()
 {
-  object oDoor = GetNearestObject(OBJECT_TYPE_DOOR);
+  object oDoor = GetNearestObjectByTag("D_" + GetTag(OBJECT_SELF));
+  if (!GetIsObjectValid(oDoor)) oDoor = GetNearestObject(OBJECT_TYPE_DOOR);
 
   if (GetLocked(oDoor))
   {

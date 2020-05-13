@@ -29,7 +29,7 @@ void main()
         string sName;
         while(GetIsObjectValid(oCreature))
         {
-            sName = GetStringLowerCase(fbNAGetGlobalDynamicName(oCreature));
+            sName = GetStringLowerCase(svGetPCNameOverride(oCreature));
             if (FindSubString(GetStringLowerCase(params), sName) > -1) oTarget = oCreature;
             oCreature = GetNextObjectInShape(SHAPE_SPHERE, RADIUS_SIZE_COLOSSAL, GetLocation(OBJECT_SELF), TRUE);
         }

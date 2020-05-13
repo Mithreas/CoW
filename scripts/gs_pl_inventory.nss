@@ -1,4 +1,5 @@
 #include "inc_common"
+#include "inc_container"
 #include "inc_time"
 #include "inc_loot"
 #include "inc_log"
@@ -165,6 +166,7 @@ void main()
                             {
                                 SetIdentified(oCopy, gsCMGetItemValue(oCopy) <= 100);
                                 SetStolenFlag(oCopy, FALSE);
+							    DeleteLocalInt(oCopy, SLOT_VAR);
                             }
                         }
                     }

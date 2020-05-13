@@ -2,7 +2,7 @@
 /* COMBAT Library by Gigaschatten */
 
 #include "inc_boss"
-#include "inc_names"
+#include "inc_rename"
 #include "inc_zombie"
 #include "inc_combat2"
 #include "inc_combat3"
@@ -276,13 +276,13 @@ object gsCBSetAttackTarget(object oTarget, object oObject = OBJECT_SELF)
       // per round.
       if(nTime - GetLocalInt(oTarget, "GuardFeedbackTimestamp") >= 6)
       {
-        sName = GetIsPC(oGuard) ? fbNAGetGlobalDynamicName(oGuard) : GetName(oGuard);
+        sName = GetIsPC(oGuard) ? svGetPCNameOverride(oGuard) : GetName(oGuard);
         FloatingTextStringOnCreature(sName + " shields you from an attacker.", oTarget, FALSE);
         SetLocalInt(oTarget, "GuardFeedbackTimestamp", nTime);
       }
       if(nTime - GetLocalInt(oGuard, "GuardFeedbackTimestamp") >= 6)
       {
-        sName = GetIsPC(oTarget) ? fbNAGetGlobalDynamicName(oTarget) : GetName(oTarget);
+        sName = GetIsPC(oTarget) ? svGetPCNameOverride(oTarget) : GetName(oTarget);
         FloatingTextStringOnCreature("You shield " + sName + " from an attacker.", oGuard, FALSE);
         SetLocalInt(oGuard, "GuardFeedbackTimestamp", nTime);
       }
@@ -297,13 +297,13 @@ object gsCBSetAttackTarget(object oTarget, object oObject = OBJECT_SELF)
         {
             if(nTime - GetLocalInt(oTarget, "WardFeedbackTimestamp") >= 6)
             {
-                sName = GetIsPC(oPDK) ? fbNAGetGlobalDynamicName(oPDK) : GetName(oPDK);
+                sName = GetIsPC(oPDK) ? svGetPCNameOverride(oPDK) : GetName(oPDK);
                 FloatingTextStringOnCreature(sName + " shields you from an attacker.", oTarget, FALSE);
                 SetLocalInt(oTarget, "WardFeedbackTimestamp", nTime);
             }
             if(nTime - GetLocalInt(oPDK, "WardFeedbackTimestamp") >= 6)
             {
-                sName = GetIsPC(oTarget) ? fbNAGetGlobalDynamicName(oTarget) : GetName(oTarget);
+                sName = GetIsPC(oTarget) ? svGetPCNameOverride(oTarget) : GetName(oTarget);
                 FloatingTextStringOnCreature("You shield " + sName + " from an attacker.", oPDK, FALSE);
                 SetLocalInt(oPDK, "WardFeedbackTimestamp", nTime);
             }
@@ -323,13 +323,13 @@ object gsCBSetAttackTarget(object oTarget, object oObject = OBJECT_SELF)
         {
             if(nTime - GetLocalInt(oTarget, "WrathFeedbackTimestamp") >= 6)
             {
-                sName = GetIsPC(oWrath) ? fbNAGetGlobalDynamicName(oWrath) : GetName(oWrath);
+                sName = GetIsPC(oWrath) ? svGetPCNameOverride(oWrath) : GetName(oWrath);
                 FloatingTextStringOnCreature(sName + " draws the attacker's ire.", oTarget, FALSE);
                 SetLocalInt(oTarget, "WrathFeedbackTimestamp", nTime);
             }
             if(nTime - GetLocalInt(oWrath, "WrathFeedbackTimestamp") >= 6)
             {
-                sName = GetIsPC(oTarget) ? fbNAGetGlobalDynamicName(oTarget) : GetName(oTarget);
+                sName = GetIsPC(oTarget) ? svGetPCNameOverride(oTarget) : GetName(oTarget);
                 FloatingTextStringOnCreature("You distract an attacker away from " + sName + ".", oWrath, FALSE);
                 SetLocalInt(oWrath, "WrathFeedbackTimestamp", nTime);
             }
@@ -1822,7 +1822,7 @@ void gsCBTalentAttack(object oTarget)
         object oAttacker = OBJECT_SELF;
 
         // Some creatures can yoink PCs to them.
-        SpeakString("*" + sYoinkText + " " + fbNAGetGlobalDynamicName(oTarget) + "*");
+        SpeakString("*" + sYoinkText + " " + svGetPCNameOverride(oTarget) + "*");
         AssignCommand(oTarget, ClearAllActions());
         AssignCommand(oTarget, ActionJumpToObject(oAttacker, FALSE));
       }
@@ -1831,7 +1831,7 @@ void gsCBTalentAttack(object oTarget)
           GetDistanceToObject(oTarget) < 25.0)
       {
         // Some creatures can jump to their enemies.
-        SpeakString("*" + sJumpText + " " + fbNAGetGlobalDynamicName(oTarget) + "*");
+        SpeakString("*" + sJumpText + " " + svGetPCNameOverride(oTarget) + "*");
         ActionJumpToObject(oTarget, FALSE);
       }
       else

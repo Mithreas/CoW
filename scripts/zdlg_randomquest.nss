@@ -15,7 +15,7 @@
 
 // response options
 const string GREETING    = "greeting";
-const string MAIN_MENU   = "main_options";
+const string MAIN_MENU   = "rq_main_options";
 const string REPLY1      = "reply_1";
 const string REPLY2      = "reply_2";
 const string REPLY3      = "reply_3";
@@ -128,10 +128,10 @@ void PageInit()
       if (sCurrentQuest == "")
       {
         // Greet the PC
-        string sCurrentRank = GetPCFactionRank(oPC);
+        repRank rRank = GetPCFactionRank(oPC);
 		if (GetRacialType(OBJECT_SELF) == RACIAL_TYPE_HUMAN)
 		{
-          SetDlgPrompt("Welcome in the names of the Seven Divines, "+sCurrentRank+" "+
+          SetDlgPrompt("Welcome in the names of the Seven Divines, "+rRank.sName+" "+
           GetName(oPC)+". Are you here to talk about the City of Winds? Or perhaps to "+
           "offer your services?");
 		}

@@ -1,5 +1,5 @@
 #include "inc_chatutils"
-#include "inc_names"
+#include "inc_rename"
 #include "inc_fixture"
 #include "inc_examine"
 
@@ -20,7 +20,7 @@ void main()
         if (GetIsObjectValid(target) && target != OBJECT_SELF)
         {
             SetPCDislike(OBJECT_SELF, target);
-            SendMessageToPC(target, fbNAGetGlobalDynamicName(OBJECT_SELF) + " now dislikes you!");
+            SendMessageToPC(target, svGetPCNameOverride(OBJECT_SELF) + " now dislikes you!");
         }
         else
         {
@@ -35,7 +35,7 @@ void main()
                     if (entireArea || GetDistanceBetween(OBJECT_SELF, pc) <= YardsToMeters(distance))
                     {
                         SetPCDislike(OBJECT_SELF, pc);
-                        SendMessageToPC(pc, fbNAGetGlobalDynamicName(OBJECT_SELF) + " now dislikes you!");
+                        SendMessageToPC(pc, svGetPCNameOverride(OBJECT_SELF) + " now dislikes you!");
                     }
                 }
 

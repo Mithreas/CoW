@@ -1,6 +1,7 @@
 #include "inc_pc"
 #include "inc_disguise"
-
+#include "inc_names"
+// Note - this system is currnently unused and has not been ported to the new naming system. 
 /* Bar System, features:
 
   - Randomly named drinks are available in the NPC Barkeepers shop

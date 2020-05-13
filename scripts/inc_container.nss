@@ -185,10 +185,14 @@ struct gsCOResults gsCOSave(string sID, object oContainer, int nLimit = GS_LIMIT
           {
             sItemCache += ".";
           }
+		  
+		  // Initialise the cache. 
+          SetLocalString(oContainer, "SP_CO_ITEMSTRING", sItemCache);
         }
         string sTag;
         while (GetIsObjectValid(oItem) && nNth < nLimit)
         {
+		    nSlot = GetLocalInt(oItem, SLOT_VAR);
 
             if (GetResRef(oItem) == "nw_it_gold001")
             {
@@ -197,11 +201,11 @@ struct gsCOResults gsCOSave(string sID, object oContainer, int nLimit = GS_LIMIT
                 nNth--;
             }
             // No slot so this is a new item!
-            else if (GetLocalInt(oItem, SLOT_VAR) == 0)
+            else if (!nSlot)
             {
                 nSlot = FindSubString(sItemCache, ".");
 
-                if (nSlot != -1)
+                if (nSlot > 0)
                 {
                     sTag = GetTag(oItem);
                     if(bShop && GetStringLeft(sTag, 6) != "GS_SH_")
@@ -232,14 +236,40 @@ struct gsCOResults gsCOSave(string sID, object oContainer, int nLimit = GS_LIMIT
 
                     SetStolenFlag(oItem, bShop);
                     SetLocalString(oContainer, "SP_CO_ITEMSTRING", sItemCache);
+					
+					// Mark as saved.
+					stResults.nSaved++;
                 }
+				else
+				{
+				  // Mark as not saved.
+				  stResults.nOverflowed++;
+				}
             }
+			else if (nSlot > nLimit)
+			{
+			  // Shouldn't happen but can in some bug cases.  Mark as not saved.
+			  stResults.nOverflowed++;
+			}
+			else
+			{
+			  if (GetStringLeft(GetStringRight(sItemCache, GetStringLength(sItemCache) - nSlot), 1) == ".")
+			  {
+			    // This item has a slot var that the cache says should be empty.  That means it's not saved.
+			    stResults.nOverflowed++;
+			  }
+			  else
+			  {
+			    // We're ok - item already saved.
+				// Note - possibility that a bugged item could have a duplicate slot of a valid item but not checking for that currently.
+			    stResults.nSaved++;
+			  }
+			}
 
             oItem = GetNextItemInInventory(oContainer);
             nNth++;
         }
 
-        stResults.nSaved = nNth;
         while (GetIsObjectValid(oItem)) {
             stResults.nOverflowed++;
             oItem = GetNextItemInInventory(oContainer);

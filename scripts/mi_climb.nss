@@ -2,7 +2,7 @@
 // DC is set by the MI_CLIMBING_DC variable
 // Destination is nearest waypoint with tag MI_CLIMBING_DEST
 //
-#include "inc_names"
+#include "inc_rename"
 #include "inc_climb"
 void main()
 {
@@ -21,7 +21,7 @@ void main()
   }
   else
   {
-    FloatingTextStringOnCreature(fbNAGetGlobalDynamicName(oHelper) + " helps you with the climb.", oPC);
+    FloatingTextStringOnCreature(svGetPCNameOverride(oHelper) + " helps you with the climb.", oPC);
   }
 
   int nArmorCheckPenalty = miCBGetArmorCheckPenalty(oPC);

@@ -11,7 +11,8 @@
 
 void main()
 {
-    CreateItemOnObject("mi_potion_attune", GetPCSpeaker());
+    object oPot = CreateItemOnObject("mi_potion_attune", GetPCSpeaker());
+	SetIdentified(oPot, TRUE);
     effect eVis = EffectVisualEffect(VFX_IMP_HEAD_ODD);
     ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, GetPCSpeaker());
 

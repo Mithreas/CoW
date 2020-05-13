@@ -27,7 +27,7 @@ void main()
     location lLocation = GetSpellTargetLocation();
     int nMetaMagic     = AR_GetMetaMagicFeat();
     int nDuration      = 24;
-	int nCount         = GetUndeadSummonerTier();
+	int nCount         = GetUndeadSummonerTier() + 1; // Tier is 0-based
     string sSummon1 = GetUndeadStreamBlueprint(OBJECT_SELF, STREAM_UNDEAD_TIER_2);
     string sSummon2 = GetUndeadStreamBlueprint(OBJECT_SELF, STREAM_UNDEAD_TIER_3);
 

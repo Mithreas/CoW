@@ -85,13 +85,13 @@ void WarCry()
 		  if (GetAssociateType(oTarget) == ASSOCIATE_TYPE_HENCHMAN)
 		  {
 		    RemoveHenchman(GetMaster(oTarget), oTarget);
-			ChangeFaction(oTarget, GetObjectByTag("factionexample0"));
+			ChangeFaction(oTarget, OBJECT_SELF);
 		  }
 		  else
 		  {
 		    object oCreature = CopyObject(oTarget, GetLocation(oTarget));
 			RemoveHenchman(GetMaster(oCreature), oCreature);
-			ChangeFaction(oCreature, GetObjectByTag("factionexample0"));
+			ChangeFaction(oCreature, OBJECT_SELF);
 			AssignCommand(oCreature, gsCBDetermineCombatRound(GetMaster(oTarget)));
             ApplyEffectAtLocation(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_UNSUMMON), GetLocation(oTarget));
 			DestroyObject(oTarget);

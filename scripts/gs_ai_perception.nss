@@ -379,7 +379,8 @@ void main()
 
     Trace(BOUNTY, "PC sighted by bounty code.");
     int nNation = CheckFactionNation(OBJECT_SELF);
-    if ((nNation != NATION_INVALID) && GetIsDefender(OBJECT_SELF))
+	int bHasDialog = (GetLocalString(OBJECT_SELF, "dialog") != "" && GetLocalString(OBJECT_SELF, "dialog")  != "zdlg_arrest");
+    if ((nNation != NATION_INVALID) && GetIsDefender(OBJECT_SELF) && !bHasDialog)
     {
       Trace(BOUNTY, "This is a defender. Check whether PC has wanted token.");
       int nHasWanted = CheckWantedToken(nNation, oPerceived);

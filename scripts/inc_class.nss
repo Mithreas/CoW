@@ -37,10 +37,8 @@ int miCLGetHasArcaneSpellCasting(object oPC);
 //
 // Now enhanced to perform CD key checking too.
 void miCLCheckIsIllegal(object oPC);
-// Fighter bonus: enhance weapons and armor they wear.
-void miCLApplyFighterBonuses(object oItem, object oPC);
-// Fighter bonus: remove bonuses on unequip from weapons and armor they wear.
-void miRemoveFighterBonuses(object oItem);
+// Fighter bonuses - AB/damage, DI, BAB.  Apply after all other class bonuses so BAB is correct.
+void miCLApplyFighterBonuses(object oPC);
 //Converts Class Intenger into it's Bit value. Currently used in the crafting scripts.
 int mdConvertClassToBit(int nClass, object oPC=OBJECT_INVALID);
 //Gets the class name from CLASS_TYPE*
@@ -52,10 +50,6 @@ string mdGetPathName(int nPathBit);
 string gvd_GetArelithClassNameByPosition(int iClassPosition, object oPC);
 // updates the gs_pc_data table in the database with the classnames (arelith) and levels of oPC
 void gvd_UpdateArelithClassesInDB(object oPC);
-
-// Returns the bonus that the item's possessor would gain from his fighter levels for
-// the specified item.
-int GetFighterEnhancementBonus(object oItem);
 
 // Returns TRUE if the PC has the healer path.
 int GetIsHealer(object oPC);
@@ -193,8 +187,6 @@ const int GSF_SPELL_ILLUSION =      SPELL_COLOR_SPRAY;
 const int GSF_SPELL_NECROMANCY =    SPELL_RAY_OF_ENFEEBLEMENT;
 const int GSF_SPELL_TRANSMUTATION = SPELL_BURNING_HANDS;
 
-const float FIGHTER_ENHANCEMENT_DURATION = 72000.0f; // 30 hours
-
 const int KENSAI_MOVE_SPEED_PENALTY = 0;
 
 void _addFeatIfNotKnown(int nFeat, object oPC, int Level = 1)
@@ -289,10 +281,8 @@ void miCLApplyClassChanges(object oPC)
         int nHarperType  = GetLocalInt(oItem, VAR_HARPER);
         int nHarperLevel = GetLevelByClass(CLASS_TYPE_HARPER, oPC);
 
-        // Remove feats no longer used - Sleep, Invisibility
-        //NWNX_Creature_RemoveFeat(oPC, 438); // TYMORAS_SMILE
+        // Remove feats no longer used - Sleep
         NWNX_Creature_RemoveFeat(oPC, 441); // HARPER_SLEEP
-        //NWNX_Creature_RemoveFeat(oPC, 444); // HARPER_INVISIBILITY
 
         // Remove feats only used by scouts
         if (nHarperType && nHarperType != MI_CL_HARPER_SCOUT)
@@ -354,24 +344,7 @@ void miCLApplyClassChanges(object oPC)
       }
       case CLASS_TYPE_FIGHTER:
       {
-          // Fighters gain the following benefits:
-          // * + 10 Discipline at level 28.
-          // * + 1 Strength / 10 Levels
-          // Note: the fighter's strength bonus will be replaced with a dexterity bonus if they have a higher base dexterity value than strength.
-        int nAbility = (GetAbilityScore(oPC, ABILITY_DEXTERITY, TRUE) > GetAbilityScore(oPC, ABILITY_STRENGTH, TRUE)) ? ABILITY_DEXTERITY : ABILITY_STRENGTH;
-        int nFighterLevel = GetLevelByClass(CLASS_TYPE_FIGHTER, oPC);
-        if (nFighterLevel >= 28)
-        {
-            AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertySkillBonus(SKILL_DISCIPLINE, 10), oItem, 0.0f);
-            AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyAbilityBonus(nAbility, 3), oItem, 0.0f);
-        }
-        else
-        {
-            if(nFighterLevel >= 10)
-            {
-                AddStackingItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyAbilityBonus(nAbility, nFighterLevel / 10), oItem, 0.0f);
-            }
-        }
+        miCLApplyFighterBonuses(oPC); 
         break;
       }
       case CLASS_TYPE_RANGER:
@@ -798,50 +771,63 @@ void miCLCheckIsIllegal(object oPC)
   
 }
 
-void miCLApplyFighterBonuses(object oItem, object oPC)
+void miCLApplyFighterBonuses(object oPC)
 {
-  int nBonus = GetFighterEnhancementBonus(oItem);
+  int nFighter = GetLevelByClass(CLASS_TYPE_FIGHTER, oPC);
+  if (!nFighter) return;
 
-  if(!nBonus || !GetIsObjectValid(oItem) || !GetIsPC(oPC) || GetIsDM(oPC)) return;
+  // Current bonuses:
+  // +1 to Attack and Damage at Fighter levels 1/3/5/7/9/etc. capped at base INT modifier.
+  // +1% to Damage Immunity vs all types per Fighter level
+  // If character's BAB is lower than max, increase it by the lower of Fighter levels, 
+  // base INT mod, and the amount needed to get to max BAB.
 
-  switch(GetEquipmentType(oItem))
+  // Remove current effects.
+  effect eEffect  = GetFirstEffect(oPC);
+  
+  RemoveTaggedEffects(oPC, EFFECT_TAG_EFFECT_TAG_FIGHTERBAB);
+  
+  // Int to AB and damage
+  int nInt     = (GetAbilityScore(oPC, ABILITY_INTELLIGENCE, TRUE) - 10) / 2;
+  int nCap     = (nFighter + 1)/2;
+  effect eBonus;
+  
+  if (nInt < nCap) nCap = nInt;
+  
+  if (nCap > 0)
   {
-      case EQUIPMENT_TYPE_HELMET:
-      case EQUIPMENT_TYPE_ARMOR:
-      case EQUIPMENT_TYPE_SHIELD:
-          AddStackingItemProperty(DURATION_TYPE_TEMPORARY, ItemPropertyACBonus(nBonus), oItem, FIGHTER_ENHANCEMENT_DURATION);
-          break;
-      case EQUIPMENT_TYPE_WEAPON:
-          AddStackingItemProperty(DURATION_TYPE_TEMPORARY, ItemPropertyAttackBonus(nBonus), oItem, FIGHTER_ENHANCEMENT_DURATION);
-      case EQUIPMENT_TYPE_AMMUNITION:
-          AddStackingItemProperty(DURATION_TYPE_TEMPORARY, ItemPropertyDamageBonus(GetMatchingIPDamageType(oItem), nBonus), oItem, FIGHTER_ENHANCEMENT_DURATION);
-          break;
-    }
+    effect eAttack = EffectAttackIncrease(nCap);	
+  
+    // 2da is odd - +6 damage is 2da row 16.
+    if (nCap > 5) nCap += 10;
+    effect eDamage = EffectDamageIncrease(nCap, DAMAGE_TYPE_BLUDGEONING);
+  
+    eBonus = SupernaturalEffect(EffectLinkEffects(eAttack, eDamage));
+    ApplyTaggedEffectToObject(DURATION_TYPE_PERMANENT, eBonus, oPC, 0.0, EFFECT_TAG_EFFECT_TAG_FIGHTERBAB);
+  }
+  
+  // DI
+  eBonus = SupernaturalEffect( EffectLinkEffects ( EffectLinkEffects ( 
+    EffectDamageImmunityIncrease(DAMAGE_TYPE_BLUDGEONING, nFighter), EffectDamageImmunityIncrease(DAMAGE_TYPE_PIERCING, nFighter)), 
+	  EffectDamageImmunityIncrease(DAMAGE_TYPE_SLASHING, nFighter)));
+
+  ApplyTaggedEffectToObject(DURATION_TYPE_PERMANENT, eBonus, oPC, 0.0, EFFECT_TAG_EFFECT_TAG_FIGHTERBAB);
+  
+  // BAB - special rules for Spellswords since they also mess with attacks.
+  int nHD = GetHitDice(oPC);
+  if (miSSGetIsSpellsword(oPC)) nHD -= GetLevelByClass(CLASS_TYPE_WIZARD, oPC);
+  
+  int nBABGap = nHD - GetBaseAttackBonus(oPC);
+  
+  if (nBABGap > nFighter) nBABGap = nFighter;
+  if (nBABGap > nInt) nBABGap = nInt;
+  
+  if (nBABGap > 0)
+  {
+    NWNX_Creature_SetBaseAttackBonus(oPC, GetBaseAttackBonus(oPC) + nBABGap);
+  }	
 }
 
-void miRemoveFighterBonuses(object oItem)
-{
-  int nBonus = GetFighterEnhancementBonus(oItem);
-
-  if(!nBonus || !GetIsObjectValid(oItem) || !GetIsPC(GetItemPossessor(oItem)) || GetIsDM(GetItemPossessor(oItem))) return;
-
-  switch(GetEquipmentType(oItem))
-  {
-      case EQUIPMENT_TYPE_HELMET:
-      case EQUIPMENT_TYPE_ARMOR:
-      case EQUIPMENT_TYPE_SHIELD:
-          RemoveMatchingItemProperties(oItem, ITEM_PROPERTY_AC_BONUS, DURATION_TYPE_TEMPORARY, ITEM_PROPERTY_SUBTYPE_UNDEFINED,
-            GetItemPropertyStackedValue(oItem, ItemPropertyACBonus(nBonus)));
-          break;
-      case EQUIPMENT_TYPE_WEAPON:
-          RemoveMatchingItemProperties(oItem, ITEM_PROPERTY_ATTACK_BONUS, DURATION_TYPE_TEMPORARY, ITEM_PROPERTY_SUBTYPE_UNDEFINED,
-            GetItemPropertyStackedValue(oItem, ItemPropertyAttackBonus(nBonus)));
-      case EQUIPMENT_TYPE_AMMUNITION:
-          RemoveMatchingItemProperties(oItem, ITEM_PROPERTY_DAMAGE_BONUS, DURATION_TYPE_TEMPORARY, GetMatchingIPDamageType(oItem),
-            GetItemPropertyStackedValue(oItem, ItemPropertyDamageBonus(GetMatchingIPDamageType(oItem), nBonus)));
-          break;
-    }
-}
 
 int mdConvertClassToBit(int nClass, object oPC=OBJECT_INVALID)
 {
@@ -1099,59 +1085,6 @@ void gvd_UpdateArelithClassesInDB(object oPC) {
     miDASetKeyedValue("gs_pc_data", sID, "classname_3", gvd_GetArelithClassNameByPosition(3, oPC));
     miDASetKeyedValue("gs_pc_data", sID, "classlevel_3", IntToString(GetLevelByPosition(3, oPC)));
 
-}
-
-void ReapplyFighterBonuses(object oPC)
-{
-  if(GetLevelByClass(CLASS_TYPE_FIGHTER, oPC) < 5 || GetHasEffect(EFFECT_TYPE_POLYMORPH, oPC) || GetIsDM(oPC)) return;
-
-  object oArmor = GetItemInSlot(INVENTORY_SLOT_CHEST, oPC);
-  object oHelm = GetItemInSlot(INVENTORY_SLOT_HEAD, oPC);
-  object oMainHand = GetItemInSlot(INVENTORY_SLOT_RIGHTHAND, oPC);
-  object oOffHand = GetItemInSlot(INVENTORY_SLOT_LEFTHAND, oPC);
-
-  if(oMainHand == oOffHand)
-  {
-    // If these are identical, then the fighter is in fact using a two-hander, not wielding an off-hand.
-    oOffHand = OBJECT_INVALID;
-  }
-
-  miRemoveFighterBonuses(oArmor);
-  miRemoveFighterBonuses(oHelm);
-  miRemoveFighterBonuses(oMainHand);
-  miRemoveFighterBonuses(oOffHand);
-  miCLApplyFighterBonuses(oArmor, oPC);
-  miCLApplyFighterBonuses(oHelm, oPC);
-  miCLApplyFighterBonuses(oMainHand, oPC);
-  miCLApplyFighterBonuses(oOffHand, oPC);
-}
-
-int GetFighterEnhancementBonus(object oItem)
-{
-    object oPC = GetItemPossessor(oItem);
-    int nFighter = GetLevelByClass(CLASS_TYPE_FIGHTER, oPC);
-
-    if(!nFighter) return 0;
-
-    int nBonus = (nFighter >= 28) ? 2 : (nFighter >= 25) ? 1 : 0;
-
-    switch(GetEquipmentType(oItem))
-    {
-        case EQUIPMENT_TYPE_HELMET:
-            if(nFighter >= 15) nBonus++;
-            return nBonus;
-        case EQUIPMENT_TYPE_ARMOR:
-            if(nFighter >= 5) nBonus++;
-            return nBonus;
-        case EQUIPMENT_TYPE_SHIELD:
-            if(nFighter >= 10) nBonus++;
-            return nBonus;
-        case EQUIPMENT_TYPE_WEAPON:
-        case EQUIPMENT_TYPE_AMMUNITION:
-            if(nFighter >= 23) nBonus++;
-            return nBonus;
-    }
-    return 0;
 }
 
 // Returns TRUE if the PC is a healer.

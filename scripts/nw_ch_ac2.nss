@@ -19,6 +19,8 @@ void main()
     {
         ActionStartConversation(OBJECT_SELF);
     }
+	
+    if (GetLocalInt(GetLastPerceived(), "AI_IGNORE")) return; // Scrying / sent images.
 
     // * July 2003
     // * If in Stealth mode, don't attack enemies. Wait for player to attack or

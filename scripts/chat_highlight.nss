@@ -1,6 +1,6 @@
 #include "inc_chatutils"
 #include "inc_examine"
-#include "inc_names"
+#include "inc_rename"
 
 const string HELP = "DM Command: Highlight the player's text in the DM combat window by sending them -highlight as a Tell, or by entering their name (or part of it) after the command.";
 
@@ -52,7 +52,7 @@ void main ()
             while (GetIsObjectValid(oPC))
             {
                 // Search for real name and disguised name.
-                if (GetStringLeft(GetName(oPC), nLength) == sParams || (!GetIsObjectValid(oTarget) && GetStringLeft(fbNAGetGlobalDynamicName(oPC), nLength) == sParams))
+                if (GetStringLeft(GetName(oPC), nLength) == sParams || (!GetIsObjectValid(oTarget) && GetStringLeft(svGetPCNameOverride(oPC), nLength) == sParams))
                 {
                     oTarget = oPC;
                 }

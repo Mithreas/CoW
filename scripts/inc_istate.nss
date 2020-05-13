@@ -126,11 +126,11 @@ int gsISGetItemCraftSkill(object oItem)
     switch (GetBaseItemType(oItem))
     {
     case BASE_ITEM_ARMOR:
+    case BASE_ITEM_BRACER:
         return CNR_TRADESKILL_ARMOR_CRAFTING;
 
     case BASE_ITEM_BASTARDSWORD:
     case BASE_ITEM_BATTLEAXE:
-    case BASE_ITEM_BRACER:
     case BASE_ITEM_DAGGER:
     case BASE_ITEM_DIREMACE:
     case BASE_ITEM_DOUBLEAXE:

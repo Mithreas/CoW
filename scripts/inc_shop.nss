@@ -5,6 +5,7 @@
 #include "inc_container"
 #include "inc_listener"
 #include "inc_factions"
+#include "inc_rename"
 #include "inc_subrace"
 
 //void main() {}
@@ -395,7 +396,7 @@ struct openStore md_DoAppraise(object oStore, object oMerchant, object oCustomer
     nMaxBuyPrice = nWinningMaxBuy;
     oCustomer = oSpeaker;
     if(oCustomer != oWinner)
-        sWinner = " " + fbNAGetGlobalDynamicName(oWinner) + " has achieved better prices.";
+        sWinner = " " + svGetPCNameOverride(oWinner) + " has achieved better prices.";
   }
   //SetStoreMaxBuyPrice(oStore, nMaxBuyPrice);
   string sMerchantUnfavorable = StringToRGBString(GetStringByStrRef(8963), STRING_COLOR_ROSE);

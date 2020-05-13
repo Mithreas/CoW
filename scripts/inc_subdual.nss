@@ -2,7 +2,6 @@
 #include "inc_effect"
 #include "inc_spells"
 #include "inc_respawn"
-#include "inc_names"
 #include "inc_death"
 
 /* *** subdual system ***

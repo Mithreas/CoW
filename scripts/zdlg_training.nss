@@ -575,6 +575,8 @@ void init_feat_list (object oPC)
     //add_feat_to_list(oPC, "Sonic Resistance (50)", FEAT_EPIC_ENERGY_RESISTANCE_SONIC_5);
     add_feat_to_list(oPC, "Epic Fiend", FEAT_EPIC_EPIC_FIEND, FALSE, CLASS_TYPE_BLACKGUARD); 
     add_feat_to_list(oPC, "Epic Shadowlord", FEAT_EPIC_EPIC_SHADOWLORD, FALSE, CLASS_TYPE_SHADOWDANCER);
+	if (GetKnowsFeat(339, oPC)) add_feat_to_list(oPC, "Infinite Wildshape", 1068, FALSE, CLASS_TYPE_DRUID);
+    if (GetKnowsFeat(341, oPC)) add_feat_to_list(oPC, "Infinite Elemental Shape", 1069, FALSE, CLASS_TYPE_DRUID);
     add_feat_to_list(oPC, "Epic Fortitude", FEAT_EPIC_FORTITUDE);
     add_feat_to_list(oPC, "Great CHA 1", FEAT_EPIC_GREAT_CHARISMA_1);
     add_feat_to_list(oPC, "Great CHA 2", FEAT_EPIC_GREAT_CHARISMA_2);

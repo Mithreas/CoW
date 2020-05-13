@@ -2,7 +2,7 @@
 #include "inc_chatutils"
 #include "inc_state"
 #include "zzdlg_color_inc"
-#include "inc_names"
+#include "inc_rename"
 #include "ar_utils"
 
 const int SINGLE        = 0;
@@ -256,7 +256,7 @@ void main()
 
     //::  Bounce Failure or rolling 1!
     if (d100() <= nBounce || nDiceRoll == 1) {
-        ar_MessageAllPlayersInRadius(oPC, txtRed, fbNAGetGlobalDynamicName(oPC) + "'s dart bounced!", TRUE, MSG_RADIUS);
+        ar_MessageAllPlayersInRadius(oPC, txtRed, svGetPCNameOverride(oPC) + "'s dart bounced!", TRUE, MSG_RADIUS);
         return;
     }
 
@@ -268,7 +268,7 @@ void main()
         else if (bIB)   sTargetScore = "Inner Bull";
         else            sTargetScore = sTargetScore + " " + IntToString(dartTarget.nValue);
 
-        ar_MessageAllPlayersInRadius(oPC, txtGreener, fbNAGetGlobalDynamicName(oPC) + " hit the target " + sTargetScore + "!", TRUE, MSG_RADIUS);
+        ar_MessageAllPlayersInRadius(oPC, txtGreener, svGetPCNameOverride(oPC) + " hit the target " + sTargetScore + "!", TRUE, MSG_RADIUS);
     }
     //::  No so great...
     else {
@@ -293,7 +293,7 @@ void main()
         int nVerPos = nFluctuationVer;
 
         if (nVerPos < 0 || nVerPos > 7) {
-            ar_MessageAllPlayersInRadius(oPC, txtRed, fbNAGetGlobalDynamicName(oPC) + " missed the board!", TRUE, MSG_RADIUS);
+            ar_MessageAllPlayersInRadius(oPC, txtRed, svGetPCNameOverride(oPC) + " missed the board!", TRUE, MSG_RADIUS);
             return;
         }
 
@@ -323,30 +323,30 @@ void main()
         int nScoreVal = GetLocalArrayInt(OBJECT_SELF, "DART", nHorPos);
         nScore = nScoreVal * nMul;
 
-        ar_MessageAllPlayersInRadius(oPC, txtOrange, fbNAGetGlobalDynamicName(oPC) + " fallouts at " + prefix + " " + IntToString(nScoreVal) + ".", TRUE, MSG_RADIUS);
+        ar_MessageAllPlayersInRadius(oPC, txtOrange, svGetPCNameOverride(oPC) + " fallouts at " + prefix + " " + IntToString(nScoreVal) + ".", TRUE, MSG_RADIUS);
     }
 
 
     //::  Check results
     if (nPlayerScoreLeft - nScore < 0 || nPlayerScoreLeft - nScore == 1) {
         nPlayerScoreLeft = nPlayerScoreLeft;
-        prettyFormat(OBJECT_SELF, txtRed, fbNAGetGlobalDynamicName(oPC) + " busted with a score of " + IntToString(nPlayerScoreLeft - nScore) + ". Score reset to " + IntToString(nPlayerScoreLeft) + ".", TRUE);
+        prettyFormat(OBJECT_SELF, txtRed, svGetPCNameOverride(oPC) + " busted with a score of " + IntToString(nPlayerScoreLeft - nScore) + ". Score reset to " + IntToString(nPlayerScoreLeft) + ".", TRUE);
     }
     //::  Win?
     else if (nPlayerScoreLeft - nScore == 0) {
         if ( dartTarget.nBoard == DOUBLE || dartTarget.nBoard == INNER_BULL ) {    //::  Win
             nPlayerScoreLeft = SCORE_501;
-            prettyFormat(OBJECT_SELF, txtLime, fbNAGetGlobalDynamicName(oPC) + " won the Leg!", TRUE);
+            prettyFormat(OBJECT_SELF, txtLime, svGetPCNameOverride(oPC) + " won the Leg!", TRUE);
         }
         else {
             nPlayerScoreLeft = nPlayerScoreLeft;
-            prettyFormat(OBJECT_SELF, txtRed, fbNAGetGlobalDynamicName(oPC) + " didn't end with a Double. Score reset to " + IntToString(nPlayerScoreLeft) + ".", TRUE);
+            prettyFormat(OBJECT_SELF, txtRed, svGetPCNameOverride(oPC) + " didn't end with a Double. Score reset to " + IntToString(nPlayerScoreLeft) + ".", TRUE);
         }
     }
     //::
     else {
         nPlayerScoreLeft -= nScore;
-        prettyFormat(OBJECT_SELF, txtOlive, "Current Score for " + fbNAGetGlobalDynamicName(oPC) + " " + IntToString(nPlayerScoreLeft) + ".", TRUE);
+        prettyFormat(OBJECT_SELF, txtOlive, "Current Score for " + svGetPCNameOverride(oPC) + " " + IntToString(nPlayerScoreLeft) + ".", TRUE);
     }
 
     //::  Increase Player Dart Skill

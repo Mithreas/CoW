@@ -132,7 +132,7 @@ int StartingConditional()
                             d2() == 2 &&
                             gsWOGrantBoon(oSpeaker) )
                         {
-                          FloatingTextStringOnCreature(sDeity + " augments your skill and grants you success.", oSpeaker);
+                          FloatingTextStringOnCreature(sDeity + " augments your skill and grants you success.", oSpeaker, FALSE);
                         }
 						else if (!nImpossible && 
 						         nRunic && 
