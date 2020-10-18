@@ -28,7 +28,7 @@
 */
 #include "zdlg_include_i"
 
-const string MAIN_MENU   = "main_options";
+const string MAIN_MENU   = "rw_main_options";
 const string PAGE_2 = "page_2";
 const string END = "end";
 

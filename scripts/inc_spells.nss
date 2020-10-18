@@ -3210,11 +3210,27 @@ int AR_GetCasterLevelBonus(object oCaster=OBJECT_SELF, int nSpellId = -1)
 {
   if (nSpellId == -1) nSpellId = GetSpellId();
   int nBonus = 0;
+  object oHide = gsPCGetCreatureHide(oCaster);
+  
+  //-------------------------------------------------------------
+  // Anemoi edit - add 1/10 Piety for clerics, Favoured Souls and 
+  // paladins, pacts for others.  Mummy Dust needs some special 
+  // handling as it's not cast naturally (ditto PM abilities).
+  //-------------------------------------------------------------  
+  int nPietyBonus = 0;
+  int bDivine = (GetLevelByClass(CLASS_TYPE_CLERIC, oCaster) + GetLevelByClass(CLASS_TYPE_FAVOURED_SOUL, oCaster) + GetLevelByClass(CLASS_TYPE_PALADIN, oCaster)) >
+    (GetLevelByClass(CLASS_TYPE_SORCERER, oCaster) + GetLevelByClass(CLASS_TYPE_WIZARD, oCaster));
+	  
+  int bSpecialNecro = (nSpellId == 637 || nSpellId == 623 || nSpellId == 624 || nSpellId == 627); // Mummy Dust, PM animate dead spells	
+  if (GetLastSpellCastClass() == CLASS_TYPE_PALADIN || GetLastSpellCastClass() == CLASS_TYPE_FAVOURED_SOUL || GetLastSpellCastClass() == CLASS_TYPE_CLERIC || (bSpecialNecro && bDivine))
+  {
+    // Note - cannot include inc_state from here due to circular dependencies.
+    return FloatToInt(GetLocalFloat(oHide, "GS_ST_PIETY")) / 10;
+  }
   
   //-------------------------------------------------------------
   // Check for attunement (formed via a pact with a spirit). 
   //-------------------------------------------------------------
-  object oHide = gsPCGetCreatureHide(oCaster);
   int nAttunement = 0;
   int nStrength = 0;
   if (GetIsObjectValid(oHide)) 

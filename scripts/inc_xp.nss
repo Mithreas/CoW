@@ -67,7 +67,7 @@ float GetPartyExperienceMultiplier(float fPartySize);
 void _DistributePartyExperience(object oPC, int nAmount, float fRange, object oVictim, string sRandom);
 // Returns a "CR" value for the PC, either the PC's level or the CR of their most
 // powerful summon, whichever is higher.
-float _GetPCChallengeRating(object oPC, float fRange, object oVictim);
+float gsXPGetPCChallengeRating(object oPC, float fRange, object oVictim);
 // Counts and returns all party members with range of the given PC as a party struct.
 struct Party _CountParty(struct Party party, object oPC, float fRange, object oVictim, string sRandom);
 
@@ -279,6 +279,13 @@ void gsXPDistributeExperience(object oCreature, int nAmount)
 void gsXPGiveExperience(object oCreature, int nAmount, int nFloat = TRUE, int nKill = FALSE)
 {
     if (nAmount == 0) return;	
+	
+	// If the PC is a ghost, skip.
+	if (GetLocalInt(gsPCGetCreatureHide(oCreature), "IS_GHOST"))
+	{
+	  SendMessageToPC(oCreature, "You cannot gain XP while you are a ghost.");
+	  return;
+	}
 
     // Edit by Mithreas: If the PC is possessing a familiar, give
     // xp/alignment shifts to the PC. --[
@@ -339,11 +346,12 @@ void gsXPGiveExperience(object oCreature, int nAmount, int nFloat = TRUE, int nK
 	
 		// Check for PCs over the "soft cap"
 		// Max XP from kills is 40 (x4 for bosses), and from traps is 40.  From quests it could be a
-		// a couple of hundred.  Divide by 6 and add 1 so that you get up to 7 for ordinary mobs, exceptions 
-		// for bosses and quests.  Typical XP will be 4 for things of the same level as you.
+		// a couple of hundred.  Divide by 4 and add 1 so that you get up to 10 for ordinary mobs, exceptions 
+		// for bosses and quests.  Typical XP will be 6 for things of the same level as you (note level now
+		// factors in feat purchases).
 		if (nKill != 2 && GetHitDice(oCreatureToReward) >= GetLocalInt(GetModule(), "STATIC_LEVEL"))
 		{
-		  nAmount /= 6;
+		  nAmount /= 4;
 		  nAmount += 1;
 		}
 
@@ -685,12 +693,16 @@ void _DistributePartyExperience(object oPC, int nAmount, float fRange, object oV
 
 // Returns a "CR" value for the PC, either the PC's level or the CR of their most
 // powerful summon, whichever is higher.
-float _GetPCChallengeRating(object oPC, float fRange, object oVictim)
+float gsXPGetPCChallengeRating(object oPC, float fRange, object oVictim)
 {
     if(GetIsObjectValid(GetMaster(oPC))) oPC = GetMaster(oPC);
 
     int i;
-    float fCR = IntToFloat(GetHitDice(oPC));
+	
+	// Count full levels plus 1 for every 5 purchased feats to a max of 50.  (FL_LEVEL includes hit dice so compensate for that).  Add ECL, which is stored as 10+ECL on the hide.
+	int nEffectiveLevel = (GetLocalInt(gsPCGetCreatureHide(oPC), "FL_LEVEL") - GetHitDice(oPC)) / 5;
+	if (nEffectiveLevel > 10) nEffectiveLevel = 10;
+    float fCR = IntToFloat(GetHitDice(oPC) + nEffectiveLevel) + GetLocalFloat(gsPCGetCreatureHide(oPC), "ECL") - 10.0f;
     object oAssociate;
 
     do
@@ -726,7 +738,7 @@ struct Party _CountParty(struct Party party, object oPC, float fRange, object oV
             if(GetIsPC(oMember))
             {
                 party.countPC++;
-                fCR = _GetPCChallengeRating(oMember, fRange, oVictim);
+                fCR = gsXPGetPCChallengeRating(oMember, fRange, oVictim);
                 if(fCR > party.challengeRating) party.challengeRating = fCR;
             }
             // Only counts the first summon.

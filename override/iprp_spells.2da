@@ -324,7 +324,7 @@
 320        Negative_Energy_Ray              6361    9           1           6750     371          0           1         1            iss_NegRay
 321        Aura_of_Vitality                 6362    13          7           68250    372          0           0         1            iss_AuraVital
 322        War_Cry                          6363    7           3           15750    373          0           0         1            iss_WarCry
-323        Regenerate                       6364    13          7           68250    374          0           0         1            iss_Regen
+323        Regenerate                       6364    13          7           68250    374          1           0         1            iss_Regen
 324        Evards_Black_Tentacles           6365    7           4           21000    375          0           0         1            iss_Evards
 325        Evards_Black_Tentacles           6366    15          4           45000    375          0           0         1            iss_Evards
 326        Legend_Lore                      6367    5           3           11250    376          0           0         1            iss_Lore

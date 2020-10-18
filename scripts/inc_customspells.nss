@@ -400,23 +400,8 @@ int AR_GetCasterLevel(object oCaster=OBJECT_SELF)
   {
     nShadowBonus = GetLevelByClass(CLASS_TYPE_SHADOWDANCER, oCaster);
   }
-  
-  // Anemoi edit - add 1/10 Piety for clerics, Favoured Souls and paladins, pacts for others.  Mummy Dust needs some special handling as
-  // it's not cast naturally (ditto PM abilities).  
-  int nPietyBonus = 0;
-  int bDivine = (GetLevelByClass(CLASS_TYPE_CLERIC, oCaster) + GetLevelByClass(CLASS_TYPE_FAVOURED_SOUL, oCaster) + GetLevelByClass(CLASS_TYPE_PALADIN, oCaster)) >
-    (GetLevelByClass(CLASS_TYPE_SORCERER, oCaster) + GetLevelByClass(CLASS_TYPE_WIZARD, oCaster));
-  int bSpecialNecro = (nSpellId == 637 || nSpellId == 623 || nSpellId == 624 || nSpellId == 627); // Mummy Dust, PM animate dead spells	
-  if (GetLastSpellCastClass() == CLASS_TYPE_PALADIN || GetLastSpellCastClass() == CLASS_TYPE_FAVOURED_SOUL || GetLastSpellCastClass() == CLASS_TYPE_CLERIC || (bSpecialNecro && bDivine))
-  {
-    nPietyBonus = FloatToInt(gsSTGetState(GS_ST_PIETY, oCaster)) / 10;
-  }
-  else
-  {
-    nPietyBonus = AR_GetCasterLevelBonus(oCaster);
-  }
 
-  nCasterLevel = nCasterLevel + nPMBonus + nHarperBonus + nShadowBonus  + nPietyBonus + GetTemporaryCasterLevelBonus(oCaster);
+  nCasterLevel = nCasterLevel + nPMBonus + nHarperBonus + nShadowBonus  + AR_GetCasterLevelBonus(oCaster) + GetTemporaryCasterLevelBonus(oCaster);
   
   if (nCasterLevel < 0) nCasterLevel = 0;
   return nCasterLevel;
@@ -530,7 +515,6 @@ void miSCRemoveInvis(object oPC, int bAlsoRemoveAudibleEffects = FALSE)
 
     if((eType == EFFECT_TYPE_VISUALEFFECT && bAlsoRemoveAudibleEffects) ||
        (eType == EFFECT_TYPE_VISUALEFFECT && eDur == DURATION_TYPE_PERMANENT) ||
-       eType == EFFECT_TYPE_CUTSCENEGHOST ||
        eType == EFFECT_TYPE_INVISIBILITY ||
 	   eType == EFFECT_TYPE_SANCTUARY ||
        eType == EFFECT_TYPE_ETHEREAL)

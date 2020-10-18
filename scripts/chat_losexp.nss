@@ -20,7 +20,7 @@
 #include "inc_timelock"
 #include "inc_xp"
 
-const string HELP = "This command will remove the amount of XP specified. Eg. -losexp 1500 will remove 1500 from the character. All uses of this function are logged for DM monitoring";
+const string HELP = "This command will remove the amount of XP specified. Eg. -losexp 1500 will remove 1500 from the character. All uses of this function are logged for DM monitoring, and it is limited to once per 24 hours.";
 
 void main()
 { 
@@ -79,34 +79,6 @@ void main()
 				nXPCount = 1;
 			}
 			SetLocalInt(oHide,"LoseXPCount", nXPCount);
-			
-			//Add skill points to pool
-			int nSkillPoints = 0;
-			//looking at previous XP needed to gain current level
-			int nLevelXP = (GetHitDice(oSpeaker) - 1) * 1000; 
-			int nXPPool = nRemoveXP;
-			int nCount = 0;
-			
-			while (nXPPool >= nLevelXP && nCount < 30)
-			{
-				nSkillPoints = nSkillPoints + 2;
-				nXPPool = nXPPool - nLevelXP;
-				nLevelXP = nLevelXP - 1000;
-				nCount++;
-			}
-			
-			if (nCount >= 30 || nSkillPoints > 58)
-			{
-				SendMessageToPC(oSpeaker, "Something went wrong, please take a screen shot and report on the forums.");
-				return;
-			}
-			else if (nSkillPoints > 0)
-			{
-				int nOldSkillPoints = GetLocalInt(oHide,"SkillPointPool");
-				SetLocalInt(oHide,"SkillPointPool",nSkillPoints + nOldSkillPoints);
-				SendMessageToPC(oSpeaker, "You can decrease " + IntToString(nSkillPoints + nOldSkillPoints) + " skillpoints now. WARNING: this option will be gone after you gain another level.");
-				Log("LOSECRAFT", "PC " + GetName(oSpeaker) + "has used -losexp and gained" + IntToString(nSkillPoints) + " skill points. This gives a new total of " + IntToString(nSkillPoints + nOldSkillPoints) + " skill points.");
-			}
 			
 			//remove the xp
 			gsXPGiveExperience(oSpeaker, -nRemoveXP);

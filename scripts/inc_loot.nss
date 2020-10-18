@@ -158,11 +158,13 @@ void InitialiseLootSystem()
     AddBaseItemResRef(BASE_ITEM_SHORTBOW, "nw_wbwsh001");
     AddBaseItemResRef(BASE_ITEM_SHORTSPEAR, "nw_wplss001");
     AddBaseItemResRef(BASE_ITEM_SHORTSWORD, "nw_wswss001");
+    AddBaseItemResRef(BASE_ITEM_SHURIKEN, "returningshur");
     AddBaseItemResRef(BASE_ITEM_SICKLE, "nw_wspsc001");
     AddBaseItemResRef(BASE_ITEM_SLING, "nw_wbwsl001");
     AddBaseItemResRef(BASE_ITEM_SMALLSHIELD, "ashsw007");
     AddBaseItemResRef(BASE_ITEM_SMALLSHIELD, "ashsw008");
     AddBaseItemResRef(BASE_ITEM_SMALLSHIELD, "ashsw009");
+    AddBaseItemResRef(BASE_ITEM_THROWINGAXE, "returningaxe");
     AddBaseItemResRef(BASE_ITEM_TOWERSHIELD, "ashto007");
     AddBaseItemResRef(BASE_ITEM_TOWERSHIELD, "ashto008");
     AddBaseItemResRef(BASE_ITEM_TOWERSHIELD, "ashto009");
@@ -180,11 +182,11 @@ void InitialiseLootSystem()
     AddLootBucketChance(LOOT_TEMPLATE_TIER_1, INTERNAL_LOOT_BUCKET_MOB, 0.25f);
     AddLootBucketChance(LOOT_TEMPLATE_TIER_1, INTERNAL_LOOT_BUCKET_MOB, 0.25f);
 
-    // Tier 1 loot items will have a 15% chance of dropping from bosses.
-    // For the first and second tier 1 drops per timeout, this chance is increased to 25%.
-    AddLootBucketChance(LOOT_TEMPLATE_TIER_1, INTERNAL_LOOT_BUCKET_BOSS, 25.0f);
-    AddLootBucketChance(LOOT_TEMPLATE_TIER_1, INTERNAL_LOOT_BUCKET_BOSS, 25.0f);
-    AddLootBucketChance(LOOT_TEMPLATE_TIER_1, INTERNAL_LOOT_BUCKET_BOSS, 15.0f);
+    // Tier 1 loot items will have a 30% chance of dropping from bosses.
+    // For the first and second tier 1 drops per timeout, this chance is increased to 60%.
+    AddLootBucketChance(LOOT_TEMPLATE_TIER_1, INTERNAL_LOOT_BUCKET_BOSS, 60.0f);
+    AddLootBucketChance(LOOT_TEMPLATE_TIER_1, INTERNAL_LOOT_BUCKET_BOSS, 60.0f);
+    AddLootBucketChance(LOOT_TEMPLATE_TIER_1, INTERNAL_LOOT_BUCKET_BOSS, 30.0f);
 
     // Tier 1 loot items will have a 25% chance of dropping from chests.
     // For the first and second tier 1 drops per timeout, this chance is increased to 50%.
@@ -200,10 +202,10 @@ void InitialiseLootSystem()
     AddLootBucketChance(LOOT_TEMPLATE_TIER_2, INTERNAL_LOOT_BUCKET_MOB, 0.05f);
     AddLootBucketChance(LOOT_TEMPLATE_TIER_2, INTERNAL_LOOT_BUCKET_MOB, 0.05f);
 
-    // Tier 2 loot items will have a 1.25% chance of dropping from bosses.
-    // For the first tier 2 drop per timeout, this chance is increased to 2.5%.
-    AddLootBucketChance(LOOT_TEMPLATE_TIER_2, INTERNAL_LOOT_BUCKET_BOSS, 2.5f);
-    AddLootBucketChance(LOOT_TEMPLATE_TIER_2, INTERNAL_LOOT_BUCKET_BOSS, 1.25f);
+    // Tier 2 loot items will have a 5% chance of dropping from bosses.
+    // For the first tier 2 drop per timeout, this chance is increased to 10%.
+    AddLootBucketChance(LOOT_TEMPLATE_TIER_2, INTERNAL_LOOT_BUCKET_BOSS, 5.0f);
+    AddLootBucketChance(LOOT_TEMPLATE_TIER_2, INTERNAL_LOOT_BUCKET_BOSS, 10.0f);
 
     // Tier 2 loot items will have a 2.5% chance of dropping from chests.
     // For the first tier 2 drop per timeout, this chance is increased to 5%.
@@ -267,9 +269,116 @@ void CreateProceduralLoot(string template, int context, object container, object
 		
 		switch (d3())
 		{
-		  // TODO - tailored loot should check AC values / weapon focuses. 
-		  case 1: resref = GetRandomResRefFromItemType(ITEM_TYPE_WEAPON); break;
-		  case 2: resref = GetRandomResRefFromItemType(ITEM_TYPE_ARMOUR); break;
+		  case 1: 
+		  {
+		    if (GetIsObjectValid(creature) && (results.acceleratedDrop || override))
+			{
+			  // Tailored weapon.
+			  string weaponArray = "LOOT_TAILORED_WPN";
+			  IntArray_Clear(OBJECT_INVALID, weaponArray);
+			  
+			  // Only select from weapons that the user has weapon focus in. 
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_CLUB, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_CLUB);
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_DAGGER, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_DAGGER);
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_DART, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_DART);
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_HEAVY_CROSSBOW, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_HEAVYCROSSBOW);
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_LIGHT_CROSSBOW, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_LIGHTCROSSBOW);
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_LIGHT_MACE, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_LIGHTMACE);
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_MORNING_STAR, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_MORNINGSTAR);
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_STAFF, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_QUARTERSTAFF);
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_SPEAR, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_SHORTSPEAR);
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_SICKLE, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_SICKLE);
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_SLING, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_SLING);
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_LONGBOW, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_LONGBOW);
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_SHORTBOW, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_SHORTBOW);
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_SHORT_SWORD, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_SHORTSWORD);
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_RAPIER, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_RAPIER);
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_SCIMITAR, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_SCIMITAR);
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_LONG_SWORD, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_LONGSWORD);
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_GREAT_SWORD, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_GREATSWORD);
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_HAND_AXE, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_HANDAXE);
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_THROWING_AXE, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_THROWINGAXE);
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_BATTLE_AXE, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_BATTLEAXE);
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_GREAT_AXE, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_GREATAXE);
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_HALBERD, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_HALBERD);
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_LIGHT_HAMMER, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_LIGHTHAMMER);
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_LIGHT_FLAIL, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_LIGHTFLAIL);
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_WAR_HAMMER, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_WARHAMMER);
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_HEAVY_FLAIL, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_HEAVYFLAIL);
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_KAMA, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_KAMA);
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_KUKRI, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_KUKRI);
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_SHURIKEN, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_SHURIKEN);
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_KATANA, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_KATANA);
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_DIRE_MACE, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_DIREMACE);
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_DOUBLE_AXE, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_DOUBLEAXE);
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_TWO_BLADED_SWORD, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_TWOBLADEDSWORD);
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_WHIP, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_WHIP);
+			  /* Anemoi - some weapon types unavailable.
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_BASTARD_SWORD, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_BASTARDSWORD);
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_SCYTHE, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_SCYTHE);
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_DWAXE, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_DWARVENWARAXE);
+			  if (GetHasFeat(FEAT_WEAPON_FOCUS_TRIDENT, creature)) IntArray_PushBack(OBJECT_INVALID, weaponArray, BASE_ITEM_TRIDENT);
+			  */
+			  
+              int count = IntArray_Size(OBJECT_INVALID, weaponArray);
+              resref = (count > 0 ? GetRandomResRefFromBaseItemType(IntArray_At(OBJECT_INVALID, weaponArray, Random(count))) : GetRandomResRefFromItemType(ITEM_TYPE_WEAPON));
+			}
+			else
+			{
+		      resref = GetRandomResRefFromItemType(ITEM_TYPE_WEAPON); break;
+			}  
+		  }	
+		  case 2: 
+		  {
+		    if (GetIsObjectValid(creature) && (results.acceleratedDrop || override))
+			{
+			  // Tailored armour. 
+			  string armourArray = "LOOT_TAILORED_ARM";
+			  IntArray_Clear(OBJECT_INVALID, armourArray);
+			  
+			  if (GetHasFeat(FEAT_ARMOR_PROFICIENCY_HEAVY, creature) && GetAbilityModifier(ABILITY_DEXTERITY, creature) <= 4)
+			  {
+			    IntArray_PushBack(OBJECT_INVALID, armourArray, BASE_ITEM_ARMOR_AC8);
+			    IntArray_PushBack(OBJECT_INVALID, armourArray, BASE_ITEM_ARMOR_AC7);
+			    IntArray_PushBack(OBJECT_INVALID, armourArray, BASE_ITEM_ARMOR_AC6);
+			  }
+			  else if (GetHasFeat(FEAT_ARMOR_PROFICIENCY_MEDIUM, creature) && GetAbilityModifier(ABILITY_DEXTERITY, creature) <= 6)
+			  {
+			    // Note - counting studded leather/hide in the Medium section due to its dex cap.
+			    IntArray_PushBack(OBJECT_INVALID, armourArray, BASE_ITEM_ARMOR_AC5);
+			    IntArray_PushBack(OBJECT_INVALID, armourArray, BASE_ITEM_ARMOR_AC4);
+			    IntArray_PushBack(OBJECT_INVALID, armourArray, BASE_ITEM_ARMOR_AC3);
+			  }
+			  else if (GetHasFeat(FEAT_ARMOR_PROFICIENCY_LIGHT, creature) && GetAbilityModifier(ABILITY_DEXTERITY, creature) <= 9)
+			  {
+			    IntArray_PushBack(OBJECT_INVALID, armourArray, BASE_ITEM_ARMOR_AC2);
+			    IntArray_PushBack(OBJECT_INVALID, armourArray, BASE_ITEM_ARMOR_AC1);
+			  }
+			  else
+			  {
+			    IntArray_PushBack(OBJECT_INVALID, armourArray, BASE_ITEM_ARMOR_AC0);
+			  }
+			  
+			  if (GetHasFeat(FEAT_SHIELD_PROFICIENCY, creature))
+			  {
+			    IntArray_PushBack(OBJECT_INVALID, armourArray, BASE_ITEM_SMALLSHIELD);
+			    IntArray_PushBack(OBJECT_INVALID, armourArray, BASE_ITEM_LARGESHIELD);
+				
+				if (GetCreatureSize(creature) >= CREATURE_SIZE_MEDIUM)
+			      IntArray_PushBack(OBJECT_INVALID, armourArray, BASE_ITEM_TOWERSHIELD);
+			  }
+			  
+			  IntArray_PushBack(OBJECT_INVALID, armourArray, BASE_ITEM_HELMET);
+			  
+              int count = IntArray_Size(OBJECT_INVALID, armourArray);
+              resref = (count > 0 ? GetRandomResRefFromBaseItemType(IntArray_At(OBJECT_INVALID, armourArray, Random(count))) : GetRandomResRefFromItemType(ITEM_TYPE_ARMOUR));
+			
+			}
+			else
+			{
+		      resref = GetRandomResRefFromItemType(ITEM_TYPE_ARMOUR); break;
+			}  
+		  }
 		  default: break;
 		}
 

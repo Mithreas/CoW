@@ -25,6 +25,54 @@ const int GS_PENALTY_PER_LEVEL  = 25;
 void gsDeath();
 // Original main function. Moved to a separate function so it can be delayed.
 void DoDeath(object oDied, object oKiller);
+// Turns the PC into a ghost, drifting in the death plane until they can recover their corpse.
+void MakeGhost(object oPC);
+// Restores the PC to their normal self.
+void MakeLiving(object oPC);
+
+void MakeGhost(object oPC)
+{
+  object oCorpse = GetLocalObject(oPC, "GS_CORPSE");
+  object oHide   = gsPCGetCreatureHide(oPC);
+  
+  SetLocalInt(oHide, "IS_GHOST", TRUE);
+  
+  // Apply the ghost polymorph effect (supernatural and locked so can't be removed).
+  AssignCommand(oCorpse, ApplyEffectToObject(DURATION_TYPE_PERMANENT, SupernaturalEffect(EffectPolymorph(133, TRUE)), oPC));
+  SetPlotFlag(oPC, TRUE); 
+  SetLocalInt(oPC, "AI_IGNORE", TRUE); // NPCs ignore ghosts passing by. 
+  ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_DEATH), oPC);
+  
+  // All other effects removed by the main death script.
+  
+}
+
+void MakeLiving(object oPC)
+{
+  // Destroy your own corpse object, even if you aren't currently a ghost.
+  object oCorpse = GetLocalObject(oPC, "GS_CORPSE");
+  GiveGoldToCreature(oPC, GetLocalInt(oCorpse, "GS_GOLD"));
+  DestroyObject(oCorpse);
+  
+  // Ghost logic.
+  object oHide = gsPCGetCreatureHide(oPC);
+  
+  if (GetLocalInt(oHide, "IS_GHOST"))
+  {
+    effect eEffect = GetFirstEffect(oPC);
+    while (GetIsEffectValid(eEffect))
+    {
+      RemoveEffect(oPC, eEffect);
+      eEffect = GetNextEffect(oPC);
+    }
+	
+	ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_RAISE_DEAD), oPC);
+  
+    SetPlotFlag(oPC, FALSE); 
+    DeleteLocalInt(oPC, "AI_IGNORE");
+    DeleteLocalInt(oHide, "IS_GHOST");
+  } 
+}
 
 void DoDeath(object oDied, object oKiller)
 {
@@ -236,26 +284,9 @@ void gsDeath()
   }
   SetLocalInt(oSave, "SEP_DEATH_TOTAL", ++DeathTotal);
   ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectHeal(GetMaxHitPoints() + 10), oSelf);
-  ClearAllActions(TRUE);
-  
-  if (GetTag(GetArea(oSelf)) != "FeywildBanquet" && 
-      FindSubString(GetName(GetArea(oSelf)), "Feywilds") > -1) 
-  {
-    CHClearQuestCount(OBJECT_SELF, "CH_Q_FEY");
-    ActionJumpToObject(GetObjectByTag("FWB_ENTER"));
-  }	
-  else 
-  {
-    ActionJumpToObject(GetObjectByTag("GS_TARGET_DEATH"));
-  }
-  
-  ActionDoCommand(DelayCommand(6.0, SetPlotFlag(oSelf, FALSE)));
-  ActionDoCommand(SetCommandable(TRUE));
-  SetCommandable(FALSE);
 
   //timeout
   SetLocalInt(gsPCGetCreatureHide(oSelf), "GS_DEATH_TIMESTAMP", gsTIGetActualTimestamp());
-
 
   //create corpse
   oObject1 = CreateObject(OBJECT_TYPE_PLACEABLE,
@@ -281,6 +312,28 @@ void gsDeath()
             SetLocalInt(oObject1, "GS_GOLD", nGold);
         }
   }
+  
+  ClearAllActions(TRUE);
+  
+  if (GetTag(GetArea(oSelf)) != "FeywildBanquet" && 
+      FindSubString(GetName(GetArea(oSelf)), "Feywilds") > -1) 
+  {
+    CHClearQuestCount(OBJECT_SELF, "CH_Q_FEY");
+    ActionJumpToObject(GetObjectByTag("FWB_ENTER"));
+  }	
+  else if (GetLocalInt(GetArea(oSelf), "DEATH_PLANE"))
+  {
+    MakeGhost(oSelf);
+    ActionJumpToObject(GetObjectByTag("GS_TARGET_GHOST"));
+  }
+  else 
+  {
+    ActionJumpToObject(GetObjectByTag("GS_TARGET_DEATH"));
+  }
+  
+  ActionDoCommand(DelayCommand(6.0, SetPlotFlag(oSelf, FALSE)));
+  ActionDoCommand(SetCommandable(TRUE));
+  SetCommandable(FALSE);
   
   // City of Winds - plot death
   if (GetLocalInt(oSelf, "PLOT_KILLED"))

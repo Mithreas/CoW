@@ -1,7 +1,7 @@
 // Utility library for skill information
 // Primarily used to check for which skills are class skills.
 #include "inc_database"
-
+#include "inc_favsoul"
 // Returns TRUE if nSkill is a class skill for nClass, -1 if nClass cannot take nSkill, 
 // and FALSE if it's not a class skill but can be taken as cross class.
 int miSKGetIsClassSkill(int nClass, int nSkill);
@@ -48,6 +48,7 @@ void _LoadSkillCache(object oCache)
   _Load2daIntoCache(oCache, "cls_skill_dru", CLASS_TYPE_DRUID);
   _Load2daIntoCache(oCache, "cls_skill_dwdef", CLASS_TYPE_DWARVEN_DEFENDER);
   _Load2daIntoCache(oCache, "cls_skill_fight", CLASS_TYPE_FIGHTER);
+  _Load2daIntoCache(oCache, "cls_skill_cler", CLASS_TYPE_FAVOURED_SOUL);
   _Load2daIntoCache(oCache, "cls_skill_harper", CLASS_TYPE_HARPER);
   _Load2daIntoCache(oCache, "cls_skill_monk", CLASS_TYPE_MONK);
   _Load2daIntoCache(oCache, "cls_skill_pal", CLASS_TYPE_PALADIN);

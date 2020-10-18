@@ -27,6 +27,7 @@ void main()
   string sMenuLeatherHideArmor = CnrRecipeAddSubMenu(sMenuLeatherArmor, "Hide Armour");
   string sMenuLeatherLeathArmor = CnrRecipeAddSubMenu(sMenuLeatherArmor, "Leather Armour");
   string sMenuLeatherStdLthArmor = CnrRecipeAddSubMenu(sMenuLeatherArmor, "Studded Armour");
+  string sMenuLeatherSlings = CnrRecipeAddSubMenu("cnrleathertable", "Weapons");
   string sMenuLeatherAcc = CnrRecipeAddSubMenu("cnrleathertable", "Accessories");
   string sMenuLeatherBoots = CnrRecipeAddSubMenu(sMenuLeatherAcc, "Boots");
   string sMenuLeatherCloaks = CnrRecipeAddSubMenu(sMenuLeatherAcc, "Cloaks");
@@ -38,6 +39,38 @@ void main()
   CnrRecipeSetDeviceInventoryTool("cnrleathertable", "cnrSewingKit", CNR_FLOAT_SEWING_KIT_BREAKAGE_PERCENTAGE);
   CnrRecipeSetDeviceTradeskillType("cnrleathertable", CNR_TRADESKILL_TAILORING);
   CnrRecipeSetRecipeAbilityPercentages(IntToString(CNR_TRADESKILL_TAILORING), 0, 50, 0, 50, 0, 0);
+  
+///////////////////////////////////Weapons/////////////////////////////////////////
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuLeatherSlings, "Hide Sling", "wbwsl003", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrhidecurebadg", 1, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 2);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 20, 20);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuLeatherSlings, "Leather Sling", "wbwsl004", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrleathbadg", 1, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuLeatherSlings, "Hide Whip", "cnrwhip1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrleathwolf", 1, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 8);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 80, 80);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuLeatherSlings, "Leather Whip", "cnrwhip2", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrleathwolf", 1, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 10);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 100, 100);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuLeatherSlings, "Dragonhide Sling", "wbwsl005", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "dragonhide", 1, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 15);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 150, 150);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuLeatherSlings, "Dragonhide Whip", "cnrwhip3", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "dragonhide", 1, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 18);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 180, 180);
 
 ///////////////////////////////////Other/////////////////////////////////////////
 

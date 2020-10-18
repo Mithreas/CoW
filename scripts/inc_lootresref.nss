@@ -33,6 +33,13 @@ string GetFirstResRefFromBaseItemType(int baseItemType)
     return count > 0 ? StringArray_At(GetModule(), tag, 0) : "";
 }
 
+string GetRandomResRefFromBaseItemType(int baseItemType)
+{
+    string tag = INTERNAL_RESREF_ARRAY_TAG + IntToString(baseItemType);
+    int count = StringArray_Size(GetModule(), tag);
+    return count > 0 ? StringArray_At(GetModule(), tag,  Random(count)) : "";
+}
+
 string GetRandomResRefFromItemType(int itemType)
 {
     int baseItemType = INTERNAL_GetRandomBaseItemTypeFromItemType(itemType);
@@ -83,7 +90,7 @@ int INTERNAL_GetRandomBaseItemTypeFromItemType(int itemType)
             case 0:  return BASE_ITEM_SHORTSWORD;
             case 1:  return BASE_ITEM_LONGSWORD;
             case 2:  return BASE_ITEM_BATTLEAXE;
-            //case 3:  return BASE_ITEM_BASTARDSWORD;
+            case 3:  return BASE_ITEM_DART;
             case 4:  return BASE_ITEM_LIGHTFLAIL;
             case 5:  return BASE_ITEM_WARHAMMER;
             case 6:  return BASE_ITEM_HEAVYCROSSBOW;
@@ -102,20 +109,20 @@ int INTERNAL_GetRandomBaseItemTypeFromItemType(int itemType)
             case 19: return BASE_ITEM_HEAVYFLAIL;
             case 20: return BASE_ITEM_LIGHTHAMMER;
             case 21: return BASE_ITEM_HANDAXE;
-            //case 22: return BASE_ITEM_KAMA;
+            case 22: return BASE_ITEM_KAMA;
             case 23: return BASE_ITEM_KATANA;
             case 24: return BASE_ITEM_KUKRI;
             case 25: return BASE_ITEM_MORNINGSTAR;
             case 26: return BASE_ITEM_QUARTERSTAFF;
             case 27: return BASE_ITEM_RAPIER;
-            //case 28: return BASE_ITEM_SCIMITAR;
-            //case 29: return BASE_ITEM_SCYTHE;
+            case 28: return BASE_ITEM_SCIMITAR;
+            case 29: return BASE_ITEM_THROWINGAXE;
             case 30: return BASE_ITEM_SHORTSPEAR;
             case 31: return BASE_ITEM_SICKLE;
             case 32: return BASE_ITEM_SLING;
-            //case 33: return BASE_ITEM_TRIDENT;
+            case 33: return BASE_ITEM_SHURIKEN;
             case 34: return BASE_ITEM_DWARVENWARAXE;
-            //case 35: return BASE_ITEM_WHIP;
+            case 35: return BASE_ITEM_WHIP;
         }
     }
 

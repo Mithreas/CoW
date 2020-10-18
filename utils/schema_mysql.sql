@@ -2617,6 +2617,7 @@ CREATE TABLE `pwdata` (
         `tag` varchar(32) default NULL,
         `name` varchar(64) default NULL,
         `val` text,
+		`level` tinyint(4) default 1,
         `expire` int(11) default NULL,
         `modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         KEY idx (player,tag,name)

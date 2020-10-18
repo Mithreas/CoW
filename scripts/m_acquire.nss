@@ -422,6 +422,13 @@ void main()
         // add the (Slave) addition to the dynamic name of the PC
         svSetAffix(oAcquiredBy, SLAVE_SUFFIX, TRUE);          
     }
+	
+	if (GetLocalInt(gsPCGetCreatureHide(oAcquiredBy), "IS_GHOST") && GetBaseItemType(oAcquired) == 256)
+	{
+		SendMessageToPC(oAcquiredBy, "You cannot gain gold while you are a ghost.");
+		int nStackSize = GetModuleItemAcquiredStackSize();
+		AssignCommand(GetLocalObject(oAcquiredBy, "GS_CORPSE"), TakeGoldFromCreature(nStackSize, oAcquiredBy, TRUE));
+	}
 
 // ............................................ DM Shop & Gold reporting..........................................................................		
 	// filter_gold - player picks up gold

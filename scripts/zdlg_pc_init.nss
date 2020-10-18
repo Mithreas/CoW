@@ -565,11 +565,13 @@ void _SetUpAllowedPaths()
   if (!GetLevelByClass(CLASS_TYPE_SORCERER, oPC) &&
       !GetLevelByClass(CLASS_TYPE_DRUID, oPC) &&
       !GetLevelByClass(CLASS_TYPE_CLERIC, oPC) &&
+      !GetLevelByClass(CLASS_TYPE_BARD, oPC) &&
+      !GetLevelByClass(CLASS_TYPE_FAVOURED_SOUL, oPC) &&
       !GetLevelByClass(CLASS_TYPE_WIZARD, oPC))
   {
     AddStringElement(PATH_OF_THE_KENSAI, PATH_OPTS);
 	PATH_INTRO += 
-      "Melee Classes - Kensai: One extra attack, +2 natural AC. May not take levels in wizard, sorcerer, druid, favoured soul or cleric, may not cast spellbook spells, may not use "+
+      "Melee Classes - Kensai: One extra attack, +2 natural AC. May not take levels in wizard, sorcerer, bard, druid, favoured soul or cleric, may not cast spellbook spells, may not use "+
       "potions or bound spells, and are restricted to melee and throwing weapons.\n";
   }
   

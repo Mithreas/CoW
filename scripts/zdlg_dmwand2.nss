@@ -177,9 +177,9 @@ void HandleSelection()
           {
             if (!GetIsDM(oPC))
             {
-              string sRank = GetPCFactionRank(oPC);
+              struct repRank rRank = GetPCFactionRank(oPC);
               SendMessageToPC(GetItemActivator(), GetName(oPC)+" has rank "+
-                                                sRank+" with "+GetSubRace(oPC));
+                                                rRank.sName+" with "+GetSubRace(oPC));
             }
 
             oPC = GetNextPC();

@@ -53,7 +53,7 @@ void main()
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 5);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 50, 50);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuWardingRunes1, "Warding Rune (+1 vs Outsider)", "ward_rune_2out", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuWardingRunes1, "Warding Rune (+1 vs Outsider)", "ward_rune_1out", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "x2_it_cfm_bscrl", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrInkL", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "NW_IT_MSMLMISC19", 1, 0); // Fairy dust

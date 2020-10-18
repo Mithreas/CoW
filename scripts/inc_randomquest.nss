@@ -195,6 +195,8 @@ int GetIsPlayerActive(object oPC, string sNPCTag);
 int HasDoneRandomQuest(object oPC, string sQuest, object oQuestNPC = OBJECT_SELF);
 // Mark sQuest as having been done by oPC for oQuestNPC
 void MarkQuestDone(object oPC, string sQuest, object oQuestNPC = OBJECT_SELF);
+// Called at startup and every game day to update the quest targets for repeatable quests.
+void UpdateRepeatableQuests();
 
 void CreateQuestNPC(string sNPCTag)
 {
@@ -214,7 +216,7 @@ void CreateQuestNPC(string sNPCTag)
 // Returns GetPCPlayerName(oPC)+GetName(oPC)
 string GetPCIdentifier(object oPC)
 {
-  return GetPCPlayerName(oPC)+GetName(oPC);
+  return GetPCPlayerName(oPC)+GetName(oPC, TRUE);
 }
 
 void RemovePCFromActiveList(object oPC, string sTag)
@@ -307,7 +309,7 @@ int GetIsPlayerActive(object oPC, string sNPCTag)
   Trace (RQUEST, "Checking if player is active on NPC");
   string sActivePlayers = GetPersistentString(OBJECT_INVALID,
                                               sNPCTag+ACTIVE_PLAYERS);
-  if (FindSubString(sActivePlayers, GetPCPlayerName(oPC)+GetName(oPC)) > -1)
+  if (FindSubString(sActivePlayers, GetPCPlayerName(oPC)+GetName(oPC, TRUE)) > -1)
   {
     Trace(RQUEST, "Returning TRUE.");
     return TRUE;
@@ -418,7 +420,7 @@ void RemovePatrolVariables(object oPC, string sAreaList)
 
 void CheckIfOnPatrol(object oPC, object oArea)
 {
-  Trace(RQUEST, "Checking whether PC "+GetName(oPC)+" has been told to patrol "+GetName(oArea));
+  Trace(RQUEST, "Checking whether PC "+GetName(oPC, TRUE)+" has been told to patrol "+GetName(oArea));
   string sQuest = GetPersistentString(oPC, CURRENT_QUEST);
   if (sQuest == "") return;
   string sQuestSet =  GetPersistentString(oPC, sQuest);
@@ -442,7 +444,7 @@ void CheckIfOnPatrol(object oPC, object oArea)
 
 void RewardPC(object oPC, object oNPC)
 {
-  Trace(RQUEST, "Rewarding PC " + GetName(oPC));
+  Trace(RQUEST, "Rewarding PC " + GetName(oPC, TRUE));
   // setup.
   string sQuest = GetPersistentString(oPC, CURRENT_QUEST);
   if (sQuest == "") return; // No quest, so mark as complete so PC can get
@@ -630,10 +632,13 @@ int IsQuestComplete(object oPC, int bFinish = FALSE)
 	
     string sArea = GetFirstStringElement(AREA_LIST);
     nDone = 1;
+	int status;
+	
     while (sArea != "")
     {
-      Trace(RQUEST, "Checking area variable for PC: " + sArea);
-      if (!GetPersistentInt(oPC, sArea))
+	  status = GetPersistentInt(oPC, sArea);
+      Trace(RQUEST, "Checking area variable for PC: " + sArea + " : " + IntToString(status));
+      if (!status)
       {
         nDone = 0;
       }
@@ -683,7 +688,7 @@ int QuestIsDone(object oPC, object oNPC)
 
 void TidyQuest(object oPC, object oNPC)
 {
-  Trace(RQUEST, "Tidying up current quest for " + GetName(oPC));
+  Trace(RQUEST, "Tidying up current quest for " + GetName(oPC, TRUE));
   // setup.
   string sQuest = GetPersistentString(oPC, CURRENT_QUEST);
   if (sQuest == "") return; // Nothing to do, no quest active.
@@ -733,7 +738,6 @@ void TidyQuest(object oPC, object oNPC)
   string sAreaList = GetLocalString(oCache, sQuest+AREA_TAGS);
   if (sAreaList != "")
   {
-    DontWaitForPC(oPC, sAreaList);
     RemovePatrolVariables(oPC, sAreaList);
   }
 
@@ -755,7 +759,7 @@ void TidyQuest(object oPC, object oNPC)
 
 void SetUpQuest(object oPC, object oNPC)
 {
-  Trace (RQUEST, "Setting up new quest for " + GetName(oPC));
+  Trace (RQUEST, "Setting up new quest for " + GetName(oPC, TRUE));
   // setup.
   // Todo - tag the quest with the questtag so that PCs can have multiple.
   string sQuest = GetPersistentString(oPC, CURRENT_QUEST);
@@ -820,13 +824,6 @@ void SetUpQuest(object oPC, object oNPC)
     AddPersistentPerson(GetObjectByTag("WP_"+sNPC+"_SPAWN"), sNPC, FALSE);
   }
 
-  // Tell areas to wait for PC if needed
-  string sAreaList = GetLocalString(oCache, sQuest+AREA_TAGS);
-  if (sAreaList != "")
-  {
-    WaitForPC(oPC, sAreaList);
-  }
-
   if (GetLocalString(oCache, sQuest + QUEST_TYPE) == HELP)
   {
     // Note the quest as started.
@@ -846,7 +843,7 @@ void SetUpQuest(object oPC, object oNPC)
 // Get a new quest suitable for this PC. Return value on error: "".
 string GenerateNewQuest(object oPC, object oNPC)
 {
-  Trace(RQUEST, "Generating new quest for " + GetName(oPC));
+  Trace(RQUEST, "Generating new quest for " + GetName(oPC, TRUE));
   string sQuestSet = GetLocalString(oNPC, QUEST_DB_NAME);
   string sQuest = "";
 
@@ -960,4 +957,620 @@ void MarkQuestDone(object oPC, string sQuest, object oQuestNPC = OBJECT_SELF)
   SQLExecDirect(sSQL);
   
   // Doesn't matter if this fails (i.e. if the quest was already marked done). 
+}
+
+void SetStringValue(string sName, string sValue, string sDatabase)
+{
+  object oCache = miDAGetCacheObject(sDatabase);
+  SetLocalString(oCache, sName, sValue);
+}
+
+void UpdateRepeatableQuests()
+{
+  //----------------------------------------------------------------------------------------------------------------------
+  // Renerrin
+  string DB_VARS;
+  string QUEST;
+  
+  DB_VARS  = "renerrin_vars";
+  QUEST = "gather_gemstone"; // 4-10
+  SetStringValue(QUEST+QUEST_TYPE, RETRIEVE, DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "50", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "150", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  switch (d3())
+  {
+    case 1:
+	case 2:
+		SetStringValue(QUEST+DESCRIPTION,
+					   "I need a gemstone, a phenalope. Can you get me one? I'll give you 50 gold for it.",
+					   DB_VARS);
+		SetStringValue(QUEST+ITEM_TAG, "NW_IT_GEM004", DB_VARS);
+		break;
+	case 3:
+		SetStringValue(QUEST+DESCRIPTION,
+					   "Hm, I have use of a polished malachite.  A simple thing, can you get me one please?\n\n" +
+					   "(You can polish gemstones at a jeweler's bench.)",
+					   DB_VARS);
+		SetStringValue(QUEST+ITEM_TAG, "cow_gemmala", DB_VARS);
+		break;
+  }
+  
+  QUEST = "badger_skin"; // 3-6
+  SetStringValue(QUEST+QUEST_TYPE, RETRIEVE, DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "75", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "25", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  switch (d3())
+  {
+    case 1:
+		SetStringValue(QUEST+DESCRIPTION,
+					   "My wife got a badger skin muff, and now everyone wants one.  Please get me three skins.  " + 
+					   "There are usually badgers outside the West Gates, if you hunt around - you'll need a " +
+					   "skinning knife to part them from their fur.  Try the Market Square if you don't have one.",
+					   DB_VARS);
+		SetStringValue(QUEST+ITEM_TAG, "cnrskinbadger", DB_VARS);
+		SetStringValue(QUEST+NUM_ITEMS, "3", DB_VARS);
+		break;
+	case 2:
+		SetStringValue(QUEST+DESCRIPTION,
+					   "One of my other helpers is going to make me a leather cloak, and needs the skin of a deer.  " +
+					   "You'll need to hunt around outside the west gates, maybe into the woods. Don't forget to " +
+					   "take a skinning knife, you can acquire one in the market square if you need to.",
+					   DB_VARS);
+		SetStringValue(QUEST+ITEM_TAG, "cnrskindeer", DB_VARS);
+		SetStringValue(QUEST+NUM_ITEMS, "1", DB_VARS);
+		break;
+	case 3:
+		SetStringValue(QUEST+DESCRIPTION,
+					   "Wood is used for a range of different crafts.  Fetch five Irl branches " +
+					   "which our carpenters can use.  You'll need to head outside the city to find it, and " +
+					   "if you are not proficient with axes, pick up a Crafter's Apron from the crafthall.",
+					   DB_VARS);
+		SetStringValue(QUEST+ITEM_TAG, "cnrbranch1", DB_VARS);		
+		SetStringValue(QUEST+NUM_ITEMS, "5", DB_VARS);
+		break;
+  }
+  
+  QUEST = "cull_spiders"; // 6-8
+  SetStringValue(QUEST+QUEST_TYPE, CULL, DB_VARS);
+  SetStringValue(QUEST+NUM_CREATURES, "12", DB_VARS);  
+  SetStringValue(QUEST+REWARD_GOLD, "100", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "100", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  switch (d3())
+  {
+    case 1:
+	case 2:
+		SetStringValue(QUEST+DESCRIPTION, "Below the northern part of the Undercity you will find a large spider nest. " +
+		"The spiders are big enough to carry off unwary denizens, so I would like you to cull a dozen of them, please.", DB_VARS);
+		SetStringValue(QUEST+CULL_TAG, "av_DeepSpiders", DB_VARS);
+		break; 
+	case 3:
+		SetStringValue(QUEST+DESCRIPTION, "There are some dark caverns below the Undercity, easiest reached from the caves in " +
+		  "the northwest.  A tribe of dark-skinned goblins there sometimes emerge to prey on the populace.  Cull a dozen of them and return here.", DB_VARS);
+		SetStringValue(QUEST+CULL_TAG, "blackgoblin", DB_VARS);
+		break; 
+  }
+  
+  QUEST = "cull_cutthroats"; // 9-10
+  SetStringValue(QUEST+QUEST_TYPE, CULL, DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "200", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "200", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  SetStringValue(QUEST+NUM_CREATURES, "20", DB_VARS);  
+  
+  switch (d3())
+  {
+    case 1:
+	case 2:
+		SetStringValue(QUEST+DESCRIPTION, "The Undercity has a bad crime problem.  The Imperial Guard do not have the resources " +
+		"to patrol there, so I want you to bring some justice.  Go down there and look like a mark, and deal with any dog who takes the bait. " +
+		"Come back when you've dealt with 20 or more.", DB_VARS);
+		SetStringValue(QUEST+CULL_TAG, "cutthroat", DB_VARS);
+		break;
+	case 3:
+		SetStringValue(QUEST+DESCRIPTION, "There is a Formian hive somewhere beneath the undercity; our scouts have reported sightings when " +
+		"harvesting silk from the spiders.  Find it and take out 20 of their workers; that should keep them from expanding into our silk supply.", DB_VARS);
+		SetStringValue(QUEST+CULL_TAG, "X0_FORM_WORKER", DB_VARS);
+		break;
+  }
+  
+  QUEST = "more_gonnes"; // 11-15
+  SetStringValue(QUEST+QUEST_TYPE, RETRIEVE, DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "250", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  switch (d3())
+  {
+    case 1:
+		SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
+		SetStringValue(QUEST+DESCRIPTION,
+		"Our House wishes to stockpile more firearms.  Please bring me another Gonne.",
+		DB_VARS);
+		SetStringValue(QUEST+ITEM_TAG, "Gonne", DB_VARS);
+		SetStringValue(QUEST+NUM_ITEMS, "1", DB_VARS);
+		break;
+	case 2:
+	case 3:
+		SetStringValue(QUEST+REWARD_XP, "100", DB_VARS);
+		SetStringValue(QUEST+DESCRIPTION,
+		"The best agents are able to surgically remove potential threats.  Bring back two " +
+		"heads of enemy leaders.",
+		DB_VARS);
+		SetStringValue(QUEST+ITEM_TAG, "GS_HEAD_EVIL", DB_VARS);
+		SetStringValue(QUEST+NUM_ITEMS, "2", DB_VARS);
+		break;
+  }
+  
+  //----------------------------------------------------------------------------------------------------------------------
+  // Drannis  
+  DB_VARS  = "drannis_vars";
+    
+  QUEST = "gather_ond"; // 3-6
+  SetStringValue(QUEST+QUEST_TYPE, RETRIEVE, DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "50", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "50", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  switch (d3())
+  {
+    case 1:
+	case 2:
+		SetStringValue(QUEST+DESCRIPTION,
+			"Maintaining our outposts always takes more wood.  Fetch five Irl branches " +
+			"which our carpenters can use.  You'll need to head outside the city to find it, and " +
+			"if you are not proficient with axes, pick up a Crafter's Apron from the crafthall.",
+			DB_VARS);
+		SetStringValue(QUEST+ITEM_TAG, "cnrbranch1", DB_VARS);
+		SetStringValue(QUEST+NUM_ITEMS, "5", DB_VARS);
+		break;
+	case 3:
+		SetStringValue(QUEST+DESCRIPTION,
+			"Ondaran does not make good weapons, but it makes excellent nails " +
+			"and braces.  Since I have nothing more pressing for you right now, " +
+			"bring back a couple of nuggets for our stores.  You'll need to head to " + 
+			"a mine, most likely up among the Skyreach Summits, and " +
+			"if you are not proficient with axes, pick up a Crafter's Apron from the crafthall.",
+			DB_VARS);
+		SetStringValue(QUEST+ITEM_TAG, "cnrnuggetond", DB_VARS);
+		SetStringValue(QUEST+NUM_ITEMS, "2", DB_VARS);
+		break;
+  }
+   
+  QUEST = "gather_wood"; // 4-10
+  SetStringValue(QUEST+QUEST_TYPE, RETRIEVE, DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "50", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "50", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+
+  switch (d3())
+  {
+    case 1:
+		SetStringValue(QUEST+DESCRIPTION,
+			"Every soldier should have a basic grounding in trade skills.  Bring me five planks of Irl for our stores.  " +
+			"You can make them easily enough from Irl branches at a carpenter's bench.",
+			DB_VARS);
+		SetStringValue(QUEST+ITEM_TAG, "cnrplank1", DB_VARS);
+		SetStringValue(QUEST+NUM_ITEMS, "5", DB_VARS);
+		break;
+	case 2:
+		SetStringValue(QUEST+DESCRIPTION,
+			"Every soldier should have a basic grounding in trade skills.  Bring me five ingots of Ondaran for our stores.  " +
+			"You can turn the ore into ingots in any public forge.",
+			DB_VARS);
+		SetStringValue(QUEST+ITEM_TAG, "cnringotond", DB_VARS);
+		SetStringValue(QUEST+NUM_ITEMS, "5", DB_VARS);
+		break;
+	case 3:
+		SetStringValue(QUEST+DESCRIPTION,
+			"Every soldier should have a basic grounding in trade skills. Bring me two pieces of badger leather.  " +
+			"Once you've skinned the blighters, a hide rack is used to process them into leather.  The process uses tanning " +
+			"oil, but you can pick that up in the trade hall if need be.",
+			DB_VARS);
+		SetStringValue(QUEST+ITEM_TAG, "cnrleathbadg", DB_VARS);
+		SetStringValue(QUEST+NUM_ITEMS, "2", DB_VARS);
+		break;
+  }
+  
+  QUEST = "cull_spiders"; // 6-8
+  SetStringValue(QUEST+QUEST_TYPE, CULL, DB_VARS);
+  SetStringValue(QUEST+NUM_CREATURES, "12", DB_VARS);  
+  SetStringValue(QUEST+REWARD_GOLD, "100", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "100", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  switch (d3())
+  {
+    case 1:
+		SetStringValue(QUEST+DESCRIPTION, "Below the northern part of the Undercity you will find a large spider nest. " +
+		"The spiders are big enough to carry off unwary denizens, so I would like you to cull a dozen of them, please.", DB_VARS);
+		SetStringValue(QUEST+CULL_TAG, "av_DeepSpiders", DB_VARS);
+		break; 
+	case 2:
+	case 3:
+		SetStringValue(QUEST+DESCRIPTION, "There are some dark caverns below the Undercity, easiest reached from the caves in " +
+		  "the northwest.  A tribe of dark-skinned goblins there sometimes emerge to prey on the populace.  Cull a dozen of them and return here.", DB_VARS);
+		SetStringValue(QUEST+CULL_TAG, "blackgoblin", DB_VARS);
+		break; 
+  }
+
+  QUEST = "cull_taskmasters"; // 9-10
+  SetStringValue(QUEST+QUEST_TYPE, CULL, DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "150", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "150", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  switch (d3())
+  {
+    case 1:
+		SetStringValue(QUEST+DESCRIPTION, "The Undercity has a bad crime problem.  The Imperial Guard do not have the resources " +
+		"to patrol there, so I want you to bring some justice.  Go down there and make yourself visible, and deal with any cut-throats that take the bait. " +
+		"Come back when you've dealt with 20 or more.", DB_VARS);
+		SetStringValue(QUEST+CULL_TAG, "cutthroat", DB_VARS);
+		SetStringValue(QUEST+NUM_CREATURES, "20", DB_VARS);  
+		break;
+	case 2:
+	case 3:
+		SetStringValue(QUEST+DESCRIPTION, "There is a Formian hive somewhere beneath the Undercity.  Their warriors have been sighted " +
+		"scouting out our defenses, and I want you to persuade them to stop.  Kill six of their Taskmasters, that should make them think twice.", DB_VARS);
+		SetStringValue(QUEST+CULL_TAG, "av_FormorianTaskmaster", DB_VARS);
+		SetStringValue(QUEST+NUM_CREATURES, "6", DB_VARS);  
+		break;
+  }
+  
+  QUEST = "boss_heads";  // 5-15
+  SetStringValue(QUEST+QUEST_TYPE, RETRIEVE, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION,
+   "House Drannis takes the defense of the City very seriously.  Bring back two " +
+   "heads of creatures from beneath the City that could pose a threat.",
+   DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "250", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "100", DB_VARS);
+  SetStringValue(QUEST+ITEM_TAG, "GS_HEAD_EVIL", DB_VARS);
+  SetStringValue(QUEST+NUM_ITEMS, "2", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  //----------------------------------------------------------------------------------------------------------------------
+  // Erenia  
+  DB_VARS  = "erenia_vars";
+  
+  QUEST = "more_holywater"; // 3-6
+  SetStringValue(QUEST+QUEST_TYPE, RETRIEVE, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION,
+   "I've run out of holy water to keep the ghost out of my rooms. " + 
+   "Please can you fetch me some more?", DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "50", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "50", DB_VARS);
+  SetStringValue(QUEST+ITEM_TAG, "X1_WMGRENADE005", DB_VARS); 
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  QUEST = "patrolcrypts"; // 4-10
+  SetStringValue(QUEST+QUEST_TYPE, PATROL, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION,
+  "Our brethren guarding the Undercity entrance report that the dead are stirring " +
+  "in Ancestors' Rest again.  Please visit the four crypts there and restore peace.",
+  DB_VARS);
+  SetStringValue(QUEST+AREA_TAGS, "DarkenedCrypt,hauntedcrypt,OldCrypt,ShadowedCrypt", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "250", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+
+  QUEST = "gather_incense"; // 4-10
+  SetStringValue(QUEST+QUEST_TYPE, RETRIEVE, DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "600", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "50", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  switch (d3())
+  {
+    case 1:
+		SetStringValue(QUEST+DESCRIPTION,
+			"I'm low on incense. Please can you fetch me a couple of sticks? The temple "
+			+ "will have some.",
+			DB_VARS);
+		SetStringValue(QUEST+ITEM_TAG, "stickofincense", DB_VARS);
+		SetStringValue(QUEST+NUM_ITEMS, "2", DB_VARS);
+		break;
+	case 2:
+		SetStringValue(QUEST+DESCRIPTION,
+					   "One of my other helpers is going to make me a leather cloak, and needs the skin of a deer.  " +
+					   "You'll need to hunt around outside the west gates, maybe into the woods. Don't forget to " +
+					   "take a skinning knife, you can acquire one in the market square if you need to.",
+					   DB_VARS);
+		SetStringValue(QUEST+ITEM_TAG, "cnrskindeer", DB_VARS);
+		SetStringValue(QUEST+NUM_ITEMS, "1", DB_VARS);
+		break;
+	case 3:
+		SetStringValue(QUEST+DESCRIPTION,
+					   "Wood is used for a range of different crafts.  Fetch five Irl branches " +
+					   "which our carpenters can use.  You'll need to head outside the city to find it, and " +
+					   "if you are not proficient with axes, pick up a Crafter's Apron from the crafthall.",
+					   DB_VARS);
+		SetStringValue(QUEST+ITEM_TAG, "cnrbranch1", DB_VARS);		
+		SetStringValue(QUEST+NUM_ITEMS, "5", DB_VARS);
+		break;
+  }
+
+  QUEST = "cull_spiders"; // 6-8
+  SetStringValue(QUEST+QUEST_TYPE, CULL, DB_VARS);  
+  SetStringValue(QUEST+NUM_CREATURES, "12", DB_VARS); 
+  SetStringValue(QUEST+REWARD_GOLD, "100", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "100", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+
+  switch (d3())
+  {
+    case 1:
+		SetStringValue(QUEST+DESCRIPTION, "Below the northern part of the Undercity you will find a large spider nest. " +
+		"The spiders are big enough to carry off unwary denizens, so I would like you to cull a dozen of them, please.", DB_VARS);
+		SetStringValue(QUEST+CULL_TAG, "av_DeepSpiders", DB_VARS);
+		break; 
+	case 2:
+	case 3:
+		SetStringValue(QUEST+DESCRIPTION, "Back in the early days of the City we buried the dead in some old tombs in the caves below the northern part " +
+		  "of the Undercity.  But it became too dangerous to do funeral processions out there, between the spiders on the way and the ghosts there.  " +
+		  "Still, we should not forget the dead.  Please visit the old tombs and banish a dozen of the Spectre ghosts that haunt the area.", DB_VARS);
+		SetStringValue(QUEST+CULL_TAG, "NW_SPECTRE", DB_VARS);
+		break; 
+  }
+  
+  QUEST = "cull_taskmasters"; // 9-10
+  SetStringValue(QUEST+QUEST_TYPE, CULL, DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "150", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "150", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  switch (d3())
+  {
+    case 1:
+		SetStringValue(QUEST+DESCRIPTION, "The Undercity has a bad crime problem.  The Imperial Guard do not have the resources " +
+		"to patrol there, so I want you to bring some justice.  Go down there and make yourself visible, and deal with any cut-throats that take the bait. " +
+		"Come back when you've dealt with 20 or more.", DB_VARS);
+		SetStringValue(QUEST+CULL_TAG, "cutthroat", DB_VARS);
+		SetStringValue(QUEST+NUM_CREATURES, "20", DB_VARS);  
+		break;
+	case 2:
+	case 3:
+		SetStringValue(QUEST+DESCRIPTION, "There is a Formian hive somewhere beneath the Undercity.  Their warriors have been sighted " +
+		"scouting out our defenses, and I want you to persuade them to stop.  Kill six of their Taskmasters, that should make them think twice.", DB_VARS);
+		SetStringValue(QUEST+CULL_TAG, "av_FormorianTaskmaster", DB_VARS);
+		SetStringValue(QUEST+NUM_CREATURES, "6", DB_VARS);  
+		break;
+  }
+  
+  QUEST = "sanctify"; // 10-15
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  switch (d3())
+  {
+    case 1:
+		SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
+		SetStringValue(QUEST+QUEST_TYPE, PATROL, DB_VARS);
+		SetStringValue(QUEST+DESCRIPTION,
+		   "The Shrine to the Emperor in the Western part of the Great Wall is an important part of our spiritual defense against Elven magic.  Please " +
+		   "visit it and speak a blessing over the altar.  Should anything be amiss, report it to the Guards nearby.", DB_VARS);
+		SetStringValue(QUEST+AREA_TAGS,
+						 "GrWallWestWallInt",
+						 DB_VARS);
+		break;
+	case 2:
+	case 3:	
+		SetStringValue(QUEST+REWARD_GOLD, "250", DB_VARS);
+		SetStringValue(QUEST+REWARD_XP, "100", DB_VARS);
+		SetStringValue(QUEST+QUEST_TYPE, RETRIEVE, DB_VARS);
+		SetStringValue(QUEST+DESCRIPTION,
+		"Despite our best efforts, there is still much danger about the city.  Please help secure the populace by bringing in two " +
+		"heads of enemy leaders.",
+		DB_VARS);
+		SetStringValue(QUEST+ITEM_TAG, "GS_HEAD_EVIL", DB_VARS);
+		SetStringValue(QUEST+NUM_ITEMS, "2", DB_VARS);
+		break;
+  }
+  
+  //----------------------------------------------------------------------------------------------------------------------
+  // Wardens
+  DB_VARS  = "wardens_vars";
+  
+  QUEST = "patrol_farms"; // 3-5
+  SetStringValue(QUEST+QUEST_TYPE, PATROL, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION,
+    "We always need to be watchful against fey incursions into our fields.  Please check on the Home Farms, " +
+	"South Farms and West Farms and clear out any wandering fey you see.",
+  DB_VARS);
+  SetStringValue(QUEST+AREA_TAGS, "PerHomeFarms,PerVilSouthFarms,PerVyvVilWestFarms", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "200", DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "150", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  QUEST = "patrol_borders"; // 4-6
+  SetStringValue(QUEST+QUEST_TYPE, PATROL, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION,
+    "Time to go a little further afield.  Please do a patrol of the East, South and Southwest borderland and " +
+	"report back on any fey you find.",
+  DB_VARS);
+  SetStringValue(QUEST+AREA_TAGS, "PerVyvEastBorder,PerVilSouthBorder,PerVyvVilSWBorders", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "200", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+    
+  QUEST = "cull_xvarts"; // 4-7
+  SetStringValue(QUEST+QUEST_TYPE, CULL, DB_VARS);
+  SetStringValue(QUEST+NUM_CREATURES, "6", DB_VARS);  
+  SetStringValue(QUEST+REWARD_GOLD, "150", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "150", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);	
+  
+  switch (d3())
+  {
+    case 1:
+	case 2:
+		SetStringValue(QUEST+DESCRIPTION, 
+			"A nest of xvarts have settled into the caves above Lake Vyvian.  They occasionally try snatching our kin meditating by the lake; " +
+			"I'd like you to put some fear into their warriors so they know not to mess with us.  Killing half a dozen should do the trick.", 
+			DB_VARS);
+		SetStringValue(QUEST+CULL_TAG, "xvart", DB_VARS);
+		break;
+	case 3:
+		SetStringValue(QUEST+DESCRIPTION, 
+			"There is a tribe of troglodytes settled in part of the cave complex above Lake Vyvian.  They are annoying the elementals there " +
+			"and to assuage them I'd like you to cull half a dozen of the trog warriors.  Hopefully that will calm the elementals for now.", 
+			DB_VARS);
+		SetStringValue(QUEST+CULL_TAG, "trog_warrior", DB_VARS);
+		break;
+	
+  }
+  
+  QUEST = "cull_goblin_boss"; // 8-10
+  SetStringValue(QUEST+QUEST_TYPE, CULL, DB_VARS);
+  SetStringValue(QUEST+NUM_CREATURES, "1", DB_VARS);  
+  SetStringValue(QUEST+REWARD_GOLD, "150", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "150", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);	
+  
+  switch (d3())
+  {
+    case 1:
+	case 2:
+		SetStringValue(QUEST+DESCRIPTION, 
+			"Night goblins have been reported southwest of town, encroaching onto the borderlands from the Wild Coast.  I need you to find their " +
+			"lair and kill their chief.  That should make them descend into infighting and leave us alone.", 
+			DB_VARS);
+		SetStringValue(QUEST+CULL_TAG, "blackgoblinboss", DB_VARS);
+		break;
+	case 3:
+		SetStringValue(QUEST+DESCRIPTION, 
+			"I have a demanding challenge for you today.  One of the trogs in the coastal caves past Lake Vyvian has reached dominance over the others, " +
+			"and it's only a matter of time before he sends raiders to Vyvian.  Strike first and eliminate him; that will keep them from encroaching without " +
+			"upsetting the Balance.", 
+			DB_VARS);
+		SetStringValue(QUEST+CULL_TAG, "trog_king", DB_VARS);
+		break;    
+  }
+  
+  QUEST = "boss_heads";  // 6-15
+  SetStringValue(QUEST+QUEST_TYPE, RETRIEVE, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION,
+   "As a Warden, you are expected to help in the defense of the village.  Bring me two heads from creatures that mean us harm.",
+   DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "300", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "150", DB_VARS);
+  SetStringValue(QUEST+ITEM_TAG, "GS_HEAD_EVIL", DB_VARS);
+  SetStringValue(QUEST+NUM_ITEMS, "2", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  // Fernvale
+  DB_VARS  = "fernvale_vars";
+  
+  QUEST = "cull_goblins"; // 3-4
+  SetStringValue(QUEST+QUEST_TYPE, CULL, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION, "The nearby nest of goblins is infected with the plague.  I need you to " +
+  "reduce their numbers to keep it from spreading; please destroy six diseased goblins.", DB_VARS);
+  SetStringValue(QUEST+CULL_TAG, "diseased_gobbo", DB_VARS);
+  SetStringValue(QUEST+NUM_CREATURES, "6", DB_VARS);  
+  SetStringValue(QUEST+REWARD_GOLD, "100", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "100", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  QUEST = "cure_ingredients"; // 4-9
+  SetStringValue(QUEST+QUEST_TYPE, RETRIEVE, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION,
+   "Keeping the plague from affecting our peoples requires a constant source of cure.  Happily this can be made with " +
+   "local ingredients.  Please bring back some ginseng from the foothills to the west.",
+   DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "100", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "100", DB_VARS);
+  SetStringValue(QUEST+ITEM_TAG, "cnrginsengroot", DB_VARS);
+  SetStringValue(QUEST+NUM_ITEMS, "2", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  QUEST = "cull_zombies"; // 5-7
+  SetStringValue(QUEST+QUEST_TYPE, CULL, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION, "South of the village the land is blighted by the past war, and the dead walk.  We must " +
+  "keep them from getting too close to the village; please destroy six zombies to keep their numbers down.", DB_VARS);
+  SetStringValue(QUEST+CULL_TAG, "NW_ZOMBIE01", DB_VARS);
+  SetStringValue(QUEST+NUM_CREATURES, "6", DB_VARS);  
+  SetStringValue(QUEST+REWARD_GOLD, "100", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "50", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  QUEST = "make_cure";  // 6-10
+  SetStringValue(QUEST+QUEST_TYPE, RETRIEVE, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION,
+   "Keeping the plague from affecting our peoples requires a constant source of cure.  Please deliver me five potions " +
+   "of cure disease.",
+   DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "250", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
+  SetStringValue(QUEST+ITEM_TAG, "it_mpotion007", DB_VARS);
+  SetStringValue(QUEST+NUM_ITEMS, "5", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  QUEST = "cull_scovin"; // 8-10
+  SetStringValue(QUEST+QUEST_TYPE, CULL, DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "150", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "150", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  switch (d3())
+  {
+    case 1:
+		SetStringValue(QUEST+DESCRIPTION, "Our mages are working on cleansing the wasteland to the East.  However, a tribe of Scovin " +
+		  "have settled there, and are attacking our mages as they try to do their work.  Please help the mages by thinning the number of " +
+		  "Scovin; 12 or so should do it for now.", DB_VARS);
+		SetStringValue(QUEST+CULL_TAG, "ScovinRager", DB_VARS);
+		SetStringValue(QUEST+NUM_CREATURES, "12", DB_VARS);  
+		break;
+	case 2:
+		SetStringValue(QUEST+DESCRIPTION, "As you have probably noticed, the trade route between here and Merivale is threatened by orcs and harpies.  " +
+		  "Today, I want you to focus on the harpies.  Please slay six of the harpies that live in the mountains between here and Merivale.", DB_VARS);
+		SetStringValue(QUEST+CULL_TAG, "Harpy", DB_VARS);
+		SetStringValue(QUEST+NUM_CREATURES, "6", DB_VARS);  
+		break;
+	case 3:
+		SetStringValue(QUEST+DESCRIPTION, "As you have probably noticed, the trade route between here and Merivale is threatened by orcs and harpies.  " +
+		  "Today, I want you to focus on the orcs.  Please slay three of the Black Orcs that threaten our caravans.", DB_VARS);
+		SetStringValue(QUEST+CULL_TAG, "BlackOrc", DB_VARS);
+		SetStringValue(QUEST+NUM_CREATURES, "3", DB_VARS);  
+		break;
+  }
+  
+  QUEST = "boss_heads";  // 10-15
+  SetStringValue(QUEST+REWARD_GOLD, "150", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "150", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  switch (d3())
+  {
+    case 1:
+		SetStringValue(QUEST+QUEST_TYPE, RETRIEVE, DB_VARS);
+		SetStringValue(QUEST+DESCRIPTION,
+		   "The plague has brought more danger to our village, desperate creatures that will not live alongside us and need to be " +
+		   "culled.  Bring me two heads from creatures that mean us harm.",
+		   DB_VARS);
+		SetStringValue(QUEST+ITEM_TAG, "GS_HEAD_EVIL", DB_VARS);
+		SetStringValue(QUEST+NUM_ITEMS, "2", DB_VARS);
+		break;
+	case 2:
+		SetStringValue(QUEST+QUEST_TYPE, CULL, DB_VARS);
+		SetStringValue(QUEST+CULL_TAG, "NW_GHOUL", DB_VARS);
+		SetStringValue(QUEST+NUM_CREATURES, "10", DB_VARS);  
+		SetStringValue(QUEST+DESCRIPTION,
+		   "Ghouls roam the Merivale valley, on the far side of our outpost.  While human raids mean we're not yet ready to start purifying the area, " +
+		   "we should get started on removing the undead.  Destroy ten of the ghouls please.",
+		   DB_VARS);
+		break;	
+	case 3:
+	    SetStringValue(QUEST+QUEST_TYPE, PATROL, DB_VARS);
+		SetStringValue(QUEST+AREA_TAGS, "MerivaleAbandonedGrove", DB_VARS);
+		SetStringValue(QUEST+DESCRIPTION,
+		   "On the far side of the Merivale valley, well to the south of the outpost, is a forest of giant mushrooms.  Just where the trees end and the mushrooms begin, " +
+		   "there is an old grove to the west of the road.  It's a place of power, and worth checking that that power isn't behaving erratically.  Go and check, please, and let me know what you find.",
+		   DB_VARS);
+		break;   
+  }
+  
 }

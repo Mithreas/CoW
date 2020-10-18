@@ -44,7 +44,7 @@ void OnPageInit(string sPage)
         {
             string sServing = GetDeity(oSpeaker);
             if (sServing == "") sServing = GS_T_16777332;
-            dlgSetPrompt("You are serving "+sServing+". You can change your belief by selecting a deity from this book. It is only possible to choose deities that convene with your character. If you turn away from your deity it will punish you with a loss of 500 experience points.");
+            dlgSetPrompt("You are serving "+sServing+". You can change your belief by selecting a deity from this book. It is only possible to choose deities that convene with your character. If you turn away from your deity you will lose all your Piety.");
             dlgAddResponseTalk(FB_RESPONSES, "The Seven Divines");
             dlgAddResponseTalk(FB_RESPONSES, "Deities of Nature");
             dlgAddResponseTalk(FB_RESPONSES, "Deities of Magic");

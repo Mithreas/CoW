@@ -8,6 +8,7 @@ void main()
 {
     object oUsedBy = GetLastUsedBy();
     if (! GetIsPC(oUsedBy)) return;
+	
     string sTarget = GetLocalString(OBJECT_SELF, "GS_TARGET");
     int nGender    = GetLocalInt(OBJECT_SELF, "GS_GENDER");
     int nSize      = GetLocalInt(OBJECT_SELF, "GS_SIZE");

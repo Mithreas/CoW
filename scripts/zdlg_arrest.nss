@@ -9,7 +9,7 @@
 #include "inc_crime"
 #include "nw_i0_generic"
 
-const string MAIN_MENU   = "main_options";
+const string MAIN_MENU   = "arr_main_options";
 const string FALSE_ALARM = "false_alarm";
 
 void Init()

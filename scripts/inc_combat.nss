@@ -8,6 +8,7 @@
 #include "inc_combat3"
 #include "inc_flag"
 #include "inc_time"
+#include "x0_i0_position"
 
 //void main() {}
 
@@ -118,6 +119,8 @@ int gsCBTalentFeint(object oTarget);
 int gsCBTalentParry(object oTarget);
 // added by Dunshine, Gonne NPC functions
 int gsCBTalentGonne(object oTarget);
+// Delayed (telegraphed) attacks.
+int gsCBTelegraphAttack();
 
 //caller issues requests reinforcement if required
 void gsCBRequestReinforcement();
@@ -204,6 +207,7 @@ object gsCBGetAttackTarget(object oObject = OBJECT_SELF, object oTarget = OBJECT
         oTarget = gsCBGetLastAttackTarget(oObject);
 
         if (! GetIsObjectValid(oTarget) ||
+		    ! GetIsEnemy(oTarget) ||
             GetPlotFlag(oTarget) ||
             GetIsDead(oTarget) ||
             ! gsCBGetIsEnemy(oTarget, oObject) || //<<--Modified by Space Pirate March 2011
@@ -648,10 +652,10 @@ void gsCBDetermineCombatRound(object oTarget = OBJECT_INVALID)
         string sFlavor = GetLocalString(OBJECT_SELF,"GVD_TRUESTRIKE_FLAVOR");
         if (sFlavor == "") {
           // default flavor
-          sFlavor = "Suddenly the creatures attacks become more dangerous";
+          sFlavor = "*" + GetName(OBJECT_SELF) + " gets lucky...*";
         }
-        // do a floating text string on the target, so PCs can see them
-        FloatingTextStringOnCreature(sFlavor, oTarget);
+        // Speak the string as floating text on NPCs won't be visible to PCs
+        SpeakString(sFlavor);
 
         // apply effect
         effect eTrueStrike = EffectAttackIncrease(20);
@@ -842,6 +846,7 @@ void gsCBDetermineCombatRound(object oTarget = OBJECT_INVALID)
     //primary
     if (gsCBTalentEvadeDarkness())           return;
     if (gsCBTalentDragonWing(oTarget, TRUE)) return;
+	if (gsCBTelegraphAttack())               return;
 
     //defensive
     if (Random(100) >= nAttack)
@@ -2038,6 +2043,54 @@ int gsCBTalentEvadeDarkness()
     }
 
     return FALSE;
+}
+//----------------------------------------------------------------
+int gsCBTelegraphAttack()
+{
+  // This method uses two new custom AOEs to telegraph the area that will be affected by an attack in 6s time. 
+  // Anyone who doesn't get out of the way will be hit for 1d6 damage per caster hit dice with no save or attack roll.
+  // Don't telegraph an attack two rounds running. 
+  if (GetLocalInt(OBJECT_SELF, "TELEGRAPHED"))
+  {
+    DeleteLocalInt(OBJECT_SELF, "TELEGRAPHED");
+	return FALSE;
+  }
+  
+  if (d3() == 1) return FALSE; 
+  
+  // Location calculations
+  location lLocation = GetLocation(OBJECT_SELF);
+  float fDir = GetFacing(OBJECT_SELF);
+  location lAheadLocation = GenerateNewLocation(OBJECT_SELF, 3.0f, fDir, fDir);
+  
+  if (GetKnowsFeat(FEAT_SPELL_FOCUS_NECROMANCY, OBJECT_SELF)) 
+  {
+    SpeakString(GetName(OBJECT_SELF) + " readies Negative Burst!");
+    ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectMovementSpeedDecrease(99), OBJECT_SELF, 6.0f);
+    ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_PULSE_NEGATIVE), OBJECT_SELF);
+    ApplyEffectAtLocation(DURATION_TYPE_TEMPORARY, EffectAreaOfEffect(55, "", "evt_custatk_hb", ""), lLocation, 7.0f);  
+	return TRUE;  
+  }
+  else if (GetKnowsFeat(FEAT_SPELL_FOCUS_EVOCATION, OBJECT_SELF))
+  {
+    SpeakString(GetName(OBJECT_SELF) + " readies Cold Strike!");
+    ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectMovementSpeedDecrease(99), OBJECT_SELF, 6.0f);
+    SetLocalInt(OBJECT_SELF, "DAMAGE_TYPE", DAMAGE_TYPE_COLD);
+    SetLocalInt(OBJECT_SELF, "VFX_IMP", VFX_IMP_FROST_L);
+    ApplyEffectAtLocation(DURATION_TYPE_TEMPORARY, EffectAreaOfEffect(54, "", "front_attack", ""), lAheadLocation, 7.0f);
+	return TRUE;
+  }
+  else if (GetKnowsFeat(FEAT_IMPROVED_WHIRLWIND, OBJECT_SELF))
+  {
+    SpeakString(GetName(OBJECT_SELF) + " readies Greater Whirlwind Attack!");
+    SetLocalInt(OBJECT_SELF, "DAMAGE_TYPE", DAMAGE_TYPE_SLASHING);
+    SetLocalInt(OBJECT_SELF, "VFX_IMP", VFX_IMP_WALLSPIKE);
+    ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectMovementSpeedDecrease(99), OBJECT_SELF, 6.0f);
+    ApplyEffectAtLocation(DURATION_TYPE_TEMPORARY, EffectAreaOfEffect(55, "", "evt_custatk_hb", ""), lLocation, 7.0f); 
+	return TRUE;
+  }
+  
+  return FALSE; 
 }
 //----------------------------------------------------------------
 void gsCBRequestReinforcement()

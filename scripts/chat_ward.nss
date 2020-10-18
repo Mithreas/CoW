@@ -35,7 +35,8 @@ void main()
         int nCasterLevel = GetLevelByClass(CLASS_TYPE_WIZARD, oSpeaker) +
                            GetLevelByClass(CLASS_TYPE_SORCERER, oSpeaker) +
                            GetLevelByClass(CLASS_TYPE_CLERIC, oSpeaker) +
-                           GetLevelByClass(CLASS_TYPE_DRUID, oSpeaker);
+						   GetLevelByClass(CLASS_TYPE_FAVOURED_SOUL, oSpeaker) +
+                           GetLevelByClass(CLASS_TYPE_DRUID, oSpeaker) + 2;
         int nDuration = nCasterLevel / 2;
 		
 		if (GetLevelByClass(CLASS_TYPE_CLERIC, oSpeaker) < 17 &&
@@ -54,7 +55,8 @@ void main()
                     OBJECT_SELF,
                     FALSE);
         }
-        else if (sParams == "teleport")
+        
+		if (sParams == "teleport")
         {
           object oForbidding = CreateObject(OBJECT_TYPE_PLACEABLE,
                                             "abjurer_ward",

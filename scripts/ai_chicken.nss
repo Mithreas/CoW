@@ -10,6 +10,7 @@ void main()
         break;
 
     case GS_EV_ON_COMBAT_ROUND_END:
+	    ClearAllActions();
 //................................................................
 
         break;
@@ -43,11 +44,13 @@ void main()
         break;
 
     case GS_EV_ON_PERCEPTION:
+	    ClearAllActions();
 //................................................................
 
         break;
 
     case GS_EV_ON_PHYSICAL_ATTACKED:
+	    ClearAllActions();
 //................................................................
 
         break;

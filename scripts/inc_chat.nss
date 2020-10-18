@@ -1039,7 +1039,7 @@ string fbDoLooksAndGetString(object first, object second)
                     sMessage += StringToRGBString("Something is off about this creature.  It may be a polymorphed individual!", "599");
                 } else {
                 sMessage += StringToRGBString("You have broken this character's disguise. They are ", "599") +
-                            StringToRGBString(GetName(second), "199") +
+                            StringToRGBString(GetName(second, TRUE), "199") +
                             StringToRGBString("!", "599");
                 }
             }

@@ -27,6 +27,7 @@
 #include "nwnx_object"
 #include "nwnx_alts"
 #include "nwnx_admin"
+#include "inc_associates"
 #include "inc_pc"
 #include "inc_iprop"
 #include "inc_generic"
@@ -630,6 +631,9 @@ void btribeCreateTribesmen(object oPC)
                                      "tribesman_" + sGender,
                                      GetLocation(oPC));
 
+    // Flag that the master can RP the tribesmen.
+	SetCanMasterSpeakThroughAssociate(oTribesman, TRUE);
+
     // Set the subrace ,appearance etc
     SetSubRace(oTribesman, GetSubRace(oPC));
     // SpeakString("Appearance: " + IntToString(GetAppearanceType(oPC)));
@@ -658,9 +662,13 @@ void btribeCreateTribesmen(object oPC)
     AssignCommand(oTribesman, btribeEquipTribesmanArmor(oGarb));
 
 	// Sawaki, 7-27-2018; TribalLVL determined via RageFeat
-	int nLevel = GetLevelByClass(CLASS_TYPE_BARBARIAN, oPC) + GetHitDice(oPC) / 2;
+	int nLevel = GetLevelByClass(CLASS_TYPE_BARBARIAN, oPC) + (GetHitDice(oPC) / 2);
 	
-	if (GetHasFeat(330, oPC)) // barb rage 6
+	if (GetHasFeat(331, oPC)) // barb rage 7
+	{  
+	  nLevel += 7;
+	}
+	else if (GetHasFeat(330, oPC)) // barb rage 6
 	{  
 	  nLevel += 6;
 	}

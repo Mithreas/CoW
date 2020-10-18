@@ -233,8 +233,6 @@ void miFLRemoveFlightAppearance(object oCreature)
   
   while (GetIsEffectValid(eEffect))
   {
-    if (GetEffectType(eEffect) == EFFECT_TYPE_CUTSCENEGHOST)
-	  RemoveEffect (oCreature, eEffect);
 	if (GetEffectDurationType(eEffect) == DURATION_TYPE_PERMANENT &&
 	    GetEffectType(eEffect) == EFFECT_TYPE_VISUALEFFECT)
       RemoveEffect(oCreature, eEffect);

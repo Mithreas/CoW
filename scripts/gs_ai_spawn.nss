@@ -387,6 +387,12 @@ void main()
         ExecuteScript( GetLocalString(OBJECT_SELF, "AR_SCRIPT"), OBJECT_SELF );
     }	
 	
+	// Give 10% of monsters a 5% chance of activating truestrike as a lucky hit (see inc_combat). 
+	if (!GetLocalInt(OBJECT_SELF, "GVD_TRUESTRIKE") && d10(1) == 10)
+	{
+	  SetLocalInt(OBJECT_SELF, "GVD_TRUESTRIKE", 5);
+	}
+	
     // Apply weather effects.
     if (ALLOW_WEATHER) miWHDoWeatherEffects(oSelf);
 

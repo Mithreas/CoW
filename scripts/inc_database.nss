@@ -532,7 +532,7 @@ void SetPersistentString(object oObject, string sVarName, string sValue, int iEx
     {
 	    sPlayer = GetLocalString(oObject, "GS_PC_ID");
         if (sPlayer == "") sPlayer = SQLEncodeSpecialChars(GetPCPlayerName(oObject));
-        sTag = SQLEncodeSpecialChars(GetName(oObject));
+        sTag = SQLEncodeSpecialChars(GetName(oObject, TRUE));
     }
     else
     {
@@ -574,7 +574,7 @@ string GetPersistentString(object oObject, string sVarName, string sTable="pwdat
     {
 	    sPlayer = GetLocalString(oObject, "GS_PC_ID");
         if (sPlayer == "") sPlayer = SQLEncodeSpecialChars(GetPCPlayerName(oObject));
-        sTag = SQLEncodeSpecialChars(GetName(oObject));
+        sTag = SQLEncodeSpecialChars(GetName(oObject, TRUE));
     }
     else
     {
@@ -629,7 +629,7 @@ int GetPersistentInt(object oObject, string sVarName, string sTable = "pwdata")
     {
 	    sPlayer = GetLocalString(oObject, "GS_PC_ID");
         if (sPlayer == "") sPlayer = SQLEncodeSpecialChars(GetPCPlayerName(oObject));
-        sTag = SQLEncodeSpecialChars(GetName(oObject));
+        sTag = SQLEncodeSpecialChars(GetName(oObject, TRUE));
     }
     else
     {
@@ -665,7 +665,7 @@ float GetPersistentFloat(object oObject, string sVarName, string sTable = "pwdat
     {
 	    sPlayer = GetLocalString(oObject, "GS_PC_ID");
         if (sPlayer == "") sPlayer = SQLEncodeSpecialChars(GetPCPlayerName(oObject));
-        sTag = SQLEncodeSpecialChars(GetName(oObject));
+        sTag = SQLEncodeSpecialChars(GetName(oObject, TRUE));
     }
     else
     {
@@ -716,7 +716,7 @@ void DeletePersistentVariable(object oObject, string sVarName, string sTable = "
     {
 	    sPlayer = GetLocalString(oObject, "GS_PC_ID");
         if (sPlayer == "") sPlayer = SQLEncodeSpecialChars(GetPCPlayerName(oObject));
-        sTag = SQLEncodeSpecialChars(GetName(oObject));
+        sTag = SQLEncodeSpecialChars(GetName(oObject, TRUE));
     }
     else
     {

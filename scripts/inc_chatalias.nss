@@ -64,6 +64,7 @@ void chatInitAliases()
     chatAddAlias("yug", "stream o yug");
     chatAddAlias("dem", "stream o dem");
     chatAddAlias("mum", "stream u mum");
+    chatAddAlias("gho", "stream u gho");
     chatAddAlias("vam", "stream u vam");
     chatAddAlias("sha", "stream d sha");
 

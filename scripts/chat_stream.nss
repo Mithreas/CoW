@@ -173,12 +173,18 @@ void main()
             SetActiveSummonStream(OBJECT_SELF, STREAM_TYPE_UNDEAD, STREAM_UNDEAD_ZOMBIE);
             return;
         }
-        else if(sStreamElement == "vam" || sStreamElement == "gho")
+        else if (sStreamElement == "vam")
         {
             // Ghoul
             SetActiveSummonStream(OBJECT_SELF, STREAM_TYPE_UNDEAD, STREAM_UNDEAD_GHOUL);
             return;
         }
+		else if (sStreamElement == "gho")
+		{
+		    // Ghost
+            SetActiveSummonStream(OBJECT_SELF, STREAM_TYPE_UNDEAD, STREAM_UNDEAD_GHOST);
+            return;
+		}
     }
     SendMessageToPC(OBJECT_SELF, "Stream type either invalid or unavailable. Type '-stream ?' for help, or '-stream' for a list of available streams.");
 }

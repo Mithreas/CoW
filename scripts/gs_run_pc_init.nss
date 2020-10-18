@@ -140,7 +140,7 @@ void gvdCreateBaseInventoryForClass() {
         _gvd_CopyItemToPC(oItem);       
       } else if (GetHasFeat(FEAT_WEAPON_FOCUS_LONGBOW) && ((GetBaseItemType(oItem) == BASE_ITEM_LONGBOW) || (GetBaseItemType(oItem) == BASE_ITEM_ARROW))) {   
         _gvd_CopyItemToPC(oItem);       
-      } else if (GetHasFeat(FEAT_WEAPON_FOCUS_SHORTBOW) && ((GetBaseItemType(oItem) == BASE_ITEM_LONGBOW) || (GetBaseItemType(oItem) == BASE_ITEM_ARROW))) {     
+      } else if (GetHasFeat(FEAT_WEAPON_FOCUS_SHORTBOW) && ((GetBaseItemType(oItem) == BASE_ITEM_SHORTBOW) || (GetBaseItemType(oItem) == BASE_ITEM_ARROW))) {     
         _gvd_CopyItemToPC(oItem);       
       } else if (GetHasFeat(FEAT_WEAPON_FOCUS_SHORT_SWORD) && (GetBaseItemType(oItem) == BASE_ITEM_SHORTSWORD)) {   
         _gvd_CopyItemToPC(oItem);       

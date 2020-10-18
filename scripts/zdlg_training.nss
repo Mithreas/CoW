@@ -350,7 +350,7 @@ void init_feat_list (object oPC)
   add_feat_to_list(oPC, "Improved Parry", FEAT_IMPROVED_PARRY);
   add_feat_to_list(oPC, "Improved Power Attack", FEAT_IMPROVED_POWER_ATTACK);
   add_feat_to_list(oPC, "Improved Unarmed Strike", FEAT_IMPROVED_UNARMED_STRIKE);
-  add_feat_to_list(oPC, "Improved 2-Weapon Fighting", FEAT_IMPROVED_TWO_WEAPON_FIGHTING);
+  if (!GetIsArcher(oPC)) add_feat_to_list(oPC, "Improved 2-Weapon Fighting", FEAT_IMPROVED_TWO_WEAPON_FIGHTING);
   add_feat_to_list(oPC, "Knockdown", FEAT_KNOCKDOWN);
   add_feat_to_list(oPC, "Mobility", FEAT_MOBILITY);
   add_feat_to_list(oPC, "Point Blank Shot", FEAT_POINT_BLANK_SHOT);
@@ -794,7 +794,7 @@ void init_feat_list (object oPC)
     add_feat_to_list(oPC, "Epic Will", FEAT_EPIC_WILL);
     //add_feat_to_list(oPC, "Undead Shape", FEAT_EPIC_WILD_SHAPE_UNDEAD);
 
-    if (GetLevelByClass(CLASS_TYPE_FIGHTER, oPC) && GetLevelByClass(CLASS_TYPE_FIGHTER, oNPC))
+    if (GetLevelByClass(CLASS_TYPE_FIGHTER, oPC))
     {
       //add_feat_to_list(oPC, "Epic Weapon Spec: Bastard Sword", FEAT_EPIC_WEAPON_SPECIALIZATION_BASTARDSWORD, FALSE, CLASS_TYPE_FIGHTER);
       add_feat_to_list(oPC, "Epic Weapon Spec: Battleaxe", FEAT_EPIC_WEAPON_SPECIALIZATION_BATTLEAXE, FALSE, CLASS_TYPE_FIGHTER);

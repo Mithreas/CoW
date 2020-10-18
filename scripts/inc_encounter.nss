@@ -6,6 +6,7 @@
 #include "inc_location"
 #include "inc_log"
 #include "inc_subrace"
+#include "inc_xp"
 
 //void main() {}
 
@@ -260,7 +261,7 @@ float gsENGetRatingAtLocation(location lLocation, float fRange = 40.0)
             if (GetIsPC(oCreature))
             {
                 nSubRace         = gsSUGetSubRaceByName(GetSubRace(oCreature));
-                fRating          = IntToFloat(gsSUGetECL(nSubRace, GetHitDice(oCreature)));
+                fRating          = gsXPGetPCChallengeRating(oCreature, 0.0f, oCreature);
                 nEquipmentValue  = 0;
 
                 oEquipment       = GetItemInSlot(INVENTORY_SLOT_ARMS,      oCreature);

@@ -30,7 +30,7 @@ void main()
     }
 
     miDVGivePoints(OBJECT_SELF, ELEMENT_LIFE, 25.0);
-    SummonAnimalCompanion(OBJECT_SELF);
+    SummonAnimalCompanion(OBJECT_SELF);	
 	gsSTDoCasterDamage(OBJECT_SELF, 5);
 	IncrementRemainingFeatUses(OBJECT_SELF, FEAT_ANIMAL_COMPANION);  	
 }

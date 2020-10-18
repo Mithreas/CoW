@@ -483,22 +483,22 @@ void processPotions(string sMenuAlchemyPotions)
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAlchemyPotions, "Potion of Cure Critical Wounds", "NW_IT_MPOTION003", 5);
   CnrRecipeAddComponent(sKeyToRecipe, "cnremptyflask", 1, 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnraloeleaf", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrgingerroot", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnraloeleaf", 3);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrgingerroot", 3);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 14);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 140, 140);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAlchemyPotions, "Potion of Heal", "NW_IT_MPOTION012", 5);
   CnrRecipeAddComponent(sKeyToRecipe, "cnremptyflask", 1, 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnraloeleaf", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrginsengroot", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnraloeleaf", 5);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrginsengroot", 5);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 16);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 160, 160);
   
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAlchemyPotions, "Potion of Attunement", "mi_potion_attune", 1);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAlchemyPotions, "Potion of Attunement", "mi_potion_attune", 5);
   CnrRecipeAddComponent(sKeyToRecipe, "cnremptyflask", 1, 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnringotsil", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cow_gemsapp", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotsil", 5);
+  CnrRecipeAddComponent(sKeyToRecipe, "cow_gemsapp", 5);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 18);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 180, 180);
   

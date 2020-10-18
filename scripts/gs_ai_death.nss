@@ -340,7 +340,7 @@ void main()
 
         // We only want to spawn loot on players, and also, ensure that they are killing things near their level.
         // Spawn these directly on the corpse; we want this type of loot to bypass the other systems.
-        if (GetIsPC(oKiller) && fChallengeRating >= GetChallengeRating(oKiller) - 5.0f)
+        if (GetIsPC(oKiller) && fChallengeRating >= gsXPGetPCChallengeRating(oKiller, 5.0f, OBJECT_SELF) - 5.0f)
         {
             if (fChallengeRating >= 20.0)
             {

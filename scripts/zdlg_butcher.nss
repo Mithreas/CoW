@@ -12,7 +12,7 @@
 #include "inc_zdlg"
 #include "nw_i0_generic"
 
-const string MAIN_MENU   = "main_options";
+const string MAIN_MENU   = "btc_main_options";
 const string PAGE_2 = "page_2";
 const string END = "end";
 
@@ -65,7 +65,7 @@ void PageInit()
     }
 
     GiveGoldToCreature(oPC, nGold);
-    if (GetHitDice(oPC) < 6) gsXPGiveExperience(oPC, nGold);
+    if (GetHitDice(oPC) < 6) gsXPGiveExperience(oPC, nGold > 20000 ? 20000 : nGold);
 
     SetDlgPrompt("Great, that'll feed us for a while.");
     SetDlgResponseList(END, OBJECT_SELF);

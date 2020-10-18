@@ -9,7 +9,7 @@
 #include "inc_zdlg"
 #include "nw_i0_generic"
 
-const string MAIN_MENU   = "main_options";
+const string MAIN_MENU   = "knk_main_options";
 const string PAGE_2 = "page_2";
 const string PAGE_3 = "page_3";
 const string PAGE_4 = "page_4";

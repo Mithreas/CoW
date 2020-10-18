@@ -20,9 +20,9 @@ void main()
 
     SetRemainingFeatUses(OBJECT_SELF, 1084, 1);
     // Cooldown check.
-    if(GetIsTimelocked(OBJECT_SELF, "Last Stand"))
+    if(GetIsTimelocked(OBJECT_SELF, "Final Stand"))
     {
-        TimelockErrorMessage(OBJECT_SELF, "Last Stand");
+        TimelockErrorMessage(OBJECT_SELF, "Final Stand");
         return;
     }
 
@@ -111,7 +111,7 @@ void main()
     }
 
     // Cooldown
-    SetTimelock(OBJECT_SELF, FloatToInt(TurnsToSeconds(3)), "Last Stand", 60, 30);
+    SetTimelock(OBJECT_SELF, FloatToInt(TurnsToSeconds(3)), "Final Stand", 60, 30);
 }
 
 /* Old Aura attempts at implementation

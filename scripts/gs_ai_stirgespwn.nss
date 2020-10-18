@@ -1,4 +1,5 @@
 #include "inc_event"
+#include "x0_i0_position"
 
 void main()
 {
@@ -20,7 +21,7 @@ void main()
 		if (sResref == "") sResref = "ar_cr_doomstirge";
         while (nCount > 0)
         {
-          CreateObject(OBJECT_TYPE_CREATURE, sResref, GetLocation(OBJECT_SELF), TRUE);
+          CreateObject(OBJECT_TYPE_CREATURE, sResref, GetBehindLocation(OBJECT_SELF), TRUE);
           nCount--;
         }
     }

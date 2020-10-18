@@ -9,7 +9,7 @@
 #include "inc_zdlg"
 #include "nw_i0_generic"
 
-const string MAIN_MENU   = "main_options";
+const string MAIN_MENU   = "bat_main_options";
 const string PAGE_2 = "page_2";
 const string PAGE_3 = "page_3";
 const string END = "end";
@@ -82,7 +82,7 @@ void PageInit()
     }
 
     GiveGoldToCreature(oPC, nGold);
-    if (GetHitDice(oPC) < 6) gsXPGiveExperience(oPC, nXP);
+    if (GetHitDice(oPC) < 6) gsXPGiveExperience(oPC, nGold > 20000 ? 20000 : nGold);
 
     SetDlgPrompt("Thank-you, deary. If you find any more, bring them to me!");
     SetDlgResponseList(END, OBJECT_SELF);

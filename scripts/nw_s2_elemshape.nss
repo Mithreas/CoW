@@ -178,7 +178,36 @@ void main()
         }
     }
 
-
+    int nTimeout = GetLocalInt(OBJECT_SELF, "ESHAPE_TIMEOUT");
+	if (GetIsPC(OBJECT_SELF) && gsTIGetActualTimestamp() > nTimeout)
+	{
+	  SetLocalInt(OBJECT_SELF, "ESHAPE_TIMEOUT", gsTIGetActualTimestamp() + 15*60);
+	  
+      switch (nPoly)
+	  {
+	    case POLYMORPH_TYPE_HUGE_WATER_ELEMENTAL:
+	    case POLYMORPH_TYPE_ELDER_WATER_ELEMENTAL:
+	    case POLYMORPH_TYPE_MONOLITH_WATER_ELEMENTAL:
+	      miDVGivePoints(OBJECT_SELF, ELEMENT_WATER, 10.0f);
+		  break;
+	    case POLYMORPH_TYPE_HUGE_EARTH_ELEMENTAL:
+	    case POLYMORPH_TYPE_ELDER_EARTH_ELEMENTAL:
+	    case POLYMORPH_TYPE_MONOLITH_EARTH_ELEMENTAL:
+	      miDVGivePoints(OBJECT_SELF, ELEMENT_EARTH, 10.0f);
+		  break;
+	    case POLYMORPH_TYPE_HUGE_FIRE_ELEMENTAL:
+	    case POLYMORPH_TYPE_ELDER_FIRE_ELEMENTAL:
+	    case POLYMORPH_TYPE_MONOLITH_FIRE_ELEMENTAL:
+	      miDVGivePoints(OBJECT_SELF, ELEMENT_FIRE, 10.0f);
+		  break;
+	    case POLYMORPH_TYPE_HUGE_AIR_ELEMENTAL:
+	    case POLYMORPH_TYPE_ELDER_AIR_ELEMENTAL:
+	    case POLYMORPH_TYPE_MONOLITH_AIR_ELEMENTAL:
+	      miDVGivePoints(OBJECT_SELF, ELEMENT_AIR, 10.0f);
+		  break;
+	  }
+    }
+	
     ePoly = EffectPolymorphEx(nPoly, FALSE, OBJECT_SELF);
     ePoly = ExtraordinaryEffect(ePoly);
 

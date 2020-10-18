@@ -9,13 +9,14 @@
 #include "inc_reputation"
 #include "inc_zdlg"
 
-const string MAIN_MENU  = "ranks_options";
-const string DONE       = "ranks_done";
-const string PAGE_ME    = "ranks_aboutme";
-const string PAGE_OTH   = "ranks_aboutothers";
+const string MAIN_MENU   = "ranks_options";
+const string DONE        = "ranks_done";
+const string PAGE_ME     = "ranks_aboutme";
+const string PAGE_OTH    = "ranks_aboutothers";
 
-const string MEMBERS    = "ranks_members";
-const string MEMBER_IDS = "ranks_mbr_ids";
+const string MEMBERS     = "ranks_members";
+const string MEMBER_ID   = "ranks_mbr_id";
+const string MEMBER_REPS = "ranks_mbr_reps";
 
 void Init()
 {
@@ -38,7 +39,7 @@ void PageInit()
   object oPC   = GetPcDlgSpeaker();
   object oNPC  = OBJECT_SELF;
   
-  if (GetFaction(oNPC) != GetPCFaction(oPC))
+  if (CheckFactionNation(oNPC) != GetPCFaction(oPC))
   {
     SetDlgPrompt("I don't think you belong here.  I suggest you leave.");
 	SetDlgResponseList(DONE);
@@ -90,12 +91,12 @@ void PageInit()
     SQLExecDirect("SELECT a.tag, a.val FROM rep_pcrep AS a INNER JOIN gs_pc_data AS b ON a.player = b.id WHERE DATE_SUB(CURDATE(), INTERVAL 30 DAY) < b.modified AND a.name LIKE '%" + sFaction + "' AND b.deleted = 0 ORDER BY CAST(a.val as unsigned) DESC"); 
 
     DeleteList(MEMBERS);
-	DeleteList(MEMBER_IDS);
+	DeleteList(MEMBER_REPS);
 
     while (SQLFetch())
     {
 	  AddStringElement(SQLGetData(1), MEMBERS);
-	  AddStringElement(SQLGetData(2), MEMBER_IDS);
+	  AddStringElement(SQLGetData(2), MEMBER_REPS);
     }	
 	
 	SetDlgPrompt("The following people are in active service at present.  Let me know if you wish to know more about any of them.");
@@ -103,13 +104,17 @@ void PageInit()
   }
   else if (sPage == MEMBERS)
   {
-    string sFaction = IntToString(GetPCFaction(oPC));
-    int nMemberID   = GetLocalInt(OBJECT_SELF, MEMBER_IDS);
-	int nMemberRep  = StringToInt(GetStringElement(nMemberID, MEMBER_IDS));
-	struct repRank rRank   = GetPCRank(sFaction, nMemberRep);
+    string sFaction = GetFactionName(miBAGetBackground(oPC));
+    int nMemberID   = GetLocalInt(OBJECT_SELF, MEMBER_ID);
+	int nMemberRep  = StringToInt(GetStringElement(nMemberID, MEMBER_REPS));
+	struct repRank rRank = GetPCRank(sFaction, nMemberRep);
 	string sLevel;
-		
-	if (GetRacialType(oNPC) == RACIAL_TYPE_HUMAN)
+	
+	if (rRank.sName == "Outcast")
+	{
+	  sLevel = "Outcast";
+	}		
+	else if (GetRacialType(oNPC) == RACIAL_TYPE_HUMAN)
 	{
 	  switch (rRank.nLevel)
 	  {
@@ -128,7 +133,7 @@ void PageInit()
 	  }
 	}
 	
-	SetDlgPrompt(GetStringElement(nMemberID, MEMBER_IDS) + " is a " + rRank.sName + " with all the rights and privileges of a " + sLevel + ".");
+	SetDlgPrompt(GetStringElement(nMemberID, MEMBERS) + " is a " + rRank.sName + " with all the rights and privileges of a " + sLevel + ".");
 	SetDlgResponseList(DONE);
   }
 }
@@ -141,7 +146,7 @@ void HandleSelection()
   object oNPC    = OBJECT_SELF;
   string sResponseList   = GetDlgResponseList();
   
-  if (GetFaction(oNPC) != GetPCFaction(oPC))
+  if (CheckFactionNation(oNPC) != GetPCFaction(oPC))
   {
     EndDlg();
 	return;
@@ -168,7 +173,7 @@ void HandleSelection()
   }
   else if (sPage == PAGE_OTH)
   {
-    SetLocalInt(OBJECT_SELF, MEMBER_IDS, selection);
+    SetLocalInt(OBJECT_SELF, MEMBER_ID, selection);
 	SetDlgPageString(MEMBERS);
   }
   else if (sPage == MEMBERS)

@@ -700,7 +700,7 @@ int INTERNAL_TailorMod1Array(object item, object creature, string tag, int prope
             }
         }
 
-        // Also, add discipline and heal, because those are universally useful.
+        // Also, add appraise, discipline and heal, because those are universally useful.
         if (!IntArray_Contains(item, tag, SKILL_DISCIPLINE))
         {
             IntArray_PushBack(item, tag, SKILL_DISCIPLINE);
@@ -709,6 +709,11 @@ int INTERNAL_TailorMod1Array(object item, object creature, string tag, int prope
         if (!IntArray_Contains(item, tag, SKILL_HEAL))
         {
             IntArray_PushBack(item, tag, SKILL_HEAL);
+        }
+
+        if (!IntArray_Contains(item, tag, SKILL_APPRAISE))
+        {
+            IntArray_PushBack(item, tag, SKILL_APPRAISE);
         }
     }
 
@@ -1015,6 +1020,7 @@ int INTERNAL_GetItemTypeFromItem(object item)
         case BASE_ITEM_BATTLEAXE:
         case BASE_ITEM_CLUB:
         case BASE_ITEM_DAGGER:
+		case BASE_ITEM_DART:
         case BASE_ITEM_DIREMACE:
         case BASE_ITEM_DOUBLEAXE:
         case BASE_ITEM_DWARVENWARAXE:

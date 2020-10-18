@@ -204,6 +204,87 @@ void DoUnderwaterHeartbeat(object oPC)
   }	
 }
 //----------------------------------------------------------------
+void DoDeathIllusions()
+{
+  // Key the illusions off the first PC to enter.
+  object oPC = GetEnteringObject();
+  
+  // What type of illusions to generate?
+  // - High Death attunement = bones
+  // - High Fire attunement = fire
+  // - Elf or druid = trees
+  // - Human = city
+  // - Else random statues
+  DeleteList("ILLUSIONS");
+  
+  if (miDVGetRelativeAttunement(oPC, ELEMENT_DEATH) == 5)
+  {
+    AddStringElement("nw_plc_trogthron", "ILLUSIONS");
+    AddStringElement("nw_plc_hungdwfsk", "ILLUSIONS");
+    AddStringElement("x3_plc_skelmage", "ILLUSIONS");
+    AddStringElement("x3_plc_skelwar2", "ILLUSIONS");
+    AddStringElement("x3_plc_skelwar", "ILLUSIONS");
+    AddStringElement("plc_pileskulls", "ILLUSIONS");
+  }
+  else if (miDVGetRelativeAttunement(oPC, ELEMENT_FIRE) == 5)
+  {
+    AddStringElement("plc_flamelarge", "ILLUSIONS");
+    AddStringElement("plc_flamemedium", "ILLUSIONS");
+    AddStringElement("plc_flamesmall", "ILLUSIONS");
+  }
+  else if (GetRacialType(oPC) == RACIAL_TYPE_ELF || GetLevelByClass(CLASS_TYPE_DRUID, oPC))
+  {
+    AddStringElement("x3_plc_treel009", "ILLUSIONS");
+    AddStringElement("x3_plc_treel008", "ILLUSIONS");
+    AddStringElement("x3_plc_treel007", "ILLUSIONS");
+    AddStringElement("x3_plc_treel006", "ILLUSIONS");
+    AddStringElement("x3_plc_treel005", "ILLUSIONS");
+    AddStringElement("x3_plc_treel004", "ILLUSIONS");
+    AddStringElement("x3_plc_treel003", "ILLUSIONS");
+    AddStringElement("x3_plc_treel002", "ILLUSIONS");
+    AddStringElement("x3_plc_treel001", "ILLUSIONS");
+  }
+  else if (GetRacialType(oPC) == RACIAL_TYPE_HUMAN)
+  {
+    AddStringElement("house1", "ILLUSIONS");
+    AddStringElement("house2", "ILLUSIONS");
+    AddStringElement("house3", "ILLUSIONS");
+    AddStringElement("house4", "ILLUSIONS");
+    AddStringElement("house5", "ILLUSIONS");
+    AddStringElement("plaza", "ILLUSIONS");
+    AddStringElement("ruinedplaza", "ILLUSIONS");
+    AddStringElement("ruinedtower", "ILLUSIONS");
+  }
+  else
+  {
+    AddStringElement("x2_plc_statue_f", "ILLUSIONS");
+    AddStringElement("x2_plc_statue_fl", "ILLUSIONS");
+    AddStringElement("x2_plc_statue_mo", "ILLUSIONS");
+    AddStringElement("x0_sphinxstatue", "ILLUSIONS");
+    AddStringElement("plc_statue1", "ILLUSIONS");
+    AddStringElement("plc_statue3", "ILLUSIONS");
+    AddStringElement("x3_plc_gg001", "ILLUSIONS");
+    AddStringElement("x2_plc_statue_la", "ILLUSIONS");
+    AddStringElement("x3_plc_statuec", "ILLUSIONS");
+    AddStringElement("x2_plc_statue_h", "ILLUSIONS");
+    AddStringElement("x3_plc_statuew", "ILLUSIONS");
+  }
+  
+  int nListLength = GetElementCount("ILLUSIONS");
+  object oWP = GetFirstObjectInArea(OBJECT_SELF);
+
+  while (GetIsObjectValid(oWP))
+  {
+    if (GetTag(oWP) == GetTag(OBJECT_SELF) + "_random" && d3() != 1)
+	{
+	  string sResRef = GetStringElement(Random(nListLength), "ILLUSIONS");
+	  CreateObject(OBJECT_TYPE_PLACEABLE, sResRef, GetLocation(oWP));
+	}
+	
+	oWP = GetNextObjectInArea(OBJECT_SELF);
+  }
+}
+//----------------------------------------------------------------
 void gsActivateRecreator(object oRecreator)
 {
     object oObject = CreateObject(GetLocalInt(oRecreator, "GS_TYPE"),
@@ -330,6 +411,14 @@ void main()
     if (! nOverrideDeath)                                  sString += " [" + GS_T_16777295 + "]";
     if (sString != "")                                     SendMessageToPC(oEntering, GS_T_16777296 + ":" + sString);
 
+    // AI_IGNORE can sometimes get set on the wrong PC.  Fix it after one transition.
+	int bIgnore = GetLocalInt(oEntering, "AI_IGNORE");
+	if (bIgnore)
+	{
+	  if (bIgnore == 2) DeleteLocalInt(oEntering, "AI_IGNORE");
+	  else SetLocalInt(oEntering, "AI_IGNORE", 2);
+	}
+
     // Dismount horses
     if (GetIsAreaInterior(oArea) || !GetIsAreaAboveGround(oArea))
     {
@@ -412,7 +501,7 @@ void main()
 	    DoUnderwaterHeartbeat(oEntering);
 	  }	
 	}
-
+	
     //clean up area
     if (nTimestampArea != nTimestamp && GetLocalInt(OBJECT_SELF, "DM_FORCE_ACTIVE") != 1)
     {
@@ -625,6 +714,12 @@ void main()
 
         if (nTimeout && GetLocalInt(OBJECT_SELF, "DM_FORCE_ACTIVE") != 1)
             ExecuteScript("gs_run_cleanarea", oArea);
+			
+		if (GetLocalInt(OBJECT_SELF, "DEATH_ILLUSIONS"))
+        {
+		  DoDeathIllusions();
+        }
+		
         gsARRegisterArea(OBJECT_SELF);
     }
 

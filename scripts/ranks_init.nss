@@ -10,7 +10,7 @@ void ClearTable()
 void Add(string sFaction, int nRank, int nScore, string sName, int nLevel)
 {
   string sSQL = "INSERT INTO "+DB_RANKS+" (faction, rank, score, name, level, expire) VALUES"+
-  "('"+sFaction+"','"+IntToString(nRank)+"','"+IntToString(nScore)+"','"+sName+"',0)";
+  "('"+sFaction+"','"+IntToString(nRank)+"','"+IntToString(nScore)+"','"+sName+"','" + IntToString(nLevel) + "',0)";
   SQLExecDirect(sSQL);
 }
 

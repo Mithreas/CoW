@@ -1,13 +1,18 @@
 #include "inc_pc"
+#include "inc_death"
 #include "inc_text"
-
-const string GS_TEMPLATE_CORPSE_FEMALE = "gs_item016";
-const string GS_TEMPLATE_CORPSE_MALE   = "gs_item017";
 
 void main()
 {
   object oUsedBy = GetLastUsedBy();
   if (! GetIsPC(oUsedBy))              return;
+  
+  if (GetLocalObject(oUsedBy, "GS_CORPSE") == OBJECT_SELF)
+  {
+	MakeLiving(oUsedBy);
+	return;
+  }
+  
   if (GetIsPossessedFamiliar(oUsedBy)) return;
   string sTarget = GetLocalString(OBJECT_SELF, "GS_TARGET");
   object oTarget = gsPCGetPlayerByID(sTarget);

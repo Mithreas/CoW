@@ -125,9 +125,10 @@ int GetNPCCaste(object oNPC);
 struct repRank GetPCRank (string sFaction, int nRepScore)
 {
   string sSQL = "SELECT rank,score,name,level FROM "+DB_RANKS+" WHERE score <= '"+IntToString(nRepScore)+
-                 "' ORDER BY score DESC LIMIT 1";
+                 "' AND faction='" + sFaction + "' ORDER BY score DESC LIMIT 1";
 
   struct repRank rank;
+  rank.sName = "Outcast";
 
   Trace(RANKS, "Submitting query " + sSQL);
   SQLExecDirect(sSQL);
@@ -138,7 +139,7 @@ struct repRank GetPCRank (string sFaction, int nRepScore)
 	rank.nRank = StringToInt(SQLGetData(1));
 	rank.nScore = StringToInt(SQLGetData(2));
 	rank.sName = SQLGetData(3);
-	rank.nLevel = StringToInt(SQLGetData(3));	
+	rank.nLevel = StringToInt(SQLGetData(4));	
   }
   else
   {
@@ -280,7 +281,7 @@ int GetFactionFromName(string sFactionName)
 string GetRepVarName(object oPC, int nFaction)
 {
   string sPlayerName = GetPCPlayerName(oPC);
-  string sCharName   = GetName (oPC);
+  string sCharName   = GetName (oPC, TRUE);
   string sVarName    = sPlayerName + sCharName + IntToString(nFaction);
 
   Trace(REP, "Using varname " + sVarName);
@@ -371,14 +372,14 @@ void GiveRepPoints(object oPC, int nAmount, int nFaction = 0, int bParty = 0)
 
     while (GetIsObjectValid(oPCInParty))
     {
-      if (GetArea(oPCInParty) == GetArea(oPC))
+      if (GetArea(oPCInParty) == GetArea(oPC) && GetIsPC(oPCInParty))
       {
         nRepScore = GetRepScore(oPCInParty, nFaction);
-        SetRepScore(oPC, nRepScore + nAmount, nFaction);
+        SetRepScore(oPCInParty, nRepScore + nAmount, nFaction);
         Trace(REP, "Increased rep score for char " + GetName(oPCInParty) +
                    " with" + " faction " + GetFactionName(nFaction));
-        SendMessageToPC(oPCInParty, "Gained rep points with "+
-                        GetFactionName(nFaction) + ": " + IntToString(nAmount));
+        SendMessageToPC(oPCInParty, "Gained rep points with " + GetFactionName(nFaction) + 
+             ": " + IntToString(nAmount) + ", you now have " + IntToString(nRepScore + nAmount) + " points.");
       }
 
       oPCInParty = GetNextFactionMember(oPC, TRUE);
@@ -391,11 +392,13 @@ void GiveRepPoints(object oPC, int nAmount, int nFaction = 0, int bParty = 0)
     Trace(REP, "Increased rep score for char " + GetName(oPC) + " with" +
                " faction " + GetFactionName(nFaction));
     SendMessageToPC(oPC, "Gained rep points with "+GetFactionName(nFaction)+": "
-                                                        + IntToString(nAmount));
+        + IntToString(nAmount) + ", you now have " + IntToString(nRepScore + nAmount) + " points.");
   }
 
   struct repRank rRank = GetPCFactionRank(oPC);
   SendMessageToPC(oPC, "Your current rank is "+rRank.sName);
+  
+  miBADoFactionGear(oPC, nFaction, rRank.nLevel);
   
   // TODO - give higher ranking keys to PCs who achieve relevant ranks.
 }

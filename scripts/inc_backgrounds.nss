@@ -178,6 +178,8 @@ int miBAGetIsBackgroundLegal(int nBackground, object oPC);
 // skin object. If no background is selected the PC's current background will
 // be used.
 void miBAApplyBackground(object oPC, int nBackground = -1, int nFirstTime = TRUE);
+// Gives gear to the PC based on their background (faction) and level within the faction.
+void miBADoFactionGear(object oPC, int nBackground, int nLevel);
 // Returns the craft skill bonus from the character's background.
 int miBAGetCraftSkillBonus(object oPC, int nCraftSkill);
 // Returns the name of the background.
@@ -371,6 +373,142 @@ int miBAGetIsBackgroundLegal(int nBackground, object oPC)
   return FALSE;
 }
 
+void miBADoFactionGear(object oPC, int nBackground, int nLevel)
+{
+  switch (nLevel)
+  {
+   case 1:
+   {
+    switch (nBackground)
+	{
+	  case MI_BA_DRANNIS:	
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_drannis"))) return;	  
+        CreateItemOnObject("galeoutfit", oPC);
+        CreateItemOnObject("key_drannis", oPC);
+        CreateItemOnObject("drannis_dye_1", oPC);
+        CreateItemOnObject("drannis_dye_2", oPC);
+        CreateItemOnObject("drannis_dye_3", oPC);
+        GiveGoldToCreature(oPC, 750);
+	    break;
+	  case MI_BA_ERENIA:  
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_erenia"))) return;	       
+        CreateItemOnObject("spiritoutfit", oPC);
+        CreateItemOnObject("key_erenia", oPC);
+        CreateItemOnObject("erenia_dye_1", oPC);
+        CreateItemOnObject("erenia_dye_2", oPC);
+        CreateItemOnObject("erenia_dye_3", oPC);
+        GiveGoldToCreature(oPC, 750);
+        break;
+	  case MI_BA_RENERRIN:
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_renerrin"))) return;	  
+        CreateItemOnObject("voiceoutfit", oPC);
+        CreateItemOnObject("key_renerrin", oPC);
+        CreateItemOnObject("renerrin_dye_1", oPC);
+        CreateItemOnObject("renerrin_dye_2", oPC);
+        CreateItemOnObject("renerrin_dye_3", oPC);
+        GiveGoldToCreature(oPC, 750);
+		break;
+      case MI_BA_WARDEN:   	  
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_warden"))) return;	  
+        CreateItemOnObject("nw_cloth001", oPC);
+        CreateItemOnObject("key_warden", oPC);
+        GiveGoldToCreature(oPC, 750);
+		break;
+      case MI_BA_SHADOW:   	  
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_shadow"))) return;	  
+        CreateItemOnObject("key_shadow", oPC);
+        CreateItemOnObject("shadow_phil", oPC);
+        GiveGoldToCreature(oPC, 250);
+		break;
+      case MI_BA_FERNVALE:   	  
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_fernvale"))) return;	
+        CreateItemOnObject("key_fernvale", oPC);  
+        GiveGoldToCreature(oPC, 750);
+		break;
+      case MI_BA_AIREVORN:	  
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_airevorn"))) return;	  
+	    CreateItemOnObject("aireoutfit", oPC);
+        CreateItemOnObject("key_airevorn", oPC);
+        GiveGoldToCreature(oPC, 750);
+		break;	    
+	  default:
+        break;		
+	}
+	break;
+   }
+   case 2:
+   {
+    switch (nBackground)
+	{
+	  case MI_BA_DRANNIS:	
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_drannis_guar"))) return;	
+		SendMessageToPC(oPC, "Congratulations, you have achieved Officer status.");
+        CreateItemOnObject("key_drannis_guar", oPC);
+        GiveGoldToCreature(oPC, 1000);
+	    break;
+	  case MI_BA_ERENIA:  
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_erenia_guard"))) return;
+		SendMessageToPC(oPC, "Congratulations, you have achieved Officer status.");
+        CreateItemOnObject("key_erenia_guard", oPC);
+        GiveGoldToCreature(oPC, 1000);
+        break;
+	  case MI_BA_RENERRIN:
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_renerrin_gua"))) return;	
+		SendMessageToPC(oPC, "Congratulations, you have achieved Officer status.");
+        CreateItemOnObject("key_renerrin_gua", oPC);
+        GiveGoldToCreature(oPC, 1000);
+		break;
+      case MI_BA_WARDEN:   	  
+		break;
+      case MI_BA_SHADOW:   	  
+		break;
+      case MI_BA_FERNVALE:   	  
+		break;
+      case MI_BA_AIREVORN:	  
+		break;	    
+	  default:
+        break;		
+	}
+	break;
+   }
+   case 3:
+   {
+    switch (nBackground)
+	{
+	  case MI_BA_DRANNIS:	
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_drannis_nobl"))) return;	
+		SendMessageToPC(oPC, "Congratulations, you have achieved Noble status.");
+        CreateItemOnObject("key_drannis_nobl", oPC);
+        GiveGoldToCreature(oPC, 1000);
+	    break;
+	  case MI_BA_ERENIA:  
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_erenia_noble"))) return;
+		SendMessageToPC(oPC, "Congratulations, you have achieved Noble status.");
+        CreateItemOnObject("key_erenia_noble", oPC);
+        GiveGoldToCreature(oPC, 1000);
+        break;
+	  case MI_BA_RENERRIN:
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_renerrin_nob"))) return;	
+		SendMessageToPC(oPC, "Congratulations, you have achieved Noble status.");
+        CreateItemOnObject("key_renerrin_nob", oPC);
+        GiveGoldToCreature(oPC, 1000);
+		break;
+      case MI_BA_WARDEN:   	  
+		break;
+      case MI_BA_SHADOW:   	  
+		break;
+      case MI_BA_FERNVALE:   	  
+		break;
+      case MI_BA_AIREVORN:	  
+		break;	    
+	  default:
+        break;		
+	}
+	break;
+   }
+  } 
+}
+
 
 void miBAApplyBackground(object oPC, int nBackground = -1, int nFirstTime = TRUE)
 {
@@ -420,54 +558,7 @@ void miBAApplyBackground(object oPC, int nBackground = -1, int nFirstTime = TRUE
   // Optional - apply bonuses based on background here.
   if (nFirstTime)
   {
-    switch (nBackground)
-	{
-	  case MI_BA_DRANNIS:	   
-        CreateItemOnObject("galeoutfit", oPC);
-        CreateItemOnObject("key_drannis", oPC);
-        CreateItemOnObject("drannis_dye_1", oPC);
-        CreateItemOnObject("drannis_dye_2", oPC);
-        CreateItemOnObject("drannis_dye_3", oPC);
-        GiveGoldToCreature(oPC, 750);
-	    break;
-	  case MI_BA_ERENIA:       
-        CreateItemOnObject("spiritoutfit", oPC);
-        CreateItemOnObject("key_erenia", oPC);
-        CreateItemOnObject("erenia_dye_1", oPC);
-        CreateItemOnObject("erenia_dye_2", oPC);
-        CreateItemOnObject("erenia_dye_3", oPC);
-        GiveGoldToCreature(oPC, 750);
-        break;
-	  case MI_BA_RENERRIN:
-        CreateItemOnObject("voiceoutfit", oPC);
-        CreateItemOnObject("key_renerrin", oPC);
-        CreateItemOnObject("renerrin_dye_1", oPC);
-        CreateItemOnObject("renerrin_dye_2", oPC);
-        CreateItemOnObject("renerrin_dye_3", oPC);
-        GiveGoldToCreature(oPC, 750);
-		break;
-      case MI_BA_WARDEN:   	  
-        CreateItemOnObject("nw_cloth001", oPC);
-        CreateItemOnObject("key_warden", oPC);
-        GiveGoldToCreature(oPC, 750);
-		break;
-      case MI_BA_SHADOW:   	  
-        CreateItemOnObject("key_shadow", oPC);
-        CreateItemOnObject("shadow_phil", oPC);
-        GiveGoldToCreature(oPC, 250);
-		break;
-      case MI_BA_FERNVALE:   	  
-        CreateItemOnObject("key_fernvale", oPC);
-        GiveGoldToCreature(oPC, 750);
-		break;
-      case MI_BA_AIREVORN:	  
-	    CreateItemOnObject("aireoutfit", oPC);
-        CreateItemOnObject("key_airevorn", oPC);
-        GiveGoldToCreature(oPC, 750);
-		break;	    
-	  default:
-        break;		
-	}
+    miBADoFactionGear(oPC, nBackground, 1);
   }
 }
 

@@ -572,7 +572,16 @@ void main()
 		  // before it hits them, so use SetCommandable(FALSE).  Of course, to make the *second* queued spell reflect,
 		  // need to ensure we are commandable first.  
 	      SetCommandable(TRUE, OBJECT_SELF);	
-		  ActionCastSpellAtObject(GetSpellId(), OBJECT_SELF, GetMetaMagicFeat(), TRUE, 0, 0, TRUE);
+		  
+		  // Override the spell level next time this is cast.  Reflected spells are always cast with CL 10 (and as if
+		  // the caster had +3 to their casting stat and no focus feats for DC purposes). 
+		  int nCasterLevel = AR_GetCasterLevel(OBJECT_SELF);
+		  int nSpellId = GetSpellId();
+		  object oCaster = OBJECT_SELF;
+		  int nMetaMagic = GetMetaMagicFeat();
+		  ActionDoCommand(SetCasterLevelOverride(oCaster, nSpellId, nCasterLevel));
+		  ActionCastSpellAtObject(GetSpellId(), OBJECT_SELF, nMetaMagic, TRUE, 0, 0, TRUE);
+		  ActionDoCommand(DelayCommand(0.1f, SetCasterLevelOverride(oCaster, nSpellId, FALSE)));
 		  
 	      ActionDoCommand(SetCommandable(TRUE));  
 	      SetCommandable(FALSE, OBJECT_SELF);		  

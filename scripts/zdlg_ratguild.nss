@@ -102,7 +102,7 @@ void PageInit()
     }
 
     GiveGoldToCreature(oPC, nGold);
-    if (GetHitDice(oPC) < 6) gsXPGiveExperience(oPC, nXP);
+    if (GetHitDice(oPC) < 6) gsXPGiveExperience(oPC, nGold > 20000 ? 20000 : nGold);
 
     SetDlgPrompt("Good work, Hunter. If you find any more, bring them to me!");
     SetDlgResponseList(END, OBJECT_SELF);

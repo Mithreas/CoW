@@ -97,7 +97,7 @@ int CnrGetStackCount(object oHost, string sStackCountName = "CnrStackCount")
 void CnrUpdateTopTenCrafters(object oPC, int nTradeskill, int nXP)
 {
   object oModule = GetModule();
-  string sName = GetName(oPC);
+  string sName = GetName(oPC, TRUE);
   string sKeyToLeaderName;
   string sKeyToLeaderXP;
   string sLeaderName;
@@ -2942,7 +2942,7 @@ int CnrJournalBuildXpAdjustMenu(int nOffset)
     string sTradeName = CnrGetTradeskillNameByIndex(nTrade);
     int nXP = CnrGetTradeskillXPByIndex(oTarget, nTrade);
     int nLevel = CnrDetermineTradeskillLevel(nXP);
-    SetCustomToken(22300, GetName(oPC) + "\n" + sTradeName + ", " + CNR_TEXT_XP_EQUALS + IntToString(nXP) + ", " + CNR_TEXT_LEVEL_EQUALS + IntToString(nLevel));
+    SetCustomToken(22300, GetName(oPC, TRUE) + "\n" + sTradeName + ", " + CNR_TEXT_XP_EQUALS + IntToString(nXP) + ", " + CNR_TEXT_LEVEL_EQUALS + IntToString(nLevel));
 
     int nJournalXpPage = GetLocalInt(oPC, "nCnrXpMenuPage");
     if (nJournalXpPage == 0)

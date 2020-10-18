@@ -128,7 +128,7 @@ void PageInit()
       if (sCurrentQuest == "")
       {
         // Greet the PC
-        repRank rRank = GetPCFactionRank(oPC);
+        struct repRank rRank = GetPCFactionRank(oPC);
 		if (GetRacialType(OBJECT_SELF) == RACIAL_TYPE_HUMAN)
 		{
           SetDlgPrompt("Welcome in the names of the Seven Divines, "+rRank.sName+" "+

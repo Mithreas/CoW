@@ -30,7 +30,7 @@
     this modification.
 
 */
-
+#include "inc_divination"
 #include "inc_zombie"
 #include "inc_totem"
 #include "x2_inc_itemprop"

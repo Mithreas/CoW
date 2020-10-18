@@ -63,7 +63,7 @@ void main()
     eLink = EffectLinkEffects(eLink, eDur);
 
     int nDuration = 1; // * Duration 1 turn
-	if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nDuration += 2;
+	if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nDuration += 1;
     if ( nMetaMagic == METAMAGIC_EXTEND )
     {
         nDuration = nDuration * 2;

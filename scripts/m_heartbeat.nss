@@ -15,6 +15,7 @@
 #include "inc_criers"
 #include "inc_factions"
 #include "inc_pop"
+#include "inc_randomquest"
 #include "inc_relations"
 #include "inc_resource"
 #include "inc_vampire"
@@ -156,6 +157,7 @@ void main()
         SetLocalInt(OBJECT_SELF, "GS_DAY", nCurrentDay);
 		
 		miPODoNests();
+		UpdateRepeatableQuests();
     }
 
     //per hour

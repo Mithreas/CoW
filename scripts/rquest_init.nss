@@ -9,18 +9,12 @@
 */
 #include "inc_randomquest"
   //Includes pg_lists_i,  inc_reputation, inc_database and inc_log
-void SetStringValue(string sName, string sValue, string sDatabase)
-{
-  object oCache = miDAGetCacheObject(sDatabase);
-  SetLocalString(oCache, sName, sValue);
-}
 
 void CleanDB(string sDatabase)
 {
   Trace(RQUEST, "Cleaning database: " + sDatabase);
   SQLExecDirect("DELETE FROM " + sDatabase);
 }
-
 
 void main()
 {
@@ -47,7 +41,7 @@ void main()
    SQLPrepareStatement("(?,?,?,?),", "train", DB_QUESTSET, "3", "6") + 
    SQLPrepareStatement("(?,?,?,?),", "gather_gemstone", DB_QUESTSET, "4", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "make_glass", DB_QUESTSET, "4", "10") + 
-   SQLPrepareStatement("(?,?,?,?),", "badger_skin", DB_QUESTSET, "4", "10") + 
+   SQLPrepareStatement("(?,?,?,?),", "badger_skin", DB_QUESTSET, "3", "6") + 
    SQLPrepareStatement("(?,?,?,?),", "deliver_to_alian", DB_QUESTSET, "4", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "incriminate_paron_jarian", DB_QUESTSET, "4", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "kill_arin_meyo", DB_QUESTSET, "5", "10") + 
@@ -211,7 +205,7 @@ void main()
   SetStringValue(QUEST+QUEST_TYPE, PATROL, DB_VARS);
   SetStringValue(QUEST+DESCRIPTION,
    "Controlling the various mines and farms outside of the city is essential to ensure that " +
-   "our crafters have the resources they need.  Visit the mines amid the Skyreach Summits and " +
+   "our crafters have the resources they need.  Visit the iron, silver and ondaran mines amid the Skyreach Summits and " +
    "take control of any that are undefended.",
    DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "150", DB_VARS);
@@ -223,8 +217,8 @@ void main()
   SetStringValue(QUEST+QUEST_TYPE, PATROL, DB_VARS);
   SetStringValue(QUEST+DESCRIPTION,
    "Controlling the various mines and farms outside of the city is essential to ensure that " +
-   "our crafters have the resources they need.  Visit the reserves in the Feran Forest and " +
-   "take control of any that are undefended.",
+   "our crafters have the resources they need.  Visit the deer reserve and herb garden in the Feran Forest and " +
+   "take control of them if they are undefended.",
    DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "150", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
@@ -235,8 +229,8 @@ void main()
   SetStringValue(QUEST+QUEST_TYPE, PATROL, DB_VARS);
   SetStringValue(QUEST+DESCRIPTION,
    "Controlling the various mines and farms outside of the city is essential to ensure that " +
-   "our crafters have the resources they need.  Visit the farms on the South Road and " +
-   "take control of any that are undefended.",
+   "our crafters have the resources they need.  Visit the beetle and cotton farms on the South Road and " +
+   "take control of any that are undefended.  While you're there, check for patrols in the clover fields.",
    DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "150", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
@@ -323,7 +317,7 @@ void main()
    SQLPrepareStatement("(?,?,?,?),", "train", DB_QUESTSET, "3", "6") +  
    SQLPrepareStatement("(?,?,?,?),", "make_glass", DB_QUESTSET, "4", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "gather_wood", DB_QUESTSET, "4", "10") + 
-   SQLPrepareStatement("(?,?,?,?),", "gather_ond", DB_QUESTSET, "4", "10") + 
+   SQLPrepareStatement("(?,?,?,?),", "gather_ond", DB_QUESTSET, "3", "6") + 
    SQLPrepareStatement("(?,?,?,?),", "guard_arin_meyo", DB_QUESTSET, "4", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "guardposts", DB_QUESTSET, "4", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "no_agents_allowed", DB_QUESTSET, "5", "10") +  
@@ -474,9 +468,9 @@ void main()
   QUEST = "mountain_patrol";
   SetStringValue(QUEST+QUEST_TYPE, PATROL, DB_VARS);
   SetStringValue(QUEST+DESCRIPTION,
-   "Control of the ore-producing mines outside the city is key to ensure that our crafters " +
-   "have the resources they need to make our weapons and armour.  Visit the mines amid the Skyreach Summits " +
-   "and take control of any that are undefended.",
+   "Controlling the ore-producing mines outside of the city is essential to ensure that our crafters have the " +
+   "resources they need to make our weapons and armour.  Visit the iron, silver and ondaran mines amid the Skyreach Summits and " +
+   "take control of any that are undefended.",
    DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "150", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
@@ -525,7 +519,6 @@ void main()
    "the orcs aren't to be taken lightly. Got that?", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "500", DB_VARS);
   SetStringValue(QUEST+AREA_TAGS, "plainsofdarkness", DB_VARS);
-  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
 
   QUEST = "cull_taskmasters";
   SetStringValue(QUEST+QUEST_TYPE, CULL, DB_VARS);
@@ -568,7 +561,7 @@ void main()
   SetStringValue(QUEST+REWARD_GOLD, "250", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "100", DB_VARS);
   SetStringValue(QUEST+ITEM_TAG, "GS_HEAD_EVIL", DB_VARS);
-  SetStringValue(QUEST+NUM_ITEMS, "3", DB_VARS);
+  SetStringValue(QUEST+NUM_ITEMS, "2", DB_VARS);
   SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
 
   //-------------------------------------------------------------------------------------------
@@ -583,7 +576,7 @@ void main()
    SQLPrepareStatement("(?,?,?,?),", "loose_hound", DB_QUESTSET, "3", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "drarayne_rats", DB_QUESTSET, "3", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "train", DB_QUESTSET, "3", "6") +  
-   SQLPrepareStatement("(?,?,?,?),", "more_holywater", DB_QUESTSET, "4", "10") + 
+   SQLPrepareStatement("(?,?,?,?),", "more_holywater", DB_QUESTSET, "3", "6") + 
    SQLPrepareStatement("(?,?,?,?),", "make_glass", DB_QUESTSET, "4", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "pilgrimage", DB_QUESTSET, "4", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "paronjariandesk", DB_QUESTSET, "4", "10") + 
@@ -740,7 +733,7 @@ void main()
   SetStringValue(QUEST+QUEST_TYPE, PATROL, DB_VARS);
   SetStringValue(QUEST+DESCRIPTION,
    "The woods outside the city have many herbs that are useful for our potions; controlling them ensures " +
-   "that our crafters have the resources they need.  Visit the reserves in the Feran Forest and " +
+   "that our crafters have the resources they need.  Visit the deer reserve and herb garden in the Feran Forest and " +
    "take control of any that are undefended.",
    DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "150", DB_VARS);
@@ -828,11 +821,14 @@ void main()
    SQLPrepareStatement("(?,?,?,?),", "cure_potion", DB_QUESTSET, "3", "5") + 
    SQLPrepareStatement("(?,?,?,?),", "retrieve_ondaran", DB_QUESTSET, "3", "5") + 
    SQLPrepareStatement("(?,?,?,?),", "patrol_farms", DB_QUESTSET, "3", "5") + 
-   SQLPrepareStatement("(?,?,?,?),", "patrol_borders", DB_QUESTSET, "4", "10") + 
+   SQLPrepareStatement("(?,?,?,?),", "patrol_borders", DB_QUESTSET, "4", "6") + 
+   SQLPrepareStatement("(?,?,?,?),", "cull_xvarts", DB_QUESTSET, "4", "7") + 
    SQLPrepareStatement("(?,?,?,?),", "pixie_command", DB_QUESTSET, "4", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "polish_greenstone", DB_QUESTSET, "4", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "make_dex_potions", DB_QUESTSET, "6", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "fey_silver", DB_QUESTSET, "6", "10") + 
+   SQLPrepareStatement("(?,?,?,?),", "cull_goblin_boss", DB_QUESTSET, "8", "10") + 
+   SQLPrepareStatement("(?,?,?,?),", "cull_trolls", DB_QUESTSET, "9", "10") + 
    SQLPrepareStatement("(?,?,?,?)", "boss_heads", DB_QUESTSET, "6", "15");
  SQLExecDirect(sSQL);
   
@@ -854,7 +850,7 @@ void main()
   SetStringValue(QUEST+AREA_TAGS, "PerVilDocks", DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "25", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "1000", DB_VARS);
-  
+    
   QUEST = "cure_potion";
   SetStringValue(QUEST+QUEST_TYPE, RETRIEVE, DB_VARS);
   SetStringValue(QUEST+DESCRIPTION,
@@ -870,7 +866,7 @@ void main()
   SetStringValue(QUEST+DESCRIPTION,
     "While iron weapons are the best to use against fey, ondaran has its uses as well, not least for tools.  Please "+
 	"head to the cave north of Lake Vyvian and mine four pieces of ondaran.  If you haven't already got an axe, Freddy "+
-	"in the Tankard of Mead probably has one you can buy.", DB_VARS);
+	"in the Tankard of Mead probably has one you can buy.  If you're not good with axes, pick up a Crafter's Apron from the smithy.", DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "250", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
   SetStringValue(QUEST+ITEM_TAG, "cnrnuggetond", DB_VARS);
@@ -898,11 +894,23 @@ void main()
   SetStringValue(QUEST+REWARD_GOLD, "200", DB_VARS);
   SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
   
+  QUEST = "cull_xvarts";
+  SetStringValue(QUEST+QUEST_TYPE, CULL, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION, 
+    "A nest of xvarts have settled into the caves above Lake Vyvian.  They occasionally try snatching our kin meditating by the lake; " +
+	"I'd like you to put some fear into their warriors so they know not to mess with us.  Killing half a dozen should do the trick.", 
+	DB_VARS);
+  SetStringValue(QUEST+CULL_TAG, "xvart", DB_VARS);
+  SetStringValue(QUEST+NUM_CREATURES, "6", DB_VARS);  
+  SetStringValue(QUEST+REWARD_GOLD, "150", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "150", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);	
+  
   QUEST = "pixie_command";
   SetStringValue(QUEST+QUEST_TYPE, RETRIEVE, DB_VARS);
   SetStringValue(QUEST+DESCRIPTION,
     "The Sprites in the borderlands are a constant threat.  They are surprisingly well organised, too... there must be some " +
-	"leaders among them.  Please find out where their command lurks, and bring me back one of their leaders.  Dead or alive.", DB_VARS);
+	"leaders among them.  Please destroy the tree their command lurks in, and bring me back one of their leaders.  Dead or alive.", DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "250", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "400", DB_VARS);
   SetStringValue(QUEST+ITEM_TAG, "qst_spritecmd", DB_VARS);
@@ -930,16 +938,17 @@ void main()
   SetStringValue(QUEST+ITEM_TAG, "NW_IT_MPOTION014", DB_VARS);
   SetStringValue(QUEST+NUM_ITEMS, "10", DB_VARS);
   
-  QUEST = "boss_heads";  
-  SetStringValue(QUEST+QUEST_TYPE, RETRIEVE, DB_VARS);
-  SetStringValue(QUEST+DESCRIPTION,
-   "As a Warden, you are expected to help in the defense of the village.  Bring me two heads from creatures that mean us harm.",
-   DB_VARS);
-  SetStringValue(QUEST+REWARD_GOLD, "300", DB_VARS);
+  QUEST = "cull_goblin_boss";
+  SetStringValue(QUEST+QUEST_TYPE, CULL, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION, 
+    "Night goblins have been reported southwest of town, encroaching onto the borderlands from the Wild Coast.  I need you to find their " +
+	"lair and kill their chief.  That should make them descend into infighting and leave us alone.", 
+	DB_VARS);
+  SetStringValue(QUEST+CULL_TAG, "blackgoblinboss", DB_VARS);
+  SetStringValue(QUEST+NUM_CREATURES, "1", DB_VARS);  
+  SetStringValue(QUEST+REWARD_GOLD, "150", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "150", DB_VARS);
-  SetStringValue(QUEST+ITEM_TAG, "GS_HEAD_EVIL", DB_VARS);
-  SetStringValue(QUEST+NUM_ITEMS, "2", DB_VARS);
-  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);	
   
   QUEST = "fey_silver";  
   SetStringValue(QUEST+QUEST_TYPE, RETRIEVE, DB_VARS);
@@ -951,6 +960,28 @@ void main()
   SetStringValue(QUEST+REWARD_XP, "350", DB_VARS);
   SetStringValue(QUEST+ITEM_TAG, "cnrnuggetsil", DB_VARS);
   SetStringValue(QUEST+NUM_ITEMS, "2", DB_VARS);
+  
+  QUEST = "cull_trolls";
+  SetStringValue(QUEST+QUEST_TYPE, CULL, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION, 
+    "I've learnt that the night goblins in the southwest are breeding trolls!  That's terrible news, trolls can be a real threat. " +
+	"Please get down there and disrupt the breeding program.  A dozen trolls should do it.  Remember you'll need fire or acid to make them stay down.", 
+	DB_VARS);
+  SetStringValue(QUEST+CULL_TAG, "NW_TROLL", DB_VARS);
+  SetStringValue(QUEST+NUM_CREATURES, "12", DB_VARS);  
+  SetStringValue(QUEST+REWARD_GOLD, "500", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "500", DB_VARS);
+  
+  QUEST = "boss_heads";  
+  SetStringValue(QUEST+QUEST_TYPE, RETRIEVE, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION,
+   "As a Warden, you are expected to help in the defense of the village.  Bring me two heads from creatures that mean us harm.",
+   DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "300", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "150", DB_VARS);
+  SetStringValue(QUEST+ITEM_TAG, "GS_HEAD_EVIL", DB_VARS);
+  SetStringValue(QUEST+NUM_ITEMS, "2", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
   
   //-------------------------------------------------------------------------------------------
   /* Fernvale Quests */
@@ -966,14 +997,14 @@ void main()
    SQLPrepareStatement("(?,?,?,?),", "craft_arrows", DB_QUESTSET, "3", "5") + 
    SQLPrepareStatement("(?,?,?,?),", "craft_chitin", DB_QUESTSET, "3", "5") + 
    SQLPrepareStatement("(?,?,?,?),", "beetlejuice", DB_QUESTSET, "3", "5") + 
-   SQLPrepareStatement("(?,?,?,?),", "cure_ingredients", DB_QUESTSET, "4", "10") + 
+   SQLPrepareStatement("(?,?,?,?),", "cure_ingredients", DB_QUESTSET, "4", "9") + 
    SQLPrepareStatement("(?,?,?,?),", "hobgob_caves", DB_QUESTSET, "5", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "cull_zombies", DB_QUESTSET, "5", "7") +
    SQLPrepareStatement("(?,?,?,?),", "make_cure", DB_QUESTSET, "6", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "ent_bark", DB_QUESTSET, "6", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "kill_vampire", DB_QUESTSET, "7", "10") +
    SQLPrepareStatement("(?,?,?,?),", "cull_scovin", DB_QUESTSET, "8", "10") + 
-   SQLPrepareStatement("(?,?,?,?),", "boss_heads", DB_QUESTSET, "6", "15") +
+   SQLPrepareStatement("(?,?,?,?),", "boss_heads", DB_QUESTSET, "10", "15") +
    SQLPrepareStatement("(?,?,?,?),", "visit_merivale", DB_QUESTSET, "9", "10") +   
    SQLPrepareStatement("(?,?,?,?),", "cull_skelazn", DB_QUESTSET, "10", "15") +
    SQLPrepareStatement("(?,?,?,?)", "restore_land", DB_QUESTSET, "10", "15");
@@ -1144,19 +1175,7 @@ void main()
   SetStringValue(QUEST+REWARD_GOLD, "1000", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "2", DB_VARS);
-  SetStringValue(QUEST+TARGET_TAG, "qst_orc_scout", DB_VARS);  
-  
-  QUEST = "boss_heads";  
-  SetStringValue(QUEST+QUEST_TYPE, RETRIEVE, DB_VARS);
-  SetStringValue(QUEST+DESCRIPTION,
-   "The plague has brought more danger to our village, desperate creatures that will not live alongside us and need to be " +
-   "culled.  Bring me two heads from creatures that mean us harm.",
-   DB_VARS);
-  SetStringValue(QUEST+REWARD_GOLD, "200", DB_VARS);
-  SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
-  SetStringValue(QUEST+ITEM_TAG, "GS_HEAD_EVIL", DB_VARS);
-  SetStringValue(QUEST+NUM_ITEMS, "2", DB_VARS);
-  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  SetStringValue(QUEST+TARGET_TAG, "qst_orc_scout", DB_VARS);
   
   QUEST = "visit_merivale";
   SetStringValue(QUEST+QUEST_TYPE, PATROL, DB_VARS);
@@ -1181,7 +1200,21 @@ void main()
   "rest easy, tainting the land and endangering those who would purify it.  Go there and destroy twenty of the Skeleton Ambushers that lurk there; be wary.", DB_VARS);
   SetStringValue(QUEST+CULL_TAG, "skelazn", DB_VARS);
   SetStringValue(QUEST+NUM_CREATURES, "20", DB_VARS);  
-  SetStringValue(QUEST+REWARD_GOLD, "100", DB_VARS);
-  SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "500", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "500", DB_VARS);  
+  
+  QUEST = "boss_heads";  
+  SetStringValue(QUEST+QUEST_TYPE, RETRIEVE, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION,
+   "The plague has brought more danger to our village, desperate creatures that will not live alongside us and need to be " +
+   "culled.  Bring me two heads from creatures that mean us harm.",
+   DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "200", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "150", DB_VARS);
+  SetStringValue(QUEST+ITEM_TAG, "GS_HEAD_EVIL", DB_VARS);
+  SetStringValue(QUEST+NUM_ITEMS, "2", DB_VARS);
   SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  // Randomise.
+  UpdateRepeatableQuests();
 }

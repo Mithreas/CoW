@@ -20,6 +20,7 @@ void main()
     // GiveRepPoints(oPC, 1, GetFactionFromName(GetSubRace(oPC)), TRUE);
 
     SendMessageToPC(oPC, "You claimed this area for your faction.");
+	SetName(OBJECT_SELF, "Claimed by " + GetFactionName(GetPCFaction(oPC)));
   }
   else
   {

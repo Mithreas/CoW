@@ -53,7 +53,7 @@ void main()
         nDuration = nDuration *2;   //Duration is +100%
     }
 
-    SummonFromStream(OBJECT_SELF, GetSpellTargetLocation(), TurnsToSeconds(nDuration), STREAM_TYPE_PLANAR, STREAM_PLANAR_TIER_3,
-        nVFX, GetSummonVFXDelay(nVFX));
+    SummonFromStream(OBJECT_SELF, GetSpellTargetLocation(), TurnsToSeconds(nDuration), STREAM_TYPE_PLANAR, STREAM_PLANAR_TIER_4,
+        nVFX, GetSummonVFXDelay(nVFX), FALSE, FALSE, gsWOGetDeityPlanarStream(OBJECT_SELF));
 }
 

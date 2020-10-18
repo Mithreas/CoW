@@ -127,6 +127,7 @@ int gsISGetItemCraftSkill(object oItem)
     {
     case BASE_ITEM_ARMOR:
     case BASE_ITEM_BRACER:
+    case BASE_ITEM_HELMET:
         return CNR_TRADESKILL_ARMOR_CRAFTING;
 
     case BASE_ITEM_BASTARDSWORD:
@@ -140,7 +141,6 @@ int gsISGetItemCraftSkill(object oItem)
     case BASE_ITEM_HALBERD:
     case BASE_ITEM_HANDAXE:
     case BASE_ITEM_HEAVYFLAIL:
-    case BASE_ITEM_HELMET:
     case BASE_ITEM_KAMA:
     case BASE_ITEM_KATANA:
     case BASE_ITEM_KUKRI:

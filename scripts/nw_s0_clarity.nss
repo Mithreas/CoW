@@ -3,13 +3,6 @@
 
 void main()
 {
-    if(GetIsTimelocked(OBJECT_SELF, "Clarity"))
-    {
-        TimelockErrorMessage(OBJECT_SELF, "Clarity");
-        return;
-    }
-    SetTimelock(OBJECT_SELF, 72, "Clarity");
-
     if (gsSPGetOverrideSpell()) return;
 
     object oTarget = GetSpellTargetObject();

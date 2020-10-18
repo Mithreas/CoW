@@ -59,7 +59,13 @@ void main()
 	  }
 	  return;
 	}
-
+	
+	if (GetLocalInt(GetAreaFromLocation(lLocation), "DEATH_PLANE"))
+	{
+	  // PC has set their respawn target within the death plane.  Send them out to the barrow mounds. 
+	  lLocation = GetLocation(GetObjectByTag("GS_TARGET_RESPAWN_DEFAULT"));
+	}
+	
     //penalty
     // Septire - Death Penalty now 10% of what it was, refer to inc_xp
 	gsXPApplyDeathPenalty(oUsedBy);

@@ -1,25 +1,26 @@
-#include "inc_chatutils"
-#include "inc_rename"
-#include "inc_external"
-#include "inc_zombie"
-#include "inc_common"
-#include "inc_effect"
-#include "inc_language"
-#include "inc_shop"
-#include "inc_text"
-#include "inc_pc"
 #include "inc_assassin"
+#include "inc_associates"
 #include "inc_backgrounds"
 #include "inc_bonuses"
+#include "inc_chatutils"
 #include "inc_checker"
 #include "inc_class"
+#include "inc_common"
 #include "inc_disguise"
+#include "inc_death"
+#include "inc_effect"
+#include "inc_external"
 #include "inc_factions"
+#include "inc_language"
+#include "inc_pc"
 #include "inc_relations"
-#include "inc_xfer"
-#include "inc_associates"
+#include "inc_rename"
+#include "inc_shop"
 #include "inc_spellsword"
+#include "inc_text"
 #include "inc_werewolf"
+#include "inc_xfer"
+#include "inc_zombie"
 #include "nwnx_alts"
 #include "x3_inc_horse"
 
@@ -183,6 +184,7 @@ void main()
     string sCDKey      = GetPCPublicCDKey(oEntering, TRUE);
     string sIP         = GetPCIPAddress(oEntering);
     string sName       = GetName(oEntering);
+    object oHide       = gsPCGetCreatureHide(oEntering);
 
     if (gsPCGetIsPlayerBanned(oEntering))
     {
@@ -197,6 +199,12 @@ void main()
     //enter message
     SendMessageToAllDMs(gsCMReplaceString(GS_T_16777598, sPlayer, sCDKey, sName));
     WriteTimestampedLogEntry(gsCMReplaceString(GS_T_16777441, sPlayer, sCDKey, sIP, sName));
+
+    // Check whether we're a ghost with no corpse.  If so, respawn.
+	if (GetLocalInt(oHide, "IS_GHOST") && !GetIsObjectValid(GetLocalObject(oEntering, "GS_CORPSE")))
+	{
+	  MakeLiving(oEntering);
+	}
 
     // Journal entries and button flash.
     SetPanelButtonFlash(oEntering, PANEL_BUTTON_JOURNAL, FALSE);
@@ -302,8 +310,6 @@ void main()
     {
       gvdAZMessenger(gsPCGetPlayerID(oEntering));
     }
-
-    object oHide = gsPCGetCreatureHide(oEntering);
 
     // Dunshine: check for artifacts and flag them so we can track them later on
     int iItem;

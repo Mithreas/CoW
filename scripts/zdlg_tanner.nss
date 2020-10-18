@@ -12,7 +12,7 @@
 #include "inc_zdlg"
 #include "nw_i0_generic"
 
-const string MAIN_MENU   = "main_options";
+const string MAIN_MENU   = "tan_main_options";
 const string PAGE_2 = "page_2";
 const string PAGE_3 = "page_3";
 const string END = "end";
@@ -75,7 +75,7 @@ void PageInit()
     }
 
     GiveGoldToCreature(oPC, nGold);
-    if (GetHitDice(oPC) < 6) gsXPGiveExperience(oPC, nGold);
+    if (GetHitDice(oPC) < 6) gsXPGiveExperience(oPC, nGold > 20000 ? 20000 : nGold);
 
     SetDlgPrompt("Nice work.  That'll make some useful stuff.");
     SetDlgResponseList(END, OBJECT_SELF);

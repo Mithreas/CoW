@@ -9,7 +9,7 @@
 #include "inc_external"
 #include "zdlg_include_i"
 
-const string MAIN_MENU   = "main_options";
+const string MAIN_MENU   = "hwt_main_options";
 const string CONFIRM = "confirm";
 const string END = "end";
 

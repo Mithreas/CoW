@@ -19,7 +19,7 @@ void main()
   string sName = GetName(oPC);
   int nNumOfUsesLeft = GetLocalInt(GetItemActivated(), "train_uses_" + sName);
 
-  if (nNumOfUsesLeft == 0)
+  if (nNumOfUsesLeft <= 0)
   {
     SendMessageToPC(oPC, "You need to train more before you can use any more "
                          + "benefits.");

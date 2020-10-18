@@ -36,7 +36,7 @@ const string MERC_WP_TAG  = "merc_spawn";
 const string MERC_WP_LIST = "merc_wps";
 const string VALID_WAYPOINTS = "valid_wps";
 // Replies
-const string MAIN_MENU = "main_options";
+const string MAIN_MENU = "mrc_main_options";
 const string REPLY_1   = "reply_1";
 const string REPLY_2   = "reply_2";
 const string REPLY_3   = "reply_3";
