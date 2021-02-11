@@ -199,7 +199,7 @@ void HandleSelection()
   }	 
   else if (sPage == PAGE_MARK)
   {
-    if (GetStringElement(selection, MAIN_MENU) == "[Attune]")
+    if (GetStringElement(selection, PAGE_MARK) == "[Attune]")
 	{
 		ApplyEffectAtLocation(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_HEAD_COLD), GetLocation(oPC));
 		SetLocalString(oHide, "ESF_TELEPORT_LOCATION", APSLocationToString(GetLocation(oPC)));

@@ -873,6 +873,7 @@ void init_feat_list (object oPC)
   {	
     if (GetLevelByClass(CLASS_TYPE_BARD, oPC) && GetLevelByClass(CLASS_TYPE_BARD, oNPC)) add_feat_to_list(oPC, "Bonus spell slot (Bard)", 10007, TRUE);
     if (GetLevelByClass(CLASS_TYPE_CLERIC, oPC) && GetLevelByClass(CLASS_TYPE_CLERIC, oNPC)) add_feat_to_list(oPC, "Bonus spell slot (Cleric)", 10008, TRUE);
+    if (GetLevelByClass(CLASS_TYPE_FAVOURED_SOUL, oPC) && GetLevelByClass(CLASS_TYPE_FAVOURED_SOUL, oNPC)) add_feat_to_list(oPC, "Bonus spell slot (Favoured Soul)", 10017, TRUE);
     if (GetLevelByClass(CLASS_TYPE_DRUID, oPC) && GetLevelByClass(CLASS_TYPE_DRUID, oNPC)) add_feat_to_list(oPC, "Bonus spell slot (Druid)", 10009, TRUE);
     if (GetLevelByClass(CLASS_TYPE_PALADIN, oPC) >= 4 && GetLevelByClass(CLASS_TYPE_PALADIN, oNPC)) add_feat_to_list(oPC, "Bonus spell slot (Paladin)", 10010, TRUE);
     if (GetLevelByClass(CLASS_TYPE_RANGER, oPC) >= 4 && GetLevelByClass(CLASS_TYPE_RANGER, oNPC)) add_feat_to_list(oPC, "Bonus spell slot (Ranger)", 10011, TRUE);
@@ -1684,6 +1685,11 @@ void HandleSelection()
 			    SetLocalInt(oHide, "SS_GREATER_IMBUE", TRUE);
 				break;
 			  }
+              case 10017: // Wizard spell slot
+              {
+                _AddSpellSlot(oHide, "FS_BONUS_SLOT", CLASS_TYPE_FAVOURED_SOUL, 5);
+                break;
+              }
 
               default:
                 break;

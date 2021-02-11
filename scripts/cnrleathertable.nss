@@ -53,7 +53,7 @@ void main()
   CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
   
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuLeatherSlings, "Hide Whip", "cnrwhip1", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrleathwolf", 1, 0);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrhidecurewolf", 1, 0);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 8);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 80, 80);
   

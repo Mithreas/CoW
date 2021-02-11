@@ -204,6 +204,31 @@ void DoUnderwaterHeartbeat(object oPC)
   }	
 }
 //----------------------------------------------------------------
+void _DoMeteor(object oPC)
+{
+  vector vDelta = Vector(IntToFloat(Random(6)) - 2.5, IntToFloat(Random(6)) - 2.5, 0.0f);
+  location lLoc = Location(GetArea(oPC), GetPosition(oPC) + vDelta, GetFacing(oPC));
+  
+  AssignCommand(oPC, ApplyEffectAtLocation(DURATION_TYPE_TEMPORARY, EffectAreaOfEffect(55, "", "evt_custatk_hb", ""), lLoc, 7.0f));
+  SetLocalInt(oPC, "DAMAGE_TYPE", DAMAGE_TYPE_FIRE);
+  SetLocalInt(oPC, "VFX_IMP", VFX_IMP_FLAME_M);
+  
+  DelayCommand(6.0f, ApplyEffectAtLocation(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_FNF_METEOR_SWARM), lLoc));
+}
+void DoMeteorHeartbeat(object oPC)
+{
+  if (!GetLocalInt(GetArea(oPC), "METEORS")) return;
+  
+  if (d3() == 3)
+  {
+	float fDelay  = IntToFloat(Random(6));  
+	DelayCommand(fDelay, _DoMeteor(oPC));
+	ApplyEffectAtLocation(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_FNF_SCREEN_SHAKE), GetLocation(oPC));
+  }
+  
+  DelayCommand(6.0f, DoMeteorHeartbeat(oPC));
+}
+//----------------------------------------------------------------
 void DoDeathIllusions()
 {
   // Key the illusions off the first PC to enter.
@@ -502,6 +527,12 @@ void main()
 	  }	
 	}
 	
+	// Turn on meteors. 
+	if (GetLocalInt(oArea, "METEORS"))
+	{
+	  DoMeteorHeartbeat(oEntering);
+	}
+		
     //clean up area
     if (nTimestampArea != nTimestamp && GetLocalInt(OBJECT_SELF, "DM_FORCE_ACTIVE") != 1)
     {
@@ -1047,7 +1078,7 @@ void main()
           if (GetIsObjectValid(oAreaExit) &&
               oAreaExit != oArea &&
               GetLocalString(oAreaExit, VAR_NATION) != GetLocalString(oArea, VAR_NATION) &&
-              GetTag(oAreaExit) != "GS_AREA_DEATH")
+              FindSubString(GetName(oAreaExit), "Death") == -1)
           {
             Trace(CITIZENSHIP, "Sending back to where they came in.");
             AssignCommand(oEntering, ClearAllActions());
