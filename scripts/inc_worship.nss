@@ -156,6 +156,12 @@ int gsWOGetIsDeityAvailable(int nDeity, object oPlayer = OBJECT_SELF)
 	  return gsWOGetCategory(nDeity) == FB_WO_CATEGORY_SEVEN_DIVINES;
 	}
 	
+	// Cleric - Seven Divines or Dark One only.
+	if (gsCMGetHasClass(CLASS_TYPE_CLERIC, oPlayer))
+	{
+	  return gsWOGetCategory(nDeity) == FB_WO_CATEGORY_SEVEN_DIVINES || nDeity == 8;
+	}
+	
     // Non religious classes can worship anyone.
     if (!gsCMGetHasClass(CLASS_TYPE_CLERIC, oPlayer) &&
         !gsCMGetHasClass(CLASS_TYPE_PALADIN, oPlayer) &&
@@ -180,7 +186,7 @@ int gsWOGetIsDeityAvailable(int nDeity, object oPlayer = OBJECT_SELF)
     //Rangers don't need to follow a nature deity.
     else if(gsCMGetHasClass(CLASS_TYPE_DRUID, oPlayer))
       return FALSE;
-
+	  
     // Clerics, rangers, paladins, champion of torms and blackguards must obey alignment restrictions.
     //As well as those with the gift of holy & favored souls.
     string sAlignment = "";

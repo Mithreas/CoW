@@ -1,3 +1,4 @@
+#include "inc_achievements"
 #include "inc_event"
 
 void main()
@@ -34,9 +35,22 @@ void main()
 
     case GS_EV_ON_DEATH:
 //................................................................
-
-        break;
-
+    {
+	  if (GetResRef(OBJECT_SELF) == "fey_troll")
+	  {
+		int nNth = 1;
+		object oPC = GetNearestCreature(CREATURE_TYPE_PLAYER_CHAR, PLAYER_CHAR_IS_PC, OBJECT_SELF, nNth);
+		
+		while (GetIsObjectValid(oPC) && GetDistanceBetween(oPC, OBJECT_SELF) <= 35.0f)
+		{
+		    acAwardAchievement(oPC, "billygoat");
+			nNth++;
+			oPC = GetNearestCreature(CREATURE_TYPE_PLAYER_CHAR, PLAYER_CHAR_IS_PC, OBJECT_SELF, nNth);
+		}
+      }
+	  
+      break;
+    }
     case GS_EV_ON_DISTURBED:
 //................................................................
 

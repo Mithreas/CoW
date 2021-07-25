@@ -360,8 +360,7 @@ void main()
         {
           gsTRCreateTreasure(oCorpse, GetRacialType(oSelf), fChallengeRating,
            GetLocalInt(oSelf, "FB_PP_COUNT"), GetLocalInt(oSelf, "FB_PP_GOLD"), OBJECT_INVALID);
-        }
-        return;
+        }		
       }
     }
   }

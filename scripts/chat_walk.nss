@@ -37,7 +37,7 @@ void main()
         else if (params == "naturalwalk")
         {
             int alreadyOn = GetLocalInt(OBJECT_SELF, "NATURAL_WALK");
-            NWNX_Creature_SetWalkRateCap(OBJECT_SELF, alreadyOn ? -1.0 : 2000.0);
+            NWNX_Creature_SetWalkRateCap(OBJECT_SELF, alreadyOn ? -1.0 : 2500.0); // Adjusted for Anemoi's base speed of 2.5 not 2.0.
             SetLocalInt(OBJECT_SELF, "NATURAL_WALK", alreadyOn ? 0 : 1);
             SendMessageToPC(OBJECT_SELF, "Toggled naturalwalk " + (alreadyOn ? "off!" : "on!"));
         }

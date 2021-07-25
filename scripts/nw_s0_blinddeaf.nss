@@ -27,8 +27,8 @@ void main()
     //resistance check
     if (gsSPResistSpell(OBJECT_SELF, oTarget, nSpell)) return;
 
-    //saving throw check
-    if (gsSPSavingThrow(OBJECT_SELF, oTarget, nSpell, nDC, SAVING_THROW_FORT)) return;
+    //saving throw check - removed.
+    // if (gsSPSavingThrow(OBJECT_SELF, oTarget, nSpell, nDC, SAVING_THROW_FORT)) return;
 
     //duration
     if (nMetaMagic == METAMAGIC_EXTEND) nDuration *= 2;
@@ -36,10 +36,10 @@ void main()
     //apply
     eEffect =
         EffectLinkEffects(
-            EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE),
-            EffectLinkEffects(
-                EffectBlindness(),
-                EffectDeaf()));
+            EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE),           
+            AnemoiEffectBlindness(oTarget));
+			
+	// Removed deafness as in EE it actually works and the combo is a total disable.
 
     ApplyEffectToObject(
         DURATION_TYPE_INSTANT,

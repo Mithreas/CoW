@@ -41,6 +41,11 @@ int isWarden(object oPC)
 	return (miBAGetBackground(oPC) == MI_BA_WARDEN);
 }
 
+int isFernvale(object oPC)
+{
+	return (miBAGetBackground(oPC) == MI_BA_FERNVALE);
+}
+
 int isUnaligned(object oPC)
 {
     return (miBAGetBackground(oPC) == MI_BA_NONE);

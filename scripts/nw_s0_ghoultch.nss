@@ -86,10 +86,12 @@ void main()
                 ApplyEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, GetLocation(oTarget), RoundsToSeconds(nDuration));
 				
 				// Stamina drain.
-				if (GetObjectType(oTarget) == OBJECT_TYPE_CREATURE && GetRacialType(oTarget) != RACIAL_TYPE_UNDEAD)
+				if (GetObjectType(oTarget) == OBJECT_TYPE_CREATURE)
 				{
-				  gsSTAdjustState(GS_ST_STAMINA, -IntToFloat(nDuration), oTarget);
 				  gsSTAdjustState(GS_ST_STAMINA, IntToFloat(nDuration), OBJECT_SELF);
+				  
+				  if (GetRacialType(oTarget) == RACIAL_TYPE_UNDEAD) nDuration *= 2;
+				  gsSTAdjustState(GS_ST_STAMINA, -IntToFloat(nDuration), oTarget);
 				}  
             }
         }

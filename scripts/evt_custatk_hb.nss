@@ -9,6 +9,7 @@ void main()
       return;
   }
 
+  int bArea = (GetObjectType(oCaster) == 0); // Areas and modules have a type of 0.
   int nType = GetLocalInt(oCaster, "DAMAGE_TYPE");
   DeleteLocalInt(oCaster, "DAMAGE_TYPE");
   if (!nType) nType = DAMAGE_TYPE_NEGATIVE;
@@ -23,7 +24,7 @@ void main()
 
   while (GetIsObjectValid(oTarget))
   {
-    if (GetIsReactionTypeHostile(oTarget, oCaster)) ApplyEffectToObject(DURATION_TYPE_INSTANT, eDamage, oTarget);
+    if (bArea || (!GetIsDead(oCaster) && GetIsReactionTypeHostile(oTarget, oCaster))) ApplyEffectToObject(DURATION_TYPE_INSTANT, eDamage, oTarget);
     oTarget = GetNextInPersistentObject(OBJECT_SELF,OBJECT_TYPE_CREATURE);
   }
 }

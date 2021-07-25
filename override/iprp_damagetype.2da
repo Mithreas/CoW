@@ -1,9 +1,9 @@
 2DA V2.0
 
            Name   Label         Cost   GS_IP_DISABLED
-0          1031   Bludgeoning   1.25   TRUE
-1          1032   Piercing      1.25   TRUE
-2          1033   Slashing      1.25   TRUE
+0          1031   Bludgeoning   1.25   ****
+1          1032   Piercing      1.25   ****
+2          1033   Slashing      1.25   ****
 3          ****   Subdual       ****   ****
 4          ****   Physical      ****   ****
 5          62487  Magical       0.35   TRUE

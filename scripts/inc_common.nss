@@ -1086,4 +1086,10 @@ int gvd_ItemAllowedInStores(object oCheck) {
   return 1;
 }
 
-
+string gsCMGetFirstName(object oCreature)
+{
+  string sName = GetName(oCreature);
+  int nSpace   = FindSubString(sName, " ");
+  if (nSpace == -1) return sName;
+  else return GetSubString(sName, 0, nSpace); 
+}

@@ -1,5 +1,5 @@
 /* STATE Library by Gigaschatten */
-
+#include "inc_boss"
 #include "inc_favsoul"
 #include "inc_subrace"
 #include "inc_text"
@@ -121,10 +121,60 @@ void gsSTProcessState()
 	if (!gsCMGetHasClass(CLASS_TYPE_FAVOURED_SOUL)) gsSTAdjustState(GS_ST_PIETY, -0.1); // 2.4% per game day
 }
 //----------------------------------------------------------------
+void gsSTAdjustStateForNPC(int nState, float fValue, object oCreature = OBJECT_SELF)
+{
+  // Only care about stamina right now.
+  if (nState != GS_ST_STAMINA) return;
+  
+  float fState = GetLocalFloat(oCreature, "GS_ST_" + IntToString(nState));
+  
+  int nMaxHP = GetMaxHitPoints(oCreature);
+  if (nMaxHP > 100) nMaxHP = 100;
+    
+  if (gsBOGetIsBossCreature(oCreature)) nMaxHP *= 4;
+  
+  fState += fValue;
+  
+    if (fState < -1.0f * IntToFloat(nMaxHP))
+    {
+		// Avoid this section firing more than once per creature.
+		if (!GetLocalInt(oCreature, "DEAD"))
+		{
+			AssignCommand(oCreature, SpeakString(" *Collapses, drained of vitality* "));
+
+			// Make death supernatural since EffectDeath() will fail on creatures that are death-immune. 
+			ApplyEffectToObject(DURATION_TYPE_INSTANT, SupernaturalEffect(EffectDeath()), oCreature);
+			SetLocalInt(oCreature, "DEAD", TRUE);
+			return;
+		}
+    }
+    else if (fState < 0.0)
+    {
+		// Reduce physical stats by 1 each time a creature is stamina drained below 0.
+		object oCreator    = GetLocalObject(GetModule(), "GS_ST_CREATOR");
+		if (! GetIsObjectValid(oCreator)) return;
+        
+        AssignCommand(oCreator, ApplyEffectToObject(DURATION_TYPE_PERMANENT, ExtraordinaryEffect(EffectAbilityDecrease(ABILITY_STRENGTH, 1)), oCreature));
+        AssignCommand(oCreator, ApplyEffectToObject(DURATION_TYPE_PERMANENT, ExtraordinaryEffect(EffectAbilityDecrease(ABILITY_DEXTERITY, 1)), oCreature));
+        AssignCommand(oCreator, ApplyEffectToObject(DURATION_TYPE_PERMANENT, ExtraordinaryEffect(EffectAbilityDecrease(ABILITY_CONSTITUTION, 1)), oCreature));
+		
+		ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_REDUCE_ABILITY_SCORE), oCreature);
+	}  
+	
+	SetLocalFloat(oCreature, "GS_ST_" + IntToString(nState), fState);
+  
+}
+//----------------------------------------------------------------
 void gsSTAdjustState(int nState, float fValue, object oCreature = OBJECT_SELF)
 {
     // Comment - not sure why we leave this when it's zero.
     if (fValue == 0.0 || fbZGetIsZombie(oCreature)) return;
+	
+	if (!GetIsPC(oCreature))
+	{
+	  gsSTAdjustStateForNPC(nState, fValue, oCreature);
+	  return;
+	}
 
     // Immortals don't need food or water.
     int isMortal = gsSUGetIsMortal(gsSUGetSubRaceByName(GetSubRace(oCreature)));
@@ -177,7 +227,6 @@ void gsSTAdjustState(int nState, float fValue, object oCreature = OBJECT_SELF)
 
     //adjustment	
     object oHide = gsPCGetCreatureHide(oCreature);
-	if (!GetIsPC(oCreature)) oHide = oCreature;
 	
     float fState    = GetLocalFloat(oHide, sState);
     float fStateOld = fState;
@@ -531,13 +580,18 @@ void gsSTAdjustHPPool(object oCreature, int nAdjust)
 //----------------------------------------------------------------
 void gsSTDoCasterDamage(object oCaster, int nDamage)
 {
+  if (!GetIsPC(oCaster)) return;
+
   int nHPPool  = gsSTGetHPPool(oCaster);
   float fStamina = gsSTGetState(GS_ST_STAMINA, oCaster);
   float fDamage = IntToFloat(nDamage);
   int nFighter = GetLevelByClass(CLASS_TYPE_FIGHTER, oCaster);
   
-  fDamage *= (1 - 0.05 * nFighter);
+  int nTax = GetLocalInt(oCaster, "ST_STAM_TAX");
+  if (nTax) fDamage *= (1.0f + IntToFloat(nTax)/100);
   
+  fDamage *= (1 - 0.05 * nFighter);
+    
   if (nHPPool && (fStamina - fDamage < 10.0f))
   {
     if (FloatToInt(fDamage) > nHPPool)
@@ -554,6 +608,15 @@ void gsSTDoCasterDamage(object oCaster, int nDamage)
   
   if (fDamage > 0.0f)
   {
-      gsSTAdjustState(GS_ST_STAMINA, -fDamage);
+      gsSTAdjustState(GS_ST_STAMINA, -fDamage, oCaster);
   }
+}
+//----------------------------------------------------------------
+void gsSTDoStaminaTax(object oTarget, int nPenalty, float fDuration)
+{
+  int nCurrentPenalty = GetLocalInt(oTarget, "ST_STAM_TAX");
+  nCurrentPenalty += nPenalty;
+  SetLocalInt(oTarget, "ST_STAM_TAX", nCurrentPenalty);
+  
+  if (fDuration > 0.0f) DelayCommand(fDuration, gsSTDoStaminaTax(oTarget, -nPenalty, 0.0f));
 }

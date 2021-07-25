@@ -6,8 +6,8 @@
 */
 
 //void main(){}
-
-
+#include "inc_achievements"
+#include "inc_combat"
 #include "inc_spellmatrix"
 #include "ar_utils"
 #include "inc_state"
@@ -407,22 +407,27 @@ void ar_FaerzressWildMagicTable(object oPC, object oTarget, location lTarget, in
     // Teleport (Caster) to target Location
     //--------------------------------------------------------------------------
     case 25:
-        sMessage    = "Teleport: Caster";
+	{
+        sMessage    = "Doppelganger: Caster";
         eSpellVFX   = EffectVisualEffect(VFX_IMP_AC_BONUS);
 
         //::  As it can be abused.
-        if (isFateActive) {
-            sMessage = "Surge vanished";
-            SendMessageToPC(oPC, "Teleportation can not be used by Fatidical Manipulation.");
-        }
-        else {
-            SetLocalInt(oPC, AR_WM_CANCEL_NEXT, TRUE);
-            ApplyEffectToObject(DURATION_TYPE_INSTANT, eSpellVFX, oPC);
-            DelayCommand(1.0, AssignCommand(oPC, ClearAllActions(TRUE)));
-            DelayCommand(1.2, AssignCommand(oPC, JumpToLocation(lTarget)));
-            DelayCommand(1.4, AssignCommand(oPC, ClearAllActions(TRUE)));
-            DelayCommand(8.0, DeleteLocalInt(oPC, AR_WM_CANCEL_NEXT) );
-        }
+		object oCopy = CopyObject(oPC, GetLocation(oPC));
+		ChangeToStandardFaction(oCopy, STANDARD_FACTION_HOSTILE);
+		AssignCommand(oCopy, SetIsDestroyable(FALSE, FALSE, FALSE));
+
+		// no lasso allowed
+		SetLocalInt(oCopy, "GVD_NO_LASSO", 1);
+
+		// no drops
+		SetInventoryDroppable(oCopy, 0);
+
+		// Work around the fact that clones can be disarmed by giving them +150 discipline.
+		ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectVisualEffect(VFX_IMP_NEGATIVE_ENERGY), oCopy, 6.0f);
+		ApplyEffectToObject(DURATION_TYPE_PERMANENT, EffectSkillIncrease(SKILL_DISCIPLINE, 150), oCopy);
+		
+		AssignCommand(oCopy, gsCBDetermineCombatRound(oPC));
+	}	
     break;
     //--------------------------------------------------------------------------
     // Imprisonment (Caster)
@@ -1580,5 +1585,7 @@ void ar_FaerzressWildMagic(object oPC, object oTarget, location lTarget, int nSp
 
         //_arLogMessage("Wild Surge occurrence in " + GetName(oArea) + ", spell cast by " + GetName(oPC, TRUE) + " (True Name)!", TRUE);
         ar_FaerzressWildMagicTable(oPC, oTarget, lTarget, nSpell, nHarmful);
+		
+		acAwardAchievement(oPC, "miscast");
     }
 }

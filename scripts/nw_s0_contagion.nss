@@ -8,7 +8,6 @@ void main()
     object oTarget = GetSpellTargetObject();
     effect eEffect;
     int nSpell     = GetSpellId();
-    int nDC        = AR_GetSpellSaveDC();
     int nValue     = 0;
 
     //raise event

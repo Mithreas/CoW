@@ -203,6 +203,12 @@ void main()
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 10, 10);
 
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu1Blunts, "Ondaran Shod Quarterstaff (Entwood)", "wdbqs002", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrqstaff4", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrshod1", 2);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 1);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 10, 10);
+
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenu1Axes, "Ondaran Waraxe", "cnrwaraxe1", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrmedbld1", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrshaft", 1);

@@ -113,7 +113,7 @@ void main()
 	}
 	
     InitializeNPCCooldownAbilities();
-    SignalEvent(OBJECT_SELF, EventUserDefined(GS_EV_ON_SPAWN));
+    SignalEvent(OBJECT_SELF, EventUserDefined(GS_EV_ON_SPAWN));	
 }
 
 

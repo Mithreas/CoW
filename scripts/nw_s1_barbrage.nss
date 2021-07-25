@@ -26,6 +26,16 @@
 //------------------------------------------------------------------------------
 void main()
 {
+    // Restore feat use.
+    IncrementRemainingFeatUses(OBJECT_SELF, FEAT_BARBARIAN_RAGE);
+
+    // Cooldown check.
+    if(GetIsTimelocked(OBJECT_SELF, "Barbarian Rage"))
+    {
+        TimelockErrorMessage(OBJECT_SELF, "Barbarian Rage");
+        return;
+    }	
+
     // Rage Override for tribesman path.
     if (GetLocalInt(gsPCGetCreatureHide(), "TRIBESMAN") || GetLocalInt(OBJECT_SELF, "TRIBESMAN"))
     {
@@ -35,16 +45,7 @@ void main()
         // Event Signal
         SignalEvent(OBJECT_SELF, EventSpellCastAt(OBJECT_SELF, SPELLABILITY_BARBARIAN_RAGE, FALSE));
 
-        return;
-    }
-
-    // Restore feat use.
-    IncrementRemainingFeatUses(OBJECT_SELF, FEAT_BARBARIAN_RAGE);
-
-    // Cooldown check.
-    if(GetIsTimelocked(OBJECT_SELF, "Barbarian Rage"))
-    {
-        TimelockErrorMessage(OBJECT_SELF, "Barbarian Rage");
+        SetTimelock(OBJECT_SELF, FloatToInt(TurnsToSeconds(10)), "Barbarian Rage");
         return;
     }
 
@@ -65,7 +66,6 @@ void main()
 
     // Apply Temporary Damage to Barb's Weapon
     barbWeaponRageEffects(nDuration, OBJECT_SELF);
-
 
     // Do Epic Rage Feats, if any, and apply Cooldown
     // Cooldown: Rage Duration + 1 turn (10 rounds)

@@ -141,7 +141,7 @@ void main()
         }
     }
 
-    //stolen items
+    //stolen items -- pickpocket
     if (GetStolenFlag(oAcquired))
     {
         object oStolenFrom = gsTHGetStolenFrom(oAcquired);
@@ -186,7 +186,7 @@ void main()
                     {
                         miDVGivePoints(oAcquiredBy, ELEMENT_AIR, 4.0);
                         nTimeout     = nTimestamp + gsTIGetGameTimestamp(GS_TIMEOUT);
-
+						
                         gsTHSetStolenFrom(oAcquired, oAcquiredFrom);
                         SetLocalInt(oAcquiredBy, "GS_TH_TIMEOUT", nTimeout);
                     }
@@ -214,6 +214,8 @@ void main()
                 else if (GetIsReactionTypeHostile(oAcquiredBy, oAcquiredFrom))
                 {
                   miDVGivePoints(oAcquiredBy, ELEMENT_AIR, 4.0);
+				  
+				  if (gsWOGetDeityAspect(oAcquiredBy) & ASPECT_TRICKERY_DECEIT) gsSTAdjustState(GS_ST_PIETY, 0.2f, oAcquiredBy);
 
                   // Edit by Mith - give XP if successful PP from a hostile NPC.
                   float fRating = GetChallengeRating(oAcquiredFrom);

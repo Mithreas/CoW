@@ -95,7 +95,7 @@ void main()
     else
     {
 	
-	    if (sPCID == "" && !miREHasRelationship(oSpeaker, oTarget))
+	    if (sPCID == "" || !miREHasRelationship(oSpeaker, oTarget))
 	    {
           SendMessageToPC(oSpeaker, "<cþ£ >You may only send a message to someone you have previously interacted with.");
 	    }

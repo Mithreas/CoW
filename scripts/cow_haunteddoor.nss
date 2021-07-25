@@ -71,7 +71,7 @@ void main()
       SpeakString("The air is suddenly filled with unpleasant sticky webs.");
       object oWeb = CreateObject(OBJECT_TYPE_PLACEABLE, "door_web", GetLocation(oDoor));
       AssignCommand(oWeb, SetFacing(GetFacing(oDoor)));
-      DestroyObject(oWeb, 30.0);
+      DestroyObject(oWeb, 20.0);
       break;
     }
     default:

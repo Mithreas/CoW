@@ -333,10 +333,28 @@ void main()
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuBows3, "Lilting Note (Shortbow)", "wbwmsh008", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "wbwsh004", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrbowcam", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "dust_diam", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "dust_sapp", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "dust_topa", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 14);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 140, 140);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuBows3, "Tansheron's Bow (Shortbow)", "wbwmsh006", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "wbwsh004", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrthreadmit", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "dust_emer", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "dust_garn", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 18);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 180, 180);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuBows3, "Bow of Winds (Longbow)", "bowofwinds", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "wbwln004", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrthreadmit", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "dust_diam", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cow_gememer", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 20);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 200, 200);
+  
+  
   
   //----------------------------furniture--------------------------------------  
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuCarpFurn, "Fixture: Stool", "wt_item_stool", 1);

@@ -80,10 +80,20 @@ void main()
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Ammo, "Iron Throwing Knives", "cnrthrow2", 50);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Ammo, "Iron Throwing Knives", "ca_gen_tk_iro", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotiro", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Ammo, "Iron Shurikens", "ca_gen_sh_iro", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotiro", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 3);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 30, 30);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Ammo, "Iron Throwing Axes", "ca_gen_axe_iro", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotiro", 2);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Polearms, "Iron Spear", "wplss003", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrsmlbld2", 1);
@@ -207,6 +217,12 @@ void main()
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Blunts, "Iron Shod Quarterstaff", "wdbqs003", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrqstaff", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrshod2", 2);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu2Blunts, "Iron Shod Quarterstaff (Entwood)", "wdbqs003", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrqstaff4", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrshod2", 2);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 4);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 40, 40);

@@ -492,8 +492,8 @@
 488   "Wyvern, Great"                                c_wyvern_g        ****
 489   "Wyvern, Juvenile"                             c_wyvern_j        ****
 490   "Wyvern, Young"                                c_wyvern_y        ****
-491   *****                                          *****             ****
-492   *****                                          *****             ****
+491   "Red Fox"                                      c_redfox          ****
+492   "Desert Fox"                                   c_desertfox       ****
 493   *****                                          *****             ****
 494   *****                                          *****             ****
 495   *****                                          *****             ****

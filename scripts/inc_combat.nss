@@ -1861,7 +1861,9 @@ void _gsCBTalentAttack(object oTarget, int nDistance)
                              TALENT_CATEGORY_HARMFUL_RANGED :
                              TALENT_CATEGORY_HARMFUL_MELEE);
 
-        gsCBUseTalentOnObject(tTalent, oTarget);
+		if (tTalent != TalentFeat(FEAT_WHIRLWIND_ATTACK) && 
+		    tTalent != TalentFeat(FEAT_IMPROVED_WHIRLWIND))
+				gsCBUseTalentOnObject(tTalent, oTarget);
     }
 
     ActionAttack(oTarget);
@@ -2050,11 +2052,14 @@ int gsCBTelegraphAttack(object oTarget)
   // This method uses two new custom AOEs to telegraph the area that will be affected by an attack in 6s time. 
   // Anyone who doesn't get out of the way will be hit for 1d6 damage per caster hit dice with no save or attack roll.
   // Don't telegraph an attack two rounds running. 
-  if (GetLocalInt(OBJECT_SELF, "TELEGRAPHED"))
+  int nTime = GetModuleTime();
+  
+  if (nTime - GetLocalInt(OBJECT_SELF, "TELEGRAPHED") <= 12)
   {
-    DeleteLocalInt(OBJECT_SELF, "TELEGRAPHED");
 	return FALSE;
   }
+  
+  SetLocalInt(OBJECT_SELF, "TELEGRAPHED", nTime); 
   
   if (GetDistanceBetween(oTarget, OBJECT_SELF) > 3.0f) return FALSE;
   

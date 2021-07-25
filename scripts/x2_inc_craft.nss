@@ -424,6 +424,13 @@ object CICraftScribeScroll(object oCreator, int nSpellID)
         if (sResRef != "")
         {
             oTarget = CreateItemOnObject(sResRef,oCreator);
+			
+			if (sClass == "Cleric" || sClass == "Ranger" || sClass == "Paladin")
+			{
+             itemproperty ipLimit = ItemPropertyLimitUseByClass(CLASS_TYPE_FAVOURED_SOUL);
+             AddItemProperty(DURATION_TYPE_PERMANENT,ipLimit,oTarget);
+			}
+			
             gsIPSetOwner(oTarget, oCreator);
         }
 

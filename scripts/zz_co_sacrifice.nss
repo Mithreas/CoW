@@ -17,9 +17,11 @@ since it is where all the deities and their respective portfolios are stored. It
 also serves as a wrapper for all the libraries required for this script.
 */
 #include "zzdlg_main_inc"
+#include "inc_activity"
+#include "inc_favsoul"
+#include "inc_shapechanger"
 #include "inc_spell"
 #include "inc_worship"
-#include "inc_favsoul"
 
 const string MM_RESPONSES  = "ZZS_MM_RESPONSES";
 const string SAC_RESPONSES = "ZZS_SAC_RESPONSES";
@@ -70,6 +72,7 @@ void _DoPrayer (object oPC, object oAltar, object oCleric)
   {
     // Start praying.
     SendMessageToPC(oPC, "You have started praying.");
+	ClearActivities(oPC);
     SetLocalInt(oPC, "PRAYING", TRUE);
     AssignCommand(oPC, SetFacingPoint(GetPosition(oAltar)));
     AssignCommand(oPC, SetLocalLocation(oPC, "P_LOC", GetLocation(oPC)));
@@ -321,6 +324,7 @@ void OnSelection(string sPage)
       if (nConsecrate)
       {
          gsWOConsecrate(oSpeaker, oAltar);
+		 SPC_Consecrate(oSpeaker);
       }
       else
       {

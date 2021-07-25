@@ -13,7 +13,7 @@
 9   OpenLock        278       354          isk_olock       0          DEX         0                  1                 ****      ****   SKILL_OPEN_LOCK         0					****
 10  Parry           279       355          isk_parry       1          DEX         1                  1                 ****      1      SKILL_PARRY             0					****
 11  Perform         280       356          isk_perform     1          CHA         0                  0                 ****      ****   SKILL_PERFORM           0					****
-12  Persuade        281       357          isk_persuade    1          CHA         0                  1                 ****      ****   SKILL_PERSUADE          0					****
+12  Persuade        281       357          isk_persuade    1          WIS         0                  1                 ****      ****   SKILL_PERSUADE          0					****
 13  PickPocket      282       358          isk_pocket      0          DEX         1                  1                 ****      ****   SKILL_PICK_POCKET       1					****
 14  Search          284       360          isk_search      1          INT         0                  1                 ****      ****   SKILL_SEARCH            0					****
 15  SetTrap         285       361          isk_settrap     0          DEX         1                  1                 ****      ****   SKILL_SET_TRAP          0					****
@@ -29,3 +29,4 @@
 25  CraftArmor      8787      8788         isk_X2CArm      1          INT         0                  1                 ****      ****   SKILL_CRAFT_ARMOR       0					****
 26  CraftWeapon     8789      8790         isk_X2CWeap     1          INT         0                  1                 ****      ****   SKILL_CRAFT_WEAPON      0					****
 27  Ride            111889    111890       isk_x3_ride     1          DEX         0                  1                 ****      ****   SKILL_RIDE              0					****
+28  SenseMotive     16777276  16777277     ife_X1App       1          WIS         0                  1                 ****      ****   SKILL_SENSE_MOTIVE      0                   ****

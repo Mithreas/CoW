@@ -20,6 +20,24 @@
 #include "inc_customspells"
 #include "inc_spells"
 
+int GetHasWebImmunity(object oCreature)
+{
+  object oHide = GetItemInSlot(INVENTORY_SLOT_CARMOUR, oCreature);
+  if (!GetIsObjectValid(oHide)) return FALSE;
+  
+  itemproperty iProp = GetFirstItemProperty(oHide);
+  while (GetIsItemPropertyValid(iProp))
+  {
+    if (GetItemPropertyType(iProp) == ITEM_PROPERTY_IMMUNITY_SPECIFIC_SPELL &&
+	    GetItemPropertyCostTableValue(iProp) == IP_CONST_IMMUNITYSPELL_WEB)
+		return TRUE;
+   
+    iProp = GetNextItemProperty(oHide);
+  }
+  
+  return FALSE;
+}
+
 void main()
 {
 
@@ -30,11 +48,17 @@ void main()
     object oTarget = GetEnteringObject();
     int nDC = GetSpellSaveDC();
 
+	if (oTarget == GetAreaOfEffectCreator())
+	{
+	  // Casters are immune to their own Web spell. 		  
+	  return;
+	}	
+
     if(GetAoEId(OBJECT_SELF) == SPELL_GREATER_SHADOW_CONJURATION_WEB)
     {
         nDC = AdjustSpellDCForSpellSchool(nDC, SPELL_SCHOOL_ILLUSION, SPELL_WEB, GetAreaOfEffectCreator());
     }
-
+		
     // * the lower the number the faster you go
     int nSlow = 65 - (GetAbilityScore(oTarget, ABILITY_STRENGTH)*2);
     if (nSlow <= 0)
@@ -48,24 +72,25 @@ void main()
     }
 
     effect eSlow = EffectMovementSpeedDecrease(nSlow);
-    if (spellsIsTarget(oTarget, SPELL_TARGET_STANDARDHOSTILE, GetAreaOfEffectCreator()))
-    {
-         if(!GetHasFeat(FEAT_WOODLAND_STRIDE, oTarget) &&(GetCreatureFlag(oTarget, CREATURE_VAR_IS_INCORPOREAL) != TRUE) )
-        {
-            //Fire cast spell at event for the target
-            SignalEvent(oTarget, EventSpellCastAt(GetAreaOfEffectCreator(), SPELL_WEB));
-            //Spell resistance check
-            //if(!MyResistSpell(GetAreaOfEffectCreator(), oTarget))
-            //{
-                //Make a Fortitude Save to avoid the effects of the entangle.
-                if(!MySavingThrow(SAVING_THROW_REFLEX, oTarget, nDC))
-                {
-                    //Entangle effect and Web VFX impact
-                    ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, RoundsToSeconds(1));
-                }
-                //Slow down the creature within the Web
-                ApplyEffectToObject(DURATION_TYPE_PERMANENT, eSlow, oTarget);
-            //}
-        }
-    }
+	
+	if(!GetHasFeat(FEAT_WOODLAND_STRIDE, oTarget) &&
+	   (GetCreatureFlag(oTarget, CREATURE_VAR_IS_INCORPOREAL) != TRUE)  && 
+		!GetIsImmune(oTarget, IMMUNITY_TYPE_ENTANGLE) && 
+		!GetHasWebImmunity(oTarget))
+	{
+		//Fire cast spell at event for the target
+		SignalEvent(oTarget, EventSpellCastAt(GetAreaOfEffectCreator(), SPELL_WEB));
+		//Spell resistance check
+
+		//Make a Fortitude Save to avoid the effects of the entangle.
+		if(!MySavingThrow(SAVING_THROW_REFLEX, oTarget, nDC))
+		{
+			//Entangle effect and Web VFX impact
+			ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, RoundsToSeconds(1));
+		}
+		
+		//Slow down the creature within the Web
+		ApplyEffectToObject(DURATION_TYPE_PERMANENT, eSlow, oTarget);
+   }
+
 }

@@ -241,25 +241,27 @@ void CreateProceduralLoot(string template, int context, object container, object
 
     while (GetIsObjectValid(partyMember))
     {
-        object hide = gsPCGetCreatureHide(partyMember);
-        struct LootDistributionHistory history = GetLootDistributionHistory(hide, template);
+	    if (GetArea(partyMember) == GetArea(creature) && GetIsPC(partyMember))		
+		{
+			object hide = gsPCGetCreatureHide(partyMember);
+			struct LootDistributionHistory history = GetLootDistributionHistory(hide, template);
 
-        if (bestChanceObject == OBJECT_INVALID || history.drops < bestChanceDrops ||
-            (history.drops == bestChanceDrops && history.timestamp < bestChanceTimestamp))
-        {
-            bestChanceTimestamp = history.timestamp;
-            bestChanceDrops = history.drops;
-            bestChanceObject = partyMember;
-            bestChanceObjectHide = hide;
-        }
-
+			if (bestChanceObject == OBJECT_INVALID || history.drops < bestChanceDrops ||
+				(history.drops == bestChanceDrops && history.timestamp < bestChanceTimestamp))
+			{
+				bestChanceTimestamp = history.timestamp;
+				bestChanceDrops = history.drops;
+				bestChanceObject = partyMember;
+				bestChanceObjectHide = hide;
+			}
+		}
         partyMember = GetNextFactionMember(creature);
     }
 	
 	if (override) bestChanceObject = creature;
 
     string bucket = INTERNAL_LootBucketFromContext(context);
-    struct LootDistrbutionResults results = GetLootDistributionResults(bestChanceObjectHide, template, bucket);
+    struct LootDistrbutionResults results = GetLootDistributionResults(bestChanceObjectHide, template, bucket, context % 3);
 
     if (results.createDrop || override)
     {
@@ -400,7 +402,7 @@ void CreateProceduralLoot(string template, int context, object container, object
         if (GetIsObjectValid(generatedLoot))
         {
             // Now apply the naming scheme.
-            ApplyLootNamingScheme(generatedLoot, bestChanceObject);
+            ApplyLootNamingScheme(generatedLoot, container);
 
             int itemValue = GetGoldPieceValue(generatedLoot);
 

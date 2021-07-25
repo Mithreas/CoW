@@ -44,7 +44,7 @@ void main()
 	  int nBounty = GetLocalInt(OBJECT_SELF, "BOUNTY");
       AddToBounty(nNation, nBounty ==0 ? FINE_THEFT : nBounty, oPC);
     }
-	else if (GetCanSeeParticularPC(oPC, oNPC))
+	else if (GetCanSeeParticularPC(oPC, oNPC) && GetFaction(oNPC) != FACTION_QUEST)
 	{
 	  SetIsTemporaryEnemy(oPC, oNPC);
 	  AssignCommand(oNPC, gsCBDetermineCombatRound());

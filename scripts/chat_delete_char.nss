@@ -40,9 +40,9 @@ void main()
        "this character will be PERMANENTLY DELETED!!!\n");
       SetLocalInt(oHide, "CONFIRM_DELETE", 1);
 	  
-	  if (GetLocalInt(gsPCGetCreatureHide(oSpeaker), "FL_LEVEL") > 25)
+	  if (GetLocalInt(gsPCGetCreatureHide(oSpeaker), "FL_LEVEL") >= 15)
 	  {
-	    SendMessageToPC(oSpeaker, "This character is eligible for an award (SL26+).  The award will be generated automatically when you delete them.");
+	    SendMessageToPC(oSpeaker, "This character is eligible for an award (SL15+).  The award will be generated automatically when you delete them.");
 	  }
     }
   }

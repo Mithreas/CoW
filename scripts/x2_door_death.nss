@@ -40,7 +40,7 @@ void main()
       if (GetCanSeeParticularPC(oPC, oNPC) && (nNation != NATION_INVALID))
       {
         Trace(BOUNTY, "NPC is from a nation that gives bounties, and can see PC.");
-        AddToBounty(nNation, FINE_THEFT, oPC);
+        AddToBounty(nNation, FINE_THEFT + Random(FINE_THEFT), oPC);
         break; // Only add to one bounty
       }
 

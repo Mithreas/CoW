@@ -23,7 +23,8 @@ void main()
     int nCount         = 0;
     int nNth1          = 0;
     int nNth2          = 0;
-
+	int nD6            = 0;
+	
     //build target list
     oTarget1           = GetFirstObjectInShape(SHAPE_SPHERE, RADIUS_SIZE_LARGE, lLocation);
 
@@ -31,7 +32,13 @@ void main()
     {
         //raise event
         SignalEvent(oTarget1, EventSpellCastAt(OBJECT_SELF, nSpell));
-				
+		
+		// Do stamina theft.	
+		nD6 = d6(1);
+		if (GetRacialType(oTarget1) == RACIAL_TYPE_UNDEAD) nD6 *= 2;
+		gsSTAdjustState(GS_ST_STAMINA, -IntToFloat(nD6), oTarget1);
+		gsSTAdjustState(GS_ST_STAMINA, IntToFloat(nD6), OBJECT_SELF);
+		
         //affection check
         if (GetHitDice(oTarget1) < 9)
         {

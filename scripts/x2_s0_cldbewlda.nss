@@ -22,9 +22,6 @@ void main()
 
     //Declare major variables
     int nRounds;
-    effect eStun = EffectStunned();
-    effect eBlind = EffectBlindness();
-    eStun = EffectLinkEffects(eBlind,eStun);
     effect eVis = EffectVisualEffect(VFX_DUR_BLIND);
     effect eFind;
     object oTarget;
@@ -32,6 +29,8 @@ void main()
     float fDelay;
     //Get the first object in the persistant area
     oTarget = GetEnteringObject();
+    effect eBlind = AnemoiEffectBlindness(oTarget);
+	
     if(spellsIsTarget(oTarget, SPELL_TARGET_STANDARDHOSTILE, GetAreaOfEffectCreator()))
     {
         //Fire cast spell at event for the specified target
@@ -39,18 +38,11 @@ void main()
         //Make a SR check
         if(!MyResistSpell(GetAreaOfEffectCreator(), oTarget))
         {
-            //Make a Fort Save
-            if(!MySavingThrow(SAVING_THROW_FORT, oTarget, GetSpellSaveDC(), SAVING_THROW_TYPE_POISON))
-            {
-                if (GetIsImmune(oTarget, IMMUNITY_TYPE_POISON) == FALSE)
-                {
-                    nRounds = d6(1);
-                    fDelay = GetRandomDelay(0.75, 1.75);
-                    //Apply the VFX impact and linked effects
-                    DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget));
-                    DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eStun, oTarget, RoundsToSeconds(nRounds)));
-                }
-            }
+			nRounds = d6(1);
+			fDelay = GetRandomDelay(0.75, 1.75);
+			//Apply the VFX impact and linked effects
+			DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget));
+			DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eBlind, oTarget, RoundsToSeconds(nRounds)));
         }
     }
 }

@@ -243,6 +243,18 @@ void main()
   CnrRecipeAddComponent(sKeyToRecipe, "cow_gememer", 1, 0);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 17);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 170, 170);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuRings, "Ring of Camouflage", "ring_scout8", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrsilgarnring", 1, 0);
+  CnrRecipeAddComponent(sKeyToRecipe, "rune_invest1", 1, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 19);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 190, 190);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuRings, "Ring of Revealing", "ring_detect8", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrsilalexring", 1, 0);
+  CnrRecipeAddComponent(sKeyToRecipe, "rune_invest1", 1, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 19);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 190, 190);
 
   /////////////////////////////////////////////////////////
   // Scarabs
@@ -407,6 +419,12 @@ void main()
   CnrRecipeAddComponent(sKeyToRecipe, "cow_gememer", 1, 0);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 18);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 180, 180);  
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuAmulets, "Greater Luckstone", "cow_luckstone5", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotele", 2, 0);
+  CnrRecipeAddComponent(sKeyToRecipe, "cow_luckstone", 1, 0);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 20);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 200, 200);  
 
   /////////////////////////////////////////////////////////
   // Stonework

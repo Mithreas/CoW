@@ -8,12 +8,13 @@
 //
 ////////////////////////////////////////////////////////
 
-#define ENGINE_NUM_STRUCTURES   5
+#define ENGINE_NUM_STRUCTURES   6
 #define ENGINE_STRUCTURE_0      effect
 #define ENGINE_STRUCTURE_1      event
 #define ENGINE_STRUCTURE_2      location
 #define ENGINE_STRUCTURE_3      talent
 #define ENGINE_STRUCTURE_4      itemproperty
+#define ENGINE_STRUCTURE_5      sqlquery
 
 // Constants
 
@@ -100,6 +101,7 @@ int    OBJECT_TYPE_WAYPOINT         = 32;
 int    OBJECT_TYPE_PLACEABLE        = 64;
 int    OBJECT_TYPE_STORE            = 128;
 int    OBJECT_TYPE_ENCOUNTER        = 256;
+int    OBJECT_TYPE_TILE             = 512;
 int    OBJECT_TYPE_ALL              = 32767;
 
 int    OBJECT_TYPE_INVALID          = 32767;
@@ -3411,6 +3413,56 @@ int ANIMATION_LOOPING_CUSTOM19                 = 39;
 int ANIMATION_LOOPING_CUSTOM20                 = 40;
 int ANIMATION_MOUNT1                           = 41;
 int ANIMATION_DISMOUNT1                        = 42;
+int ANIMATION_LOOPING_CUSTOM21                 = 43;
+int ANIMATION_LOOPING_CUSTOM22                 = 44;
+int ANIMATION_LOOPING_CUSTOM23                 = 45;
+int ANIMATION_LOOPING_CUSTOM24                 = 46;
+int ANIMATION_LOOPING_CUSTOM25                 = 47;
+int ANIMATION_LOOPING_CUSTOM26                 = 48;
+int ANIMATION_LOOPING_CUSTOM27                 = 49;
+int ANIMATION_LOOPING_CUSTOM28                 = 50;
+int ANIMATION_LOOPING_CUSTOM29                 = 51;
+int ANIMATION_LOOPING_CUSTOM30                 = 52;
+int ANIMATION_LOOPING_CUSTOM31                 = 53;
+int ANIMATION_LOOPING_CUSTOM32                 = 54;
+int ANIMATION_LOOPING_CUSTOM33                 = 55;
+int ANIMATION_LOOPING_CUSTOM34                 = 56;
+int ANIMATION_LOOPING_CUSTOM35                 = 57;
+int ANIMATION_LOOPING_CUSTOM36                 = 58;
+int ANIMATION_LOOPING_CUSTOM37                 = 59;
+int ANIMATION_LOOPING_CUSTOM38                 = 60;
+int ANIMATION_LOOPING_CUSTOM39                 = 61;
+int ANIMATION_LOOPING_CUSTOM40                 = 62;
+int ANIMATION_LOOPING_CUSTOM41                 = 63;
+int ANIMATION_LOOPING_CUSTOM42                 = 64;
+int ANIMATION_LOOPING_CUSTOM43                 = 65;
+int ANIMATION_LOOPING_CUSTOM44                 = 66;
+int ANIMATION_LOOPING_CUSTOM45                 = 67;
+int ANIMATION_LOOPING_CUSTOM46                 = 68;
+int ANIMATION_LOOPING_CUSTOM47                 = 69;
+int ANIMATION_LOOPING_CUSTOM48                 = 70;
+int ANIMATION_LOOPING_CUSTOM49                 = 71;
+int ANIMATION_LOOPING_CUSTOM50                 = 72;
+int ANIMATION_LOOPING_CUSTOM51                 = 73;
+int ANIMATION_LOOPING_CUSTOM52                 = 74;
+int ANIMATION_LOOPING_CUSTOM53                 = 75;
+int ANIMATION_LOOPING_CUSTOM54                 = 76;
+int ANIMATION_LOOPING_CUSTOM55                 = 77;
+int ANIMATION_LOOPING_CUSTOM56                 = 78;
+int ANIMATION_LOOPING_CUSTOM57                 = 79;
+int ANIMATION_LOOPING_CUSTOM58                 = 80;
+int ANIMATION_LOOPING_CUSTOM59                 = 81;
+int ANIMATION_LOOPING_CUSTOM60                 = 82;
+int ANIMATION_LOOPING_CUSTOM61                 = 83;
+int ANIMATION_LOOPING_CUSTOM62                 = 84;
+int ANIMATION_LOOPING_CUSTOM63                 = 85;
+int ANIMATION_LOOPING_CUSTOM64                 = 86;
+int ANIMATION_LOOPING_CUSTOM65                 = 87;
+int ANIMATION_LOOPING_CUSTOM66                 = 88;
+int ANIMATION_LOOPING_CUSTOM67                 = 89;
+int ANIMATION_LOOPING_CUSTOM68                 = 90;
+int ANIMATION_LOOPING_CUSTOM69                 = 91;
+int ANIMATION_LOOPING_CUSTOM70                 = 92;
 
 // Fire and forget animation constants.
 int ANIMATION_FIREFORGET_HEAD_TURN_LEFT        = 100;
@@ -5563,113 +5615,113 @@ int  FOG_COLOR_BROWN            = 10053120;
 int  FOG_COLOR_BROWN_DARK       = 6697728;
 
 // these constants must match those in the AmbientSound.2da
-int AMBIENT_SOUND_NONE              = 0;
-int AMBIENT_SOUND_MEN_WHISPER_INSIDE        = 1;
-int AMBIENT_SOUND_WOMEN_WHISPER_INSIDE      = 2;
-int AMBIENT_SOUND_PEOPLE_WHISPER_INSIDE     = 3;
-int AMBIENT_SOUND_SMALL_GROUP_TALKS_INSIDE  = 4;
-int AMBIENT_SOUND_MEDIUM_GROUP_TALKS_INSIDE = 5;
-int AMBIENT_SOUND_LARGE_GROUP_TALKS_INSIDE  = 6;
-int AMBIENT_SOUND_COMMONER_TAVERN_TALK      = 7;
-int AMBIENT_SOUND_NOBLE_TAVERN_TALK     = 8;
-int AMBIENT_SOUND_CITY_SLUMS_DAY_CROWDED    = 9;
-int AMBIENT_SOUND_CITY_SLUMS_DAY_SPARSE     = 10;
-int AMBIENT_SOUND_CITY_SLUMS_NIGHT      = 11;
-int AMBIENT_SOUND_CITY_DAY_CROWDED      = 12;
-int AMBIENT_SOUND_CITY_DAY_SPARSE       = 13;
-int AMBIENT_SOUND_CITY_NIGHT            = 14;
-int AMBIENT_SOUND_CITY_MARKET           = 15;
-int AMBIENT_SOUND_CITY_TEMPLE_DISTRICT      = 16;
-int AMBIENT_SOUND_TOWN_DAY_CROWDED      = 17;
-int AMBIENT_SOUND_TOWN_DAY_SPARSE       = 18;
-int AMBIENT_SOUND_TOWN_NIGHT            = 19;
-int AMBIENT_SOUND_BORDELLO_WOMEN        = 20;
-int AMBIENT_SOUND_BORDELLO_MEN_AND_WOMEN    = 21;
-int AMBIENT_SOUND_RIOT_OUTSIDE          = 22;
-int AMBIENT_SOUND_RIOT_MUFFLED          = 23;
-int AMBIENT_SOUND_COMBAT_OUTSIDE_1      = 24;
-int AMBIENT_SOUND_COMBAT_OUTSIDE_2      = 25;
-int AMBIENT_SOUND_COMBAT_MUFFLED_1      = 26;
-int AMBIENT_SOUND_COMBAT_MUFFLED_2      = 27;
-int AMBIENT_SOUND_DUNGEON_LAKE_LAVA     = 28;
-int AMBIENT_SOUND_SEWER_SLUDGE_LAKE     = 29;
-int AMBIENT_SOUND_WIND_SOFT         = 30;
-int AMBIENT_SOUND_WIND_MEDIUM           = 31;
-int AMBIENT_SOUND_WIND_STRONG           = 32;
-int AMBIENT_SOUND_WIND_FOREST           = 33;
-int AMBIENT_SOUND_GUST_CHASM            = 34;
-int AMBIENT_SOUND_GUST_CAVERN           = 35;
-int AMBIENT_SOUND_GUST_GRASS            = 36;
-int AMBIENT_SOUND_GUST_DRAFT            = 37;
-int AMBIENT_SOUND_RAIN_LIGHT            = 38;
-int AMBIENT_SOUND_RAIN_HARD         = 39;
-int AMBIENT_SOUND_RAIN_STORM_SMALL      = 40;
-int AMBIENT_SOUND_RAIN_STORM_BIG        = 41;
-int AMBIENT_SOUND_CAVE_INSECTS_1        = 42;
-int AMBIENT_SOUND_CAVE_INSECTS_2        = 43;
-int AMBIENT_SOUND_INTERIOR_INSECTS_1        = 44;
-int AMBIENT_SOUND_INTERIOR_INSECTS_2        = 45;
-int AMBIENT_SOUND_LIZARD_FOLK_CAVE_CRYSTALS = 46;
-int AMBIENT_SOUND_SEWERS_1          = 47;
-int AMBIENT_SOUND_SEWERS_2          = 48;
-int AMBIENT_SOUND_FOREST_DAY_1          = 49;
-int AMBIENT_SOUND_FOREST_DAY_2          = 50;
-int AMBIENT_SOUND_FOREST_DAY_3          = 51;
-int AMBIENT_SOUND_FOREST_DAY_SCARY      = 52;
-int AMBIENT_SOUND_FOREST_NIGHT_1        = 53;
-int AMBIENT_SOUND_FOREST_NIGHT_2        = 54;
-int AMBIENT_SOUND_FOREST_NIGHT_SCARY        = 55;
-int AMBIENT_SOUND_FOREST_MAGICAL        = 56;
-int AMBIENT_SOUND_EVIL_DUNGEON_SMALL        = 57;
-int AMBIENT_SOUND_EVIL_DUNGEON_MEDIUM       = 58;
-int AMBIENT_SOUND_EVIL_DUNGEON_LARGE        = 59;
-int AMBIENT_SOUND_CAVE_SMALL            = 60;
-int AMBIENT_SOUND_CAVE_MEDIUM           = 61;
-int AMBIENT_SOUND_CAVE_LARGE            = 62;
-int AMBIENT_SOUND_MINE_SMALL            = 63;
-int AMBIENT_SOUND_MINE_MEDIUM           = 64;
-int AMBIENT_SOUND_MINE_LARGE            = 65;
-int AMBIENT_SOUND_CASTLE_INTERIOR_SMALL     = 66;
-int AMBIENT_SOUND_CASTLE_INTERIOR_MEDIUM    = 67;
-int AMBIENT_SOUND_CASTLE_INTERIOR_LARGE     = 68;
-int AMBIENT_SOUND_CRYPT_SMALL           = 69;
-int AMBIENT_SOUND_CRYPT_MEDIUM_1        = 70;
-int AMBIENT_SOUND_CRYPT_MEDIUM_2        = 71;
-int AMBIENT_SOUND_HOUSE_INTERIOR_1      = 72;
-int AMBIENT_SOUND_HOUSE_INTERIOR_2      = 73;
-int AMBIENT_SOUND_HOUSE_INTERIOR_3      = 74;
-int AMBIENT_SOUND_KITCHEN_INTERIOR_SMALL    = 75;
-int AMBIENT_SOUND_KITCHEN_INTERIOR_LARGE    = 76;
-int AMBIENT_SOUND_HAUNTED_INTERIOR_1        = 77;
-int AMBIENT_SOUND_HAUNTED_INTERIOR_2        = 78;
-int AMBIENT_SOUND_HAUNTED_INTERIOR_3        = 79;
-int AMBIENT_SOUND_BLACK_SMITH           = 80;
-int AMBIENT_SOUND_PIT_CRIES         = 81;
-int AMBIENT_SOUND_MAGIC_INTERIOR_SMALL      = 82;
-int AMBIENT_SOUND_MAGIC_INTERIOR_MEDIUM     = 83;
-int AMBIENT_SOUND_MAGIC_INTERIOR_LARGE      = 84;
-int AMBIENT_SOUND_MAGIC_INTERIOR_EVIL       = 85;
-int AMBIENT_SOUND_MAGICAL_INTERIOR_FIRELAB  = 86;
-int AMBIENT_SOUND_MAGICAL_INTERIOR_EARTHLAB = 87;
-int AMBIENT_SOUND_MAGICAL_INTERIOR_AIRLAB   = 88;
-int AMBIENT_SOUND_MAGICAL_INTERIOR_WATERLAB = 89;
-int AMBIENT_SOUND_WINTER_DAY_WET_XP1        = 90;
-int AMBIENT_SOUND_WINTER_DAY_WINDY_XP1      = 91;
-int AMBIENT_SOUND_DESERT_DAY_XP1        = 92;
-int AMBIENT_SOUND_DESERT_NIGHT_XP1      = 93;
-int AMBIENT_SOUND_MONASTERY_INTERIOR_XP1    = 94;
-int AMBIENT_SOUND_RUIN_WET_XP1          = 96;
-int AMBIENT_SOUND_RUIN_RUMBLING_XP1     = 97;
-int AMBIENT_SOUND_RUIN_HAUNTED_XP1      = 98;
-int AMBIENT_SOUND_SAND_STORM_LIGHT_XP1      = 99;
-int AMBIENT_SOUND_SAND_STORM_EXTREME_XP1    = 100;
-int AMBIENT_SOUND_EVIL_DRONE_XP2        = 101;
-int AMBIENT_SOUND_PLAIN_OF_FIRE_XP2     = 102;
-int AMBIENT_SOUND_FROZEN_HELL_XP2       = 103;
-int AMBIENT_SOUND_CAVE_EVIL_1_XP2       = 104;
-int AMBIENT_SOUND_CAVE_EVIL_2_XP2       = 105;
-int AMBIENT_SOUND_CAVE_EVIL_3_XP2       = 106;
-int AMBIENT_SOUND_TAVERN_ROWDY          = 107;
+int AMBIENT_SOUND_NONE				= 0;
+int AMBIENT_SOUND_MEN_WHISPER_INSIDE		= 1;
+int AMBIENT_SOUND_WOMEN_WHISPER_INSIDE  	= 2;
+int AMBIENT_SOUND_PEOPLE_WHISPER_INSIDE		= 3;
+int AMBIENT_SOUND_SMALL_GROUP_TALKS_INSIDE	= 4;
+int AMBIENT_SOUND_MEDIUM_GROUP_TALKS_INSIDE	= 5;
+int AMBIENT_SOUND_LARGE_GROUP_TALKS_INSIDE	= 6;
+int AMBIENT_SOUND_COMMONER_TAVERN_TALK		= 7;
+int AMBIENT_SOUND_NOBLE_TAVERN_TALK		= 8;
+int AMBIENT_SOUND_CITY_SLUMS_DAY_CROWDED	= 9;
+int AMBIENT_SOUND_CITY_SLUMS_DAY_SPARSE		= 10;
+int AMBIENT_SOUND_CITY_SLUMS_NIGHT		= 11;
+int AMBIENT_SOUND_CITY_DAY_CROWDED		= 12;
+int AMBIENT_SOUND_CITY_DAY_SPARSE		= 13;
+int AMBIENT_SOUND_CITY_NIGHT			= 14;
+int AMBIENT_SOUND_CITY_MARKET			= 15;
+int AMBIENT_SOUND_CITY_TEMPLE_DISTRICT		= 16;
+int AMBIENT_SOUND_TOWN_DAY_CROWDED		= 17;
+int AMBIENT_SOUND_TOWN_DAY_SPARSE		= 18;
+int AMBIENT_SOUND_TOWN_NIGHT			= 19;
+int AMBIENT_SOUND_BORDELLO_WOMEN		= 20;
+int AMBIENT_SOUND_BORDELLO_MEN_AND_WOMEN	= 21;
+int AMBIENT_SOUND_RIOT_OUTSIDE			= 22;
+int AMBIENT_SOUND_RIOT_MUFFLED			= 23;
+int AMBIENT_SOUND_COMBAT_OUTSIDE_1		= 24;
+int AMBIENT_SOUND_COMBAT_OUTSIDE_2		= 25;
+int AMBIENT_SOUND_COMBAT_MUFFLED_1		= 26;
+int AMBIENT_SOUND_COMBAT_MUFFLED_2		= 27;
+int AMBIENT_SOUND_DUNGEON_LAKE_LAVA		= 28;
+int AMBIENT_SOUND_SEWER_SLUDGE_LAKE		= 29;
+int AMBIENT_SOUND_WIND_SOFT			= 30;
+int AMBIENT_SOUND_WIND_MEDIUM			= 31;
+int AMBIENT_SOUND_WIND_STRONG			= 32;
+int AMBIENT_SOUND_WIND_FOREST			= 33;
+int AMBIENT_SOUND_GUST_CHASM			= 34;
+int AMBIENT_SOUND_GUST_CAVERN			= 35;
+int AMBIENT_SOUND_GUST_GRASS			= 36;
+int AMBIENT_SOUND_GUST_DRAFT			= 37;
+int AMBIENT_SOUND_RAIN_LIGHT			= 38;
+int AMBIENT_SOUND_RAIN_HARD			= 39;
+int AMBIENT_SOUND_RAIN_STORM_SMALL		= 40;
+int AMBIENT_SOUND_RAIN_STORM_BIG		= 41;
+int AMBIENT_SOUND_CAVE_INSECTS_1		= 42;
+int AMBIENT_SOUND_CAVE_INSECTS_2		= 43;
+int AMBIENT_SOUND_INTERIOR_INSECTS_1		= 44;
+int AMBIENT_SOUND_INTERIOR_INSECTS_2		= 45;
+int AMBIENT_SOUND_LIZARD_FOLK_CAVE_CRYSTALS	= 46;
+int AMBIENT_SOUND_SEWERS_1			= 47;
+int AMBIENT_SOUND_SEWERS_2			= 48;
+int AMBIENT_SOUND_FOREST_DAY_1			= 49;
+int AMBIENT_SOUND_FOREST_DAY_2			= 50;
+int AMBIENT_SOUND_FOREST_DAY_3			= 51;
+int AMBIENT_SOUND_FOREST_DAY_SCARY		= 52;
+int AMBIENT_SOUND_FOREST_NIGHT_1		= 53;
+int AMBIENT_SOUND_FOREST_NIGHT_2		= 54;
+int AMBIENT_SOUND_FOREST_NIGHT_SCARY		= 55;
+int AMBIENT_SOUND_FOREST_MAGICAL		= 56;
+int AMBIENT_SOUND_EVIL_DUNGEON_SMALL		= 57;
+int AMBIENT_SOUND_EVIL_DUNGEON_MEDIUM		= 58;
+int AMBIENT_SOUND_EVIL_DUNGEON_LARGE		= 59;
+int AMBIENT_SOUND_CAVE_SMALL			= 60;
+int AMBIENT_SOUND_CAVE_MEDIUM			= 61;
+int AMBIENT_SOUND_CAVE_LARGE			= 62;
+int AMBIENT_SOUND_MINE_SMALL			= 63;
+int AMBIENT_SOUND_MINE_MEDIUM			= 64;
+int AMBIENT_SOUND_MINE_LARGE			= 65;
+int AMBIENT_SOUND_CASTLE_INTERIOR_SMALL		= 66;
+int AMBIENT_SOUND_CASTLE_INTERIOR_MEDIUM	= 67;
+int AMBIENT_SOUND_CASTLE_INTERIOR_LARGE		= 68;
+int AMBIENT_SOUND_CRYPT_SMALL			= 69;
+int AMBIENT_SOUND_CRYPT_MEDIUM_1		= 70;
+int AMBIENT_SOUND_CRYPT_MEDIUM_2		= 71;
+int AMBIENT_SOUND_HOUSE_INTERIOR_1		= 72;
+int AMBIENT_SOUND_HOUSE_INTERIOR_2		= 73;
+int AMBIENT_SOUND_HOUSE_INTERIOR_3		= 74;
+int AMBIENT_SOUND_KITCHEN_INTERIOR_SMALL	= 75;
+int AMBIENT_SOUND_KITCHEN_INTERIOR_LARGE	= 76;
+int AMBIENT_SOUND_HAUNTED_INTERIOR_1		= 77;
+int AMBIENT_SOUND_HAUNTED_INTERIOR_2		= 78;
+int AMBIENT_SOUND_HAUNTED_INTERIOR_3		= 79;
+int AMBIENT_SOUND_BLACK_SMITH			= 80;
+int AMBIENT_SOUND_PIT_CRIES			= 81;
+int AMBIENT_SOUND_MAGIC_INTERIOR_SMALL		= 82;
+int AMBIENT_SOUND_MAGIC_INTERIOR_MEDIUM		= 83;
+int AMBIENT_SOUND_MAGIC_INTERIOR_LARGE		= 84;
+int AMBIENT_SOUND_MAGIC_INTERIOR_EVIL		= 85;
+int AMBIENT_SOUND_MAGICAL_INTERIOR_FIRELAB	= 86;
+int AMBIENT_SOUND_MAGICAL_INTERIOR_EARTHLAB	= 87;
+int AMBIENT_SOUND_MAGICAL_INTERIOR_AIRLAB	= 88;
+int AMBIENT_SOUND_MAGICAL_INTERIOR_WATERLAB	= 89;
+int AMBIENT_SOUND_WINTER_DAY_WET_XP1		= 90;
+int AMBIENT_SOUND_WINTER_DAY_WINDY_XP1		= 91;
+int AMBIENT_SOUND_DESERT_DAY_XP1		= 92;
+int AMBIENT_SOUND_DESERT_NIGHT_XP1		= 93;
+int AMBIENT_SOUND_MONASTERY_INTERIOR_XP1	= 94;
+int AMBIENT_SOUND_RUIN_WET_XP1			= 96;
+int AMBIENT_SOUND_RUIN_RUMBLING_XP1		= 97;
+int AMBIENT_SOUND_RUIN_HAUNTED_XP1		= 98;
+int AMBIENT_SOUND_SAND_STORM_LIGHT_XP1		= 99;
+int AMBIENT_SOUND_SAND_STORM_EXTREME_XP1	= 100;
+int AMBIENT_SOUND_EVIL_DRONE_XP2		= 101;
+int AMBIENT_SOUND_PLAIN_OF_FIRE_XP2		= 102;
+int AMBIENT_SOUND_FROZEN_HELL_XP2		= 103;
+int AMBIENT_SOUND_CAVE_EVIL_1_XP2		= 104;
+int AMBIENT_SOUND_CAVE_EVIL_2_XP2		= 105;
+int AMBIENT_SOUND_CAVE_EVIL_3_XP2		= 106;
+int AMBIENT_SOUND_TAVERN_ROWDY			= 107;
 
 // these constants must match those in the FootstepSounds.2da
 int FOOTSTEP_TYPE_INVALID                       = -1;
@@ -5740,24 +5792,39 @@ int COLOR_CHANNEL_TATTOO_1                      = 2;
 int COLOR_CHANNEL_TATTOO_2                      = 3;
 
 // The following resrefs must match those in the tileset's set file.
-string TILESET_RESREF_BEHOLDER_CAVES    = "tib01";
-string TILESET_RESREF_CASTLE_INTERIOR   = "tic01";
-string TILESET_RESREF_CITY_EXTERIOR     = "tcn01";
-string TILESET_RESREF_CITY_INTERIOR     = "tin01";
-string TILESET_RESREF_CRYPT             = "tdc01";
-string TILESET_RESREF_DESERT            = "ttd01";
-string TILESET_RESREF_DROW_INTERIOR     = "tid01";
-string TILESET_RESREF_DUNGEON           = "tde01";
-string TILESET_RESREF_FOREST            = "ttf01";
-string TILESET_RESREF_FROZEN_WASTES     = "tti01";
-string TILESET_RESREF_ILLITHID_INTERIOR = "tii01";
-string TILESET_RESREF_MICROSET          = "tms01";
-string TILESET_RESREF_MINES_AND_CAVERNS = "tdm01";
-string TILESET_RESREF_RUINS             = "tdr01";
-string TILESET_RESREF_RURAL             = "ttr01";
-string TILESET_RESREF_RURAL_WINTER      = "tts01";
-string TILESET_RESREF_SEWERS            = "tds01";
-string TILESET_RESREF_UNDERDARK         = "ttu01";
+string TILESET_RESREF_BEHOLDER_CAVES        = "tib01";
+string TILESET_RESREF_CASTLE_INTERIOR       = "tic01";
+string TILESET_RESREF_CITY_EXTERIOR         = "tcn01";
+string TILESET_RESREF_CITY_INTERIOR         = "tin01";
+string TILESET_RESREF_CRYPT                 = "tdc01";
+string TILESET_RESREF_DESERT                = "ttd01";
+string TILESET_RESREF_DROW_INTERIOR         = "tid01";
+string TILESET_RESREF_DUNGEON               = "tde01";
+string TILESET_RESREF_FOREST                = "ttf01";
+string TILESET_RESREF_FROZEN_WASTES         = "tti01";
+string TILESET_RESREF_ILLITHID_INTERIOR     = "tii01";
+string TILESET_RESREF_MICROSET              = "tms01";
+string TILESET_RESREF_MINES_AND_CAVERNS     = "tdm01";
+string TILESET_RESREF_RUINS                 = "tdr01";
+string TILESET_RESREF_RURAL                 = "ttr01";
+string TILESET_RESREF_RURAL_WINTER          = "tts01";
+string TILESET_RESREF_SEWERS                = "tds01";
+string TILESET_RESREF_UNDERDARK             = "ttu01";
+string TILESET_RESREF_LIZARDFOLK_INTERIOR   = "dag01";
+string TILESET_RESREF_MEDIEVAL_CITY_2       = "tcm02";
+string TILESET_RESREF_MEDIEVAL_RURAL_2      = "trm02";
+string TILESET_RESREF_EARLY_WINTER_2        = "trs02";
+string TILESET_RESREF_SEASHIPS              = "tss13";
+string TILESET_RESREF_FOREST_FACELIFT       = "ttf02";
+string TILESET_RESREF_RURAL_WINTER_FACELIFT = "tts02";
+string TILESET_RESREF_STEAMWORKS            = "tsw01";
+string TILESET_RESREF_BARROWS_INTERIOR      = "tbw01";
+string TILESET_RESREF_SEA_CAVES             = "tdt01";
+string TILESET_RESREF_CITY_INTERIOR_2       = "tni01";
+string TILESET_RESREF_CASTLE_INTERIOR_2     = "tni02";
+string TILESET_RESREF_CASTLE_EXTERIOR_RURAL = "tno01";
+string TILESET_RESREF_TROPICAL              = "ttz01";
+string TILESET_RESREF_FORT_INTERIOR         = "twc03";
 
 // These constants determine which name table to use when generating random names.
 int NAME_FIRST_GENERIC_MALE     = -1;
@@ -5803,6 +5870,7 @@ int EVENT_SCRIPT_MODULE_ON_PLAYER_CANCEL_CUTSCENE        = 3014;
 int EVENT_SCRIPT_MODULE_ON_EQUIP_ITEM                    = 3015;
 int EVENT_SCRIPT_MODULE_ON_UNEQUIP_ITEM                  = 3016;
 int EVENT_SCRIPT_MODULE_ON_PLAYER_CHAT                   = 3017;
+int EVENT_SCRIPT_MODULE_ON_PLAYER_TARGET                 = 3018;
 
 int EVENT_SCRIPT_AREA_ON_HEARTBEAT                       = 4000;
 int EVENT_SCRIPT_AREA_ON_USER_DEFINED_EVENT              = 4001;
@@ -5887,6 +5955,103 @@ int OBJECT_VISUAL_TRANSFORM_TRANSLATE_Y                  = 32;
 int OBJECT_VISUAL_TRANSFORM_TRANSLATE_Z                  = 33;
 int OBJECT_VISUAL_TRANSFORM_ANIMATION_SPEED              = 40;
 
+int VIBRATOR_MOTOR_ANY                                   = 0;
+int VIBRATOR_MOTOR_LEFT                                  = 1;
+int VIBRATOR_MOTOR_RIGHT                                 = 2;
+
+int SCREEN_ANCHOR_TOP_LEFT                               = 0;
+int SCREEN_ANCHOR_TOP_RIGHT                              = 1;
+int SCREEN_ANCHOR_BOTTOM_LEFT                            = 2;
+int SCREEN_ANCHOR_BOTTOM_RIGHT                           = 3;
+int SCREEN_ANCHOR_CENTER                                 = 4;
+
+int DOMAIN_AIR                                           = 0;
+int DOMAIN_ANIMAL                                        = 1;
+int DOMAIN_DEATH                                         = 3;
+int DOMAIN_DESTRUCTION                                   = 4;
+int DOMAIN_EARTH                                         = 5;
+int DOMAIN_EVIL                                          = 6;
+int DOMAIN_FIRE                                          = 7;
+int DOMAIN_GOOD                                          = 8;
+int DOMAIN_HEALING                                       = 9;
+int DOMAIN_KNOWLEDGE                                     = 10;
+int DOMAIN_MAGIC                                         = 13;
+int DOMAIN_PLANT                                         = 14;
+int DOMAIN_PROTECTION                                    = 15;
+int DOMAIN_STRENGTH                                      = 16;
+int DOMAIN_SUN                                           = 17;
+int DOMAIN_TRAVEL                                        = 18;
+int DOMAIN_TRICKERY                                      = 19;
+int DOMAIN_WAR                                           = 20;
+int DOMAIN_WATER                                         = 21;
+
+int MOUSECURSOR_DEFAULT                                  = 1;
+int MOUSECURSOR_DEFAULT_DOWN                             = 2;
+int MOUSECURSOR_WALK                                     = 3;
+int MOUSECURSOR_WALK_DOWN                                = 4;
+int MOUSECURSOR_NOWALK                                   = 5;
+int MOUSECURSOR_NOWALK_DOWN                              = 6;
+int MOUSECURSOR_ATTACK                                   = 7;
+int MOUSECURSOR_ATTACK_DOWN                              = 8;
+int MOUSECURSOR_NOATTACK                                 = 9;
+int MOUSECURSOR_NOATTACK_DOWN                            = 10;
+int MOUSECURSOR_TALK                                     = 11;
+int MOUSECURSOR_TALK_DOWN                                = 12;
+int MOUSECURSOR_NOTALK                                   = 13;
+int MOUSECURSOR_NOTALK_DOWN                              = 14;
+int MOUSECURSOR_FOLLOW                                   = 15;
+int MOUSECURSOR_FOLLOW_DOWN                              = 16;
+int MOUSECURSOR_EXAMINE                                  = 17;
+int MOUSECURSOR_EXAMINE_DOWN                             = 18;
+int MOUSECURSOR_NOEXAMINE                                = 19;
+int MOUSECURSOR_NOEXAMINE_DOWN                           = 20;
+int MOUSECURSOR_TRANSITION                               = 21;
+int MOUSECURSOR_TRANSITION_DOWN                          = 22;
+int MOUSECURSOR_DOOR                                     = 23;
+int MOUSECURSOR_DOOR_DOWN                                = 24;
+int MOUSECURSOR_USE                                      = 25;
+int MOUSECURSOR_USE_DOWN                                 = 26;
+int MOUSECURSOR_NOUSE                                    = 27;
+int MOUSECURSOR_NOUSE_DOWN                               = 28;
+int MOUSECURSOR_MAGIC                                    = 29;
+int MOUSECURSOR_MAGIC_DOWN                               = 30;
+int MOUSECURSOR_NOMAGIC                                  = 31;
+int MOUSECURSOR_NOMAGIC_DOWN                             = 32;
+int MOUSECURSOR_DISARM                                   = 33;
+int MOUSECURSOR_DISARM_DOWN                              = 34;
+int MOUSECURSOR_NODISARM                                 = 35;
+int MOUSECURSOR_NODISARM_DOWN                            = 36;
+int MOUSECURSOR_ACTION                                   = 37;
+int MOUSECURSOR_ACTION_DOWN                              = 38;
+int MOUSECURSOR_NOACTION                                 = 39;
+int MOUSECURSOR_NOACTION_DOWN                            = 40;
+int MOUSECURSOR_LOCK                                     = 41;
+int MOUSECURSOR_LOCK_DOWN                                = 42;
+int MOUSECURSOR_NOLOCK                                   = 43;
+int MOUSECURSOR_NOLOCK_DOWN                              = 44;
+int MOUSECURSOR_PUSHPIN                                  = 45;
+int MOUSECURSOR_PUSHPIN_DOWN                             = 46;
+int MOUSECURSOR_CREATE                                   = 47;
+int MOUSECURSOR_CREATE_DOWN                              = 48;
+int MOUSECURSOR_NOCREATE                                 = 49;
+int MOUSECURSOR_NOCREATE_DOWN                            = 50;
+int MOUSECURSOR_KILL                                     = 51;
+int MOUSECURSOR_KILL_DOWN                                = 52;
+int MOUSECURSOR_NOKILL                                   = 53;
+int MOUSECURSOR_NOKILL_DOWN                              = 54;
+int MOUSECURSOR_HEAL                                     = 55;
+int MOUSECURSOR_HEAL_DOWN                                = 56;
+int MOUSECURSOR_NOHEAL                                   = 57;
+int MOUSECURSOR_NOHEAL_DOWN                              = 58;
+int MOUSECURSOR_RUNARROW                                 = 59;
+int MOUSECURSOR_WALKARROW                                = 75;
+int MOUSECURSOR_PICKUP                                   = 91;
+int MOUSECURSOR_PICKUP_DOWN                              = 92;
+int MOUSECURSOR_CUSTOM_00                                = 93;  // gui_mp_custom00u
+int MOUSECURSOR_CUSTOM_00_DOWN                           = 94;  // gui_mp_custom00d
+int MOUSECURSOR_CUSTOM_99                                = 291; // gui_mp_custom99u
+int MOUSECURSOR_CUSTOM_99_DOWN                           = 292; // gui_mp_custom99d
+
 string sLanguage = "nwscript";
 
 // Get an integer between 0 and nMaxInteger-1.
@@ -5930,7 +6095,7 @@ void DelayCommand(float fSeconds, action aActionToDelay);
 
 // Make oTarget run sScript and then return execution to the calling script.
 // If sScript does not specify a compiled script, nothing happens.
-void ExecuteScript(string sScript, object oTarget);
+void ExecuteScript(string sScript, object oTarget = OBJECT_SELF);
 
 // Clear all the actions of the caller.
 // * No return value, but if an error occurs, the log file will contain
@@ -6878,7 +7043,7 @@ int GetMatchedSubstringsCount();
 // - nVisualEffectId
 // - nMissEffect: if this is TRUE, a random vector near or past the target will
 //   be generated, on which to play the effect
-effect EffectVisualEffect(int nVisualEffectId, int nMissEffect=FALSE);
+effect EffectVisualEffect(int nVisualEffectId, int nMissEffect=FALSE, float fScale=1.0f, vector vTranslate=[0.0,0.0,0.0], vector vRotate=[0.0,0.0,0.0]);
 
 // Get the weakest member of oFactionMember's faction.
 // * Returns OBJECT_INVALID if oFactionMember's faction is invalid.
@@ -7054,7 +7219,7 @@ void ActionResumeConversation();
 //   past the target
 // * Returns an effect of type EFFECT_TYPE_INVALIDEFFECT if nBeamVisualEffect is
 //   not valid.
-effect EffectBeam(int nBeamVisualEffect, object oEffector, int nBodyPart, int bMissEffect=FALSE);
+effect EffectBeam(int nBeamVisualEffect, object oEffector, int nBodyPart, int bMissEffect=FALSE, float fScale=1.0f, vector vTranslate=[0.0,0.0,0.0], vector vRotate=[0.0,0.0,0.0]);
 
 // Get an integer between 0 and 100 (inclusive) that represents how oSource
 // feels about oTarget.
@@ -8927,31 +9092,41 @@ int GetUseableFlag(object oObject=OBJECT_SELF);
 int GetStolenFlag(object oStolen);
 
 // This stores a float out to the specified campaign database
-// The database name IS case sensitive and it must be the same for both set and get functions.
+// The database name:
+//  - is case insensitive and it must be the same for both set and get functions.
+//  - can only contain alphanumeric characters, no spaces.
 // The var name must be unique across the entire database, regardless of the variable type.
 // If you want a variable to pertain to a specific player in the game, provide a player object.
 void SetCampaignFloat(string sCampaignName, string sVarName, float flFloat, object oPlayer=OBJECT_INVALID);
 
 // This stores an int out to the specified campaign database
-// The database name IS case sensitive and it must be the same for both set and get functions.
+// The database name:
+//  - is case insensitive and it must be the same for both set and get functions.
+//  - can only contain alphanumeric characters, no spaces.
 // The var name must be unique across the entire database, regardless of the variable type.
 // If you want a variable to pertain to a specific player in the game, provide a player object.
 void SetCampaignInt(string sCampaignName, string sVarName, int nInt, object oPlayer=OBJECT_INVALID);
 
 // This stores a vector out to the specified campaign database
-// The database name IS case sensitive and it must be the same for both set and get functions.
+// The database name:
+//  - is case insensitive and it must be the same for both set and get functions.
+//  - can only contain alphanumeric characters, no spaces.
 // The var name must be unique across the entire database, regardless of the variable type.
 // If you want a variable to pertain to a specific player in the game, provide a player object.
 void SetCampaignVector(string sCampaignName, string sVarName, vector vVector, object oPlayer=OBJECT_INVALID);
 
 // This stores a location out to the specified campaign database
-// The database name IS case sensitive and it must be the same for both set and get functions.
+// The database name:
+//  - is case insensitive and it must be the same for both set and get functions.
+//  - can only contain alphanumeric characters, no spaces.
 // The var name must be unique across the entire database, regardless of the variable type.
 // If you want a variable to pertain to a specific player in the game, provide a player object.
 void SetCampaignLocation(string sCampaignName, string sVarName, location locLocation, object oPlayer=OBJECT_INVALID);
 
 // This stores a string out to the specified campaign database
-// The database name IS case sensitive and it must be the same for both set and get functions.
+// The database name:
+//  - is case insensitive and it must be the same for both set and get functions.
+//  - can only contain alphanumeric characters, no spaces.
 // The var name must be unique across the entire database, regardless of the variable type.
 // If you want a variable to pertain to a specific player in the game, provide a player object.
 void SetCampaignString(string sCampaignName, string sVarName, string sString, object oPlayer=OBJECT_INVALID);
@@ -8960,57 +9135,63 @@ void SetCampaignString(string sCampaignName, string sVarName, string sString, ob
 void DestroyCampaignDatabase(string sCampaignName);
 
 // This will read a float from the  specified campaign database
-// The database name IS case sensitive and it must be the same for both set and get functions.
+// The database name:
+//  - is case insensitive and it must be the same for both set and get functions.
+//  - can only contain alphanumeric characters, no spaces.
 // The var name must be unique across the entire database, regardless of the variable type.
 // If you want a variable to pertain to a specific player in the game, provide a player object.
 float GetCampaignFloat(string sCampaignName, string sVarName, object oPlayer=OBJECT_INVALID);
 
 // This will read an int from the  specified campaign database
-// The database name IS case sensitive and it must be the same for both set and get functions.
+// The database name:
+//  - is case insensitive and it must be the same for both set and get functions.
+//  - can only contain alphanumeric characters, no spaces.
 // The var name must be unique across the entire database, regardless of the variable type.
 // If you want a variable to pertain to a specific player in the game, provide a player object.
 int GetCampaignInt(string sCampaignName, string sVarName, object oPlayer=OBJECT_INVALID);
 
 // This will read a vector from the  specified campaign database
-// The database name IS case sensitive and it must be the same for both set and get functions.
+// The database name:
+//  - is case insensitive and it must be the same for both set and get functions.
+//  - can only contain alphanumeric characters, no spaces.
 // The var name must be unique across the entire database, regardless of the variable type.
 // If you want a variable to pertain to a specific player in the game, provide a player object.
 vector GetCampaignVector(string sCampaignName, string sVarName, object oPlayer=OBJECT_INVALID);
 
 // This will read a location from the  specified campaign database
-// The database name IS case sensitive and it must be the same for both set and get functions.
+// The database name:
+//  - is case insensitive and it must be the same for both set and get functions.
+//  - can only contain alphanumeric characters, no spaces.
 // The var name must be unique across the entire database, regardless of the variable type.
 // If you want a variable to pertain to a specific player in the game, provide a player object.
 location GetCampaignLocation(string sCampaignName, string sVarName, object oPlayer=OBJECT_INVALID);
 
 // This will read a string from the  specified campaign database
-// The database name IS case sensitive and it must be the same for both set and get functions.
+// The database name:
+//  - is case insensitive and it must be the same for both set and get functions.
+//  - can only contain alphanumeric characters, no spaces.
 // The var name must be unique across the entire database, regardless of the variable type.
 // If you want a variable to pertain to a specific player in the game, provide a player object.
 string GetCampaignString(string sCampaignName, string sVarName, object oPlayer=OBJECT_INVALID);
 
 // Duplicates the object specified by oSource.
-// ONLY creatures and items can be specified.
+// NOTE: this command can be used for copying Creatures, Items, Placeables, Waypoints, Stores, Doors, Triggers.
 // If an owner is specified and the object is an item, it will be put into their inventory
-// If the object is a creature, they will be created at the location.
+// Otherwise, it will be created at the location.
 // If a new tag is specified, it will be assigned to the new object.
 object CopyObject(object oSource, location locLocation, object oOwner = OBJECT_INVALID, string sNewTag = "");
 
 // This will remove ANY campaign variable. Regardless of type.
-// Note that by normal database standards, deleting does not actually removed the entry from
-// the database, but flags it as deleted. Do not expect the database files to shrink in size
-// from this command. If you want to 'pack' the database, you will have to do it externally
-// from the game.
 void DeleteCampaignVariable(string sCampaignName, string sVarName, object oPlayer=OBJECT_INVALID);
 
 // Stores an object with the given id.
-// NOTE: this command can only be used for storing Creatures and Items.
+// NOTE: this command can be used for storing Creatures, Items, Placeables, Waypoints, Stores, Doors, Triggers.
 // Returns 0 if it failled, 1 if it worked.
 int StoreCampaignObject(string sCampaignName, string sVarName, object oObject, object oPlayer=OBJECT_INVALID);
 
 // Use RetrieveCampaign with the given id to restore it.
 // If you specify an owner, the object will try to be created in their repository
-// If the owner can't handle the item (or if it's a creature) it will be created on the ground.
+// If the owner can't handle the item (or if it's a non-item) it will be created at the given location.
 object RetrieveCampaignObject(string sCampaignName, string sVarName, location locLocation, object oOwner = OBJECT_INVALID, object oPlayer=OBJECT_INVALID);
 
 // Returns an effect that is guaranteed to dominate a creature
@@ -11083,26 +11264,38 @@ int GetSkillBonusLimit();
 
 // Sets the attack bonus limit.
 // - The minimum value is 0.
+// - The maximum value is 255.
+// - This script call will temporarily override user/server configuration for the running module only.
 void SetAttackBonusLimit(int nNewLimit);
 
 // Sets the damage bonus limit.
 // - The minimum value is 0.
+// - The maximum value is 255.
+// - This script call will temporarily override user/server configuration for the running module only.
 void SetDamageBonusLimit(int nNewLimit);
 
 // Sets the saving throw bonus limit.
 // - The minimum value is 0.
+// - The maximum value is 255.
+// - This script call will temporarily override user/server configuration for the running module only.
 void SetSavingThrowBonusLimit(int nNewLimit);
 
 // Sets the ability bonus limit.
 // - The minimum value is 0.
+// - The maximum value is 255.
+// - This script call will temporarily override user/server configuration for the running module only.
 void SetAbilityBonusLimit(int nNewLimit);
 
 // Sets the ability penalty limit.
 // - The minimum value is 0.
+// - The maximum value is 255.
+// - This script call will temporarily override user/server configuration for the running module only.
 void SetAbilityPenaltyLimit(int nNewLimit);
 
 // Sets the skill bonus limit.
 // - The minimum value is 0.
+// - The maximum value is 255.
+// - This script call will temporarily override user/server configuration for the running module only.
 void SetSkillBonusLimit(int nNewLimit);
 
 // Get if oPlayer is currently connected over a relay (instead of directly).
@@ -11148,3 +11341,298 @@ void SetMaterialShaderUniformVec4(object oObject, string sMaterial, string sPara
 // - Supply a parameter to only reset shader uniforms of that name.
 // - Supply both to only reset shader uniforms of that name on meshes with that material.
 void ResetMaterialShaderUniforms(object oObject, string sMaterial = "", string sParam = "");
+
+// Vibrate the player's device or controller. Does nothing if vibration is not supported.
+// - nMotor is one of VIBRATOR_MOTOR_*
+// - fStrength is between 0.0 and 1.0
+// - fSeconds is the number of seconds to vibrate
+void Vibrate(object oPlayer, int nMotor, float fStrength, float fSeconds);
+
+// Unlock an achievement for the given player who must be logged in.
+// - sId is the achievement ID on the remote server
+// - nLastValue is the previous value of the associated achievement stat
+// - nCurValue is the current value of the associated achievement stat
+// - nMaxValue is the maximum value of the associate achievement stat
+void UnlockAchievement(object oPlayer, string sId, int nLastValue=0, int nCurValue=0, int nMaxValue=0);
+
+// Execute a script chunk.
+// The script chunk runs immediately, same as ExecuteScript().
+// The script is jitted in place and currently not cached: Each invocation will recompile the script chunk.
+// Note that the script chunk will run as if a separate script. This is not eval().
+// By default, the script chunk is wrapped into void main() {}. Pass in bWrapIntoMain = FALSE to override.
+// Returns "" on success, or the compilation error.
+string ExecuteScriptChunk(string sScriptChunk, object oObject = OBJECT_SELF, int bWrapIntoMain = TRUE);
+
+// Returns a UUID. This UUID will not be associated with any object.
+// The generated UUID is currently a v4.
+string GetRandomUUID();
+
+// Returns the given objects' UUID. This UUID is persisted across save boundaries,
+// like Save/RestoreCampaignObject and save games.
+//
+// Thus, reidentification is only guaranteed in scenarios where players cannot introduce
+// new objects (i.e. servervault servers).
+//
+// UUIDs are guaranteed to be unique in any single running game.
+//
+// If a loaded object would collide with a UUID already present in the game, the
+// object receives no UUID and a warning is emitted to the log. Requesting a UUID
+// for the new object will generate a random one.
+//
+// This UUID is useful to, for example:
+// - Safely identify servervault characters
+// - Track serialisable objects (like items or creatures) as they are saved to the
+//   campaign DB - i.e. persistent storage chests or dropped items.
+// - Track objects across multiple game instances (in trusted scenarios).
+//
+// Currently, the following objects can carry UUIDs:
+//   Items, Creatures, Placeables, Triggers, Doors, Waypoints, Stores,
+//   Encounters, Areas.
+//
+// Will return "" (empty string) when the given object cannot carry a UUID.
+string GetObjectUUID(object oObject);
+
+// Forces the given object to receive a new UUID, discarding the current value.
+void ForceRefreshObjectUUID(object oObject);
+
+// Looks up a object on the server by it's UUID.
+// Returns OBJECT_INVALID if the UUID is not on the server.
+object GetObjectByUUID(string sUUID);
+
+// Do not call. This does nothing on this platform except to return an error.
+void Reserved899();
+
+// Makes oPC load texture sNewName instead of sOldName.
+// If oPC is OBJECT_INVALID, it will apply the override to all active players
+// Setting sNewName to "" will clear the override and revert to original.
+void SetTextureOverride(string sOldName, string sNewName = "", object oPC = OBJECT_INVALID);
+
+// Displays sMsg on oPC's screen.
+// The message is displayed on top of whatever is on the screen, including UI elements
+//  nX, nY - coordinates of the first character to be displayed. The value is in terms
+//           of character 'slot' relative to the nAnchor anchor point.
+//           If the number is negative, it is applied from the bottom/right.
+//  nAnchor - SCREEN_ANCHOR_* constant
+//  fLife - Duration in seconds until the string disappears.
+//  nRGBA, nRGBA2 - Colors of the string in 0xRRGGBBAA format. String starts at nRGBA,
+//                  but as it nears end of life, it will slowly blend into nRGBA2.
+//  nID - Optional ID of a string. If not 0, subsequent calls to PostString will
+//        remove the old string with the same ID, even if it's lifetime has not elapsed.
+//        Only positive values are allowed.
+//  sFont - If specified, use this custom font instead of default console font.
+void PostString(object oPC, string sMsg, int nX = 0, int nY = 0, int nAnchor = SCREEN_ANCHOR_TOP_LEFT, float fLife = 10.0f, int nRGBA = 2147418367, int nRGBA2 = 2147418367, int nID = 0, string sFont="");
+
+// Returns oCreature's spell school specialization in nClass (SPELL_SCHOOL_* constants)
+// Unless custom content is used, only Wizards have spell schools
+// Returns -1 on error
+int GetSpecialization(object oCreature, int nClass = CLASS_TYPE_WIZARD);
+
+// Returns oCreature's domain in nClass (DOMAIN_* constants)
+// nDomainIndex - 1 or 2
+// Unless custom content is used, only Clerics have domains
+// Returns -1 on error
+int GetDomain(object oCreature, int nDomainIndex = 1, int nClass = CLASS_TYPE_CLERIC);
+
+// Returns the build number of oPlayer (i.e. 8193).
+// Returns 0 if the given object isn't a player or did not advertise their build info.
+int GetPlayerBuildVersionMajor(object oPlayer);
+
+// Returns the patch revision of oPlayer (i.e. 8).
+// Returns 0 if the given object isn't a player or did not advertise their build info.
+int GetPlayerBuildVersionMinor(object oPlayer);
+
+// Returns the script parameter value for a given parameter name.
+// Script parameters can be set for conversation scripts in the toolset's
+// Conversation Editor, or for any script with SetScriptParam().
+// * Will return "" if a parameter with the given name does not exist.
+string GetScriptParam(string sParamName);
+
+// Set a script parameter value for the next script to be run.
+// Call this function to set parameters right before calling ExecuteScript().
+void SetScriptParam(string sParamName, string sParamValue);
+
+// Returns the number of uses per day remaining of the given item and item property.
+// * Will return 0 if the given item does not have the requested item property,
+//   or the item property is not uses/day.
+int GetItemPropertyUsesPerDayRemaining(object oItem, itemproperty ip);
+
+// Sets the number of uses per day remaining of the given item and item property.
+// * Will do nothing if the given item and item property is not uses/day.
+// * Will constrain nUsesPerDay to the maximum allowed as the cost table defines.
+void SetItemPropertyUsesPerDayRemaining(object oItem, itemproperty ip, int nUsesPerDay);
+
+// Queue an action to use an active item property.
+// * oItem - item that has the item property to use
+// * ip - item property to use
+// * object oTarget - target
+// * nSubPropertyIndex - specify if your itemproperty has subproperties (such as subradial spells)
+// * bDecrementCharges - decrement charges if item property is limited
+void ActionUseItemOnObject(object oItem, itemproperty ip, object oTarget, int nSubPropertyIndex = 0, int bDecrementCharges = TRUE);
+
+// Queue an action to use an active item property.
+// * oItem - item that has the item property to use
+// * ip - item property to use
+// * location lTarget - target location (must be in the same area as item possessor)
+// * nSubPropertyIndex - specify if your itemproperty has subproperties (such as subradial spells)
+// * bDecrementCharges - decrement charges if item property is limited
+void ActionUseItemAtLocation(object oItem, itemproperty ip, location lTarget, int nSubPropertyIndex = 0, int bDecrementCharges = TRUE);
+
+// Makes oPC enter a targeting mode, letting them select an object as a target
+// If a PC selects a target or cancels out, it will trigger the module OnPlayerTarget event.
+void EnterTargetingMode(object oPC, int nValidObjectTypes = OBJECT_TYPE_ALL, int nMouseCursorId = MOUSECURSOR_MAGIC, int nBadTargetCursor = MOUSECURSOR_NOMAGIC);
+
+// Gets the target object in the module OnPlayerTarget event.
+// Returns the area object when the target is the ground.
+// Note: returns OBJECT_INVALID if the player cancelled out of targeting mode.
+object GetTargetingModeSelectedObject();
+
+// Gets the target position in the module OnPlayerTarget event.
+vector GetTargetingModeSelectedPosition();
+
+// Gets the player object that triggered the OnPlayerTarget event.
+object GetLastPlayerToSelectTarget();
+
+// Sets oObject's hilite color to nColor
+// The nColor format is 0xRRGGBB; -1 clears the color override.
+void SetObjectHiliteColor(object oObject, int nColor = -1);
+
+// Sets the cursor (MOUSECURSOR_*) to use when hovering over oObject
+void SetObjectMouseCursor(object oObject, int nCursor = -1);
+
+// Returns TRUE if the given player-controlled creature has DM privileges
+// gained through a player login (as opposed to the DM client).
+// Note: GetIsDM() also returns TRUE for player creature DMs.
+int GetIsPlayerDM(object oCreature);
+
+// Sets the detailed wind data for oArea
+// The predefined values in the toolset are:
+//   NONE:  vDirection=(1.0, 1.0, 0.0), fMagnitude=0.0, fYaw=0.0,   fPitch=0.0
+//   LIGHT: vDirection=(1.0, 1.0, 0.0), fMagnitude=1.0, fYaw=100.0, fPitch=3.0
+//   HEAVY: vDirection=(1.0, 1.0, 0.0), fMagnitude=2.0, fYaw=150.0, fPitch=5.0
+void SetAreaWind(object oArea, vector vDirection, float fMagnitude, float fYaw, float fPitch);
+
+// Replace's oObject's texture sOld with sNew.
+// Specifying sNew = "" will restore the original texture.
+// If sNew cannot be found, the original texture will be restored.
+// sNew must refer to a simple texture, not PLT
+void ReplaceObjectTexture(object oObject, string sOld, string sNew = "");
+
+// Destroys the given sqlite database, clearing out all data and schema.
+// This operation is _immediate_ and _irreversible_, even when
+// inside a transaction or running query.
+// Existing active/prepared sqlqueries will remain functional, but any references
+// to stored data or schema members will be invalidated.
+// oObject: Same as SqlPrepareQueryObject().
+//          To reset a campaign database, please use DestroyCampaignDatabase().
+void SqlDestroyDatabase(object oObject);
+
+// Returns "" if the last Sql command succeeded; or a human-readable error otherwise.
+// Additionally, all SQL errors are logged to the server log.
+string SqlGetError(sqlquery sqlQuery);
+
+// Sets up a query.
+// This will NOT run the query; only make it available for parameter binding.
+// To run the query, you need to call SqlStep(); even if you do not
+// expect result data.
+// sDatabase: The name of a campaign database.
+//            Note that when accessing campaign databases, you do not write access
+//            to the builtin tables needed for CampaignDB functionality.
+// N.B.: You can pass sqlqueries into DelayCommand; HOWEVER
+//       *** they will NOT survive a game save/load ***
+//       Any commands on a restored sqlquery will fail.
+sqlquery SqlPrepareQueryCampaign(string sDatabase, string sQuery);
+
+// Sets up a query.
+// This will NOT run the query; only make it available for parameter binding.
+// To run the query, you need to call SqlStep(); even if you do not
+// expect result data.
+// oObject: Can be either the module (GetModule()), or a player character.
+//          The database is persisted to savegames in case of the module,
+//          and to character files in case of a player characters.
+//          Other objects cannot carry databases, and this function call
+//          will error for them.
+// N.B: Databases on objects (especially player characters!) should be kept
+//      to a reasonable size. Delete old data you no longer need.
+//      If you attempt to store more than a few megabytes of data on a
+//      player creature, you may have a bad time.
+// N.B.: You can pass sqlqueries into DelayCommand; HOWEVER
+//       *** they will NOT survive a game save/load ***
+//       Any commands on a restored sqlquery will fail.
+sqlquery SqlPrepareQueryObject(object oObject, string sQuery);
+
+// Bind an integer to a named parameter of the given prepared query.
+// Example:
+//   sqlquery v = SqlPrepareQueryObject(GetModule(), "insert into test (col) values (@myint);");
+//   SqlBindInt(v, "@myint", 5);
+//   SqlStep(v);
+void SqlBindInt(sqlquery sqlQuery, string sParam, int nValue);
+
+// Bind a float to a named parameter of the given prepared query.
+void SqlBindFloat(sqlquery sqlQuery, string sParam, float fFloat);
+
+// Bind a string to a named parameter of the given prepared query.
+void SqlBindString(sqlquery sqlQuery, string sParam, string sString);
+
+// Bind a vector to a named parameter of the given prepared query.
+void SqlBindVector(sqlquery sqlQuery, string sParam, vector vVector);
+
+// Bind a object to a named parameter of the given prepared query.
+// Objects are serialized, NOT stored as a reference!
+// Currently supported object types: Creatures, Items, Placeables, Waypoints, Stores, Doors, Triggers
+void SqlBindObject(sqlquery sqlQuery, string sParam, object oObject);
+
+// Executes the given query and fetches a row; returning true if row data was
+// made available; false otherwise. Note that this will return false even if
+// the query ran successfully but did not return data.
+// You need to call SqlPrepareQuery() and potentially SqlBind* before calling this.
+// Example:
+//   sqlquery n = SqlPrepareQueryObject(GetFirstPC(), "select widget from widgets;");
+//   while (SqlStep(n))
+//     SendMessageToPC(GetFirstPC(), "Found widget: " + SqlGetString(n, 0));
+int SqlStep(sqlquery sqlQuery);
+
+// Retrieve a column cast as an integer of the currently stepped row.
+// You can call this after SqlStep() returned TRUE.
+// In case of error, 0 will be returned.
+// In traditional fashion, nIndex starts at 0.
+int SqlGetInt(sqlquery sqlQuery, int nIndex);
+
+// Retrieve a column cast as a float of the currently stepped row.
+// You can call this after SqlStep() returned TRUE.
+// In case of error, 0.0f will be returned.
+// In traditional fashion, nIndex starts at 0.
+float SqlGetFloat(sqlquery sqlQuery, int nIndex);
+
+// Retrieve a column cast as a string of the currently stepped row.
+// You can call this after SqlStep() returned TRUE.
+// In case of error, a empty string will be returned.
+// In traditional fashion, nIndex starts at 0.
+string SqlGetString(sqlquery sqlQuery, int nIndex);
+
+// Retrieve a vector of the currently stepped query.
+// You can call this after SqlStep() returned TRUE.
+// In case of error, a zero vector will be returned.
+// In traditional fashion, nIndex starts at 0.
+vector SqlGetVector(sqlquery sqlQuery, int nIndex);
+
+// Retrieve a object of the currently stepped query.
+// You can call this after SqlStep() returned TRUE.
+// The object will be spawned into a inventory if it is a item and the receiver
+// has the capability to receive it, otherwise at lSpawnAt.
+// Objects are serialized, NOT stored as a reference!
+// In case of error, INVALID_OBJECT will be returned.
+// In traditional fashion, nIndex starts at 0.
+object SqlGetObject(sqlquery sqlQuery, int nIndex, location lSpawnAt, object oInventory = OBJECT_INVALID);
+
+// Convert sHex, a string containing a hexadecimal object id,
+// into a object reference. Counterpart to ObjectToString().
+object StringToObject(string sHex);
+
+// Sets the current hitpoints of oObject.
+// * You cannot destroy or revive objects or creatures with this function.
+// * For currently dying PCs, you can only set hitpoints in the range of -9 to 0.
+// * All other objects need to be alive and the range is clamped to 1 and max hitpoints.
+// * This is not considered damage (or healing). It circumvents all combat logic, including damage resistance and reduction.
+// * This is not considered a friendly or hostile combat action. It will not affect factions, nor will it trigger script events.
+// * This will not advise player parties in the combat log.
+void SetCurrentHitPoints(object oObject, int nHitPoints);

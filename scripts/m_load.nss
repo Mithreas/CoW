@@ -42,6 +42,9 @@ void md_DoWeaponSpecific()
 {
     SetWeaponIsMonkWeapon(BASE_ITEM_QUARTERSTAFF, 1);
     SetWeaponIsMonkWeapon(BASE_ITEM_SHURIKEN, 1);
+    SetWeaponIsMonkWeapon(BASE_ITEM_DAGGER, 1);
+    SetWeaponIsMonkWeapon(BASE_ITEM_CLUB, 1);
+    SetWeaponIsMonkWeapon(BASE_ITEM_HANDAXE, 1);
     SetWeaponFinesseSize(BASE_ITEM_QUARTERSTAFF, CREATURE_SIZE_MEDIUM);
     SetWeaponFinesseSize(BASE_ITEM_KATANA, CREATURE_SIZE_MEDIUM);
     SetWeaponFinesseSize(BASE_ITEM_RAPIER, CREATURE_SIZE_MEDIUM);
@@ -244,6 +247,7 @@ void main()
     DelayCommand(5.0, gsWOSetup());
     DelayCommand(6.0, md_DoWeaponSpecific());
 	DelayCommand(7.0, miSKInitialise());
+	DelayCommand(8.0, ExecuteScript("achieve_init"));
     // ]--
 
     NWNX_Chat_RegisterChatScript("ar_chat");
@@ -262,6 +266,8 @@ void main()
     NWNX_Events_SubscribeEvent("NWNX_ON_CLIENT_DISCONNECT_BEFORE", "evt_dc_bef");
 	NWNX_Events_SubscribeEvent("NWNX_ON_USE_FEAT_BEFORE", "evt_ft_bef");
     NWNX_Events_SubscribeEvent("NWNX_ON_USE_FEAT_AFTER", "evt_ft_aft");
+    NWNX_Events_SubscribeEvent("NWNX_ON_POLYMORPH_BEFORE", "evt_poly_bef");
+    NWNX_Events_SubscribeEvent("NWNX_ON_UNPOLYMORPH_AFTER", "evt_upoly_aft");
 
     SetStealthHIPSCallback("evt_hips");
 

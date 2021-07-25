@@ -1,3 +1,4 @@
+#include "inc_achievements"
 #include "inc_backgrounds"
 #include "inc_bonuses"
 #include "inc_checker"
@@ -307,6 +308,63 @@ void main()
              WriteTimestampedLogEntry("RELEVEL -- CLASS COMPOSITION CHANGE FOLLOWING RELEVEL FOR PC " + GetName(oPC) + ". OLD CLASSES: <" + sFormerClassComposition + "> NEW CLASSES: <" + sClassComposition + ">");
          }
     }
+	
+	// Achievements
+	if (nLevel >= 10)
+	{
+	  switch (nLevel)
+	  {
+	    case 10:
+		{	  
+			acAwardAchievement(oPC, "level10");
+			
+			switch (miBAGetBackground(oPC))
+			{
+			  case MI_BA_DRANNIS:
+			    acAwardAchievement(oPC, "level10dran");
+				break;
+			  case MI_BA_ERENIA:
+			    acAwardAchievement(oPC, "level10eren");
+				break;
+			  case MI_BA_RENERRIN:
+			    acAwardAchievement(oPC, "level10ren");
+				break;
+			  case MI_BA_SHADOW:
+			    acAwardAchievement(oPC, "level10shad");
+				break;
+			  case MI_BA_WARDEN:
+			    acAwardAchievement(oPC, "level10ward");
+				break;
+			  case MI_BA_FERNVALE:
+			    acAwardAchievement(oPC, "level10fern");
+				break;
+			  case MI_BA_AIREVORN:
+			    acAwardAchievement(oPC, "level10aire");
+				break;
+			  default:
+			    break;
+			}
+			
+			break;
+		}
+		case 11:		  
+			acAwardAchievement(oPC, "level11");
+			break;
+		case 12:		  
+			acAwardAchievement(oPC, "level12");
+			break;
+		case 13:		  
+			acAwardAchievement(oPC, "level13");
+			break;
+		case 14:		  
+			acAwardAchievement(oPC, "level14");
+			break;
+		case 15:		  
+			acAwardAchievement(oPC, "level15");
+			break;
+	  }
+	
+	}
 
     ApplyCharacterBonuses(oPC, TRUE);
 

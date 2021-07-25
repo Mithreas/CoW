@@ -54,9 +54,9 @@ void main()
         LevelUpHenchman(OBJECT_SELF);
     }
 
-    NWNX_Creature_SetAbilityScore(OBJECT_SELF, ABILITY_STRENGTH, GetAbilityScore(oMaster, ABILITY_STRENGTH));
-    NWNX_Creature_SetAbilityScore(OBJECT_SELF, ABILITY_DEXTERITY, GetAbilityScore(oMaster, ABILITY_DEXTERITY));
-    NWNX_Creature_SetAbilityScore(OBJECT_SELF, ABILITY_CONSTITUTION, GetAbilityScore(oMaster, ABILITY_CONSTITUTION));
+    NWNX_Creature_SetRawAbilityScore(OBJECT_SELF, ABILITY_STRENGTH, GetAbilityScore(oMaster, ABILITY_STRENGTH));
+    NWNX_Creature_SetRawAbilityScore(OBJECT_SELF, ABILITY_DEXTERITY, GetAbilityScore(oMaster, ABILITY_DEXTERITY));
+    NWNX_Creature_SetRawAbilityScore(OBJECT_SELF, ABILITY_CONSTITUTION, GetAbilityScore(oMaster, ABILITY_CONSTITUTION));
     NWNX_Object_SetCurrentHitPoints(OBJECT_SELF, GetMaxHitPoints());
 
     RemovePackageFeats(OBJECT_SELF, PACKAGE_OUTSIDER);

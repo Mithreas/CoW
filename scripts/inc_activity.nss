@@ -71,6 +71,11 @@ void PrayerDescription(object oPC);
 //------------------------------------------------------------------------------
 void ResearchDescription(object oPC);
 
+//------------------------------------------------------------------------------
+// Clears the praying, researching and sitting fields to avoid effect stacking.
+//------------------------------------------------------------------------------
+void ClearActivities(object oPC);
+
 // What you'd expect.
 int d40();
 
@@ -214,8 +219,9 @@ void GiveResearchInformation(object oPC)
 	  object oNote = CreateItemOnObject(TEMPLATE_NOTE, oPC, 1, "research_note_" + sPage);
 	  
 	  // We use a different tag above to allow notes on the same topic to stack.  Store the "real" tag here so 
-	  // e.g. quest scripts can find it. 
+	  // e.g. quest scripts can find it, and mark the item as non stacking to avoid issues with containers etc.
 	   SetLocalString(oNote, NO_STACK_TAG, "research_note");
+	   SetLocalInt(oNote, "_nostack", TRUE);
 	  
 	  SetName(oNote, sPageTitle);
 	  SetDescription(oNote, sPageContent);
@@ -683,7 +689,7 @@ void ResearchDescription(object oPC)
       sMessage = "";
       break;
     case 18:
-      sMessage = "Journals of William Blumvert, Human explorer and cartographer around 100CE.";
+      sMessage = "Journals of William Blumvert, Human explorer and cartographer around -100CE.";
       break;
     case 19:
       sMessage = "";
@@ -754,4 +760,12 @@ void ResearchDescription(object oPC)
   }
 
   SendMessageToPC(oPC, sMessage);
+}
+
+void ClearActivities(object oPC)
+{
+  DeleteLocalLocation(oPC, "research_location");
+  DeleteLocalLocation(oPC, "pray_location");
+  DeleteLocalLocation(oPC, "MI_SIT_LOCATION");
+  DeleteLocalLocation(oPC, "P_LOC");
 }

@@ -123,74 +123,19 @@ void gvd_DoRewards(object oPC) {
 
       // FL Server
       if (GetLocalInt(GetModule(), "STATIC_LEVEL")) {
-        nLevel = GetLocalInt(gsPCGetCreatureHide(oPC), "FL_LEVEL") - 10;
+        nLevel = GetLocalInt(gsPCGetCreatureHide(oPC), "FL_LEVEL");
       }
 
-      // Level range for rolls
-      int nTier1Roll = 25;
-      int nTier2Roll = 20;
-      int nTier3Roll = 15;
-
-      // Roll ranges for the various awards, between min and max.
-      int nMajorSuccessMaxVal = 0;
-      int nMajorSuccessMinVal = 0;
-      int nMediumSuccessMaxVal = 0;
-      int nMediumSuccessMinVal = 0;
-      int nMinorSuccessMaxVal = 0;
-      int nMinorSuccessMinVal = 0;
-
-      if (nLevel > nTier1Roll) {
-        // 26+ 5% Major, 20% Medium, 75% Minor
-        // 96-100 Major, 76-95 Medium, 1-75 Minor
-        nMajorSuccessMaxVal = 100;
-        nMajorSuccessMinVal = 96;
-        nMediumSuccessMaxVal = 95;
-        nMediumSuccessMinVal = 76;
-        nMinorSuccessMaxVal = 75;
-        nMinorSuccessMinVal = 1;
-
-      }
-      else if (nLevel > nTier2Roll) {
-        // 21+ 50% Medium, 50% Minor
-        // 51-100 Medium, 1-50 Minor
-        nMajorSuccessMaxVal = 0;
-        nMajorSuccessMinVal = 0;
-        nMediumSuccessMaxVal = 100;
-        nMediumSuccessMinVal = 51;
-        nMinorSuccessMaxVal = 50;
-        nMinorSuccessMinVal = 1;
-      }
-      else if (nLevel > nTier3Roll) {
-        // 16+ 5% Medium, 95% Minor
-        // 96-100 Medium, 1-95 Minor
-        nMajorSuccessMaxVal = 0;
-        nMajorSuccessMinVal = 0;
-        nMediumSuccessMaxVal = 100;
-        nMediumSuccessMinVal = 96;
-        nMinorSuccessMaxVal = 95;
-        nMinorSuccessMinVal = 1;
-      }
-      else {
-        // No rewards
-        nMajorSuccessMaxVal = 0;
-        nMajorSuccessMinVal = 0;
-        nMediumSuccessMaxVal = 0;
-        nMediumSuccessMinVal = 0;
-        nMinorSuccessMaxVal = 0;
-        nMinorSuccessMinVal = 0;
-      }
-      WriteTimestampedLogEntry("5% DEATH AWARD -delete_char: Roll granted: " + IntToString(nRoll) + " Level: " + IntToString(nLevel) + " For: " + GetName(oPC) + " " + GetPCPublicCDKey(oPC));
-      // Roll is performed and highest award given.
-      if (nRoll <= nMajorSuccessMaxVal && nRoll >= nMajorSuccessMinVal) {
-        _Grant5Percent(oPC, AWARD_MAJOR);
-      }
-      else if (nRoll <= nMediumSuccessMaxVal && nRoll >= nMediumSuccessMinVal) {
-        _Grant5Percent(oPC, AWARD_NORMAL);
-      }
-      else if (nRoll <= nMinorSuccessMaxVal && nRoll >= nMinorSuccessMinVal) {
-        _Grant5Percent(oPC, AWARD_MINOR);
-      }
-
+	  // No rolls any more. 
+	  // FL 15+ = minor
+	  // FL 50+ = medium
+	  // FL 100+ = major
+	  
+	  if (nLevel >= 100) _Grant5Percent(oPC, AWARD_MAJOR);
+	  else if (nLevel >= 50) _Grant5Percent(oPC, AWARD_NORMAL);
+	  else if (nLevel >= 15) _Grant5Percent(oPC, AWARD_MINOR);
+	  
+      WriteTimestampedLogEntry("5% DEATH AWARD -delete_char: Level: " + IntToString(nLevel) + " For: " + GetName(oPC) + " " + GetPCPublicCDKey(oPC));
 
 }
 

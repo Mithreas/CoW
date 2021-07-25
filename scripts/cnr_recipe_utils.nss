@@ -14,6 +14,7 @@
 #include "cnr_config_inc"
 #include "cnr_persist_inc"
 #include "cnr_language_inc"
+#include "inc_achievements"
 #include "inc_divination"
 #include "inc_iprop"
 #include "inc_reputation"
@@ -1717,14 +1718,20 @@ void CnrRecipeDisplayCraftingResult(object oPC, object oDevice, string sKeyToRec
   // a 95% success chance yields 5% of 2*RecipeXP
   // On failure, get XP based on your current craft level (no bonus for trying harder things).
   // All xp is gained as adventuring XP (i.e. to be distributed later). 
+  // If the character has an award, boost craft XP by 10%/25%/50%.
+  object oHide = gsPCGetCreatureHide(oPC);
+  float fAward = 1.0f;
+  if (GetLocalInt(oHide, "HAS_MINOR_AWARD")) fAward = 1.1f;
+  if (GetLocalInt(oHide, "HAS_NORMAL_AWARD")) fAward = 1.25f;
+  if (GetLocalInt(oHide, "HAS_MAJOR_AWARD")) fAward = 1.5f;
+  
   float fScale = IntToFloat(nEffDC-1) / 10.0f;
   int nScaledGameXP = (bSuccess ? FloatToInt(fScale * IntToFloat(nGameXP)) : CnrGetPlayerLevel(oPC, sDeviceTag) / 2);
-  int nScaledTradeXP = (bSuccess ? FloatToInt(fScale * IntToFloat(nTradeXP)) :  3 * CnrGetPlayerLevel(oPC, sDeviceTag));
+  int nScaledTradeXP = (bSuccess ? FloatToInt(fScale * IntToFloat(nTradeXP) * fAward) :  FloatToInt(3 * CnrGetPlayerLevel(oPC, sDeviceTag) * fAward));
 
   int nOldXP = GetXP(oPC);
   int nNewXP = nScaledGameXP*nBatchCount;
 
-  object oHide = gsPCGetCreatureHide(oPC);
   int iQtyFinished = GetLocalInt(oHide, "GVD_CRAFT_" + sKeyToRecipe);
   if (iQtyFinished == 0 && bSuccess)
   {
@@ -1782,6 +1789,47 @@ void CnrRecipeDisplayCraftingResult(object oPC, object oDevice, string sKeyToRec
           string sNewLevel = CNR_TEXT_YOU_HAVE_REACHED_LEVEL + IntToString(nNewLevel) + CNR_TEXT_IN + sTradeName + "!";
           AssignCommand(oPC, DelayCommand(0.6, SendMessageToPC(oPC, sNewLevel)));
           AssignCommand(oPC, DelayCommand(0.6, PlaySound("gui_level_up")));
+		  
+		  // Achievement hook.
+		  if (nNewLevel == 20)
+		  {
+		    string sAchievement = "";
+			switch(nDeviceTradeskillType)
+			{
+			  //case CNR_TRADESKILL_COOKING:
+			  //  sAchievement = "cook20";
+			  //	break;
+			  case CNR_TRADESKILL_WEAPON_CRAFTING:
+			    sAchievement = "weap20";
+				break;
+			  case CNR_TRADESKILL_ARMOR_CRAFTING:
+			    sAchievement = "arm20";
+				break;
+			  case CNR_TRADESKILL_CHEMISTRY:
+			    sAchievement = "chem20";
+				break;
+			  case CNR_TRADESKILL_INVESTING:
+			    sAchievement = "invest20";
+				break;
+			  case CNR_TRADESKILL_IMBUING:
+			    sAchievement = "imbue20";
+				break;
+			  case CNR_TRADESKILL_WOOD_CRAFTING:
+			    sAchievement = "carp20";
+				break;
+			  //case CNR_TRADESKILL_ENCHANTING:
+			  //  sAchievement = "enchant20";
+			  //	break;
+			  case CNR_TRADESKILL_JEWELRY:
+			    sAchievement = "jewel20";
+				break;
+			  case CNR_TRADESKILL_TAILORING:
+			    sAchievement = "tailor20";
+				break;
+			}
+			
+			if (sAchievement != "") acAwardAchievement(oPC, sAchievement);
+		  }
         }
         else
         {
@@ -2070,7 +2118,7 @@ int CnrRecipeAttemptToCraft(object oPC, object oDevice, int nRecipeIndex, int bW
     // Deity insert.  Check whether the crafter's patron deity intercedes to
     // rescue the production.
     string sDeity = GetDeity(oPC);
-    if (gsWOGetDeityAspect(oPC) & ASPECT_KNOWLEDGE_INVENTION &&
+    if (gsWOGetDeityAspect(oPC) & ASPECT_KNOWLEDGE_INVENTION && CnrRecipeGetRecipeLevelByKey(sKeyToRecipe) > 5 &&
         gsWOGrantBoon(oPC) )
     {
       FloatingTextStringOnCreature(sDeity + " intercedes to aid your work.", oPC, FALSE);

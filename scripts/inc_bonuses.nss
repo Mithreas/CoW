@@ -247,6 +247,13 @@ void ApplyCharacterBonuses(object oPC, int bReapplySpecialAbilities = FALSE, int
 
     // Remove Uncanny Reflex if the PC has it.
 	if (GetKnowsFeat(FEAT_UNCANNY_REFLEX, oPC)) NWNX_Creature_RemoveFeat(oPC, FEAT_UNCANNY_REFLEX);
+	
+	// Add Assassinate and Second Wind feats if the PC doesn't have them and has the relevant class.
+	if (GetLevelByClass(CLASS_TYPE_ASSASSIN, oPC) && !GetKnowsFeat(1116, oPC)) AddKnownFeat(oPC, 1116);
+	if (GetLevelByClass(CLASS_TYPE_FIGHTER, oPC) && !GetKnowsFeat(1117, oPC)) AddKnownFeat(oPC, 1117);
+	
+	// If the character is epic, add the epic character feat.
+	if (GetLocalInt(gsPCGetCreatureHide(oPC), "FL_LEVEL") >= 30 && !GetKnowsFeat(1001, oPC)) AddKnownFeat(oPC, 1001);
 
     Trace(CLASSES, "Subrace and class changes reapplied.");
 }

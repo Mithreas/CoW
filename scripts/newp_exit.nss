@@ -27,6 +27,11 @@ void main()
     JumpAllToLocation(oPC,
                       GetLocation(GetObjectByTag("warden_start")));  
   }
+  else if (isFernvale(oPC))
+  {
+    JumpAllToLocation(oPC,
+                      GetLocation(GetObjectByTag("gen_start1")));  
+  }
   else
   {
     JumpAllToLocation(oPC,

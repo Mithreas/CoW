@@ -392,7 +392,6 @@ void init_feat_list (object oPC)
   add_feat_to_list(oPC, "Weapon focus: heavy crossbow", FEAT_WEAPON_FOCUS_HEAVY_CROSSBOW);
   add_feat_to_list(oPC, "Weapon focus: heavy flail", FEAT_WEAPON_FOCUS_HEAVY_FLAIL);
   add_feat_to_list(oPC, "Weapon focus: kama", FEAT_WEAPON_FOCUS_KAMA);
-  add_feat_to_list(oPC, "Weapon focus: katana", FEAT_WEAPON_FOCUS_KATANA);
   add_feat_to_list(oPC, "Weapon focus: kukri", FEAT_WEAPON_FOCUS_KUKRI);
   add_feat_to_list(oPC, "Weapon focus: light crossbow", FEAT_WEAPON_FOCUS_LIGHT_CROSSBOW);
   add_feat_to_list(oPC, "Weapon focus: light flail", FEAT_WEAPON_FOCUS_LIGHT_FLAIL);
@@ -417,6 +416,7 @@ void init_feat_list (object oPC)
   add_feat_to_list(oPC, "Weapon focus: unarmed strike", FEAT_WEAPON_FOCUS_UNARMED_STRIKE);
   add_feat_to_list(oPC, "Weapon focus: warhammer", FEAT_WEAPON_FOCUS_WAR_HAMMER);
   add_feat_to_list(oPC, "Weapon focus: whip", FEAT_WEAPON_FOCUS_WHIP);
+  add_feat_to_list(oPC, "Weapon focus: windblade (katana)", FEAT_WEAPON_FOCUS_KATANA);
   //End the group list
   SetLocalString(OBJECT_SELF, CURR_LIST, LIST_2);
   // Improved Crit
@@ -437,7 +437,6 @@ void init_feat_list (object oPC)
   add_feat_to_list(oPC, "Imp Crit: heavy crossbow", FEAT_IMPROVED_CRITICAL_HEAVY_CROSSBOW);
   add_feat_to_list(oPC, "Imp Crit: heavy flail", FEAT_IMPROVED_CRITICAL_HEAVY_FLAIL);
   add_feat_to_list(oPC, "Imp Crit: kama", FEAT_IMPROVED_CRITICAL_KAMA);
-  add_feat_to_list(oPC, "Imp Crit: katana", FEAT_IMPROVED_CRITICAL_KATANA);
   add_feat_to_list(oPC, "Imp Crit: kukri", FEAT_IMPROVED_CRITICAL_KUKRI);
   add_feat_to_list(oPC, "Imp Crit: light crossbow", FEAT_IMPROVED_CRITICAL_LIGHT_CROSSBOW);
   add_feat_to_list(oPC, "Imp Crit: light flail", FEAT_IMPROVED_CRITICAL_LIGHT_FLAIL);
@@ -462,6 +461,7 @@ void init_feat_list (object oPC)
   add_feat_to_list(oPC, "Imp Crit: unarmed strike", FEAT_IMPROVED_CRITICAL_UNARMED_STRIKE);
   add_feat_to_list(oPC, "Imp Crit: warhammer", FEAT_IMPROVED_CRITICAL_WAR_HAMMER);
   add_feat_to_list(oPC, "Imp Crit: whip", FEAT_IMPROVED_CRITICAL_WHIP);
+  add_feat_to_list(oPC, "Imp Crit: windblade (katana)", FEAT_IMPROVED_CRITICAL_KATANA);
   //End the group list
   SetLocalString(OBJECT_SELF, CURR_LIST, LIST_2);
   //---------------------------------
@@ -640,7 +640,6 @@ void init_feat_list (object oPC)
     add_feat_to_list(oPC, "OC: Heavy Crossbow", FEAT_EPIC_OVERWHELMING_CRITICAL_HEAVYCROSSBOW);
     add_feat_to_list(oPC, "OC: Heavy Flail", FEAT_EPIC_OVERWHELMING_CRITICAL_HEAVYFLAIL);
     add_feat_to_list(oPC, "OC: Kama", FEAT_EPIC_OVERWHELMING_CRITICAL_KAMA);
-    add_feat_to_list(oPC, "OC: Katana", FEAT_EPIC_OVERWHELMING_CRITICAL_KATANA);
     add_feat_to_list(oPC, "OC: Kukri", FEAT_EPIC_OVERWHELMING_CRITICAL_KUKRI);
     add_feat_to_list(oPC, "OC: Light Crossbow", FEAT_EPIC_OVERWHELMING_CRITICAL_LIGHTCROSSBOW);
     add_feat_to_list(oPC, "OC: Light Flail", FEAT_EPIC_OVERWHELMING_CRITICAL_LIGHTFLAIL);
@@ -665,6 +664,7 @@ void init_feat_list (object oPC)
     add_feat_to_list(oPC, "OC: Unarmed Strike", FEAT_EPIC_OVERWHELMING_CRITICAL_UNARMED);
     add_feat_to_list(oPC, "OC: Warhammer", FEAT_EPIC_OVERWHELMING_CRITICAL_WARHAMMER);
     add_feat_to_list(oPC, "OC: Whip", FEAT_EPIC_OVERWHELMING_CRITICAL_WHIP);
+    add_feat_to_list(oPC, "OC: Windblade (Katana)", FEAT_EPIC_OVERWHELMING_CRITICAL_KATANA);
     add_feat_to_list(oPC, "Perfect Health", FEAT_EPIC_PERFECT_HEALTH);
     add_feat_to_list(oPC, "Epic Prowess", FEAT_EPIC_PROWESS);
     add_feat_to_list(oPC, "Epic Reflexes", FEAT_EPIC_REFLEXES);
@@ -766,7 +766,6 @@ void init_feat_list (object oPC)
     add_feat_to_list(oPC, "Epic Weapon Focus: Heavy Crossbow", FEAT_EPIC_WEAPON_FOCUS_HEAVYCROSSBOW);
     add_feat_to_list(oPC, "Epic Weapon Focus: Heavy Flail", FEAT_EPIC_WEAPON_FOCUS_HEAVYFLAIL);
     add_feat_to_list(oPC, "Epic Weapon Focus: Kama", FEAT_EPIC_WEAPON_FOCUS_KAMA);
-    add_feat_to_list(oPC, "Epic Weapon Focus: Katana", FEAT_EPIC_WEAPON_FOCUS_KATANA);
     add_feat_to_list(oPC, "Epic Weapon Focus: Kukri", FEAT_EPIC_WEAPON_FOCUS_KUKRI);
     add_feat_to_list(oPC, "Epic Weapon Focus: Light Crossbow", FEAT_EPIC_WEAPON_FOCUS_LIGHTCROSSBOW);
     add_feat_to_list(oPC, "Epic Weapon Focus: Light Flail", FEAT_EPIC_WEAPON_FOCUS_LIGHTFLAIL);
@@ -791,6 +790,7 @@ void init_feat_list (object oPC)
     add_feat_to_list(oPC, "Epic Weapon Focus: Unarmed Strike", FEAT_EPIC_WEAPON_FOCUS_UNARMED);
     add_feat_to_list(oPC, "Epic Weapon Focus: Warhammer", FEAT_EPIC_WEAPON_FOCUS_WARHAMMER);
     add_feat_to_list(oPC, "Epic Weapon Focus: Whip", FEAT_EPIC_WEAPON_FOCUS_WHIP);
+    add_feat_to_list(oPC, "Epic Weapon Focus: Windblade (Katana)", FEAT_EPIC_WEAPON_FOCUS_KATANA);
     add_feat_to_list(oPC, "Epic Will", FEAT_EPIC_WILL);
     //add_feat_to_list(oPC, "Undead Shape", FEAT_EPIC_WILD_SHAPE_UNDEAD);
 
@@ -812,7 +812,6 @@ void init_feat_list (object oPC)
       add_feat_to_list(oPC, "Epic Weapon Spec: Heavy Crossbow", FEAT_EPIC_WEAPON_SPECIALIZATION_HEAVYCROSSBOW, FALSE, CLASS_TYPE_FIGHTER);
       add_feat_to_list(oPC, "Epic Weapon Spec: Heavy Flail", FEAT_EPIC_WEAPON_SPECIALIZATION_HEAVYFLAIL, FALSE, CLASS_TYPE_FIGHTER);
       add_feat_to_list(oPC, "Epic Weapon Spec: Kama", FEAT_EPIC_WEAPON_SPECIALIZATION_KAMA, FALSE, CLASS_TYPE_FIGHTER);
-      add_feat_to_list(oPC, "Epic Weapon Spec: Katana", FEAT_EPIC_WEAPON_SPECIALIZATION_KATANA, FALSE, CLASS_TYPE_FIGHTER);
       add_feat_to_list(oPC, "Epic Weapon Spec: Kukri", FEAT_EPIC_WEAPON_SPECIALIZATION_KUKRI, FALSE, CLASS_TYPE_FIGHTER);
       add_feat_to_list(oPC, "Epic Weapon Spec: Light Crossbow", FEAT_EPIC_WEAPON_SPECIALIZATION_LIGHTCROSSBOW, FALSE, CLASS_TYPE_FIGHTER);
       add_feat_to_list(oPC, "Epic Weapon Spec: Light Flail", FEAT_EPIC_WEAPON_SPECIALIZATION_LIGHTFLAIL, FALSE, CLASS_TYPE_FIGHTER);
@@ -837,6 +836,7 @@ void init_feat_list (object oPC)
       add_feat_to_list(oPC, "Epic Weapon Spec: Unarmed Strike", FEAT_EPIC_WEAPON_SPECIALIZATION_UNARMED, FALSE, CLASS_TYPE_FIGHTER);
       add_feat_to_list(oPC, "Epic Weapon Spec: Warhammer", FEAT_EPIC_WEAPON_SPECIALIZATION_WARHAMMER, FALSE, CLASS_TYPE_FIGHTER);
       add_feat_to_list(oPC, "Epic Weapon Spec: Whip", FEAT_EPIC_WEAPON_SPECIALIZATION_WHIP, FALSE, CLASS_TYPE_FIGHTER);
+      add_feat_to_list(oPC, "Epic Weapon Spec: Windblade (Katana)", FEAT_EPIC_WEAPON_SPECIALIZATION_KATANA, FALSE, CLASS_TYPE_FIGHTER);
     }
   }
 
@@ -900,10 +900,11 @@ void init_feat_list (object oPC)
     }
     else
     {
+      int nCurrentBonus = GetLocalInt(gsPCGetCreatureHide(oPC), "FL_BONUS_BARD_LEVELS");
       add_feat_to_list(oPC, "Curse Song", FEAT_CURSE_SONG);
       add_feat_to_list(oPC, "Extra Music", FEAT_EXTRA_MUSIC);
       add_feat_to_list(oPC, "Lingering Song", FEAT_LINGERING_SONG);
-      add_feat_to_list(oPC, "+4 Bard levels for song strength purposes, +4 Perform", 10004, TRUE);
+      add_feat_to_list(oPC, "+4 Bard levels for song strength purposes, +4 Perform.  Current bonus " + IntToString(nCurrentBonus), 10004, TRUE);
     }
   }
 
@@ -958,7 +959,6 @@ void init_feat_list (object oPC)
     add_feat_to_list(oPC, "Weapon Spec: Heavy Crossbow", FEAT_WEAPON_SPECIALIZATION_HEAVY_CROSSBOW, FALSE, CLASS_TYPE_FIGHTER);
     add_feat_to_list(oPC, "Weapon Spec: Heavy Flail", FEAT_WEAPON_SPECIALIZATION_HEAVY_FLAIL, FALSE, CLASS_TYPE_FIGHTER);
     add_feat_to_list(oPC, "Weapon Spec: Kama", FEAT_WEAPON_SPECIALIZATION_KAMA, FALSE, CLASS_TYPE_FIGHTER);
-    add_feat_to_list(oPC, "Weapon Spec: Katana", FEAT_WEAPON_SPECIALIZATION_KATANA, FALSE, CLASS_TYPE_FIGHTER);
     add_feat_to_list(oPC, "Weapon Spec: Kukri", FEAT_WEAPON_SPECIALIZATION_KUKRI, FALSE, CLASS_TYPE_FIGHTER);
     add_feat_to_list(oPC, "Weapon Spec: Light Crossbow", FEAT_WEAPON_SPECIALIZATION_LIGHT_CROSSBOW, FALSE, CLASS_TYPE_FIGHTER);
     add_feat_to_list(oPC, "Weapon Spec: Light Flail", FEAT_WEAPON_SPECIALIZATION_LIGHT_FLAIL, FALSE, CLASS_TYPE_FIGHTER);
@@ -983,6 +983,7 @@ void init_feat_list (object oPC)
     add_feat_to_list(oPC, "Weapon Spec: Unarmed Strike", FEAT_WEAPON_SPECIALIZATION_UNARMED_STRIKE, FALSE, CLASS_TYPE_FIGHTER);
     add_feat_to_list(oPC, "Weapon Spec: Warhammer", FEAT_WEAPON_SPECIALIZATION_WAR_HAMMER,FALSE,  CLASS_TYPE_FIGHTER);
     add_feat_to_list(oPC, "Weapon Spec: Whip", FEAT_WEAPON_SPECIALIZATION_WHIP, FALSE, CLASS_TYPE_FIGHTER);
+    add_feat_to_list(oPC, "Weapon Spec: Windblade (Katana)", FEAT_WEAPON_SPECIALIZATION_KATANA, FALSE, CLASS_TYPE_FIGHTER);
   }
 
   if ((GetLevelByClass(CLASS_TYPE_RANGER, oPC) && GetLevelByClass(CLASS_TYPE_RANGER, oNPC)) ||
@@ -1018,7 +1019,13 @@ void init_feat_list (object oPC)
 
 		SetLocalString(OBJECT_SELF, CURR_LIST, LIST_5);
 	
-        add_feat_to_list(oPC, "Summon Animal Companion (Wolf)", FEAT_ANIMAL_COMPANION, FALSE, CLASS_TYPE_RANGER);
+		// Removed - seems to be broken in new NWN versions.
+        //add_feat_to_list(oPC, "Summon Animal Companion (Wolf)", FEAT_ANIMAL_COMPANION, FALSE, CLASS_TYPE_RANGER);
+		//if (GetAnimalCompanionCreatureType(oPC) == ANIMAL_COMPANION_CREATURE_TYPE_NONE)
+		//{
+		//  NWNX_Creature_SetAnimalCompanionCreatureType(oPC, 0);
+		//  NWNX_Creature_SetAnimalCompanionName(oPC, "Wolf");
+		//}
         if (GetKnowsFeat(374, oPC) && !GetKnowsFeat(20, oPC)) add_feat_to_list(oPC, "Improved Dual Wield", FEAT_IMPROVED_TWO_WEAPON_FIGHTING, TRUE, CLASS_TYPE_RANGER); // Custom!
         add_feat_to_list(oPC, "+4 Ranger levels for nature checks, +4 Animal Empathy", 10014, TRUE);
     }
@@ -1242,7 +1249,6 @@ void init_feat_list (object oPC)
     add_feat_to_list(oPC, "Weapon of Choice: Handaxe", FEAT_WEAPON_OF_CHOICE_HANDAXE, FALSE, CLASS_TYPE_WEAPON_MASTER);
     add_feat_to_list(oPC, "Weapon of Choice: Heavy Flail", FEAT_WEAPON_OF_CHOICE_HEAVYFLAIL, FALSE, CLASS_TYPE_WEAPON_MASTER);
     add_feat_to_list(oPC, "Weapon of Choice: Kama", FEAT_WEAPON_OF_CHOICE_KAMA, FALSE, CLASS_TYPE_WEAPON_MASTER);
-    add_feat_to_list(oPC, "Weapon of Choice: Katana", FEAT_WEAPON_OF_CHOICE_KATANA, FALSE, CLASS_TYPE_WEAPON_MASTER);
     add_feat_to_list(oPC, "Weapon of Choice: Kukri", FEAT_WEAPON_OF_CHOICE_KUKRI, FALSE, CLASS_TYPE_WEAPON_MASTER);
     add_feat_to_list(oPC, "Weapon of Choice: Light Flail", FEAT_WEAPON_OF_CHOICE_LIGHTFLAIL, FALSE, CLASS_TYPE_WEAPON_MASTER);
     add_feat_to_list(oPC, "Weapon of Choice: Light Hammer", FEAT_WEAPON_OF_CHOICE_LIGHTHAMMER, FALSE, CLASS_TYPE_WEAPON_MASTER);
@@ -1260,6 +1266,7 @@ void init_feat_list (object oPC)
     add_feat_to_list(oPC, "Weapon of Choice: Two-bladed Sword", FEAT_WEAPON_OF_CHOICE_TWOBLADEDSWORD, FALSE, CLASS_TYPE_WEAPON_MASTER);
     add_feat_to_list(oPC, "Weapon of Choice: Warhammer", FEAT_WEAPON_OF_CHOICE_WARHAMMER, FALSE, CLASS_TYPE_WEAPON_MASTER);
     add_feat_to_list(oPC, "Weapon of Choice: Whip", FEAT_WEAPON_OF_CHOICE_WHIP, FALSE, CLASS_TYPE_WEAPON_MASTER);
+    add_feat_to_list(oPC, "Weapon of Choice: Windblade (Katana)", FEAT_WEAPON_OF_CHOICE_KATANA, FALSE, CLASS_TYPE_WEAPON_MASTER);
   }
   
   if (GetLevelByClass(CLASS_TYPE_PURPLE_DRAGON_KNIGHT, oPC) && GetLevelByClass(CLASS_TYPE_PURPLE_DRAGON_KNIGHT, oNPC))
@@ -1267,7 +1274,7 @@ void init_feat_list (object oPC)
     add_feat_to_list(oPC, "Heroic Shield", FEAT_PDK_SHIELD, FALSE, CLASS_TYPE_PURPLE_DRAGON_KNIGHT);
     add_feat_to_list(oPC, "Rallying Cry", FEAT_PDK_RALLY, FALSE, CLASS_TYPE_PURPLE_DRAGON_KNIGHT);
     add_feat_to_list(oPC, "Inspire Courage", FEAT_PDK_INSPIRE_1, FALSE, CLASS_TYPE_PURPLE_DRAGON_KNIGHT);
-    if (nPCLevel > 8 && GetKnowsFeat(FEAT_PDK_INSPIRE_1, oPC)) add_feat_to_list(oPC, "Inspire Courage II", FEAT_PDK_INSPIRE_2, FALSE, CLASS_TYPE_PURPLE_DRAGON_KNIGHT);
+    //if (nPCLevel > 8 && GetKnowsFeat(FEAT_PDK_INSPIRE_1, oPC)) add_feat_to_list(oPC, "Inspire Courage II", FEAT_PDK_INSPIRE_2, FALSE, CLASS_TYPE_PURPLE_DRAGON_KNIGHT);
     if (nPCLevel > 8) add_feat_to_list(oPC, "Inspire Fear", FEAT_PDK_FEAR, FALSE, CLASS_TYPE_PURPLE_DRAGON_KNIGHT);
     if (nPCLevel > 10) add_feat_to_list(oPC, "Oath of Wrath", FEAT_PDK_WRATH, FALSE, CLASS_TYPE_PURPLE_DRAGON_KNIGHT);
     if (nPCLevel > 12) add_feat_to_list(oPC, "Final Stand", FEAT_PDK_STAND, FALSE, CLASS_TYPE_PURPLE_DRAGON_KNIGHT);

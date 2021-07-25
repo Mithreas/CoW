@@ -366,12 +366,32 @@ void main()
         sCreateTag = sCreateTag + "bullet";
         sName = sName + "Slingstones";
       }
+      if (GetStringLeft(sTag,9) == "CA_GEN_SH")
+      {
+        sCreateTag = sCreateTag + "shur";
+        sName = sName + "Shurikens";
+      }
+      if (GetStringLeft(sTag,9) == "CA_GEN_TK")
+      {
+        sCreateTag = sCreateTag + "tk";
+        sName = sName + "Throwing Knives";
+      }
+      if (GetStringLeft(sTag,10) == "CA_GEN_AXE")
+      {
+        sCreateTag = sCreateTag + "axe";
+        sName = sName + "Throwing Axes";
+      }
       object oAmmo = CreateItemOnObject(sCreateTag, oActivator, 99);
+	  SetPlotFlag(oAmmo, TRUE); // avoid selling shenanigans
       itemproperty iGenProperty = GetFirstItemProperty(oItem);
       while (GetIsItemPropertyValid(iGenProperty))
       {
           // Add this to the item
-          AddItemProperty(DURATION_TYPE_PERMANENT, iGenProperty, oAmmo);
+		  if (GetItemPropertyType(iGenProperty) != ITEM_PROPERTY_NO_DAMAGE)
+		  {
+            AddItemProperty(DURATION_TYPE_PERMANENT, iGenProperty, oAmmo);
+		  }
+		  
           // Add this to the item name if elemental
           if (GetItemPropertySubType(iGenProperty) == IP_CONST_DAMAGETYPE_ACID)
           {

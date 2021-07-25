@@ -2817,3 +2817,21 @@ CREATE TABLE `pw_people_data` (
   KEY idx (waypoint,resref)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+DROP TABLE IF EXISTS `ac_pl_achieves`;
+CREATE TABLE `ac_pl_achieves` (
+  `player_id` int(11) NOT NULL,
+  `achievement` varchar(16) NOT NULL,
+  KEY idx (player_id,achievement),
+  CONSTRAINT `ac_pc_achieves_1` FOREIGN KEY (`player_id`) REFERENCES `gs_player_data` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+DROP TABLE IF EXISTS `ac_achieves`;
+CREATE TABLE `ac_achieves` (
+  `tag` varchar(16) NOT NULL,
+  `name` varchar(64) NOT NULL,
+  `description` text NOT NULL,
+  PRIMARY KEY `tag` (`tag`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;

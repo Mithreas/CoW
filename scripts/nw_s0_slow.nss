@@ -74,7 +74,7 @@ void main()
         {
             //Fire cast spell at event for the specified target
             SignalEvent(oTarget, EventSpellCastAt(OBJECT_SELF, SPELL_SLOW));
-            if (!MyResistSpell(OBJECT_SELF, oTarget) && !/*Will Save*/ MySavingThrow(SAVING_THROW_WILL, oTarget, AR_GetSpellSaveDC()))
+            if (!MyResistSpell(OBJECT_SELF, oTarget))
             {
                 //Apply the slow effect and VFX impact
                 ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, RoundsToSeconds(nDuration));

@@ -22,7 +22,7 @@ void main()
   {
     if(!GetSpeakingAssociateCount(oSpeaker))
     {
-        SendMessageToPC(oSpeaker, "You must have a familiar, animal companion, or projected image to use this command.");
+        SendMessageToPC(oSpeaker, "You must have a familiar, animal companion, supported henchman, or projected image to use this command.");
         return;
     }
     else if(GetSpeakingAssociateCount(oSpeaker) > 1 && !GetCanMasterSpeakThroughAssociate(GetControlledAssociate(oSpeaker)))

@@ -3,7 +3,7 @@
 #include "inc_event"
 #include "inc_subrace"
 #include "inc_disguise"
-#include "inc_crime"
+#include "inc_reputation"
 #include "zzdlg_lists_inc"
 
 void gsPlayVoiceChat()
@@ -300,7 +300,21 @@ void main()
 	  else
 	  {
 	    // Maybe say hi. 
-		if (d10() == 10) SpeakOneLinerConversation();
+		if (d10() == 10) 
+		{
+		  // Faction check - 
+		  if (!GetIsPCDisguised(oPerceived) && 
+			  (GetRacialType(OBJECT_SELF) < 7  || GetRacialType(OBJECT_SELF) == RACIAL_TYPE_FEY) && // PC races plus fey
+		      CheckFactionNation(OBJECT_SELF, TRUE) == GetPCFaction(oPerceived)) 
+		  {
+		    SpeakString("Hello again.");
+		  }
+		  else
+		  {
+		    SpeakOneLinerConversation();
+		  }
+		  
+		}  
 	  }
 	  
    }

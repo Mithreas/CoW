@@ -831,10 +831,16 @@ void SetUpQuest(object oPC, object oNPC)
   }
   
   // Set the target kill count.
+  // Cache the description in case the quest changes midway.
   if (StringToInt(GetLocalString(oCache, sQuest + NUM_CREATURES)))
   {
+    SetLocalString(gsPCGetCreatureHide(oPC), DESCRIPTION, GetLocalString(oCache, sQuest + DESCRIPTION));
     SetLocalInt(gsPCGetCreatureHide(oPC), KILL_COUNT, StringToInt(GetLocalString(oCache, sQuest + NUM_CREATURES)));
 	SetLocalString(gsPCGetCreatureHide(oPC), CULL_TAG, GetLocalString(oCache, sQuest + CULL_TAG));
+  }
+  else
+  {
+    DeleteLocalString(gsPCGetCreatureHide(oPC), DESCRIPTION);
   }
 
   // Done.
@@ -990,7 +996,7 @@ void UpdateRepeatableQuests()
 		break;
 	case 3:
 		SetStringValue(QUEST+DESCRIPTION,
-					   "Hm, I have use of a polished malachite.  A simple thing, can you get me one please?\n\n" +
+					   "Hm, I have need of a polished malachite.  A simple thing, can you get me one please?\n\n" +
 					   "(You can polish gemstones at a jeweler's bench.)",
 					   DB_VARS);
 		SetStringValue(QUEST+ITEM_TAG, "cow_gemmala", DB_VARS);
@@ -1050,8 +1056,8 @@ void UpdateRepeatableQuests()
 		SetStringValue(QUEST+CULL_TAG, "av_DeepSpiders", DB_VARS);
 		break; 
 	case 3:
-		SetStringValue(QUEST+DESCRIPTION, "There are some dark caverns below the Undercity, easiest reached from the caves in " +
-		  "the northwest.  A tribe of dark-skinned goblins there sometimes emerge to prey on the populace.  Cull a dozen of them and return here.", DB_VARS);
+		SetStringValue(QUEST+DESCRIPTION, "There are some dark caverns below the Undercity, easiest reached from the caves to " +
+		  "the southeast of the Undercity.  A tribe of dark-skinned goblins there sometimes emerge to prey on the populace.  Cull a dozen of them and return here.", DB_VARS);
 		SetStringValue(QUEST+CULL_TAG, "blackgoblin", DB_VARS);
 		break; 
   }
@@ -1193,7 +1199,7 @@ void UpdateRepeatableQuests()
 	case 2:
 	case 3:
 		SetStringValue(QUEST+DESCRIPTION, "There are some dark caverns below the Undercity, easiest reached from the caves in " +
-		  "the northwest.  A tribe of dark-skinned goblins there sometimes emerge to prey on the populace.  Cull a dozen of them and return here.", DB_VARS);
+		  "the southeast.  A tribe of dark-skinned goblins there sometimes emerge to prey on the populace.  Cull a dozen of them and return here.", DB_VARS);
 		SetStringValue(QUEST+CULL_TAG, "blackgoblin", DB_VARS);
 		break; 
   }

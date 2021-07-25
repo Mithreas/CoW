@@ -148,6 +148,12 @@ void ApplyHealToObject(int nDamageToHeal, object oTarget = SPELL_TARGET_OBJECT, 
         nCasterClass = GetAoECastClass();
         oCaster = GetAreaOfEffectCreator();
     }
+	
+	if (!nCasterClass && GetCasterLevelOverride(oCaster, GetSpellId()))
+	{
+	  // Probably a sympathetically reflected spell.  Enable overhealing.
+	  nCasterClass = CLASS_TYPE_CLERIC;
+	}
 
     if(nOverhealLimit == -1) nOverhealLimit = GetIsObjectValid(GetSpellCastItem()) ? 0 : GetOverhealLimit(oCaster, nCasterClass);
 

@@ -74,10 +74,20 @@ void main()
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 12);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 120, 120);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu3Ammo, "Steel Throwing Knives", "cnrthrow4", 50);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu3Ammo, "Steel Throwing Knives", "ca_gen_tk_ste", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotste", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 12);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 120, 120);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu3Ammo, "Steel Shurikens", "ca_gen_sh_ste", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotste", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 12);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 120, 120);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu3Ammo, "Steel Throwing Axes", "ca_gen_axe_ste", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotste", 2);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 13);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 130, 130);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenu3Polearms, "Steel Spear", "wplss004", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrsmlbld7", 1);

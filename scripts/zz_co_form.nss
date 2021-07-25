@@ -243,7 +243,7 @@ void OnPageInit(string sPage)
     }
     else if(sPage == OUTFIT_LIST)
     {
-        dlgSetPrompt("You may save outfits using the -saveoutfit command and recover outfits using the -loadoutfit command.\n" +
+        dlgSetPrompt("Your saved outfits are as follows:\n" +
             GetLocalString(gsPCGetCreatureHide(dlgGetSpeakingPC()), "outfitList"));
     }
     else

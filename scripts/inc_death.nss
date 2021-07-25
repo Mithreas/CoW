@@ -1,3 +1,4 @@
+#include "inc_achievements"
 #include "inc_bloodstains"
 #include "inc_crime"
 #include "inc_challenge"
@@ -71,6 +72,8 @@ void MakeLiving(object oPC)
     SetPlotFlag(oPC, FALSE); 
     DeleteLocalInt(oPC, "AI_IGNORE");
     DeleteLocalInt(oHide, "IS_GHOST");
+	
+	acAwardAchievement(oPC, "ghost_death");	
   } 
 }
 

@@ -1,6 +1,7 @@
 #include "inc_checker"
 #include "inc_favsoul"
 #include "inc_log"
+#include "inc_respawn"
 
 // Returns TRUE if the PC is a completely legal first level character, false
 // otherwise. Method _1 initialises variables and checks stats and hitpoints.
@@ -205,6 +206,7 @@ void main()
   if (!CoW_HasAllowedClasses(OBJECT_SELF))
   {
        DelayCommand(3.0, JumpToLocation(GetLocation(GetObjectByTag("invalid_classes")) ));
+	   DelayCommand(10.0, gsRESetRespawnLocation(OBJECT_SELF));
        return;
   }
   

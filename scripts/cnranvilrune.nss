@@ -12,6 +12,7 @@ void main()
   string sMenuWardingRunes1 = CnrRecipeAddSubMenu("cnranvilrune", "+1 Warding Runes");
   string sMenuWardingRunes2 = CnrRecipeAddSubMenu("cnranvilrune", "+2 Warding Runes");
   string sMenuWardingRunes3 = CnrRecipeAddSubMenu("cnranvilrune", "+3 Warding Runes");
+  string sMenuWardingRunes4 = CnrRecipeAddSubMenu("cnranvilrune", "Investment Runes");
 
   CnrRecipeSetDevicePreCraftingScript("cnranvilrune", "cnr_enchant_anim");
   CnrRecipeSetDeviceTradeskillType("cnranvilrune", CNR_TRADESKILL_INVESTING);
@@ -145,5 +146,24 @@ void main()
   CnrRecipeAddComponent(sKeyToRecipe, "NW_IT_MSMLMISC19", 1, 0); // Fairy dust
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 18);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 180, 180);
+  
+  // Investment runes  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuWardingRunes4, "Lesser Rune of Investment", "rune_invest1", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "x2_it_cfm_bscrl", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrInkG", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "NW_IT_MSMLMISC19", 1, 0); // Fairy dust
+  CnrRecipeAddComponent(sKeyToRecipe, "NW_IT_MSMLMISC11", 1, 0); // Quartz crystal
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 19);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 190, 190);
+  
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenuWardingRunes4, "Greater Rune of Investment", "rune_invest2", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "x2_it_cfm_bscrl", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnrInkG", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "NW_IT_MSMLMISC19", 1, 0); // Fairy dust
+  CnrRecipeAddComponent(sKeyToRecipe, "NW_IT_MSMLMISC11", 1, 0); // Quartz crystal
+  CnrRecipeAddComponent(sKeyToRecipe, "X3_IT_WYVERNBLD", 1, 0);  // Wyvern blood
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 20);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 200, 200);
+  
    
 }

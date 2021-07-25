@@ -23,8 +23,8 @@ int TAILMAX     =   255;
 
 int HFHEADMAX   =   200;    //-- human female
 int HMHEADMAX   =   200;    //-- human male
-int AFHEADMAX   =   100;    //-- halfling female
-int AMHEADMAX   =   50;     //-- halfling male
+int AFHEADMAX   =   20;     //-- halfling female
+int AMHEADMAX   =   20;     //-- halfling male
 int EFHEADMAX   =   150;    //-- elf female
 int EMHEADMAX   =   50;     //-- elf male
 int GFHEADMAX   =   50;     //-- gnome female
@@ -40,17 +40,17 @@ int MAXPHENO    =    2;     //-- set to your highest phenotype you are using. 2 
 
 
 //--CONSTANTS for switches;  set to 0 to turn off,  1 to turn on
-int SKIP2DALINES    =   0;  //--my wings/tails skip 2da lines, so finding a blank
+int SKIP2DALINES    =   1;  //--my wings/tails skip 2da lines, so finding a blank
                 //--is not an end-of-file indication. use 1 if your 2das skip,
                 //--and then use the restrictions list and MAX constants
                 //--to define the wing/tail limits.
                 //--use 1 for CEP2/Universal Wings/Tails
 
-int ALLOWBONEARM    =   1;  //-- anybody can get a palemaster arm
+int ALLOWBONEARM    =   0;  //-- anybody can get a palemaster arm
 int ALLOWBONEREMOVAL=   1;  //-- palemasters can remove bone arms
-int ALLOWRDDWING    =   1;  //-- anybody can get red dragon wings
+int ALLOWRDDWING    =   0;  //-- anybody can get red dragon wings
 int ALLOWRDDREMOVAL =   1;  //-- red dragon disciples can remove wings
-int ALLOWEYES       =   1;  //-- let anybody get glowing eyes
+int ALLOWEYES       =   0;  //-- let anybody get glowing eyes
 //--REMOVED //-- allow monks to remove glowing eyes -- THEY CANT anyway.
 
 //--notes on EYE numbers; i dont know what the real numbers are,

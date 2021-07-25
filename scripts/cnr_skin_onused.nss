@@ -62,6 +62,11 @@ void main()
   if (sAnimalName == "Rat") bCreateMeat = FALSE;
   if (sAnimalName == "Bat") bCreateMeat = FALSE;
   if (sAnimalName == "Badger") bCreateMeat = FALSE;
+  if (sAnimalName == "Dragon") 
+  {
+    bCreateMeat = FALSE;
+	sSkinTag = "dragonhide";
+  }  
 
   if (sSkinTag != "TAG_UNKNOWN")
   {

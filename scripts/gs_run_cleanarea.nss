@@ -4,7 +4,7 @@
 #include "inc_encounter"
 #include "inc_flag"
 
-const int GS_TIMEOUT = 3600; //1 hour
+const int GS_TIMEOUT = 660; //11 mins - area timeout is 600 +/- 60.  This should minimise the chance of getting stacking bosses...!
 
 // Determine if a creature is possessed/dominated/summoned etc.
 // by a PC
@@ -86,10 +86,7 @@ void main()
                     {
                         if (!__GetIsPCPossessed(oObject))
                         {
-                            // addition Dunshine, check for the GVD_NO_CLEANUP variable (used with Minogon Bosses)
-                            if (GetLocalInt(oObject,"GVD_NO_CLEANUP") != 1) {
-                              gsCMDestroyObject(oObject);
-                            }
+                            gsCMDestroyObject(oObject);
                             break;
                         }
                     }

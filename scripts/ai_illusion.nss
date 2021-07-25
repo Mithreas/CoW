@@ -1,6 +1,7 @@
 // Illusion AI script.  
 // Sets the illusion flag for the main combat script.  If an illusion is reduced below 
 // 25% hit points, it vanishes (and drops loot).
+#include "inc_achievements"
 #include "inc_event"
 #include "inc_xp"
 //----------------------------------------------------------------
@@ -31,6 +32,25 @@ void main()
 		  gsXPRewardKill();
           ExecuteScript("gs_ai_death", OBJECT_SELF);
 		  SetLocalInt(OBJECT_SELF, "DEAD", TRUE);
+		  
+		  // Achievements.
+		  string sAchievement = "";
+		  if (GetResRef(OBJECT_SELF) == "calyn_dragon") sAchievement = "calyn";
+		  if (GetResRef(OBJECT_SELF) == "ysera") sAchievement = "ysera";
+		  
+		  if (sAchievement != "")
+		  {
+			int nNth = 1;
+			object oPC = GetNearestCreature(CREATURE_TYPE_PLAYER_CHAR, PLAYER_CHAR_IS_PC, OBJECT_SELF, nNth);
+			
+			while (GetIsObjectValid(oPC) && GetDistanceBetween(oPC, OBJECT_SELF) <= 35.0f)
+			{
+				acAwardAchievement(oPC, sAchievement);
+				nNth++;
+				oPC = GetNearestCreature(CREATURE_TYPE_PLAYER_CHAR, PLAYER_CHAR_IS_PC, OBJECT_SELF, nNth);
+			}
+		  }
+		  
           DestroyObject(OBJECT_SELF);
         }
 

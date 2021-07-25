@@ -32,7 +32,6 @@
 #include "inc_citizen"
 #include "inc_finance"
 #include "inc_rename"
-#include "inc_timelock"
 #include "inc_xfer"
 
 struct miAZContract
@@ -268,12 +267,6 @@ int asCanAssassinate(object oPC, object oTarget)
         return FALSE;
     }
 
-    if (GetIsTimelocked(OBJECT_SELF, "Assassination"))
-    {
-        TimelockErrorMessage(OBJECT_SELF, "Assassination");
-        return FALSE;
-    }
-
     if (GetArea(oTarget) != GetArea(oPC))
     {
         SendMessageToPC(oPC, "Target must be in the general vicinity.");
@@ -285,6 +278,12 @@ int asCanAssassinate(object oPC, object oTarget)
         SendMessageToPC(oPC, "You must be closer in order to study the target's weaknesses.");
         return FALSE;
     }
+	
+	if (GetIsInCombat(oTarget) && GetObjectSeen(oTarget, oPC))
+	{
+		SendMessageToPC(oPC, "Your target must be unaware of you or not in combat.");
+		return FALSE;
+	}
 
     object oWeapon = GetItemInSlot(INVENTORY_SLOT_RIGHTHAND, oPC);
     if (!GetIsObjectValid(oWeapon)) oWeapon = GetItemInSlot(INVENTORY_SLOT_ARMS, oPC);
@@ -301,10 +300,10 @@ int asCanAssassinate(object oPC, object oTarget)
 // Calculate bonus assassination damage.
 int asAssassinationDamage(object oPC)
 {
-    // Assassin class levels plus INT bonus.  Int bonus limited to 1/2 class levels.
+    // Assassin class levels plus INT bonus.  Int bonus limited to class levels.
     int nClass = GetLevelByClass(CLASS_TYPE_ASSASSIN, oPC);
     int nInt = GetAbilityModifier(ABILITY_INTELLIGENCE, oPC);
-    if (nInt > nClass / 2) nInt = nClass / 2;
+    if (nInt > nClass) nInt = nClass;
 
     return nClass + nInt;
 }
@@ -346,8 +345,6 @@ void asApplyDamage(object oPC, object oTarget)
 
     int nCooldown = 10;
     if (!GetIsPC(oTarget)) nCooldown = 2;
-
-    SetTimelock(OBJECT_SELF, FloatToInt(TurnsToSeconds(nCooldown)), "Assassination", 60, 30);
 }
 
 

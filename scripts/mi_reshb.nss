@@ -49,6 +49,7 @@ void main()
       {
         Trace(TRAINING, "Giving information");
         GiveResearchInformation(oPC);
+		if (gsWOGetAspect(gsWOGetDeityByName(GetDeity(oPC))) & ASPECT_KNOWLEDGE_INVENTION) gsSTAdjustState(GS_ST_PIETY, 0.1);
       }
 	  else
 	  {

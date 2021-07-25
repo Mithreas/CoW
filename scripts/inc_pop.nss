@@ -211,5 +211,8 @@ void miPODoNests()
   {
     sPop = GetLocalString(GetArea(oNest), VAR_POP);
     miPOAdjustPopulation(sPop, 10);
+	
+	nNth++;
+	oNest = GetObjectByTag("MIPO_NEST", nNth);
   }
 }

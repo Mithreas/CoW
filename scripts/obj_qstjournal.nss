@@ -17,7 +17,8 @@ void main()
   string sVarsDB = sCurrentQuestSet + QUEST_VAR_DB;
   object oCache = miDAGetCacheObject(sVarsDB);
 
-  string sDescription = GetLocalString(oCache, sCurrentQuest+DESCRIPTION);
+  string sDescription = GetLocalString(gsPCGetCreatureHide(oPC), DESCRIPTION);
+  if (sDescription == "") sDescription = GetLocalString(oCache, sCurrentQuest+DESCRIPTION);
 
   if (sDescription == "")
   {

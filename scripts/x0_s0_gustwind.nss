@@ -50,14 +50,13 @@ void main()
     //Declare major variables
     string sAOETag;
     object oCaster = OBJECT_SELF;
-    int nCasterLvl = AR_GetCasterLevel(oCaster);
-	if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, OBJECT_SELF)) nCasterLvl += 2;
+
     int nMetaMagic = AR_GetMetaMagicFeat();
     int nDamage;
     float fDelay;
     effect eExplode = EffectVisualEffect(VFX_FNF_LOS_NORMAL_20);
     effect eVis = EffectVisualEffect(VFX_IMP_PULSE_WIND);
-   // effect eDam;
+	
     //Get the spell target location as opposed to the spell target.
     location lTarget = GetSpellTargetLocation();
 
@@ -107,15 +106,14 @@ void main()
                             AssignCommand(oTarget, ActionCloseDoor(oTarget));
                     }
                 }
-                if(!MyResistSpell(OBJECT_SELF, oTarget) && !/*Fort Save*/ MySavingThrow(SAVING_THROW_FORT, oTarget, AR_GetSpellSaveDC()))
+                if(!MyResistSpell(OBJECT_SELF, oTarget) && 
+				   ((d20() + GetSkillRank(SKILL_DISCIPLINE, oTarget)) < (d20() + GetSkillRank(SKILL_SPELLCRAFT, oCaster) + GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, oCaster) ? 2 : 0) ))
                 {
 
                     effect eKnockdown = EffectKnockdown();
                     ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eKnockdown, oTarget, RoundsToSeconds(3));
                     // Apply effects to the currently selected target.
-                 //   DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, eDam, oTarget));
-                    //This visual effect is applied to the target object not the location as above.  This visual effect
-                    //represents the flame that erupts on the target not on the ground.
+
                     DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget));
 
                  }

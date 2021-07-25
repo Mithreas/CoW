@@ -16,9 +16,6 @@ void main()
     //raise event
     SignalEvent(oTarget, EventSpellCastAt(oCaster, nSpell));
 
-    //resistance check
-    // if (gsSPResistSpell(oCaster, oTarget, nSpell)) return;
-
     eEffect = EffectMovementSpeedDecrease(75);
     eEffect = EffectLinkEffects(eEffect, EffectAttackDecrease(2));
     eEffect = EffectLinkEffects(eEffect, EffectDamageDecrease(2));

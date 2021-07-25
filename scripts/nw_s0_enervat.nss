@@ -57,22 +57,26 @@ void main()
     	nDuration = nDuration *2; //Duration is +100%
     }
 
-    effect eDrain = EffectNegativeLevel(nDrain);
+    effect eDrain = EffectNegativeLevel(nDrain);	
     effect eLink = EffectLinkEffects(eDrain, eDur);
+	eLink = EffectLinkEffects(eLink, EffectAbilityDecrease(ABILITY_STRENGTH, nDrain));
+	eLink = EffectLinkEffects(eLink, EffectAbilityDecrease(ABILITY_DEXTERITY, nDrain));
 
 	if(!GetIsReactionTypeFriendly(oTarget))
 	{
         //Fire cast spell at event for the specified target
         SignalEvent(oTarget, EventSpellCastAt(OBJECT_SELF, SPELL_ENERVATION));
         //Resist magic check
-        if(!MyResistSpell(OBJECT_SELF, oTarget))
+        if(!MyResistSpell(OBJECT_SELF, oTarget) && !GetIsImmune(oTarget, IMMUNITY_TYPE_NEGATIVE_LEVEL))
         {
-            if(!MySavingThrow(SAVING_THROW_FORT, oTarget, AR_GetSpellSaveDC(), SAVING_THROW_TYPE_NEGATIVE))
-            {
-                //Apply the VFX impact and effects
-                ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, HoursToSeconds(nDuration));
-                ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
-            }
+		    // Make non stacking (but removed save).
+            RemoveEffectsFromSpell(oTarget, SPELL_ENERVATION);
+			
+			//Apply the VFX impact and effects
+			ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, HoursToSeconds(nDuration));
+			ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
+			
+			gsSTAdjustState(GS_ST_STAMINA, -IntToFloat(nDrain), oTarget);
         }
     }
 }

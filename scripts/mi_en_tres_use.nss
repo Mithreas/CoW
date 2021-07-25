@@ -207,119 +207,128 @@ void AutoLootItems(object oCorpse, object oPC)
     object oCreated;
 
     // Loop through loot
-    while (oItem != OBJECT_INVALID) {
+    while (oItem != OBJECT_INVALID) 
+	{
+		if (!GetLocalInt(oItem, "DELETED"))
+		{
+			sTag = GetStringUpperCase(GetTag(oItem));
 
-        sTag = GetStringUpperCase(GetTag(oItem));
+			// Gold
+			if ((GetResRef(oItem) == "nw_it_gold001" || GetBaseItemType(oItem) == BASE_ITEM_GOLD) && bAutoGold)
+			{
+				GiveGoldToCreature(oPC, GetItemStackSize(oItem));
+				SetLocalInt(oItem, "DELETED", TRUE);
+				DestroyObject(oItem);
+			}
 
-        // Gold
-        if ((GetResRef(oItem) == "nw_it_gold001" || GetBaseItemType(oItem) == BASE_ITEM_GOLD) && bAutoGold)
-        {
-            GiveGoldToCreature(oPC, GetItemStackSize(oItem));
-            DestroyObject(oItem);
-        }
+			// Jewelry
+			else if ((GetBaseItemType(oItem) == BASE_ITEM_RING || GetBaseItemType(oItem) == BASE_ITEM_AMULET) && bAutoJewelry)
+			{
+				nContainerSuccess = 1;
+				if (!GetIsItemPropertyValid(GetFirstItemProperty(oItem)) &&
+					(GetDroppableFlag(oItem) == TRUE) &&
+					(GetItemCursedFlag(oItem) == FALSE))
+						nContainerSuccess = gvd_Container_AddObject(oJewelBox, oItem);
+				if (nContainerSuccess == 0)
+					SendMessageToPC(oPC, "Your jewelry box is full.");
+			}
 
-        // Jewelry
-        else if ((GetBaseItemType(oItem) == BASE_ITEM_RING || GetBaseItemType(oItem) == BASE_ITEM_AMULET) && bAutoJewelry)
-        {
-            nContainerSuccess = 1;
-            if (!GetIsItemPropertyValid(GetFirstItemProperty(oItem)) &&
-                (GetDroppableFlag(oItem) == TRUE) &&
-                (GetItemCursedFlag(oItem) == FALSE))
-                    nContainerSuccess = gvd_Container_AddObject(oJewelBox, oItem);
-            if (nContainerSuccess == 0)
-                SendMessageToPC(oPC, "Your jewelry box is full.");
-        }
+			// Heads
+			else if ((GetStringLeft(sTag, 7) == "GS_HEAD" || GetStringLeft(sTag, 15) == "GVD_SLAVER_HEAD") && bAutoHeads)
+			{
+				nContainerSuccess = 1;
+				if (GetDroppableFlag(oItem) == TRUE && GetItemCursedFlag(oItem) == FALSE)
+					nContainerSuccess = gvd_Container_AddObject(oHeadbag, oItem);
+				if (nContainerSuccess == 0)
+					SendMessageToPC(oPC, "Your headbag is full.");
+			}
 
-        // Heads
-        else if ((GetStringLeft(sTag, 7) == "GS_HEAD" || GetStringLeft(sTag, 15) == "GVD_SLAVER_HEAD") && bAutoHeads)
-        {
-            nContainerSuccess = 1;
-            if (GetDroppableFlag(oItem) == TRUE && GetItemCursedFlag(oItem) == FALSE)
-                nContainerSuccess = gvd_Container_AddObject(oHeadbag, oItem);
-            if (nContainerSuccess == 0)
-                SendMessageToPC(oPC, "Your headbag is full.");
-        }
+			// ActionGiveItem linked to some crashes.  Trying a different method.
 
-        // ActionGiveItem linked to some crashes.  Trying a different method.
+			// Gems
+			else if (GetBaseItemType(oItem) == BASE_ITEM_GEM && bAutoGems) {
+				if (oGemBag != OBJECT_INVALID) {
+					nContainerSuccess = 1;
+					nContainerSuccess = gvd_Container_AddObject(oGemBag, oItem);
+					if (nContainerSuccess == 0)
+						SendMessageToPC(oPC, "Your gem bag is full.");
+				}
+				fDelay = GetRandomDelay(0.1, 0.4);
+				if ((GetIdentified(oItem) || bUnidentified) && (oGemBag == OBJECT_INVALID || !nContainerSuccess)) {
+					// DelayCommand(fDelay, ActionGiveItem(oItem, oPC));
 
-        // Gems
-        else if (GetBaseItemType(oItem) == BASE_ITEM_GEM && bAutoGems) {
-            if (oGemBag != OBJECT_INVALID) {
-                nContainerSuccess = 1;
-                nContainerSuccess = gvd_Container_AddObject(oGemBag, oItem);
-                if (nContainerSuccess == 0)
-                    SendMessageToPC(oPC, "Your gem bag is full.");
-            }
-            fDelay = GetRandomDelay(0.1, 0.4);
-            if ((GetIdentified(oItem) || bUnidentified) && (oGemBag == OBJECT_INVALID || !nContainerSuccess)) {
-                // DelayCommand(fDelay, ActionGiveItem(oItem, oPC));
+					oCreated = CreateItemOnObject(GetResRef(oItem), oPC, GetItemStackSize(oItem));
+					if (oCreated != OBJECT_INVALID && GetIdentified(oItem))
+						SetIdentified(oCreated, TRUE);
 
-                oCreated = CreateItemOnObject(GetResRef(oItem), oPC, GetItemStackSize(oItem));
-                if (oCreated != OBJECT_INVALID && GetIdentified(oItem))
-                    SetIdentified(oCreated, TRUE);
+					// Destroy original.
+					SetLocalInt(oItem, "DELETED", TRUE);
+					DestroyObject(oItem, fDelay);
 
-                // Destroy original.
-                DestroyObject(oItem, fDelay);
+				}
+			}
 
-            }
-        }
+			// Potions (Exclude Beer and Water tags)
+			else if (GetBaseItemType(oItem) == BASE_ITEM_POTIONS && bAutoPotions &&
+					 GetTag(oItem) != "GS_ITEM" && GetTag(oItem) != "GS_ST_WATER_25")
+			{
+				fDelay = GetRandomDelay(0.1, 0.4);
+				if (GetIdentified(oItem) || bUnidentified) {
+					// DelayCommand(fDelay, ActionGiveItem(oItem, oPC));
 
-        // Potions (Exclude Beer and Water tags)
-        else if (GetBaseItemType(oItem) == BASE_ITEM_POTIONS && bAutoPotions &&
-                 GetTag(oItem) != "GS_ITEM" && GetTag(oItem) != "GS_ST_WATER_25")
-        {
-            fDelay = GetRandomDelay(0.1, 0.4);
-            if (GetIdentified(oItem) || bUnidentified) {
-                // DelayCommand(fDelay, ActionGiveItem(oItem, oPC));
+					oCreated = CreateItemOnObject(GetResRef(oItem), oPC, GetItemStackSize(oItem));
+					if (oCreated != OBJECT_INVALID && GetIdentified(oItem))
+						SetIdentified(oCreated, TRUE);
 
-                oCreated = CreateItemOnObject(GetResRef(oItem), oPC, GetItemStackSize(oItem));
-                if (oCreated != OBJECT_INVALID && GetIdentified(oItem))
-                    SetIdentified(oCreated, TRUE);
+					// Destroy original.
+					SetLocalInt(oItem, "DELETED", TRUE);
+					DestroyObject(oItem, fDelay);
+				}
+			}
 
-                // Destroy original.
-                DestroyObject(oItem, fDelay);
-            }
-        }
+			// Heal Kits
+			else if (GetBaseItemType(oItem) == BASE_ITEM_HEALERSKIT  && bAutoKits)
+			{
+				fDelay = GetRandomDelay(0.1, 0.4);
+				if (GetIdentified(oItem) || bUnidentified) {
+					// DelayCommand(fDelay, ActionGiveItem(oItem, oPC));
 
-        // Heal Kits
-        else if (GetBaseItemType(oItem) == BASE_ITEM_HEALERSKIT  && bAutoKits)
-        {
-            fDelay = GetRandomDelay(0.1, 0.4);
-            if (GetIdentified(oItem) || bUnidentified) {
-                // DelayCommand(fDelay, ActionGiveItem(oItem, oPC));
+					oCreated = CreateItemOnObject(GetResRef(oItem), oPC, GetItemStackSize(oItem));
+					if (oCreated != OBJECT_INVALID && GetIdentified(oItem))
+						SetIdentified(oCreated, TRUE);
 
-                oCreated = CreateItemOnObject(GetResRef(oItem), oPC, GetItemStackSize(oItem));
-                if (oCreated != OBJECT_INVALID && GetIdentified(oItem))
-                    SetIdentified(oCreated, TRUE);
+					// Destroy original.
+					SetLocalInt(oItem, "DELETED", TRUE);
+					DestroyObject(oItem, fDelay);
+				}
+			}
 
-                // Destroy original.
-                DestroyObject(oItem, fDelay);
-            }
-        }
+			// Spell Scroll
+			else if (GetBaseItemType(oItem) == BASE_ITEM_SPELLSCROLL && bAutoScrolls) {
+				if (oScrollCase != OBJECT_INVALID) {
+					nContainerSuccess = 1;
+					nContainerSuccess = gvd_Container_AddObject(oScrollCase, oItem);
+					if (nContainerSuccess == 0)
+						SendMessageToPC(oPC, "Your scroll case is full.");
+				}
+				fDelay = GetRandomDelay(0.1, 0.4);
+				if ((GetIdentified(oItem) || bUnidentified) && (oScrollCase == OBJECT_INVALID || !nContainerSuccess)) {
+					// DelayCommand(fDelay, ActionGiveItem(oItem, oPC));
 
-        // Spell Scroll
-        else if (GetBaseItemType(oItem) == BASE_ITEM_SPELLSCROLL && bAutoScrolls) {
-            if (oScrollCase != OBJECT_INVALID) {
-                nContainerSuccess = 1;
-                nContainerSuccess = gvd_Container_AddObject(oScrollCase, oItem);
-                if (nContainerSuccess == 0)
-                    SendMessageToPC(oPC, "Your scroll case is full.");
-            }
-            fDelay = GetRandomDelay(0.1, 0.4);
-            if ((GetIdentified(oItem) || bUnidentified) && (oScrollCase == OBJECT_INVALID || !nContainerSuccess)) {
-                // DelayCommand(fDelay, ActionGiveItem(oItem, oPC));
+					oCreated = CreateItemOnObject(GetResRef(oItem), oPC, GetItemStackSize(oItem));
+					if (oCreated != OBJECT_INVALID && GetIdentified(oItem))
+						SetIdentified(oCreated, TRUE);
 
-                oCreated = CreateItemOnObject(GetResRef(oItem), oPC, GetItemStackSize(oItem));
-                if (oCreated != OBJECT_INVALID && GetIdentified(oItem))
-                    SetIdentified(oCreated, TRUE);
+					// Destroy original.
+					SetLocalInt(oItem, "DELETED", TRUE);
+					DestroyObject(oItem, fDelay);
 
-                // Destroy original.
-                DestroyObject(oItem, fDelay);
+				}
+			}
 
-            }
-        }
-
-        oItem = GetNextItemInInventory(oCorpse);
+	    }	
+		
+		oItem = GetNextItemInInventory(oCorpse);
     }
 
 }

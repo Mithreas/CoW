@@ -29,7 +29,7 @@ void AddItemDescriptionUMD(object oItem);
 void main()
 {
     object examiner = OBJECT_SELF;
-    object examinee = NWNX_Object_StringToObject(NWNX_Events_GetEventData("EXAMINEE_OBJECT_ID"));
+    object examinee = StringToObject(NWNX_Events_GetEventData("EXAMINEE_OBJECT_ID"));
     int objectType = GetObjectType(examinee);
 
     if (objectType == OBJECT_TYPE_ITEM)

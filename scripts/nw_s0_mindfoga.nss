@@ -22,8 +22,9 @@ void main()
     //Declare major variables
     object oTarget = GetEnteringObject();
     effect eVis = EffectVisualEffect(VFX_DUR_MIND_AFFECTING_NEGATIVE);
-    // effect eLower = EffectSavingThrowDecrease(SAVING_THROW_WILL, 10);
-    effect eLink;
+    effect eLink  = AnemoiEffectBlindness(oTarget);
+	effect eLink2 = EffectLinkEffects(EffectAbilityDecrease(ABILITY_INTELLIGENCE, 6), EffectAbilityDecrease(ABILITY_WISDOM, 6));
+	eLink2        = EffectLinkEffects(eLink2, EffectAbilityDecrease(ABILITY_CHARISMA, 6));
     int bValid = FALSE;
     float fDelay = GetRandomDelay(1.0, 2.2);
     object oCaster = GetAreaOfEffectCreator();
@@ -45,42 +46,36 @@ void main()
                 //If the effect was created by the Mind_Fog then remove it
                 if (GetEffectSpellId(eAOE) == SPELL_MIND_FOG && oCaster == GetEffectCreator(eAOE))
                 {
-                    if(GetEffectType(eAOE) == EFFECT_TYPE_SAVING_THROW_DECREASE)
+                    if(GetEffectType(eAOE) == EFFECT_TYPE_BLINDNESS)
                     {
                         RemoveEffect(oTarget, eAOE);
+					    gsSTDoStaminaTax(oTarget, -50, 0.0f);
                         bValid = TRUE;
                     }
                 }
                 //Get the next effect on the creation
                 eAOE = GetNextEffect(oTarget);
             }
-        //Check if the effect has been put on the creature already.  If no, then save again
-        //If yes, apply without a save.
+        //Check if the effect has been put on the creature already.  If no, then test SR again
+        //If yes, apply without testing SR.
         }
+		
         if(bValid == FALSE)
         {
             if(!(miWAGetIsWarlock(oCaster) ? miWAResistSpell(oCaster, oTarget) : MyResistSpell(oCaster, oTarget)))
             {
                 if(!GetIsImmune(oTarget, IMMUNITY_TYPE_MIND_SPELLS, oCaster))
                 {
-                    if(MySavingThrow(SAVING_THROW_WILL, 
-					                 oTarget, 
-									 miWAGetIsWarlock(oCaster) ? miWAGetSpellDC(oCaster) + GetSpellDCModifiers(oCaster, SPELL_SCHOOL_ENCHANTMENT) : GetSpellSaveDC(), 
-									 SAVING_THROW_TYPE_MIND_SPELLS))
-                    {
-                        nWillDamage /= 2;
-                    }
-                    else
-                    {
-						if (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_ENCHANTMENT, oCaster))
-							DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectStunned(), oTarget, RoundsToSeconds(nStunDur)));
-						else
-							DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectDazed(), oTarget, RoundsToSeconds(1)));
-                        DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_DAZED_S), oTarget));
-                    }
-                    SetLocalInt(oTarget, "SP_MIND_FOG_DMG", nWillDamage);
-                    eLink = EffectLinkEffects(eVis, EffectSavingThrowDecrease(SAVING_THROW_WILL, nWillDamage));
+					if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_ENCHANTMENT, oCaster))
+					{
+					    // Add the ability score drain. 
+						eLink = EffectLinkEffects(eLink, eLink2);
+					}
+					
+                    DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_DAZED_S), oTarget));
+                    eLink = EffectLinkEffects(eVis, eLink);
                     DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_PERMANENT, eLink, oTarget));
+					gsSTDoStaminaTax(oTarget, 50, 0.0f);
                 }
             }
         }
@@ -88,9 +83,16 @@ void main()
         {
             if ( GetIsImmune(oTarget, IMMUNITY_TYPE_MIND_SPELLS, oCaster) == FALSE )
             {
-                //Apply VFX impact and lowered save effect
-                eLink = EffectLinkEffects(eVis, EffectSavingThrowDecrease(SAVING_THROW_WILL, GetLocalInt(oTarget, "SP_MIND_FOG_DMG")));
-                ApplyEffectToObject(DURATION_TYPE_PERMANENT, eLink, oTarget);
+				if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_ENCHANTMENT, oCaster))
+				{
+					// Add the ability score drain. 
+					eLink = EffectLinkEffects(eLink, eLink2);
+				}
+				
+				DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_DAZED_S), oTarget));
+				eLink = EffectLinkEffects(eVis, eLink);
+				DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_PERMANENT, eLink, oTarget));
+				gsSTDoStaminaTax(oTarget, 50, 0.0f);
             }
         }
     }

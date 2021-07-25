@@ -53,7 +53,7 @@ void main()
                     //}
                 }
 				
-				gsSTAdjustState(GS_ST_STAMINA, -5.0f, oTarget);
+				if (!GetIsImmune(oTarget, IMMUNITY_TYPE_ENTANGLE)) gsSTAdjustState(GS_ST_STAMINA, -5.0f, oTarget);
             }
         }
         //Get next target in the AOE

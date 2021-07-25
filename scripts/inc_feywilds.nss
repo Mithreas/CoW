@@ -44,6 +44,7 @@ const string FW_PATH_PFWD = "FW_PERENOR_FEYWILDS_DEEP";
 const string FW_PATH_ELF  = "FW_ELF_FEYWILDS_1";
 const string FW_PATH_ELF2 = "FW_ELF_FEYWILDS_2";
 const string CITY_HOUSES  = "CITY_HOUSES";
+const string UC_CRYPTS    = "UNDERCITY_CRYPTS";
 const string UC_HOUSES    = "UNDERCITY_HOUSES";
 const string PC_HOUSES    = "PARLI_HOUSES";
 const string CV_HOUSES    = "CAER_VALA_HOUSES";
@@ -143,6 +144,12 @@ void FW_Init()
   AddStringElement("cityhouse", CITY_HOUSES, oMod);
   AddStringElement("cityhouse1", CITY_HOUSES, oMod);
   AddStringElement("cityhouse2", CITY_HOUSES, oMod);
+  
+  // Undercity crypts
+  DeleteList(UC_CRYPTS, oMod);
+  AddStringElement("uccrypt1", UC_CRYPTS, oMod);
+  AddStringElement("uccrypt2", UC_CRYPTS, oMod);
+  AddStringElement("uccrypt3", UC_CRYPTS, oMod);
   
   // Undercity houses
   DeleteList(UC_HOUSES, oMod);

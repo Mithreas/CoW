@@ -21,7 +21,7 @@ int StartingConditional()
     // Restrict based on the player's class
     int iPassed = 0;
     if((GetLevelByClass(CLASS_TYPE_WIZARD, oPC) >= 5)
-        && (!NWNX_Creature_GetWizardSpecialization(oPC))
+        && (!GetSpecialization(oPC))
         && (!miSSGetIsSpellsword(oPC))
 		&& (!(GetLocalInt(gsPCGetCreatureHide(oPC), "WILD_MAGE")==1))
 		&& (!(GetLocalInt(gsPCGetCreatureHide(oPC), "SHADOW_MAGE"))==1))

@@ -45,7 +45,7 @@ void main()
         LevelUpHenchman(OBJECT_SELF);
     }
 
-    NWNX_Creature_SetAbilityScore(OBJECT_SELF, ABILITY_STRENGTH, 10);
+    NWNX_Creature_SetRawAbilityScore(OBJECT_SELF, ABILITY_STRENGTH, 10);
 
     RemovePackageFeats(OBJECT_SELF, PACKAGE_OUTSIDER);
 

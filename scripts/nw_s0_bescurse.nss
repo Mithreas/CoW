@@ -20,9 +20,6 @@ void main()
     //resistance check
     if (! miWADoWarlockAttack(OBJECT_SELF, oTarget, nSpell)) return;
 
-    //saving throw check
-    if (gsSPSavingThrow(OBJECT_SELF, oTarget, nSpell, nDC, SAVING_THROW_WILL)) return;
-
     //apply
     eEffect =
         SupernaturalEffect(

@@ -77,10 +77,20 @@ void main()
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 12);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 120, 120);
 
-  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu3Ammo, "Mithril Throwing Knives", "cnrthrow6", 50);
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu3Ammo, "Mithril Throwing Knives", "ca_gen_tk_mit", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnringotmit", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 12);
   CnrRecipeSetRecipeXP(sKeyToRecipe, 120, 120);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu3Ammo, "Mithril Shurikens", "ca_gen_sh_mit", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotmit", 1);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 12);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 120, 120);
+
+  sKeyToRecipe = CnrRecipeCreateRecipe(sMenu3Ammo, "Mithril Throwing Axes", "ca_gen_axe_mit", 1);
+  CnrRecipeAddComponent(sKeyToRecipe, "cnringotmit", 2);
+  CnrRecipeSetRecipeLevel(sKeyToRecipe, 13);
+  CnrRecipeSetRecipeXP(sKeyToRecipe, 130, 130);
 
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenu3Polearms, "Mithril Spear", "wplss006", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cnrsmlbld6", 1);
@@ -197,7 +207,7 @@ void main()
   //CnrRecipeSetRecipeXP(sKeyToRecipe, 120, 120);
 
   //sKeyToRecipe = CnrRecipeCreateRecipe(sMenu3Blunts, "Mithril Shod Quarterstaff", "wdbqs006", 1);
-  //CnrRecipeAddComponent(sKeyToRecipe, "cnrqstaff", 1);
+  //CnrRecipeAddComponent(sKeyToRecipe, "cnrqstaff4", 1);
   //CnrRecipeAddComponent(sKeyToRecipe, "cnrshod6", 2);
   //CnrRecipeSetRecipeLevel(sKeyToRecipe, 13);
   //CnrRecipeSetRecipeXP(sKeyToRecipe, 130, 130);

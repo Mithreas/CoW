@@ -67,8 +67,6 @@ int miSPGetSRAdjustedDamage(int nDamage, object oTarget, object oCaster = OBJECT
 int miSPGetIsPlayerNonHumanoid(object oPC);
 //Saves spell slots for a wizard to be used on rest and on login
 void md_SaveSpellLevel(object oPC, int nLevel);
-// Returns true if a PC is in an area protected against scrying.
-int IsProtected(object oPC);
 // Stop scrying. Call via DelayCommand. nHP is the PC's hitpoints when they
 // start.
 void stopscry(object oPC, int nHP);
@@ -88,6 +86,8 @@ int miSCIsScrying(object oPC);
 // Overrides whether oPC can scry or not.  See mi_scry_enter (used near crystal
 // balls).
 void SetScryOverride(object oPC, int bCanScry);
+// Returns an appropriate Effect for the creature (Blindness for PCs, miss chance for NPCs)
+effect AnemoiEffectBlindness(object oCreature);
 
 //------------------------------------------------------------------------------
 void miCreateHenchman(string sResRef, object oCaster, int nVisualEffect)
@@ -619,6 +619,10 @@ int Scrying(object oPC,object oTarg)
                 GetLevelByClass(CLASS_TYPE_DRUID, oPC) + GetLevelByClass(CLASS_TYPE_FAVOURED_SOUL, oPC) + GetLevelByClass(CLASS_TYPE_CLERIC, oPC) +
 				  GetLocalInt(oHide, "ATTUNEMENT_STRENGTH") / 2;
 
+  if (GetHasFeat(FEAT_EPIC_SPELL_PENETRATION, oPC)) nCheck += 6;
+  else if (GetHasFeat(FEAT_GREATER_SPELL_PENETRATION, oPC)) nCheck += 4;
+  else if (GetHasFeat(FEAT_SPELL_PENETRATION, oPC)) nCheck += 2;
+
   if(GetHasSpellEffect(SPELL_SANCTUARY,oTarg) || GetHasSpellEffect(SPELL_INVISIBILITY,oTarg)
          ||GetHasSpellEffect(SPELL_INVISIBILITY_SPHERE,oTarg) 
          ||GetHasSpellEffect(346,oTarg)  // Shadow conjuration invis
@@ -779,4 +783,14 @@ void Send_Image(object oPC,object oTarg, string sText)
   {
     SendMessageToPC(oPC,"<cþ  >You need to rest before you can use this ability again.");
   }
+}
+
+effect AnemoiEffectBlindness(object oCreature)
+{
+  if (GetIsPC(oCreature))
+  {
+    return EffectBlindness();
+  }
+  
+  return EffectMissChance(50);
 }

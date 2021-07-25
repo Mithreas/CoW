@@ -100,7 +100,7 @@ void HandleSelection()
           EndDlg();
           break;
         }
-      case 3:
+      case 2:
         // Shop
         {
           int nTimeout = GetLocalInt(oPC, "WATER_TIMEOUT");

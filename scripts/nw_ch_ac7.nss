@@ -144,6 +144,8 @@ void main()
            //BringBack();
 
            object oItem;
+		   
+		   /* - removed, replaced with calling standard death script to avoid code duplication.
            int nValue;
            int nSlot = 0;
 
@@ -168,7 +170,7 @@ void main()
                  DestroyObject(oItem);
                }
              }
-           }
+           } */
 
            // -----------------------------------------------------------------------------
            // End of rewrite
@@ -193,6 +195,15 @@ void main()
         }
     }
 
+	// Check for CNR creatures and run their usual OnDeath script.  This really ought to be in a user defined script, but oh well.
+	if (GetStringLeft(GetTag(OBJECT_SELF), 4) == "cnra")
+	{
+	  ExecuteScript("cnr_skin_ondeath");
+	}
+	else if (GetAssociateType(OBJECT_SELF) == ASSOCIATE_TYPE_HENCHMAN || GetAssociateType(OBJECT_SELF) == ASSOCIATE_TYPE_DOMINATED)
+	{
+	  ExecuteScript("gs_ai_death");
+	}
 
      SignalEvent(OBJECT_SELF, EventUserDefined(GS_EV_ON_DEATH));
 }

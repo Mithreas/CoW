@@ -46,7 +46,6 @@ void main()
     int nCnt;
     effect eVis = EffectVisualEffect(VFX_IMP_WILL_SAVING_THROW_USE);
 
-
     int nDuration = d3(1);
 
 
@@ -55,14 +54,6 @@ void main()
         nDuration = nDuration *2; //Duration is +100%
     }
 
-
-    int nModifier = 0;
-
-    // * creatures of different race find different things funny
-    if (GetRacialType(oTarget) != GetRacialType(OBJECT_SELF))
-    {
-        nModifier = 4;
-    }
     if(!GetIsReactionTypeFriendly(oTarget))
     {
         //Fire cast spell at event for the specified target
@@ -70,33 +61,29 @@ void main()
 
         if (miWADoWarlockAttack(OBJECT_SELF, oTarget, GetSpellId()) && spellsIsMindless(oTarget) == FALSE)
         {
-            if (!/*Will Save*/ MySavingThrow(SAVING_THROW_WILL, oTarget, AR_GetSpellSaveDC()-nModifier, SAVING_THROW_TYPE_MIND_SPELLS))
-            {
-                if ( !GetIsImmune(oTarget,IMMUNITY_TYPE_MIND_SPELLS, OBJECT_SELF))
-                {
-                    effect eDur = EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED);
-                    float fDur = RoundsToSeconds(nDuration);
-                    ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
-                    ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eDur, oTarget, fDur);
+			if ( !GetIsImmune(oTarget,IMMUNITY_TYPE_MIND_SPELLS, OBJECT_SELF))
+			{
+				effect eDur = EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED);
+				float fDur = RoundsToSeconds(nDuration);
+				ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
+				ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eDur, oTarget, fDur);
 
-                /*    string szLaughMale = "as_pl_laughingm2";
-                    string szLaughFemale = "as_pl_laughingf3";
+				string szLaughMale = "as_pl_laughingm2";
+				string szLaughFemale = "as_pl_laughingf3";
 
-                    if (GetGender(oTarget) == GENDER_FEMALE)
-                    {
-                        PlaySound(szLaughFemale);
-                    }
-                    else
-                    {
-                        PlaySound(szLaughMale);
-                    }      */
-                    AssignCommand(oTarget, ClearAllActions());
-                    AssignCommand(oTarget, PlayVoiceChat(VOICE_CHAT_LAUGH));
-                    AssignCommand(oTarget, ActionPlayAnimation(ANIMATION_LOOPING_TALK_LAUGHING));
-                    effect eLaugh = EffectKnockdown();
-                    DelayCommand(0.3, ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLaugh, oTarget, fDur));
-                }
-            }
+				if (GetGender(oTarget) == GENDER_FEMALE)
+				{
+					PlaySound(szLaughFemale);
+				}
+				else
+				{
+					PlaySound(szLaughMale);
+				} 
+				AssignCommand(oTarget, ClearAllActions());
+				AssignCommand(oTarget, PlayVoiceChat(VOICE_CHAT_LAUGH));
+				AssignCommand(oTarget, ActionPlayAnimation(ANIMATION_LOOPING_TALK_LAUGHING));
+
+			}
         }
     }
 }

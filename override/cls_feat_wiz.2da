@@ -94,3 +94,10 @@
 90    PLAYER_TOOL_08                                      1113          1      99                1
 91    PLAYER_TOOL_09                                      1114          1      99                1
 92    PLAYER_TOOL_10                                      1115          1      99                1
+93   FEAT_SOCIAL_FLATTER                   1118         1     99              1
+94   FEAT_SOCIAL_FLIRT                     1119         1     99              1
+95   FEAT_SOCIAL_INTIMIDATE                1120         1     99              1
+96   FEAT_SOCIAL_REQUEST_FAVOUR            1121         1     99              1
+97   FEAT_SHAPECHANGER_BASEFORM            1122         1     99              1
+98   FEAT_SHAPECHANGER_HYBRIDFORM          1123         1     99              1
+99   FEAT_SHAPECHANGER_ANIMALFORM          1124         1     99              1

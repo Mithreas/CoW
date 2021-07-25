@@ -4,5 +4,5 @@
 
 void main()
 {
-	int nFeat = StringToInt(NWNX_Events_GetEventData("FEAT"));
+	int nFeat = StringToInt(NWNX_Events_GetEventData("FEAT_ID"));
 }

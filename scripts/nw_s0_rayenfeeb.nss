@@ -61,31 +61,33 @@ void main()
         SignalEvent(oTarget, EventSpellCastAt(OBJECT_SELF, SPELL_RAY_OF_ENFEEBLEMENT));
         eRay = EffectBeam(VFX_BEAM_ODD, OBJECT_SELF, BODY_NODE_HAND);
         //Make SR check
-        if (!MyResistSpell(OBJECT_SELF, oTarget))
+        if (!MyResistSpell(OBJECT_SELF, oTarget) && !GetIsImmune(oTarget, IMMUNITY_TYPE_ABILITY_DECREASE))
         {
-            //Make a Fort save to negate
-            if (!MySavingThrow(SAVING_THROW_FORT, oTarget, AR_GetSpellSaveDC(), SAVING_THROW_TYPE_NEGATIVE))
-            {
-                //Enter Metamagic conditions
-                if (nMetaMagic == METAMAGIC_MAXIMIZE)
-                {
-                    nLoss = 6 + nBonus;
-                }
-                if (nMetaMagic == METAMAGIC_EMPOWER)
-                {
-                     nLoss = nLoss + (nLoss/2);
-                }
-                if (nMetaMagic == METAMAGIC_EXTEND)
-                {
-                    nDuration = nDuration * 2;
-                }
-                //Set ability damage effect
-                eFeeb = EffectAbilityDecrease(ABILITY_STRENGTH, nLoss);
-                effect eLink = EffectLinkEffects(eFeeb, eDur);
-               //Apply the ability damage effect and VFX impact
-                ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, RoundsToSeconds(nDuration));
-                ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eVis, oTarget);
-             }
+		    // Make non stacking (but removed save).
+            RemoveEffectsFromSpell(oTarget, SPELL_RAY_OF_ENFEEBLEMENT);
+			
+			//Enter Metamagic conditions
+			if (nMetaMagic == METAMAGIC_MAXIMIZE)
+			{
+				nLoss = 6 + nBonus;
+			}
+			if (nMetaMagic == METAMAGIC_EMPOWER)
+			{
+				 nLoss = nLoss + (nLoss/2);
+			}
+			if (nMetaMagic == METAMAGIC_EXTEND)
+			{
+				nDuration = nDuration * 2;
+			}
+			//Set ability damage effect
+			eFeeb = EffectAbilityDecrease(ABILITY_STRENGTH, nLoss);
+			effect eLink = EffectLinkEffects(eFeeb, eDur);
+		   //Apply the ability damage effect and VFX impact
+			ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, RoundsToSeconds(nDuration));
+			ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eVis, oTarget);
+			if (GetRacialType(oTarget) == RACIAL_TYPE_UNDEAD) nLoss *= 2;
+			gsSTAdjustState(GS_ST_STAMINA, -IntToFloat(nLoss), oTarget);
+
          }
     }
     ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eRay, oTarget, 1.0);

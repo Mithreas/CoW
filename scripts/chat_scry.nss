@@ -31,10 +31,6 @@ void main()
       SendMessageToPC(oSpeaker, "<cþ  >You must have "+
        "Epic Spell Focus in Divination to be able to scry.");
     }
-	else if (gsTIGetActualTimestamp() < GetLocalInt(oSpeaker, "SCRY_TIMEOUT"))
-	{
-	  SendMessageToPC(oSpeaker, "You cannot scry again so soon.  Allow 15 minutes between scrying attempts."); 
-	}	
     else if (sParams == "" && !GetIsObjectValid(oTarget))
     {
       SendMessageToPC(oSpeaker, "<cþ£ >You must specify a name. You only "+
@@ -64,7 +60,11 @@ void main()
       if (!GetIsObjectValid(oTarget))
       {
         SendMessageToPC(oSpeaker, "<cþ£ >Could not find character: " + sParams);
-      }
+      }	  
+	  else if (gsTIGetActualTimestamp() < GetLocalInt(oSpeaker, "SCRY_TIMEOUT_" + gsPCGetPlayerID(oTarget)))
+	  {
+	    SendMessageToPC(oSpeaker, "You cannot scry " + GetName(oTarget) + " again so soon.  Allow 15 minutes between scrying attempts."); 
+	  }	
 	  else if (!miREHasRelationship(oSpeaker, oTarget))
 	  {
         SendMessageToPC(oSpeaker, "<cþ£ >You may only scry on someone you have previously interacted with.");
@@ -89,7 +89,7 @@ void main()
              gsSTDoCasterDamage(oSpeaker, 5);
 		  }
 		  
-          if (Scrying(oSpeaker, oTarget)) SetLocalInt(oSpeaker, "SCRY_TIMEOUT", gsTIGetActualTimestamp() + 15 * 60);		  
+          if (Scrying(oSpeaker, oTarget)) SetLocalInt(oSpeaker, "SCRY_TIMEOUT_" + gsPCGetPlayerID(oTarget), gsTIGetActualTimestamp() + 15 * 60);		  
         }
       }
     }

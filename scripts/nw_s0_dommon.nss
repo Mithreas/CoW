@@ -84,6 +84,9 @@ void main()
                     //Apply linked effects and VFX Impact
                     ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, TurnsToSeconds(nDuration));
                     ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
+					
+					if (gsSPGetIsHumanoid(oTarget))
+					  SetLocalInt(oTarget, "Lib_Associates_SpeakingAssociate", TRUE);
                 }
            }
      }

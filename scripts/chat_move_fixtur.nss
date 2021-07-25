@@ -8,7 +8,7 @@
 #include "nwnx_alts"
 #include "nwnx_admin"
 
-const string HELP = "-move_fixture [x] [y]. Moves the fixture by the provided x- and y- coordinates. The fixture must remain within 4 yards of you at all times.";
+const string HELP = "-move_fixture [x] [y] [z]. Moves the fixture by the provided x-, y-, and z-coordinates. The fixture must remain within 4 yards of you at all times. Z-changes are capped at +/-0.8.";
 
 float GetDistBetweenVectors(vector vec1, vector vec2)
 {
@@ -32,7 +32,7 @@ void main()
 
     if (params == "?")
     {
-        DisplayTextInExamineWindow("-move_fixture", HELP);
+        DisplayTextInExamineWindow(chatCommandTitle("-move_fixture") + " " + chatCommandParameter("[x] [y] [z]") + "\n(Alias: -move)", HELP);
     }
     else
     {
@@ -56,21 +56,32 @@ void main()
 
             float dx = 0.0;
             float dy = 0.0;
+            float dz = 0.0;
 
-            string parse = StringParse(params);
-            dx = StringToFloat(parse);
-            dy = StringToFloat(StringParse(StringRemoveParsed(params, parse)));
+            string parse_x = StringParse(params);
+            dx = StringToFloat(parse_x);
+            string parse_y = StringParse(StringRemoveParsed(params, parse_x));
+            dy = StringToFloat(parse_y);
+            string parse_z = StringRemoveParsed(StringRemoveParsed(params, parse_x),parse_y);
+            dz = StringToFloat(parse_z);
 
             vector curPos = GetPositionFromLocation(GetLocation(nearestPlaceable));
 
             vector newPos;
             newPos.x = curPos.x + dx;
             newPos.y = curPos.y + dy;
-            newPos.z = curPos.z;
+            newPos.z = curPos.z + dz;
 
+            vector vPC = GetPositionFromLocation(GetLocation(OBJECT_SELF));
+
+            if (vPC.z - newPos.z > 0.8 || vPC.z - newPos.z < -0.8)
+            {
+                SendMessageToPC(OBJECT_SELF,"You can only move the fixture up or down a maximum of 0.8 meters from your position.");
+                break;
+            }
             if (GetDistBetweenVectors(GetPositionFromLocation(GetLocation(OBJECT_SELF)), newPos) <= YardsToMeters(4.0))
             {
-                if (GetIsWalkable(GetArea(nearestPlaceable), newPos))
+                if (GetSurfaceMaterial(Location(GetArea(nearestPlaceable), newPos, 0.0)) != 0)
                 {
                     NWNX_Object_SetPosition(nearestPlaceable, newPos);
                     DelayCommand(0.1, gsFXUpdateFixture(GetTag(GetArea(nearestPlaceable)), nearestPlaceable));
@@ -78,7 +89,8 @@ void main()
                     SendMessageToPC(OBJECT_SELF,
                         "You moved fixture " + GetName(nearestPlaceable) +
                         " by x: " + FloatToString(dx) +
-                        " and y: " + FloatToString(dy) + ".");
+                        " and y: " + FloatToString(dy) + 
+                        " and z:" + FloatToString(dz) + ".");
 
                     Log(FIXTURES, "Fixture " + GetName(nearestPlaceable) + " in area " +
                                    GetName(GetArea(nearestPlaceable)) + " was moved by " +
@@ -93,10 +105,10 @@ void main()
             {
                 SendMessageToPC(OBJECT_SELF, "Moving the fixture that far would put it out of your range!");
             }
-
             break;
         }
     }
 
     chatVerifyCommand(OBJECT_SELF);
 }
+

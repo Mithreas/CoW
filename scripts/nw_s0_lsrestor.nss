@@ -60,7 +60,8 @@ void main()
             GetEffectType(eBad) == EFFECT_TYPE_DAMAGE_IMMUNITY_DECREASE ||
             GetEffectType(eBad) == EFFECT_TYPE_SAVING_THROW_DECREASE ||
             GetEffectType(eBad) == EFFECT_TYPE_SPELL_RESISTANCE_DECREASE ||
-            GetEffectType(eBad) == EFFECT_TYPE_SKILL_DECREASE)
+            GetEffectType(eBad) == EFFECT_TYPE_SKILL_DECREASE ||
+			GetEffectType(eBad) == EFFECT_TYPE_BLINDNESS)
         {
             //Remove effect if it is negative.
             if(!GetIsSupernaturalCurse(eBad))

@@ -4,6 +4,7 @@
 #include "inc_favsoul"
 #include "inc_warlock"
 #include "x2_inc_itemprop"
+#include "inc_shapechanger"
 #include "inc_spellsword"
 #include "inc_paladin"
 #include "inc_horses"
@@ -15,6 +16,7 @@ void main()
 {
     object oUnequippedBy = GetPCItemLastUnequippedBy();
     object oUnequipped   = GetPCItemLastUnequipped();
+    object oHide = gsPCGetCreatureHide(oUnequippedBy);
 
     // Tail Concealment - Unequipping a cloak reveals a tail, if the creature has one
     if (GetBaseItemType(oUnequipped) == BASE_ITEM_CLOAK &&
@@ -22,7 +24,6 @@ void main()
       // Check for a tail
       if (GetCreatureTailType(oUnequippedBy) == 14 ||
           GetCreatureTailType(oUnequippedBy) == 0) {
-        object oHide = gsPCGetCreatureHide(oUnequippedBy);
         if (oHide == OBJECT_INVALID) {
           oHide = oUnequippedBy;
         }
@@ -97,10 +98,40 @@ void main()
         palDivineMightCheck(oUnequipped, oUnequippedBy);
     }
 
-    if (GetResRef(oUnequipped) == "x2_it_emptyskin" || GetResRef(oUnequipped) == "hide_totemdrd" ||
-       (FindSubString(GetResRef(oUnequipped), "ar_it") != -1 && FindSubString(GetResRef(oUnequipped), "mon_hide") != -1) )
+	if (GetResRef(oUnequipped) == "x2_it_emptyskin" || GetResRef(oUnequipped) == "hide_totemdrd" || GetResRef(oUnequipped) == "thickscaledhide" ||
+	    GetResRef(oUnequipped) == "toughbeasthide" || FindSubString(GetResRef(oUnequipped), "nw_it_creitem") != -1 ||
+       (FindSubString(GetResRef(oUnequipped), "ar_it") != -1 && FindSubString(GetResRef(oUnequipped), "hide") != -1) )
     {
-      SetCreatureTailType(CREATURE_TAIL_TYPE_NONE, oUnequippedBy);
+	  
+	  // Figure out what form we are meant to be in.  If hybrid, refresh things
+	  // lost on polymorph.
+	  if (GetLocalInt(oHide, VAR_CURRENT_FORM) == 1)
+	  {
+		// Reapply tail, ears and scaling in case they were lost by polymorphing. 
+		SetCreatureTailType(GetLocalInt(oHide, VAR_HYBRID_TAIL), oUnequippedBy);	
+		  
+		if (GetLocalInt(oHide, VAR_HYBRID_FORM) == 3)
+		{
+		  // Reset scale if needed.
+		  float fScale = GetObjectVisualTransform(oUnequippedBy, OBJECT_VISUAL_TRANSFORM_SCALE);
+		  float fTrueScale = GetLocalFloat(oHide, "AR_SCALE");
+		  
+		  if (fTrueScale > 0.0f && fScale == fTrueScale)
+		  {
+			DelayCommand(0.2f, _VisualTransformVoid(oUnequippedBy, OBJECT_VISUAL_TRANSFORM_SCALE, fScale + 0.3f));
+			SetCreatureSize(oUnequippedBy, CREATURE_SIZE_MEDIUM);
+		  }	
+		}	
+		  
+		if (GetLocalInt(oHide, VAR_HYBRID_EARS))
+		{
+		  DelayCommand(0.3f, SPC_ApplyEarVFX(oUnequippedBy, GetLocalInt(oHide, VAR_HYBRID_EARS)));
+		}
+	  }	
+	  else
+	  {
+		SetCreatureTailType(CREATURE_TAIL_TYPE_NONE, oUnequippedBy);
+	  }
     }
 
     //::  Unpolymorph, try and restore Spellbook Data

@@ -47,7 +47,8 @@ struct LootDistributionHistory GetLootDistributionHistory(object obj, string cat
 
 // Rolls for loot in the bucket for the object. Returns the results.
 // Note that the results are NOT accepted until you call AcceptLootDistributionResults.
-struct LootDistrbutionResults GetLootDistributionResults(object obj, string category, string bucket);
+// nBonus is 0 (low), 1 (medium) or 2 (high).  Increases drop rate by 50% or 100% for m/h.
+struct LootDistrbutionResults GetLootDistributionResults(object obj, string category, string bucket, int nBonus);
 
 // Accepts the loot distribution results. This will handle incrementing the drop count.
 void AcceptLootDistributionResults(object obj, struct LootDistrbutionResults results);
@@ -85,7 +86,7 @@ struct LootDistributionHistory GetLootDistributionHistory(object obj, string cat
     return history;
 }
 
-struct LootDistrbutionResults GetLootDistributionResults(object obj, string category, string bucket)
+struct LootDistrbutionResults GetLootDistributionResults(object obj, string category, string bucket, int nBonus)
 {
     INTERNAL_RefreshHistory(obj, category);
 
@@ -102,6 +103,7 @@ struct LootDistrbutionResults GetLootDistributionResults(object obj, string cate
         int dropCount = INTERNAL_GetDrops(obj, category);
         int ruleIndex = ruleCount > dropCount ? dropCount : ruleCount - 1;
         float rule = FloatArray_At(arrayObj, arrayName, ruleIndex);
+		rule *= (1.0f + 0.5f * nBonus);
 
         if (PercentageRandom(rule))
         {
@@ -126,7 +128,7 @@ void AcceptLootDistributionResults(object obj, struct LootDistrbutionResults res
 
 string INTERNAL_GetArrayName(string category, string bucket)
 {
-    return "LOOSTDIST_" + category + "_" + bucket;
+    return "LOOTDIST_" + category + "_" + bucket;
 }
 
 void INTERNAL_RefreshHistory(object obj, string category)

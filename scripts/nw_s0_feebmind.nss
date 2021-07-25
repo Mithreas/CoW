@@ -79,30 +79,27 @@ void main()
         //Make SR check
     	   if (!MyResistSpell(OBJECT_SELF, oTarget))
         	{
-            //Make an will save
-            int nWillResult =  WillSave(oTarget, nDC, SAVING_THROW_TYPE_MIND_SPELLS);
-            if (nWillResult == 0)
-            {
-                //Set the ability damage.  Arelith Specific: Does CHA damage too.
-                effect eLink = EffectLinkEffects(EffectAbilityDecrease(ABILITY_INTELLIGENCE, nLoss), eDur);
-                eLink = EffectLinkEffects(eLink, EffectAbilityDecrease(ABILITY_CHARISMA, nLoss));
+				if (!GetIsImmune(oTarget, IMMUNITY_TYPE_MIND_SPELLS))
+				{
+					// Make non stacking (but removed save).
+					RemoveEffectsFromSpell(oTarget, SPELL_FEEBLEMIND);
+			
+					//Set the ability damage. 
+					effect eLink = EffectLinkEffects(EffectAbilityDecrease(ABILITY_INTELLIGENCE, nLoss), eDur);
+					eLink = EffectLinkEffects(eLink, EffectAbilityDecrease(ABILITY_WISDOM, nLoss));
+					eLink = EffectLinkEffects(eLink, EffectAbilityDecrease(ABILITY_CHARISMA, nLoss));
 
-                //Apply the VFX impact and ability damage effect.
-                ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, RoundsToSeconds(nDuration));
-                ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eRay, oTarget, 1.0);
-                ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
-                
-                // Arelith Specific: If INT to be reduced to 3 or less, Stun.
-                if (GetAbilityScore(oTarget, ABILITY_INTELLIGENCE) < 4)
-                    ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectStunned(), oTarget, RoundsToSeconds(nDuration));
-
-            }
-            // else
-            // * target was immune
-            // if (nWillResult == 2)
-            // {
-            // SpeakStringByStrRef(40105, TALKVOLUME_WHISPER);
-            // }
+					//Apply the VFX impact and ability damage effect.
+					ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, RoundsToSeconds(nDuration));
+					ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eRay, oTarget, 1.0);
+					ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
+					
+					if ( (d20() + GetSkillRank(SKILL_CONCENTRATION, oTarget)) < (d20() + GetSkillRank(SKILL_SPELLCRAFT, OBJECT_SELF)) )
+					{
+					  // Increase the cost of all stamina related powers by 25% for nDuration.
+					  gsSTDoStaminaTax(oTarget, 25, RoundsToSeconds(nDuration));
+					}					
+				}
         }
     }
 }

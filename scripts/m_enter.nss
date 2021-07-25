@@ -209,20 +209,35 @@ void main()
     // Journal entries and button flash.
     SetPanelButtonFlash(oEntering, PANEL_BUTTON_JOURNAL, FALSE);
 
+	RemoveJournalQuestEntry("intro", oEntering, FALSE);
 	AddJournalQuestEntry("intro",1,oEntering, FALSE);
+	
+	RemoveJournalQuestEntry("alignment", oEntering, FALSE);
 	AddJournalQuestEntry("alignment",1,oEntering, FALSE);
+	
+	RemoveJournalQuestEntry("greatwar", oEntering, FALSE);
 	AddJournalQuestEntry("greatwar",1,oEntering, FALSE);
+	
+	RemoveJournalQuestEntry("magic", oEntering, FALSE);
 	AddJournalQuestEntry("magic",1,oEntering, FALSE);
 	
 	if (GetRacialType(oEntering) == RACIAL_TYPE_ELF)
 	{
+	  RemoveJournalQuestEntry("elvenmanners", oEntering, FALSE);
 	  AddJournalQuestEntry("elvenmanners",1,oEntering, FALSE);
 	}
 	else
 	{
+	  RemoveJournalQuestEntry("city", oEntering, FALSE);
 	  AddJournalQuestEntry("city",1,oEntering, FALSE);
+	  
+	  RemoveJournalQuestEntry("houses", oEntering, FALSE);
 	  AddJournalQuestEntry("houses",1,oEntering, FALSE);
+	  
+	  RemoveJournalQuestEntry("perenor", oEntering, FALSE);
 	  AddJournalQuestEntry("perenor",1,oEntering, FALSE);
+	  
+	  RemoveJournalQuestEntry("honour", oEntering, FALSE);
 	  AddJournalQuestEntry("honour",1,oEntering, FALSE);
 	}
 	

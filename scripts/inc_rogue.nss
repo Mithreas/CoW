@@ -420,7 +420,7 @@ void RogueBonusHP(object oPC, int bLevelUp = TRUE)
     //{
         // Go through each rogue level and adjust its HP.
         int nCount;
-        for (nCount == 1; nCount < nHD; nCount++)
+        for (nCount = 1; nCount < nHD; nCount++)
         {
             if (NWNX_Creature_GetClassByLevel(oPC, nCount) == CLASS_TYPE_ROGUE)
             {

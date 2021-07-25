@@ -52,5 +52,5 @@ void main()
     }
   }
   //ExploreAreaForPlayer(GetArea(OBJECT_SELF), oEntering, TRUE);
-  ExecuteScript("gs_a_enter", OBJECT_SELF);
+  ExecuteScript("a_enter", OBJECT_SELF);
 }

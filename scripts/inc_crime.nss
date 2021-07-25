@@ -203,6 +203,7 @@ int GetFaction(object oCreature)
 	  {
 	    nFaction = StringToInt(GetStringRight(sTag, GetStringLength(sTag) - 14));
 	    SetLocalInt(oCreature, FACTION, nFaction);
+		break;
 	  }
       oFactionExample = GetNextFactionMember(oCreature, 0);
     }

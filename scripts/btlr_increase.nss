@@ -174,15 +174,25 @@ void main()
     {
      iNewApp = GetCreatureBodyPart(iToModify) +1;
      //--check the ceiling
+	 // Anemoi edit - custom parts start at 200.  
      if(iNewApp > CUSTOMPARTS)
      { //-- more than our 3 parts
        if(iNewApp >= 255)
        { //-- if it is 256, loop to 0
          iNewApp = 0;
        }
-       else
-       { //-- or else jump from max custom to 256
+       else if (iNewApp < 200)
+	   {
+	     iNewApp = 201;
+	   }
+	   else if (iNewApp > 225)
+	   {
+        //-- or else jump from max custom to 256
         iNewApp = 255;
+	   }
+	   else
+	   {
+	     // Just go up 1 as normal. 
        }
      }  //-- end loop check
 

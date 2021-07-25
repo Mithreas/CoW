@@ -968,7 +968,7 @@ void _SetUpAllowedPaths()
     AddStringElement(PATH_OF_SHADOW, AVAILABLE_PATHS);
   }
   
-  if (GetLevelByClass(CLASS_TYPE_WIZARD, oPC)  && NWNX_Creature_GetWizardSpecialization(oPC) != SPELL_SCHOOL_EVOCATION)
+  if (GetLevelByClass(CLASS_TYPE_WIZARD, oPC)  && GetSpecialization(oPC) != SPELL_SCHOOL_EVOCATION)
   {
     AddStringElement(PATH_OF_SHADOW, AVAILABLE_PATHS);
   }
@@ -979,7 +979,7 @@ void _SetUpAllowedPaths()
   }
 
   //::  Wild Mage and Spellsword only for Non-Specialized (General) Wizards.
-  if ( GetLevelByClass(CLASS_TYPE_WIZARD, oPC) && NWNX_Creature_GetWizardSpecialization(oPC) == SPELL_SCHOOL_GENERAL )
+  if ( GetLevelByClass(CLASS_TYPE_WIZARD, oPC) && GetSpecialization(oPC) == SPELL_SCHOOL_GENERAL )
   {
     AddStringElement(PATH_OF_WILD_MAGE, AVAILABLE_PATHS);
     //AddStringElement(PATH_OF_SPELLSWORD, AVAILABLE_PATHS);
@@ -1671,8 +1671,8 @@ void HandleSelection()
 	  else if (sPath == PATH_OF_FAVOURED_SOUL)
 	  {
 	    // Remove both domains.
-		NWNX_Creature_SetClericDomain(oPC, 1, 2); // 2 is an unused index in domains.2da.
-		NWNX_Creature_SetClericDomain(oPC, 2, 2); // 2 is an unused index in domains.2da.
+		NWNX_Creature_SetDomain(oPC, CLASS_TYPE_CLERIC, 1, 2); // 2 is an unused index in domains.2da.
+		NWNX_Creature_SetDomain(oPC, CLASS_TYPE_CLERIC, 2, 2); // 2 is an unused index in domains.2da.
 		
 		// Remove all domain feats. 
 		int nFeat;

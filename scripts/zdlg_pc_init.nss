@@ -22,6 +22,7 @@
 #include "inc_class"
 #include "inc_favsoul"
 #include "inc_log"
+#include "inc_shapechanger"
 #include "inc_subrace"
 #include "inc_zdlg"
 
@@ -36,6 +37,7 @@ const string GIFT_OPTS       = "ZPI_GIFT_OPTIONS";
 const string PATH_OPTS       = "ZPI_PATH_OPTIONS";
 const string HEIGHT_OPTS     = "ZPI_HEIGHT_OPTIONS";
 const string AWARD_OPTS      = "ZPI_AWARD_OPTIONS";
+const string SHAPECHANGER_OPTS = "ZPI_SPC_OPTIONS";
 
 const string SPELLSWORD_OPTIONS    = "spellsword options";
 
@@ -218,7 +220,6 @@ int _ApplySubRace()
 
     if (GetIsObjectValid(oProperty))
     {
-      __InitECL(oSpeaker);
       gsSUApplyProperty(oProperty, nSubRace, nLevel);
       miBAIncreaseECL(oSpeaker, IntToFloat(gsSUGetECL(nSubRace, 0)));
       SetLocalInt(oProperty, "GIFT_SUBRACE", TRUE);
@@ -423,7 +424,6 @@ void _ApplyGifts()
     int nGift1      = GetGiftFromDescription(GetLocalString(oPC, VAR_GIFT_1));
     int nGift2      = GetGiftFromDescription(GetLocalString(oPC, VAR_GIFT_2));
     int nGift3      = GetGiftFromDescription(GetLocalString(oPC, VAR_GIFT_3));
-    __InitECL(oPC);
 	
     if (! GetIsObjectValid(oAbility))
     {
@@ -594,13 +594,13 @@ void _SetUpAllowedPaths()
     AddStringElement(PATH_OF_SHADOW, PATH_OPTS);
   }
   
-  if (GetLevelByClass(CLASS_TYPE_WIZARD, oPC)  && NWNX_Creature_GetWizardSpecialization(oPC) != SPELL_SCHOOL_EVOCATION)
+  if (GetLevelByClass(CLASS_TYPE_WIZARD, oPC)  && GetSpecialization(oPC) != SPELL_SCHOOL_EVOCATION)
   {
     AddStringElement(PATH_OF_SHADOW, PATH_OPTS);
   }
 
   //::  Wild Mage and Spellsword only for Non-Specialized (General) Wizards.
-  if ( GetLevelByClass(CLASS_TYPE_WIZARD, oPC) && NWNX_Creature_GetWizardSpecialization(oPC) == SPELL_SCHOOL_GENERAL )
+  if ( GetLevelByClass(CLASS_TYPE_WIZARD, oPC) && GetSpecialization(oPC) == SPELL_SCHOOL_GENERAL )
   {
     //AddStringElement(PATH_OF_WILD_MAGE, PATH_OPTS);
     AddStringElement(PATH_OF_SPELLSWORD, PATH_OPTS);
@@ -688,8 +688,8 @@ void _ApplyPath()
 	else if (sPath == PATH_OF_FAVOURED_SOUL)
 	{
 	    // Remove both domains.
-		NWNX_Creature_SetClericDomain(oPC, 1, 2); // 2 is an unused index in domains.2da.
-		NWNX_Creature_SetClericDomain(oPC, 2, 2); // 2 is an unused index in domains.2da.
+		NWNX_Creature_SetDomain(oPC, CLASS_TYPE_CLERIC, 1, 2); // 2 is an unused index in domains.2da.
+		NWNX_Creature_SetDomain(oPC, CLASS_TYPE_CLERIC, 2, 2); // 2 is an unused index in domains.2da.
 		
 		// Remove all domain feats. 
 		int nFeat;
@@ -758,6 +758,7 @@ void _SetUpMainOptions()
   if (!GetLocalInt(oHide, "GIFT_3")) AddStringElement("Gift options", MAIN_MENU);
   if (!GetLocalInt(oHide, "APPLIED_ABILITIES"))  AddStringElement("Subrace options", MAIN_MENU);
   if (GetLocalInt(oPC, "award1") || GetLocalInt(oPC, "award2") || GetLocalInt(oPC, "award3")) AddStringElement("Award options", MAIN_MENU);
+  if (GetPCPlayerName(oPC) == "Mithreas") AddStringElement("Shapechanger options", MAIN_MENU);
   AddStringElement("[Done]", MAIN_MENU);
   
   if (GetElementCount(HEIGHT_OPTS) == 0)
@@ -768,6 +769,18 @@ void _SetUpMainOptions()
     AddStringElement("Very short", HEIGHT_OPTS);
     AddStringElement("Very tall", HEIGHT_OPTS);
   }
+
+  DeleteList(  SHAPECHANGER_OPTS);
+
+    AddStringElement("Cat", SHAPECHANGER_OPTS);
+    AddStringElement("Snow Cat", SHAPECHANGER_OPTS);
+    AddStringElement("Fox", SHAPECHANGER_OPTS);
+    AddStringElement("Wolf", SHAPECHANGER_OPTS);
+    AddStringElement("Rat", SHAPECHANGER_OPTS);
+    AddStringElement("Bat", SHAPECHANGER_OPTS);
+    AddStringElement("Dog", SHAPECHANGER_OPTS);
+    AddStringElement("Fennec", SHAPECHANGER_OPTS);
+  
 }
 
 //------------------------------------------------------------------------------
@@ -779,13 +792,19 @@ void Init()
   Trace(SUBRACE, "Subrace conversation initialising.");
   
   object oPC       = GetPcDlgSpeaker();
+  object oHide     = gsPCGetCreatureHide(oPC);
   int nRace        = GetRacialType(oPC);
 
-  // Check if this character has any awards to use.
-  string sID = gsPCGetCDKeyID(GetPCPublicCDKey(oPC));
-  SetLocalInt(oPC, "award1", StringToInt(miDAGetKeyedValue("gs_player_data",sID,"award1"))); //major
-  SetLocalInt(oPC, "award2", StringToInt(miDAGetKeyedValue("gs_player_data",sID,"award2"))); //medium
-  SetLocalInt(oPC, "award3", StringToInt(miDAGetKeyedValue("gs_player_data",sID,"award3"))); //minor
+  // Check if this character has any awards to use.  If they already have an award, skip.
+  if (!GetLocalInt(oHide, "HAS_MAJOR_AWARD") && 
+      !GetLocalInt(oHide, "HAS_NORMAL_AWARD") && 
+	  !GetLocalInt(oHide, "HAS_MINOR_AWARD"))
+  {
+	string sID = gsPCGetCDKeyID(GetPCPublicCDKey(oPC));
+	SetLocalInt(oPC, "award1", StringToInt(miDAGetKeyedValue("gs_player_data",sID,"award1"))); //major
+	SetLocalInt(oPC, "award2", StringToInt(miDAGetKeyedValue("gs_player_data",sID,"award2"))); //medium
+	SetLocalInt(oPC, "award3", StringToInt(miDAGetKeyedValue("gs_player_data",sID,"award3"))); //minor
+  }
   
   // Options for confirming or cancelling. These are static so we can set them
   // up once.
@@ -801,6 +820,9 @@ void Init()
   {
     CreateItemOnObject("mi_mark_destiny", oPC);
   }
+  
+  // In case not already set up.
+    __InitECL(oPC);
 }
 
 void PageInit()
@@ -870,9 +892,13 @@ void PageInit()
 
     SetDlgPrompt("Select benefit.  Minor awards give -1 ECL, normal awards give "
      + "-2 and major awards give -3.");
+	 
+	string sType = "-1";
+	if (GetLocalInt(oPC, "award2")) sType = "-2";
+	if (GetLocalInt(oPC, "award1")) sType = "-3"; 
 
     AddStringElement("No award", AWARD_OPTS);
-    AddStringElement("Reduced ECL", AWARD_OPTS);
+    AddStringElement("Reduced ECL (" + sType + ")", AWARD_OPTS);
     if (nType != 3)
     {
       //AddStringElement(GIFT_OF_SPELL_SHIELDING_DESC, AWARD_OPTS);
@@ -940,6 +966,11 @@ void PageInit()
 
     SetDlgResponseList(SPELLSWORD_OPTIONS);
   }
+  else if (sPage == SHAPECHANGER_OPTS)
+  {
+    SetDlgPrompt("Pick a shapechanger type to play.  Beta testing phase...");
+    SetDlgResponseList(SHAPECHANGER_OPTS);
+  }
   else
   {
     SendMessageToPC(oPC,
@@ -969,6 +1000,7 @@ void HandleSelection()
 	else if (sNextPage == "Award options") SetDlgPageString(AWARD_OPTS);
 	else if (sNextPage == "Path options") SetDlgPageString(PATH_OPTS);
 	else if (sNextPage == "Gift options") SetDlgPageString(GIFT_OPTS); 
+	else if (sNextPage == "Shapechanger options") SetDlgPageString(SHAPECHANGER_OPTS); 
     else EndDlg();	
   }
   else if (sPage == CONFIRM)
@@ -1047,9 +1079,19 @@ void HandleSelection()
 
 		int nType = 1;
 		
-		if (!GetLocalInt(oPC, "award1")) nType = 2;
-		if (!GetLocalInt(oPC, "award2")) nType = 3;
-		if (!GetLocalInt(oPC, "award3")) nType = 0; // Should never hit this, but putting in for safety.
+		if (!GetLocalInt(oPC, "award1")) 
+		{
+		  // No Major awards, so check Normal.
+		  nType = 2;
+		  
+		  if (!GetLocalInt(oPC, "award2")) 
+		  {
+		    // No Normal awards either, so check Minor. 
+		    nType = 3;
+			
+			if (!GetLocalInt(oPC, "award3")) nType = 0; // Should never hit this, but putting in for safety.
+		  }
+		}
 				
         switch (nAwardChoice)
         {
@@ -1071,6 +1113,7 @@ void HandleSelection()
                 SendMessageToPC(oPC, "Applying -1 ECL");
                 break;
             }
+			
             break;
           }
         }
@@ -1100,6 +1143,11 @@ void HandleSelection()
           int nAwards = GetLocalInt(oPC, sAward) -1;
 		  SetLocalInt(oPC, sAward, nAwards);
           miDASetKeyedValue("gs_player_data", sID, sAward, IntToString(nAwards));
+		  
+		  // Turn off future awards.
+		  DeleteLocalInt(oPC, "award1");
+		  DeleteLocalInt(oPC, "award2");
+		  DeleteLocalInt(oPC, "award3");
         }
 	  }
 	}
@@ -1193,7 +1241,39 @@ void HandleSelection()
     miSSSetBlockedSchool(oPC, SPELL_SCHOOL_CONJURATION , 2);
     miSSSetIsSpellsword(oPC);
     miSSMWPFeat(oPC);
-    EndDlg();
+	SetDlgPageString(MAIN_MENU);
+  }
+  else if (sPage == SHAPECHANGER_OPTS)
+  {
+    switch (selection)
+	{
+	  case 0:
+	    SPC_Initialise(oPC, SPC_CAT);  // cat
+	    break;
+	  case 1:
+	    SPC_Initialise(oPC, SPC_SNOWCAT);  // snow cat
+	    break;
+	  case 2:
+	    SPC_Initialise(oPC, SPC_FOX); // fox
+	    break;
+	  case 3:
+	    SPC_Initialise(oPC, SPC_WOLF);  // wolf
+	    break;
+	  case 4:
+	    SPC_Initialise(oPC, SPC_RAT);  // rat
+	    break;
+	  case 5:
+	    SPC_Initialise(oPC, SPC_BAT); // bat
+	    break; 
+	  case 6:
+	    SPC_Initialise(oPC, SPC_DOG); // dog
+	    break; 
+	  case 7:
+	    SPC_Initialise(oPC, SPC_DESFOX); // fennec
+	    break; 
+	}
+ 
+	SetDlgPageString(MAIN_MENU);
   }
 }
 

@@ -49,15 +49,16 @@ void DoReward(object oPC)
   string sOwner   = gsQUGetOwnerID(oQuarter);
   
   // Check that this PC has not stolen from this owner in the last RL day.
-  int nTimeout = GetLocalInt(gsPCGetCreatureHide(oPC), "LAST_THEFT_" + sOwner);
-  if (nTimeout < gsTIGetActualTimestamp())
+  int nTimeout = GetLocalInt(gsPCGetCreatureHide(oPC), "THEFT_TIMEOUT_" + sOwner);
+  if (nTimeout > gsTIGetActualTimestamp())
   {
     SendMessageToPC(oPC, "You must wait before stealing again from this person.  No more than one theft per RL day!"); 
+	return;
   }
   
-  // Game time is 10x real time, so 10 x seconds x minutes x hours.
-  nTimeout = gsTIGetActualTimestamp() + (10 * 60 * 60 * 24);
-  SetLocalInt(gsPCGetCreatureHide(oPC), "LAST_THEFT_" + sOwner, nTimeout);
+  // Game time is measured in seconds, so seconds x minutes x hours.
+  nTimeout = gsTIGetActualTimestamp() + (60 * 60 * 24);
+  SetLocalInt(gsPCGetCreatureHide(oPC), "THEFT_TIMEOUT_" + sOwner, nTimeout);
   
   int nBank = gsFIGetAccount(sOwner).nBalance;
   

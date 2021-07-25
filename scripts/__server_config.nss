@@ -67,7 +67,7 @@ const int ALLOW_TRACKING    = TRUE;
 // SCRYING_COOLDOWN is how long (in game hours) the "cooldown" is.
 //------------------------------------------------------------------------------
 const int ALLOW_SCRYING    = TRUE;
-const int SCRYING_DURATION = 60;
+const int SCRYING_DURATION = 90;
 const int SCRYING_COOLDOWN = 24;
 
 //------------------------------------------------------------------------------

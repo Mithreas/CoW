@@ -74,6 +74,9 @@ void chatInitAliases()
 
     // Help americans out a bit.
     chatAddAlias("color_mode", "colour_mode");
+	
+	// Cloak toggle
+	chatAddAlias("cloak", "helm cloak");
 
     //Use Feat
     chatAddAlias("calledshot", "usefeat calledshot");

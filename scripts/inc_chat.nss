@@ -420,6 +420,7 @@ string fbCHCommandList(object oSpeaker)
 
   string sList = "Player options:\n\n";
 
+  sList += _fbCHPrepareChatCommand("-achievement(s)", STRING_COLOR_GREEN);
   sList += _fbCHPrepareChatCommand("-associate", STRING_COLOR_GREEN);
 
   sList += _fbCHPrepareChatCommand("-balance",
@@ -703,6 +704,35 @@ void _fbCHOutputFinalText(object speaker, object observer, int channel, string u
     {
         miREDoSpeech(observer, speaker);
         canSpeak = gsLAGetCanSpeakLanguage(languageId, observer, TRUE) || loreRoll > 40;
+		string last = GetLocalString(speaker, "RP_LAST");
+		
+		if (GetIsPC(observer) && 
+		    GetStringLength(untranslated) > 10 && 
+			GetStringLeft(untranslated, 1) != GetStringRight(untranslated, 1) &&
+			untranslated != last)
+		{
+		  // Record RP.
+		  int nTime = GetModuleTime();
+		  
+		  // Listener
+		  int nTimeout = GetLocalInt(observer, "RP_TIMEOUT");
+		  if (!nTimeout || nTime > nTimeout)
+		  {
+		    SetLocalInt(observer, "RP", GetLocalInt(observer, "RP") + 1);
+			SetLocalInt(observer, "RP_TIMEOUT", nTime + 30 + Random(60));
+		  }
+		  
+		  // speaker
+		  nTimeout = GetLocalInt(speaker, "RP_TIMEOUT");
+		  if (!nTimeout || nTime > nTimeout)
+		  {
+		    SetLocalInt(speaker, "RP", GetLocalInt(speaker, "RP") + 1);
+			SetLocalInt(speaker, "RP_TIMEOUT", nTime + 30 + Random(60));
+		  }
+		  
+		  // Save text - on an AssignCommand so it applies after all local PCs have heard it.
+		  AssignCommand(speaker, SetLocalString(speaker, "RP_LAST", untranslated));		  
+		}
     }
 
     int languageIdForNamePrefix = languageId;

@@ -35,6 +35,8 @@ void main()
     DelayCommand(1.0f,ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oPC));
   }
 
+  // Disable parry mode if you're in it. 
+  SetActionMode(OBJECT_SELF, ACTION_MODE_PARRY, FALSE);
   DoWhirlwindAttack(TRUE, bImproved);
   // * make me resume combat
 

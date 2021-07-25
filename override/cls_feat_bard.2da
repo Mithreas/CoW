@@ -148,4 +148,11 @@
 143   DivineMight                           413          0     -1              1        
 144   DivineShield                          414          0     -1              1
 145   FEAT_EPIC_SPELL_MUMMY_DUST            874          1     21              1
+146   FEAT_SOCIAL_FLATTER                   1118         1     99              1
+147   FEAT_SOCIAL_FLIRT                     1119         1     99              1
+148   FEAT_SOCIAL_INTIMIDATE                1120         1     99              1
+149   FEAT_SOCIAL_REQUEST_FAVOUR            1121         1     99              1
+150   FEAT_SHAPECHANGER_BASEFORM            1122         1     99              1
+151   FEAT_SHAPECHANGER_HYBRIDFORM          1123         1     99              1
+152   FEAT_SHAPECHANGER_ANIMALFORM          1124         1     99              1
         

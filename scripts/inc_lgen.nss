@@ -16,15 +16,20 @@ void Tier1_Phase2Common()
       IntArray_PushBack(OBJECT_SELF, LGEN_PROPERTY_ARRAY_TAG, PROPERTY_SKILL_BONUS);
       IntArray_PushBack(OBJECT_SELF, LGEN_PROPERTY_ARRAY_TAG, PROPERTY_SKILL_BONUS);
 	  IntArray_PushBack(OBJECT_SELF, LGEN_PROPERTY_ARRAY_TAG, PROPERTY_SPECIFIC_SAVE_BONUS);
-
-      int acCount = LGEN_GetPropertyCount(PROPERTY_AC_BONUS);
-      int statCount = LGEN_GetPropertyCount(PROPERTY_ABILITY_BONUS);
-
-      if (acCount + statCount < 1)
-      {
         IntArray_PushBack(OBJECT_SELF, LGEN_PROPERTY_ARRAY_TAG, PROPERTY_ABILITY_BONUS);
 
+      int acCount = LGEN_GetPropertyCount(PROPERTY_AC_BONUS);
+
+      if (acCount < 1)
+      {
+
         if (GetBaseItemType(OBJECT_SELF) == BASE_ITEM_BOOTS)
+        {
+            IntArray_PushBack(OBJECT_SELF, LGEN_PROPERTY_ARRAY_TAG, PROPERTY_AC_BONUS);
+            IntArray_PushBack(OBJECT_SELF, LGEN_PROPERTY_ARRAY_TAG, PROPERTY_AC_BONUS);
+        }
+		
+        if (GetBaseItemType(OBJECT_SELF) == BASE_ITEM_AMULET)
         {
             IntArray_PushBack(OBJECT_SELF, LGEN_PROPERTY_ARRAY_TAG, PROPERTY_AC_BONUS);
             IntArray_PushBack(OBJECT_SELF, LGEN_PROPERTY_ARRAY_TAG, PROPERTY_AC_BONUS);
@@ -41,6 +46,7 @@ void Tier1_Phase2Common()
       IntArray_PushBack(OBJECT_SELF, LGEN_PROPERTY_ARRAY_TAG, PROPERTY_AC_BONUS);
       IntArray_PushBack(OBJECT_SELF, LGEN_PROPERTY_ARRAY_TAG, PROPERTY_AC_BONUS);
       IntArray_PushBack(OBJECT_SELF, LGEN_PROPERTY_ARRAY_TAG, PROPERTY_ELEMENTAL_DR);
+      IntArray_PushBack(OBJECT_SELF, LGEN_PROPERTY_ARRAY_TAG, PROPERTY_ABILITY_BONUS);
 	  
 	  break;
 	}
@@ -158,17 +164,23 @@ void Tier2_Phase2Common()
       IntArray_PushBack(OBJECT_SELF, LGEN_PROPERTY_ARRAY_TAG, PROPERTY_SKILL_BONUS);
       IntArray_PushBack(OBJECT_SELF, LGEN_PROPERTY_ARRAY_TAG, PROPERTY_SKILL_BONUS);
 	  IntArray_PushBack(OBJECT_SELF, LGEN_PROPERTY_ARRAY_TAG, PROPERTY_SPECIFIC_SAVE_BONUS);
+      IntArray_PushBack(OBJECT_SELF, LGEN_PROPERTY_ARRAY_TAG, PROPERTY_ABILITY_BONUS);
 
       int acCount = LGEN_GetPropertyCount(PROPERTY_AC_BONUS);
-      int statCount = LGEN_GetPropertyCount(PROPERTY_ABILITY_BONUS);
 
-      if (acCount + statCount < 2)
+      if (acCount < 1)
       {
-        IntArray_PushBack(OBJECT_SELF, LGEN_PROPERTY_ARRAY_TAG, PROPERTY_ABILITY_BONUS);
-
         if (GetBaseItemType(OBJECT_SELF) == BASE_ITEM_BOOTS)
         {
             IntArray_PushBack(OBJECT_SELF, LGEN_PROPERTY_ARRAY_TAG, PROPERTY_AC_BONUS);
+            IntArray_PushBack(OBJECT_SELF, LGEN_PROPERTY_ARRAY_TAG, PROPERTY_AC_BONUS);
+        }
+		
+        if (GetBaseItemType(OBJECT_SELF) == BASE_ITEM_AMULET)
+        {
+            IntArray_PushBack(OBJECT_SELF, LGEN_PROPERTY_ARRAY_TAG, PROPERTY_AC_BONUS);
+            IntArray_PushBack(OBJECT_SELF, LGEN_PROPERTY_ARRAY_TAG, PROPERTY_AC_BONUS);
+			IntArray_PushBack(OBJECT_SELF, LGEN_PROPERTY_ARRAY_TAG, PROPERTY_ABILITY_BONUS);
         }
 	  }	
 	  
@@ -182,6 +194,7 @@ void Tier2_Phase2Common()
       IntArray_PushBack(OBJECT_SELF, LGEN_PROPERTY_ARRAY_TAG, PROPERTY_AC_BONUS);
       IntArray_PushBack(OBJECT_SELF, LGEN_PROPERTY_ARRAY_TAG, PROPERTY_AC_BONUS);
       IntArray_PushBack(OBJECT_SELF, LGEN_PROPERTY_ARRAY_TAG, PROPERTY_ELEMENTAL_DR);
+      IntArray_PushBack(OBJECT_SELF, LGEN_PROPERTY_ARRAY_TAG, PROPERTY_ABILITY_BONUS);
 	  
 	  break;
 	}

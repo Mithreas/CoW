@@ -5,17 +5,6 @@
 
 //void main(){}
 
-//::  Tileset constants for 1.67 and 1.69 patches
-const string  TILESET_RESREF_BARROWS_INTERIOR           = "tbw01";
-const string  TILESET_RESREF_CASTLE_EXTERIOR_RURAL      = "tno01";
-const string  TILESET_RESREF_CASTLE_INTERIOR_2          = "tni02";
-const string  TILESET_RESREF_CITY_INTERIOR_2            = "tni01";
-const string  TILESET_RESREF_FORT_INTERIOR              = "twc03";
-const string  TILESET_RESREF_SEA_CAVES                  = "tdt01";
-const string  TILESET_RESREF_STEAMWORKS                 = "tsw01";
-const string  TILESET_RESREF_TROPICAL                   = "ttz01";
-
-
 //::----------------------------------------------------------------------------
 //::  DELCARATION
 //::----------------------------------------------------------------------------

@@ -211,31 +211,31 @@ void main()
   SetStringValue(QUEST+REWARD_GOLD, "150", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
-  SetStringValue(QUEST+AREA_TAGS, "TrallinTinMine,elenduselfurmine,irinironmine", DB_VARS);
+  SetStringValue(QUEST+AREA_TAGS, "ssffoom,sspssm,ssaiim", DB_VARS);
 
   QUEST = "forest_patrol";
   SetStringValue(QUEST+QUEST_TYPE, PATROL, DB_VARS);
   SetStringValue(QUEST+DESCRIPTION,
    "Controlling the various mines and farms outside of the city is essential to ensure that " +
-   "our crafters have the resources they need.  Visit the deer reserve and herb garden in the Feran Forest and " +
-   "take control of them if they are undefended.",
+   "our crafters have the resources they need.  Visit the deer reserve in the Feran Forest and " +
+   "the herb garden at the base of the Skyreach Summits and take control of them if they are undefended.",
    DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "150", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
-  SetStringValue(QUEST+AREA_TAGS, "WhisperingWood,DineaDeerReserve", DB_VARS);
+  SetStringValue(QUEST+AREA_TAGS, "ssmb,ffwwddr", DB_VARS);
 
   QUEST = "farm_patrol";
   SetStringValue(QUEST+QUEST_TYPE, PATROL, DB_VARS);
   SetStringValue(QUEST+DESCRIPTION,
    "Controlling the various mines and farms outside of the city is essential to ensure that " +
-   "our crafters have the resources they need.  Visit the beetle and cotton farms on the South Road and " +
-   "take control of any that are undefended.  While you're there, check for patrols in the clover fields.",
+   "our crafters have the resources they need.  Visit the beetle and cotton farms on the South road through the Feran Forest and " +
+   "take control of any that are undefended.  Watch out for trouble in the Mining Pits on the way.",
    DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "150", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
-  SetStringValue(QUEST+AREA_TAGS, "barusbeetlefarm,CrannitCloverFields,crannitcottonfar", DB_VARS);
+  SetStringValue(QUEST+AREA_TAGS, "ffmmpbbc,ffccf", DB_VARS);
   
   QUEST = "kill_erenia_scout";
   SetStringValue(QUEST+QUEST_TYPE, KILL, DB_VARS);
@@ -475,7 +475,7 @@ void main()
   SetStringValue(QUEST+REWARD_GOLD, "150", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
-  SetStringValue(QUEST+AREA_TAGS, "TrallinTinMine,elenduselfurmine,irinironmine", DB_VARS);
+  SetStringValue(QUEST+AREA_TAGS, "ssffoom,sspssm,ssaiim", DB_VARS);
 
   QUEST = "cull_spiders";
   SetStringValue(QUEST+QUEST_TYPE, CULL, DB_VARS);
@@ -733,13 +733,13 @@ void main()
   SetStringValue(QUEST+QUEST_TYPE, PATROL, DB_VARS);
   SetStringValue(QUEST+DESCRIPTION,
    "The woods outside the city have many herbs that are useful for our potions; controlling them ensures " +
-   "that our crafters have the resources they need.  Visit the deer reserve and herb garden in the Feran Forest and " +
-   "take control of any that are undefended.",
+   "that our crafters have the resources they need.  Visit the deer reserve in the Feran Forest and " +
+   "the herb garden at the base of the Skyreach Summits and take control of them if they are undefended.",
    DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "150", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
-  SetStringValue(QUEST+AREA_TAGS, "WhisperingWood,DineaDeerReserve", DB_VARS);
+  SetStringValue(QUEST+AREA_TAGS, "ssmb,ffwwddr", DB_VARS);
 
   QUEST = "cull_spiders";
   SetStringValue(QUEST+QUEST_TYPE, CULL, DB_VARS);

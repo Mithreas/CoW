@@ -335,7 +335,7 @@ int _AnemoiRageLvl(object oPC = OBJECT_SELF)
 		{	
 			nLevel = 28;
 		} 
-		else 
+		else if (nLevel < 24)
 		{
 			nLevel = 24;
 		}	
@@ -346,7 +346,7 @@ int _AnemoiRageLvl(object oPC = OBJECT_SELF)
 		{	
 			nLevel = 28;
 		} 
-		else 
+		else if (nLevel < 24)
 		{
 			nLevel = 24;
 		}
@@ -357,7 +357,7 @@ int _AnemoiRageLvl(object oPC = OBJECT_SELF)
 		{	
 			nLevel = 28;
 		} 
-		else 
+		else if (nLevel < 24)
 		{
 			nLevel = 24;
 		}

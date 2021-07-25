@@ -1816,6 +1816,7 @@ int gsCRGetMaterialMultiplier(int nMaterial, int bMundaneProperty = TRUE)
         break;
       case 8: // gold
       case 11: // mithril
+	  case 12: // electrum (platinum)
 	  case 18: // arachne chitin
       case 20: // wyvern
       case 21: // dragonhides
@@ -2017,6 +2018,9 @@ int gsCRGetMaterialBaseValue(object oItem)
       case 11: // mithril
         nBaseCost = 25000;
         break;
+	  case 12: // electrum/platinum
+	    nBaseCost = 17000;
+		break;
       case 13: // silver
         nBaseCost = 7000;
         break;

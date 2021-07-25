@@ -3,6 +3,7 @@
  *
  *  A PC won't be able to leave the fey diner area until they complete all the quests they've been given.
  */
+#include "inc_achievements"
 #include "inc_challenge"
 #include "zdlg_include_i"
 
@@ -55,6 +56,9 @@ void HandleSelection()
 
     if (GetIsObjectValid(oCorpse)) DestroyObject(oCorpse);
     DeleteLocalObject(oPC, "GS_CORPSE");
+	
+	// Achievement.
+	acAwardAchievement(oPC, "feydiner");
 	
     // Escape!
 	if (GetRacialType(oPC) == RACIAL_TYPE_ELF)

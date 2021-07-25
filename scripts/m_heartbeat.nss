@@ -213,6 +213,17 @@ void main()
                         gvd_AdventuringXP_XPBonus(oPC);
 
                     }
+					
+					// RP reward
+					int nRP = GetLocalInt(oPC, "RP");
+					
+					if (nRP >= 10)
+					{
+					  // Give unmodified XP (i.e. works past level 10).  
+					  gsXPGiveExperience(oPC, nRP, TRUE, 2);
+					  DeleteLocalInt(oPC, "RP");
+					}
+										
                     DeleteLocalInt(oPC, "GS_ACTIVE");
                 }
 

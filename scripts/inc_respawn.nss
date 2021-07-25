@@ -1,4 +1,4 @@
-/* RESPAWN Library by Gigaschatten */
+/* RESPAWN Library by Gigaschatten */
 
 //void main() {}
 

@@ -9,6 +9,7 @@ void main()
       (GetIsPC(oPC) && GetIsObjectValid(GetItemPossessedBy(oPC, "feytokenofpassag"))))
   {
      object oWaypoint = GetWaypointByTag(GetLocalString(OBJECT_SELF, "DEST_WP"));
+	 AssignCommand(oPC, ClearAllActions());
      JumpAllToObject(oPC, oWaypoint);
   }
 }

@@ -208,12 +208,13 @@ void _DoMeteor(object oPC)
 {
   vector vDelta = Vector(IntToFloat(Random(6)) - 2.5, IntToFloat(Random(6)) - 2.5, 0.0f);
   location lLoc = Location(GetArea(oPC), GetPosition(oPC) + vDelta, GetFacing(oPC));
+  object oArea = GetArea(oPC);
   
-  AssignCommand(oPC, ApplyEffectAtLocation(DURATION_TYPE_TEMPORARY, EffectAreaOfEffect(55, "", "evt_custatk_hb", ""), lLoc, 7.0f));
-  SetLocalInt(oPC, "DAMAGE_TYPE", DAMAGE_TYPE_FIRE);
-  SetLocalInt(oPC, "VFX_IMP", VFX_IMP_FLAME_M);
+  AssignCommand(oArea, ApplyEffectAtLocation(DURATION_TYPE_TEMPORARY, EffectAreaOfEffect(55, "", "evt_custatk_hb", ""), lLoc, 7.0f));
+  SetLocalInt(oArea, "DAMAGE_TYPE", DAMAGE_TYPE_FIRE);
+  SetLocalInt(oArea, "VFX_IMP", VFX_IMP_FLAME_M);
   
-  DelayCommand(6.0f, ApplyEffectAtLocation(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_FNF_METEOR_SWARM), lLoc));
+  DelayCommand(6.0f, ApplyEffectAtLocation(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_FNF_METEOR_SWARM, FALSE, 0.3f), lLoc));
 }
 void DoMeteorHeartbeat(object oPC)
 {
@@ -251,12 +252,12 @@ void DoDeathIllusions()
     AddStringElement("x3_plc_skelwar", "ILLUSIONS");
     AddStringElement("plc_pileskulls", "ILLUSIONS");
   }
-  else if (miDVGetRelativeAttunement(oPC, ELEMENT_FIRE) == 5)
-  {
-    AddStringElement("plc_flamelarge", "ILLUSIONS");
-    AddStringElement("plc_flamemedium", "ILLUSIONS");
-    AddStringElement("plc_flamesmall", "ILLUSIONS");
-  }
+  //else if (miDVGetRelativeAttunement(oPC, ELEMENT_FIRE) == 5)
+  //{
+  //  AddStringElement("plc_flamelarge", "ILLUSIONS");
+  //  AddStringElement("plc_flamemedium", "ILLUSIONS");
+  //  AddStringElement("plc_flamesmall", "ILLUSIONS");
+  //}
   else if (GetRacialType(oPC) == RACIAL_TYPE_ELF || GetLevelByClass(CLASS_TYPE_DRUID, oPC))
   {
     AddStringElement("x3_plc_treel009", "ILLUSIONS");
@@ -496,6 +497,13 @@ void main()
     AdjustReputation(oEntering, oNPC, 50-GetFactionAverageReputation(oNPC, oEntering));
     oNPC        = GetObjectByTag("factionexample29");
     AdjustReputation(oEntering, oNPC, 50-GetFactionAverageReputation(oNPC, oEntering));
+	
+	// Reset reputation to 50 with the Fey faction for fey-friends.
+	if (GetIsObjectValid(GetItemPossessedBy(oEntering, "feytokenofpassag")))
+	{
+      oNPC        = GetObjectByTag("factionexample21");
+      AdjustReputation(oEntering, oNPC, 50-GetFactionAverageReputation(oNPC, oEntering));	
+	}
 	
     UpdateRangerHiPS(oEntering);
 
@@ -1047,7 +1055,7 @@ void main()
     }
 
     //give base experience
-    if (GetXP(oEntering) < GS_EXPERIENCE_BASE) GiveXPToCreature(oEntering, GS_EXPERIENCE_BASE);
+    if (GetXP(oEntering) < GS_EXPERIENCE_BASE) GiveXPToCreature(oEntering, GS_EXPERIENCE_BASE - GetXP(oEntering));
 
 
     //banishment

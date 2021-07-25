@@ -1808,7 +1808,8 @@ void ProjectImage()
     int nCasterLevel = GetLevelByClass(CLASS_TYPE_CLERIC, OBJECT_SELF) + GetLevelByClass(CLASS_TYPE_DRUID, OBJECT_SELF)
         + GetLevelByClass(CLASS_TYPE_SORCERER, OBJECT_SELF) + GetLevelByClass(CLASS_TYPE_WIZARD, OBJECT_SELF) + 
 			GetLevelByClass(CLASS_TYPE_PALEMASTER, OBJECT_SELF)  + GetLevelByClass(CLASS_TYPE_FAVOURED_SOUL, OBJECT_SELF) +
-			    GetLevelByClass(CLASS_TYPE_RANGER, OBJECT_SELF)  + GetLevelByClass(CLASS_TYPE_PALADIN, OBJECT_SELF);
+			    GetLevelByClass(CLASS_TYPE_RANGER, OBJECT_SELF)  + GetLevelByClass(CLASS_TYPE_PALADIN, OBJECT_SELF) +
+				    GetLevelByClass(CLASS_TYPE_BARD, OBJECT_SELF);
 	
 	int nHarperLevel = GetLevelByClass(CLASS_TYPE_HARPER, OBJECT_SELF); // Check for Harper
 	int nSDLevel 	 = GetLevelByClass(CLASS_TYPE_SHADOWDANCER, OBJECT_SELF); //Check for SD

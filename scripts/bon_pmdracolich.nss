@@ -19,7 +19,7 @@ void main()
 {
     int nLevel = GetLevelBonusParamLevel(OBJECT_SELF);
     object oHide = gsPCGetCreatureHide(OBJECT_SELF);
-
+/* Removed until dracoliches are a thing. 
     switch(GetLevelBonusParamApplyRemove(OBJECT_SELF))
     {
         case LEVEL_BONUS_APPLY:
@@ -37,4 +37,5 @@ void main()
             }
             break;
     }
+	*/
 }
