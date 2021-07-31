@@ -106,7 +106,7 @@ struct fbCHCommand chatResolveAlias(struct fbCHCommand command)
 {
     int index = StringArray_Find(GetModule(), ALIAS_ARRAY_KEY_TAG, command.sText);
 
-    if (index != NWNX_DATA_INVALID_INDEX)
+    if (index != INVALID_INDEX)
     {
         string storedCommand = StringArray_At(GetModule(), ALIAS_ARRAY_VALUE_TAG, index);
         string text = StringParse(storedCommand);

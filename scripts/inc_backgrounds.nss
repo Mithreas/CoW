@@ -614,6 +614,8 @@ void miBAReapplyGifts(object oPC, int bReapplySpecialAbilities = TRUE)
 void miBAIncreaseECL(object oPC, float fECL)
 {
   float fCurrentECL = GetLocalFloat(gsPCGetCreatureHide(oPC), "ECL");
+  
+  if (fCurrentECL == 0.0f) fCurrentECL = 10.0f; // initialise to 10. 
 
   SetLocalFloat(gsPCGetCreatureHide(oPC), "ECL", fCurrentECL + fECL);
 }

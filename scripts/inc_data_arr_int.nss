@@ -1,4 +1,3 @@
-#include "nwnx_data"
 
 // Refer to inc_data_arr for further information.
 
@@ -22,65 +21,65 @@ void IntArray_SortDescending(object obj, string tag);
 
 int IntArray_At(object obj, string tag, int index)
 {
-    return NWNX_Data_Array_At_Int(obj, tag, index);
+    return Array_At_Int(tag, index, obj);
 }
 
 void IntArray_Clear(object obj, string tag)
 {
-    NWNX_Data_Array_Clear(NWNX_DATA_TYPE_INTEGER, obj, tag);
+    Array_Clear(tag, obj);
 }
 
 int IntArray_Contains(object obj, string tag, int element)
 {
-    return NWNX_Data_Array_Contains_Int(obj, tag, element);
+    return Array_Contains_Int(tag, element, obj);
 }
 
 void IntArray_Copy(object obj, string tag, string otherTag)
 {
-    NWNX_Data_Array_Copy(NWNX_DATA_TYPE_INTEGER, obj, tag, otherTag);
+    Array_Copy(tag, otherTag, obj);
 }
 
 void IntArray_Erase(object obj, string tag, int index)
 {
-    NWNX_Data_Array_Erase(NWNX_DATA_TYPE_INTEGER, obj, tag, index);
+    Array_Erase(tag, index, obj);
 }
 
 int IntArray_Find(object obj, string tag, int element)
 {
-    return NWNX_Data_Array_Find_Int(obj, tag, element);
+    return Array_Find_Int(tag, element, obj);
 }
 
 void IntArray_Insert(object obj, string tag, int index, int element)
 {
-    NWNX_Data_Array_Insert_Int(obj, tag, index, element);
+    Array_Insert_Int(tag, index, element, obj);
 }
 
 void IntArray_PushBack(object obj, string tag, int element)
 {
-    NWNX_Data_Array_PushBack_Int(obj, tag, element);
+    Array_PushBack_Int(tag, element, obj);
 }
 
 void IntArray_Resize(object obj, string tag, int size)
 {
-    NWNX_Data_Array_Resize(NWNX_DATA_TYPE_INTEGER, obj, tag, size);
+    Array_Resize(tag, size, obj);
 }
 
 void IntArray_Shuffle(object obj, string tag)
 {
-    NWNX_Data_Array_Shuffle(NWNX_DATA_TYPE_INTEGER, obj, tag);
+    Array_Shuffle(tag, obj);
 }
 
 int IntArray_Size(object obj, string tag)
 {
-    return NWNX_Data_Array_Size(NWNX_DATA_TYPE_INTEGER, obj, tag);
+    return Array_Size(tag, obj);
 }
 
 void IntArray_SortAscending(object obj, string tag)
 {
-    NWNX_Data_Array_SortAscending(NWNX_DATA_TYPE_INTEGER, obj, tag);
+    Array_SortAscending(tag, TYPE_INTEGER, obj);
 }
 
 void IntArray_SortDescending(object obj, string tag)
 {
-    NWNX_Data_Array_SortDescending(NWNX_DATA_TYPE_INTEGER, obj, tag);
+    Array_SortDescending(tag, TYPE_INTEGER, obj);
 }

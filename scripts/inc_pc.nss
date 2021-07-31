@@ -660,18 +660,34 @@ void gsPCBanPlayer(object oPC = OBJECT_INVALID, int bIncludeIP = FALSE, string s
 //------------------------------------------------------------------------------
 object gsPCGetCreatureHide(object oPC = OBJECT_SELF)
 {
+  if (!GetIsPC(oPC)) return oPC; // Use the NPC themselves for anything that isn't a PC.
   object oHide = GetItemInSlot(INVENTORY_SLOT_CARMOUR, oPC);
+  object oReturn;
+  // Copying this here is a gross hack. 
+  string GS_SU_TEMPLATE_PROPERTY      = "gs_item317";
 
   if (GetTag(oHide) == "GS_SU_PROPERTY")
   {
     SetLocalObject(oPC, "GS_HIDE", oHide);
-    return oHide;
+    oReturn = oHide;
   }
   else if (GetIsObjectValid(GetLocalObject(oPC, "GS_HIDE")))
   {
-     return GetLocalObject (oPC, "GS_HIDE");
+     oReturn = GetLocalObject (oPC, "GS_HIDE");
   }
-  else return GetItemPossessedBy(oPC, "GS_SU_PROPERTY");
+  else oReturn = GetItemPossessedBy(oPC, "GS_SU_PROPERTY");
+  
+  if (!GetIsObjectValid(oReturn))
+  {
+    oReturn = CreateItemOnObject(GS_SU_TEMPLATE_PROPERTY, oPC);
+
+    if (GetIsObjectValid(oReturn))
+    {
+        AssignCommand(oPC, ActionEquipItem(oReturn, INVENTORY_SLOT_CARMOUR));
+    }
+  }
+  
+  return oReturn;
 }
 
 string gsPCGetOldCDKey(string sEEKey) {

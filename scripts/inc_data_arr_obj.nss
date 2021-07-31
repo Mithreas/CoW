@@ -1,4 +1,3 @@
-#include "nwnx_data"
 
 // Refer to inc_data_arr for further information.
 
@@ -22,65 +21,65 @@ void ObjectArray_SortDescending(object obj, string tag);
 
 object ObjectArray_At(object obj, string tag, int index)
 {
-    return NWNX_Data_Array_At_Obj(obj, tag, index);
+    return Array_At_Obj(tag, index, obj);
 }
 
 void ObjectArray_Clear(object obj, string tag)
 {
-    NWNX_Data_Array_Clear(NWNX_DATA_TYPE_OBJECT, obj, tag);
+    Array_Clear(tag, obj);
 }
 
 int ObjectArray_Contains(object obj, string tag, object element)
 {
-    return NWNX_Data_Array_Contains_Obj(obj, tag, element);
+    return Array_Contains_Obj(tag, element, obj);
 }
 
 void ObjectArray_Copy(object obj, string tag, string otherTag)
 {
-    NWNX_Data_Array_Copy(NWNX_DATA_TYPE_OBJECT, obj, tag, otherTag);
+    Array_Copy(tag, otherTag, obj);
 }
 
 void ObjectArray_Erase(object obj, string tag, int index)
 {
-    NWNX_Data_Array_Erase(NWNX_DATA_TYPE_OBJECT, obj, tag, index);
+    Array_Erase(tag, index, obj);
 }
 
 int ObjectArray_Find(object obj, string tag, object element)
 {
-    return NWNX_Data_Array_Find_Obj(obj, tag, element);
+    return Array_Find_Obj(tag, element, obj);
 }
 
 void ObjectArray_Insert(object obj, string tag, int index, object element)
 {
-    NWNX_Data_Array_Insert_Obj(obj, tag, index, element);
+    Array_Insert_Obj(tag, index, element, obj);
 }
 
 void ObjectArray_PushBack(object obj, string tag, object element)
 {
-    NWNX_Data_Array_PushBack_Obj(obj, tag, element);
+    Array_PushBack_Obj(tag, element, obj);
 }
 
 void ObjectArray_Resize(object obj, string tag, int size)
 {
-    NWNX_Data_Array_Resize(NWNX_DATA_TYPE_OBJECT, obj, tag, size);
+    Array_Resize(tag, size, obj);
 }
 
 void ObjectArray_Shuffle(object obj, string tag)
 {
-    NWNX_Data_Array_Shuffle(NWNX_DATA_TYPE_OBJECT, obj, tag);
+    Array_Shuffle(tag, obj);
 }
 
 int ObjectArray_Size(object obj, string tag)
 {
-    return NWNX_Data_Array_Size(NWNX_DATA_TYPE_OBJECT, obj, tag);
+    return Array_Size(tag, obj);
 }
 
 void ObjectArray_SortAscending(object obj, string tag)
 {
-    NWNX_Data_Array_SortAscending(NWNX_DATA_TYPE_OBJECT, obj, tag);
+    Array_SortAscending(tag, TYPE_OBJECT, obj);
 }
 
 void ObjectArray_SortDescending(object obj, string tag)
 {
-    NWNX_Data_Array_SortDescending(NWNX_DATA_TYPE_OBJECT, obj, tag);
+    Array_SortDescending(tag, TYPE_OBJECT, obj);
 }

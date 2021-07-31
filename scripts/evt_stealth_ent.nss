@@ -33,7 +33,6 @@ void RoundStealthTimerIncrement()
 
 void main()
 {
-
     object oPC = OBJECT_SELF;
     if (GetIsPC(oPC))
     {

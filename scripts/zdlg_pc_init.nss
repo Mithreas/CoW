@@ -66,21 +66,6 @@ string PATH_INTRO = "You may choose to follow a path.  A path modifies a class "
 string BACKGROUND_INTRO = "You may choose a starting faction for your character (recommended!). " +
   "Factions have a significant effect on the starting location and career options on your character.  Available (starting) factions:\n\n"; 
 
-void __InitECL(object oPC)
-{
-  // For migration purposes, we need to be able to distinguish characters
-  // who used the old system (where subraces granted abilities) and
-  // new characters who have an explicit ECL.  Older characters will have
-  // a value of 0 (not present) for the ECL var, so newer ones get a value
-  // 10 higher than needed, to avoid also getting a zero.
-  float fCurrentECL = GetLocalFloat(gsPCGetCreatureHide(oPC), "ECL");
-
-  if (fCurrentECL == 0.0f)
-  {
-    SetLocalFloat(gsPCGetCreatureHide(oPC), "ECL", 10.0f);
-  }
-}
-
 void _gvdCreateBaseInventoryForRace(object oPC) 
 {
   // get subrace name
@@ -176,11 +161,10 @@ void _ClearSubRaceOptions()
 int _ApplySubRace()
 {
   object oSpeaker  = GetPcDlgSpeaker();
-  object oProperty = GetItemInSlot(INVENTORY_SLOT_CARMOUR, oSpeaker);
+  object oProperty = gsPCGetCreatureHide(oSpeaker);
   object oAbility  = GetItemPossessedBy(oSpeaker, "GS_SU_ABILITY");
   int nSubRace     = GetIntElement(GetLocalInt(OBJECT_SELF, CONFIRM_OPT), SU_SELECTIONS);
   int nLevel       = GetHitDice(oSpeaker);
-  int nFlag        = FALSE;
   Trace(SUBRACE, "Applying subrace: " + gsSUGetNameBySubRace(nSubRace));
 
   if (nSubRace == GS_SU_NONE)
@@ -188,15 +172,6 @@ int _ApplySubRace()
     if (GetIsObjectValid(oProperty))
     {
         gsIPRemoveAllProperties(oProperty);
-    }
-    else
-    {
-        oProperty = CreateItemOnObject(GS_SU_TEMPLATE_PROPERTY, oSpeaker);
-
-        if (GetIsObjectValid(oProperty))
-        {
-            AssignCommand(oSpeaker, ActionEquipItem(oProperty, INVENTORY_SLOT_CARMOUR));
-        }
     }
 
     // Have to set a subrace so that the background code can modify it.
@@ -207,12 +182,6 @@ int _ApplySubRace()
   }
   else
   {
-    if (! GetIsObjectValid(oProperty))
-    {
-      oProperty = CreateItemOnObject(GS_SU_TEMPLATE_PROPERTY, oSpeaker);
-      nFlag     = TRUE;
-    }
-
     if (! GetIsObjectValid(oAbility))
     {
       oAbility  = CreateItemOnObject(GS_SU_TEMPLATE_ABILITY,  oSpeaker);
@@ -223,7 +192,7 @@ int _ApplySubRace()
       gsSUApplyProperty(oProperty, nSubRace, nLevel);
       miBAIncreaseECL(oSpeaker, IntToFloat(gsSUGetECL(nSubRace, 0)));
       SetLocalInt(oProperty, "GIFT_SUBRACE", TRUE);
-      if (nFlag) AssignCommand(oSpeaker, ActionEquipItem(oProperty, INVENTORY_SLOT_CARMOUR));
+	  
     }
 
     if (GetIsObjectValid(oAbility))
@@ -821,8 +790,8 @@ void Init()
     CreateItemOnObject("mi_mark_destiny", oPC);
   }
   
-  // In case not already set up.
-    __InitECL(oPC);
+  // Initialise ECL and creature hide/ms/dex
+  miBAIncreaseECL(oPC, 0.0f);
 }
 
 void PageInit()

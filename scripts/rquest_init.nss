@@ -702,7 +702,7 @@ void main()
   SetStringValue(QUEST+QUEST_TYPE, PATROL, DB_VARS);
   SetStringValue(QUEST+DESCRIPTION,
   "Our brethren guarding the Undercity entrance report that the dead are stirring " +
-  "in Ancestors' Rest again.  Please visit the four crypts there and restore peace.",
+  "in Ancestors' Rest again.  Please visit the Darkened, Shadowed, Old and Haunted crypts there and restore peace.",
   DB_VARS);
   SetStringValue(QUEST+AREA_TAGS, "DarkenedCrypt,hauntedcrypt,OldCrypt,ShadowedCrypt", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
@@ -827,6 +827,7 @@ void main()
    SQLPrepareStatement("(?,?,?,?),", "polish_greenstone", DB_QUESTSET, "4", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "make_dex_potions", DB_QUESTSET, "6", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "fey_silver", DB_QUESTSET, "6", "10") + 
+   SQLPrepareStatement("(?,?,?,?),", "cull_trogs", DB_QUESTSET, "7", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "cull_goblin_boss", DB_QUESTSET, "8", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "cull_trolls", DB_QUESTSET, "9", "10") + 
    SQLPrepareStatement("(?,?,?,?)", "boss_heads", DB_QUESTSET, "6", "15");
@@ -938,6 +939,18 @@ void main()
   SetStringValue(QUEST+ITEM_TAG, "NW_IT_MPOTION014", DB_VARS);
   SetStringValue(QUEST+NUM_ITEMS, "10", DB_VARS);
   
+  QUEST = "cull_trogs";
+  SetStringValue(QUEST+QUEST_TYPE, CULL, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION, 
+    "A band of troglodytes live in the caves north of the village.  They're normally peaceful enough but every so often their young warriors attack " +
+	"the grove at Lake Vyvian.  Please go and kill six of their fighters before they come for the grove.", 
+	DB_VARS);
+  SetStringValue(QUEST+CULL_TAG, "trog_warrior", DB_VARS);
+  SetStringValue(QUEST+NUM_CREATURES, "6", DB_VARS);  
+  SetStringValue(QUEST+REWARD_GOLD, "400", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "400", DB_VARS);
+  SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
+  
   QUEST = "cull_goblin_boss";
   SetStringValue(QUEST+QUEST_TYPE, CULL, DB_VARS);
   SetStringValue(QUEST+DESCRIPTION, 
@@ -971,6 +984,7 @@ void main()
   SetStringValue(QUEST+NUM_CREATURES, "12", DB_VARS);  
   SetStringValue(QUEST+REWARD_GOLD, "500", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "500", DB_VARS);
+  SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
   
   QUEST = "boss_heads";  
   SetStringValue(QUEST+QUEST_TYPE, RETRIEVE, DB_VARS);

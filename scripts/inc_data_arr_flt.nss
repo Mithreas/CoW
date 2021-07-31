@@ -1,4 +1,3 @@
-#include "nwnx_data"
 
 // Refer to inc_data_arr for further information.
 
@@ -22,65 +21,65 @@ void FloatArray_SortDescending(object obj, string tag);
 
 float FloatArray_At(object obj, string tag, int index)
 {
-    return NWNX_Data_Array_At_Flt(obj, tag, index);
+    return Array_At_Flt(tag, index, obj);
 }
 
 void FloatArray_Clear(object obj, string tag)
 {
-    NWNX_Data_Array_Clear(NWNX_DATA_TYPE_FLOAT, obj, tag);
+    Array_Clear(tag, obj);
 }
 
 int FloatArray_Contains(object obj, string tag, float element)
 {
-    return NWNX_Data_Array_Contains_Flt(obj, tag, element);
+    return Array_Contains_Flt(tag, element, obj);
 }
 
 void FloatArray_Copy(object obj, string tag, string otherTag)
 {
-    NWNX_Data_Array_Copy(NWNX_DATA_TYPE_FLOAT, obj, tag, otherTag);
+    Array_Copy(tag, otherTag, obj);
 }
 
 void FloatArray_Erase(object obj, string tag, int index)
 {
-    NWNX_Data_Array_Erase(NWNX_DATA_TYPE_FLOAT, obj, tag, index);
+    Array_Erase(tag, index, obj);
 }
 
 int FloatArray_Find(object obj, string tag, float element)
 {
-    return NWNX_Data_Array_Find_Flt(obj, tag, element);
+    return Array_Find_Flt(tag, element, obj);
 }
 
 void FloatArray_Insert(object obj, string tag, int index, float element)
 {
-    NWNX_Data_Array_Insert_Flt(obj, tag, index, element);
+    Array_Insert_Flt(tag, index, element, obj);
 }
 
 void FloatArray_PushBack(object obj, string tag, float element)
 {
-    NWNX_Data_Array_PushBack_Flt(obj, tag, element);
+    Array_PushBack_Flt(tag, element, obj);
 }
 
 void FloatArray_Resize(object obj, string tag, int size)
 {
-    NWNX_Data_Array_Resize(NWNX_DATA_TYPE_FLOAT, obj, tag, size);
+    Array_Resize(tag, size, obj);
 }
 
 void FloatArray_Shuffle(object obj, string tag)
 {
-    NWNX_Data_Array_Shuffle(NWNX_DATA_TYPE_FLOAT, obj, tag);
+    Array_Shuffle(tag, obj);
 }
 
 int FloatArray_Size(object obj, string tag)
 {
-    return NWNX_Data_Array_Size(NWNX_DATA_TYPE_FLOAT, obj, tag);
+    return Array_Size(tag, obj);
 }
 
 void FloatArray_SortAscending(object obj, string tag)
 {
-    NWNX_Data_Array_SortAscending(NWNX_DATA_TYPE_FLOAT, obj, tag);
+    Array_SortAscending(tag, TYPE_FLOAT, obj);
 }
 
 void FloatArray_SortDescending(object obj, string tag)
 {
-    NWNX_Data_Array_SortDescending(NWNX_DATA_TYPE_FLOAT, obj, tag);
+    Array_SortDescending(tag, TYPE_FLOAT, obj);
 }

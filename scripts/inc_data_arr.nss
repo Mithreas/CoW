@@ -69,6 +69,11 @@
 // item is not present in the collection.
 const int ARRAY_INVALID_INDEX = -1;
 
+// NWNX has retired inc_data in favour of using the built in SQLite database. Refactored this library
+// to use the new methods (defined in nwnx_data_new).  Being naughty and including it here rather than in the 
+// type specific files that use it. 
+
+#include "nwnx_data_new"
 #include "inc_data_arr_flt"
 #include "inc_data_arr_int"
 #include "inc_data_arr_obj"

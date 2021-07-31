@@ -286,7 +286,7 @@ void main()
         // Handle class bonus updates for established PCs. New PCs will instead be handled on initialization.
         DelayCommand(0.0, ApplyCharacterBonuses(oEntering, FALSE, FALSE, TRUE));
     }
-    _FixXPECL(oEntering, gsSUGetSubRaceByName(GetSubRace(oEntering)));
+    //_FixXPECL(oEntering, gsSUGetSubRaceByName(GetSubRace(oEntering)));
     //activity
     SetLocalInt(oEntering, "GS_ACTIVE", TRUE);
 

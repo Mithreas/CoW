@@ -253,7 +253,8 @@ void ApplyCharacterBonuses(object oPC, int bReapplySpecialAbilities = FALSE, int
 	if (GetLevelByClass(CLASS_TYPE_FIGHTER, oPC) && !GetKnowsFeat(1117, oPC)) AddKnownFeat(oPC, 1117);
 	
 	// If the character is epic, add the epic character feat.
-	if (GetLocalInt(gsPCGetCreatureHide(oPC), "FL_LEVEL") >= 30 && !GetKnowsFeat(1001, oPC)) AddKnownFeat(oPC, 1001);
+	// Reversed - this let characters take epic feats on level up.
+	if (GetKnowsFeat(1001, oPC)) NWNX_Creature_RemoveFeat(oPC, 1001);
 
     Trace(CLASSES, "Subrace and class changes reapplied.");
 }

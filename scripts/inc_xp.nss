@@ -158,12 +158,6 @@ void gsXPRewardKill(object oVictim = OBJECT_SELF, float fRange = 40.0)
             {
                 party = _CountParty(party, oCreature, fRange, oVictim, sRandom);
             }
-            else
-            {
-                fRating     = GetChallengeRating(oCreature) / 2.0;
-                fRating    *= fRating;
-                fRatingNPC += fRating;
-            }
         }
 
         oCreature = GetNextObjectInShape(SHAPE_SPHERE, fRange, lLocation, TRUE);
