@@ -1,5 +1,6 @@
 /* SHOP library by Gigaschatten */
-
+#include "inc_backgrounds"
+#include "inc_crime"
 #include "inc_quarter"
 #include "inc_common"
 #include "inc_container"
@@ -291,44 +292,19 @@ struct openStore md_DoAppraise(object oStore, object oMerchant, object oCustomer
             else if(nRace == RACIAL_TYPE_HUMANOID_REPTILIAN)
                 nBit = MD_BIT_KOBOLD;
             else if(nRace == RACIAL_TYPE_HUMANOID_ORC)
-                nBit = MD_BIT_OROG | MD_BIT_HORC;
-            else if(nRace == RACIAL_TYPE_HUMANOID_MONSTROUS)
-                nBit = MD_BIT_GNOLL;
-        }
-        else
-        {
-            if(nBit & MD_BIT_SU_ELF) //one surface elf? count for all surfance elves!
-                nBit |= MD_BIT_SU_ELF;
-            if(nBit & MD_BIT_SU_DWARF) //one surface dwarf? count for all surface dwarves.
-                nBit |= MD_BIT_SU_DWARF;
-            if(nBit & MD_BIT_SU_HL) //halflings
-                nBit |= MD_BIT_SU_HL;
-            if(nBit & MD_BIT_SU_GNOMES || nBit & MD_BIT_DEEP_GNOME) //gnomes!
-                nBit |= MD_BIT_SU_GNOMES | MD_BIT_DEEP_GNOME;
-            if(nBit & MD_BIT_HUMAN) //humans nice to the orcs and half-elvesd
-                nBit |= MD_BIT_HORC | MD_BIT_HELF;
-            else if(nBit & MD_BIT_HORC) //and half orcs nice to the humans,else if here so humans won't be nice to orogs
-                nBit |= MD_BIT_HUMAN | MD_BIT_OROG;
-            if(nBit & MD_BIT_OROG)
-                nBit |= MD_BIT_HORC;
-            if(nBit & MD_BIT_HOBGOBLIN || nBit & MD_BIT_GOBLIN)
-                nBit |= MD_BIT_HOBGOBLIN | MD_BIT_GOBLIN;
+                nBit = MD_BIT_HORC;
         }
       }
       int bRacesMatch = md_IsSubRace(nBit, oCustomer);
-
-      // Special - Duergar are always a racial match.
-      if (GetSubRace(oCustomer) == GS_T_16777264)
-          bRacesMatch = TRUE;
 
       // Adjust variance according to matching race
       nAppraiseVariance += (bRacesMatch) ? 50 : -50;
       //SendMessageToPC(oCustomer, "DEBUG: Race Match: " + IntToString(bRacesMatch));
 
       // Check Nations
-      string sNation = GetLocalString(oCustomer, "MI_NATION");
-      string sThisAreaNation = GetLocalString(GetArea(oCustomer), "MI_NATION");
-      int bNationMatch = (sNation == sThisAreaNation);
+      int nNation = CheckFactionNation(OBJECT_SELF);
+      int nPCNation = miBAGetBackground(oCustomer);
+      int bNationMatch = (nNation == nPCNation);
       nAppraiseVariance += (bNationMatch) ? 50 : -50;
       //SendMessageToPC(oCustomer, "DEBUG: Nation Match: " + IntToString(bNationMatch));
       //SendMessageToPC(oCustomer, "DEBUG: New Variance: " + IntToString(nAppraiseVariance));

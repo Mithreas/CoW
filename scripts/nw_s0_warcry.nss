@@ -18,22 +18,6 @@
 #include "inc_customspells"
 #include "inc_warlock"
 
-int getGnollDC(object oCaster, int nSpellLevel) {
-    int nResult = 10 + nSpellLevel;
-
-    //::  Gnolls use CON as modifier on the DC
-    nResult += GetAbilityModifier(ABILITY_CONSTITUTION, oCaster);
-
-    if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_ENCHANTMENT, oCaster))
-        nResult += 6;
-    else if (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_ENCHANTMENT, oCaster))
-        nResult += 4;
-    else if (GetHasFeat(FEAT_SPELL_FOCUS_ENCHANTMENT, oCaster))
-        nResult += 2;
-
-    return nResult;
-}
-
 void main()
 {
 
@@ -104,8 +88,7 @@ void main()
     }
     ApplyEffectToObject(DURATION_TYPE_INSTANT, eLOS, OBJECT_SELF);
 
-    //::  Gnolls DC use Constitution
-    int nDC = nSubRace == GS_SU_HALFORC_GNOLL ? getGnollDC(OBJECT_SELF, 4) : AR_GetSpellSaveDC();
+    int nDC = AR_GetSpellSaveDC();
 
     //Determine enemies in the radius around the bard
     oTarget = GetFirstObjectInShape(SHAPE_SPHERE, RADIUS_SIZE_COLOSSAL, GetLocation(oSpellTarget));

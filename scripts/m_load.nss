@@ -254,8 +254,8 @@ void main()
 
     NWNX_Events_SubscribeEvent("NWNX_ON_ADD_ASSOCIATE_BEFORE", "evt_assoc_add");
     NWNX_Events_SubscribeEvent("NWNX_ON_REMOVE_ASSOCIATE_BEFORE", "evt_assoc_rem");
-    NWNX_Events_SubscribeEvent("NWNX_ON_ENTER_STEALTH_BEFORE", "evt_stealth_ent");
-    NWNX_Events_SubscribeEvent("NWNX_ON_EXIT_STEALTH_BEFORE", "evt_stealth_exit");
+    NWNX_Events_SubscribeEvent("NWNX_ON_STEALTH_ENTER_BEFORE", "evt_stealth_ent");
+    NWNX_Events_SubscribeEvent("NWNX_ON_STEALTH_EXIT_BEFORE", "evt_stealth_exit");
     NWNX_Events_SubscribeEvent("NWNX_ON_EXAMINE_OBJECT_BEFORE", "evt_examine_bef");
     NWNX_Events_SubscribeEvent("NWNX_ON_EXAMINE_OBJECT_AFTER", "evt_examine_aft");
     NWNX_Events_SubscribeEvent("NWNX_ON_MODE_ON", "evt_mode_on");
@@ -268,6 +268,12 @@ void main()
     NWNX_Events_SubscribeEvent("NWNX_ON_USE_FEAT_AFTER", "evt_ft_aft");
     NWNX_Events_SubscribeEvent("NWNX_ON_POLYMORPH_BEFORE", "evt_poly_bef");
     NWNX_Events_SubscribeEvent("NWNX_ON_UNPOLYMORPH_AFTER", "evt_upoly_aft");
+	
+    NWNX_Events_SubscribeEvent("NWNX_ON_USE_FEAT_BEFORE", "x3_s3_kidamage");
+	NWNX_Events_ToggleIDWhitelist("NWNX_ON_USE_FEAT", TRUE);
+	NWNX_Events_AddIDToWhitelist("NWNX_ON_USE_FEAT", FEAT_KI_DAMAGE);
+	
+    //NWNX_Events_SubscribeEvent("NWNX_ON_USE_FEAT_AFTER", "evt_featrestore");
 
     SetStealthHIPSCallback("evt_hips");
 

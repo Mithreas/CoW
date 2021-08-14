@@ -12,7 +12,7 @@ This uses the library inc_worship. It's not so much a library as a text dump
 since it is where all the deities and their respective portfolios are stored. It
 also serves as a wrapper for all the libraries required for this script.
 */
-
+#include "inc_subrace"
 #include "inc_worship"
 #include "inc_favsoul"
 #include "zzdlg_main_inc"
@@ -179,6 +179,26 @@ void OnSelection(string sPage)
 
             // Set deity
             SetDeity(oSpeaker, gsWOGetNameByDeity(nDeity));
+			
+			// Shapechanger hook - give XP.
+			int nNth = 1;
+			object oPC = GetNearestCreature(CREATURE_TYPE_PLAYER_CHAR, PLAYER_CHAR_IS_PC, oSpeaker, nNth);
+			while (GetIsObjectValid(oPC) && GetDistanceBetween(oPC, oSpeaker) < 10.0f)
+			{
+			  if (oPC != oSpeaker && gsSUGetSubRaceByName(GetSubRace(oPC)) == GS_SU_SHAPECHANGER)
+			  {
+			    object oPCHide = gsPCGetCreatureHide(oPC);
+				string sVarName = "SPC_CONVERT_" + gsPCGetCDKeyID(GetPCPublicCDKey(oSpeaker));
+				if (!GetLocalInt(oPCHide, sVarName))
+				{
+				  gsXPGiveExperience(oPC, 1000);
+				  FloatingTextStringOnCreature("Congratulations on converting another character.", oPC);
+				  SetLocalInt(oPCHide, sVarName, TRUE);
+				}
+			  }
+			  nNth++;
+			  oPC = GetNearestCreature(CREATURE_TYPE_PLAYER_CHAR, PLAYER_CHAR_IS_PC, oSpeaker, nNth);
+			}
 
             // Change page
             dlgClearPlayerDataInt(FB_VAR_DEITY);

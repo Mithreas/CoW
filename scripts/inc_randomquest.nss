@@ -120,6 +120,7 @@
 #include "inc_perspeople"
 #include "inc_reputation"
 #include "inc_stacking"
+#include "inc_subrace"
 // inc_reputation includes inc_database and inc_log
 #include "inc_quest"
 // inc_quest includes inc_database, inc_log, and inc_disguise.
@@ -473,7 +474,7 @@ void RewardPC(object oPC, object oNPC)
   }
 
   int nXP = StringToInt(GetLocalString(oCache, sQuest+REWARD_XP));
-  if (nXP > 0)
+  if (nXP > 0 && gsSUGetSubRaceByName(GetSubRace(GetPCSpeaker())) != GS_SU_SHAPECHANGER)
   {
     float fXP = IntToFloat(nXP);
     // Module-wide XP scale control.

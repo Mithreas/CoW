@@ -79,18 +79,6 @@ void _ApplySkin(int nSelection)
         break;
     }
   }
-  else if (nSubRace == GS_SU_HALFORC_GNOLL)
-  {
-    switch (nSelection)
-    {
-      case 0:
-        SetCreatureAppearanceType(oPC, APPEARANCE_TYPE_GNOLL_WARRIOR);
-        break;
-      case 1:
-        SetCreatureAppearanceType(oPC, APPEARANCE_TYPE_GNOLL_WIZ);
-        break;
-    }
-  }
   else if (nSubRace == GS_SU_SPECIAL_OGRE)
   {
     switch (nSelection)
@@ -130,18 +118,6 @@ void _ApplySkin(int nSelection)
         break;
     }
   }
-  else if (nSubRace == GS_SU_SPECIAL_IMP)
-  {
-    switch (nSelection)
-    {
-      case 0:
-        SetCreatureAppearanceType(oPC, APPEARANCE_TYPE_IMP);
-        break;
-      case 1:
-        SetCreatureAppearanceType(oPC, APPEARANCE_TYPE_MEPHIT_MAGMA);
-        break;
-    }
-  }
 }
 
 
@@ -163,7 +139,7 @@ void Init()
 
   if (GetElementCount(SKIN_OPTIONS) == 0) {
     //::  2 Option races
-    if ( nSubRace == GS_SU_HALFORC_GNOLL || nSubRace == GS_SU_SPECIAL_HOBGOBLIN || nSubRace == GS_SU_SPECIAL_IMP ) {
+    if ( nSubRace == GS_SU_SPECIAL_HOBGOBLIN ) {
         SetLocalInt(OBJECT_SELF, NUM_RACE_OPTIONS, 2);
         AddStringElement("Model A <c þ >[Default]</c>", SKIN_OPTIONS);
         AddStringElement("Model B", SKIN_OPTIONS);

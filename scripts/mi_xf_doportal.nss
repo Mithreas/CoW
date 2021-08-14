@@ -8,13 +8,7 @@ void main()
 {
   object oPC = GetClickingObject();
   if (!GetIsObjectValid(oPC)) oPC = GetLastUsedBy();
-  if ((gsSUGetSubRaceByName(GetSubRace(oPC)) == GS_SU_HALFORC_GNOLL) ||
-      (gsSUGetSubRaceByName(GetSubRace(oPC)) == GS_SU_DWARF_GRAY))
-  {
-    ExecuteScript("mi_xf_do", OBJECT_SELF);
-  }
-  else
-  {
+
     object oWardstone = GetItemPossessedBy(oPC, "mi_xf_wardstone");
 
     if (GetIsObjectValid(oWardstone))
@@ -26,5 +20,4 @@ void main()
     {
       FloatingTextStringOnCreature("The portal refuses you passage.", oPC);
     }
-  }
 }

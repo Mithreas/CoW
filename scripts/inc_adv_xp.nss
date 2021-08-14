@@ -221,7 +221,7 @@ void gvd_AdventuringXP_XPBonus(object oPC) {
       // instead copied over parts of the code from there
       SetXP(oPC, nXP + iXP);   
       gsPCMemorizeClassData(oPC);
-      SendMessageToPC(oPC, "<cªÕþ>+" + IntToString(iXP) + " " + GS_T_16777315);
+      SendMessageToPC(oPC, "<cªÕþ>+" + IntToString(iXP) + " XP");
 
     }
 

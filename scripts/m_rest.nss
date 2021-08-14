@@ -126,18 +126,9 @@ void gsDoRest(object oRested, int eventType)
         object oArea = GetArea(oRested);
         int nSubRace = gsSUGetSubRaceByName(GetSubRace(oRested));
 
-        if ( FloatToInt(gsSTGetState(GS_ST_REST, oRested)) > -20 && (
-        // Extra-planar areas.
-         (GetLocalInt(oArea, "MI_PLANE") > 0 && !GetIsAreaInterior(oArea))
-        ||
-        // Underdarkers on the surface.
-        (gsSUGetIsUnderdarker(nSubRace) && nSubRace != GS_SU_HALFORC_GNOLL
-          && GetIsAreaAboveGround(oArea) && !GetIsAreaInterior(oArea))
-        ||
-        // Surfacers in the Underdark
-        (!gsSUGetIsUnderdarker(nSubRace) && !GetIsAreaInterior(oArea) &&
-            FindSubString(GetName(oArea), "Underdark") >= 0)
-         ))
+        if ( FloatToInt(gsSTGetState(GS_ST_REST, oRested)) > -20 &&
+             GetLocalInt(oArea, "MI_PLANE") > 0 && 
+			 !GetIsAreaInterior(oArea))
         {
             // Send the 'resting isn't allowed in this area' message.
             AssignCommand(oRested, ClearAllActions());

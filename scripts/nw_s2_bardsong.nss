@@ -416,9 +416,8 @@ void main()
 
     while(GetIsObjectValid(oTarget))
     {
-	    //RemoveEffectsFromSpell(oTarget, GetSpellId());
-        if(!GetHasFeatEffect(FEAT_BARD_SONGS, oTarget))
-        {
+        //if(!GetHasFeatEffect(FEAT_BARD_SONGS, oTarget))
+        //{
              // * GZ Oct 2003: If we are silenced, we can not benefit from bard song
              if (!GetHasEffect(EFFECT_TYPE_SILENCE,oTarget) && !GetHasEffect(EFFECT_TYPE_DEAF,oTarget))
              {
@@ -430,25 +429,28 @@ void main()
 
                 if(oTarget == OBJECT_SELF)
                 {
+					RemoveEffectsFromSpell(oTarget, GetSpellId());
                     effect eLinkBard = EffectLinkEffects(eLink, eVis);
                     eLinkBard = ExtraordinaryEffect(eLinkBard);
-                    ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLinkBard, oTarget, RoundsToSeconds(nDuration));
+                    DelayCommand(0.1f, ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLinkBard, oTarget, RoundsToSeconds(nDuration)));
+					
                     if (nHP > 0)
                     {
-                        ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eHP, oTarget, RoundsToSeconds(nDuration));
+                        DelayCommand(0.1f, ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eHP, oTarget, RoundsToSeconds(nDuration)));
                     }
                 }
                 else if(!GetIsEnemy(oTarget))
                 {
+					RemoveEffectsFromSpell(oTarget, GetSpellId());
                     ApplyEffectToObject(DURATION_TYPE_INSTANT, eImpact, oTarget);
-                    ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, RoundsToSeconds(nDuration));
+                    DelayCommand(0.1f, ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, RoundsToSeconds(nDuration)));
                     if (nHP > 0)
                     {
-                        ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eHP, oTarget, RoundsToSeconds(nDuration));
+                        DelayCommand(0.1f, ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eHP, oTarget, RoundsToSeconds(nDuration)));
                     }
                 }
             }
-        }
+        //}
         oTarget = GetNextObjectInShape(SHAPE_SPHERE, RADIUS_SIZE_COLOSSAL, GetLocation(OBJECT_SELF));
     }
 

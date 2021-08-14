@@ -1,5 +1,5 @@
 #include "inc_chatutils"
-#include "nwnx_alts"
+#include "nwnx_reveal"
 #include "inc_examine"
 
 const string HELP = "-reveal Name\nReveals yourself to the named character if you are stealthed.";
@@ -36,7 +36,7 @@ void main()
         {
             if (GetArea(OBJECT_SELF) == GetArea(target))
             {
-                SetStealthRevealed(target);
+                NWNX_Reveal_RevealTo(OBJECT_SELF, target);
                 SendMessageToPC(OBJECT_SELF, "You are now revealed to " + GetName(target) + ".");
             }
             else

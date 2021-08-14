@@ -24,12 +24,6 @@ void main()
 
     // Play a description.
     ResearchDescription(oPC);
-
-    if (!GetLocalInt(GetArea(oPC), IS_LIB))
-    {
-	  Trace(TRAINING, "Researching but not in library.");
-      return;
-    }
 	
     GiveXP(oPC, TRUE);
 

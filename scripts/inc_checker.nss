@@ -9,6 +9,7 @@
 #include "inc_pc"
 #include "inc_class"
 #include "inc_quickbar"
+#include "inc_subrace"
 const string CHECKER = "CHECKER"; // for tracing
 
 const int MAX_FEAT  = 426; // Very few after here, so do them by hand for perf
@@ -177,6 +178,24 @@ int GetHasPermission(int nClass, object oPC)
 int CoW_HasAllowedClasses(object oPC)
 {
   if (GetLevelByClass(CLASS_TYPE_DRAGON_DISCIPLE)) return FALSE;
+  
+  if (gsSUGetSubRaceByName(GetSubRace(oPC)) == GS_SU_SHAPECHANGER)
+  {
+	  if ((GetLevelByClass(CLASS_TYPE_WIZARD, oPC) && !GetHasPermission(CLASS_TYPE_WIZARD, oPC)) ||
+	      (GetLevelByClass(CLASS_TYPE_SORCERER, oPC) && !GetHasPermission(CLASS_TYPE_SORCERER, oPC)) ||
+		  (GetLevelByClass(CLASS_TYPE_DRUID, oPC) && !GetHasPermission(CLASS_TYPE_DRUID, oPC))||
+		  (GetLevelByClass(CLASS_TYPE_CLERIC, oPC) && !GetHasPermission(CLASS_TYPE_CLERIC, oPC)) ||
+		  (GetLevelByClass(CLASS_TYPE_PALADIN, oPC) && !GetHasPermission(CLASS_TYPE_PALADIN, oPC)) ||
+		  (GetLevelByClass(CLASS_TYPE_BLACKGUARD, oPC) && !GetHasPermission(CLASS_TYPE_BLACKGUARD, oPC)))
+	  {
+	    return FALSE;
+	  }
+	  else
+	  {
+	    return TRUE;
+	  }
+  }
+  
   if (GetLevelByClass(CLASS_TYPE_SHIFTER)) return FALSE;
 
   switch (GetRacialType(oPC))

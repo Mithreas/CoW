@@ -1742,35 +1742,6 @@ void main()
 
     }
 
-    // Cambionmaker (major award only, and only with admin approval)
-    if (sTag == "GVD_DM_CAMBION")
-    {
-      // check if the player has indeed a major award for this
-      string sID = gsPCGetCDKeyID(GetPCPublicCDKey(oTarget));
-      int iMajorAwards = StringToInt(miDAGetKeyedValue("gs_player_data",sID,"award1"));
-
-      if (iMajorAwards > 0) {
-
-        WriteTimestampedLogEntry("MAJOR AWARD: PC " + GetName(oTarget) + " turned into a Cambion by " + GetName(oActivator));
-        object oHide = gsPCGetCreatureHide(oTarget);
-        SetSubRace(oTarget, gsSUGetNameBySubRace(GS_SU_SPECIAL_CAMBION));
-        SetLocalInt(oHide, "GIFT_SUBRACE", TRUE);
-
-        ModifyAbilityScore(oTarget, ABILITY_STRENGTH, 2);
-        ModifyAbilityScore(oTarget, ABILITY_CHARISMA, 4);
-        gsSUApplyProperty(oHide, GS_SU_SPECIAL_CAMBION, GetHitDice(oTarget));
-
-        miDASetKeyedValue("gs_player_data", sID, "award1", IntToString(iMajorAwards - 1));
-
-        SendMessageToPC(oActivator, "You turned " + GetName(oTarget) + "into a Cambion succesfully.");
-        SendMessageToPC(oTarget, "You turned into a Cambion!");
-
-      } else {
-        SendMessageToPC(oActivator, "This player has no major award.");
-      }
-
-    }
-
     // Dragonmaker (major award only, and only with admin approval)
     if (sTag == "GVD_DM_DRAGON")
     {

@@ -79,8 +79,6 @@ int _gsLAGetCanSpeakLanguage(int nLanguage, object oPC, object oHide, string sTa
 
     case GS_LA_LANGUAGE_ABYSSAL:
         if ((miWAGetIsWarlock(oPC) == PACT_ABYSSAL) ||
-            (nSubRace == GS_SU_PLANETOUCHED_TIEFLING &&
-             nAlignmentLC != ALIGNMENT_LAWFUL) ||
             (nAlignmentGE == ALIGNMENT_EVIL &&
              nAlignmentLC != ALIGNMENT_LAWFUL &&
              (gsCMGetHasClass(CLASS_TYPE_CLERIC, oPC) ||
@@ -96,8 +94,6 @@ int _gsLAGetCanSpeakLanguage(int nLanguage, object oPC, object oHide, string sTa
             nRace == RACIAL_TYPE_BEAST ||
             miWAGetIsWarlock(oPC) == PACT_FEY ||
             nSubRace == GS_SU_SPECIAL_FEY ||
-            nSubRace == GS_SU_HALFORC_GNOLL ||
-            nSubRace == GS_SU_GNOME_FOREST ||
             gsCMGetHasClass(CLASS_TYPE_DRUID, oPC) ||
             gsCMGetHasClass(CLASS_TYPE_RANGER, oPC))
          {
@@ -107,10 +103,9 @@ int _gsLAGetCanSpeakLanguage(int nLanguage, object oPC, object oHide, string sTa
          break;
 
     case GS_LA_LANGUAGE_CELESTIAL:
-        if (nSubRace == GS_SU_PLANETOUCHED_AASIMAR ||
-               (nAlignmentGE == ALIGNMENT_GOOD &&
-                gsCMGetHasClass(CLASS_TYPE_CLERIC, oPC)) ||
-                gsCMGetHasClass(CLASS_TYPE_PALADIN, oPC))
+        if (nAlignmentGE == ALIGNMENT_GOOD &&
+                (gsCMGetHasClass(CLASS_TYPE_CLERIC, oPC) ||
+                gsCMGetHasClass(CLASS_TYPE_PALADIN, oPC)))
          {
            SetLocalInt(oHide, sTag, 1);
            return TRUE;
@@ -141,9 +136,7 @@ int _gsLAGetCanSpeakLanguage(int nLanguage, object oPC, object oHide, string sTa
         if (((FindSubString(sSubRace, "Elf") >= 0) ||
                nRace == RACIAL_TYPE_ELF ||
                nRace == RACIAL_TYPE_HALFELF) &&
-               nSubRace != GS_SU_ELF_DROW &&
-               nSubRace != GS_SU_SPECIAL_HOBGOBLIN &&
-               nSubRace != GS_SU_DEEP_IMASKARI)
+               nSubRace != GS_SU_SPECIAL_HOBGOBLIN)
          {
            SetLocalInt(oHide, sTag, 1);
            return TRUE;
@@ -159,7 +152,6 @@ int _gsLAGetCanSpeakLanguage(int nLanguage, object oPC, object oHide, string sTa
 
     case GS_LA_LANGUAGE_GNOME:
         if ((FindSubString(sSubRace, "Gnome") >= 0) ||
-               nSubRace == GS_SU_GNOME_DEEP ||
                nRace == RACIAL_TYPE_GNOME)
          {
            SetLocalInt(oHide, sTag, 1);
@@ -181,8 +173,7 @@ int _gsLAGetCanSpeakLanguage(int nLanguage, object oPC, object oHide, string sTa
                 (FindSubString(sSubRace, "Halfling") >= 0)) &&
                nSubRace != GS_SU_SPECIAL_FEY &&
                nSubRace != GS_SU_SPECIAL_GOBLIN &&
-               nSubRace != GS_SU_SPECIAL_KOBOLD &&
-               nSubRace != GS_SU_SPECIAL_IMP)
+               nSubRace != GS_SU_SPECIAL_KOBOLD)
          {
            SetLocalInt(oHide, sTag, 1);
            return TRUE;
@@ -192,10 +183,6 @@ int _gsLAGetCanSpeakLanguage(int nLanguage, object oPC, object oHide, string sTa
     case GS_LA_LANGUAGE_INFERNAL:
         if ((miWAGetIsWarlock(oPC) == PACT_INFERNAL) ||
             (nSubRace == GS_SU_SPECIAL_RAKSHASA) ||
-            (nSubRace == GS_SU_SPECIAL_IMP) ||
-            (nSubRace == GS_SU_SPECIAL_CAMBION) ||
-            (nSubRace == GS_SU_PLANETOUCHED_TIEFLING &&
-             nAlignmentLC == ALIGNMENT_LAWFUL) ||
             (nAlignmentGE == ALIGNMENT_EVIL &&
              nAlignmentLC == ALIGNMENT_LAWFUL &&
              (gsCMGetHasClass(CLASS_TYPE_CLERIC, oPC) ||
@@ -209,7 +196,6 @@ int _gsLAGetCanSpeakLanguage(int nLanguage, object oPC, object oHide, string sTa
     case GS_LA_LANGUAGE_ORC:
         if (( (FindSubString(sSubRace, "Half-Orc") >= 0) ||
                 nRace == RACIAL_TYPE_HALFORC) &&
-                nSubRace != GS_SU_HALFORC_GNOLL &&
                 nSubRace != GS_SU_SPECIAL_OGRE)
          {
            SetLocalInt(oHide, sTag, 1);
@@ -234,33 +220,11 @@ int _gsLAGetCanSpeakLanguage(int nLanguage, object oPC, object oHide, string sTa
          break;
 
     case GS_LA_LANGUAGE_UNDERCOMMON:
-        if (nSubRace == GS_SU_DWARF_GRAY ||
-            nSubRace == GS_SU_ELF_DROW ||
-            nSubRace == GS_SU_GNOME_DEEP ||
-            nSubRace == GS_SU_SPECIAL_GOBLIN ||
-            nSubRace == GS_SU_HALFORC_OROG ||
-            nSubRace == GS_SU_SPECIAL_BAATEZU ||
-            nSubRace == GS_SU_SPECIAL_RAKSHASA ||
-            nSubRace == GS_SU_SPECIAL_DRAGON ||
-            nSubRace == GS_SU_SPECIAL_VAMPIRE ||
-            nSubRace == GS_SU_FR_OROG ||
-            nSubRace == GS_SU_SPECIAL_KOBOLD ||
-            nSubRace == GS_SU_SPECIAL_OGRE ||
-            nSubRace == GS_SU_SPECIAL_IMP ||
-            nSubRace == GS_SU_SPECIAL_HOBGOBLIN ||
-            nSubRace == GS_SU_HALFORC_GNOLL ||
-            nSubRace == GS_SU_DEEP_IMASKARI)
-         {
-           SetLocalInt(oHide, sTag, 1);
-           return TRUE;
-         }
+	    return FALSE;
          break;
 
     case GS_LA_LANGUAGE_XANALRESS:
-        if (nSubRace == GS_SU_ELF_DROW) {
-           SetLocalInt(oHide, sTag, 1);
-           return TRUE;
-         }
+	    return FALSE;
          break;
 
     case GS_LA_LANGUAGE_GIANT:

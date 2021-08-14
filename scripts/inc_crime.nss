@@ -40,8 +40,9 @@ const int NATION_SHADOW            = 5;
 const int NATION_VYVIAN            = 6;
 const int NATION_ELF               = 7;
 const int NATION_AIREVORN          = 8;
+const int NATION_DUNKHAZAK         = 9;
 
-const int NUM_NATIONS              = 9;
+const int NUM_NATIONS              = 10;
 
 /* Tags for nation wanted tokens are root + nation number. */
 
@@ -93,7 +94,11 @@ const int FACTION_AIREVORN_COMMONER    = 27;
 const int FACTION_AIREVORN_DEFENDER    = 28;
 const int FACTION_AIREVORN_MERCS       = 29;
 
-const int NUM_FACTIONS                 = 30;
+const int FACTION_DUNKHAZAK_COMMONER   = 30;
+const int FACTION_DUNKHAZAK_DEFENDER   = 31;
+const int FACTION_DUNKHAZAK_MERCS      = 32;
+
+const int NUM_FACTIONS                 = 32;
 
 /* Bounty values for crimes. */
 
@@ -393,6 +398,12 @@ int CheckFactionNation(object oNPC, int nCountMercenaries = FALSE)
 	   nNation = NATION_AIREVORN;
 	   break;
 	 }
+	 case FACTION_DUNKHAZAK_COMMONER:
+	 case FACTION_DUNKHAZAK_DEFENDER:
+	 {
+	   nNation = NATION_DUNKHAZAK;
+	   break;
+	 }
      default:
      {
        nNation = NATION_INVALID;
@@ -439,6 +450,11 @@ int CheckFactionNation(object oNPC, int nCountMercenaries = FALSE)
 	    nNation = NATION_AIREVORN;
 		break;
 	  }
+	  case FACTION_DUNKHAZAK_MERCS:
+	  {
+	    nNation = NATION_DUNKHAZAK;
+		break;
+	  }
     }
   }
 
@@ -463,6 +479,7 @@ int GetIsDefender(object oNPC)
 	case FACTION_VYVIAN_DEFENDER:
 	case FACTION_ELF_DEFENDER:
 	case FACTION_AIREVORN_DEFENDER:
+	case FACTION_DUNKHAZAK_DEFENDER:
       Trace(BOUNTY, "GetIsDefender returning 1");
       return 1;
   }
@@ -580,6 +597,14 @@ void miCRResetRep(object oPC)
     oNPC        = GetObjectByTag("factionexample27");
     AdjustReputation(oPC, oNPC, 50-GetFactionAverageReputation(oNPC, oPC));
     oNPC        = GetObjectByTag("factionexample28");
+    AdjustReputation(oPC, oNPC, 50-GetFactionAverageReputation(oNPC, oPC));
+    oNPC        = GetObjectByTag("factionexample29");
+    AdjustReputation(oPC, oNPC, 50-GetFactionAverageReputation(oNPC, oPC));
+    oNPC        = GetObjectByTag("factionexample30");
+    AdjustReputation(oPC, oNPC, 50-GetFactionAverageReputation(oNPC, oPC));
+    oNPC        = GetObjectByTag("factionexample31");
+    AdjustReputation(oPC, oNPC, 50-GetFactionAverageReputation(oNPC, oPC));
+    oNPC        = GetObjectByTag("factionexample32");
     AdjustReputation(oPC, oNPC, 50-GetFactionAverageReputation(oNPC, oPC));
 	
 	// and the Infiltrators

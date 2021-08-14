@@ -51,13 +51,8 @@ void main()
                 "Sorry, your race is currently not allowed to take that class.",
                 oPC,
                 FALSE);
+		return;
 	}
-	
-	// Effective level.
-	int nFLLevel = GetLocalInt(oHide, "FL_LEVEL");
-	if (!nFLLevel) nFLLevel = GetHitDice(oPC);
-	else         nFLLevel += 1;
-	SetLocalInt(oHide, "FL_LEVEL", nFLLevel);
 	
     //required level
     for (nNth = 1; !bStaticLevel && nNth <= 3; nNth++)
@@ -383,4 +378,11 @@ void main()
             GS_T_16777325,
             GetName(oPC),
             IntToString(nLevel)));
+			
+	
+	// Effective level.
+	int nFLLevel = GetLocalInt(oHide, "FL_LEVEL");
+	if (!nFLLevel) nFLLevel = GetHitDice(oPC);
+	else         nFLLevel += 1;
+	SetLocalInt(oHide, "FL_LEVEL", nFLLevel);
 }

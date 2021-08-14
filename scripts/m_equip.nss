@@ -277,25 +277,6 @@ void main()
             }
         }
 
-        //::  Imps can only use Tiny Weapons (Kukri, Dagger, Dart, Shuriken)
-        //::  Polymorph is unaffected by this
-        if (nSubRace == GS_SU_SPECIAL_IMP) {
-            int bIsPolymorphed  = GetHasEffect(EFFECT_TYPE_POLYMORPH, oEquippedBy);
-            int nItemType       = GetBaseItemType(oEquipped);
-            int bTinyWeapon     = ( nItemType == BASE_ITEM_KUKRI ||
-                                    nItemType == BASE_ITEM_DAGGER ||
-                                    nItemType == BASE_ITEM_SHURIKEN ||
-                                    nItemType == BASE_ITEM_DART);
-            int bIsWeapon = (GetMeleeWeapon(oEquipped) || GetWeaponRanged(oEquipped));
-
-            if (!bIsPolymorphed && bIsWeapon && !bTinyWeapon) {
-                SendMessageToPC(oEquippedBy, "Imps are restricted to Tiny Weapons only (Kukri, Dagger, Dart, Shuriken).");
-                ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectCutsceneParalyze(), oEquippedBy, 0.75);
-                DelayCommand(0.5, AssignCommand(oEquippedBy, gsUnequipItem(oEquipped)));
-            }
-        }
-
-
         //Only check if right or left hand is equipped
         if(oEquipped == GetItemInSlot(INVENTORY_SLOT_RIGHTHAND, oEquippedBy) || oEquipped == GetItemInSlot(INVENTORY_SLOT_LEFTHAND, oEquippedBy))
             DoTwoHandedBonusCheck(oEquippedBy);

@@ -4,6 +4,7 @@
 #include "inc_subrace"
 #include "inc_disguise"
 #include "inc_reputation"
+#include "inc_shapechanger"
 #include "zzdlg_lists_inc"
 
 void gsPlayVoiceChat()
@@ -114,9 +115,20 @@ void main()
     }
 	
 	// Elf/human(/halfling) emnity.
-	if ( ((GetRacialType(OBJECT_SELF) == RACIAL_TYPE_HUMAN || GetRacialType(OBJECT_SELF) == RACIAL_TYPE_HALFLING) && !GetIsObjectValid(GetItemPossessedBy(OBJECT_SELF, "elf_safe_passage")) && GetRacialType(oPerceived) == RACIAL_TYPE_ELF )
+	int bAppearsHostileToElves = ( 
+		(GetRacialType(oPerceived) == RACIAL_TYPE_HALFLING || 
+		 GetRacialType(oPerceived) == RACIAL_TYPE_HUMAN || 
+		 (gsSUGetSubRaceByName(GetSubRace(oPerceived)) == GS_SU_SHAPECHANGER && GetLocalInt(gsPCGetCreatureHide(oPerceived), VAR_CURRENT_FORM) == 1)) &&
+		!GetIsObjectValid(GetItemPossessedBy(oPerceived, "elf_safe_passage")));
+	
+	int bAppearsHostileToHumansHin = (
+	    (GetRacialType(oPerceived) == RACIAL_TYPE_ELF ||
+		(gsSUGetSubRaceByName(GetSubRace(oPerceived)) == GS_SU_SHAPECHANGER && GetLocalInt(gsPCGetCreatureHide(oPerceived), VAR_CURRENT_FORM) == 1)) &&
+	    !GetIsObjectValid(GetItemPossessedBy(oPerceived, "hum_safe_passage")));
+		
+	if ( ((GetRacialType(OBJECT_SELF) == RACIAL_TYPE_HUMAN || GetRacialType(OBJECT_SELF) == RACIAL_TYPE_HALFLING) && !GetIsObjectValid(GetItemPossessedBy(OBJECT_SELF, "elf_safe_passage")) && bAppearsHostileToHumansHin )
 	     ||
-		 (GetRacialType(OBJECT_SELF) == RACIAL_TYPE_ELF && (GetRacialType(oPerceived) == RACIAL_TYPE_HALFLING || GetRacialType(oPerceived) == RACIAL_TYPE_HUMAN) && !GetIsObjectValid(GetItemPossessedBy(oPerceived, "elf_safe_passage"))))
+		 (GetRacialType(OBJECT_SELF) == RACIAL_TYPE_ELF && bAppearsHostileToElves))
 	{
 	    object oPartyMember = GetFirstFactionMember(oPerceived, TRUE);
 		int bHostile = TRUE;
@@ -134,7 +146,7 @@ void main()
 		
 		if (bHostile)
 		{
-			SetIsTemporaryEnemy(oPerceived);		  
+			SetIsTemporaryEnemy(oPerceived, OBJECT_SELF, TRUE, 300.0f);		  
 		}
 	}
 
@@ -180,21 +192,6 @@ void main()
 
       switch (nSubRace)
       {
-        case GS_SU_PLANETOUCHED_AASIMAR:
-        case GS_SU_PLANETOUCHED_GENASI_AIR:
-        case GS_SU_PLANETOUCHED_GENASI_EARTH:
-        case GS_SU_PLANETOUCHED_GENASI_FIRE:
-        case GS_SU_PLANETOUCHED_GENASI_WATER:
-        case GS_SU_PLANETOUCHED_TIEFLING:
-          if (GetSkillRank(SKILL_LORE, oNPC) >= 10)
-          {
-            sRace = gsSUGetNameBySubRace(nSubRace);
-          }
-          else
-          {
-            sRace = gsSUGetRaceName(GetRacialType(oPerceived));
-          }
-          break;
         case GS_SU_NONE:
           sRace = gsSUGetRaceName(GetRacialType(oPerceived));
           break;

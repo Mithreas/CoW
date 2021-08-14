@@ -59,8 +59,7 @@ void main()
 
         while (GetIsObjectValid(oCreature))
         {
-            if (gsSUGetSubRaceByName(GetSubRace(oCreature)) != GS_SU_ELF_DROW &&
-                GetRacialType(oCreature) == RACIAL_TYPE_ELF ) return;
+            if (GetRacialType(oCreature) == RACIAL_TYPE_ELF ) return;
             oCreature = GetNextFactionMember(oObject);
         }
 

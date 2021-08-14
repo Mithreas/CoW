@@ -1650,20 +1650,10 @@ int gsCRGetRacialCraftingBonus(object oPC, int nSkill)
   switch (GetRacialType(oPC))
   {
     case RACIAL_TYPE_DWARF:
-        if(gsSUGetSubRaceByName(GetSubRace(oPC)) == GS_SU_DWARF_WILD)
-            return ((nSkill == GS_CR_SKILL_COOK) ? 1 : 0);
-        else
             return ((nSkill == GS_CR_SKILL_FORGE) ? 1 : 0);
     case RACIAL_TYPE_ELF:
-        if (gsSUGetSubRaceByName(GetSubRace(oPC)) == GS_SU_ELF_DROW)
-        {
-          return ((nSkill == GS_CR_SKILL_SEW) ? 1 : 0);
-        }
-        else
-        {
           if (GetLocalInt(GetModule(), "STATIC_LEVEL")) return ((nSkill == GS_CR_SKILL_CRAFT_ART) ? 1 : 0);
           else return ((nSkill == GS_CR_SKILL_CARPENTER) ? 1 : 0);
-        }
     case RACIAL_TYPE_GNOME:
         return ((nSkill == GS_CR_SKILL_MELD) ? 1 : 0);
     case RACIAL_TYPE_HALFLING:
@@ -2126,7 +2116,7 @@ int mdCRMeetsRaceRequirements(struct gsCRRecipe stRecipe, object oSpeaker)
     if(GetIsDM(oSpeaker))  //Dm's always pass
         return TRUE;
     int nSubrace = gsSUGetSubRaceByName(GetSubRace(oSpeaker));
-    int nUndSR = gsSUGetIsUnderdarker(nSubrace);
+    int nUndSR = FALSE;
     if((stRecipe.nSettings & SETTING_NOUND) && nUndSR)  //no underdark races
         return FALSE;
 

@@ -57,6 +57,7 @@ void main()
   acInitialise("trixiveria", "The Fairy Queen", "Discovered a Fairy Queen.  You can get this achievement multiple times.");
   acInitialise("seravithia", "Mother of Magic", "Discovered Seravithia's aerie.");
   acInitialise("death", "The Gates of Death", "Passed through the gates of Death.");
+  acInitialise("lostlibrary", "Lost Library", "Discovered a lost library, hidden away.");
     
   // Misc achievements
   acInitialise("miscast", "Miscast a Spell", "Had a spell go wrong due to a wild magic zone.");

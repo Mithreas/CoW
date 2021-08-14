@@ -33,9 +33,7 @@ void main()
 
     if (GetIsDM(oSpeaker)) nLevel = 40;
 
-    if (nSubRace == GS_SU_GNOME_FOREST || nSubRace == GS_SU_DWARF_WILD || nSubRace == GS_SU_ELF_WILD || nSubRace == GS_SU_ELF_WOOD) nLevel = GetHitDice(oSpeaker);
-
-    if (!nLevel) SendMessageToPC(oSpeaker, "<cþ  >Only Forest Gnomes, Wild Dwarves, Wild & Wood Elves, Rangers and Harper Scouts can track.");
+    if (!nLevel) SendMessageToPC(oSpeaker, "<cþ  >Only Rangers and Harper Scouts can track.");
     else
     {
       nLevel = nLevel / 3;

@@ -1,6 +1,7 @@
 #include "inc_achievements"
 #include "inc_event"
 #include "inc_behaviors"
+#include "inc_spellmatrix"
 #include "inc_state"
 void main()
 {
@@ -44,20 +45,28 @@ void main()
 		}		
 		
 		// PCK_GEM3 - drain stamina
-		if (GetIsObjectValid(GetObjectByTag("PCK_GEM3")))
-		{
+		// General ability - drain stats.
+		// (Implemented together to avoid double looping). 
+		int bGem3 = GetIsObjectValid(GetObjectByTag("PCK_GEM3"));
+		effect eDrain = EffectAbilityDecrease(d6()-1, 1);
+		eDrain = EffectLinkEffects(eDrain, EffectAbilityDecrease(d6()-1, 1));
+		
 		  int nStamina = 0;
 		  int nNth = 1;
 		  object oPC = GetNearestCreature(CREATURE_TYPE_PLAYER_CHAR, PLAYER_CHAR_IS_PC, OBJECT_SELF, nNth);
 		  while (GetIsObjectValid(oPC) && GetDistanceBetween(oPC, OBJECT_SELF) <= 25.0f)
 		  {
-		    if (!GetIsDM(oPC))
+		    // Stamina drain
+		    if (bGem3 && !GetIsDM(oPC))
 			{
 			  FloatingTextStringOnCreature("Stamina drained!", oPC, FALSE);
 			  gsSTDoCasterDamage(oPC, 5);
-		      ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_NEGATIVE_ENERGY), oPC);
 			  nStamina += 5;
 			}
+			
+			// Stat drain - 10 min reduction to 2 random stats (could be the same one twice). 
+			ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eDrain, oPC, 600.0f);
+		    ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_NEGATIVE_ENERGY), oPC);
 			
 			nNth++;
 			oPC = GetNearestCreature(CREATURE_TYPE_PLAYER_CHAR, PLAYER_CHAR_IS_PC, OBJECT_SELF, nNth);
@@ -68,7 +77,7 @@ void main()
 		    ApplyEffectToObject(DURATION_TYPE_PERMANENT, EffectTemporaryHitpoints(nStamina), OBJECT_SELF);
 		    ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_HEALING_G), OBJECT_SELF);
 		  }			  
-		}
+		
 		
 		// PCK_GEM4 - damage reduction effect
 		if (GetIsObjectValid(GetObjectByTag("PCK_GEM4")))
@@ -88,6 +97,9 @@ void main()
 		}
 				
 		ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectDamageImmunityIncrease(DAMAGE_TYPE_NEGATIVE, 200), OBJECT_SELF, 6.0f);
+
+		// Regen a random spell slot level 4+. 
+		ar_RestoreSpell(OBJECT_SELF, Random(6)+4, CLASS_TYPE_WIZARD);
 
         break;
     }

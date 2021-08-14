@@ -145,13 +145,6 @@ void AddBondedProperties(object oPC, object oItem, int nTimeCount,int nBond, int
                 string sBondTypeCntr = IntToString(nBondType)+"_cntr";
                 SetLocalInt(oHide, sBondTypeCntr, 0);
 				
-				//add properties
-				if (nSubRace == GS_SU_HALFORC_OROG)
-				{
-					AddItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyACBonus(3) ,oItem);
-					AddItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyAbilityBonus(IP_CONST_ABILITY_STR, 2) ,oItem);
-					AddItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyDamageImmunity(IP_CONST_DAMAGETYPE_SLASHING, IP_CONST_DAMAGEIMMUNITY_10_PERCENT) ,oItem);
-				}
             }
             break;
 		}
@@ -167,15 +160,6 @@ void AddBondedProperties(object oPC, object oItem, int nTimeCount,int nBond, int
                 string sBondTypeCntr = IntToString(nBondType)+"_cntr";
                 SetLocalInt(oHide, sBondTypeCntr, 0);
 
-                //add properties
-				if (nSubRace == GS_SU_HALFORC_OROG)
-				{
-					SendMessageToPC(oPC, "Adding Properties");
-					DelayCommand(0.1,AddItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyEnhancementBonus(4) ,oItem));
-					DelayCommand(0.01,AddItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyKeen() ,oItem));
-					DelayCommand(0.1,AddItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyDamageBonus(IP_CONST_DAMAGETYPE_BLUDGEONING,IP_CONST_DAMAGEBONUS_4) ,oItem));	
-					SendMessageToPC(oPC, "Properties Added");
-				}
             }
             break;
 		}
@@ -191,13 +175,6 @@ void AddBondedProperties(object oPC, object oItem, int nTimeCount,int nBond, int
                 string sBondTypeCntr = IntToString(nBondType)+"_cntr";
                 SetLocalInt(oHide, sBondTypeCntr, 0);
 
-                //add properties
-				if (nSubRace == GS_SU_HALFORC_OROG)
-				{
-					AddItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyEnhancementBonus(4) ,oItem);
-					AddItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyKeen() ,oItem);
-					AddItemProperty(DURATION_TYPE_PERMANENT, ItemPropertyDamageBonus(IP_CONST_DAMAGETYPE_BLUDGEONING,IP_CONST_DAMAGEBONUS_2) ,oItem);
-				}
             }
             break;
 		}

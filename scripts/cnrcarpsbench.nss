@@ -340,7 +340,6 @@ void main()
   
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuBows3, "Tansheron's Bow (Shortbow)", "wbwmsh006", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "wbwsh004", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrthreadmit", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "dust_emer", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "dust_garn", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 18);
@@ -348,7 +347,6 @@ void main()
   
   sKeyToRecipe = CnrRecipeCreateRecipe(sMenuBows3, "Bow of Winds (Longbow)", "bowofwinds", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "wbwln004", 1);
-  CnrRecipeAddComponent(sKeyToRecipe, "cnrthreadmit", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "dust_diam", 1);
   CnrRecipeAddComponent(sKeyToRecipe, "cow_gememer", 1);
   CnrRecipeSetRecipeLevel(sKeyToRecipe, 20);

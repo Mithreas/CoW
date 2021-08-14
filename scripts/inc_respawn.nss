@@ -4,7 +4,6 @@
 
 #include "inc_location"
 #include "inc_pc"
-#include "inc_subrace"
 #include "inc_time"
 #include "inc_effect"
 
@@ -56,11 +55,6 @@ location gsREGetRespawnLocation(object oPC = OBJECT_SELF)
         location lLocation = GetLocalLocation(oPC, "GS_RESPAWN");
         if (GetIsObjectValid(GetAreaFromLocation(lLocation))) return lLocation;
 
-        if (gsSUGetIsUnderdarker(gsSUGetSubRaceByName(GetSubRace(oPC))))
-        {
-          object oObject     = GetObjectByTag("GS_TARGET_RESPAWN_UD");
-          if (GetIsObjectValid(oObject))                        return GetLocation(oObject);
-        }
         object oObject     = GetObjectByTag("GS_TARGET_RESPAWN");
         if (GetIsObjectValid(oObject))                        return GetLocation(oObject);
 

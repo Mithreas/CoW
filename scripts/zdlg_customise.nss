@@ -12,6 +12,8 @@
 const string MAIN_MENU   = "cust_main_options";
 const string VFX_EARS    = "cust_vfx_ears";
 const string HEADS       = "cust_heads";
+const string TAILS       = "cust_tails";
+const string FORMS       = "cust_forms";
 
 // VFX utility functions.  The numbers are indices into (Anemoi's custom) visualeffects.2da. 
 int _GetNextVFX()
@@ -85,11 +87,16 @@ int _GetPrevVFX()
 void Init()
 {
   // Main menu options.
+  DeleteList(MAIN_MENU);
   if (GetElementCount(MAIN_MENU) == 0)
   {
     AddStringElement("VFX Ears", MAIN_MENU);
     AddStringElement("Head",  MAIN_MENU);	
+	AddStringElement("Tail", MAIN_MENU);
+	AddStringElement("Animal Form", MAIN_MENU);
     AddStringElement("Toggle beast legs", MAIN_MENU);
+    AddStringElement("Toggle beast claws", MAIN_MENU);
+	AddStringElement("Toggle phenotype", MAIN_MENU);
   }
 
   if (GetElementCount(VFX_EARS) == 0)
@@ -107,6 +114,45 @@ void Init()
     AddStringElement("Previous", HEADS);
 	AddStringElement("Back to menu", HEADS);
   }  
+  
+  if (GetElementCount(TAILS) == 0)
+  {
+    AddStringElement("Whip", TAILS);
+    AddStringElement("Cat", TAILS);
+    AddStringElement("Fox (Palette)", TAILS);
+    AddStringElement("Jaguar", TAILS);
+    AddStringElement("Leopard", TAILS);
+    AddStringElement("Snow Leopard", TAILS);
+    AddStringElement("Tiger", TAILS);
+    AddStringElement("White Tiger", TAILS);
+    AddStringElement("Wolf", TAILS);
+	AddStringElement("No tail", TAILS);
+	AddStringElement("Back to menu", TAILS);
+  }
+  
+  if (GetElementCount(FORMS) == 0)
+  {
+    AddStringElement("Cougar", FORMS);
+    AddStringElement("Crag Cat", FORMS);
+    AddStringElement("Tiger", FORMS);
+    AddStringElement("Jaguar", FORMS);
+    AddStringElement("Leopard", FORMS);
+    AddStringElement("Lioness", FORMS);
+    AddStringElement("Panther", FORMS);
+    AddStringElement("Blink Dog", FORMS);
+    AddStringElement("Dire Wolf", FORMS);
+    AddStringElement("Dog", FORMS);
+    AddStringElement("Fenhound", FORMS);
+    AddStringElement("Shadow Mastiff", FORMS);
+    AddStringElement("Wolf", FORMS);
+    AddStringElement("Winter Wolf", FORMS);
+    AddStringElement("Worg", FORMS);
+    AddStringElement("Fox", FORMS);
+    AddStringElement("Fennec", FORMS);
+    AddStringElement("Lion", FORMS);
+    AddStringElement("Snow Leopard", FORMS);
+	AddStringElement("Back to menu", FORMS);
+  }
 }
 
 void PageInit()
@@ -135,6 +181,16 @@ void PageInit()
   {
     SetDlgPrompt("Cycle through possible head appearances for your hybrid form.");
 	SetDlgResponseList(HEADS);
+  }
+  else if (sPage == TAILS)
+  {
+    SetDlgPrompt("Pick the tail to use for your hybrid form.");
+	SetDlgResponseList(TAILS);
+  }
+  else if (sPage == FORMS)
+  {
+    SetDlgPrompt("Pick the animal form you wish to use.");
+	SetDlgResponseList(FORMS);
   }
   else
   {
@@ -166,7 +222,13 @@ void HandleSelection()
 	  case 1:
 	    SetDlgPageString(HEADS);
         break;	
-	  case 2: // Toggle beast legs
+	  case 2: 
+	    SetDlgPageString(TAILS);
+		break;
+	  case 3:
+	    SetDlgPageString(FORMS);
+		break;
+	  case 4: // Toggle beast legs
 	  {
 		if (GetCreatureBodyPart(CREATURE_PART_LEFT_SHIN, oPC) == 213)
 		{
@@ -186,6 +248,37 @@ void HandleSelection()
 		}
 	    break;
 	  }
+	  case 5: // Toggle beast claws.
+	    if (GetCreatureBodyPart(CREATURE_PART_LEFT_HAND, oPC) == 216)
+		{
+		  DelayCommand(0.1f, SetCreatureBodyPart(CREATURE_PART_LEFT_HAND, 1, oPC));
+		  DelayCommand(0.1f, SetCreatureBodyPart(CREATURE_PART_RIGHT_HAND, 1, oPC));
+		  SetLocalInt(oHide, VAR_HYBRID_CLAWS, TRUE);
+		}
+		else
+		{
+		  DelayCommand(0.1f, SetCreatureBodyPart(CREATURE_PART_LEFT_HAND, 216, oPC));
+		  DelayCommand(0.1f, SetCreatureBodyPart(CREATURE_PART_RIGHT_HAND, 216, oPC));
+		  SetLocalInt(oHide, VAR_HYBRID_CLAWS, FALSE);
+		}
+		break;
+	  case 6: // Toggle phenotype
+	    if (GetAppearanceType(oPC) == 3) 
+		{
+		  SetCreatureAppearanceType(oPC, 5);
+		  DelayCommand(0.2f, _VisualTransformVoid(oPC, OBJECT_VISUAL_TRANSFORM_SCALE, GetObjectVisualTransform(oPC, OBJECT_VISUAL_TRANSFORM_SCALE) - 0.3f));
+		}
+		else 
+		{
+		  SetCreatureAppearanceType(oPC, 3);
+		  float fScale = GetObjectVisualTransform(oPC, OBJECT_VISUAL_TRANSFORM_SCALE);
+		  float fTrueScale = GetLocalFloat(oHide, "AR_SCALE");
+		  if (fTrueScale == 0.0f || fTrueScale > 1.3f) SetLocalFloat(oHide, "AR_SCALE", fScale);
+		  DelayCommand(0.2f, _VisualTransformVoid(oPC, OBJECT_VISUAL_TRANSFORM_SCALE, fScale + 0.3f));
+		  SetCreatureSize(oPC, CREATURE_SIZE_MEDIUM);
+		}
+		SetLocalInt(oHide, VAR_HYBRID_FORM, GetAppearanceType(oPC));
+		break;
 	}  
   }
   else if (sPage == VFX_EARS)
@@ -250,6 +343,113 @@ void HandleSelection()
         break;		
 	}
   }  
+  else if (sPage == TAILS)
+  {
+    switch (selection)
+	{
+		case 0:
+		  SetCreatureTailType(622);
+		  break;
+		case 1:
+		  SetCreatureTailType(625);
+		  break;
+		case 2:
+		  SetCreatureTailType(626);
+		  break;
+		case 3:
+		  SetCreatureTailType(627);
+		  break;
+		case 4:
+		  SetCreatureTailType(628);
+		  break;
+		case 5:
+		  SetCreatureTailType(629);
+		  break;
+		case 6:
+		  SetCreatureTailType(630);
+		  break;
+		case 7:
+		  SetCreatureTailType(631);
+		  break;
+		case 8:
+		  SetCreatureTailType(632);
+		  break;
+		case 9:
+		  SetCreatureTailType(14);
+		  break;
+		case 10:
+		  SetDlgPageString("");
+		  break;
+	}
+	
+    SetLocalInt(oHide, VAR_HYBRID_TAIL, GetCreatureTailType());
+  }
+  else if (sPage == FORMS)
+  {
+    switch (selection)
+	{
+		case 0:
+		  SetLocalInt(oHide, VAR_ANIMAL_FORM, 366);
+		  break;
+		case 1:
+		  SetLocalInt(oHide, VAR_ANIMAL_FORM, 367);
+		  break;
+		case 2:
+		  SetLocalInt(oHide, VAR_ANIMAL_FORM, 368);
+		  break;
+		case 3:
+		  SetLocalInt(oHide, VAR_ANIMAL_FORM, 369);
+		  break;
+		case 4:
+		  SetLocalInt(oHide, VAR_ANIMAL_FORM, 371);
+		  break;
+		case 5:
+		  SetLocalInt(oHide, VAR_ANIMAL_FORM, 372);
+		  break;
+		case 6:
+		  SetLocalInt(oHide, VAR_ANIMAL_FORM, 373);
+		  break;
+		case 7:
+		  SetLocalInt(oHide, VAR_ANIMAL_FORM, 386);
+		  break;
+		case 8:
+		  SetLocalInt(oHide, VAR_ANIMAL_FORM, 387);
+		  break;
+		case 9:
+		  SetLocalInt(oHide, VAR_ANIMAL_FORM, 388);
+		  break;
+		case 10:
+		  SetLocalInt(oHide, VAR_ANIMAL_FORM, 389);
+		  break;
+		case 11:
+		  SetLocalInt(oHide, VAR_ANIMAL_FORM, 391);
+		  break;
+		case 12:
+		  SetLocalInt(oHide, VAR_ANIMAL_FORM, 392);
+		  break;
+		case 13:
+		  SetLocalInt(oHide, VAR_ANIMAL_FORM, 393);
+		  break;
+		case 14:
+		  SetLocalInt(oHide, VAR_ANIMAL_FORM, 394);
+		  break;
+		case 15:
+		  SetLocalInt(oHide, VAR_ANIMAL_FORM, 491);
+		  break;
+		case 16:
+		  SetLocalInt(oHide, VAR_ANIMAL_FORM, 492);
+		  break;
+		case 17:
+		  SetLocalInt(oHide, VAR_ANIMAL_FORM, 493);
+		  break;
+		case 18:
+		  SetLocalInt(oHide, VAR_ANIMAL_FORM, 494);
+		  break;
+		case 19:
+		  SetDlgPageString("");
+		  break;
+	}
+  }
 }
 
 void main()

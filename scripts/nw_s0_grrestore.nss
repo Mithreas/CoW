@@ -19,6 +19,7 @@
 #include "x2_inc_spellhook"
 #include "inc_respawn"
 #include "inc_statuseffect"
+#include "inc_subrace"
 #include "inc_timelock"
 #include "inc_effecttags"
 #include "inc_effect"

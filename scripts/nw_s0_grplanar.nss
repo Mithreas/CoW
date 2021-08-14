@@ -68,7 +68,7 @@ void main()
             if ( GetIsPC(oTarget) ) {
                 string sSubRace = GetSubRace(oTarget);
                 int nSubRace    = gsSUGetSubRaceByName(sSubRace);
-                bPlayerOutsider = nSubRace == GS_SU_SPECIAL_IMP || nSubRace == GS_SU_SPECIAL_RAKSHASA;
+                bPlayerOutsider = (nSubRace == GS_SU_SPECIAL_RAKSHASA);
             }
 
             if( nRacial == RACIAL_TYPE_OUTSIDER || bPlayerOutsider )

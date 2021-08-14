@@ -4,12 +4,14 @@
 #include "inc_examine"
 #include "inc_bloodstains"
 #include "inc_craft"
+#include "x0_i0_secret"
 
 const string HELP = "-investigate lets you study a bloodstain or fixture remains and work out details of the encounter that caused it.  A few areas of the module can also give you additional information from using this command.  It keys off Search and Lore.";
 const int INVEST_BLOOD = 1;
 const int INVEST_SECRET = 2;
 const int INVEST_REMAINS = 3;
 const int INVEST_NPC = 4;
+const int INVEST_TRIGGER = 5;
 
 void main()
 {
@@ -25,6 +27,8 @@ void main()
     object oNPC = GetNearestCreature(CREATURE_TYPE_PLAYER_CHAR, PLAYER_CHAR_NOT_PC, oSpeaker);
     object oInvestigation = GetNearestObjectByTag("Investigation", oSpeaker);
     object oRemains = GetNearestObjectByTag("GS_FX_gvd_it_remains", oSpeaker);
+	object oTrigger = GetNearestObject(OBJECT_TYPE_TRIGGER);
+	if (GetEventScript(oTrigger, EVENT_SCRIPT_TRIGGER_ON_OBJECT_ENTER) != "ent_secretdoor") oTrigger = OBJECT_INVALID;
 
     // determine which investigate target is closest to the PC first, so people have more control over what to investigate
     int iClosest = 0;
@@ -55,6 +59,13 @@ void main()
         fClosestDistance = fDistance;
       }
     }
+	if (GetIsObjectValid(oTrigger))
+	{      fDistance = GetDistanceBetween(oTrigger, oSpeaker);
+      if (fDistance < fClosestDistance) {
+        iClosest = INVEST_TRIGGER;
+        fClosestDistance = fDistance;
+      }
+	}
 
     // not within 5 feet of something?
     if (fClosestDistance > 5.0f) {
@@ -239,6 +250,24 @@ void main()
         DelayCommand(3.0, AssignCommand(oNPC, ActionSpeakString(sNPCText)));
       }
     }
+	else if (iClosest = INVEST_TRIGGER)
+	{
+		if (GetIsSecretItemRevealed(oTrigger)) {return;}
+		string sSecret = GetLocalString(oTrigger, "RESREF");
+		if (sSecret == "") sSecret = "x0_sec_door2";
+
+		if ( DetectSecretItem(oSpeaker)) 
+		{
+			// It's a PC, reveal the item
+			AssignCommand(oSpeaker, PlayVoiceChat(VOICE_CHAT_LOOKHERE));
+			RevealSecretItem(sSecret, oTrigger);
+		}
+		else
+		{
+		  // Pretend we found nothing.
+		  SendMessageToPC(oSpeaker, "No nearby bloodstain or remains to investigate, no NPC to question, and no nearby point of interest.");
+		}
+	}
     else
     {
       SendMessageToPC(oSpeaker, "No nearby bloodstain or remains to investigate, no NPC to question, and no nearby point of interest.");

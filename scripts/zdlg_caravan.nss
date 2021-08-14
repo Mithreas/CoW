@@ -20,6 +20,7 @@
 */
 #include "inc_caravan"
 #include "inc_subrace"
+#include "ar_utils"
 #include "inc_zdlg"
 
 //------------------------------------------------------------------------------
@@ -95,8 +96,7 @@ void PageInit()
 
   if (sPage == "")
   {
-    int nSubrace = gsSUGetSubRaceByName(GetSubRace(oPC));
-    if (gsSUGetIsUnderdarker(nSubrace))
+    if (ar_IsMonsterCharacter(oPC))
     {
       SetDlgPrompt("Argh!  Git ye awa' fram me, ya monster!");
       SetDlgResponseList(DONE);
@@ -167,7 +167,7 @@ void PageInit()
 		
 		if (!miCACanSwim(oPC)) FloatingTextStringOnCreature("Warning - boarding this ship could permanently kill your character!", oPC, FALSE);
 		
-	    if (GetRacialType(oPC) == RACIAL_TYPE_HALFLING && !GetIsObjectValid(GetItemPossessedBy(oPC, "permission_sea")))
+	    if (gsSUGetSubRaceByName(GetSubRace(oPC)) != GS_SU_SHAPECHANGER && GetRacialType(oPC) == RACIAL_TYPE_HALFLING && !GetIsObjectValid(GetItemPossessedBy(oPC, "permission_sea")))
 		{
 		  SpeakString("Sorry, no traveling without a certificate of seaworthiness.  Can't risk you sinking the ship.");
 		  EndDlg();

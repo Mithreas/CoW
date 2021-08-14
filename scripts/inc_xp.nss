@@ -378,7 +378,7 @@ void gsXPGiveExperience(object oCreature, int nAmount, int nFloat = TRUE, int nK
 
     gsPCMemorizeClassData(oCreatureToReward);
 
-    sMessage        += IntToString(nAmount) + " " + GS_T_16777315;
+    sMessage        += IntToString(nAmount) + " XP";
     if (nFloat)       FloatingTextStringOnCreature(sMessage, oCreature, FALSE);
     else              SendMessageToPC(oCreature, sMessage);
 }

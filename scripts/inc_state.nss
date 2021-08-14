@@ -67,7 +67,9 @@ void gsSTSetInitialState(int bReset = FALSE)
 //----------------------------------------------------------------
 void gsSTProcessState()
 {
+    // Skip if we are dead, a zombie, or not fully initialised. 
     if (GetIsDead(OBJECT_SELF) || fbZGetIsZombie(OBJECT_SELF)) return;
+	if (!GetIsObjectValid(GetItemInSlot(INVENTORY_SLOT_CARMOUR, OBJECT_SELF))) return;
 
     string sSubrace = GetSubRace(OBJECT_SELF);
     int nSubrace    = gsSUGetSubRaceByName(sSubrace);

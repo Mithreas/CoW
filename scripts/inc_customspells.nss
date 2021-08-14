@@ -453,7 +453,7 @@ int miSPGetIsPlayerNonHumanoid(object oPC) {
     if ( !GetIsPC(oPC) || GetIsDM(oPC) )    return FALSE;
 
     int nSubRace = gsSUGetSubRaceByName(GetSubRace(oPC));
-    if ( nSubRace == GS_SU_SPECIAL_IMP || nSubRace == GS_SU_SPECIAL_FEY ||
+    if ( nSubRace == GS_SU_SPECIAL_FEY ||
          nSubRace == GS_SU_SPECIAL_DRAGON)
          return TRUE;
 

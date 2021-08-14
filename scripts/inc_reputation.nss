@@ -42,6 +42,7 @@ const int FACTION_SHADOW   = NATION_SHADOW;   // 5
 const int FACTION_WARDENS  = NATION_VYVIAN;   // 6
 const int FACTION_FERNVALE = NATION_ELF;      // 7
 const int FACTION_AIREVORN = NATION_AIREVORN; // 8
+const int FACTION_DUNKHAZAK= NATION_DUNKHAZAK;// 9
 
 struct repRank
 {
@@ -251,6 +252,10 @@ string GetFactionName(int nFaction)
 	  return "Wardens";
 	case FACTION_FERNVALE:
 	  return "Fernvale";
+	case FACTION_AIREVORN:
+	  return "Airevorn";
+	case FACTION_DUNKHAZAK:
+	  return "Dun Khazak";
   }
 
   return "";
@@ -274,6 +279,10 @@ int GetFactionFromName(string sFactionName)
       return FACTION_WARDENS;
   else if (sFactionName == "Fernvale")
       return FACTION_FERNVALE;
+  else if (sFactionName == "Airevorn")
+      return FACTION_AIREVORN;
+  else if (sFactionName == "Dun Khazak")
+      return FACTION_DUNKHAZAK;
 
   return FACTION_GLOBAL;
 }
@@ -344,6 +353,10 @@ void DisplayAllRepScores()
     sMessage += IntToString(GetRepScore(oPC, 6));
     sMessage += ", Fernvale reputation: ";
     sMessage += IntToString(GetRepScore(oPC, 7));
+    sMessage += ", Airevorn reputation: ";
+    sMessage += IntToString(GetRepScore(oPC, 8));
+    sMessage += ", Dun Khazak reputation: ";
+    sMessage += IntToString(GetRepScore(oPC, 9));
 
     SendMessageToPC(oDM, sMessage);
     oPC = GetNextPC();

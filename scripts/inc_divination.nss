@@ -182,6 +182,7 @@ void miDVGivePoints(object oPC, string sElement, float fPoints)
 void miDVSavePoints(object oPC)
 {
   Trace(DIVINATION, "Syncing player scores to database for " + GetName(oPC));
+  
   object oHide = gsPCGetCreatureHide(oPC);
 
   // Check version - migration code. 

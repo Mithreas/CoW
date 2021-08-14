@@ -25,8 +25,7 @@ void BondBladeSingerBlade(object oItem, object oPC);
 void BondBladeSingerBlade(object oItem, object oPC)
 {
     if (miSSGetIsSpellsword(oPC)
-        && GetRacialType(oPC) == RACIAL_TYPE_ELF
-        && gsSUGetSubRaceByName(GetSubRace(oPC)) != GS_SU_ELF_DROW) // && must be elf && not drow
+        && GetRacialType(oPC) == RACIAL_TYPE_ELF)
     {
         bond_item(oItem, oPC, BOND_TAG_BLADESINGER, INVENTORY_SLOT_RIGHTHAND);
     }

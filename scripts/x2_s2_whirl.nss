@@ -3,7 +3,7 @@
   Whirlwind Attack / Improved Whirlwind Attack is used twice in succession on
   NWServer Linux.
 */
-
+#include "inc_bonuses"
 #include "inc_combat2"
 #include "inc_time"
 
@@ -37,7 +37,9 @@ void main()
 
   // Disable parry mode if you're in it. 
   SetActionMode(OBJECT_SELF, ACTION_MODE_PARRY, FALSE);
-  DoWhirlwindAttack(TRUE, bImproved);
+  RemoveParryBonus(OBJECT_SELF);
+  
+  DelayCommand(0.2f, DoWhirlwindAttack(TRUE, bImproved));
   // * make me resume combat
 
 }

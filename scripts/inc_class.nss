@@ -1344,11 +1344,6 @@ void md_SetUpRaceList(string sPage, int nBit, object oHolder = OBJECT_SELF)
 
         for(x=1;x<=HIGHEST_SR;x++)
         {
-            if(x == 15) //genasi not in system
-                x = 19;
-                                                                                                                                  //we don't need two listings of orog
-            while(x == GS_SU_ELF_MOON || x == GS_SU_GNOME_ROCK || x == GS_SU_HALFLING_LIGHTFOOT || x == GS_SU_DWARF_SHIELD || x == GS_SU_FR_OROG)
-                x++;
             _AddBitString(nBit, gsSUGetNameBySubRace(x), sPage, md_ConvertSubraceToBit(x), oHolder);
         }
 
@@ -1359,59 +1354,20 @@ void md_SetUpRaceList(string sPage, int nBit, object oHolder = OBJECT_SELF)
             _AddBitString(nBit, gsSUGetNameBySubRace(x), sPage, md_ConvertSubraceToBit(x), oHolder);
         }
 
-        _AddBitString(nBit, "Group: Underdark Races", sPage, MD_BIT_UNDARK, oHolder);
-        _AddBitString(nBit, "Group: Surface Elves", sPage, MD_BIT_SU_ELF, oHolder);
-        _AddBitString(nBit, "Group: Hin/Halflings", sPage, MD_BIT_SU_HL, oHolder);
-        _AddBitString(nBit, "Group: Earthkin", sPage, MD_BIT_EARTHKIN, oHolder);
-
     }
 }
 
 int md_GetRaceSelection(int selection)
 {
+    // This is horrible and will need to be rewritten if this function is brought back in.
         int nBit;
-        if(selection == 29)
-            nBit = MD_BIT_UNDARK;
-        else if(selection == 30)
-            nBit = MD_BIT_SU_ELF;
-        else if(selection == 31)
-            nBit = MD_BIT_SU_HL;
-        else if(selection == 32)
-            nBit = MD_BIT_EARTHKIN;
-        else if(selection > 6)
-        {
 
-            if(selection > 22)
+            if(selection > HIGHEST_SR)
             {
-                selection += 77;
-                if(selection > 102)
-                    selection+=4;
+                selection += (100 - HIGHEST_SR);
             }
-            else if(selection > 20)
-                selection += 3;
-            else if(selection >= 17)
-                selection += 2;
-            else
-            {
-                selection -= 6;
-
-                if(selection >= GS_SU_HALFLING_LIGHTFOOT-3)
-                    selection += 4;
-                else if(selection >= GS_SU_GNOME_ROCK-2)
-                    selection += 3;
-                else if(selection >= GS_SU_ELF_MOON-1)
-                    selection += 2;
-                else if(selection >= GS_SU_DWARF_SHIELD)
-                    selection++;
-
-
-            }
-
 
             nBit = md_ConvertSubraceToBit(selection);
-        }
-        else
-            nBit = md_ConvertRaceToBit(selection);
 
        return nBit;
 

@@ -7,7 +7,12 @@ void main()
 {
   object oPC = GetPCSpeaker();
 
-  if (isRenerrin(oPC))
+  if (gsSUGetSubRaceByName(GetSubRace(oPC)) == GS_SU_SHAPECHANGER)
+  {
+    JumpAllToLocation(oPC,
+                      GetLocation(GetObjectByTag("spc_start")));    
+  }
+  else if (isRenerrin(oPC))
   {
     JumpAllToLocation(oPC,
                       GetLocation(GetObjectByTag("renerrin_start")));

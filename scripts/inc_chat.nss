@@ -545,8 +545,7 @@ string fbCHCommandList(object oSpeaker)
   {
     int nSubRace = gsSUGetSubRaceByName(GetSubRace(oSpeaker));
     sList += _fbCHPrepareChatCommand("-track",
-      (GetLevelByClass(CLASS_TYPE_HARPER, oSpeaker) || GetLevelByClass(CLASS_TYPE_RANGER, oSpeaker) ||
-      nSubRace == GS_SU_GNOME_FOREST || nSubRace == GS_SU_DWARF_WILD || nSubRace == GS_SU_ELF_WILD || nSubRace == GS_SU_ELF_WOOD) ?
+      (GetLevelByClass(CLASS_TYPE_HARPER, oSpeaker) || GetLevelByClass(CLASS_TYPE_RANGER, oSpeaker)) ?
       STRING_COLOR_GREEN : STRING_COLOR_RED);
   }
   
@@ -1101,55 +1100,23 @@ string fbDoLooksAndGetString(object first, object second)
                 int nFirstRace = GetRacialType(first);
                 int nFirstSubrace = gsSUGetSubRaceByName(GetSubRace(first));
                 int nLore = _CustomLoreCheck(first, FALSE);
+				int nSpot = d20() + nInsight;
 				
                 if(nSubrace == GS_SU_NONE)
                     sRace = gvd_GetRacialTypeName(second);
-                else if(nSubrace == GS_SU_FR_OROG ||
-                    nSubrace == GS_SU_HALFORC_GNOLL ||
-                    nSubrace == GS_SU_HALFORC_OROG ||
+                else if(
                     nSubrace == GS_SU_SPECIAL_FEY ||
                     nSubrace == GS_SU_SPECIAL_HOBGOBLIN ||
                     nSubrace == GS_SU_SPECIAL_GOBLIN ||
-                    nSubrace == GS_SU_SPECIAL_IMP ||
                     nSubrace == GS_SU_SPECIAL_KOBOLD ||
                     nSubrace == GS_SU_SPECIAL_OGRE)
                     sRace = gsSUGetNameBySubRace(nSubrace);
-                else if(((nFirstRace == RACIAL_TYPE_ELF && nFirstSubrace != GS_SU_ELF_DROW) || GetHasFeat(FEAT_FAVORED_ENEMY_ELF, first) && nLore + GetLevelByClass(CLASS_TYPE_RANGER, first) >= 20 ||
-                   nLore >= 20) && (
-                   nSubrace == GS_SU_ELF_MOON ||
-                   nSubrace == GS_SU_ELF_SUN ||
-                   nSubrace == GS_SU_ELF_WILD ||
-                   nSubrace == GS_SU_ELF_WOOD
-                   ))
+				else if (nSubrace == GS_SU_SHAPECHANGER && 
+				           ((GetHasFeat(FEAT_FAVORED_ENEMY_SHAPECHANGER, first) && nLore + GetLevelByClass(CLASS_TYPE_RANGER, first) >= 20) ||
+						    (nFirstSubrace == GS_SU_SHAPECHANGER) ||
+							(nSpot >= 30 && nLore >= 30)))
                    sRace = gsSUGetNameBySubRace(nSubrace);
-                else if((nFirstRace == RACIAL_TYPE_ELF && nLore >= 20 || (GetHasFeat(FEAT_FAVORED_ENEMY_ELF, first) && nLore + GetLevelByClass(CLASS_TYPE_RANGER, first) >= 20)) &&
-                  nSubrace == GS_SU_ELF_DROW)
-                    sRace = gsSUGetNameBySubRace(nSubrace);
-                else if(nSubrace == GS_SU_ELF_DROW && nSubrace == nFirstSubrace)
-                    sRace = gsSUGetNameBySubRace(nSubrace);
-                else if(((nFirstRace == RACIAL_TYPE_DWARF && nFirstSubrace != GS_SU_DWARF_GRAY) ||  GetHasFeat(FEAT_FAVORED_ENEMY_DWARF, first) && nLore + GetLevelByClass(CLASS_TYPE_RANGER, first) >= 20 || nLore >= 20) &&
-                    (nSubrace == GS_SU_DWARF_GOLD ||
-                    nSubrace == GS_SU_DWARF_SHIELD ||
-                    nSubrace == GS_SU_DWARF_WILD
-                    ))
-                    sRace = gsSUGetNameBySubRace(nSubrace);
-                else if((nFirstRace == RACIAL_TYPE_DWARF && nLore >= 20 || (GetHasFeat(FEAT_FAVORED_ENEMY_DWARF, first) && nLore + GetLevelByClass(CLASS_TYPE_RANGER, first) >= 20)) &&
-                  nSubrace == GS_SU_DWARF_GRAY)
-                    sRace = gsSUGetNameBySubRace(nSubrace);
-                else if(nSubrace == GS_SU_DWARF_GRAY && nSubrace == nFirstSubrace)
-                    sRace = gsSUGetNameBySubRace(nSubrace);
-                else if((nFirstRace == RACIAL_TYPE_GNOME || GetHasFeat(FEAT_FAVORED_ENEMY_GNOME, first) && nLore + GetLevelByClass(CLASS_TYPE_RANGER, first) >= 20 || nLore >= 20) &&
-                    (nSubrace == GS_SU_GNOME_DEEP ||
-                    nSubrace == GS_SU_GNOME_FOREST ||
-                    nSubrace == GS_SU_GNOME_ROCK))
-                    sRace = gsSUGetNameBySubRace(nSubrace);
-                else if(((nFirstRace == RACIAL_TYPE_HALFLING && (nFirstSubrace == GS_SU_HALFLING_GHOSTWISE || nSubrace == GS_SU_HALFLING_LIGHTFOOT  || nSubrace == GS_SU_HALFLING_STRONGHEART))  || GetHasFeat(FEAT_FAVORED_ENEMY_HALFLING, first) && nLore + GetLevelByClass(CLASS_TYPE_RANGER, first) >= 20 || nLore >= 20) &&
-                    (nSubrace == GS_SU_HALFLING_GHOSTWISE ||
-                    nSubrace == GS_SU_HALFLING_LIGHTFOOT ||
-                    nSubrace == GS_SU_HALFLING_STRONGHEART))
-                    sRace = gsSUGetNameBySubRace(nSubrace);
-                else if(nSubrace == GS_SU_DEEP_IMASKARI)
-                    sRace = gvd_GetRacialTypeName(second, RACIAL_TYPE_HUMAN);
+				
                 else //race for everyone else
                     sRace = gvd_GetRacialTypeName(second);
 

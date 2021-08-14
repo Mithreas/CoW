@@ -19,18 +19,6 @@ void main() {
   string sRace;
 
   switch (iSubRace) {
-    case GS_SU_PLANETOUCHED_AASIMAR:
-    case GS_SU_PLANETOUCHED_GENASI_AIR:
-    case GS_SU_PLANETOUCHED_GENASI_EARTH:
-    case GS_SU_PLANETOUCHED_GENASI_FIRE:
-    case GS_SU_PLANETOUCHED_GENASI_WATER:
-    case GS_SU_PLANETOUCHED_TIEFLING:
-    if (GetSkillRank(SKILL_LORE, oNPC) >= 10) {
-      sRace = gsSUGetNameBySubRace(iSubRace);
-    } else {
-      sRace = gsSUGetRaceName(GetRacialType(oDamager));
-    }
-    break;
     case GS_SU_NONE:
       sRace = gsSUGetRaceName(GetRacialType(oDamager));
       break;

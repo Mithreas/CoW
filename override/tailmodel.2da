@@ -367,14 +367,14 @@
 363   "Deer"                                         c_a_deer          ****
 364   "Deer, Stag"                                   c_a_deerwhite     ****
 365   "Rat, Dire"                                    c_direrat         ****
-366   "Cat, Cougar"                                  c_cat             ****
-367   "Cat, Crag, Cat"                               c_cat_crag        ****
+366   "Cat, Cougar"                                  c_cougar          ****
+367   "Cat, Crag, Cat"                               c_cragcat         ****
 368   "Cat, Cat, Dire"                               c_cat_dire        ****
 369   "Cat, Jaguar"                                  c_cat_jag         ****
 370   "Cat, Krenshar"                                c_cat_kren        ****
 371   "Cat, Leopard"                                 c_cat_lep         ****
-372   "Cat, Lion"                                    c_cat_lion        ****
-373   "Cat, Panther"                                 c_cat_panth       ****
+372   "Cat, Lioness"                                 c_flion           ****
+373   "Cat, Panther"                                 c_panther         ****
 374   "Cat, MPanther"                                c_cat_mpanth      ****
 375   "Ox"                                           c_a_ox            ****
 376   "Parrot"                                       c_a_parrot        ****
@@ -393,9 +393,9 @@
 389   "Dog, Fenhound"                                c_fenhound        ****
 390   "Dog, Hell, Hound"                             c_hellhound       ****
 391   "Dog, Shadow, Mastif"                          c_shmastif        ****
-392   "Dog, Wolf"                                    c_wolf            ****
-393   "Dog, Winter, Wolf"                            c_WolfWint        ****
-394   "Dog, Worg"                                    c_worg            ****
+392   "Dog, Wolf"                                    c_grwolf          ****
+393   "Dog, Winter, Wolf"                            c_wnwolf          ****
+394   "Dog, Worg"                                    c_warg            ****
 395   "Maggris"                                      c_maggris         ****
 396   "Harat"                                        c_harat           ****
 397   "Harat, Small"                                 c_harat_sm        default
@@ -492,10 +492,10 @@
 488   "Wyvern, Great"                                c_wyvern_g        ****
 489   "Wyvern, Juvenile"                             c_wyvern_j        ****
 490   "Wyvern, Young"                                c_wyvern_y        ****
-491   "Red Fox"                                      c_redfox          ****
+491   "Red Fox"                                      c_fox             ****
 492   "Desert Fox"                                   c_desertfox       ****
-493   *****                                          *****             ****
-494   *****                                          *****             ****
+493   "Cat, Lion"                                    c_mlion           ****
+494   "Cat, Snow Leopard"                            c_leopard         ****
 495   *****                                          *****             ****
 496   *****                                          *****             ****
 497   *****                                          *****             ****

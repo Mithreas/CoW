@@ -32,6 +32,8 @@ void main()
 	{
 	  // Go home!
 	  ClearAllActions();
+      gsCBClearAttackTarget();
+      gsC2ClearDamage();
 	  ActionMoveToObject(oHomeWP);
 	  return;
 	}

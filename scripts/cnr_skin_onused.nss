@@ -11,6 +11,7 @@
 /////////////////////////////////////////////////////////
 #include "cnr_config_inc"
 #include "cnr_language_inc"
+#include "inc_combat2"
 
 void main()
 {
@@ -23,8 +24,8 @@ void main()
   object oUser = GetLastUsedBy();
   if (!GetIsPC(oUser)) return;
 
-  // Player must have a skinning knife equipped
-  int bHasKnife = FALSE;
+  // Player must have a skinning knife equipped or be in polymorph.
+  int bHasKnife = gsC2GetHasEffect(EFFECT_TYPE_POLYMORPH, oUser, TRUE);
   object oItem = GetItemInSlot(INVENTORY_SLOT_RIGHTHAND, oUser);
   if (GetIsObjectValid(oItem))
   {

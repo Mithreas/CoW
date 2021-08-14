@@ -128,8 +128,8 @@ void main()
     ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, HoursToSeconds(12));
     ApplyEffectToObject(DURATION_TYPE_INSTANT, eVFX, oTarget);
 
-    // 1 hour Cooldown
-    SetTimelock(OBJECT_SELF, FloatToInt(HoursToSeconds(1)), "Heroic Shield", 300, 60);
+    // 5 minute Cooldown
+    SetTimelock(OBJECT_SELF, 300, "Heroic Shield", 120, 60);
 
 }
 

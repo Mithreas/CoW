@@ -27,8 +27,10 @@
 const string WIKI_PREFIX             = "lorewiki";
 const string RESEARCH_CATEGORY       = "Human_Research";
 const string RESEARCH_CATEGORY_ELF   = "Elven_Research";
+const string RESEARCH_CATEGORY_LOST  = "Lost";
 const string RESEARCH_CATEGORY_L10   = "Lore_10";
 const string RESEARCH_CATEGORY_L20   = "Lore_20";
+const string RESEARCH_CATEGORY_L30   = "Lore_30";
 
 const string TRAINING      = "TRAINING";
 const string IS_DOJO       = "is_dojo";
@@ -180,6 +182,9 @@ void GiveResearchInformation(object oPC)
 	}
   }
   
+  string sOverrideCategory = GetLocalString(GetArea(oPC), "RESEARCH_CATEGORY");
+  if (sOverrideCategory != "") sResearchCategory = sOverrideCategory;
+  
   // Query that queries the category links table to get a random article in the correct category. 
   SQLExecDirect("SELECT a.cl_from FROM " + WIKI_PREFIX + "categorylinks AS a WHERE a.cl_to = '" + sResearchCategory + 
   "' " + SQLRandom());
@@ -210,9 +215,12 @@ void GiveResearchInformation(object oPC)
 	  RESEARCH_CATEGORY_L10 + "' AND cl_from = '" + sPage + "'");
 	int bLore20 = SQLExecAndFetchSingleInt("SELECT cl_from FROM " + WIKI_PREFIX + "categorylinks WHERE cl_to = '" +
 	  RESEARCH_CATEGORY_L20 + "' AND cl_from = '" + sPage + "'");
+	int bLore30 = SQLExecAndFetchSingleInt("SELECT cl_from FROM " + WIKI_PREFIX + "categorylinks WHERE cl_to = '" +
+	  RESEARCH_CATEGORY_L30 + "' AND cl_from = '" + sPage + "'");
 	
-	if (nLore >= 20 ||
-	    nLore >= 10 && !bLore20 ||
+	if (nLore >= 30 ||
+	    (nLore >= 20 && !bLore30) ||
+	    (nLore >= 10 && !bLore20 && !bLore30) ||
 		!bLore10)
 	{
 	  // PC has enough lore to read this article.

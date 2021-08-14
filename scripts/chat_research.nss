@@ -33,7 +33,7 @@ void main()
 	
     Trace(TRAINING, "Research Widget Used");
 
-    // If already praying, ignore this use.
+    // If already researching, ignore this use.
     location lResLoc = GetLocalLocation(oPC, "research_location");
     if (GetIsObjectValid(GetAreaFromLocation(lResLoc)))
     {

@@ -120,7 +120,7 @@ void main()
             //::  Player Outsiders, Caster unaffected.
             else if ( GetIsPC(oTarget) && !GetIsReactionTypeFriendly(oTarget) && oTarget != OBJECT_SELF) {
                 int nSubRace        = gsSUGetSubRaceByName(GetSubRace(oTarget));
-                int bPlayerOutsider = nSubRace == GS_SU_SPECIAL_IMP;
+                int bPlayerOutsider = (nSubRace == GS_SU_SPECIAL_RAKSHASA);
 
                 //::  Imps
                 if (bPlayerOutsider && nPool >= GetHitDice(oTarget) ) {
@@ -136,34 +136,6 @@ void main()
                     }
                 }
 
-                //:: Planetouched
-                int bPlaneTouched = nSubRace == GS_SU_PLANETOUCHED_AASIMAR || nSubRace  == GS_SU_PLANETOUCHED_TIEFLING;
-                if (bPlaneTouched) {
-                    nSpellDC = AR_GetSpellSaveDC();
-
-                    // Debuffs don't stack
-                    if (GetHasSpellEffect(SPELL_BANISHMENT, oTarget) == TRUE)
-                    {
-                        RemoveSpellEffects(SPELL_BANISHMENT, OBJECT_SELF, oTarget);
-                    }
-
-                    if (!MyResistSpell(OBJECT_SELF, oTarget) && !MySavingThrow(SAVING_THROW_WILL, oTarget, nSpellDC))
-                    {
-                        if (!GetIsImmune(oTarget, IMMUNITY_TYPE_MIND_SPELLS, OBJECT_SELF))
-                            ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectStunned(), oTarget, 24.0);
-                    }
-
-                    // Start building the linked effects for the debuff.
-                    effect eLink;
-                    eLink = EffectLinkEffects(eLink, EffectAttackDecrease(2));
-                    eLink = EffectLinkEffects(eLink, EffectSavingThrowDecrease(SAVING_THROW_ALL, 2));
-                    eLink = EffectLinkEffects(eLink, EffectACDecrease(2));
-                    eLink = EffectLinkEffects(eLink, EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
-
-                    // Apply debuff and visual effect
-                    ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, RoundsToSeconds(AR_GetCasterLevel(OBJECT_SELF)));
-                    ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_HEAD_ODD), oTarget);
-                }
             }
         }
         //Get next creature in the shape.

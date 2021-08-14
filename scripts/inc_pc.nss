@@ -103,8 +103,8 @@ int gsPCGetIsPlayerBanned(object oPC = OBJECT_INVALID, string sKey = "", string 
 // key later.
 void gsPCBanPlayer(object oPC = OBJECT_INVALID, int bIncludeIP = FALSE, string sKey = "", string sPlayerName = "", string sIP = "");
 // Gets the PC's creature hide.  Usually this will be in their CARMOUR slot, but
-// not if they're polymorphed.
-object gsPCGetCreatureHide(object oPC = OBJECT_SELF);
+// not if they're polymorphed.  If bCreate is set, create a new one if we can't find it.
+object gsPCGetCreatureHide(object oPC = OBJECT_SELF, int bCreate = FALSE);
 //return old 1.69 CD key that is tied to the EE (1.74+) CD key sEEKey
 string gsPCGetOldCDKey(string sEEKey);
 // transfer RPR and Awards from old sCDKey to new sEEKey
@@ -658,7 +658,7 @@ void gsPCBanPlayer(object oPC = OBJECT_INVALID, int bIncludeIP = FALSE, string s
   }
 }
 //------------------------------------------------------------------------------
-object gsPCGetCreatureHide(object oPC = OBJECT_SELF)
+object gsPCGetCreatureHide(object oPC = OBJECT_SELF, int bCreate = FALSE)
 {
   if (!GetIsPC(oPC)) return oPC; // Use the NPC themselves for anything that isn't a PC.
   object oHide = GetItemInSlot(INVENTORY_SLOT_CARMOUR, oPC);
@@ -677,7 +677,7 @@ object gsPCGetCreatureHide(object oPC = OBJECT_SELF)
   }
   else oReturn = GetItemPossessedBy(oPC, "GS_SU_PROPERTY");
   
-  if (!GetIsObjectValid(oReturn))
+  if (!GetIsObjectValid(oReturn) && bCreate)
   {
     oReturn = CreateItemOnObject(GS_SU_TEMPLATE_PROPERTY, oPC);
 

@@ -9,10 +9,9 @@ void miTRDoTracks(object oPC, int bEntering=TRUE)
 
         if (!GetIsAreaNatural(oArea)) return;
         if (GetHasFeat(FEAT_TRACKLESS_STEP, oPC)) return;
-        if (nSubRace == GS_SU_GNOME_FOREST) return;
         if (miSCIsScrying(oPC)) return;
         int nBaseAC = gsCMGetItemBaseAC(GetItemInSlot(INVENTORY_SLOT_CHEST, oPC));
-        if(nBaseAC < 4 && (nSubRace == GS_SU_DWARF_WILD || nSubRace == GS_SU_ELF_WILD || nSubRace == GS_SU_ELF_WOOD || nSubRace == GS_SU_SPECIAL_FEY)) return;
+        if(nBaseAC < 4 && (nSubRace == GS_SU_SPECIAL_FEY)) return;
         object oTracks = GetNearestObjectByTag("mi_tracks2", oPC);
         if (!GetIsObjectValid(oTracks) || GetDistanceBetween(oTracks, oPC) > 5.0)
         {
@@ -29,18 +28,6 @@ void miTRDoTracks(object oPC, int bEntering=TRUE)
         // Override for aasimar, tieflings, genasi and other subraces very
         // similar culturally and physically to base.
         {
-          case GS_SU_PLANETOUCHED_AASIMAR:
-          case GS_SU_PLANETOUCHED_GENASI_AIR:
-          case GS_SU_PLANETOUCHED_GENASI_EARTH:
-          case GS_SU_PLANETOUCHED_GENASI_FIRE:
-          case GS_SU_PLANETOUCHED_GENASI_WATER:
-          case GS_SU_PLANETOUCHED_TIEFLING:
-          case GS_SU_ELF_SUN:
-          case GS_SU_ELF_MOON:
-          case GS_SU_HALFLING_LIGHTFOOT:
-          case GS_SU_HALFLING_STRONGHEART:
-          case GS_SU_DWARF_GOLD:
-          case GS_SU_DWARF_SHIELD:
           case GS_SU_NONE:
             sSubRace = gsSUGetRaceName(GetRacialType(oPC));
             break;

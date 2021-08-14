@@ -24,7 +24,6 @@
 #include "nwnx_alts"
 #include "x3_inc_horse"
 
-void _FixXPECL(object oPC, int nSubRace);
 void _CreateDefaultSetting(object pc, string name, int value);
 
 // copied from gs_m_equip, since that one can't be included
@@ -286,7 +285,6 @@ void main()
         // Handle class bonus updates for established PCs. New PCs will instead be handled on initialization.
         DelayCommand(0.0, ApplyCharacterBonuses(oEntering, FALSE, FALSE, TRUE));
     }
-    //_FixXPECL(oEntering, gsSUGetSubRaceByName(GetSubRace(oEntering)));
     //activity
     SetLocalInt(oEntering, "GS_ACTIVE", TRUE);
 
@@ -499,128 +497,6 @@ void main()
 	
 	// Cutscene ghost all PCs, to make dealing with lots of summons less annoying.
 	ApplyEffectToObject(DURATION_TYPE_PERMANENT, SupernaturalEffect(EffectCutsceneGhost()), oEntering);
-}
-
-void _FixXPECL(object oPC, int nSubRace)
-{
-
-    object oHide = gsPCGetCreatureHide(oPC);
-    if(!GetLocalInt(oHide, "GIFT_SUBRACE")) return;   //disable if gift_subrace is already checked
-    //IGNORe aasimar as they're getting an ECL increase.. no effect old ones.
-    if(nSubRace == GS_SU_PLANETOUCHED_TIEFLING || nSubRace == GS_SU_PLANETOUCHED_AASIMAR) return;
-
-    float fCurrentECL = GetLocalFloat(oHide, "ECL");
-    int nRaceECL = gsSUGetECL(nSubRace, 0);
-    //get effect orogs as specific as possible
-    if((nSubRace == GS_SU_FR_OROG || nSubRace == GS_SU_HALFORC_OROG) && GetLocalInt(oHide, "IsFROrog") && fCurrentECL <= 6.0)
-    {
-        WriteTimestampedLogEntry("!!!SUBRACE!!!---ECL---OROG:"+GetName(oPC)+" OF "+ GetPCPlayerName(oPC) + " OLD ECL: "+ FloatToString(fCurrentECL) + " HD: " +  IntToString(GetHitDice(oPC)));
-        SendMessageToAllDMs("!!!SUBRACE!!!---ECL---OROG:"+GetName(oPC)+" OF "+ GetPCPlayerName(oPC) + " OLD ECL: "+ FloatToString(fCurrentECL) + " HD: " +  IntToString(GetHitDice(oPC)));
-        if(GetHitDice(oPC) > 6)
-            SetXP(oPC, 15001); //enough xp for level 6 + 1
-
-        SetLocalFloat(oHide, "ECL", fCurrentECL + 10);  //add offset
-        SendMessageToPC(oPC, "You have been detected as having an incorrect ECL. Your level may have been dropped to 6 and your ECL has been adjusted correctly.");
-    }
-    else if(nSubRace == GS_SU_GNOME_DEEP && fCurrentECL < 0.0)
-    {
-        WriteTimestampedLogEntry("!!!SUBRACE!!!---ECL---DEEPGNOME:"+GetName(oPC)+" OF "+ GetPCPlayerName(oPC) + " OLD ECL: "+FloatToString(fCurrentECL) + " HD: " +  IntToString(GetHitDice(oPC)));
-        SendMessageToAllDMs("!!!SUBRACE!!!---ECL---DEEPGNOME:"+GetName(oPC)+" OF "+ GetPCPlayerName(oPC) + " OLD ECL: "+FloatToString(fCurrentECL) + " HD: " +  IntToString(GetHitDice(oPC)));
-        if(GetHitDice(oPC) > 6)
-            SetXP(oPC, 15001); //enough xp for level 6 + 1
-        SetLocalFloat(oHide, "ECL", fCurrentECL + 13); // add offset + 3 for smurf ECL
-       SendMessageToPC(oPC, "You have been detected as having an incorrect ECL. Your level may have been dropped to 6 and your ECL has been adjusted correctly.");
-    }
-    else if(nRaceECL > 0) //I don't like this one! it's basically everyone. We can exclude ECL 3 races if they make it this far
-    {
-      //Recalculate what their ECL should be!
-      object oAbility  = GetItemPossessedBy(oPC, "GS_SU_ABILITY");
-
-      if (! GetIsObjectValid(oAbility))
-      {
-        oAbility  = CreateItemOnObject(GS_SU_TEMPLATE_ABILITY,  oPC);
-      }
-      float fNewECL = IntToFloat(nRaceECL) + 10.0;
-
-      int nGift;
-      int x;
-      string sGift;
-      for(x = 0; x < GetListSize(oAbility, "Gifts"); x++)
-      {
-
-        nGift = StringToInt(GetListElement(oAbility, "Gifts", x));
-
-        if(nGift == GIFT_OF_ENDURANCE && FindSubString(GetDescription(oAbility), ": Gift of Endurance") > -1)
-            fNewECL += 0.5; //old gift of endurance ecl
-        else
-            fNewECL += GetGiftECL(nGift);
-
-        sGift += GetGiftName(nGift) + " ";
-      }
-
-      if(fCurrentECL == fNewECL) return; //ECL is expected value cancel out!
-
-      //Uh oh ECL isn't expected value. But can still be caused by an award.. sadly we don't track -ECL awards.
-      //greater awards can't current be used to purchase ECL awards.. Need to fix that
-      int nAwardMaj =  GetLocalInt(oHide, "HAS_MAJOR_AWARD");
-      int nAwardNor =  GetLocalInt(oHide, "HAS_NORMAL_AWARD");
-      int nAwardMin = GetLocalInt(oHide, "HAS_MINOR_AWARD");
-      if(!nAwardMaj &&
-         !nAwardNor &&
-         !nAwardMin)
-         {
-            //They don't have an award so it must be this most recent breakage! Maybe. Hopefully
-            WriteTimestampedLogEntry("!!!SUBRACE!!!---ECL---OTHER (NO AWARD):"+GetName(oPC)+" OF "+ GetPCPlayerName(oPC) + " OLD ECL: "+FloatToString(fCurrentECL) + " SR: " + GetSubRace(oPC));
-            SendMessageToPC(oPC, "You have been detected as having an incorrect ECL. Your ECL has been adjusted correctly.");
-            SendMessageToAllDMs("!!!SUBRACE!!!---ECL---OTHER (NO AWARD):"+GetName(oPC)+" OF "+ GetPCPlayerName(oPC) + " OLD ECL: "+FloatToString(fCurrentECL)+ " SR: " + GetSubRace(oPC));
-            SetLocalFloat(oHide, "ECL", fNewECL);
-            return;
-         }
-
-       //Okay we can tell what award they don't have                         //good underdarker                                                           //rdd
-       int nAward = GetLocalInt(oHide, "MAY_RIDE_HORSE") || gsSUGetIsUnderdarker(nSubRace) && GetAlignmentGoodEvil(oPC) == ALIGNMENT_GOOD || GetIsObjectValid(GetItemPossessedBy(oPC, "gs_item917"));
-       float fDifference = fNewECL - fCurrentECL;
-       if(nAward && fDifference == IntToFloat(nRaceECL))
-       {//other award has been selected and difference in ECL is equal to RaceECL, assume breakage
-            WriteTimestampedLogEntry("!!!SUBRACE!!!---ECL---OTHER (NO ECL AWARD):"+GetName(oPC)+" OF "+ GetPCPlayerName(oPC) + " OLD ECL: "+FloatToString(fCurrentECL)+ " SR: " + GetSubRace(oPC));
-            SendMessageToAllDMs("!!!SUBRACE!!!---ECL---OTHER (NO ECL AWARD):"+GetName(oPC)+" OF "+ GetPCPlayerName(oPC) + " OLD ECL: "+FloatToString(fCurrentECL)+ " SR: " + GetSubRace(oPC));
-            SendMessageToPC(oPC, "You have been detected as having an incorrect ECL. Your ECL has been adjusted correctly.");
-            SetLocalFloat(oHide, "ECL", fNewECL);
-            return;
-       }
-       if(!nAward && fDifference > 0.0 && fDifference < 4.0 && (nAwardMaj && nRaceECL != 3) || (nAwardNor && nRaceECL != 2) || (nAwardMin && nRaceECL != 1))
-       {
-          //okay here we know the RACE ECL is not equal to possible -ECL awards!  So it's possible they took an award to lower their ECL, and we know they don't have another award
-          if((fDifference == 1.0 && nAwardMin) || (fDifference == 2.0 && nAwardNor) ||(fDifference == 3.0 && nAwardMaj))
-          {
-            WriteTimestampedLogEntry("!!!SUBRACE!!!---ECL---OTHER (INCONCLUSIVE POSSIBLE AWARD):"+GetName(oPC)+" OF "+ GetPCPlayerName(oPC) + " OLD ECL: "+FloatToString(fCurrentECL)+ " SR: " + GetSubRace(oPC) + " " + sGift + " Expected ECL: " + FloatToString(fNewECL));
-            return; //the difference matches.. we're going to assume they took ECL award no Change to ECL necessary
-          }
-       }
-       //if they make it this far i have no idea why ECL is different.
-       WriteTimestampedLogEntry("!!!SUBRACE!!!---ECL---OTHER (INCONCLUSIVE):"+GetName(oPC)+" OF "+ GetPCPlayerName(oPC) + " OLD ECL: "+FloatToString(fCurrentECL)+ " SR: " + GetSubRace(oPC) + " " + sGift + " Expected ECL: " + FloatToString(fNewECL));
-    }
-    object oAbility  = GetItemPossessedBy(oPC, "GS_SU_ABILITY");
-
-    if (! GetIsObjectValid(oAbility))
-    {
-       oAbility  = CreateItemOnObject(GS_SU_TEMPLATE_ABILITY,  oPC);
-    }
-    //Fixing gift here too!
-
-    int nGift;
-    int x;
-    for(x = 0; x < GetListSize(oAbility, "Gifts"); x++)
-
-    {
-        nGift = StringToInt(GetListElement(oAbility, "Gifts", x));
-        //x++;
-        if(nGift == GIFT_OF_FORTUNE && FindSubString(GetDescription(oAbility), GIFT_OF_FORTUNE_NAME_M) > -1)
-        {
-          //SendMessageToPC(oPC, "Found gift to fix" + IntToString(GIFT_OF_FORTUNE_M));
-          SetListElement(oAbility, "Gifts", x, IntToString(GIFT_OF_FORTUNE_M));
-        }
-    }
 }
 
 void _CreateDefaultSetting(object pc, string name, int value)

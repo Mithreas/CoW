@@ -2,6 +2,7 @@
 #include "inc_favsoul"
 #include "inc_state"
 #include "inc_xp"
+#include "inc_subrace"
 
 const int ASPECT_WAR_DESTRUCTION     = 1;
 const int ASPECT_HEARTH_HOME         = 2;
@@ -106,7 +107,7 @@ int gsWOGrantBoon(object oTarget = OBJECT_SELF);
 //return TRUE if deity resurrects oTarget
 int gsWOGrantResurrection(object oTarget = OBJECT_SELF);
 //oPC consecrates oAltar to their deity
-void gsWOConsecrate(object oPC, object oAltar);
+int gsWOConsecrate(object oPC, object oAltar);
 //oPC desecrates oAltar
 void gsWODesecrate(object oPC, object oAltar);
 //return the deity to which this altar is consecrated, if any.
@@ -146,6 +147,12 @@ int gsWOGetIsDeityAvailable(int nDeity, object oPlayer = OBJECT_SELF)
     if (GetIsDM(oPlayer)) return TRUE;
     if (nDeity == GS_WO_NONE) return TRUE;
     object oItem = gsPCGetCreatureHide(oPlayer);
+	
+	// Shapechangers.  Their power is literally drawn from their god, so they must worship Valaros. 
+	if (gsSUGetSubRaceByName(GetSubRace(oPlayer)) == GS_SU_SHAPECHANGER)
+	{
+	  return nDeity == 92; // Valaros.
+	}
 	
 	// Racial restrictions - do these first..
     if (!GetLocalInt(oItem, "GIFT_OF_UFAVOR") && !gsWOGetIsRacialTypeAllowed(nDeity, oPlayer)) return FALSE;
@@ -539,7 +546,7 @@ int gsWOGrantResurrection(object oTarget = OBJECT_SELF)
     return TRUE;
 }
 //----------------------------------------------------------------
-void gsWOConsecrate(object oPC, object oAltar)
+int gsWOConsecrate(object oPC, object oAltar)
 {
    float fPiety = gsWOGetPiety(oPC);
 
@@ -549,18 +556,19 @@ void gsWOConsecrate(object oPC, object oAltar)
    if (nAltarDeity && (nPCDeity != nAltarDeity))
    {
      FloatingTextStringOnCreature("You can only reconsecrate an altar belonging to your deity.", oPC, FALSE);
-     return;
+     return FALSE;
    }
 
    if (fPiety < 20.0f)
    {
      FloatingTextStringOnCreature("You do not have enough piety to consecrate this altar.", oPC, FALSE);
-     return;
+     return FALSE;
    }
 
    gsFXSetLocalString(oAltar, "GS_WO_DEITY", IntToString(nPCDeity));
    gsFXSetLocalString(oAltar, "GS_WO_DESECRATED", "0");
    gsWOAdjustPiety(oPC, -20.0f);
+   return TRUE;
 }
 //----------------------------------------------------------------
 void gsWODesecrate(object oPC, object oAltar)
@@ -675,22 +683,17 @@ int gsWOGetIsRacialTypeAllowed(int nDeity, object oPlayer)
         if (GetRacialType(oPlayer) != nRacialType ||
             nSubRace == GS_SU_SPECIAL_GOBLIN ||
             nSubRace == GS_SU_SPECIAL_KOBOLD ||
-            nSubRace == GS_SU_SPECIAL_FEY ||
-            nSubRace == GS_SU_SPECIAL_IMP) return FALSE;
+            nSubRace == GS_SU_SPECIAL_FEY) return FALSE;
          break;
       case RACIAL_TYPE_ELF:
         if (GetRacialType(oPlayer) != nRacialType &&
             GetRacialType(oPlayer) != RACIAL_TYPE_HALFELF ||
-            nSubRace == GS_SU_SPECIAL_HOBGOBLIN ||
-            nSubRace == GS_SU_DEEP_IMASKARI) return FALSE;
+            nSubRace == GS_SU_SPECIAL_HOBGOBLIN) return FALSE;
          break;
       case RACIAL_TYPE_HUMAN:
         if ((GetRacialType(oPlayer) != nRacialType &&
              GetRacialType(oPlayer) != RACIAL_TYPE_HALFELF &&
              GetRacialType(oPlayer) != RACIAL_TYPE_HALFORC) ||
-            nSubRace == GS_SU_HALFORC_OROG ||
-            nSubRace == GS_SU_FR_OROG ||
-            nSubRace == GS_SU_HALFORC_GNOLL ||
             nSubRace == GS_SU_SPECIAL_OGRE ||
             nSubRace == GS_SU_SPECIAL_HOBGOBLIN) return FALSE;
          break;
@@ -707,12 +710,10 @@ int gsWOGetIsRacialTypeAllowed(int nDeity, object oPlayer)
          break;
       case RACIAL_TYPE_HUMANOID_ORC:
          if (GetRacialType(oPlayer) != RACIAL_TYPE_HALFORC ||
-             nSubRace == GS_SU_HALFORC_GNOLL ||
              nSubRace == GS_SU_SPECIAL_OGRE) return FALSE;
          break;
       case RACIAL_TYPE_HUMANOID_MONSTROUS:
-         if (nSubRace != GS_SU_HALFORC_GNOLL &&
-             nSubRace != GS_SU_SPECIAL_OGRE) return FALSE;
+         if (nSubRace != GS_SU_SPECIAL_OGRE) return FALSE;
          break;
     }
 

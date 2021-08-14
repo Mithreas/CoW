@@ -16,13 +16,12 @@
 	(whether confirmed or not).  So the same Confirm dialog can be used for all changes.
 
 */
-
+#include "inc_achievements"
 #include "inc_backgrounds"
 #include "inc_bonuses"
 #include "inc_class"
 #include "inc_favsoul"
 #include "inc_log"
-#include "inc_shapechanger"
 #include "inc_subrace"
 #include "inc_zdlg"
 
@@ -37,7 +36,6 @@ const string GIFT_OPTS       = "ZPI_GIFT_OPTIONS";
 const string PATH_OPTS       = "ZPI_PATH_OPTIONS";
 const string HEIGHT_OPTS     = "ZPI_HEIGHT_OPTIONS";
 const string AWARD_OPTS      = "ZPI_AWARD_OPTIONS";
-const string SHAPECHANGER_OPTS = "ZPI_SPC_OPTIONS";
 
 const string SPELLSWORD_OPTIONS    = "spellsword options";
 
@@ -161,7 +159,7 @@ void _ClearSubRaceOptions()
 int _ApplySubRace()
 {
   object oSpeaker  = GetPcDlgSpeaker();
-  object oProperty = gsPCGetCreatureHide(oSpeaker);
+  object oProperty = gsPCGetCreatureHide(oSpeaker, TRUE);
   object oAbility  = GetItemPossessedBy(oSpeaker, "GS_SU_ABILITY");
   int nSubRace     = GetIntElement(GetLocalInt(OBJECT_SELF, CONFIRM_OPT), SU_SELECTIONS);
   int nLevel       = GetHitDice(oSpeaker);
@@ -219,10 +217,6 @@ int _ApplySubRace()
         SetCreatureAppearanceType(oSpeaker, APPEARANCE_TYPE_KOBOLD_A);
         //SetRacialType(oSpeaker, RACIAL_TYPE_HUMANOID_REPTILIAN);
         break;
-      case GS_SU_HALFORC_GNOLL:
-        SetCreatureAppearanceType(oSpeaker, APPEARANCE_TYPE_GNOLL_WARRIOR);
-        //SetRacialType(oSpeaker, RACIAL_TYPE_HUMANOID_GOBLINOID);
-        break;
       case GS_SU_SPECIAL_RAKSHASA:
         SetCreatureAppearanceType(oSpeaker,
           GetGender(oSpeaker) ? APPEARANCE_TYPE_RAKSHASA_TIGER_FEMALE : APPEARANCE_TYPE_RAKSHASA_TIGER_MALE);
@@ -234,18 +228,9 @@ int _ApplySubRace()
         //SetRacialType(oSpeaker, RACIAL_TYPE_GIANT);
         SetCreatureSize(oSpeaker, CREATURE_SIZE_LARGE);
         break;
-      case GS_SU_SPECIAL_IMP:
-        SetCreatureAppearanceType(oSpeaker, APPEARANCE_TYPE_IMP);
-        //SetRacialType(oSpeaker, RACIAL_TYPE_OUTSIDER);
-        AdjustAlignment(oSpeaker, ALIGNMENT_LAWFUL, 100, FALSE);
-        SetCreatureSize(oSpeaker, CREATURE_SIZE_SMALL);
-        break;
       case GS_SU_SPECIAL_HOBGOBLIN:
         SetCreatureAppearanceType(oSpeaker, APPEARANCE_TYPE_HOBGOBLIN_WARRIOR);
         //SetRacialType(oSpeaker, RACIAL_TYPE_HUMANOID_GOBLINOID);
-        break;
-      case GS_SU_DWARF_WILD:
-        SetCreatureSize(oSpeaker, CREATURE_SIZE_SMALL); //here as all wild dwarves should be small even if we decide no subrace stats again
         break;
 
     }
@@ -257,10 +242,22 @@ int _ApplySubRace()
   md_AddRacialBonuses(oSpeaker, nSubRace, oProperty);
 
   //:: Remove awards if an award subrace was selected.
+  if (nSubRace == GS_SU_SHAPECHANGER)
+  {
+    string sID = gsPCGetCDKeyID(GetPCPublicCDKey(oSpeaker));
+    int nAwards = GetLocalInt(oSpeaker, "award1") -1;
+    miDASetKeyedValue("gs_player_data", sID, "award1", IntToString(nAwards));	
+	
+    SetLocalInt(oProperty, "HAS_MAJOR_AWARD", TRUE);  
+    SetLocalInt(oSpeaker, "award1", 0);
+    SetLocalInt(oSpeaker, "award2", 0);
+    SetLocalInt(oSpeaker, "award3", 0);
+  }
+  
   if (FALSE)
   {
     // Septire - An award has been spent on this character. Treat this character as having no additional awards to spend.
-    // We assume that only ONE award can be spent on each character. Do NOT update the database.
+    // We assume that only ONE award can be spent on each character. Do NOT update the database (Mith - unclear why...).
     SetLocalInt(oProperty, "HAS_NORMAL_AWARD", TRUE);
     SetLocalInt(oSpeaker, "award1", 0);
     SetLocalInt(oSpeaker, "award2", 0);
@@ -284,28 +281,18 @@ void _SetUpAllowedSubraces()
   if (nRace == RACIAL_TYPE_DWARF)
   {
     // Dwarf subraces
-    _AddSubraceAsOption(GS_SU_DWARF_GOLD);
-    _AddSubraceAsOption(GS_SU_DWARF_SHIELD);
   }
   else if (nRace == RACIAL_TYPE_ELF)
   {
     // Elf subraces - disabled for now.
-    //_AddSubraceAsOption(GS_SU_ELF_MOON);
-    //_AddSubraceAsOption(GS_SU_ELF_SUN);
-    //_AddSubraceAsOption(GS_SU_ELF_WILD);
-    //_AddSubraceAsOption(GS_SU_ELF_WOOD);
   }
   else if (nRace == RACIAL_TYPE_GNOME)
   {
     // Gnome subraces
-    _AddSubraceAsOption(GS_SU_GNOME_ROCK);
   }
   else if (nRace == RACIAL_TYPE_HALFLING)
   {
     // Halfling subraces - disabled for now.
-    //_AddSubraceAsOption(GS_SU_HALFLING_GHOSTWISE);
-    //_AddSubraceAsOption(GS_SU_HALFLING_LIGHTFOOT);
-    //_AddSubraceAsOption(GS_SU_HALFLING_STRONGHEART);
   }
   else if (nRace == RACIAL_TYPE_HALFORC)
   {
@@ -315,6 +302,12 @@ void _SetUpAllowedSubraces()
   if (GetLocalInt(oPC, "award1")) // Available as a Major award only.
   {
     // Add award-locked subraces here.  Don't forget to remove the award in _ApplySubRace above.
+	if (acPlayerHasAchievement(oPC, "werecats") && acPlayerHasAchievement(oPC, "werebeetles") &&
+	     acPlayerHasAchievement(oPC, "wererats") && acPlayerHasAchievement(oPC, "weresharks") &&
+		 miBAGetBackground(oPC) == MI_BA_NONE)
+	{
+	  _AddSubraceAsOption(GS_SU_SHAPECHANGER);
+	}
   }
   
   if (GetLocalInt(oPC, "award2") || GetLocalInt(oPC, "award1")) // Available as a Normal award only.
@@ -388,7 +381,7 @@ void _ApplyBackground()
 void _ApplyGifts()
 {
     object oPC      = GetPcDlgSpeaker();
-	object oHide    = gsPCGetCreatureHide(oPC);
+	object oHide    = gsPCGetCreatureHide(oPC, TRUE);
 	object oAbility = GetItemPossessedBy(oPC, "GS_SU_ABILITY");
     int nGift1      = GetGiftFromDescription(GetLocalString(oPC, VAR_GIFT_1));
     int nGift2      = GetGiftFromDescription(GetLocalString(oPC, VAR_GIFT_2));
@@ -426,7 +419,7 @@ void _ApplyGifts()
 //Also check for major and minor gifts!
 void _AddGiftIfNotTaken(object oPC, string sGift)
 {
-  object oHide = gsPCGetCreatureHide(oPC);
+  object oHide = gsPCGetCreatureHide(oPC, TRUE);
   string sGift1 = GetLocalInt(oHide, "GIFT_1") ? GetLocalString(oPC, VAR_GIFT_1) : "";
   string sGift2 = GetLocalInt(oHide, "GIFT_2") ? GetLocalString(oPC, VAR_GIFT_2) : "";
   string sGift3 = GetLocalInt(oHide, "GIFT_3") ? GetLocalString(oPC, VAR_GIFT_3) : "";
@@ -582,7 +575,7 @@ void _SetUpAllowedPaths()
 void _ApplyPath()
 {
     object oPC = GetPcDlgSpeaker();  
-    object oItem = gsPCGetCreatureHide(oPC);
+    object oItem = gsPCGetCreatureHide(oPC, TRUE);
 
     // What we do here depends on which path it is.
     // This is the last part of this convo, so we can start other convos.
@@ -707,7 +700,7 @@ void _ApplyPath()
 void _SetUpMainOptions()
 { 
   object oPC       = GetPcDlgSpeaker();
-  object oHide     = gsPCGetCreatureHide(oPC);
+  object oHide     = gsPCGetCreatureHide(oPC, TRUE);
   
   if (!GetIsObjectValid(oHide))
   {
@@ -727,7 +720,6 @@ void _SetUpMainOptions()
   if (!GetLocalInt(oHide, "GIFT_3")) AddStringElement("Gift options", MAIN_MENU);
   if (!GetLocalInt(oHide, "APPLIED_ABILITIES"))  AddStringElement("Subrace options", MAIN_MENU);
   if (GetLocalInt(oPC, "award1") || GetLocalInt(oPC, "award2") || GetLocalInt(oPC, "award3")) AddStringElement("Award options", MAIN_MENU);
-  if (GetPCPlayerName(oPC) == "Mithreas") AddStringElement("Shapechanger options", MAIN_MENU);
   AddStringElement("[Done]", MAIN_MENU);
   
   if (GetElementCount(HEIGHT_OPTS) == 0)
@@ -738,17 +730,6 @@ void _SetUpMainOptions()
     AddStringElement("Very short", HEIGHT_OPTS);
     AddStringElement("Very tall", HEIGHT_OPTS);
   }
-
-  DeleteList(  SHAPECHANGER_OPTS);
-
-    AddStringElement("Cat", SHAPECHANGER_OPTS);
-    AddStringElement("Snow Cat", SHAPECHANGER_OPTS);
-    AddStringElement("Fox", SHAPECHANGER_OPTS);
-    AddStringElement("Wolf", SHAPECHANGER_OPTS);
-    AddStringElement("Rat", SHAPECHANGER_OPTS);
-    AddStringElement("Bat", SHAPECHANGER_OPTS);
-    AddStringElement("Dog", SHAPECHANGER_OPTS);
-    AddStringElement("Fennec", SHAPECHANGER_OPTS);
   
 }
 
@@ -761,7 +742,7 @@ void Init()
   Trace(SUBRACE, "Subrace conversation initialising.");
   
   object oPC       = GetPcDlgSpeaker();
-  object oHide     = gsPCGetCreatureHide(oPC);
+  object oHide     = gsPCGetCreatureHide(oPC, TRUE);
   int nRace        = GetRacialType(oPC);
 
   // Check if this character has any awards to use.  If they already have an award, skip.
@@ -782,8 +763,6 @@ void Init()
     AddStringElement("[Select]", CONFIRM);
     AddStringElement("[Back]", CONFIRM);
   }
-  
-  _SetUpAllowedSubraces();
       
   if (!GetIsObjectValid(GetItemPossessedBy(oPC, "mi_mark_destiny")))
   {
@@ -820,6 +799,7 @@ void PageInit()
   }
   else if (sPage == SUBRACE_OPTS)
   {
+    _SetUpAllowedSubraces();
     SetDlgPrompt("You may pick from the following subraces.  Options are likely to grow with time.");
     SetDlgResponseList(SUBRACE_OPTS, OBJECT_SELF);	
   }
@@ -935,11 +915,6 @@ void PageInit()
 
     SetDlgResponseList(SPELLSWORD_OPTIONS);
   }
-  else if (sPage == SHAPECHANGER_OPTS)
-  {
-    SetDlgPrompt("Pick a shapechanger type to play.  Beta testing phase...");
-    SetDlgResponseList(SHAPECHANGER_OPTS);
-  }
   else
   {
     SendMessageToPC(oPC,
@@ -953,7 +928,7 @@ void HandleSelection()
   // This method handles what happens when the player selects an option.
   int selection    = GetDlgSelection();
   object oPC       = GetPcDlgSpeaker();
-  object oHide     = gsPCGetCreatureHide(oPC);
+  object oHide     = gsPCGetCreatureHide(oPC, TRUE);
   string sPage     = GetDlgPageString();
   int bStaticLevel = GetLocalInt(GetModule(), "STATIC_LEVEL");
 
@@ -969,8 +944,7 @@ void HandleSelection()
 	else if (sNextPage == "Award options") SetDlgPageString(AWARD_OPTS);
 	else if (sNextPage == "Path options") SetDlgPageString(PATH_OPTS);
 	else if (sNextPage == "Gift options") SetDlgPageString(GIFT_OPTS); 
-	else if (sNextPage == "Shapechanger options") SetDlgPageString(SHAPECHANGER_OPTS); 
-    else EndDlg();	
+	else EndDlg();	
   }
   else if (sPage == CONFIRM)
   {
@@ -1090,7 +1064,7 @@ void HandleSelection()
         // Remove used award.
         if (nAwardChoice)
         {
-          object oCreatureHide = gsPCGetCreatureHide(oPC);
+          object oCreatureHide = gsPCGetCreatureHide(oPC, TRUE);
           string sAward;
           switch (nType)
           {
@@ -1210,38 +1184,6 @@ void HandleSelection()
     miSSSetBlockedSchool(oPC, SPELL_SCHOOL_CONJURATION , 2);
     miSSSetIsSpellsword(oPC);
     miSSMWPFeat(oPC);
-	SetDlgPageString(MAIN_MENU);
-  }
-  else if (sPage == SHAPECHANGER_OPTS)
-  {
-    switch (selection)
-	{
-	  case 0:
-	    SPC_Initialise(oPC, SPC_CAT);  // cat
-	    break;
-	  case 1:
-	    SPC_Initialise(oPC, SPC_SNOWCAT);  // snow cat
-	    break;
-	  case 2:
-	    SPC_Initialise(oPC, SPC_FOX); // fox
-	    break;
-	  case 3:
-	    SPC_Initialise(oPC, SPC_WOLF);  // wolf
-	    break;
-	  case 4:
-	    SPC_Initialise(oPC, SPC_RAT);  // rat
-	    break;
-	  case 5:
-	    SPC_Initialise(oPC, SPC_BAT); // bat
-	    break; 
-	  case 6:
-	    SPC_Initialise(oPC, SPC_DOG); // dog
-	    break; 
-	  case 7:
-	    SPC_Initialise(oPC, SPC_DESFOX); // fennec
-	    break; 
-	}
- 
 	SetDlgPageString(MAIN_MENU);
   }
 }

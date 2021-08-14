@@ -67,25 +67,7 @@ void ar_MessageAllPlayersInRadius(object oOrigin, string sPrefix, string sMsg, i
 //::----------------------------------------------------------------------------
 int ar_IsUDCharacter(object oPC, int bIncludeClampedSlaves = FALSE)
 {
-    string sSubRace = GetSubRace(oPC);
-    int nSubRace    = gsSUGetSubRaceByName(sSubRace);
-
-    return nSubRace == GS_SU_ELF_DROW ||
-           nSubRace == GS_SU_GNOME_DEEP ||
-           nSubRace == GS_SU_DWARF_GRAY ||
-           nSubRace == GS_SU_SPECIAL_BAATEZU ||
-           nSubRace == GS_SU_SPECIAL_RAKSHASA ||
-           nSubRace == GS_SU_SPECIAL_DRAGON ||
-           nSubRace == GS_SU_SPECIAL_VAMPIRE ||
-           nSubRace == GS_SU_SPECIAL_GOBLIN ||
-           nSubRace == GS_SU_SPECIAL_KOBOLD ||
-           nSubRace == GS_SU_HALFORC_OROG ||
-           nSubRace == GS_SU_FR_OROG ||
-           nSubRace == GS_SU_HALFORC_GNOLL ||
-           nSubRace == GS_SU_SPECIAL_OGRE ||
-           nSubRace == GS_SU_SPECIAL_IMP ||
-           nSubRace == GS_SU_SPECIAL_HOBGOBLIN ||
-           nSubRace == GS_SU_DEEP_IMASKARI;
+    return FALSE;
 }
 
 int ar_IsMonsterCharacter(object oPC)
@@ -93,21 +75,13 @@ int ar_IsMonsterCharacter(object oPC)
     string sSubRace = GetSubRace(oPC);
     int nSubRace    = gsSUGetSubRaceByName(sSubRace);
 
-    return nSubRace == GS_SU_ELF_DROW ||
-           nSubRace == GS_SU_GNOME_DEEP ||
-           nSubRace == GS_SU_DWARF_GRAY ||
-           nSubRace == GS_SU_SPECIAL_BAATEZU ||
+    return 
            nSubRace == GS_SU_SPECIAL_RAKSHASA ||
            nSubRace == GS_SU_SPECIAL_DRAGON ||
            nSubRace == GS_SU_SPECIAL_VAMPIRE ||
            nSubRace == GS_SU_SPECIAL_GOBLIN ||
            nSubRace == GS_SU_SPECIAL_KOBOLD ||
-           nSubRace == GS_SU_HALFORC_OROG ||
-           nSubRace == GS_SU_FR_OROG ||
-           nSubRace == GS_SU_HALFORC_GNOLL ||
            nSubRace == GS_SU_SPECIAL_OGRE ||
-           nSubRace == GS_SU_SPECIAL_IMP ||
-           nSubRace == GS_SU_DEEP_IMASKARI ||
            nSubRace == GS_SU_SPECIAL_HOBGOBLIN;
 }
 
@@ -117,11 +91,7 @@ int ar_IsPureMonsterCharacter(object oPC) {
 
     return nSubRace == GS_SU_SPECIAL_GOBLIN ||
            nSubRace == GS_SU_SPECIAL_KOBOLD ||
-           nSubRace == GS_SU_HALFORC_OROG ||
-           nSubRace == GS_SU_FR_OROG ||
-           nSubRace == GS_SU_HALFORC_GNOLL ||
            nSubRace == GS_SU_SPECIAL_OGRE ||
-           nSubRace == GS_SU_SPECIAL_IMP ||
            nSubRace == GS_SU_SPECIAL_HOBGOBLIN;
 }
 
@@ -137,23 +107,7 @@ int ar_IsUDOutcast(object oPC)
 }
 
 int ar_IsEligibleToUDVote(object oPC) {
-    string sSubRace = GetSubRace(oPC);
-    int nSubRace    = gsSUGetSubRaceByName(sSubRace);
-
-    if ( ar_IsUDSlave(oPC) )    return FALSE;
-
-    return nSubRace == GS_SU_ELF_DROW ||
-           nSubRace == GS_SU_GNOME_DEEP ||
-           nSubRace == GS_SU_DWARF_GRAY ||
-           nSubRace == GS_SU_SPECIAL_GOBLIN ||
-           nSubRace == GS_SU_SPECIAL_KOBOLD ||
-           nSubRace == GS_SU_HALFORC_OROG ||
-           nSubRace == GS_SU_FR_OROG ||
-           nSubRace == GS_SU_HALFORC_GNOLL ||
-           nSubRace == GS_SU_SPECIAL_OGRE ||
-           nSubRace == GS_SU_SPECIAL_IMP ||
-           nSubRace == GS_SU_SPECIAL_HOBGOBLIN ||
-           nSubRace == GS_SU_DEEP_IMASKARI;
+    return FALSE;
 }
 
 int ar_IsSettlementLeader(object oPC, object oArea) {
@@ -164,25 +118,10 @@ int ar_IsSettlementLeader(object oPC, object oArea) {
 }
 
 int ar_IsDrow(object oPC) {
-    string sSubRace = GetSubRace(oPC);
-    int nSubRace    = gsSUGetSubRaceByName(sSubRace);
-
-    return nSubRace == GS_SU_ELF_DROW;
+    return FALSE;
 }
 
 int ar_GetDrowInParty(object oPC) {
-    object oCreature = GetFirstFactionMember(oPC);
-    while (GetIsObjectValid(oCreature))
-    {
-        //::  Drow in party?
-        int nSubRace = gsSUGetSubRaceByName(GetSubRace(oCreature));
-        if ( gsSUGetIsUnderdarker(nSubRace) && nSubRace == GS_SU_ELF_DROW ) {
-            return TRUE;
-        }
-
-        oCreature = GetNextFactionMember(oPC);
-    }
-
     return FALSE;
 }
 

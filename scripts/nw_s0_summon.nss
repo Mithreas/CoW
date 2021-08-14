@@ -66,13 +66,7 @@ void main()
     int nSubRace = gsSUGetSubRaceByName(GetSubRace(OBJECT_SELF));
     int nUnderdarker = (nSubRace == GS_SU_SPECIAL_KOBOLD) ||
                        (nSubRace == GS_SU_SPECIAL_GOBLIN) ||
-                       (nSubRace == GS_SU_ELF_DROW) ||
-                       (nSubRace == GS_SU_GNOME_DEEP) ||
-                       (nSubRace == GS_SU_HALFORC_OROG) ||
-                       (nSubRace == GS_SU_FR_OROG) ||
-                       (nSubRace == GS_SU_DWARF_GRAY) ||
                        (nSubRace == GS_SU_SPECIAL_OGRE) ||
-                       (nSubRace == GS_SU_SPECIAL_IMP) ||
                        (nSubRace == GS_SU_SPECIAL_HOBGOBLIN);
 
     int bWarlock = GetLastSpellCastClass() == CLASS_TYPE_BARD && (!GetIsObjectValid(GetSpellCastItem()) && miWAGetIsWarlock(OBJECT_SELF));

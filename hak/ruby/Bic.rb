@@ -25,7 +25,7 @@ ACCESSORS
 
 
 require 'fileutils'
-require 'nwn/all'
+require_relative 'nwn/all'
 
 class Bic
   attr_accessor :file, :obj

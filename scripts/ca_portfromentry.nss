@@ -24,7 +24,7 @@ void main()
     int bSurface        = miXFGetCurrentServer() == SERVER_ISLAND;
     int bDistantShores  = miXFGetCurrentServer() == SERVER_DISTSHORES;
     
-    int bIsUnderdarker  = gsSUGetIsUnderdarker(nRace);
+    int bIsUnderdarker  = FALSE;
     int bHaveSlaveBadge = GetIsObjectValid( GetItemPossessedBy(oPC, "gvd_slave_clamp") );
     int nAlternateStart = GetLocalInt(gsPCGetCreatureHide(oPC), "MI_RACIAL_STARTLOC");
 

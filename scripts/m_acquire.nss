@@ -135,10 +135,12 @@ void main()
                 {
                   SetLocalObject(oAcquiredBy, "GS_SH_ITEM", oCopy);
                   SetLocalString(oAcquiredBy, "zzdlgCurrentDialog", "zz_co_shtrade");
-                  AssignCommand(oAcquiredFrom, ActionStartConversation(oAcquiredBy, "zzdlg_conv", TRUE, FALSE));
+                  AssignCommand(oAcquiredFrom, ActionStartConversation(oAcquiredBy, "zzdlg_conv", TRUE, FALSE));				  
                 }
             }
-        }
+			
+			return; // skip any further processing, we haven't really acquired the item.
+        }		
     }
 
     //stolen items -- pickpocket
@@ -292,6 +294,22 @@ void main()
             gsTHResetStolenItem(oAcquired);
         }
     }
+	
+	// Shapechangers don't like silver.
+	if(gsSUGetSubRaceByName(GetSubRace(oAcquiredBy)) == GS_SU_SHAPECHANGER)
+	{
+	  if (gsIPGetMaterialType(oAcquired) == 13) // silver
+	  {
+	    AssignCommand(oAcquiredBy, ClearAllActions());
+		SetActionMode(oAcquiredBy, ACTION_MODE_STEALTH, FALSE);
+		ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectDamage(d6(), DAMAGE_TYPE_MAGICAL), oAcquiredBy);
+		FloatingTextStringOnCreature("The silver burns you when you touch it.", oAcquiredBy, TRUE);
+		
+		CopyObject(oAcquired, GetLocation(oAcquiredBy));
+        DestroyObject(oAcquired);
+		return;
+	  }
+	}
 
     if (sTag == "GS_FX_gs_placeable181") //voidstone
     {

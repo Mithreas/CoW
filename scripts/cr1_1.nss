@@ -49,6 +49,7 @@ void ChangeStoneAppearance(int nStone)
   DestroyObject(oStone);
   object oNewStone = CreateObject(OBJECT_TYPE_PLACEABLE, sNewRes, lLoc, FALSE, sTag);
   SetName(oNewStone, "Runestone");
+  SetLocalInt(oNewStone, "GS_STATIC", TRUE);
 }
 
 void Reset()

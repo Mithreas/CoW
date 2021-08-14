@@ -200,11 +200,12 @@ void OnPageInit(string sPage)
       dlgAddResponseTalk(MM_RESPONSES, "[Sacrifice]", txtLime);
       dlgAddResponseTalk(MM_RESPONSES, "[Pray]", txtLime);
 	  
-      //gift of holy now has full altar access.  On Anemoi, wizards and sorcerers do as well.
+      //gift of holy now has full altar access.  On Anemoi, shapechangers, wizards and sorcerers do as well.
       if (gsCMGetHasClass(CLASS_TYPE_CLERIC, oSpeaker) || 
 	      gsCMGetHasClass(CLASS_TYPE_FAVOURED_SOUL, oSpeaker) || 
 	      gsCMGetHasClass(CLASS_TYPE_WIZARD, oSpeaker) || 
 		  gsCMGetHasClass(CLASS_TYPE_SORCERER, oSpeaker) || 
+		  gsSUGetSubRaceByName(GetSubRace(oSpeaker)) == GS_SU_SHAPECHANGER ||
 	      GetLocalInt(gsPCGetCreatureHide(oSpeaker), "GIFT_OF_HOLY"))
       {
         int nConsecrate = (gsWOGetConsecratedDeity(OBJECT_SELF) == GS_WO_NONE ||
@@ -323,8 +324,21 @@ void OnSelection(string sPage)
 
       if (nConsecrate)
       {
-         gsWOConsecrate(oSpeaker, oAltar);
-		 SPC_Consecrate(oSpeaker);
+        if (gsWOConsecrate(oSpeaker, oAltar))
+		{
+			// Shapechangers get bonus XP.
+			if (gsSUGetSubRaceByName(GetSubRace(oSpeaker)) == GS_SU_SHAPECHANGER &&
+				gsWOGetCategory(gsWOGetDeityByName(GetDeity(oSpeaker))) == FB_WO_CATEGORY_BEAST_CULTS)
+			{ 
+			   object oHide = gsPCGetCreatureHide(oSpeaker);
+			   int nTimeout = GetLocalInt(oHide, "SPC_TIMEOUT");
+			   if (nTimeout > gsTIGetActualTimestamp()) return;
+			   
+			   gsXPGiveExperience(oSpeaker, 250);
+			   
+			   SetLocalInt(oHide, "SPC_TIMEOUT", gsTIGetActualTimestamp() + 60*60*20);  
+			}
+		}
       }
       else
       {

@@ -273,6 +273,7 @@ object gsCBSetAttackTarget(object oTarget, object oObject = OBJECT_SELF)
 
     if (GetIsObjectValid(oGuard) &&
         (bAssociateGuardingMe || GetLocalObject(oGuard, "CURRENT_WARD") == oTarget) &&
+		GetArea(oTarget) == GetArea(oGuard) && 
         GetDistanceBetween(oTarget, oGuard) != 0.0f &&
         GetDistanceBetween(oTarget, oGuard) <= 3.0f)
     {
@@ -297,7 +298,7 @@ object gsCBSetAttackTarget(object oTarget, object oObject = OBJECT_SELF)
     // Separate guardian system for PDK wards
     object oPDK = GetLocalObject(oTarget, "PDKWarded");
     if (bGuarded == FALSE && GetIsObjectValid(oPDK) == TRUE && oTarget == GetLocalObject(oPDK, "PDKWard")) {
-        if (GetDistanceBetween(oTarget, oPDK) != 0.0f && GetDistanceBetween(oTarget, oPDK) <= 6.0f)
+        if (GetArea(oTarget) == GetArea(oPDK) && GetDistanceBetween(oTarget, oPDK) != 0.0f && GetDistanceBetween(oTarget, oPDK) <= 6.0f)
         {
             if(nTime - GetLocalInt(oTarget, "WardFeedbackTimestamp") >= 6)
             {

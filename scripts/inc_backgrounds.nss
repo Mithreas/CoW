@@ -20,8 +20,9 @@ const int MI_BA_SHADOW   = 5;
 const int MI_BA_WARDEN   = 6;
 const int MI_BA_FERNVALE = 7;
 const int MI_BA_AIREVORN = 8;
+const int MI_BA_DUNKHAZAK = 9;
 
-const int MI_BA_NUM_BACKGROUNDS = 9;
+const int MI_BA_NUM_BACKGROUNDS = 10;
 
 //Gifts
 const int GIFT_NONE = 0;
@@ -262,6 +263,8 @@ string miBAGetBackgroundName(int nBackground)
       return "Fernvale";
     case MI_BA_AIREVORN:
       return "Airevorn";
+	case MI_BA_DUNKHAZAK:
+	  return "Dun Khazak";
   }
 
   return "";
@@ -281,6 +284,7 @@ int miBAGetCasteByBackground(int nBackground)
     case MI_BA_WARDEN:
 	case MI_BA_FERNVALE:
     case MI_BA_AIREVORN:
+	case MI_BA_DUNKHAZAK:
       return CASTE_WARRIOR;
   }
 
@@ -320,6 +324,9 @@ string miBAGetBackgroundDescription(int nBackground)
     case MI_BA_AIREVORN:
 	  sRetVal = "You are a resident of Airevorn, a small mountain village where Elves and Half-Elves live together in peace.";
 	  break;
+	case MI_BA_DUNKHAZAK:
+	  sRetVal = "You come from the Northern city of Dun Khazak, where the Temple of Many Faces sits amid a sea of tribes who value strength above all.";
+	  break;
   }
 
   // If using castes (server config.2da)
@@ -358,16 +365,19 @@ int miBAGetIsBackgroundLegal(int nBackground, object oPC)
     case MI_BA_DRANNIS:
     case MI_BA_ERENIA:
     case MI_BA_RENERRIN:
-	  return (GetRacialType(oPC) == RACIAL_TYPE_HUMAN);
+	  return (GetRacialType(oPC) == RACIAL_TYPE_HUMAN && gsSUGetSubRaceByName(GetSubRace(oPC)) != GS_SU_SHAPECHANGER);
 	case MI_BA_WARDEN:
-	  return (GetRacialType(oPC) == RACIAL_TYPE_HALFLING);
+	  return (GetRacialType(oPC) == RACIAL_TYPE_HALFLING && gsSUGetSubRaceByName(GetSubRace(oPC)) != GS_SU_SHAPECHANGER);
 	case MI_BA_FERNVALE:
-	  return (GetRacialType(oPC) == RACIAL_TYPE_ELF);
+	  return (GetRacialType(oPC) == RACIAL_TYPE_ELF && gsSUGetSubRaceByName(GetSubRace(oPC)) != GS_SU_SHAPECHANGER);
     case MI_BA_AIREVORN:
-	  return (GetRacialType(oPC) == RACIAL_TYPE_HALFELF);
+	  return (GetRacialType(oPC) == RACIAL_TYPE_HALFELF && gsSUGetSubRaceByName(GetSubRace(oPC)) != GS_SU_SHAPECHANGER);
+	case MI_BA_DUNKHAZAK:
+	  return (GetRacialType(oPC) == RACIAL_TYPE_HUMANOID_MONSTROUS || gsSUGetSubRaceByName(GetSubRace(oPC)) == GS_SU_SHAPECHANGER);
 	case MI_BA_IMPERIAL:
     case MI_BA_SHADOW:
 	  return FALSE;  // Can only be acquired during gameplay.
+	
   }
 
   return FALSE;
@@ -430,7 +440,11 @@ void miBADoFactionGear(object oPC, int nBackground, int nLevel)
 	    CreateItemOnObject("aireoutfit", oPC);
         CreateItemOnObject("key_airevorn", oPC);
         GiveGoldToCreature(oPC, 750);
-		break;	    
+		break;
+      case MI_BA_DUNKHAZAK:	 
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_dunkhazak"))) return;
+        CreateItemOnObject("key_dunkhazak", oPC);
+        GiveGoldToCreature(oPC, 750);	   
 	  default:
         break;		
 	}
@@ -465,7 +479,9 @@ void miBADoFactionGear(object oPC, int nBackground, int nLevel)
       case MI_BA_FERNVALE:   	  
 		break;
       case MI_BA_AIREVORN:	  
-		break;	    
+		break;	 
+      case MI_BA_DUNKHAZAK:
+        break;	  
 	  default:
         break;		
 	}
@@ -501,6 +517,8 @@ void miBADoFactionGear(object oPC, int nBackground, int nLevel)
 		break;
       case MI_BA_AIREVORN:	  
 		break;	    
+      case MI_BA_DUNKHAZAK:
+        break;
 	  default:
         break;		
 	}

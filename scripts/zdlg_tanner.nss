@@ -24,8 +24,8 @@ void Init()
   {
     AddStringElement("Yes, that's why I'm here.", MAIN_MENU);
     AddStringElement("None, sorry.", MAIN_MENU);
+    if (GetRacialType(OBJECT_SELF) == RACIAL_TYPE_HALFLING || GetRacialType(OBJECT_SELF) == RACIAL_TYPE_SHAPECHANGER) AddStringElement("Do you have anything for sale?", MAIN_MENU);
     if (GetRacialType(OBJECT_SELF) == RACIAL_TYPE_HALFLING) AddStringElement("I was wondering whether I can use your tubs and racks?", MAIN_MENU);
-    if (GetRacialType(OBJECT_SELF) == RACIAL_TYPE_HALFLING) AddStringElement("Do you have anything for sale?", MAIN_MENU);
   }
   
   // End of conversation
@@ -64,6 +64,7 @@ void PageInit()
     {
       sTag = GetStringLowerCase(GetTag(oItem));
       if (sTag != "cnrskinningknife" && 
+	      !(sTag == "cnrskinwool" && GetRacialType(OBJECT_SELF) == RACIAL_TYPE_SHAPECHANGER) &&
 	      GetStringLeft(sTag, 7) == "cnrskin")
       {
         nGold += gsCMGetItemValue(oItem);
@@ -111,12 +112,6 @@ void HandleSelection()
           break;
         }
       case 2:
-        // Ask to use their facilities
-        {
-          SetDlgPageString(PAGE_2);
-          break;
-        }
-      case 3:
         // Shop
         {
           int nTimeout = GetLocalInt(oPC, "WATER_TIMEOUT");
@@ -129,6 +124,12 @@ void HandleSelection()
           object oStore = GetNearestObject(OBJECT_TYPE_STORE);
           if (GetIsObjectValid(oStore)) gsSHOpenStore(oStore, OBJECT_SELF, oPC);
           EndDlg();
+          break;
+        }
+      case 3:
+        // Ask to use their facilities
+        {
+          SetDlgPageString(PAGE_2);
           break;
         }
     }
