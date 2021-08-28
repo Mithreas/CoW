@@ -1522,17 +1522,30 @@ void IPWildShapeCopyItemProperties(object oOld, object oNew, int bWeapon = FALSE
         ip = GetFirstItemProperty(oOld);
         while (GetIsItemPropertyValid(ip))
         {
-            if (bWeapon)
-            {
-                if (GetWeaponRanged(oOld) == GetWeaponRanged(oNew)   )
-                {
-				    _AddItemProperty(ip, oNew); 
-                }
-            }
-            else
-            {
-				_AddItemProperty(ip, oNew);                 
-            }
+			// Don't copy across the "base" DI of armour, shields and helms. 
+			// Slashing for armour, pierching for shields and bludgeoning for helms.
+			if (GetItemPropertyType(ip) == ITEM_PROPERTY_IMMUNITY_DAMAGE_TYPE &&
+			     ( (GetBaseItemType(oOld) == BASE_ITEM_ARMOR && GetItemPropertySubType(ip) == DAMAGE_TYPE_SLASHING) ||
+				   (GetBaseItemType(oOld) == BASE_ITEM_HELMET && GetItemPropertySubType(ip) == DAMAGE_TYPE_BLUDGEONING) ||
+				   ( (GetBaseItemType(oOld) == BASE_ITEM_TOWERSHIELD || GetBaseItemType(oOld) == BASE_ITEM_LARGESHIELD || GetBaseItemType(oOld) == BASE_ITEM_SMALLSHIELD) 
+				        && GetItemPropertySubType(ip) == DAMAGE_TYPE_PIERCING) ) )
+			{
+			  // Skip this property.
+			}
+			else
+			{
+				if (bWeapon)
+				{
+					if (GetWeaponRanged(oOld) == GetWeaponRanged(oNew)   )
+					{
+						_AddItemProperty(ip, oNew); 
+					}
+				}
+				else
+				{
+					_AddItemProperty(ip, oNew);                 
+				}
+			}
 			
             ip = GetNextItemProperty(oOld);
         }

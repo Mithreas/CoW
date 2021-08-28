@@ -117,6 +117,7 @@ void main()
     //--------------------------------------------------------------------------
     // Determine which form to use based on spell id, gender and level
     //--------------------------------------------------------------------------
+	int nStamina = 10;
     switch (nSpell)
     {
 
@@ -183,7 +184,8 @@ void main()
        // Humanoid Shape - Kobold Commando, Drow, Lizard Crossbow Specialist
        //-----------------------------------------------------------------------
        case 682:
-                 if(nShifter< 17)
+				 nStamina = 5;
+                 if(nShifter< X2_HUM_EPIC_THRESHOLD)
                  {
                      if (GetGender(OBJECT_SELF) == GENDER_MALE) //drow
                          nPoly = 59;
@@ -199,7 +201,8 @@ void main()
                  }
                  break;
        case 683:
-                 if(nShifter< 17)
+				 nStamina = 5;
+                 if(nShifter< X2_HUM_EPIC_THRESHOLD)
                  {
                     nPoly = 82; break; // Lizard
                  }
@@ -207,7 +210,9 @@ void main()
                  {
                     nPoly =104; break; // Epic Lizard
                  }
-       case 684: if(nShifter< 17)
+       case 684: 
+				 nStamina = 5;
+				 if(nShifter< X2_HUM_EPIC_THRESHOLD)
                  {
                     nPoly = 83; break; // Kobold Commando
                  }
@@ -257,12 +262,13 @@ void main()
        //-----------------------------------------------------------------------
        // Construct Shape - Stone Golem, Iron Golem, Demonflesh Golem
        //-----------------------------------------------------------------------
-       case 738: nPoly =91; break; // stone golem
-       case 739: nPoly =92; break; // demonflesh golem
-       case 740: nPoly =90; break; // iron golem
+       case 738: nStamina = 15; nPoly =91; break; // stone golem
+       case 739: nStamina = 15; nPoly =92; break; // demonflesh golem
+       case 740: nStamina = 15; nPoly =90; break; // iron golem
 
     }
 
+	gsSTDoCasterDamage(OBJECT_SELF, nStamina);
 
     //--------------------------------------------------------------------------
     // Determine which items get their item properties merged onto the shifters

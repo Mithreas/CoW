@@ -679,7 +679,7 @@ void gsCBDetermineCombatRound(object oTarget = OBJECT_INVALID)
     }
 
     //initial protection
-    if (! gsCBGetIsInCombat()) gsCBTalentProtectBySpell();
+    if (! gsCBGetIsInCombat() && GetLocalInt(OBJECT_SELF, "GS_OVERRIDE_SPELL") >= 0) gsCBTalentProtectBySpell();
 
     float fDistance = GetDistanceToObject(oTarget);
     int nBehavior   = GetLocalInt(OBJECT_SELF, "GS_CB_BEHAVIOR");
@@ -2052,15 +2052,13 @@ int gsCBTelegraphAttack(object oTarget)
 {
   // This method uses two new custom AOEs to telegraph the area that will be affected by an attack in 6s time. 
   // Anyone who doesn't get out of the way will be hit for 1d6 damage per caster hit dice with no save or attack roll.
-  // Don't telegraph an attack two rounds running. 
+  // Set a flag that we clear in evt_custatk_hb to avoid stacking attacks from one person. 
   int nTime = GetModuleTime();
   
-  if (nTime - GetLocalInt(OBJECT_SELF, "TELEGRAPHED") <= 12)
+  if (GetLocalInt(OBJECT_SELF, "TELEGRAPHED"))
   {
 	return FALSE;
   }
-  
-  SetLocalInt(OBJECT_SELF, "TELEGRAPHED", nTime); 
   
   if (GetDistanceBetween(oTarget, OBJECT_SELF) > 3.0f) return FALSE;
   

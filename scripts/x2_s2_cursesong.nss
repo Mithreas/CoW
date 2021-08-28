@@ -48,6 +48,13 @@ void main()
     int nPerform = nRanks;
     int nDuration = 10; //+ nChr;
 	
+	if (!nLevel) 
+	{
+	  // Shifters can sing in Harpy form. 
+	  nLevel = GetLevelByClass(CLASS_TYPE_SHIFTER);
+	  nPerform = GetLocalInt(gsPCGetCreatureHide(OBJECT_SELF), "FL_LEVEL");
+	}
+	
     // Stamina override.
 	int nStamina = 5;
 	if (GetHasFeat(FEAT_EXTRA_MUSIC, OBJECT_SELF)) nStamina = 4;

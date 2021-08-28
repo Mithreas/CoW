@@ -21,6 +21,15 @@ void main()
     //duration
     if (nMetaMagic == METAMAGIC_EXTEND) nDuration *= 2;
 
+    // Check for Shifter version of the spell.
+    if (!GetIsObjectValid(GetSpellCastItem()) && GetSpellId() == 860)
+    {
+        // Restore feat use.
+        IncrementRemainingFeatUses(OBJECT_SELF, 1153);
+		gsSTDoCasterDamage(OBJECT_SELF, 8);
+        miDVGivePoints(OBJECT_SELF, ELEMENT_WATER, 3.0);
+	}	
+
     //value
     nValue           = 3 + (nCasterLevel - 1) / 6;
     if (nValue > 5)                     nValue     = 5;

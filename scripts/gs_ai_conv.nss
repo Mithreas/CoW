@@ -8,6 +8,9 @@ void main()
 
     object oSpeaker = GetLastSpeaker();
     object oTarget  = OBJECT_INVALID;
+	
+	//  Ignore polymorphed PCs.
+	if (gsC2GetHasEffect(EFFECT_TYPE_POLYMORPH, oSpeaker, TRUE)) return;
 
     SetListening(OBJECT_SELF, FALSE);
 

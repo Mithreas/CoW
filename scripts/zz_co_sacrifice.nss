@@ -200,11 +200,12 @@ void OnPageInit(string sPage)
       dlgAddResponseTalk(MM_RESPONSES, "[Sacrifice]", txtLime);
       dlgAddResponseTalk(MM_RESPONSES, "[Pray]", txtLime);
 	  
-      //gift of holy now has full altar access.  On Anemoi, shapechangers, wizards and sorcerers do as well.
+      //gift of holy now has full altar access.  On Anemoi, shapechangers, shifters, wizards and sorcerers do as well.
       if (gsCMGetHasClass(CLASS_TYPE_CLERIC, oSpeaker) || 
 	      gsCMGetHasClass(CLASS_TYPE_FAVOURED_SOUL, oSpeaker) || 
 	      gsCMGetHasClass(CLASS_TYPE_WIZARD, oSpeaker) || 
 		  gsCMGetHasClass(CLASS_TYPE_SORCERER, oSpeaker) || 
+		  gsCMGetHasClass(CLASS_TYPE_SHIFTER, oSpeaker) || 
 		  gsSUGetSubRaceByName(GetSubRace(oSpeaker)) == GS_SU_SHAPECHANGER ||
 	      GetLocalInt(gsPCGetCreatureHide(oSpeaker), "GIFT_OF_HOLY"))
       {
@@ -334,7 +335,8 @@ void OnSelection(string sPage)
 			   int nTimeout = GetLocalInt(oHide, "SPC_TIMEOUT");
 			   if (nTimeout > gsTIGetActualTimestamp()) return;
 			   
-			   gsXPGiveExperience(oSpeaker, 250);
+			   // Not using gsXP here to avoid reducing XP for level 10+.
+			   GiveXPToCreature(oSpeaker, 250);
 			   
 			   SetLocalInt(oHide, "SPC_TIMEOUT", gsTIGetActualTimestamp() + 60*60*20);  
 			}

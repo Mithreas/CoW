@@ -60,7 +60,7 @@ void main()
   // Apparently the whitelist code isn't working, so do an explicit check here.
   if (StringToInt(NWNX_Events_GetEventData("FEAT_ID")) != FEAT_KI_DAMAGE) return;
 
-  object oTarget = NWNX_Object_StringToObject(NWNX_Events_GetEventData("TARGET_OBJECT_ID"));
+  object oTarget = StringToObject(NWNX_Events_GetEventData("TARGET_OBJECT_ID"));
   
   if (GetIsObjectValid(oTarget) && 
       GetArea(oTarget) == GetArea(OBJECT_SELF) && 

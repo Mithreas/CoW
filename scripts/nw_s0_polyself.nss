@@ -54,6 +54,9 @@ void main()
       miDVGivePoints(OBJECT_SELF, ELEMENT_WATER, 8.0);
 	  SetLocalInt(OBJECT_SELF, "WATER_TIMEOUT", gsTIGetActualTimestamp() + 15*60);
 	}  	
+	
+	// Additional Stamina cost - polymorphing is exhausting. 
+	gsSTDoCasterDamage(OBJECT_SELF, 7);
 
     //Determine Polymorph subradial type
     if(nSpell == 387)

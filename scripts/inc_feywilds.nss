@@ -63,6 +63,13 @@ string GetRandomStringElement(string sList, object oHolder)
   return GetStringElement(Random(GetElementCount(sList, oHolder)), sList, oHolder);
 }
 
+void _CopyEncounters(object oSourceArea, object oDestArea)
+{
+  gsENCopyArea(oSourceArea, oDestArea);
+  Trace(FEYWILDS, "Spawn chance in " + GetTag(oSourceArea) + " is " + IntToString(gsENGetEncounterChance(oSourceArea)) +
+                ", spawn chance in " + GetTag(oDestArea) + " is " + IntToString(gsENGetEncounterChance(oDestArea)));
+}
+
 void FW_Init()
 {
   Trace(FEYWILDS, "Initialising paths.");
@@ -238,7 +245,7 @@ void FW_GeneratePath(object oTrigger)
   
   string sNextTag = sPath+IntToString(nInstance)+"_"+IntToString(++nStage);
   
-  object oSourceArea = GetObjectByTag(sNextTag);
+  object oSourceArea = GetObjectByTag(sArea);
   object oDestArea   = CreateArea(sArea, GetStringLowerCase(sNextTag));
   string sEndArea    = "";
   
@@ -252,7 +259,9 @@ void FW_GeneratePath(object oTrigger)
     SetLocalInt(oSourceArea, "GS_ENABLED", TRUE);	
   }
   
-  gsENCopyArea(oSourceArea, oDestArea);
+  // Note - since EE 8193.29 this no longer seems to work when called immediately. 
+  // Putting it on a delay.
+  _CopyEncounters(oSourceArea, oDestArea);
   
   string sEnterBy = "TRANS_N";
   if (sEdge == "E") sEnterBy = "TRANS_W";

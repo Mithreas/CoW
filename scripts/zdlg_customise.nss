@@ -86,16 +86,20 @@ int _GetPrevVFX()
 
 void Init()
 {
+  object oSpeaker = GetPcDlgSpeaker();
   // Main menu options.
   DeleteList(MAIN_MENU);
-  if (GetElementCount(MAIN_MENU) == 0)
+
+  AddStringElement("Change Head",  MAIN_MENU);	
+	
+  if (gsSUGetSubRaceByName(GetSubRace(oSpeaker)) == GS_SU_SHAPECHANGER &&
+      GetLocalInt(GetArea(oSpeaker), "MI_RENAME"))
   {
-    AddStringElement("VFX Ears", MAIN_MENU);
-    AddStringElement("Head",  MAIN_MENU);	
+	AddStringElement("VFX Ears", MAIN_MENU);
 	AddStringElement("Tail", MAIN_MENU);
 	AddStringElement("Animal Form", MAIN_MENU);
-    AddStringElement("Toggle beast legs", MAIN_MENU);
-    AddStringElement("Toggle beast claws", MAIN_MENU);
+	AddStringElement("Toggle beast legs", MAIN_MENU);
+	AddStringElement("Toggle beast claws", MAIN_MENU);
 	AddStringElement("Toggle phenotype", MAIN_MENU);
   }
 
@@ -215,12 +219,12 @@ void HandleSelection()
   else if (sPage == "")
   {
     switch (selection)
-    {
-      case 0:
-	    SetDlgPageString(VFX_EARS);
-        break;		
-	  case 1:
+    {	
+	  case 0:
 	    SetDlgPageString(HEADS);
+        break;	
+      case 1:
+	    SetDlgPageString(VFX_EARS);
         break;	
 	  case 2: 
 	    SetDlgPageString(TAILS);
@@ -322,6 +326,7 @@ void HandleSelection()
   else if (sPage == HEADS)
   {
     int nHead;
+	int bHybrid = (GetLocalInt(gsPCGetCreatureHide(oPC), VAR_CURRENT_FORM) == 1);
   
     switch (selection)
 	{
@@ -330,13 +335,13 @@ void HandleSelection()
         nHead = GetCreatureBodyPart(CREATURE_PART_HEAD)+1;
 		if (nHead > AFHEADMAX) nHead = 0;
         SetCreatureBodyPart(CREATURE_PART_HEAD, nHead, oPC);
-		SetLocalInt(oHide, VAR_HYBRID_HEAD, nHead);
+		if (bHybrid) SetLocalInt(oHide, VAR_HYBRID_HEAD, nHead);
 		break;
 	  case 1: // previous
         nHead = GetCreatureBodyPart(CREATURE_PART_HEAD)-1;
 		if (nHead < 0) nHead = AFHEADMAX;
         SetCreatureBodyPart(CREATURE_PART_HEAD, nHead, oPC);
-		SetLocalInt(oHide, VAR_HYBRID_HEAD, nHead);
+		if (bHybrid) SetLocalInt(oHide, VAR_HYBRID_HEAD, nHead);
 		break;
 	  case 2: // back
 	    SetDlgPageString("");

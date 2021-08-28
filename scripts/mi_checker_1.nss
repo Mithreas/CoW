@@ -74,6 +74,11 @@ void miCheckIfCharacterIsLegal_1(object oPC)
      nBaseSkillPoints = 8;
      nNumFeats += 4;
      break;
+   case CLASS_TYPE_SHIFTER:
+     nBaseHP = 8;
+     nBaseSkillPoints = 4;
+     nNumFeats += 3;
+     break;
    case CLASS_TYPE_SORCERER:
      nBaseHP = 4;
      nBaseSkillPoints = 2;

@@ -249,6 +249,15 @@ void main()
         // problem.
         DeleteLocalInt(oEntering, "GS_ENABLED");
       }
+	  
+	  // Shifter check - give the feat for their base race.
+	  if (GetLevelByClass(CLASS_TYPE_SHIFTER, oEntering) == 1)
+	  {
+		if (GetRacialType(oEntering) == RACIAL_TYPE_HUMAN) AddKnownFeat(oEntering, 1126);
+		if (GetRacialType(oEntering) == RACIAL_TYPE_ELF) AddKnownFeat(oEntering, 1125);
+		if (GetRacialType(oEntering) == RACIAL_TYPE_HALFLING) AddKnownFeat(oEntering, 1127);
+		if (GetRacialType(oEntering) == RACIAL_TYPE_HUMANOID_MONSTROUS) AddKnownFeat(oEntering, 1128);
+	  }
     }
 
     if (GetLocalInt(oEntering, "GS_ENABLED"))

@@ -45,7 +45,7 @@
 //:://////////////////////////////////////////////
 
 // #include "nw_i0_generic"  //...and through this also x0_inc_generic
-
+#include "inc_combat"
 #include "x0_i0_henchman"
 #include "x0_i0_match"
 
@@ -332,7 +332,7 @@ void HenchmenCombatRound(object oIntruder)
     // * feb 26 2003: To prevent henchmen from resuming combat
     if (GetIsObjectValid(oIntruder) || GetIsObjectValid(oNearestTarget))
     {
-        DetermineCombatRound(oIntruder);
+        gsCBDetermineCombatRound(oIntruder);
     }
 }
 

@@ -132,8 +132,7 @@ void SPC_DoHybridForm(object oPC)
 	SendMessageToPC(oPC, "You must get out of polymorph before you can pick a form.");
   }
   else
-  {
-	  
+  {	  
 	  // Now figure out whether we are already in hybrid form.
 	  object oHide = gsPCGetCreatureHide(oPC);
 	  int nHybridForm  = GetLocalInt(oHide, VAR_HYBRID_FORM);
@@ -154,16 +153,18 @@ void SPC_DoHybridForm(object oPC)
 	  else
 	  {
 		SetLocalInt(oHide, VAR_CURRENT_FORM, 1);
-		int nHead = GetCreatureBodyPart(CREATURE_PART_HEAD, oPC);
 		AssignCommand(oPC, ClearAllActions());
+		
+		// Save off the head, form and race we were using before.  This might have changed since we started the char.
+		SetLocalInt(oHide, VAR_BASE_FORM, GetAppearanceType(oPC));
+		SetLocalInt(oHide, VAR_BASE_HEAD, GetCreatureBodyPart(CREATURE_PART_HEAD, oPC));
+		SetLocalInt(oHide, VAR_BASE_RACE, GetRacialType(oPC));
 
 		SetCreatureAppearanceType(oPC, nHybridForm);
 		SetCreatureTailType(nHybridTail, oPC);
 		NWNX_Creature_SetRacialType(oPC, 23);
 		DelayCommand(0.1f, SetCommandable(TRUE, oPC));
 			
-		// Save off the head we were using before.  This might have changed since we started the char.
-	   SetLocalInt(oHide, VAR_BASE_HEAD, nHead);	
 		
 		// Custom code to tune certain dynamic races.
 		if (nHybridForm == 3 || nHybridForm == 5)
@@ -236,7 +237,7 @@ void SPC_DoAnimalForm(object oPC)
   else
   {
 	// Piety cost.
-	gsSTAdjustState(GS_ST_PIETY, -25.0f, oPC);
+	gsSTAdjustState(GS_ST_PIETY, -10.0f, oPC);
 
 	// Give piety to nearby PC shifters
 	int nNth = 1;
@@ -245,7 +246,7 @@ void SPC_DoAnimalForm(object oPC)
 	{
 	  if (oOther != oPC && gsSUGetSubRaceByName(GetSubRace(oOther)) == GS_SU_SHAPECHANGER)
 	  {
-		gsSTAdjustState(GS_ST_PIETY, 10.0f, oOther);
+		gsSTAdjustState(GS_ST_PIETY, 5.0f, oOther);
 	  
 	  }
 	  nNth++;
@@ -354,7 +355,7 @@ void SPC_DoHumanoidForm(object oPC)
 	  else
 	  {
 	    // Piety cost.
-		gsSTAdjustState(GS_ST_PIETY, -25.0f, oPC);
+		gsSTAdjustState(GS_ST_PIETY, -10.0f, oPC);
 		
 		// Give piety to nearby PC shifters
 		int nNth = 1;
@@ -363,7 +364,7 @@ void SPC_DoHumanoidForm(object oPC)
 		{
 		  if (oOther != oPC && gsSUGetSubRaceByName(GetSubRace(oOther)) == GS_SU_SHAPECHANGER)
 		  {
-			gsSTAdjustState(GS_ST_PIETY, 10.0f, oOther);		  
+			gsSTAdjustState(GS_ST_PIETY, 5.0f, oOther);		  
 		  }
 		  nNth++;
 		  oOther = GetNearestCreature(CREATURE_TYPE_PLAYER_CHAR, PLAYER_CHAR_IS_PC, oPC, nNth);

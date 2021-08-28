@@ -24,7 +24,7 @@ void RestoreQuickbar();
 
 void main()
 {
-    object oAssociate = NWNX_Object_StringToObject(NWNX_Events_GetEventData("ASSOCIATE_OBJECT_ID"));;
+    object oAssociate = StringToObject(NWNX_Events_GetEventData("ASSOCIATE_OBJECT_ID"));;
 
     if(!GetIsPC(OBJECT_SELF))
         return;

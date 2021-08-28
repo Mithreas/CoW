@@ -107,6 +107,9 @@ void main()
       miDVGivePoints(OBJECT_SELF, ELEMENT_WATER, 8.0);
 	  SetLocalInt(OBJECT_SELF, "WATER_TIMEOUT", gsTIGetActualTimestamp() + 15*60);
 	}  
+	
+	// Stamina cost.
+	gsSTDoCasterDamage(OBJECT_SELF, 7);
 
     //Determine Polymorph subradial type
     if(nSpell == 401)
@@ -150,6 +153,30 @@ void main()
             nPoly = POLYMORPH_TYPE_DIRE_BADGER;
         }
     }
+	else if (nSpell == 853) // Chicken
+	{
+        nPoly = POLYMORPH_TYPE_CHICKEN;
+        if (nDuration >= 12)
+        {
+            nPoly = POLYMORPH_TYPE_SUPER_CHICKEN; // This should be fun.
+        }
+	}
+	else if (nSpell == 854) // Penguin
+	{
+        nPoly = POLYMORPH_TYPE_PENGUIN;
+        if (nDuration >= 12)
+        {
+            nPoly = POLYMORPH_TYPE_PENGUIN; // No change
+        }
+	}
+	else if (nSpell == 855) // Rat
+	{
+        nPoly = 134; // rat
+        if (nDuration >= 12)
+        {
+            nPoly = 135; // Dire Rat
+        }
+	}
 
     int nTotem = miTOGetTotemAnimalTailNumber(OBJECT_SELF);
     if (nTotem)

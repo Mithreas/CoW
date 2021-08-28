@@ -21,6 +21,8 @@ void main()
     {
         // Restore feat use.
         IncrementRemainingFeatUses(OBJECT_SELF,  FEAT_PRESTIGE_INVISIBILITY_2);
+        miDVGivePoints(OBJECT_SELF, ELEMENT_AIR, 3.0);
+		
         // Cooldown check.
         if(GetIsTimelocked(OBJECT_SELF, "Assassin Improved Invisibility"))
         {

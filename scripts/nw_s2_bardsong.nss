@@ -55,6 +55,15 @@ void main()
     //Declare major variables
     object oHide = gsPCGetCreatureHide();
     int nLevel = GetLevelByClass(CLASS_TYPE_BARD) + GetLocalInt(oHide, "FL_BONUS_BARD_LEVELS");
+    int nRanks = GetSkillRank(SKILL_PERFORM);
+	
+	if (!nLevel) 
+	{
+	  // Shifters can sing in Harpy form. 
+	  nLevel = GetLevelByClass(CLASS_TYPE_SHIFTER);
+	  nRanks = GetLocalInt(gsPCGetCreatureHide(OBJECT_SELF), "FL_LEVEL");
+	}
+	
     int bCuresLycanthropy = FALSE;
 	
     // Stamina override.
@@ -65,7 +74,6 @@ void main()
 	gsSTDoCasterDamage(OBJECT_SELF, nStamina);
 	IncrementRemainingFeatUses(OBJECT_SELF, FEAT_BARD_SONGS);
 			    	
-    int nRanks = GetSkillRank(SKILL_PERFORM);
     int nChr = GetAbilityModifier(ABILITY_CHARISMA);
     int nPerform = nRanks;
     int nDuration = 10; //+ nChr;

@@ -34,6 +34,7 @@ void main()
         // Restore feat use.
         IncrementRemainingFeatUses(OBJECT_SELF, FEAT_HARPER_CATS_GRACE);
 		gsSTDoCasterDamage(OBJECT_SELF, 5);
+        miDVGivePoints(OBJECT_SELF, ELEMENT_WATER, 3.0);
 	}	
 
     //Enter Metamagic conditions

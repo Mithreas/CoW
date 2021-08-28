@@ -51,6 +51,15 @@ void main()
     if (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_TRANSMUTATION, OBJECT_SELF))
         nTransmutation++;
 
+    // Check for Shifter version of the spell.
+    if (!GetIsObjectValid(GetSpellCastItem()) && GetSpellId() == 858)
+    {
+        // Restore feat use.
+        IncrementRemainingFeatUses(OBJECT_SELF, 1151);
+		gsSTDoCasterDamage(OBJECT_SELF, 5);
+        miDVGivePoints(OBJECT_SELF, ELEMENT_WATER, 3.0);
+	}	
+
     //Enter Metamagic conditions
     if (nMetaMagic == METAMAGIC_MAXIMIZE)
     {

@@ -61,6 +61,15 @@ void main()
         nDuration *= 2;
     }
 
+    // Check for Shifter version of the spell.
+    if (!GetIsObjectValid(GetSpellCastItem()) && GetSpellId() == 861)
+    {
+        // Restore feat use.
+        IncrementRemainingFeatUses(OBJECT_SELF, 1154);
+		gsSTDoCasterDamage(OBJECT_SELF, 8);
+        miDVGivePoints(OBJECT_SELF, ELEMENT_WATER, 3.0);
+	}	
+
     //Define the damage reduction effect
     eStone = EffectDamageReduction(10, DAMAGE_POWER_PLUS_FIVE, nAmount);
     //Link the effects

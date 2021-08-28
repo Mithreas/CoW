@@ -25,8 +25,9 @@ const int SHIFTER_DC_HARD         = 4;
 
 // * These constants mark the shifter level from which a new polymorph
 // * type is selected to upgrade an older one.
-const int X2_GW2_EPIC_THRESHOLD = 11;
-const int X2_GW3_EPIC_THRESHOLD = 15;
+const int X2_GW2_EPIC_THRESHOLD = 9;
+const int X2_GW3_EPIC_THRESHOLD = 9;
+const int X2_HUM_EPIC_THRESHOLD = 9;
 
 
 // * Returns and decrements the number of times this ability can be used

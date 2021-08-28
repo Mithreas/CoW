@@ -163,6 +163,12 @@ int gsWOGetIsDeityAvailable(int nDeity, object oPlayer = OBJECT_SELF)
 	  return gsWOGetCategory(nDeity) == FB_WO_CATEGORY_SEVEN_DIVINES;
 	}
 	
+	// Shifter - beast gods only.
+	if (gsCMGetHasClass(CLASS_TYPE_SHIFTER, oPlayer))
+	{
+	  return gsWOGetCategory(nDeity) == FB_WO_CATEGORY_BEAST_CULTS;
+	}
+	
 	// Cleric - Seven Divines or Dark One only.
 	if (gsCMGetHasClass(CLASS_TYPE_CLERIC, oPlayer))
 	{

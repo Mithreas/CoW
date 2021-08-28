@@ -563,7 +563,8 @@ void stopscry(object oPC, int nHP)
 //------------------------------------------------------------------------------
 int GetCanScry(object oPC)
 {
-  if (ALLOW_SCRYING)
+  if (ALLOW_SCRYING && 
+	     (GetIsPC(oPC) || GetIsDM(oPC) || GetIsDMPossessed(oPC)))
   {
     if (GetIsObjectValid(GetItemPossessedBy(oPC, "mi_scry_item"))) return TRUE;
 
@@ -602,7 +603,8 @@ int GetCanSendImage(object oPC)
 
   if (ALLOW_SENDING)
   {
-     if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_ILLUSION, oPC))
+     if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_ILLUSION, oPC) && 
+	     (GetIsPC(oPC) || GetIsDM(oPC) || GetIsDMPossessed(oPC)))
      {
        return TRUE;
      }

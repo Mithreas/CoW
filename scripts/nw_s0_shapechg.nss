@@ -45,6 +45,9 @@ void main()
       miDVGivePoints(OBJECT_SELF, ELEMENT_WATER, 8.0);
 	  SetLocalInt(OBJECT_SELF, "WATER_TIMEOUT", gsTIGetActualTimestamp() + 15*60);
 	}  
+	
+	// Stamina - shapeshifting is exhausting.
+	gsSTDoCasterDamage(OBJECT_SELF, 15);
 
     //Declare major variables
     int nSpell = GetSpellId();

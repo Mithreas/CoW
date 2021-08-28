@@ -528,7 +528,8 @@ void main()
 	// IS_UNDERWATER = 2 means totally underwater (drains stamina very fast, slows PC).
 	if (GetLocalInt(oArea, "IS_UNDERWATER") == 2 && (GetIsPC(oEntering) || GetIsPC(GetMaster(oEntering))))
 	{
-	  if (GetAppearanceType(oEntering) != 68 && GetAppearanceType(oEntering) != 69) // Water elemental shapes
+	  // Water elemental shapes and Shifters can breathe underwater.
+	  if (GetAppearanceType(oEntering) != 68 && GetAppearanceType(oEntering) != 69 && !GetLevelByClass(CLASS_TYPE_SHIFTER, oEntering))
 	  {
 	    _ApplyUnderwaterSpeedPenalty(oEntering);
 	    DoUnderwaterHeartbeat(oEntering);
@@ -588,13 +589,15 @@ void main()
                 //close door
                 if (GetIsOpen(oObject))
                 {
-                      // addition by Dunshine: check for the GVD_NO_AUTO_CLOSE variable to prevent certain doors from closing
-                      if (GetLocalInt(oObject, "GVD_NO_AUTO_CLOSE") != 1) {
+                      // addition by Dunshine: check for the GVD_NO_AUTO_CLOSE variable to prevent certain doors from closing.
+					  // Also don't bother closing the invisible door objects.
+                      if (GetLocalInt(oObject, "GVD_NO_AUTO_CLOSE") != 1 &&
+				          GetResRef(oObject) != "x3_door_oth001") {
                         AssignCommand(oObject, ActionCloseDoor(oObject));
                       }
                 }
 
-                //lock door, unless it's a haunted door that will lock when interacted with.
+                //lock door, unless it's a haunted door that will lock when interacted with, a door flagged not to lock
                 if (GetLockLockable(oObject) && 
 				    !GetLocalInt(oObject, "GVD_NO_AUTO_LOCK") && 
 				    GetEventScript(oObject, EVENT_SCRIPT_DOOR_ON_OPEN)!= "cow_haunteddoor")

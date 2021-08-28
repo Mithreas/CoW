@@ -272,8 +272,9 @@ void main()
     NWNX_Events_SubscribeEvent("NWNX_ON_USE_FEAT_BEFORE", "x3_s3_kidamage");
 	NWNX_Events_ToggleIDWhitelist("NWNX_ON_USE_FEAT", TRUE);
 	NWNX_Events_AddIDToWhitelist("NWNX_ON_USE_FEAT", FEAT_KI_DAMAGE);
+	NWNX_Events_AddIDToWhitelist("NWNX_ON_USE_FEAT", 947); // FEAT_PRESTIGE_DEFENSIVE_STANCE
 	
-    //NWNX_Events_SubscribeEvent("NWNX_ON_USE_FEAT_AFTER", "evt_featrestore");
+    NWNX_Events_SubscribeEvent("NWNX_ON_USE_FEAT_AFTER", "evt_featrestore");
 
     SetStealthHIPSCallback("evt_hips");
 

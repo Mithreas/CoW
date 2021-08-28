@@ -5,8 +5,10 @@ const string GOLD_TEMPLATE       = "nw_it_gold001";
 
 // From the provided actualCr, determines the gold CR.
 int DetermineGoldCR(float actualCr);
-
+// Handles drops for oCorpse using the nRacialType table.
 void gsTRCreateTreasure(object oCorpse, int nRacialType, float fCR, int nStolen, int nStolenGold, object oSearcher);
+// Adds a single random item from the boss drop table.  
+void gsTRDoBossDrop(object oCorpse);
 
 int DetermineGoldCR(float actualCr)
 {
@@ -110,6 +112,25 @@ void gsTRCreateTreasure(object oCorpse, int nRacialType, float fCR, int nStolen,
         CreateItemOnObject(GOLD_TEMPLATE, oCorpse, nGold);
       }
 
+    }
+  }
+}
+//----------------------------------------------------------------
+void gsTRDoBossDrop(object oCorpse)
+{
+  object oInventory = GetObjectByTag("GS_INVENTORY_BOSS");
+
+  if (GetIsObjectValid(oInventory))
+  {
+    int nCount = GetLocalInt(oInventory, "FB_CO_TREASURE_COUNT");
+
+    if (nCount > 0)
+    {
+      int nItemSelector = Random(nCount);
+      object oItem  = GetLocalObject(oInventory, "FB_CO_TREASURE_" + IntToString(nItemSelector));
+
+      object oCopy  = gsCMCopyItem(oItem, oCorpse);
+      if(GetIsItemMundane(oItem)) SetIsItemMundane(oCopy, TRUE);
     }
   }
 }

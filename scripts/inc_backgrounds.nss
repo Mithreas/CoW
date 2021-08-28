@@ -444,6 +444,7 @@ void miBADoFactionGear(object oPC, int nBackground, int nLevel)
       case MI_BA_DUNKHAZAK:	 
         if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_dunkhazak"))) return;
         CreateItemOnObject("key_dunkhazak", oPC);
+		CreateItemOnObject("infil_key", oPC);
         GiveGoldToCreature(oPC, 750);	   
 	  default:
         break;		

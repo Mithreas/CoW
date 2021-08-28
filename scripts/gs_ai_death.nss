@@ -340,7 +340,7 @@ void main()
 
         // We only want to spawn loot on players, and also, ensure that they are killing things near their level.
         // Spawn these directly on the corpse; we want this type of loot to bypass the other systems.
-        if (GetIsPC(oKiller) && fChallengeRating >= gsXPGetPCChallengeRating(oKiller, 5.0f, OBJECT_SELF) - 5.0f)
+        if ((GetIsPC(oKiller) || GetIsPC(GetMaster(oKiller))) && fChallengeRating >= gsXPGetPCChallengeRating(oKiller, 5.0f, OBJECT_SELF) - 5.0f)
         {
             if (fChallengeRating >= 20.0)
             {
@@ -354,6 +354,9 @@ void main()
             {
                 CreateLoot(isBoss ? LOOT_CONTEXT_BOSS_LOW : LOOT_CONTEXT_MOB_LOW, oCorpse, oKiller);
             }
+			
+			// If we're within CR range, drop a single boss loot item.
+			if (isBoss) gsTRDoBossDrop(oCorpse);
         }
 
         if (bHasLoot)

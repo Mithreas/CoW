@@ -54,6 +54,16 @@ void main()
 		return;
 	}
 	
+	// Shifter - give the feat of their "base" form at level 1.
+	// This method will fire during future level ups if they only take 1 shifter but that's OK.
+	if (GetLevelByClass(CLASS_TYPE_SHIFTER, oPC) == 1)
+	{
+	  if (GetRacialType(oPC) == RACIAL_TYPE_HUMAN) AddKnownFeat(oPC, 1126);
+	  if (GetRacialType(oPC) == RACIAL_TYPE_ELF) AddKnownFeat(oPC, 1125);
+	  if (GetRacialType(oPC) == RACIAL_TYPE_HALFLING) AddKnownFeat(oPC, 1127);
+	  if (GetRacialType(oPC) == RACIAL_TYPE_HUMANOID_MONSTROUS) AddKnownFeat(oPC, 1128);
+	}
+	
     //required level
     for (nNth = 1; !bStaticLevel && nNth <= 3; nNth++)
     {

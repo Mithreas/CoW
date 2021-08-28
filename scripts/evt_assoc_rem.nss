@@ -56,7 +56,7 @@ void main()
         }
         j = 0;
     }
-    oAssociate = NWNX_Object_StringToObject(NWNX_Events_GetEventData("ASSOCIATE_OBJECT_ID"));
+    oAssociate = StringToObject(NWNX_Events_GetEventData("ASSOCIATE_OBJECT_ID"));
     SetLocalObject(oAssociate, "Master", OBJECT_SELF);
     AssignCommand(oAssociate, RunSpecialBehaviors(EVENT_ASSOCIATE_REMOVED));
     StartSummonCooldownTimer(oAssociate);

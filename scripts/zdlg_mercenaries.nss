@@ -99,17 +99,34 @@ void PageInit()
   // This is the function that sets up the prompts for each page.
   string sPage = GetDlgPageString();
   object oPC   = GetPcDlgSpeaker();
+  int bHuman   = GetRacialType(OBJECT_SELF) == RACIAL_TYPE_HUMAN;
   int bElf     = GetRacialType(OBJECT_SELF) == RACIAL_TYPE_ELF;
   int bEnt     = GetRacialType(OBJECT_SELF) == RACIAL_TYPE_CONSTRUCT;
   
   if (sPage == "")
   {
-    string sPrompt = "Solkin watch over you, sir. Are you looking to hire?";
-	if (bElf) sPrompt = "I can deploy rangers to watch over our claims in the wilderness, if you can cover their supply costs.";
-	if (bEnt) sPrompt = "The trees cry out for revenge for their slain comrades.  We would be led to war, were you to wish it.";
-  
-    SetDlgPrompt(sPrompt);
-    SetDlgResponseList(MAIN_MENU, OBJECT_SELF);
+    string sResRef = GetLocalString(OBJECT_SELF, RESREF);
+	int nFaction = miBAGetBackground(GetPCSpeaker());
+	object oWP = GetObjectByTag("MERC_TEST_WP");
+	object oTest = CreateObject(OBJECT_TYPE_CREATURE, sResRef + "_" + IntToString(nFaction), GetLocation(oWP));
+	
+	if (!GetIsObjectValid(oTest)) 
+	{
+		// Only some factions are set up for each mercenary type. This is to stop e.g. Elf factions hiring human mercs.
+		SpeakString("Sorry, we won't work for you.");
+		EndDlg();
+	}
+	else
+	{		
+		DestroyObject(oTest);
+		string sPrompt = "I have mercenaries for hire, if you are interested.";
+		if (bHuman) sPrompt = "Solkin watch over you, sir. Are you looking to hire?";
+		if (bElf) sPrompt = "I can deploy rangers to watch over our claims in the wilderness, if you can cover their supply costs.";
+		if (bEnt) sPrompt = "The trees cry out for revenge for their slain comrades.  We would be led to war, were you to wish it.";
+	  
+		SetDlgPrompt(sPrompt);
+		SetDlgResponseList(MAIN_MENU, OBJECT_SELF);
+	}
   }
   else if (sPage == DESCRIPTION)
   {

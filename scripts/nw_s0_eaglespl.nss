@@ -38,6 +38,7 @@ void main()
         // Restore feat use.
         IncrementRemainingFeatUses(OBJECT_SELF, FEAT_HARPER_EAGLES_SPLENDOR);
 		gsSTDoCasterDamage(OBJECT_SELF, 5);
+        miDVGivePoints(OBJECT_SELF, ELEMENT_WATER, 3.0);
 	}	
 
     //Declare major variables

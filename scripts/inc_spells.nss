@@ -1868,6 +1868,8 @@ void ProjectImage()
     SetLocalInt(oImage, "X2_JUST_A_DISABLEEQUIP", TRUE);
     SetLocalInt(oImage, "X2_L_BEH_OFFENSE", 100);
     SetLocalInt(oImage, "X2_L_BEH_MAGIC", -100);
+    SetLocalInt(oImage, "GS_OVERRIDE_SPELL", -100);
+    SetLocalInt(oImage, "GS_OVERRIDE_ATTACK", 100);
     SetLocalInt(oImage, "PROJECT_IMAGE_CASTER_CL", nCasterLevel);
     SetChatRelayTarget(oImage, OBJECT_SELF);
     SetChatRelayName(oImage, "Your image");
@@ -3249,11 +3251,17 @@ int AR_GetCasterLevelBonus(object oCaster=OBJECT_SELF, int nSpellId = -1)
   {
     int nMonk = GetLevelByClass(CLASS_TYPE_MONK, oCaster);
 	int nAssassin = GetLevelByClass(CLASS_TYPE_ASSASSIN, oCaster);
+	int nShifter = GetLevelByClass(CLASS_TYPE_SHIFTER, oCaster);
 	
-	if (nMonk > nAssassin)
+	if (nMonk > nAssassin && nMonk > nShifter)
 	{
 	  nAttunement = SPELL_SCHOOL_ENCHANTMENT;
 	  nStrength   = nMonk;
+	}
+	else if (nShifter >= nMonk && nShifter > nAssassin)
+	{
+	  nAttunement = SPELL_SCHOOL_TRANSMUTATION;
+	  nStrength   = nShifter;
 	}
 	else
 	{

@@ -37,10 +37,12 @@ void main()
 
     // Assassin: 2m cooldown, Swap for Ethereal Visage at level 11
     object oItem = GetSpellCastItem();
+    int nDuration = AR_GetCasterLevel(OBJECT_SELF);
     if (!GetIsObjectValid(oItem) && GetSpellId() == 605)
     {
         // Restore feat use.
         IncrementRemainingFeatUses(OBJECT_SELF, FEAT_PRESTIGE_SPELL_GHOSTLY_VISAGE);
+        miDVGivePoints(OBJECT_SELF, ELEMENT_AIR, 3.0);
 		
         // Cooldown check.
         if(GetIsTimelocked(OBJECT_SELF, "Assassin Visage"))
@@ -50,13 +52,13 @@ void main()
         }
         SetTimelock(OBJECT_SELF, FloatToInt(TurnsToSeconds(2)), "Assassin Visage", 60, 30);
 
-        if (GetLevelByClass(CLASS_TYPE_ASSASSIN, OBJECT_SELF) >= 8)
+        if (GetLevelByClass(CLASS_TYPE_ASSASSIN, OBJECT_SELF) >= 7)
         {
             // Ethereal Visage
             effect eEther = EffectLinkEffects(EffectVisualEffect(VFX_DUR_ETHEREAL_VISAGE), EffectLinkEffects(EffectDamageReduction(20, DAMAGE_POWER_PLUS_THREE), EffectSpellLevelAbsorption(2)));
             eEther = EffectLinkEffects(eEther, EffectLinkEffects(EffectConcealment(25), EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
 
-            ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eEther, OBJECT_SELF, TurnsToSeconds(2));
+            ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eEther, OBJECT_SELF, TurnsToSeconds(nDuration));
 			gsSTDoCasterDamage(OBJECT_SELF, 8); 
             return;
         }
@@ -77,7 +79,6 @@ void main()
     eLink = EffectLinkEffects(eLink, eConceal);
     eLink = EffectLinkEffects(eLink, eDur);
     int nMetaMagic = AR_GetMetaMagicFeat();
-    int nDuration = AR_GetCasterLevel(OBJECT_SELF);
     //Fire cast spell at event for the specified target
     SignalEvent(oTarget, EventSpellCastAt(OBJECT_SELF, SPELL_GHOSTLY_VISAGE, FALSE));
 

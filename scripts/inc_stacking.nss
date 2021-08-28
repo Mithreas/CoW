@@ -27,7 +27,7 @@ void ConvertItemToNoStack(object oItem, int PeformVarCheck=FALSE)
   string sResRef = GetResRef(oItem);
   //non-stackable items should be here
   if((nBaseItemType != BASE_ITEM_ARROW && nBaseItemType != BASE_ITEM_BOLT && nBaseItemType != BASE_ITEM_BULLET && nBaseItemType != BASE_ITEM_DART && nBaseItemType != BASE_ITEM_THROWINGAXE) && (nBaseItemType == BASE_ITEM_MISCLARGE || IPGetIsMeleeWeapon(oItem) || GetWeaponRanged(oItem)  ||
-    nBaseItemType == BASE_ITEM_BLANK_SCROLL || nBaseItemType == BASE_ITEM_BLANK_WAND || nBaseItemType == BASE_ITEM_BLANK_POTION ||
+    nBaseItemType == BASE_ITEM_BLANK_WAND || nBaseItemType == BASE_ITEM_BLANK_POTION ||
     nBaseItemType == BASE_ITEM_ENCHANTED_POTION || nBaseItemType == BASE_ITEM_ENCHANTED_SCROLL || nBaseItemType == BASE_ITEM_ENCHANTED_WAND ||
     nBaseItemType == BASE_ITEM_KEY || nBaseItemType == BASE_ITEM_MAGICROD || nBaseItemType == BASE_ITEM_MAGICWAND ||  nBaseItemType == BASE_ITEM_BOOK || GetIsItemEquippable(oItem)))
     RemoveItemNoStack(oItem);

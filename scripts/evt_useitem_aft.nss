@@ -6,8 +6,8 @@
 
 void main()
 {
-    object item = NWNX_Object_StringToObject(NWNX_Events_GetEventData("ITEM_OBJECT_ID"));
-    object target = NWNX_Object_StringToObject(NWNX_Events_GetEventData("TARGET_OBJECT_ID"));
+    object item = StringToObject(NWNX_Events_GetEventData("ITEM_OBJECT_ID"));
+    object target = StringToObject(NWNX_Events_GetEventData("TARGET_OBJECT_ID"));
 
     if (GetActionMode(OBJECT_SELF, ACTION_MODE_PARRY))
     {

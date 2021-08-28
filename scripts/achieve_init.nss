@@ -58,6 +58,7 @@ void main()
   acInitialise("seravithia", "Mother of Magic", "Discovered Seravithia's aerie.");
   acInitialise("death", "The Gates of Death", "Passed through the gates of Death.");
   acInitialise("lostlibrary", "Lost Library", "Discovered a lost library, hidden away.");
+  acInitialise("dunkhazak", "World's Biggest Campsite", "Discovered Dun Khazak.");
     
   // Misc achievements
   acInitialise("miscast", "Miscast a Spell", "Had a spell go wrong due to a wild magic zone.");

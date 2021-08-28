@@ -27,6 +27,7 @@ void main()
         // Restore feat use.
         IncrementRemainingFeatUses(OBJECT_SELF, FEAT_BULLS_STRENGTH);
 		gsSTDoCasterDamage(OBJECT_SELF, 5);
+        miDVGivePoints(OBJECT_SELF, ELEMENT_WATER, 3.0);
 	}	
 
     // Transmutation Buff: add +1 from GSF, +2 from ESF

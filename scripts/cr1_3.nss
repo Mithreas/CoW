@@ -103,7 +103,7 @@ void CheckComplete()
   if (s1 == 1 && s2 == 1 && s3 == 1 && s4 == 1 && s5 == 1 && s6 == 1 &&
       s7 == 1 && s8 == 1 && s9 == 1 && s10 == 1)
   {
-    ToggleDoor("cr1_23");
+    ToggleDoor("cr1_3");
   }
   else if (s1 == 2 && s2 == 2 && s3 == 2 && s4 == 2 && s5 == 2 && s6 == 2 &&
            s7 == 2 && s8 == 2 && s9 == 2 && s10 == 2)
@@ -126,17 +126,17 @@ void main()
   else if (GetTag(oSelf) == "cr1_3_0")
   {
     ChangeStoneAppearance(2);
-	ToggleDoor("cr1_31");
-	ToggleDoor("cr1_33");
-	ToggleDoor("cr1_35");
+	//ToggleDoor("cr1_31");
+	//ToggleDoor("cr1_33");
+	//ToggleDoor("cr1_35");
   }
   else if (GetTag(oSelf) == "cr1_3_1")
   {
     ChangeStoneAppearance(2);
     ChangeStoneAppearance(4);
-	ToggleDoor("cr1_32");
-	ToggleDoor("cr1_34");
-	ToggleDoor("cr1_36");
+	//ToggleDoor("cr1_32");
+	//ToggleDoor("cr1_34");
+	//ToggleDoor("cr1_36");
   }
   else if (GetTag(oSelf) == "cr1_3_2")
   {
@@ -144,25 +144,25 @@ void main()
     ChangeStoneAppearance(1);
     ChangeStoneAppearance(3);
     ChangeStoneAppearance(5);
-	ToggleDoor("cr1_33");
-	ToggleDoor("cr1_35");
-	ToggleDoor("cr1_37");
+	//ToggleDoor("cr1_33");
+	//ToggleDoor("cr1_35");
+	//ToggleDoor("cr1_37");
   }
   else if (GetTag(oSelf) == "cr1_3_3")
   {
     ChangeStoneAppearance(2);
     ChangeStoneAppearance(6);
-	ToggleDoor("cr1_34");
-	ToggleDoor("cr1_36");
-	ToggleDoor("cr1_38");
+	//ToggleDoor("cr1_34");
+	//ToggleDoor("cr1_36");
+	//ToggleDoor("cr1_38");
   }
   else if (GetTag(oSelf) == "cr1_3_4")
   {
     ChangeStoneAppearance(1);
     ChangeStoneAppearance(5);
     ChangeStoneAppearance(7);
-	ToggleDoor("cr1_35");
-	ToggleDoor("cr1_37");
+	//ToggleDoor("cr1_35");
+	//ToggleDoor("cr1_37");
 	//ToggleDoor("cr1_39");
   }
   else if (GetTag(oSelf) == "cr1_3_5")
@@ -171,26 +171,26 @@ void main()
     ChangeStoneAppearance(4);
     ChangeStoneAppearance(6);
     ChangeStoneAppearance(8);
-	ToggleDoor("cr1_36");
-	ToggleDoor("cr1_38");
-	ToggleDoor("cr1_30");
+	//ToggleDoor("cr1_36");
+	//ToggleDoor("cr1_38");
+	//ToggleDoor("cr1_30");
   } 
   else if (GetTag(oSelf) == "cr1_3_6")
   {
     ChangeStoneAppearance(3);
     ChangeStoneAppearance(5);
     ChangeStoneAppearance(9);
-	ToggleDoor("cr1_37");
+	//ToggleDoor("cr1_37");
 	//ToggleDoor("cr1_39");
-	ToggleDoor("cr1_31");
+	//ToggleDoor("cr1_31");
   }
   else if (GetTag(oSelf) == "cr1_3_7")
   {
     ChangeStoneAppearance(4);
     ChangeStoneAppearance(8);
-	ToggleDoor("cr1_38");
-	ToggleDoor("cr1_30");
-	ToggleDoor("cr1_32");
+	//ToggleDoor("cr1_38");
+	//ToggleDoor("cr1_30");
+	//ToggleDoor("cr1_32");
   }
   else if (GetTag(oSelf) == "cr1_3_8")
   {
@@ -198,16 +198,16 @@ void main()
     ChangeStoneAppearance(7);
     ChangeStoneAppearance(9);
 	//ToggleDoor("cr1_39");
-	ToggleDoor("cr1_31");
-	ToggleDoor("cr1_33");
+	//ToggleDoor("cr1_31");
+	//ToggleDoor("cr1_33");
   }
   else if (GetTag(oSelf) == "cr1_3_9")
   {
     ChangeStoneAppearance(6);
     ChangeStoneAppearance(8);
-	ToggleDoor("cr1_30");
-	ToggleDoor("cr1_32");
-	ToggleDoor("cr1_34");
+	//ToggleDoor("cr1_30");
+	//ToggleDoor("cr1_32");
+	//ToggleDoor("cr1_34");
   }
   
   CheckComplete();  

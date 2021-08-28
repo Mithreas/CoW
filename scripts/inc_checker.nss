@@ -196,7 +196,11 @@ int CoW_HasAllowedClasses(object oPC)
 	  }
   }
   
-  if (GetLevelByClass(CLASS_TYPE_SHIFTER)) return FALSE;
+  if (GetLevelByClass(CLASS_TYPE_SHIFTER, oPC))
+  {
+    if (GetHitDice(oPC) == 1) return TRUE;                  // Allow at level 1 so that PCs can take the Shapechanger award.
+	else return GetHasPermission(CLASS_TYPE_SHIFTER, oPC);  // Otherwise restrict to Shapechangers only.
+  }
 
   switch (GetRacialType(oPC))
   {

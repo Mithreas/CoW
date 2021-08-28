@@ -148,7 +148,7 @@ void UnDisguisePC(object oPC)
 
     // Remove name modifier.
     svSetPCNameOverride(oPC, "");
-    svSetAffix(oPC, DISGUISE_SUFFIX, FALSE);
+    //svSetAffix(oPC, DISGUISE_SUFFIX, FALSE);
 
     miXFUpdatePlayerName(oPC, GetName(oPC));
     RestorePortrait(oPC);
@@ -195,7 +195,7 @@ void DisguisePC(object oPC, string sName = "")
             SetLocalString(oHide, "ORGNPDesc", GetDescription(oPC));
         SetDescription(oPC, sExist);
       }
-      svSetAffix(oPC, DISGUISE_SUFFIX, TRUE);
+      //svSetAffix(oPC, DISGUISE_SUFFIX, TRUE);
     }
 
     miXFUpdatePlayerName(oPC, sName);

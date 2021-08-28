@@ -106,7 +106,10 @@ void onSSpell(int nSelection);
 
 void OnInit()
 {
+  object oPC = dlgGetSpeakingPC();
+  
   dlgClearResponseList(STARTER_MENU);
+  
   dlgAddResponseAction(STARTER_MENU, "Toggle helmet visibility");
   dlgAddResponseAction(STARTER_MENU, "Helmet");
   dlgAddResponseAction(STARTER_MENU, "Cloak");
@@ -118,15 +121,20 @@ void OnInit()
   dlgAddResponseAction(STARTER_MENU, "Backpack");
   dlgAddResponseAction(STARTER_MENU, "Create Trap Kit");
   dlgAddResponseAction(STARTER_MENU, "Save Options");
-  //Only for classes with a spellbook (and palainds/rangers above level 4)
-  object oPC = dlgGetSpeakingPC();
+  if (GetLevelByClass(CLASS_TYPE_SHIFTER, oPC))
+  {
+    dlgAddResponseAction(STARTER_MENU, "Modify Appearance");
+  }
+  //Only for classes with a spellbook (and paladins/rangers above level 4)
   if(GetLevelByClass(CLASS_TYPE_WIZARD, oPC) >= 1 ||
      GetLevelByClass(CLASS_TYPE_CLERIC, oPC) >= 1 ||
      GetLevelByClass(CLASS_TYPE_DRUID, oPC) >= 1  ||
      GetLevelByClass(CLASS_TYPE_RANGER, oPC) >= 4 ||
      GetLevelByClass(CLASS_TYPE_PALADIN, oPC) >= 4)
+  {
     dlgAddResponseAction(STARTER_MENU, "Spellbooks");
-
+  }
+  
   dlgClearResponseList(BODY_MENU);
   dlgAddResponse(BODY_MENU, "Neck");
   dlgAddResponse(BODY_MENU, "Torso");
@@ -255,8 +263,7 @@ void OnPageInit(string sPage)
 }
 void OnSelection(string sPage)
 {
-
-
+  object oPC = dlgGetSpeakingPC();
   int nSel = dlgGetSelectionIndex();
  //Save the last page if needed.
   if(sPage == BODY_MENU)
@@ -403,7 +410,20 @@ void OnSelection(string sPage)
     case 8: dlgChangePage(PACK_MENU); break;
     case 9: dlgChangePage(TRAP_MENU); break;
     case 10: dlgChangePage(SAVE_MENU); break;
-    case 11: dlgChangePage(SPELL_CLASS); break;
+    case 11: 
+	{
+	  if (GetLevelByClass(CLASS_TYPE_SHIFTER, oPC))
+	  {
+	    dlgEndDialog();
+		SetLocalString(oPC, "dialog", "zdlg_customise");
+		AssignCommand(oPC, ActionStartConversation(oPC, "zdlg_converse"));
+	  }
+	  else
+	  {
+	    dlgChangePage(SPELL_CLASS); break;
+	  }
+	}
+	case 12: dlgChangePage(SPELL_CLASS); break;
     }
   }
 }

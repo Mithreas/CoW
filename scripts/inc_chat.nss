@@ -479,7 +479,6 @@ string fbCHCommandList(object oSpeaker)
   sList += _fbCHPrepareChatCommand("-loadoutfit", STRING_COLOR_GREEN);
   sList += _fbCHPrepareChatCommand("-losexp", STRING_COLOR_GREEN);
   sList += _fbCHPrepareChatCommand("-makesafe", STRING_COLOR_GREEN);
-  sList += _fbCHPrepareChatCommand("-manual", STRING_COLOR_GREEN);
   sList += _fbCHPrepareChatCommand("-meditate", STRING_COLOR_GREEN);
   sList += _fbCHPrepareChatCommand("-mimic", STRING_COLOR_GREEN);
   sList += _fbCHPrepareChatCommand("-move_fixture", STRING_COLOR_GREEN);
@@ -1042,7 +1041,7 @@ string fbDoLooksAndGetString(object first, object second)
                 bBluffed = TRUE;
 
             int polymorphed = GetHasEffect(EFFECT_TYPE_POLYMORPH, second);
-            int disguised = GetIsPCDisguised(second) || GetRacialType(first) == RACIAL_TYPE_SHAPECHANGER;
+            int disguised = GetIsPCDisguised(second) || polymorphed;
             int disguiseBroken = disguised && SeeThroughDisguise(second, first, FALSE);
 
             // if (polymorphed)

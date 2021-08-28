@@ -24,7 +24,8 @@ void main()
   JumpAllToObject(oClicker, oTarget);
   if (GetArea(oTarget) == GetArea(oClicker)) SetLocalInt(oClicker, "TRANSITION", TRUE);
 
-  if (GetObjectType(OBJECT_SELF) == OBJECT_TYPE_DOOR)
+  if (GetObjectType(OBJECT_SELF) == OBJECT_TYPE_DOOR && 
+      GetResRef(OBJECT_SELF) != "x3_door_oth001")
   {
     DelayCommand(30.0, AssignCommand(OBJECT_SELF,
                                      ActionCloseDoor(OBJECT_SELF)));

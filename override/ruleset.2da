@@ -41,7 +41,7 @@
 37   PICKPOCKET_HOSTILE_CREATURE_DC                   30
 38   PICKPOCKET_NEUTRAL_CREATURE_DC                   20
 39   PICKPOCKET_CREATURE_DEAD                         0
-40   MAX_NON_ROGUE_DISARM_LEVEL                       50
+40   MAX_NON_ROGUE_DISARM_LEVEL                       35
 41   MAX_NON_ROGUE_DETECT_LEVEL                       50
 42   ASSESSTRAP_EFORTLESS_MODIFIER                    15
 43   ASSESSTRAP_EASY_MODIFIER                         10

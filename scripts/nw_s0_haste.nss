@@ -82,6 +82,15 @@ void main()
         RemoveSpellEffects(SPELL_MASS_HASTE, OBJECT_SELF, oTarget);
     }
 
+    // Check for Shifter version of the spell.
+    if (!GetIsObjectValid(GetSpellCastItem()) && GetSpellId() == 862)
+    {
+        // Restore feat use.
+        IncrementRemainingFeatUses(OBJECT_SELF, 1155);
+		gsSTDoCasterDamage(OBJECT_SELF, 10);
+        miDVGivePoints(OBJECT_SELF, ELEMENT_WATER, 3.0);
+	}	
+
 
     effect eHaste = EffectHaste();
     effect eVis = EffectVisualEffect(VFX_IMP_HASTE);
