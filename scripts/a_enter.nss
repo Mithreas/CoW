@@ -902,7 +902,10 @@ void main()
         //export character
         if (GetPCPublicCDKey(oEntering) != "")
         {
+			// Saving resets polymorph. Set a variable so we know we're saving. 
+		    SetLocalInt(oEntering, "SAVE", TRUE);
             ExportSingleCharacter(oEntering);
+			AssignCommand(oEntering, SetLocalInt(oEntering, "SAVE", FALSE));
 
             miDVSavePoints(oEntering);
             bSave = TRUE;

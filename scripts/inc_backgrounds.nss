@@ -248,7 +248,7 @@ string miBAGetBackgroundName(int nBackground)
   switch (nBackground)
   {
     case MI_BA_NONE:
-      return "<c þ >[No background]</c>";
+      return "<c þ >[No faction]</c>";
     case MI_BA_DRANNIS:
       return "Drannis";
     case MI_BA_ERENIA:
@@ -298,7 +298,7 @@ string miBAGetBackgroundDescription(int nBackground)
   switch (nBackground)
   {
     case MI_BA_NONE:
-      sRetVal = "No Background.";
+      sRetVal = "No Faction.";
       break;
 	case MI_BA_IMPERIAL:
       sRetVal = "You are a retainer of the Imperial Throne, and have left your past allegiances behind to serve the God-Emperor directly.";

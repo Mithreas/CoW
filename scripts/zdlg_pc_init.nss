@@ -330,7 +330,7 @@ void _SetUpAllowedSubraces()
 void _AddBackgroundAsOption(int nBackground)
 {
   Trace(BACKGROUNDS, "Adding option for background: " + miBAGetBackgroundName(nBackground));
-  AddStringElement(miBAGetBackgroundName(nBackground), BACKGROUND_OPTS);
+  AddStringElement(miBAGetBackgroundName(nBackground) + (nBackground == MI_BA_DRANNIS ? " (Recommended for new players)": ""), BACKGROUND_OPTS);
   AddIntElement(nBackground, BA_SELECTIONS);
 }
 
@@ -364,7 +364,8 @@ void _SetUpAllowedBackgrounds()
     }
   }
 
-  _AddBackgroundAsOption(MI_BA_NONE);
+  if (acPlayerHasAchievement(oPC, "undercity"))
+	_AddBackgroundAsOption(MI_BA_NONE);
 }
 
 void _ApplyBackground()
@@ -714,12 +715,12 @@ void _SetUpMainOptions()
   
   DeleteList(MAIN_MENU);
   
+  if (!GetLocalInt(oHide, "APPLIED_ABILITIES"))  AddStringElement("Subrace options", MAIN_MENU);
   if (miBAGetBackground(oPC) == MI_BA_NONE) AddStringElement("Faction options", MAIN_MENU);
-  AddStringElement("PC height options", MAIN_MENU);
   if (GetLocalString(oHide, "MI_PATH") == "") AddStringElement("Path options", MAIN_MENU);
   if (!GetLocalInt(oHide, "GIFT_3")) AddStringElement("Gift options", MAIN_MENU);
-  if (!GetLocalInt(oHide, "APPLIED_ABILITIES"))  AddStringElement("Subrace options", MAIN_MENU);
   if (GetLocalInt(oPC, "award1") || GetLocalInt(oPC, "award2") || GetLocalInt(oPC, "award3")) AddStringElement("Award options", MAIN_MENU);
+  AddStringElement("PC height options", MAIN_MENU);
   AddStringElement("[Done]", MAIN_MENU);
   
   if (GetElementCount(HEIGHT_OPTS) == 0)
@@ -859,46 +860,7 @@ void PageInit()
     }
 
     SetDlgResponseList(AWARD_OPTS);
-  } /* Options removed for now.
-  else if (sPage == PACT_SELECT)
-  {
-    SetDlgPrompt("Your pact can be with devils (L/N only), demons (C/N only) or unseelie fey. "+
-     "The fey pact has different abilities from the abyssal and infernal pacts.");
-
-    DeleteList(PACT_SELECT);
-
-    if (GetAlignmentLawChaos(oPC) != ALIGNMENT_LAWFUL)
-    {
-      AddStringElement("Abyssal pact", PACT_SELECT);
-    }
-
-    if (GetAlignmentLawChaos(oPC) != ALIGNMENT_CHAOTIC)
-    {
-      AddStringElement("Infernal pact", PACT_SELECT);
-    }
-
-    AddStringElement("Fey pact", PACT_SELECT);
-    AddStringElement("Don't play a warlock", PACT_SELECT);
-
-    SetDlgResponseList(PACT_SELECT);
-  }
-  else if (sPage == TOTEM_SELECT)
-  {
-    DeleteList(TOTEM_OPTIONS);
-    AddStringElement("Wolf (+2 spot/hide/ms/str/dex)", TOTEM_SELECT);
-    AddStringElement("Panther (+4 hide/ms/dex)", TOTEM_SELECT);
-    AddStringElement("Spider (+2 int, immune to poison and paralysis)", TOTEM_SELECT);
-    AddStringElement("Parrot (+4 cha)", TOTEM_SELECT);
-    AddStringElement("Eagle (+8 spot, +2 cha)", TOTEM_SELECT);
-    AddStringElement("Bear (+4 str/con)", TOTEM_SELECT);
-    AddStringElement("Raven (+4 wis, +10 lore)", TOTEM_SELECT);
-    AddStringElement("Bat (+12 listen, Amplify 5x/day)", TOTEM_SELECT);
-    AddStringElement("Rat (+4 int, immune to disease)", TOTEM_SELECT);
-    AddStringElement("Snake (+2 cha/dex, immune to poison and disease)", TOTEM_SELECT);
-    AddStringElement("Don't play a totem druid", TOTEM_SELECT);
-
-    SetDlgResponseList(TOTEM_SELECT);
-  } */
+  } 
   else if (sPage == SPELLSWORD_OPTIONS)
   {
     SetDlgPrompt("In order to specialize in melee combat a Spellsword must give up one school in addition to all summoning abilities.");

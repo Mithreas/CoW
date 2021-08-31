@@ -3,9 +3,10 @@
 // hook_set_lev_cap
 //
 // Use this script to define the trade level caps for the calling PC
-//
+// 
 /////////////////////////////////////////////////////////////////////
 #include "cnr_recipe_utils"
+#include "inc_subrace"
 void main()
 {
   // Set the trade level caps for this PC
@@ -23,16 +24,10 @@ void main()
   int nPrimaryClassType = GetClassByPosition(1, OBJECT_SELF);
   int nRacialType = GetRacialType(OBJECT_SELF);
   
-  // Humans can handle explosives, but are less effective mages.
-  if (nRacialType != RACIAL_TYPE_HUMAN)
+  // Humans can do SCIENCE.
+  if (nRacialType != RACIAL_TYPE_HUMAN || gsSUGetSubRaceByName(GetSubRace(OBJECT_SELF)) == GS_SU_SHAPECHANGER)
   {
     CnrSetTradeskillLevelCapByType(OBJECT_SELF, CNR_TRADESKILL_CHEMISTRY, 5);
-  }
-  else
-  {
-    CnrSetTradeskillLevelCapByType(OBJECT_SELF, CNR_TRADESKILL_INVESTING, 10);
-    CnrSetTradeskillLevelCapByType(OBJECT_SELF, CNR_TRADESKILL_IMBUING, 10);
-    CnrSetTradeskillLevelCapByType(OBJECT_SELF, CNR_TRADESKILL_ENCHANTING, 10);
   }
 
 }

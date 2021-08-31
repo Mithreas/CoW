@@ -36,7 +36,10 @@ void main()
 
             SetLocalInt(oSpeaker, "MI_SAVE_TIMEOUT", nTimeout);
 
+			// Saving resets polymorph. Set a variable so we know we're saving. 
+			SetLocalInt(oSpeaker, "SAVE", TRUE);
             ExportSingleCharacter(oSpeaker);
+			AssignCommand(oSpeaker, SetLocalInt(oSpeaker, "SAVE", FALSE));
 
             gsPCSavePCLocation(oSpeaker, GetLocation(oSpeaker));
             SendMessageToPC(oSpeaker, "Your character has been saved.");

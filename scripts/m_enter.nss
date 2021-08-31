@@ -504,6 +504,9 @@ void main()
 	    SetObjectVisualTransform(oEntering, OBJECT_VISUAL_TRANSFORM_SCALE, GetLocalFloat(oEntering, "AR_SCALE"));
 	}
 	
+	// Set craft skill limits.
+	ExecuteScript("hook_set_lev_cap", oEntering);
+	
 	// Cutscene ghost all PCs, to make dealing with lots of summons less annoying.
 	ApplyEffectToObject(DURATION_TYPE_PERMANENT, SupernaturalEffect(EffectCutsceneGhost()), oEntering);
 }

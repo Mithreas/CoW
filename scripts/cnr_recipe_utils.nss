@@ -476,6 +476,10 @@ int CnrGetPlayerLevel(object oPC, string sDeviceTag)
   {
     int nXP = CnrGetTradeskillXPByType(oPC, nDeviceTradeskillType);
     nPlayerLevel = CnrDetermineTradeskillLevel(nXP);
+	
+	// Apply level cap.
+	if (nPlayerLevel > CnrGetTradeskillLevelCapByType(oPC, nDeviceTradeskillType))
+	  nPlayerLevel = CnrGetTradeskillLevelCapByType(oPC, nDeviceTradeskillType);
   }
   return nPlayerLevel;
 }
@@ -1851,7 +1855,7 @@ void CnrRecipeDisplayCraftingResult(object oPC, object oDevice, string sKeyToRec
 
       if (!bLevelDenied)
       {
-        if (nNewLevel < 20)
+        if (nNewLevel < CnrGetTradeskillLevelCapByType(oPC, nDeviceTradeskillType))
         {
           int nLevelXP = GetLocalInt(GetModule(), "CnrTradeXPLevel" + IntToString(nNewLevel+1));
           nLevelXP -= nNewXP;

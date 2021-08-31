@@ -99,13 +99,16 @@ void main()
     }
 
 	if (GetResRef(oUnequipped) == "x2_it_emptyskin" || GetResRef(oUnequipped) == "hide_totemdrd" || GetResRef(oUnequipped) == "thickscaledhide" ||
-	    GetResRef(oUnequipped) == "toughbeasthide" || FindSubString(GetResRef(oUnequipped), "nw_it_creitem") != -1 ||
+	    GetResRef(oUnequipped) == "toughbeasthide" || FindSubString(GetResRef(oUnequipped), "nw_it_creitem") != -1 || GetResRef(oUnequipped) == "x2_it_koboldcomm" ||
+		GetResRef(oUnequipped) == "x2_it_crelizhid1" || GetResRef(oUnequipped) == "x2_it_crelizhid2" ||
        (FindSubString(GetResRef(oUnequipped), "ar_it") != -1 && FindSubString(GetResRef(oUnequipped), "hide") != -1) )
     {
+	  // A bit of a hack this - set a variable when we save the character and unset it afterwards, since saving resets polymorph.
+	  int bSave = GetLocalInt(oUnequippedBy, "SAVE");
 	  
 	  // Figure out what form we are meant to be in.  If hybrid, refresh things
 	  // lost on polymorph.
-	  if (GetLocalInt(oHide, VAR_CURRENT_FORM) == 1)
+	  if (GetLocalInt(oHide, VAR_CURRENT_FORM) == 1 && !bSave)
 	  {
 		// Reapply tail, ears and scaling in case they were lost by polymorphing. 
 		SetCreatureTailType(GetLocalInt(oHide, VAR_HYBRID_TAIL), oUnequippedBy);	

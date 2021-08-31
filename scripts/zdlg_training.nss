@@ -1219,15 +1219,15 @@ void init_feat_list (object oPC)
 
   if (GetLevelByClass(CLASS_TYPE_SHIFTER, oPC) && GetLevelByClass(CLASS_TYPE_SHIFTER, oNPC))
   {
-    add_feat_to_list(oPC, "Greater Wildshape 2", FEAT_GREATER_WILDSHAPE_2, FALSE, CLASS_TYPE_SHIFTER);
-    if (GetKnowsFeat(FEAT_GREATER_WILDSHAPE_2, oPC)) add_feat_to_list(oPC, "Infinite Wildshape 1", FEAT_EPIC_SHIFTER_INFINITE_WILDSHAPE_1, FALSE, CLASS_TYPE_SHIFTER);
-    if (GetKnowsFeat(FEAT_EPIC_SHIFTER_INFINITE_WILDSHAPE_1, oPC)) add_feat_to_list(oPC, "Greater Wildshape 3", FEAT_GREATER_WILDSHAPE_3, FALSE, CLASS_TYPE_SHIFTER);
-    if (GetKnowsFeat(FEAT_GREATER_WILDSHAPE_3, oPC)) add_feat_to_list(oPC, "Infinite Wildshape 2", FEAT_EPIC_SHIFTER_INFINITE_WILDSHAPE_2, FALSE, CLASS_TYPE_SHIFTER);
-    if (GetKnowsFeat(FEAT_EPIC_SHIFTER_INFINITE_WILDSHAPE_2, oPC)) add_feat_to_list(oPC, "Greater Wildshape 4", FEAT_GREATER_WILDSHAPE_4, FALSE, CLASS_TYPE_SHIFTER);
-    if (GetKnowsFeat(FEAT_GREATER_WILDSHAPE_4, oPC)) add_feat_to_list(oPC, "Infinite Wildshape 3", FEAT_EPIC_SHIFTER_INFINITE_WILDSHAPE_3, FALSE, CLASS_TYPE_SHIFTER);
-    if (GetKnowsFeat(FEAT_EPIC_SHIFTER_INFINITE_WILDSHAPE_3, oPC)) add_feat_to_list(oPC, "Humanoid Shape", FEAT_HUMANOID_SHAPE, FALSE, CLASS_TYPE_SHIFTER);
-    if (GetKnowsFeat(FEAT_HUMANOID_SHAPE, oPC)) add_feat_to_list(oPC, "Infinite Wildshape 4", FEAT_EPIC_SHIFTER_INFINITE_WILDSHAPE_4, FALSE, CLASS_TYPE_SHIFTER);
-    if (GetKnowsFeat(FEAT_EPIC_SHIFTER_INFINITE_WILDSHAPE_4, oPC)) add_feat_to_list(oPC, "Infinite Humanoid Shape", FEAT_EPIC_SHIFTER_INFINITE_HUMANOID_SHAPE, FALSE, CLASS_TYPE_SHIFTER);
+    //add_feat_to_list(oPC, "Greater Wildshape 2", FEAT_GREATER_WILDSHAPE_2, FALSE, CLASS_TYPE_SHIFTER);
+    //if (GetKnowsFeat(FEAT_GREATER_WILDSHAPE_2, oPC)) add_feat_to_list(oPC, "Infinite Wildshape 1", FEAT_EPIC_SHIFTER_INFINITE_WILDSHAPE_1, FALSE, CLASS_TYPE_SHIFTER);
+    //if (GetKnowsFeat(FEAT_EPIC_SHIFTER_INFINITE_WILDSHAPE_1, oPC)) add_feat_to_list(oPC, "Greater Wildshape 3", FEAT_GREATER_WILDSHAPE_3, FALSE, CLASS_TYPE_SHIFTER);
+    //if (GetKnowsFeat(FEAT_GREATER_WILDSHAPE_3, oPC)) add_feat_to_list(oPC, "Infinite Wildshape 2", FEAT_EPIC_SHIFTER_INFINITE_WILDSHAPE_2, FALSE, CLASS_TYPE_SHIFTER);
+    //if (GetKnowsFeat(FEAT_EPIC_SHIFTER_INFINITE_WILDSHAPE_2, oPC)) add_feat_to_list(oPC, "Greater Wildshape 4", FEAT_GREATER_WILDSHAPE_4, FALSE, CLASS_TYPE_SHIFTER);
+    //if (GetKnowsFeat(FEAT_GREATER_WILDSHAPE_4, oPC)) add_feat_to_list(oPC, "Infinite Wildshape 3", FEAT_EPIC_SHIFTER_INFINITE_WILDSHAPE_3, FALSE, CLASS_TYPE_SHIFTER);
+    //if (GetKnowsFeat(FEAT_EPIC_SHIFTER_INFINITE_WILDSHAPE_3, oPC)) add_feat_to_list(oPC, "Humanoid Shape", FEAT_HUMANOID_SHAPE, FALSE, CLASS_TYPE_SHIFTER);
+    //if (GetKnowsFeat(FEAT_HUMANOID_SHAPE, oPC)) add_feat_to_list(oPC, "Infinite Wildshape 4", FEAT_EPIC_SHIFTER_INFINITE_WILDSHAPE_4, FALSE, CLASS_TYPE_SHIFTER);
+    //if (GetKnowsFeat(FEAT_EPIC_SHIFTER_INFINITE_WILDSHAPE_4, oPC)) add_feat_to_list(oPC, "Infinite Humanoid Shape", FEAT_EPIC_SHIFTER_INFINITE_HUMANOID_SHAPE, FALSE, CLASS_TYPE_SHIFTER);
   }
 
   if (GetLevelByClass(CLASS_TYPE_WEAPON_MASTER, oPC) && GetLevelByClass(CLASS_TYPE_WEAPON_MASTER, oNPC))

@@ -250,7 +250,7 @@ void main()
         DelayCommand(3.0, AssignCommand(oNPC, ActionSpeakString(sNPCText)));
       }
     }
-	else if (iClosest = INVEST_TRIGGER)
+	else if (iClosest == INVEST_TRIGGER)
 	{
 		if (GetIsSecretItemRevealed(oTrigger)) {return;}
 		string sSecret = GetLocalString(oTrigger, "RESREF");
