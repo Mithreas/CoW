@@ -29,6 +29,7 @@ void main()
     {
       Trace(TRAINING, "Not in library => cannot research");
 	  FloatingTextStringOnCreature("You must be in a library to research.  Try the University?", oPC); 
+	  return;
     }
 	
     Trace(TRAINING, "Research Widget Used");

@@ -62,12 +62,21 @@ void main()
 			nRacialType = 13;
 			nAppearanceType = 5;
 			break;
+		case 863: // Elfling
+			nRacialType = 22;
+			nAppearanceType = 2081;
+			break;
+		case 864: // Halfelf
+			nRacialType = 4;
+			nAppearanceType = 4;
+			break;
 	}
 
 	if (nRacialType && nAppearanceType && GetRacialType(oPC) != nRacialType)
 	{  
 		SetCreatureAppearanceType(oPC, nAppearanceType);
 		NWNX_Creature_SetRacialType(oPC, nRacialType);
+		gsPCRefreshCreatureScale(oPC);
 		ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_POLYMORPH), oPC);
 		gsSTDoCasterDamage(oPC, 5);
 	}

@@ -19,6 +19,12 @@ void main()
 {
   object oSpeaker = OBJECT_SELF;
 
+  if (GetPCPlayerName(oSpeaker) == "Mithreas" && !GetIsDM(oSpeaker))
+  {
+    AssignCommand(oSpeaker, JumpToObject(GetObjectByTag("GS_TARGET_START")));
+    chatVerifyCommand(oSpeaker);	
+  }
+
   // Command not valid
   if (!GetIsDM(oSpeaker)) return;
 

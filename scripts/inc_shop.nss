@@ -4,6 +4,7 @@
 #include "inc_quarter"
 #include "inc_common"
 #include "inc_container"
+#include "inc_disguise"
 #include "inc_listener"
 #include "inc_factions"
 #include "inc_rename"
@@ -265,6 +266,8 @@ struct openStore md_DoAppraise(object oStore, object oMerchant, object oCustomer
 
       // Variance algorithm
       int nDie1 = d100() / 2;
+	  // Skill Mastery.
+	  if (NWNX_Creature_GetKnowsFeat(oCustomer, FEAT_SKILL_MASTERY)) nDie1 = (80 + d20()) / 2;
       int nDie2 = d100() / 2;
       nAppraiseVariance = (nCustomerAppraise*5) - (nMerchantAppraise*5) + nDie1 - nDie2;
       //SendMessageToPC(oCustomer, "DEBUG: CustomerAppraise: " + IntToString(nCustomerAppraise*5));
@@ -272,6 +275,15 @@ struct openStore md_DoAppraise(object oStore, object oMerchant, object oCustomer
       //SendMessageToPC(oCustomer, "DEBUG: nDie1: " + IntToString(nDie1));
       //SendMessageToPC(oCustomer, "DEBUG: nDie2: " + IntToString(nDie2));
       //SendMessageToPC(oCustomer, "DEBUG: Rough Variance: " + IntToString(nAppraiseVariance));
+	  
+      // Check Nations
+      int nNation = CheckFactionNation(OBJECT_SELF);
+      int nPCNation = miBAGetBackground(oCustomer);
+      int bNationMatch = (nNation == nPCNation);
+      nAppraiseVariance += (bNationMatch) ? 50 : -50;
+      //SendMessageToPC(oCustomer, "DEBUG: Nation Match: " + IntToString(bNationMatch));
+      //SendMessageToPC(oCustomer, "DEBUG: New Variance: " + IntToString(nAppraiseVariance));
+
 
       // Check for a racial match
       int nBit = GetLocalInt(oMerchant, "MD_SUBRACE_BIT");
@@ -297,18 +309,31 @@ struct openStore md_DoAppraise(object oStore, object oMerchant, object oCustomer
       }
       int bRacesMatch = md_IsSubRace(nBit, oCustomer);
 
+	  // Half-Elf, Elfling faction/disguise override. 
+	  // If you share a faction with a "cousin" race, then you get treated as kin. 
+	  // If you don't share a faction but are in disguise and pass a disguise check, then you get treated as kin.
+	  if (GetRacialType(oCustomer) == 21 && bNationMatch && (GetRacialType(oMerchant) == RACIAL_TYPE_ELF || GetRacialType(oMerchant) == RACIAL_TYPE_HALFLING))
+	  {
+		bRacesMatch = TRUE;
+	  }
+	  else if (GetRacialType(oCustomer) == RACIAL_TYPE_HALFELF && bNationMatch && (GetRacialType(oMerchant) == RACIAL_TYPE_ELF || GetRacialType(oMerchant) == RACIAL_TYPE_HUMAN))
+	  {
+	    bRacesMatch = TRUE;
+	  }
+	  else if (GetRacialType(oCustomer) == 21 && GetIsPCDisguised(oCustomer) && !SeeThroughDisguise(oCustomer, oMerchant, 1, "Does the merchant think you are one of their people?") &&
+	      (GetRacialType(oMerchant) == RACIAL_TYPE_ELF || GetRacialType(oMerchant) == RACIAL_TYPE_HALFLING)) // Elfling
+	  {
+	    bRacesMatch = TRUE;
+	  }
+	  else if (GetRacialType(oCustomer) == RACIAL_TYPE_HALFELF && GetIsPCDisguised(oCustomer) && !SeeThroughDisguise(oCustomer, oMerchant, 1, "Does the merchant think you are one of their people?") &&
+	      (GetRacialType(oMerchant) == RACIAL_TYPE_ELF || GetRacialType(oMerchant) == RACIAL_TYPE_HUMAN))
+	  {
+	    bRacesMatch = TRUE;
+	  }
+	  
       // Adjust variance according to matching race
       nAppraiseVariance += (bRacesMatch) ? 50 : -50;
       //SendMessageToPC(oCustomer, "DEBUG: Race Match: " + IntToString(bRacesMatch));
-
-      // Check Nations
-      int nNation = CheckFactionNation(OBJECT_SELF);
-      int nPCNation = miBAGetBackground(oCustomer);
-      int bNationMatch = (nNation == nPCNation);
-      nAppraiseVariance += (bNationMatch) ? 50 : -50;
-      //SendMessageToPC(oCustomer, "DEBUG: Nation Match: " + IntToString(bNationMatch));
-      //SendMessageToPC(oCustomer, "DEBUG: New Variance: " + IntToString(nAppraiseVariance));
-
       if (nAppraiseVariance > 0) {
         int nRound = nAppraiseVariance / 10;
         nRound *= 10;

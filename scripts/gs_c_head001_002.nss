@@ -8,7 +8,8 @@ void main()
     int nValue      = 0;
 
     // Do a persuade check opposed by concentration to modify the bounty.
-    int nSkillCheck = (GetSkillRank(SKILL_PERSUADE, oSpeaker) + d10()) -
+	int nRandom = (NWNX_Creature_GetKnowsFeat(oSpeaker, FEAT_SKILL_MASTERY) ? 10 : d10());
+    int nSkillCheck = (GetSkillRank(SKILL_PERSUADE, oSpeaker) + nRandom) -
                        (GetSkillRank(SKILL_CONCENTRATION, OBJECT_SELF) + d10());
                       
 

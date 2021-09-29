@@ -72,11 +72,20 @@ void PageInit()
 	    default: sLevel = "Retainer"; break;
 	  }
 	}
-	else
+	else if (GetRacialType(oNPC) == RACIAL_TYPE_HALFLING)
 	{
 	  switch (myRank.nLevel)
 	  {
 		case 3: sLevel = "Elder"; break;
+		case 2: sLevel = "Champion"; break;		
+	    default: sLevel = "Warden"; break;
+	  }
+	}
+	else if (GetRacialType(oNPC) == RACIAL_TYPE_ELF)
+	{
+	  switch (myRank.nLevel)
+	  {
+		case 3: sLevel = "Guardian"; break;
 		case 2: sLevel = "Champion"; break;		
 	    default: sLevel = "Resident"; break;
 	  }

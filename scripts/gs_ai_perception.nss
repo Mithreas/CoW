@@ -79,6 +79,12 @@ void main()
 	
     SignalEvent(OBJECT_SELF, EventUserDefined(GS_EV_ON_PERCEPTION));
 
+	int bDisguised = FALSE;
+	if (GetIsPCDisguised(oPerceived) && !SeeThroughDisguise(oPerceived, OBJECT_SELF))
+	{
+		bDisguised = TRUE;
+	}
+
     if (GetLastPerceptionVanished() ||
         GetLastPerceptionInaudible())
     {
@@ -114,42 +120,44 @@ void main()
       SetIsTemporaryFriend(oPerceived);
     }
 	
-	// Elf/human(/halfling) emnity.
-	int bAppearsHostileToElves = ( 
-		(GetRacialType(oPerceived) == RACIAL_TYPE_HALFLING || 
-		 GetRacialType(oPerceived) == RACIAL_TYPE_HUMAN || 
-		 (gsSUGetSubRaceByName(GetSubRace(oPerceived)) == GS_SU_SHAPECHANGER && GetLocalInt(gsPCGetCreatureHide(oPerceived), VAR_CURRENT_FORM) == 1)) &&
-		!GetIsObjectValid(GetItemPossessedBy(oPerceived, "elf_safe_passage")));
-	
-	int bAppearsHostileToHumansHin = (
-	    (GetRacialType(oPerceived) == RACIAL_TYPE_ELF ||
-		(gsSUGetSubRaceByName(GetSubRace(oPerceived)) == GS_SU_SHAPECHANGER && GetLocalInt(gsPCGetCreatureHide(oPerceived), VAR_CURRENT_FORM) == 1)) &&
-	    !GetIsObjectValid(GetItemPossessedBy(oPerceived, "hum_safe_passage")));
-		
-	if ( ((GetRacialType(OBJECT_SELF) == RACIAL_TYPE_HUMAN || GetRacialType(OBJECT_SELF) == RACIAL_TYPE_HALFLING) && !GetIsObjectValid(GetItemPossessedBy(OBJECT_SELF, "elf_safe_passage")) && bAppearsHostileToHumansHin )
-	     ||
-		 (GetRacialType(OBJECT_SELF) == RACIAL_TYPE_ELF && bAppearsHostileToElves))
+	if (GetLastPerceptionSeen())
 	{
-	    object oPartyMember = GetFirstFactionMember(oPerceived, TRUE);
-		int bHostile = TRUE;
+		// Elf/human(/halfling) emnity.
+		int bAppearsHostileToElves = ( 
+			(GetRacialType(oPerceived) == RACIAL_TYPE_HALFLING || 
+			 GetRacialType(oPerceived) == RACIAL_TYPE_HUMAN || 
+			 (gsSUGetSubRaceByName(GetSubRace(oPerceived)) == GS_SU_SHAPECHANGER && GetLocalInt(gsPCGetCreatureHide(oPerceived), VAR_CURRENT_FORM) == 1)) &&
+			!GetIsObjectValid(GetItemPossessedBy(oPerceived, "elf_safe_passage")));
 		
-		while (GetIsObjectValid(oPartyMember))
+		int bAppearsHostileToHumansHin = (
+			(GetRacialType(oPerceived) == RACIAL_TYPE_ELF ||
+			(gsSUGetSubRaceByName(GetSubRace(oPerceived)) == GS_SU_SHAPECHANGER && GetLocalInt(gsPCGetCreatureHide(oPerceived), VAR_CURRENT_FORM) == 1)) &&
+			!GetIsObjectValid(GetItemPossessedBy(oPerceived, "hum_safe_passage")));
+			
+		if ( ((GetRacialType(OBJECT_SELF) == RACIAL_TYPE_HUMAN || GetRacialType(OBJECT_SELF) == RACIAL_TYPE_HALFLING) && !GetIsObjectValid(GetItemPossessedBy(OBJECT_SELF, "elf_safe_passage")) && bAppearsHostileToHumansHin )
+			 ||
+			 (GetRacialType(OBJECT_SELF) == RACIAL_TYPE_ELF && bAppearsHostileToElves))
 		{
-		    if (GetRacialType(oPartyMember) == GetRacialType(OBJECT_SELF))
+			object oPartyMember = GetFirstFactionMember(oPerceived, TRUE);
+			int bHostile = TRUE;
+			
+			while (GetIsObjectValid(oPartyMember))
 			{
-			  bHostile = FALSE;
-			  break;
+				if (GetRacialType(oPartyMember) == GetRacialType(OBJECT_SELF))
+				{
+				  bHostile = FALSE;
+				  break;
+				}
+				
+				oPartyMember = GetNextFactionMember(oPerceived, TRUE);
 			}
 			
-		    oPartyMember = GetNextFactionMember(oPerceived, TRUE);
-		}
-		
-		if (bHostile)
-		{
-			SetIsTemporaryEnemy(oPerceived, OBJECT_SELF, TRUE, 300.0f);		  
+			if (bHostile)
+			{
+				SetIsTemporaryEnemy(oPerceived, OBJECT_SELF, TRUE, 300.0f);		  
+			}
 		}
 	}
-
     if (GetIsEnemy(oPerceived) )
     {
         // Summons etc shouldn't attack before their PC - breaks pvp rules.
@@ -200,14 +208,10 @@ void main()
           break;
       }
 
-      if (GetIsPCDisguised(oPerceived))
+      // See whether the NPC breaks the disguise.
+      if (bDisguised)
       {
-        // See whether the NPC breaks the disguise.
-        if (!SeeThroughDisguise(oPerceived, oNPC))
-        {
-           sNewSeen = "a " + sGender + " " + sRace + ", I didn't notice much about them";
-           return;
-        }
+         sNewSeen = "a " + sGender + " " + sRace + ", I didn't notice much about them";
       }
 
       if (sNewSeen == "")
@@ -300,7 +304,7 @@ void main()
 		if (d10() == 10) 
 		{
 		  // Faction check - 
-		  if (!GetIsPCDisguised(oPerceived) && 
+		  if (!bDisguised && 
 			  (GetRacialType(OBJECT_SELF) < 7  || GetRacialType(OBJECT_SELF) == RACIAL_TYPE_FEY) && // PC races plus fey
 		      CheckFactionNation(OBJECT_SELF, TRUE) == GetPCFaction(oPerceived)) 
 		  {
@@ -335,6 +339,7 @@ void main()
   If bounty value over threshold, attack.
   Otherwise, approach and start conversation.
   */
+  int nNumTimesWarned;
 
   if (GetIsPC(oPerceived) && GetLastPerceptionSeen())
   {
@@ -350,7 +355,7 @@ void main()
       if (GetIsNastyWeapon(oItem1) || GetIsNastyWeapon(oItem2))
       {
 
-        int nNumTimesWarned = GetLocalInt(oPerceived, "weapon_warnings");
+        nNumTimesWarned = GetLocalInt(oPerceived, "weapon_warnings");
         if (nNumTimesWarned > 9)
         {
           SpeakString("You've been warned to put that weapon away often enough.");
@@ -364,8 +369,26 @@ void main()
         }
       }
     }
+	else if (!GetIsInCombat(OBJECT_SELF) && GetIsDefender(OBJECT_SELF) && GetRacialType(OBJECT_SELF) == RACIAL_TYPE_ELF && FindSubString(GetName(GetArea(OBJECT_SELF)), "Fernvale") >= 0 &&
+			 !bDisguised && GetRacialType(oPerceived) != RACIAL_TYPE_ELF && GetRacialType(oPerceived) != RACIAL_TYPE_ANIMAL && GetRacialType(oPerceived) != RACIAL_TYPE_BEAST)
+	{
+		// Non Elves are not welcome in Fernvale.
+		nNumTimesWarned = GetLocalInt(oPerceived, "elf_trespass_warnings");
+		if (nNumTimesWarned > 4)
+		{
+			SpeakString("No trespassing!");
+			AddToBounty(NATION_ELF, FINE_THEFT, oPerceived); // Tresspassing is close enough to theft :P
+			DeleteLocalInt(oPerceived, "elf_trespass_warnings");
+		}
+		else
+		{
+			SpeakString("Guests in our lands are not welcome in Fernvale.  Leave the Vale at your earliest convenience.");
+			SetLocalInt(oPerceived, "elf_trespass_warnings", nNumTimesWarned + 1);
+		}
+		
+	}
 	else if (!GetIsInCombat(OBJECT_SELF) && GetIsDefender(OBJECT_SELF) && GetRacialType(oPerceived) != RACIAL_TYPE_ELF &&
-           (CheckFactionNation(OBJECT_SELF) == NATION_ELF))
+           (CheckFactionNation(OBJECT_SELF) == NATION_ELF) && !bDisguised)
 	{
       object oItem1 = GetItemInSlot(INVENTORY_SLOT_RIGHTHAND, oPerceived);
       object oItem2 = GetItemInSlot(INVENTORY_SLOT_LEFTHAND, oPerceived);
@@ -373,11 +396,11 @@ void main()
       if (GetIsNastyWeapon(oItem1) || GetIsNastyWeapon(oItem2))
       {
 
-        int nNumTimesWarned = GetLocalInt(oPerceived, "elf_weapon_warnings");
+        nNumTimesWarned = GetLocalInt(oPerceived, "elf_weapon_warnings");
         if (nNumTimesWarned > 9)
         {
           SpeakString("You've been warned to put that weapon away often enough.");
-          AddToBounty(NATION_DEFAULT, FINE_DISOBEDIENCE, oPerceived);
+          AddToBounty(NATION_ELF, FINE_DISOBEDIENCE, oPerceived);
           DeleteLocalInt(oPerceived, "elf_weapon_warnings");
         }
         else
@@ -398,21 +421,7 @@ void main()
 
       if (nHasWanted)
       {
-        // Is the PC disguised?
-        int nDisguised = GetLocalInt(oPerceived, DISGUISED);
-        int nSeenThroughDisguise = 0;
-
-        if (nDisguised)
-        {
-          Trace(BOUNTY, "Testing disguise");
-          nSeenThroughDisguise = SeeThroughDisguise(oPerceived,
-                                                    OBJECT_SELF,
-													0,
-                           "You try and convince the guard you're not the " +
-                           "person they're looking out for...");
-        }
-
-        if (!nDisguised || nSeenThroughDisguise)
+        if (!bDisguised)
         {
           string sTag = "mi_wanted" + IntToString(nNation);
           int nBounty = GetBounty(nNation, oPerceived);
@@ -436,6 +445,8 @@ void main()
           else
           {
             /* Start a Z-Dialog conversation using the zdlg_arrest script. */
+			string sCurrentDialog = GetLocalString(OBJECT_SELF, "dialog");
+			if (sCurrentDialog != "") DelayCommand (300.0f, SetLocalString(OBJECT_SELF, "dialog", sCurrentDialog));
             SetLocalString(OBJECT_SELF, "dialog", "zdlg_arrest");
             ActionStartConversation(oPerceived, "zdlg_converse");
           }

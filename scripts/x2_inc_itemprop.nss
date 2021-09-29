@@ -54,7 +54,7 @@ const int    X2_IP_ADDPROP_POLICY_IGNORE_EXISTING =2;
 
 
 // *  removes all itemproperties with matching nItemPropertyType and nItemPropertyDuration
-void  IPRemoveMatchingItemProperties( object oItem, int nItemPropertyType, int nItemPropertyDuration = DURATION_TYPE_TEMPORARY, int nItemPropertySubType = -1 );
+void  IPRemoveMatchingItemProperties( object oItem, int nItemPropertyType, int nItemPropertyDuration = DURATION_TYPE_TEMPORARY, int nItemPropertySubType = -1, string sTag = "" );
 
 // *  Removes ALL item properties from oItem matching nItemPropertyDuration
 void  IPRemoveAllItemProperties( object oItem, int nItemPropertyDuration = DURATION_TYPE_TEMPORARY );
@@ -148,7 +148,7 @@ object IPGetModifiedArmor(object oArmor, int nPart, int nMode, int bDestroyOldOn
 // *  bIgnoreDurationType - If set to TRUE, an item property will be considered identical even if the DurationType is different. Be careful when using this
 // *                        with X2_IP_ADDPROP_POLICY_REPLACE_EXISTING, as this could lead to a temporary item property removing a permanent one
 // *  bIgnoreSubType      - If set to TRUE an item property will be considered identical even if the SubType is different.
-void  IPSafeAddItemProperty(object oItem, itemproperty ip, float fDuration =0.0f, int nAddItemPropertyPolicy = X2_IP_ADDPROP_POLICY_REPLACE_EXISTING, int bIgnoreDurationType = FALSE, int bIgnoreSubType = FALSE);
+void  IPSafeAddItemProperty(object oItem, itemproperty ip, float fDuration =0.0f, int nAddItemPropertyPolicy = X2_IP_ADDPROP_POLICY_REPLACE_EXISTING, int bIgnoreDurationType = FALSE, int bIgnoreSubType = FALSE, string sTag = "");
 
 // *  Wrapper for GetItemHasItemProperty that returns true if
 // *  oItem has an itemproperty that matches ipCompareTo by Type AND DurationType AND SubType
@@ -236,7 +236,7 @@ object gsCMCopyItemAndModify(object oItem, int nType, int nIndex, int nNewValue,
 // Removes all itemproperties with matching nItemPropertyType and
 // nItemPropertyDuration (a DURATION_TYPE_* constant)
 // ----------------------------------------------------------------------------
-void IPRemoveMatchingItemProperties(object oItem, int nItemPropertyType, int nItemPropertyDuration = DURATION_TYPE_TEMPORARY, int nItemPropertySubType = -1)
+void IPRemoveMatchingItemProperties(object oItem, int nItemPropertyType, int nItemPropertyDuration = DURATION_TYPE_TEMPORARY, int nItemPropertySubType = -1, string sTag = "")
 {
     itemproperty ip = GetFirstItemProperty(oItem);
 
@@ -258,7 +258,12 @@ void IPRemoveMatchingItemProperties(object oItem, int nItemPropertyType, int nIt
                          WriteTimestampedLogEntry("x2_inc_itemprop:: IPRemoveMatchingItemProperties() - WARNING: Permanent item property removed by temporary on "+GetTag(oItem));
                       }
                       */
-                      RemoveItemProperty(oItem, ip);
+					  
+					  // Check tag
+					  if (sTag == "" || GetItemPropertyTag(ip) == sTag)
+					  {
+						RemoveItemProperty(oItem, ip);
+					  }
                  }
             }
         }
@@ -940,10 +945,11 @@ object IPCreateProficiencyFeatItemOnCreature(object oCreature)
 // * WARNING: This function is used all over the game. Touch it and break it and the wrath
 //            of the gods will come down on you faster than you can saz "I didn't do it"
 // ----------------------------------------------------------------------------
-void IPSafeAddItemProperty(object oItem, itemproperty ip, float fDuration =0.0f, int nAddItemPropertyPolicy = X2_IP_ADDPROP_POLICY_REPLACE_EXISTING, int bIgnoreDurationType = FALSE, int bIgnoreSubType = FALSE)
+void IPSafeAddItemProperty(object oItem, itemproperty ip, float fDuration =0.0f, int nAddItemPropertyPolicy = X2_IP_ADDPROP_POLICY_REPLACE_EXISTING, int bIgnoreDurationType = FALSE, int bIgnoreSubType = FALSE, string sTag = "")
 {
     int nType = GetItemPropertyType(ip);
     int nSubType = GetItemPropertySubType(ip);
+	if (sTag != "") ip = TagItemProperty(ip, sTag);
     int nDuration;
     // if duration is 0.0f, make the item property permanent
     if (fDuration == 0.0f)
@@ -969,7 +975,7 @@ void IPSafeAddItemProperty(object oItem, itemproperty ip, float fDuration =0.0f,
         {
             nSubType = -1;
         }
-        IPRemoveMatchingItemProperties(oItem, nType, nDurationCompare, nSubType );
+        IPRemoveMatchingItemProperties(oItem, nType, nDurationCompare, nSubType, sTag );
     }
     else if (nAddItemPropertyPolicy == X2_IP_ADDPROP_POLICY_KEEP_EXISTING )
     {

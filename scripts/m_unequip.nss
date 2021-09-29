@@ -110,21 +110,8 @@ void main()
 	  // lost on polymorph.
 	  if (GetLocalInt(oHide, VAR_CURRENT_FORM) == 1 && !bSave)
 	  {
-		// Reapply tail, ears and scaling in case they were lost by polymorphing. 
+		// Reapply tail and ears in case they were lost by polymorphing. 
 		SetCreatureTailType(GetLocalInt(oHide, VAR_HYBRID_TAIL), oUnequippedBy);	
-		  
-		if (GetLocalInt(oHide, VAR_HYBRID_FORM) == 3)
-		{
-		  // Reset scale if needed.
-		  float fScale = GetObjectVisualTransform(oUnequippedBy, OBJECT_VISUAL_TRANSFORM_SCALE);
-		  float fTrueScale = GetLocalFloat(oHide, "AR_SCALE");
-		  
-		  if (fTrueScale > 0.0f && fScale == fTrueScale)
-		  {
-			DelayCommand(0.2f, _VisualTransformVoid(oUnequippedBy, OBJECT_VISUAL_TRANSFORM_SCALE, fScale + 0.3f));
-			SetCreatureSize(oUnequippedBy, CREATURE_SIZE_MEDIUM);
-		  }	
-		}	
 		  
 		if (GetLocalInt(oHide, VAR_HYBRID_EARS))
 		{
@@ -156,6 +143,15 @@ void main()
       }
     }
     */
+	
+	
+	if (GetBaseItemType(oUnequipped) == BASE_ITEM_ARMOR && GetArmorBaseACValue(oUnequipped) >= 4)
+	{
+	  // Remove bonus DI properties.
+        IPRemoveMatchingItemProperties(oUnequipped,ITEM_PROPERTY_IMMUNITY_DAMAGE_TYPE, DURATION_TYPE_PERMANENT, IP_CONST_DAMAGETYPE_SLASHING, "di_fix");
+        IPRemoveMatchingItemProperties(oUnequipped,ITEM_PROPERTY_IMMUNITY_DAMAGE_TYPE, DURATION_TYPE_PERMANENT, IP_CONST_DAMAGETYPE_PIERCING, "di_fix");
+        IPRemoveMatchingItemProperties(oUnequipped,ITEM_PROPERTY_IMMUNITY_DAMAGE_TYPE, DURATION_TYPE_PERMANENT, IP_CONST_DAMAGETYPE_BLUDGEONING, "di_fix");		
+	}
 
     if (GetIsInCombat(oUnequippedBy) && GetIsPC(oUnequippedBy))
     {

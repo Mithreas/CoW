@@ -49,5 +49,7 @@ void GiveXPToPC(object oPC)
 
   fXP *= fMultiplier;
 
+  if (fXP > 0.0f) SendMessageToPC(oPC, "You earned XP for encountering enemies.");
   gsXPGiveExperience(oPC, FloatToInt(fXP));
+  
 }

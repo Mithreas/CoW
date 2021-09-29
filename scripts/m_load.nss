@@ -266,7 +266,8 @@ void main()
     NWNX_Events_SubscribeEvent("NWNX_ON_CLIENT_DISCONNECT_BEFORE", "evt_dc_bef");
 	NWNX_Events_SubscribeEvent("NWNX_ON_USE_FEAT_BEFORE", "evt_ft_bef");
     NWNX_Events_SubscribeEvent("NWNX_ON_USE_FEAT_AFTER", "evt_ft_aft");
-    NWNX_Events_SubscribeEvent("NWNX_ON_POLYMORPH_BEFORE", "evt_poly_bef");
+    //NWNX_Events_SubscribeEvent("NWNX_ON_POLYMORPH_BEFORE", "evt_poly_bef");    
+	NWNX_Events_SubscribeEvent("NWNX_ON_POLYMORPH_AFTER", "evt_poly_aft");
     NWNX_Events_SubscribeEvent("NWNX_ON_UNPOLYMORPH_AFTER", "evt_upoly_aft");
 	
     NWNX_Events_SubscribeEvent("NWNX_ON_USE_FEAT_BEFORE", "x3_s3_kidamage");

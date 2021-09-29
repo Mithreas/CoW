@@ -60,6 +60,8 @@ void main()
   acInitialise("lostlibrary", "Lost Library", "Discovered a lost library, hidden away.  You can get this achievement multiple times.");
   acInitialise("lostlibrary2", "Lost Library", "Discovered a lost library, hidden away.  You can get this achievement multiple times.");
   acInitialise("dunkhazak", "World's Biggest Campsite", "Discovered Dun Khazak.");
+  acInitialise("merivale", "Once The World's Market", "Discovered Merivale.");
+  acInitialise("fernvale", "Ruled By A Tree, Really?", "Discovered Fernvale.");
     
   // Misc achievements
   acInitialise("miscast", "Miscast a Spell", "Had a spell go wrong due to a wild magic zone.");

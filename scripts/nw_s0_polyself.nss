@@ -80,6 +80,9 @@ void main()
         nPoly = POLYMORPH_TYPE_ZOMBIE;
     }
     ePoly = EffectPolymorphEx(nPoly, FALSE, oTarget);
+	
+	if (GetLevelByClass(CLASS_TYPE_SHIFTER, oTarget)) ePoly = ExtraordinaryEffect(ePoly);
+	
     //Fire cast spell at event for the specified target
     SignalEvent(oTarget, EventSpellCastAt(OBJECT_SELF, SPELL_POLYMORPH_SELF, FALSE));
 

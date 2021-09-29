@@ -64,6 +64,17 @@ string PATH_INTRO = "You may choose to follow a path.  A path modifies a class "
 string BACKGROUND_INTRO = "You may choose a starting faction for your character (recommended!). " +
   "Factions have a significant effect on the starting location and career options on your character.  Available (starting) factions:\n\n"; 
 
+void _removeAward(object oPC, string sAwardType)
+{
+    string sID = gsPCGetCDKeyID(GetPCPublicCDKey(oPC));
+    int nAwards = GetLocalInt(oPC, "sAwardType") -1;
+    miDASetKeyedValue("gs_player_data", sID, "sAwardType", IntToString(nAwards));	
+	
+    SetLocalInt(oPC, "award1", 0);
+    SetLocalInt(oPC, "award2", 0);
+    SetLocalInt(oPC, "award3", 0);
+}
+
 void _gvdCreateBaseInventoryForRace(object oPC) 
 {
   // get subrace name
@@ -156,6 +167,76 @@ void _ClearSubRaceOptions()
   DeleteList(SU_SELECTIONS);
 }
 
+void _DoRaceChange(int nSubRace)
+{
+  object oPC  = GetPcDlgSpeaker();
+  int nRace = 0;
+  
+  if (nSubRace == 96 || nSubRace == 97)      nRace = RACIAL_TYPE_HALFELF;
+  else if (nSubRace == 98 || nSubRace == 99) nRace = 21; // Elfling
+
+  if (!nRace) return;
+  
+  switch (nRace)
+  {
+    case RACIAL_TYPE_HALFELF:
+	{
+		// Remove Elven feats that we don't want to keep..
+        if (GetHasFeat(FEAT_KEEN_SENSE, oPC))               NWNX_Creature_RemoveFeat(oPC, FEAT_KEEN_SENSE);
+        if (GetHasFeat(FEAT_SKILL_AFFINITY_LISTEN, oPC))    NWNX_Creature_RemoveFeat(oPC, FEAT_SKILL_AFFINITY_LISTEN);
+        if (GetHasFeat(FEAT_SKILL_AFFINITY_SEARCH, oPC))    NWNX_Creature_RemoveFeat(oPC, FEAT_SKILL_AFFINITY_SEARCH);
+        if (GetHasFeat(FEAT_SKILL_AFFINITY_SPOT, oPC))      NWNX_Creature_RemoveFeat(oPC, FEAT_SKILL_AFFINITY_SPOT);
+        if (GetHasFeat(FEAT_WEAPON_PROFICIENCY_ELF, oPC))   NWNX_Creature_RemoveFeat(oPC, FEAT_WEAPON_PROFICIENCY_ELF);
+			
+		// Add Half-Elf feats.	
+        if (!GetHasFeat(FEAT_PARTIAL_SKILL_AFFINITY_LISTEN, oPC))    NWNX_Creature_AddFeat(oPC, FEAT_PARTIAL_SKILL_AFFINITY_LISTEN);
+        if (!GetHasFeat(FEAT_PARTIAL_SKILL_AFFINITY_SEARCH, oPC))    NWNX_Creature_AddFeat(oPC, FEAT_PARTIAL_SKILL_AFFINITY_SEARCH);
+        if (!GetHasFeat(FEAT_PARTIAL_SKILL_AFFINITY_SPOT, oPC))      NWNX_Creature_AddFeat(oPC, FEAT_PARTIAL_SKILL_AFFINITY_SPOT);
+		
+		NWNX_Creature_SetRacialType(oPC, nRace);
+		SetCreatureAppearanceType(oPC, 4);
+		break;
+	}
+	case 21: // Elfling
+	{
+		// Remove Elven feats that we don't want to keep..
+        if (GetHasFeat(FEAT_SKILL_AFFINITY_SEARCH, oPC))    NWNX_Creature_RemoveFeat(oPC, FEAT_SKILL_AFFINITY_SEARCH);
+        if (GetHasFeat(FEAT_SKILL_AFFINITY_SPOT, oPC))      NWNX_Creature_RemoveFeat(oPC, FEAT_SKILL_AFFINITY_SPOT);
+        if (GetHasFeat(FEAT_WEAPON_PROFICIENCY_ELF, oPC))   NWNX_Creature_RemoveFeat(oPC, FEAT_WEAPON_PROFICIENCY_ELF);
+			
+		// Add Elfling feats.  Note Elflings get listen from both sides so retain full affinity.	 
+        if (!GetHasFeat(FEAT_PARTIAL_SKILL_AFFINITY_SEARCH, oPC))    NWNX_Creature_AddFeat(oPC, FEAT_PARTIAL_SKILL_AFFINITY_SEARCH);
+        if (!GetHasFeat(FEAT_PARTIAL_SKILL_AFFINITY_SPOT, oPC))      NWNX_Creature_AddFeat(oPC, FEAT_PARTIAL_SKILL_AFFINITY_SPOT);
+        if (!GetHasFeat(FEAT_LUCKY, oPC))      						 NWNX_Creature_AddFeat(oPC, FEAT_LUCKY);
+		
+		NWNX_Creature_SetRacialType(oPC, nRace);
+		SetCreatureAppearanceType(oPC, 2081);
+		_removeAward(oPC, "award2");    
+		SetLocalInt(gsPCGetCreatureHide(oPC), "HAS_NORMAL_AWARD", TRUE);
+		
+		break;
+	}
+  }
+  
+  switch (nSubRace)
+  {
+    // Hand out either the Elven permission token or the swimming certificate depending on choice.
+	case 96:
+	case 98:
+	  // swimming
+	  CreateItemOnObject("permission_sea", oPC);
+	  break;
+	case 97:
+	case 99:
+	  // mythal
+	  CreateItemOnObject("elf_safe_passage", oPC);
+	  break;
+  }
+  
+  // Resize ourselves appropriately.
+  gsPCRefreshCreatureScale(oPC);
+}
+
 int _ApplySubRace()
 {
   object oSpeaker  = GetPcDlgSpeaker();
@@ -164,6 +245,14 @@ int _ApplySubRace()
   int nSubRace     = GetIntElement(GetLocalInt(OBJECT_SELF, CONFIRM_OPT), SU_SELECTIONS);
   int nLevel       = GetHitDice(oSpeaker);
   Trace(SUBRACE, "Applying subrace: " + gsSUGetNameBySubRace(nSubRace));
+
+  if (nSubRace > 90)
+  {
+    // Special - Half-Elf / Elfling race changes.
+	// Don't apply a subrace yet - just change race and leave this menu to repeat as needed.
+	_DoRaceChange(nSubRace);
+	return 0;
+  }
 
   if (nSubRace == GS_SU_NONE)
   {
@@ -244,14 +333,10 @@ int _ApplySubRace()
   //:: Remove awards if an award subrace was selected.
   if (nSubRace == GS_SU_SHAPECHANGER)
   {
-    string sID = gsPCGetCDKeyID(GetPCPublicCDKey(oSpeaker));
-    int nAwards = GetLocalInt(oSpeaker, "award1") -1;
-    miDASetKeyedValue("gs_player_data", sID, "award1", IntToString(nAwards));	
 	
     SetLocalInt(oProperty, "HAS_MAJOR_AWARD", TRUE);  
-    SetLocalInt(oSpeaker, "award1", 0);
-    SetLocalInt(oSpeaker, "award2", 0);
-    SetLocalInt(oSpeaker, "award3", 0);
+	
+	_removeAward(oSpeaker, "award1");
   }
   
   if (FALSE)
@@ -259,9 +344,7 @@ int _ApplySubRace()
     // Septire - An award has been spent on this character. Treat this character as having no additional awards to spend.
     // We assume that only ONE award can be spent on each character. Do NOT update the database (Mith - unclear why...).
     SetLocalInt(oProperty, "HAS_NORMAL_AWARD", TRUE);
-    SetLocalInt(oSpeaker, "award1", 0);
-    SetLocalInt(oSpeaker, "award2", 0);
-    SetLocalInt(oSpeaker, "award3", 0);
+	_removeAward(oSpeaker, "award2");
   }
   
   return 0;
@@ -285,6 +368,21 @@ void _SetUpAllowedSubraces()
   else if (nRace == RACIAL_TYPE_ELF)
   {
     // Elf subraces - disabled for now.
+	if (acPlayerHasAchievement(oPC, "airevorn"))
+	{
+		AddStringElement("Half-Elf (can swim)", SUBRACE_OPTS);
+		AddIntElement(96, SU_SELECTIONS);
+		AddStringElement("Half-Elf (can pass mythal)", SUBRACE_OPTS);
+		AddIntElement(97, SU_SELECTIONS);
+	  
+		if (GetLocalInt(oPC, "award2"))
+		{
+			AddStringElement("Elfling (can swim) (NORMAL AWARD)", SUBRACE_OPTS);
+			AddIntElement(98, SU_SELECTIONS);
+			AddStringElement("Elfling (can pass mythal) (NORMAL AWARD)", SUBRACE_OPTS);
+			AddIntElement(99, SU_SELECTIONS);
+		}
+	}
   }
   else if (nRace == RACIAL_TYPE_GNOME)
   {
@@ -298,13 +396,21 @@ void _SetUpAllowedSubraces()
   {
     // Halforc options - none for now
   }
+  else if (nRace == RACIAL_TYPE_HALFELF)
+  {
+    // Halfelf options - none for now
+  }
+  else if (nRace == 21) // Elfling
+  {
+    // Elfling options - none for now.
+  }
 
   if (GetLocalInt(oPC, "award1")) // Available as a Major award only.
   {
     // Add award-locked subraces here.  Don't forget to remove the award in _ApplySubRace above.
 	if (acPlayerHasAchievement(oPC, "werecats") && acPlayerHasAchievement(oPC, "werebeetles") &&
 	     acPlayerHasAchievement(oPC, "wererats") && acPlayerHasAchievement(oPC, "weresharks") &&
-		 miBAGetBackground(oPC) == MI_BA_NONE)
+		 miBAGetBackground(oPC) == MI_BA_NONE && !GetIsObjectValid(GetItemPossessedBy(oPC, "elf_safe_passage")))
 	{
 	  _AddSubraceAsOption(GS_SU_SHAPECHANGER);
 	}
@@ -971,7 +1077,10 @@ void HandleSelection()
 		}
 		
 		SetLocalFloat(oPC, "AR_SCALE", fHeight);
-	    SetObjectVisualTransform(oPC, OBJECT_VISUAL_TRANSFORM_SCALE, fHeight);		
+		SetLocalFloat(gsPCGetCreatureHide(oPC), "AR_SCALE", fHeight);
+
+	    // Resize ourselves appropriately.
+	    gsPCRefreshCreatureScale(oPC);		
 	  }
       else if (sPage == GIFT_OPTS)
       {
@@ -1044,15 +1153,7 @@ void HandleSelection()
               break;
           }
 
-          string sID = gsPCGetCDKeyID(GetPCPublicCDKey(oPC));
-          int nAwards = GetLocalInt(oPC, sAward) -1;
-		  SetLocalInt(oPC, sAward, nAwards);
-          miDASetKeyedValue("gs_player_data", sID, sAward, IntToString(nAwards));
-		  
-		  // Turn off future awards.
-		  DeleteLocalInt(oPC, "award1");
-		  DeleteLocalInt(oPC, "award2");
-		  DeleteLocalInt(oPC, "award3");
+		  _removeAward(oPC, sAward);
         }
 	  }
 	}

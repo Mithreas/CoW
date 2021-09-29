@@ -154,7 +154,7 @@ void gsDeath()
   effect eEffect = GetFirstEffect(oSelf);
   while (GetIsEffectValid(eEffect))
   {
-    RemoveEffect(oSelf, eEffect);
+    if (GetEffectType(eEffect) != EFFECT_TYPE_CUTSCENEGHOST) RemoveEffect(oSelf, eEffect);
     eEffect = GetNextEffect(oSelf);
   }
 

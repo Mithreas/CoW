@@ -5,7 +5,7 @@ void main()
   object oPC = GetEnteringObject();
   if (!GetIsPC(oPC)) return;
   
-  object oWP = GetObjectByTag("WP_FAIRY_" + IntToString(Random(10)));
+  object oWP = GetObjectByTag("WP_FAIRY_" + IntToString(Random(11)));
 
   gsCMTeleportToObject(oPC, oWP);
 }

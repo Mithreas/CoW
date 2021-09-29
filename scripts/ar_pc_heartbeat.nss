@@ -7,6 +7,10 @@ void main()
   if (GetIsDM(OBJECT_SELF)) return;
   if (!GetIsPC(OBJECT_SELF)) return;
   
+  // When a PC sits on a chair they are Z-transformed based on their scale.  Undo that once they stand.
+  if (GetCurrentAction(OBJECT_SELF) != ACTION_SIT) SetObjectVisualTransform(OBJECT_SELF, OBJECT_VISUAL_TRANSFORM_TRANSLATE_Z, 0.0f);
+
+  
   if(GetSkillRank(SKILL_PARRY, OBJECT_SELF) >= 10)
   {
     RemoveParryBonus(OBJECT_SELF); //always remove it.

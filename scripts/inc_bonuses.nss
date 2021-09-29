@@ -255,6 +255,9 @@ void ApplyCharacterBonuses(object oPC, int bReapplySpecialAbilities = FALSE, int
 	// If the character is epic, add the epic character feat.
 	// Reversed - this let characters take epic feats on level up.
 	if (GetKnowsFeat(1001, oPC)) NWNX_Creature_RemoveFeat(oPC, 1001);
+	
+	// Do this last - apply 5% damage immunity penalty.  This ensures that no PC can have 100% immunity. 
+	// Immunities over 100% are ignored, so applying a 5% penalty as the last effect ensures a cap of 95%.
 
     Trace(CLASSES, "Subrace and class changes reapplied.");
 }

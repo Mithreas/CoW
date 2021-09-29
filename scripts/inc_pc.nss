@@ -762,3 +762,28 @@ void gsPCLoadMap(object oPC, object oArea)
   if (GetIsDM(oPC) || GetIsDMPossessed(oPC)) return;
   NWNX_Player_SetAreaExplorationState(oPC, oArea, _gsPCGetMapData(oPC, oArea));
 }
+void gsPCRefreshCreatureScale(object oPC)
+{
+	// Take the base PC scale, modify for certain appearances.
+	// - Half-elf (appearance 4)
+	// - Elfling (appearance 2081)
+	// - Shapechanger (appearance 2082)
+	float fCurrentScale = GetObjectVisualTransform(oPC, OBJECT_VISUAL_TRANSFORM_SCALE);
+	float fStoredScale  = GetLocalFloat(gsPCGetCreatureHide(oPC), "AR_SCALE");
+
+	if (fStoredScale == 0.0f && fCurrentScale != 0.0f) 
+	{
+		SetLocalFloat(gsPCGetCreatureHide(oPC), "AR_SCALE", fCurrentScale);
+		fStoredScale = fCurrentScale;
+	}
+	
+	int nAppearance = GetAppearanceType(oPC);
+	float fScale    = fStoredScale;
+	
+	if (nAppearance == 4) fScale += 0.4f;
+	else if (nAppearance == 2081) fScale += 0.2f;
+	else if (nAppearance == 2082) fScale += 0.3f;
+	else if (nAppearance == 3 && GetLocalInt(gsPCGetCreatureHide(oPC), "SPC_CURRENT_FORM") == 1) fScale += 0.3f;
+	
+	SetObjectVisualTransform(oPC, OBJECT_VISUAL_TRANSFORM_SCALE, fScale);
+}

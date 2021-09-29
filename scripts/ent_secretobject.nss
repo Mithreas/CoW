@@ -47,6 +47,7 @@
 //:: Created By: Peppermint
 //:: Created On: February 16, 2016
 //:://////////////////////////////////////////////
+#include "inc_common"
 
 // Tag of secret objects.
 const string VAR_SECRET_OBJECT_TAG = "SecretObject";
@@ -132,7 +133,7 @@ void DetectSecretObject(object oPC, object oSecretObject, object oTrigger = OBJE
         DelayCommand(fSearchInterval, DetectSecretObject(oPC, oSecretObject, oTrigger));
     }
     // Not detected. Try again next search interval.
-    else if(GetSkillRank(SKILL_SEARCH, oPC) + d20() < GetLocalInt(OBJECT_SELF, "SO_DetectDC"))
+    else if(!gsCMGetIsSkillSuccessful(oPC, SKILL_SEARCH, GetLocalInt(OBJECT_SELF, "SO_DetectDC"), FALSE))
     {
         DelayCommand(fSearchInterval, DetectSecretObject(oPC, oSecretObject, oTrigger));
     }

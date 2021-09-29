@@ -66,5 +66,16 @@ void main()
   sFac = "Fernvale";
   Add(sFac, 1, 0, "Resident", 1);
   Add(sFac, 2, 50, "Champion", 2);
-  Add(sFac, 3, 100, "Elder", 3);
+  Add(sFac, 3, 100, "Guardian", 3);
+  
+  sFac = "Airevorn";
+  Add(sFac, 1, 0, "Resident", 1);
+  Add(sFac, 2, 20, "Acolyte", 2);
+  Add(sFac, 3, 50, "Initiate", 2);
+  Add(sFac, 4, 80, "Most Favoured", 3);
+  
+  sFac = "Dun Khazak";
+  Add(sFac, 1, 0, "Thrall", 1);
+  Add(sFac, 2, 50, "Warrior", 2);
+  Add(sFac, 3, 100, "Champion", 3);
 }

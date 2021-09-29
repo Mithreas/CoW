@@ -60,18 +60,25 @@ void main()
     int nCharismaBonus = GetAbilityModifier(ABILITY_CHARISMA);
 
     if (nCharismaBonus>0) {
+		// This method's return values work for both DAMAGE_BONUS* and IP_CONST_DAMAGE*.
         int nDamage1 = IPGetDamageBonusConstantFromNumber(nCharismaBonus);
+		object oWeapon = GetItemInSlot(INVENTORY_SLOT_RIGHTHAND);
+		if (!GetIsObjectValid(oWeapon)) oWeapon = GetItemInSlot(INVENTORY_SLOT_ARMS);
+		if (!GetIsObjectValid(oWeapon)) return;
 
-        effect eDamage1 = EffectDamageIncrease(nDamage1, DAMAGE_TYPE_DIVINE);
-        effect eLink = EffectLinkEffects(eDamage1, eDur);
+		IPSafeAddItemProperty(oWeapon,ItemPropertyDamageBonus(IP_CONST_DAMAGETYPE_DIVINE, nDamage1), RoundsToSeconds(nCharismaBonus), X2_IP_ADDPROP_POLICY_REPLACE_EXISTING ,FALSE,FALSE, "div_might");
+		
+		object oSecondWeapon = GetItemInSlot(INVENTORY_SLOT_LEFTHAND);
+		if (GetIsObjectValid(oSecondWeapon) && oSecondWeapon != oWeapon)
+		{
+			IPSafeAddItemProperty(oSecondWeapon,ItemPropertyDamageBonus(IP_CONST_DAMAGETYPE_DIVINE, nDamage1), RoundsToSeconds(nCharismaBonus), X2_IP_ADDPROP_POLICY_REPLACE_EXISTING ,FALSE,FALSE, "div_might");
+		}
+		
+        effect eLink = eDur;
         eLink = SupernaturalEffect(eLink);
 
         // * Do not allow this to stack
-        RemoveEffectsFromSpell(oTarget, GetSpellId());
-
-		// The above code doesn't seem to be reliably removing Divine Might.
-		// Add the following safeguard, which is proven to work.
-
+		// Unnecessary now that this is applied as a weapon property but clean up any old VFX :)
 		eEffect = GetFirstEffect(OBJECT_SELF);
 		while (GetIsEffectValid(eEffect))
 		{

@@ -77,6 +77,7 @@ void ClearBoard(int bResetDoors)
   object oScoreKeeper = GetObjectByTag("cr2_1_twist");
   SetLocalInt(oScoreKeeper, "SCORE", 0);
   SetLocalInt(oScoreKeeper, "COUNT", 0);
+  SetLocalInt(oScoreKeeper, "LOCKED", 0);
 }
 
 void Stick()
@@ -126,6 +127,7 @@ void Stick()
 	}
 	
 	DelayCommand (IntToFloat(count) + 5.0f, ClearBoard(FALSE));
+	SetLocalInt(GetObjectByTag("cr2_1_twist"), "LOCKED", TRUE);
 }
 
 void Twist()
@@ -147,6 +149,7 @@ void Twist()
 		// Bust.
 		PlayLoseVFX();
 		DelayCommand(5.0f, ClearBoard(TRUE));
+		SetLocalInt(OBJECT_SELF, "LOCKED", TRUE);
 	}
 	else if (nMyCount == 5)
 	{
@@ -164,6 +167,7 @@ void Twist()
 		}
 		
 		DelayCommand(5.0f, ClearBoard(FALSE));
+		SetLocalInt(OBJECT_SELF, "LOCKED", TRUE);
 	}
 	else
 	{
@@ -175,6 +179,12 @@ void Twist()
 
 void main()
 {
+  if (GetLocalInt(GetObjectByTag("cr2_1_twist"), "LOCKED"))
+  {
+    SpeakString("It's stuck.");
+	return;
+  }
+  
   string sTag = GetTag(OBJECT_SELF);
   int bActive = GetLocalInt(OBJECT_SELF, "ACTIVE");
   SetLocalInt(OBJECT_SELF, "ACTIVE", !bActive);

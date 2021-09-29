@@ -179,6 +179,22 @@ int CoW_HasAllowedClasses(object oPC)
 {
   if (GetLevelByClass(CLASS_TYPE_DRAGON_DISCIPLE)) return FALSE;
   
+  // Check for combos of caster classes.
+  int bArcane  = (GetLevelByClass(CLASS_TYPE_WIZARD, oPC) || GetLevelByClass(CLASS_TYPE_SORCERER, oPC));
+  int bDivine  = (GetLevelByClass(CLASS_TYPE_CLERIC, oPC) || GetLevelByClass(CLASS_TYPE_FAVOURED_SOUL, oPC));
+  int bDruid   = (GetLevelByClass(CLASS_TYPE_DRUID, oPC));
+  int bShifter = (GetLevelByClass(CLASS_TYPE_SHIFTER, oPC));
+  
+  if (bArcane && bDivine)
+  {
+    // Exception - servants of the Dark One can do this (for Reasons).
+	if (GetDeity(oPC) != "The Dark One") return FALSE;
+  }
+  else if (bArcane && (bDivine || bDruid || bShifter))  return FALSE;  
+  else if (bDivine && (bArcane || bDruid || bShifter))  return FALSE;  
+  else if (bDruid &&  (bDivine || bArcane || bShifter)) return FALSE;  
+  else if (bShifter && (bDivine || bDruid || bArcane))  return FALSE;  
+  
   if (gsSUGetSubRaceByName(GetSubRace(oPC)) == GS_SU_SHAPECHANGER)
   {
 	  if ((GetLevelByClass(CLASS_TYPE_WIZARD, oPC) && !GetHasPermission(CLASS_TYPE_WIZARD, oPC)) ||
@@ -233,6 +249,20 @@ int CoW_HasAllowedClasses(object oPC)
 	    return TRUE;
 	  }
 	}
+	case RACIAL_TYPE_HALFELF:
+	{
+	  if ((GetLevelByClass(CLASS_TYPE_WIZARD, oPC) && !GetHasPermission(CLASS_TYPE_WIZARD, oPC)) ||
+	      (GetLevelByClass(CLASS_TYPE_SORCERER, oPC) && !GetHasPermission(CLASS_TYPE_SORCERER, oPC)) ||
+		  (GetLevelByClass(CLASS_TYPE_CLERIC, oPC) && !GetHasPermission(CLASS_TYPE_CLERIC, oPC)) ||
+		  (GetLevelByClass(CLASS_TYPE_DRUID, oPC) && !GetHasPermission(CLASS_TYPE_DRUID, oPC)))
+      {
+	    return FALSE;
+	  }
+	  else
+	  {
+	    return TRUE;
+	  }
+	}
 	case RACIAL_TYPE_ELF:
 	{
 	  if ((GetLevelByClass(CLASS_TYPE_CLERIC, oPC) && !GetHasPermission(CLASS_TYPE_CLERIC, oPC)) ||
@@ -240,6 +270,20 @@ int CoW_HasAllowedClasses(object oPC)
 		  (GetLevelByClass(CLASS_TYPE_DRUID, oPC) && !GetHasPermission(CLASS_TYPE_DRUID, oPC))||
 		  (GetLevelByClass(CLASS_TYPE_BLACKGUARD, oPC) && !GetHasPermission(CLASS_TYPE_BLACKGUARD, oPC)))
 	  {
+	    return FALSE;
+	  }
+	  else
+	  {
+	    return TRUE;
+	  }
+	}
+	case 21: // Elfling
+	{
+	  if ((GetLevelByClass(CLASS_TYPE_SORCERER, oPC) && !GetHasPermission(CLASS_TYPE_SORCERER, oPC)) ||
+		  (GetLevelByClass(CLASS_TYPE_CLERIC, oPC) && !GetHasPermission(CLASS_TYPE_CLERIC, oPC)) ||
+		  (GetLevelByClass(CLASS_TYPE_PALADIN, oPC) && !GetHasPermission(CLASS_TYPE_PALADIN, oPC)) ||
+		  (GetLevelByClass(CLASS_TYPE_BLACKGUARD, oPC) && !GetHasPermission(CLASS_TYPE_BLACKGUARD, oPC)))
+      {
 	    return FALSE;
 	  }
 	  else

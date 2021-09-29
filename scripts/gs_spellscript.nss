@@ -61,6 +61,9 @@ int _GetIsSummonSpell(int nSpellId, int bUndead = 0, int bSwords = 0)
         case SPELL_ANIMATE_DEAD:
         case SPELL_CREATE_GREATER_UNDEAD:
         case SPELL_CREATE_UNDEAD:
+		case 623: // PM abilities
+		case 624: // PM abilities
+		case 627: // PM abilities
         case SPELL_EPIC_MUMMY_DUST:
             return TRUE;
     }

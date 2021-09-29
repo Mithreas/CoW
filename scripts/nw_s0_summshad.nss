@@ -75,7 +75,7 @@ void main()
             break;
     }
 
-    SummonSwarm(OBJECT_SELF, CreateSummonGroup(nNumSummons, sBlueprint), RoundsToSeconds(nDuration), VFX_FNF_SUMMON_UNDEAD);
+    SummonSwarm(OBJECT_SELF, CreateSummonGroup(nNumSummons, sBlueprint), HoursToSeconds(nDuration), VFX_FNF_SUMMON_UNDEAD);
 }
 
 

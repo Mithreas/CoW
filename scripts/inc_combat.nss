@@ -1451,6 +1451,7 @@ int gsCBTalentTaunt(object oTarget)
   }
 
   FloatingTextStringOnCreature(GetName(OBJECT_SELF) + " taunts you!", oTarget);
+  FloatingTextStringOnCreature( "Taunts " + GetName(oTarget) + "!", OBJECT_SELF);
   ActionUseSkill(SKILL_TAUNT, oTarget);
   return TRUE;
 }
@@ -1473,6 +1474,7 @@ int gsCBTalentFeint(object oTarget)
                (d20() + GetSkillRank(SKILL_DISCIPLINE, oTarget));
 			   
   FloatingTextStringOnCreature(GetName(OBJECT_SELF) + " feints!", oTarget);
+  FloatingTextStringOnCreature( "Feints at " + GetName(oTarget) + "!", OBJECT_SELF);
 	
   if (nCheck <= 0)
   {
@@ -1509,6 +1511,7 @@ int gsCBTalentParry(object oTarget)
     if (!nDistance && GetHasFeat(FEAT_SKILL_FOCUS_PARRY, OBJECT_SELF))
 	{
         FloatingTextStringOnCreature(GetName(OBJECT_SELF) + " parries!", oTarget);
+		FloatingTextStringOnCreature( "*Parries*", OBJECT_SELF);
 		SetActionMode(OBJECT_SELF, ACTION_MODE_PARRY, TRUE);
 		gsCBEquipMeleeWeapon(oTarget);
 		ActionAttack(oTarget);

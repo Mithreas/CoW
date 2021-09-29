@@ -85,6 +85,9 @@ void main()
         nPoly = POLYMORPH_TYPE_IRON_GOLEM;
     }
     ePoly = EffectPolymorphEx(nPoly);
+	
+	if (GetLevelByClass(CLASS_TYPE_SHIFTER, oTarget)) ePoly = ExtraordinaryEffect(ePoly);
+	
     //Fire cast spell at event for the specified target
     SignalEvent(oTarget, EventSpellCastAt(OBJECT_SELF, SPELL_SHAPECHANGE, FALSE));
 

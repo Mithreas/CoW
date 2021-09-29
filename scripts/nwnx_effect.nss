@@ -51,8 +51,12 @@ struct NWNX_EffectUnpacked
     object oParam1; ///< @todo Describe
     object oParam2; ///< @todo Describe
     object oParam3; ///< @todo Describe
-    vector vParam0; ///< @todo Describe
-    vector vParam1; ///< @todo Describe
+    float vParam0x; ///< @todo Describe
+    float vParam0y; ///< @todo Describe
+    float vParam0z; ///< @todo Describe
+    float vParam1x; ///< @todo Describe
+    float vParam1y; ///< @todo Describe
+    float vParam1z; ///< @todo Describe
 
     string sTag; ///< @todo Describe
 
@@ -132,14 +136,12 @@ struct NWNX_EffectUnpacked __NWNX_Effect_ResolveUnpack(string sFunc, int bLink=T
 
     n.sTag = NWNX_GetReturnValueString();
 
-    float fZ = NWNX_GetReturnValueFloat();
-    float fY = NWNX_GetReturnValueFloat();
-    float fX = NWNX_GetReturnValueFloat();
-    n.vParam1 = Vector(fX, fY, fZ);
-    fZ = NWNX_GetReturnValueFloat();
-    fY = NWNX_GetReturnValueFloat();
-    fX = NWNX_GetReturnValueFloat();
-    n.vParam0 = Vector(fX, fY, fZ);
+    n.vParam0z = NWNX_GetReturnValueFloat();
+    n.vParam0y = NWNX_GetReturnValueFloat();
+    n.vParam0x = NWNX_GetReturnValueFloat();
+    n.vParam0z = NWNX_GetReturnValueFloat();
+    n.vParam0y = NWNX_GetReturnValueFloat();
+    n.vParam0x = NWNX_GetReturnValueFloat();
     n.oParam3 = NWNX_GetReturnValueObject();
     n.oParam2 = NWNX_GetReturnValueObject();
     n.oParam1 = NWNX_GetReturnValueObject();
@@ -243,13 +245,13 @@ void __NWNX_Effect_ResolvePack(string sFunc, struct NWNX_EffectUnpacked e, int b
     NWNX_PushArgumentObject(e.oParam2);
     NWNX_PushArgumentObject(e.oParam3);
 
-    NWNX_PushArgumentFloat(e.vParam0.x);
-    NWNX_PushArgumentFloat(e.vParam0.y);
-    NWNX_PushArgumentFloat(e.vParam0.z);
+    NWNX_PushArgumentFloat(e.vParam0x);
+    NWNX_PushArgumentFloat(e.vParam0y);
+    NWNX_PushArgumentFloat(e.vParam0z);
 
-    NWNX_PushArgumentFloat(e.vParam1.x);
-    NWNX_PushArgumentFloat(e.vParam1.y);
-    NWNX_PushArgumentFloat(e.vParam1.z);
+    NWNX_PushArgumentFloat(e.vParam1x);
+    NWNX_PushArgumentFloat(e.vParam1y);
+    NWNX_PushArgumentFloat(e.vParam1z);
 
     NWNX_PushArgumentString(e.sTag);
 

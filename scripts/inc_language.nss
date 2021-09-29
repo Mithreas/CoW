@@ -78,21 +78,11 @@ int _gsLAGetCanSpeakLanguage(int nLanguage, object oPC, object oHide, string sTa
         return TRUE;
 
     case GS_LA_LANGUAGE_ABYSSAL:
-        if ((miWAGetIsWarlock(oPC) == PACT_ABYSSAL) ||
-            (nAlignmentGE == ALIGNMENT_EVIL &&
-             nAlignmentLC != ALIGNMENT_LAWFUL &&
-             (gsCMGetHasClass(CLASS_TYPE_CLERIC, oPC) ||
-              gsCMGetHasClass(CLASS_TYPE_BLACKGUARD, oPC))))
-         {
-           SetLocalInt(oHide, sTag, 1);
-           return TRUE;
-         }
-         break;
+		return FALSE;
 
     case GS_LA_LANGUAGE_ANIMAL:
         if (nRace == RACIAL_TYPE_ANIMAL ||
             nRace == RACIAL_TYPE_BEAST ||
-            miWAGetIsWarlock(oPC) == PACT_FEY ||
             nSubRace == GS_SU_SPECIAL_FEY ||
             gsCMGetHasClass(CLASS_TYPE_DRUID, oPC) ||
             gsCMGetHasClass(CLASS_TYPE_RANGER, oPC))
@@ -103,14 +93,7 @@ int _gsLAGetCanSpeakLanguage(int nLanguage, object oPC, object oHide, string sTa
          break;
 
     case GS_LA_LANGUAGE_CELESTIAL:
-        if (nAlignmentGE == ALIGNMENT_GOOD &&
-                (gsCMGetHasClass(CLASS_TYPE_CLERIC, oPC) ||
-                gsCMGetHasClass(CLASS_TYPE_PALADIN, oPC)))
-         {
-           SetLocalInt(oHide, sTag, 1);
-           return TRUE;
-         }
-         break;
+		return FALSE;
 
     case GS_LA_LANGUAGE_DRACONIC:
         if (nSubRace == GS_SU_SPECIAL_KOBOLD ||
@@ -135,6 +118,7 @@ int _gsLAGetCanSpeakLanguage(int nLanguage, object oPC, object oHide, string sTa
     case GS_LA_LANGUAGE_ELVEN:
         if (((FindSubString(sSubRace, "Elf") >= 0) ||
                nRace == RACIAL_TYPE_ELF ||
+			   nRace == 21 ||  // Elfling
                nRace == RACIAL_TYPE_HALFELF) &&
                nSubRace != GS_SU_SPECIAL_HOBGOBLIN)
          {
@@ -169,7 +153,7 @@ int _gsLAGetCanSpeakLanguage(int nLanguage, object oPC, object oHide, string sTa
          break;
 
     case GS_LA_LANGUAGE_HALFLING:
-        if ((nRace == RACIAL_TYPE_HALFLING ||
+        if ((nRace == RACIAL_TYPE_HALFLING || nRace == 21 || // Elfling
                 (FindSubString(sSubRace, "Halfling") >= 0)) &&
                nSubRace != GS_SU_SPECIAL_FEY &&
                nSubRace != GS_SU_SPECIAL_GOBLIN &&
@@ -181,17 +165,7 @@ int _gsLAGetCanSpeakLanguage(int nLanguage, object oPC, object oHide, string sTa
          break;
 
     case GS_LA_LANGUAGE_INFERNAL:
-        if ((miWAGetIsWarlock(oPC) == PACT_INFERNAL) ||
-            (nSubRace == GS_SU_SPECIAL_RAKSHASA) ||
-            (nAlignmentGE == ALIGNMENT_EVIL &&
-             nAlignmentLC == ALIGNMENT_LAWFUL &&
-             (gsCMGetHasClass(CLASS_TYPE_CLERIC, oPC) ||
-              gsCMGetHasClass(CLASS_TYPE_BLACKGUARD, oPC))))
-         {
-           SetLocalInt(oHide, sTag, 1);
-           return TRUE;
-         }
-         break;
+		return FALSE;
 
     case GS_LA_LANGUAGE_ORC:
         if (( (FindSubString(sSubRace, "Half-Orc") >= 0) ||

@@ -100,7 +100,7 @@ void main()
 		  case 6: // Lore - riddle
 		  {
 		    sContest = "riddle";
-		    bSuccess = (d20() + GetSkillRank(SKILL_LORE, oPC)) > (d20() + GetSkillRank(SKILL_LORE, OBJECT_SELF));
+		    bSuccess = gsCMGetIsSkillSuccessful(oPC, SKILL_LORE, (d20() + GetSkillRank(SKILL_LORE, OBJECT_SELF)), FALSE);
 			// Play animations
 			AssignCommand(oPC, ActionPlayAnimation(ANIMATION_FIREFORGET_PAUSE_BORED));
 			DelayCommand(1.0, AssignCommand(OBJECT_SELF, ActionPlayAnimation(ANIMATION_FIREFORGET_PAUSE_BORED)));
@@ -109,7 +109,7 @@ void main()
 		  case 7: // Bluff - storytelling
 		  {
 		    sContest = "storytelling";
-		    bSuccess = (d20() + GetSkillRank(SKILL_BLUFF, oPC)) > (d20() + GetSkillRank(SKILL_BLUFF, OBJECT_SELF));
+		    bSuccess = gsCMGetIsSkillSuccessful(oPC, SKILL_BLUFF, (d20() + GetSkillRank(SKILL_BLUFF, OBJECT_SELF)), FALSE);
 			// Play animations
 			AssignCommand(oPC, ActionPlayAnimation(ANIMATION_FIREFORGET_VICTORY1));
 			DelayCommand(2.0, AssignCommand(OBJECT_SELF, ActionPlayAnimation(ANIMATION_FIREFORGET_VICTORY1)));
@@ -118,7 +118,7 @@ void main()
 		  case 8: // Perform - singing
 		  {
 		    sContest = "singing";
-		    bSuccess = (d20() + GetSkillRank(SKILL_PERFORM, oPC)) > (d20() + GetSkillRank(SKILL_PERFORM, OBJECT_SELF));
+		    bSuccess = gsCMGetIsSkillSuccessful(oPC, SKILL_PERFORM, (d20() + GetSkillRank(SKILL_PERFORM, OBJECT_SELF)), FALSE);
 			// Play animations
 			ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectVisualEffect(VFX_DUR_BARD_SONG), oPC, 2.0f);
 			DelayCommand(2.0f, ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectVisualEffect(VFX_DUR_BARD_SONG), OBJECT_SELF, 2.0f));

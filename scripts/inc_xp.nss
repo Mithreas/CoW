@@ -709,6 +709,7 @@ float gsXPGetPCChallengeRating(object oPC, float fRange, object oVictim)
         }
     } while(GetIsObjectValid(oAssociate));
 
+	if (fCR < 1.0f) fCR = 1.0f;
     return fCR;
 }
 

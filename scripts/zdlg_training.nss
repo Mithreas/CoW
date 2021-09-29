@@ -133,7 +133,7 @@ string _SkillName(int nSkill)
 void _CheckSkillAvailable(object oPC, int nSkill)
 {
   int nRank = GetSkillRank(nSkill, oPC, TRUE);
-  int nMax = GetHitDice(oPC) + 3;
+  int nMax = GetHitDice(oPC) + 3 + GetLevelByClass(CLASS_TYPE_ROGUE, oPC);
   int nClass1 = miSKGetIsClassSkill(GetClassByPosition(1, oPC), nSkill);
   int nClass2 = GetClassByPosition(2, oPC);
   int nClass3 = -1;
@@ -494,7 +494,7 @@ void init_feat_list (object oPC)
   add_feat_to_list(oPC, "Thug", FEAT_THUG);
   add_feat_to_list(oPC, "Toughness", FEAT_TOUGHNESS);
 
-  add_feat_to_list(oPC, "Gain (2+int) skill points", 10003, TRUE);
+  add_feat_to_list(oPC, "Gain (2+int+rogue) skill points", 10003, TRUE);
   add_group_list("Skill Focus", GROUP_NUMBER_SF, LIST_SF);
   add_feat_to_list(oPC, "Skill Focus: Appraise", FEAT_SKILLFOCUS_APPRAISE);
   add_feat_to_list(oPC, "Skill Focus: Animal Empathy", FEAT_SKILL_FOCUS_ANIMAL_EMPATHY);
@@ -1092,7 +1092,7 @@ void init_feat_list (object oPC)
     add_feat_to_list(oPC, "Crippling Strike", FEAT_CRIPPLING_STRIKE, FALSE, CLASS_TYPE_ROGUE);
     add_feat_to_list(oPC, "Defensive Roll", FEAT_DEFENSIVE_ROLL, FALSE, CLASS_TYPE_ROGUE);
     add_feat_to_list(oPC, "Opportunist", FEAT_OPPORTUNIST, FALSE, CLASS_TYPE_ROGUE);
-    add_feat_to_list(oPC, "Skill Mastery", FEAT_SKILL_MASTERY, FALSE, CLASS_TYPE_ROGUE);
+    if (GetLevelByClass(CLASS_TYPE_ROGUE, oPC) >= 5) add_feat_to_list(oPC, "Skill Mastery", FEAT_SKILL_MASTERY, FALSE, CLASS_TYPE_ROGUE);
     add_feat_to_list(oPC, "Slippery Mind", FEAT_SLIPPERY_MIND, FALSE, CLASS_TYPE_ROGUE);
   }
 
@@ -1618,6 +1618,7 @@ void HandleSelection()
                   nBonusSkillPoints = 1;
                 if(GetRacialType(oPC) == RACIAL_TYPE_HUMAN)
                   nBonusSkillPoints += 1;
+				nBonusSkillPoints += GetLevelByClass(CLASS_TYPE_ROGUE, oPC);
                 SetLocalInt(gsPCGetCreatureHide(oPC), "T_UNCON_SKILL", 1);
                 SetPCSkillPoints(oPC, GetPCSkillPoints(oPC) + nBonusSkillPoints);
                 SetDlgPageString(LIST_SKILLS);

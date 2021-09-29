@@ -42,7 +42,10 @@ void main()
 
     for(i = 1; i < nLevel; i++)
     {
-        LevelUpHenchman(OBJECT_SELF);
+        if (!LevelUpHenchman(OBJECT_SELF))
+		{
+		  NWNX_Creature_LevelUp(OBJECT_SELF, CLASS_TYPE_OUTSIDER);
+		}
     }
 
     NWNX_Creature_SetRawAbilityScore(OBJECT_SELF, ABILITY_STRENGTH, 10);

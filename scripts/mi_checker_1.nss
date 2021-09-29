@@ -21,6 +21,9 @@ void miCheckIfCharacterIsLegal_1(object oPC)
   int nFavouredAbilityScore = -1;
   int nBadAbilityScore1 = -1;
   int nBadAbilityScore2 = -1;
+  int nPartialGoodAbilityScore = -1;
+  int nPartialBadAbilityScore1 = -1;
+  int nPartialBadAbilityScore2 = -1;
 
   switch (nClass)
   {
@@ -115,6 +118,8 @@ void miCheckIfCharacterIsLegal_1(object oPC)
       break;
     case RACIAL_TYPE_HALFELF:
       nNumFeats += 6;
+	  nPartialGoodAbilityScore = ABILITY_DEXTERITY;
+	  nPartialBadAbilityScore1 = ABILITY_CONSTITUTION;
       break;
     case RACIAL_TYPE_HALFLING:
       nNumFeats += 6;
@@ -130,6 +135,12 @@ void miCheckIfCharacterIsLegal_1(object oPC)
     case RACIAL_TYPE_HUMAN:
       nNumFeats += 2; // Quick to Master + 1 bonus feat
       nBaseSkillPoints += 1;
+      break;
+    case 21: // Elfling
+      nNumFeats += 8;
+      nFavouredAbilityScore = ABILITY_DEXTERITY;
+	  nPartialBadAbilityScore1 = ABILITY_STRENGTH;
+	  nPartialBadAbilityScore2 = ABILITY_CONSTITUTION;
       break;
     default:
        Error(CHECKER, GetName(oPC) + " had an illegal race: " + IntToString(nRace));
@@ -150,6 +161,9 @@ void miCheckIfCharacterIsLegal_1(object oPC)
      if (nAbility == nFavouredAbilityScore) nBase = 10;
      else if (nAbility == nBadAbilityScore1) nBase = 6;
      else if (nAbility == nBadAbilityScore2) nBase = 6;
+	 else if (nAbility == nPartialGoodAbilityScore) nBase = 9;
+	 else if (nAbility == nPartialBadAbilityScore1) nBase = 7;
+	 else if (nAbility == nPartialBadAbilityScore2) nBase = 7;
 
      nScore = GetAbilityScore(oPC, nAbility, TRUE) - nBase;
      if (nScore <= 6)

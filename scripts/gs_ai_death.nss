@@ -55,6 +55,9 @@ void gsDropLoot(object oCorpse)
     int nMortal    = gsFLGetFlag(GS_FL_MORTAL, oSource);
     int nValue     = 0;
     int bRestrict = FALSE;
+	
+	object oMaster = GetMaster(OBJECT_SELF);
+	string sMaster = GetPCPublicCDKey(oMaster, TRUE);
 
     if (GetLocalInt(oSource, "NO_INVENTORY_DROPS")) bRestrict = TRUE;
 
@@ -75,7 +78,14 @@ void gsDropLoot(object oCorpse)
 
         // Do not drop items worth more than GS_LIMIT_VALUE or creature items
         // Also omit items marked as plot. 
-		if (GetIsObjectValid(gsTHGetStolenFrom(oItem)))
+		// For equippable henchmen, look for the variable indicating that 
+		// their master has previously held the item, and drop if so.		
+		if (GetIsObjectValid(oMaster) && sMaster != "" && GetLocalString(oItem, sMaster) != "")
+		{
+		    // This item was given to them by their master.  Drop it regardless of value etc.
+			CopyItem(oItem, oCorpse);
+		}
+		else if (GetIsObjectValid(gsTHGetStolenFrom(oItem)))
 		{
 		  // This item was stolen from a PC.  Drop it.
           oLoot = CopyItem(oItem, oCorpse);
@@ -110,7 +120,12 @@ void gsDropLoot(object oCorpse)
   {
     nValue = gsCMGetItemValue(oItem);
 
-	if (GetIsObjectValid(gsTHGetStolenFrom(oItem)))
+	if (GetIsObjectValid(oMaster) && sMaster != "" && GetLocalString(oItem, sMaster) != "")
+	{
+	    // This item was given to them by their master.  Drop it regardless of value etc.
+		CopyItem(oItem, oCorpse);
+	}
+	else if (GetIsObjectValid(gsTHGetStolenFrom(oItem)))
 	{
 	  // This item was stolen from a PC.  Drop it.
 	  oLoot = CopyItem(oItem, oCorpse);

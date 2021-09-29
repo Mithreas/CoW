@@ -211,17 +211,17 @@ void barbSelfRageEffects(int nDuration, object oPC = OBJECT_SELF)
 
     // 5% Physical Immunity
     if (nBarbLevels >= 4) {
-        int nImmunity = 5;
+        int nImmunity = 15;
               if (nBarbLevels >= 16)
-                     nImmunity += 5;
+                     nImmunity += 15;
         if (GetAbilityScore(oPC, ABILITY_CONSTITUTION, TRUE) < 14)
-            nImmunity -= 5;
+            nImmunity -= 15;
 
-              if (nImmunity > 0) {
-                     eLink = EffectLinkEffects(eLink, EffectDamageImmunityIncrease(DAMAGE_TYPE_SLASHING, nImmunity));
-                     eLink = EffectLinkEffects(eLink, EffectDamageImmunityIncrease(DAMAGE_TYPE_PIERCING, nImmunity));
-                     eLink = EffectLinkEffects(eLink, EffectDamageImmunityIncrease(DAMAGE_TYPE_BLUDGEONING, nImmunity));
-                }
+        if (nImmunity > 0) {
+			eLink = EffectLinkEffects(eLink, EffectDamageImmunityIncrease(DAMAGE_TYPE_SLASHING, nImmunity));
+			eLink = EffectLinkEffects(eLink, EffectDamageImmunityIncrease(DAMAGE_TYPE_PIERCING, nImmunity));
+			eLink = EffectLinkEffects(eLink, EffectDamageImmunityIncrease(DAMAGE_TYPE_BLUDGEONING, nImmunity));
+        }
     }
 
     // Add Extra Attack if PC has Thundering Rage
@@ -233,6 +233,7 @@ void barbSelfRageEffects(int nDuration, object oPC = OBJECT_SELF)
 
     // Apply the effects
     ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oPC, RoundsToSeconds(nDuration));
+	DelayCommand(0.1f, gsCMReapplyDamageImmunityCap(oPC));
 
     // Instant visual effect
     effect eVis = EffectVisualEffect(VFX_IMP_IMPROVE_ABILITY_SCORE);
@@ -713,18 +714,31 @@ void btribeCreateTribesmen(object oPC)
     int nCounter;
 	for (nCounter = 0; nCounter < nLevel; nCounter++)
 	{
-	  LevelUpHenchman(oTribesman, CLASS_TYPE_BARBARIAN);
+	  if (!LevelUpHenchman(oTribesman, CLASS_TYPE_BARBARIAN))
+	  {
+	    // LevelUpHenchman respects the module level cap.  NWNX_Creature_LevelUp doesn't.
+		NWNX_Creature_LevelUp(oTribesman, CLASS_TYPE_BARBARIAN);
+	  }
 	}
 	
     ApplyEffectToObject(DURATION_TYPE_PERMANENT,
                         SupernaturalEffect(EffectACIncrease(nLevel / 2)),
                         oTribesman);
 
-    // Buff weapon.
-    object oWeapon = GetItemInSlot(INVENTORY_SLOT_RIGHTHAND, oTribesman);
+    // Buff weapons.
+    object oWeaponRight = GetItemInSlot(INVENTORY_SLOT_RIGHTHAND, oTribesman);
 
-    gsIPAddItemProperty(oWeapon, ItemPropertyEnhancementBonus(nLevel / 6), 0.0);
+    gsIPAddItemProperty(oWeaponRight, ItemPropertyEnhancementBonus(nLevel / 6), 0.0);
+	SetPlotFlag(oWeaponRight, TRUE);
+	
+    object oWeaponLeft = GetItemInSlot(INVENTORY_SLOT_LEFTHAND, oTribesman);
 
+	if (GetIsObjectValid(oWeaponLeft) && oWeaponLeft != oWeaponRight)
+	{
+		gsIPAddItemProperty(oWeaponLeft, ItemPropertyEnhancementBonus(nLevel / 6), 0.0);
+		SetPlotFlag(oWeaponLeft, TRUE);
+	}
+	
 	if (!GetIsPC(oPC)) ChangeFaction(oTribesman, oPC);
 	
     AddHenchman(oPC, oTribesman);

@@ -64,7 +64,8 @@ void main()
             if (GetIsObjectValid(oShouter) && oMaster == oShouter)
             {
                 SetCommandable(TRUE);
-                bkRespondToHenchmenShout(oShouter, nMatch, oIntruder, TRUE);
+				int bInventory = !(GetResRef(OBJECT_SELF) == "tribesman_m" || GetResRef(OBJECT_SELF) == "tribesman_f");
+                bkRespondToHenchmenShout(oShouter, nMatch, oIntruder, bInventory);
             }
         }
     }

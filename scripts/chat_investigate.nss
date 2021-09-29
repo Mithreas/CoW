@@ -256,7 +256,7 @@ void main()
 		string sSecret = GetLocalString(oTrigger, "RESREF");
 		if (sSecret == "") sSecret = "x0_sec_door2";
 
-		if ( DetectSecretItem(oSpeaker)) 
+		if ( DetectSecretItem(oSpeaker, oTrigger)) 
 		{
 			// It's a PC, reveal the item
 			AssignCommand(oSpeaker, PlayVoiceChat(VOICE_CHAT_LOOKHERE));

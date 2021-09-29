@@ -2,6 +2,7 @@
 
 //void main() {}
 
+#include "inc_effect"
 #include "inc_flag"
 #include "inc_pc"
 #include "inc_text"
@@ -119,7 +120,13 @@ void gsCMCopyPropertiesAndVariables(object oOldSkin, object oNewSkin);
 // Applies the resurrection effect to the creature. Always call this instead of the
 // default ApplyEffect function to ensure that unique bonuses are reapplied to PCs.
 void ApplyResurrection(object oCreature);
-
+// Utility function to do a skill check.  If the PC has Skill Mastery, they 
+// take 20.
+int gsCMDoSkillRoll(object oCreature, int nSkill, int nBaseRanksOnly = FALSE);
+// Wrapper for skill checks.  If the PC has Skill Mastery they take 20. 
+int gsCMGetIsSkillSuccessful(object oCreature, int nSkill, int nDifficulty, int bFeedback = TRUE);
+// Reapply the cap to DI.
+void gsCMReapplyDamageImmunityCap(object oPC);
 //----------------------------------------------------------------
 void _DestroyObject(object oItem)
 {
@@ -1092,4 +1099,93 @@ string gsCMGetFirstName(object oCreature)
   int nSpace   = FindSubString(sName, " ");
   if (nSpace == -1) return sName;
   else return GetSubString(sName, 0, nSpace); 
+}
+
+int gsCMDoSkillRoll(object oCreature, int nSkill, int nBaseRanksOnly = FALSE)
+{
+  if (!GetHasSkill(nSkill, oCreature)) return 0; // Not a usable skill for this PC, e.g. UMD.
+  
+  int bSkillMastery = NWNX_Creature_GetKnowsFeat(oCreature, FEAT_SKILL_MASTERY);
+  int nSkillRank    = GetSkillRank(nSkill, oCreature, nBaseRanksOnly);
+  
+  int nRoll = (bSkillMastery ? 20 : d20());
+  
+  return nRoll + nSkillRank;
+}
+
+int gsCMGetIsSkillSuccessful(object oCreature, int nSkill, int nDifficulty, int bFeedback = TRUE)
+{
+  if (!GetHasSkill(nSkill, oCreature)) return FALSE; // Not a usable skill for this PC, e.g. UMD.
+  int bSkillMastery = NWNX_Creature_GetKnowsFeat(oCreature, FEAT_SKILL_MASTERY);
+  int nRoll = (bSkillMastery ? 20 : d20());
+  int nSkillRank = GetSkillRank(nSkill, oCreature);
+  
+  if (nRoll + nSkillRank >= nDifficulty)
+  {
+    if (bFeedback)
+	  SendMessageToPC(oCreature, 
+	    StringToRGBString(GetName(oCreature), "077") + 
+		StringToRGBString(" : " + GetStringByStrRef(StringToInt(Get2DAString("skills", "Name", nSkill))) + " : *success* : (" + IntToString(nRoll) + " + " + IntToString(nSkillRank) + " = " + IntToString(nRoll+nSkillRank) + " vs. DC: " + IntToString(nDifficulty), STRING_COLOR_BLUE));
+    return TRUE;
+  }
+  else
+  {
+    if (bFeedback)
+	  SendMessageToPC(oCreature, 
+	    StringToRGBString(GetName(oCreature), "077") + 
+		StringToRGBString(" : " + GetStringByStrRef(StringToInt(Get2DAString("skills", "Name", nSkill))) + " : *failure* : (" + IntToString(nRoll) + " + " + IntToString(nSkillRank) + " = " + IntToString(nRoll+nSkillRank) + " vs. DC: " + IntToString(nDifficulty), STRING_COLOR_BLUE));
+  }
+
+  return FALSE;
+}
+// Private function - apply a 5% immunity increase and decrease to all non magic damage  
+// types, essentially capping them at 95%.  
+// Immunity effects are calculated in the order in which they are applied.  When
+// each effect is added, the cap of +100% / -100% is applied.  So by adding a 5% penalty
+// last, we ensure an effective cap of 95%. 
+// Gear properties are counted when the item is equipped for timing purposes, so we 
+// do this method after equipping.
+void _gsCMReapplyDamageImmunityCap(object oPC)
+{
+  int nCap = 25;
+
+  // Todo - fix gsFXRemoveEffectIcon (re-packing the effect causes a stack underflow in NWNXEE - and unpacking leaves arguments on the stack.  NSS out of date with plugin?)
+  ApplyEffectToObject(DURATION_TYPE_PERMANENT, TagEffect(SupernaturalEffect(gsFXRemoveEffectIcon(EffectDamageImmunityIncrease(DAMAGE_TYPE_ACID, nCap))), "IMMUNITY_CAP"), oPC);
+  ApplyEffectToObject(DURATION_TYPE_PERMANENT, TagEffect(SupernaturalEffect(gsFXRemoveEffectIcon(EffectDamageImmunityIncrease(DAMAGE_TYPE_BLUDGEONING, nCap))), "IMMUNITY_CAP"), oPC);
+  ApplyEffectToObject(DURATION_TYPE_PERMANENT, TagEffect(SupernaturalEffect(gsFXRemoveEffectIcon(EffectDamageImmunityIncrease(DAMAGE_TYPE_COLD, nCap))), "IMMUNITY_CAP"), oPC);
+  ApplyEffectToObject(DURATION_TYPE_PERMANENT, TagEffect(SupernaturalEffect(gsFXRemoveEffectIcon(EffectDamageImmunityIncrease(DAMAGE_TYPE_DIVINE, nCap))), "IMMUNITY_CAP"), oPC);
+  ApplyEffectToObject(DURATION_TYPE_PERMANENT, TagEffect(SupernaturalEffect(gsFXRemoveEffectIcon(EffectDamageImmunityIncrease(DAMAGE_TYPE_ELECTRICAL, nCap))), "IMMUNITY_CAP"), oPC);
+  ApplyEffectToObject(DURATION_TYPE_PERMANENT, TagEffect(SupernaturalEffect(gsFXRemoveEffectIcon(EffectDamageImmunityIncrease(DAMAGE_TYPE_FIRE, nCap))), "IMMUNITY_CAP"), oPC);
+  ApplyEffectToObject(DURATION_TYPE_PERMANENT, TagEffect(SupernaturalEffect(gsFXRemoveEffectIcon(EffectDamageImmunityIncrease(DAMAGE_TYPE_NEGATIVE, nCap))), "IMMUNITY_CAP"), oPC);
+  ApplyEffectToObject(DURATION_TYPE_PERMANENT, TagEffect(SupernaturalEffect(gsFXRemoveEffectIcon(EffectDamageImmunityIncrease(DAMAGE_TYPE_PIERCING, nCap))), "IMMUNITY_CAP"), oPC);
+  ApplyEffectToObject(DURATION_TYPE_PERMANENT, TagEffect(SupernaturalEffect(gsFXRemoveEffectIcon(EffectDamageImmunityIncrease(DAMAGE_TYPE_POSITIVE, nCap))), "IMMUNITY_CAP"), oPC);
+  ApplyEffectToObject(DURATION_TYPE_PERMANENT, TagEffect(SupernaturalEffect(gsFXRemoveEffectIcon(EffectDamageImmunityIncrease(DAMAGE_TYPE_SLASHING, nCap))), "IMMUNITY_CAP"), oPC);
+  ApplyEffectToObject(DURATION_TYPE_PERMANENT, TagEffect(SupernaturalEffect(gsFXRemoveEffectIcon(EffectDamageImmunityIncrease(DAMAGE_TYPE_SONIC, nCap))), "IMMUNITY_CAP"), oPC);
+
+  ApplyEffectToObject(DURATION_TYPE_PERMANENT, TagEffect(SupernaturalEffect(gsFXRemoveEffectIcon(EffectDamageImmunityDecrease(DAMAGE_TYPE_ACID, nCap))),"IMMUNITY_CAP"), oPC);
+  ApplyEffectToObject(DURATION_TYPE_PERMANENT, TagEffect(SupernaturalEffect(gsFXRemoveEffectIcon(EffectDamageImmunityDecrease(DAMAGE_TYPE_BLUDGEONING, nCap))),"IMMUNITY_CAP"), oPC);
+  ApplyEffectToObject(DURATION_TYPE_PERMANENT, TagEffect(SupernaturalEffect(gsFXRemoveEffectIcon(EffectDamageImmunityDecrease(DAMAGE_TYPE_COLD, nCap))),"IMMUNITY_CAP"), oPC);
+  ApplyEffectToObject(DURATION_TYPE_PERMANENT, TagEffect(SupernaturalEffect(gsFXRemoveEffectIcon(EffectDamageImmunityDecrease(DAMAGE_TYPE_DIVINE, nCap))),"IMMUNITY_CAP"), oPC);
+  ApplyEffectToObject(DURATION_TYPE_PERMANENT, TagEffect(SupernaturalEffect(gsFXRemoveEffectIcon(EffectDamageImmunityDecrease(DAMAGE_TYPE_ELECTRICAL, nCap))),"IMMUNITY_CAP"), oPC);
+  ApplyEffectToObject(DURATION_TYPE_PERMANENT, TagEffect(SupernaturalEffect(gsFXRemoveEffectIcon(EffectDamageImmunityDecrease(DAMAGE_TYPE_FIRE, nCap))),"IMMUNITY_CAP"), oPC);
+  ApplyEffectToObject(DURATION_TYPE_PERMANENT, TagEffect(SupernaturalEffect(gsFXRemoveEffectIcon(EffectDamageImmunityDecrease(DAMAGE_TYPE_NEGATIVE, nCap))),"IMMUNITY_CAP"), oPC);
+  ApplyEffectToObject(DURATION_TYPE_PERMANENT, TagEffect(SupernaturalEffect(gsFXRemoveEffectIcon(EffectDamageImmunityDecrease(DAMAGE_TYPE_PIERCING, nCap))),"IMMUNITY_CAP"), oPC);
+  ApplyEffectToObject(DURATION_TYPE_PERMANENT, TagEffect(SupernaturalEffect(gsFXRemoveEffectIcon(EffectDamageImmunityDecrease(DAMAGE_TYPE_POSITIVE, nCap))),"IMMUNITY_CAP"), oPC);
+  ApplyEffectToObject(DURATION_TYPE_PERMANENT, TagEffect(SupernaturalEffect(gsFXRemoveEffectIcon(EffectDamageImmunityDecrease(DAMAGE_TYPE_SLASHING, nCap))),"IMMUNITY_CAP"), oPC);
+  ApplyEffectToObject(DURATION_TYPE_PERMANENT, TagEffect(SupernaturalEffect(gsFXRemoveEffectIcon(EffectDamageImmunityDecrease(DAMAGE_TYPE_SONIC, nCap))),"IMMUNITY_CAP"), oPC);
+} 
+
+void gsCMReapplyDamageImmunityCap(object oPC)
+{
+  // Remove any existing effects.  Timing matters on this sadly so we need to remove and re-apply.
+  effect eEffect = GetFirstEffect(oPC);
+  
+  while (GetIsEffectValid(eEffect))
+  {
+    if (GetEffectTag(eEffect) == "IMMUNITY_CAP") RemoveEffect(oPC, eEffect);
+	eEffect = GetNextEffect(oPC);
+  }
+  
+  DelayCommand(0.1f, _gsCMReapplyDamageImmunityCap(oPC));
+  
 }

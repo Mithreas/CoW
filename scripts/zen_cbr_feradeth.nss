@@ -11,6 +11,7 @@
 //:: Created On: Feb 21, 2006
 //:://////////////////////////////////////////////
 #include "NW_I0_GENERIC"
+#include "inc_generic"
 
 object GetRandomPartyMember1(object oPC)
 {
@@ -121,6 +122,27 @@ void AI_SPIT_CORE(object oTarget=OBJECT_INVALID)
     DelayCommand(1.0+(fDistance*0.10)/2, ApplyEffectToObject(DURATION_TYPE_INSTANT, eDamage, oTarget));
 }
 
+void _MakeHenchman(object oMaster, object oHench)
+{
+	// Set default henchman event handlers.
+	SetEventScript(oHench, EVENT_SCRIPT_CREATURE_ON_HEARTBEAT, "nw_ch_ac1");
+	SetEventScript(oHench, EVENT_SCRIPT_CREATURE_ON_NOTICE, "nw_ch_ac2");
+	SetEventScript(oHench, EVENT_SCRIPT_CREATURE_ON_SPELLCASTAT, "nw_ch_acb");
+	SetEventScript(oHench, EVENT_SCRIPT_CREATURE_ON_MELEE_ATTACKED, "nw_ch_ac5");
+	SetEventScript(oHench, EVENT_SCRIPT_CREATURE_ON_DAMAGED, "nw_ch_ac6");
+	SetEventScript(oHench, EVENT_SCRIPT_CREATURE_ON_DISTURBED, "nw_ch_ac8");
+	SetEventScript(oHench, EVENT_SCRIPT_CREATURE_ON_END_COMBATROUND, "nw_ch_ac3");
+	SetEventScript(oHench, EVENT_SCRIPT_CREATURE_ON_DIALOGUE, "nw_ch_ac4");
+	SetEventScript(oHench, EVENT_SCRIPT_CREATURE_ON_SPAWN_IN, "nw_ch_ac9");
+	SetEventScript(oHench, EVENT_SCRIPT_CREATURE_ON_RESTED, "");
+	SetEventScript(oHench, EVENT_SCRIPT_CREATURE_ON_DEATH, "nw_ch_ac7");
+	SetEventScript(oHench, EVENT_SCRIPT_CREATURE_ON_USER_DEFINED_EVENT, "nw_ch_acd");
+	SetEventScript(oHench, EVENT_SCRIPT_CREATURE_ON_BLOCKED_BY_DOOR, "nw_ch_ace");
+
+    // Add as henchman.
+    AddHenchman(oMaster, oHench);
+}
+
 object AI_DOM_CORE(object oTarget=OBJECT_INVALID, int nTerminate=0)
 {
     ///////////////////////////////////////////////////////////
@@ -167,11 +189,17 @@ object AI_DOM_CORE(object oTarget=OBJECT_INVALID, int nTerminate=0)
         AssignCommand(oDominated, SetIsDestroyable(FALSE, FALSE, FALSE));
 
         // Add dominated as henchman to OBJECT_SELF.
-        AddHenchman(OBJECT_SELF, oDominated);
+        _MakeHenchman(OBJECT_SELF, oDominated);
+		
+		// no drops
+		SetInventoryDroppable(oDominated, 0);
+
+		// Work around the fact that clones can be disarmed by giving them +150 discipline.
+		ApplyEffectToObject(DURATION_TYPE_PERMANENT, EffectSkillIncrease(SKILL_DISCIPLINE, 150), oDominated);
 
         // Save the dominated target so we can find it later.
         SetLocalObject(OBJECT_SELF, "zen_copy", oDominated);
-
+		
         // Execute henchman script on dominated so it dosn't linger.
         DelayCommand(3.0, ExecuteScript("nw_ch_ac3", oDominated));
     }

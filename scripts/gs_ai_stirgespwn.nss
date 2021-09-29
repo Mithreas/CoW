@@ -1,5 +1,6 @@
 #include "inc_achievements"
 #include "inc_event"
+#include "inc_flag"
 #include "x0_i0_position"
 
 void main()
@@ -20,9 +21,13 @@ void main()
 
         string sResref = GetLocalString(OBJECT_SELF, "GS_RESREF");
 		if (sResref == "") sResref = "ar_cr_doomstirge";
+		object oCreature;
         while (nCount > 0)
         {
-          CreateObject(OBJECT_TYPE_CREATURE, sResref, GetBehindLocation(OBJECT_SELF), TRUE);
+          oCreature = CreateObject(OBJECT_TYPE_CREATURE, sResref, GetBehindLocation(OBJECT_SELF), TRUE);
+		  gsFLSetFlag(GS_FL_DISABLE_LOOT, oCreature);
+		  gsFLSetFlag(GS_FL_ENCOUNTER, oCreature);
+		  SetLocalInt(oCreature, "NO_INVENTORY_DROPS", TRUE);
           nCount--;
         }
     }

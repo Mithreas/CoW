@@ -31,6 +31,32 @@ void RoundStealthTimerIncrement()
     }
 }
 
+void UpdateKoboldHIPS(object oPC, int bEnable)
+{
+  object oHide = GetItemInSlot(INVENTORY_SLOT_CARMOUR, oPC);
+  
+  if (GetResRef(oHide) != "x2_it_koboldcomm") return;
+  
+  if (bEnable) 
+  {
+	IPSafeAddItemProperty(oHide, ItemPropertyBonusFeat(IP_CONST_FEAT_HIDE_IN_PLAIN_SIGHT), 0.0f, X2_IP_ADDPROP_POLICY_REPLACE_EXISTING);
+	return;
+  }
+  
+  itemproperty iprop = GetFirstItemProperty(oHide);
+  
+  while (GetIsItemPropertyValid(iprop))
+  {
+    if (GetItemPropertyType(iprop) == ITEM_PROPERTY_BONUS_FEAT &&
+	    GetItemPropertySubType(iprop) == IP_CONST_FEAT_HIDE_IN_PLAIN_SIGHT)
+	{
+	  RemoveItemProperty(oHide, iprop);
+	}
+	
+	iprop = GetNextItemProperty(oHide);
+  }
+}
+
 void main()
 {
     object oPC = OBJECT_SELF;
@@ -39,6 +65,7 @@ void main()
         if(GetIsTimelocked(oPC, "Hide in Plain Sight"))
         {
             NWNX_Creature_RemoveFeat(oPC, FEAT_HIDE_IN_PLAIN_SIGHT);
+			UpdateKoboldHIPS(oPC, FALSE);
         }
         else if(!GetHasFeat(FEAT_HIDE_IN_PLAIN_SIGHT, oPC))
         {
@@ -47,6 +74,7 @@ void main()
                 AddShadowMageFeats(oPC);
             if (GetLevelByClass(CLASS_TYPE_SHADOWDANCER, oPC) >= 1)
                 AddKnownFeat(oPC, FEAT_HIDE_IN_PLAIN_SIGHT, GetLevelByClassLevel(oPC, CLASS_TYPE_SHADOWDANCER, 1));
+			UpdateKoboldHIPS(oPC, TRUE);
         }
 
         if (GetHasFeat(FEAT_HIDE_IN_PLAIN_SIGHT, oPC))

@@ -13,6 +13,7 @@
 
 #include "inc_associates"
 #include "inc_chatrelay"
+#include "inc_common"
 #include "inc_database"
 #include "inc_data_arr"
 #include "inc_divination"
@@ -1878,6 +1879,17 @@ void ProjectImage()
     ClearInventory(oImage, TRUE, FALSE);
     SetInventoryDroppable(oImage, FALSE);
     RemoveAllEffects(oImage);
+	// disable GSF-granted 'spells', which the image will still try to use.
+	int i;
+    struct NWNX_Creature_SpecialAbility spell;
+
+    for(i = 0; i < NWNX_Creature_GetSpecialAbilityCount(oImage); i++)
+    {
+        spell = NWNX_Creature_GetSpecialAbility(oImage, i);
+        SetSpontaneousSpellReadyState(oImage, spell.id, FALSE);
+    }
+	
+	gsCMReapplyDamageImmunityCap(oImage);
     ApplyEffectToObject(DURATION_TYPE_PERMANENT, SupernaturalEffect(EffectSpellFailure(100)), oImage);
     AddHenchman(OBJECT_SELF, oImage);
 }
@@ -3225,7 +3237,8 @@ int AR_GetCasterLevelBonus(object oCaster=OBJECT_SELF, int nSpellId = -1)
     (GetLevelByClass(CLASS_TYPE_SORCERER, oCaster) + GetLevelByClass(CLASS_TYPE_WIZARD, oCaster));
 	  
   int bSpecialNecro = (nSpellId == 637 || nSpellId == 623 || nSpellId == 624 || nSpellId == 627); // Mummy Dust, PM animate dead spells	
-  if (GetLastSpellCastClass() == CLASS_TYPE_PALADIN || GetLastSpellCastClass() == CLASS_TYPE_FAVOURED_SOUL || GetLastSpellCastClass() == CLASS_TYPE_CLERIC || (bSpecialNecro && bDivine))
+  if (!GetIsObjectValid(GetSpellCastItem()) &&
+       (GetLastSpellCastClass() == CLASS_TYPE_PALADIN || GetLastSpellCastClass() == CLASS_TYPE_FAVOURED_SOUL || GetLastSpellCastClass() == CLASS_TYPE_CLERIC || (bSpecialNecro && bDivine)))
   {
     // Note - cannot include inc_state from here due to circular dependencies.
     return FloatToInt(GetLocalFloat(oHide, "GS_ST_PIETY")) / 10;

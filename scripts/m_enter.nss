@@ -220,6 +220,9 @@ void main()
 	RemoveJournalQuestEntry("magic", oEntering, FALSE);
 	AddJournalQuestEntry("magic",1,oEntering, FALSE);
 	
+	RemoveJournalQuestEntry("stamina", oEntering, FALSE);
+	AddJournalQuestEntry("stamina",1,oEntering, FALSE);
+	
 	if (GetRacialType(oEntering) == RACIAL_TYPE_ELF)
 	{
 	  RemoveJournalQuestEntry("elvenmanners", oEntering, FALSE);
@@ -499,10 +502,7 @@ void main()
       SetLocalInt(oEntering, "DM_TIP", 1);
     }
 	
-	if (GetLocalFloat(oEntering, "AR_SCALE") > 0.0f)
-	{
-	    SetObjectVisualTransform(oEntering, OBJECT_VISUAL_TRANSFORM_SCALE, GetLocalFloat(oEntering, "AR_SCALE"));
-	}
+	gsPCRefreshCreatureScale(oEntering);
 	
 	// Set craft skill limits.
 	ExecuteScript("hook_set_lev_cap", oEntering);

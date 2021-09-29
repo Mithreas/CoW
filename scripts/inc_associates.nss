@@ -29,9 +29,9 @@ const string ERROR_INVALID_FOLLOW_TARGET = "Invalid target. Associates can only 
 // Error message sent when no associate is selected to command.
 const string ERROR_NO_ASSOCIATE_SELECTED = "Invalid command. You must first select an associate to control.";
 // Message sent when associate command is granted.
-const string ASSOCIATE_COMMAND_GRANTED = "You have been granted the Player Tool 1 feat, which allows you to select and command associates. Type '-manual Player Tool 1' for help.";
+const string ASSOCIATE_COMMAND_GRANTED = "You have been granted the Control Associate feat, which allows you to select and command associates.  See the feat description for help.";
 // Message sent when associate command is removed.
-const string ASSOCIATE_COMMAND_REMOVED = "Player Tool 1 has been removed from your feat list. The position of this feat on your quickbar will be restored when summoning an associate if that slot remains empty.";
+const string ASSOCIATE_COMMAND_REMOVED = "Control Associate has been removed from your feat list. The position of this feat on your quickbar will be restored when summoning an associate if that slot remains empty.";
 
 /**********************************************************************
  * CONSTANT DEFINITIONS

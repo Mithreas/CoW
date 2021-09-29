@@ -145,7 +145,7 @@ void main()
         }
     case BASE_ITEM_CSLASHWEAPON:
     case BASE_ITEM_CSLSHPRCWEAP:
-        return;
+        break;
     }
 
     if(GetBaseItemType(oEquipped) == BASE_ITEM_ARMOR)
@@ -410,4 +410,14 @@ void main()
     }
     // Toggles spell availability based on whether the PC is polymorphed.
     UpdateSpontaneousSpellReadyStates(oEquippedBy);
+	
+	if (GetBaseItemType(oEquipped) == BASE_ITEM_ARMOR && GetArmorBaseACValue(oEquipped) >= 4)
+	{
+        IPSafeAddItemProperty(oEquipped,ItemPropertyDamageImmunity(IP_CONST_DAMAGETYPE_SLASHING, IP_CONST_DAMAGEIMMUNITY_10_PERCENT), 0.0f, X2_IP_ADDPROP_POLICY_REPLACE_EXISTING ,FALSE,FALSE, "di_fix");
+        IPSafeAddItemProperty(oEquipped,ItemPropertyDamageImmunity(IP_CONST_DAMAGETYPE_PIERCING, IP_CONST_DAMAGEIMMUNITY_10_PERCENT), 0.0f, X2_IP_ADDPROP_POLICY_REPLACE_EXISTING ,FALSE,FALSE, "di_fix");
+        IPSafeAddItemProperty(oEquipped,ItemPropertyDamageImmunity(IP_CONST_DAMAGETYPE_BLUDGEONING, IP_CONST_DAMAGEIMMUNITY_10_PERCENT), 0.0f, X2_IP_ADDPROP_POLICY_REPLACE_EXISTING ,FALSE,FALSE, "di_fix");
+	}
+
+	// Apply the immunity cap to the PC. 
+	gsCMReapplyDamageImmunityCap(oEquippedBy);
 }

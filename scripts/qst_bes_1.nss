@@ -30,6 +30,7 @@ void main()
   else
   {
     FloatingTextStringOnCreature("Bessy sniffs at you a bit, then starts following you!", oPC, FALSE);
+	SendMessageToPC(oPC, "Tip: Use the Control Associate feat (under your class in the radial menu) to tell Bessy where to go.");
 
     AddHenchman(oPC);
 	ActionForceFollowObject(oPC);

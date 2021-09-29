@@ -1692,6 +1692,7 @@ int gsCRGetCraftSkillByItemType(object oItem, int bMundaneProperty)
 	  break;
     case BASE_ITEM_ARROW:
     case BASE_ITEM_BOLT:
+	case BASE_ITEM_BOOK:
     case BASE_ITEM_CLUB:
     case BASE_ITEM_HEAVYCROSSBOW:
     case BASE_ITEM_LIGHTCROSSBOW:

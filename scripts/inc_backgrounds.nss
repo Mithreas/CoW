@@ -198,7 +198,8 @@ void miBAIncreaseECL(object oPC, float fECL);
 // Apply a gift's properties.  If bFirstTime is false, only creature
 // hide properties will be applied.
 void miBAApplyGift(object oPC, int nGift, int bFirstTime = TRUE, int bApplySpecialAbilities = TRUE);
-
+// Returns TRUE if oPC has nGift
+int miBAGetHasGift(object oPC, int nGift);
 // Adds the gift to the PC's list of gifts. If bReapplyBonuses is TRUE, character bonuses
 // will be updated immediately.
 void AddGift(object oPC, int nGift, int bReapplyBonuses = TRUE);
@@ -371,7 +372,7 @@ int miBAGetIsBackgroundLegal(int nBackground, object oPC)
 	case MI_BA_FERNVALE:
 	  return (GetRacialType(oPC) == RACIAL_TYPE_ELF && gsSUGetSubRaceByName(GetSubRace(oPC)) != GS_SU_SHAPECHANGER);
     case MI_BA_AIREVORN:
-	  return (GetRacialType(oPC) == RACIAL_TYPE_HALFELF && gsSUGetSubRaceByName(GetSubRace(oPC)) != GS_SU_SHAPECHANGER);
+	  return ((GetRacialType(oPC) == RACIAL_TYPE_HALFELF || GetRacialType(oPC) == 21) && gsSUGetSubRaceByName(GetSubRace(oPC)) != GS_SU_SHAPECHANGER);
 	case MI_BA_DUNKHAZAK:
 	  return (GetRacialType(oPC) == RACIAL_TYPE_HUMANOID_MONSTROUS || gsSUGetSubRaceByName(GetSubRace(oPC)) == GS_SU_SHAPECHANGER);
 	case MI_BA_IMPERIAL:
@@ -510,13 +511,22 @@ void miBADoFactionGear(object oPC, int nBackground, int nLevel)
         CreateItemOnObject("key_renerrin_nob", oPC);
         GiveGoldToCreature(oPC, 1000);
 		break;
-      case MI_BA_WARDEN:   	  
+      case MI_BA_WARDEN:   
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_vyv_elder"))) return;
+		SendMessageToPC(oPC, "Congratulations, you have achieved Protector status.");
+        CreateItemOnObject("key_vyv_elder", oPC);		  
 		break;
       case MI_BA_SHADOW:   	  
 		break;
-      case MI_BA_FERNVALE:   	  
-		break;
-      case MI_BA_AIREVORN:	  
+      case MI_BA_FERNVALE: 
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_fern_elder"))) return;
+		SendMessageToPC(oPC, "Congratulations, you have achieved Elder status.");
+        CreateItemOnObject("key_fern_elder", oPC);	  	  
+		break; 
+      case MI_BA_AIREVORN:	
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_aire_elder"))) return;
+		SendMessageToPC(oPC, "Congratulations, you have achieved Most Favoured status.");
+        CreateItemOnObject("key_aire_elder", oPC);	  
 		break;	    
       case MI_BA_DUNKHAZAK:
         break;
@@ -637,6 +647,15 @@ void miBAIncreaseECL(object oPC, float fECL)
   if (fCurrentECL == 0.0f) fCurrentECL = 10.0f; // initialise to 10. 
 
   SetLocalFloat(gsPCGetCreatureHide(oPC), "ECL", fCurrentECL + fECL);
+}
+
+int miBAGetHasGift(object oPC, int nGift)
+{
+  object oHide = gsPCGetCreatureHide(oPC);
+  
+  return (GetLocalInt(oHide, "GIFT_1") == nGift ||
+          GetLocalInt(oHide, "GIFT_2") == nGift ||
+	      GetLocalInt(oHide, "GIFT_3") == nGift);
 }
 
 void miBAApplyGift(object oPC, int nGift, int bFirstTime = TRUE, int bApplySpecialAbilities = TRUE)

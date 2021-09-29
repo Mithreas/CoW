@@ -38,7 +38,8 @@ void main()
    SQLPrepareStatement("(?,?,?,?),", "patrol_city", DB_QUESTSET, "1", "2") +
    SQLPrepareStatement("(?,?,?,?),", "drarayne_rats", DB_QUESTSET, "3", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "loose_hound", DB_QUESTSET, "3", "10") +  
-   SQLPrepareStatement("(?,?,?,?),", "train", DB_QUESTSET, "3", "6") + 
+   SQLPrepareStatement("(?,?,?,?),", "train", DB_QUESTSET, "3", "6") +   
+   SQLPrepareStatement("(?,?,?,?),", "city_bank", DB_QUESTSET, "3", "6") + 
    SQLPrepareStatement("(?,?,?,?),", "gather_gemstone", DB_QUESTSET, "4", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "make_glass", DB_QUESTSET, "4", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "badger_skin", DB_QUESTSET, "3", "6") + 
@@ -70,6 +71,17 @@ void main()
   SetStringValue(QUEST+AREA_TAGS, "southgates", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
 
+  QUEST = "city_bank";
+  SetStringValue(QUEST+QUEST_TYPE, PATROL, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION,
+   "You should get into the habit of storing your gold, so that nothing happens to it while " +
+   "you're adventuring.  Visit the Imperial Bank, in the Imperial City to the north of the Market " +
+   "Square, and deposit your coins.",
+   DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "75", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "25", DB_VARS);
+  SetStringValue(QUEST+AREA_TAGS, "imperialcitybank", DB_VARS);
+  
   QUEST = "train";
   SetStringValue(QUEST+QUEST_TYPE, PATROL, DB_VARS);
   SetStringValue(QUEST+DESCRIPTION,
@@ -315,6 +327,7 @@ void main()
    SQLPrepareStatement("(?,?,?,?),", "drarayne_rats", DB_QUESTSET, "3", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "loose_hound", DB_QUESTSET, "3", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "train", DB_QUESTSET, "3", "6") +  
+   SQLPrepareStatement("(?,?,?,?),", "city_bank", DB_QUESTSET, "3", "6") + 
    SQLPrepareStatement("(?,?,?,?),", "make_glass", DB_QUESTSET, "4", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "gather_wood", DB_QUESTSET, "4", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "gather_ond", DB_QUESTSET, "3", "6") + 
@@ -344,6 +357,17 @@ void main()
   SetStringValue(QUEST+REWARD_XP, "2000", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
   SetStringValue(QUEST+AREA_TAGS, "southgates", DB_VARS);
+
+  QUEST = "city_bank";
+  SetStringValue(QUEST+QUEST_TYPE, PATROL, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION,
+   "You should get into the habit of storing your gold, so that nothing happens to it while " +
+   "you're adventuring.  Visit the Imperial Bank, in the Imperial City to the north of the Market " +
+   "Square, and deposit your coins.",
+   DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "75", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "25", DB_VARS);
+  SetStringValue(QUEST+AREA_TAGS, "imperialcitybank", DB_VARS);
     
   QUEST = "train";
   SetStringValue(QUEST+QUEST_TYPE, PATROL, DB_VARS);
@@ -576,6 +600,7 @@ void main()
    SQLPrepareStatement("(?,?,?,?),", "loose_hound", DB_QUESTSET, "3", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "drarayne_rats", DB_QUESTSET, "3", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "train", DB_QUESTSET, "3", "6") +  
+   SQLPrepareStatement("(?,?,?,?),", "city_bank", DB_QUESTSET, "3", "6") + 
    SQLPrepareStatement("(?,?,?,?),", "more_holywater", DB_QUESTSET, "3", "6") + 
    SQLPrepareStatement("(?,?,?,?),", "make_glass", DB_QUESTSET, "4", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "pilgrimage", DB_QUESTSET, "4", "10") + 
@@ -604,6 +629,17 @@ void main()
   SetStringValue(QUEST+REWARD_XP, "2000", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
   SetStringValue(QUEST+ITEM_TAG, "X1_WMGRENADE005", DB_VARS);
+
+  QUEST = "city_bank";
+  SetStringValue(QUEST+QUEST_TYPE, PATROL, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION,
+   "You should get into the habit of storing your gold, so that nothing happens to it while " +
+   "you're adventuring.  Visit the Imperial Bank, in the Imperial City to the north of the Market " +
+   "Square in the City proper, and deposit your coins.",
+   DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "75", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "25", DB_VARS);
+  SetStringValue(QUEST+AREA_TAGS, "imperialcitybank", DB_VARS);
   
   QUEST = "train";
   SetStringValue(QUEST+QUEST_TYPE, PATROL, DB_VARS);
@@ -667,7 +703,7 @@ void main()
    "You should visit the holy sites, to further your knowledge of the gods. " +
    "There are temples to Morrian and Solkin maintained by the other Houses, " +
    "as well as the Temple to the Seven of our own House. Finally, you should " +
-   "visit the Grove of the Gods, here on Sunrise Isle. It's not far from the " +
+   "visit the Grove of the Gods on Sunrise Isle. It's not far from the " +
    "entrance to the estate.", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "2", DB_VARS);
@@ -713,7 +749,7 @@ void main()
   SetStringValue(QUEST+QUEST_TYPE, HELP, DB_VARS);
   SetStringValue(QUEST+DESCRIPTION,
    "Go and see if Cardinal Jarian needs any help. He's usually found in " +
-   "the Garden of Contemplation, near the docks.", DB_VARS);
+   "the Garden of Contemplation, near the docks on Sunrise Isle.", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "1", DB_VARS);
   SetStringValue(QUEST+OTHER_NPC, "paronjarian", DB_VARS);
 
@@ -1005,6 +1041,7 @@ void main()
   // Import all the Fernvale quests.
   sSQL = "INSERT INTO " + DB_QUEST + " (quest, questset, minlevel, maxlevel) VALUES " + 
    SQLPrepareStatement("(?,?,?,?),", "explore_fernvale", DB_QUESTSET, "1", "2") + 
+   SQLPrepareStatement("(?,?,?,?),", "elf_bank", DB_QUESTSET, "3", "4") +
    SQLPrepareStatement("(?,?,?,?),", "cull_goblins", DB_QUESTSET, "3", "4") +
    SQLPrepareStatement("(?,?,?,?),", "kill_gobbo_carrier", DB_QUESTSET, "3", "5") + 
    SQLPrepareStatement("(?,?,?,?),", "retrieve_bark", DB_QUESTSET, "3", "5") + 
@@ -1045,6 +1082,15 @@ void main()
   SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
   SetStringValue(QUEST+REWARD_FAC_REP, "2", DB_VARS);
   SetStringValue(QUEST+TARGET_TAG, "qst_gobcarrier", DB_VARS);
+  
+  QUEST = "elf_bank";
+  SetStringValue(QUEST+QUEST_TYPE, PATROL, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION, 
+    "You should get into the habit of storing your gold in the bank, so you don't lose it while exploring. " +
+    "Byatheria in the Mages' Guild can look after it for you, go and deposit your money with her.",	DB_VARS);
+  SetStringValue(QUEST+AREA_TAGS, "fevMageGuild", DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "25", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "25", DB_VARS);
   
   QUEST = "cull_goblins";
   SetStringValue(QUEST+QUEST_TYPE, CULL, DB_VARS);
@@ -1222,6 +1268,84 @@ void main()
   SetStringValue(QUEST+DESCRIPTION,
    "The plague has brought more danger to our village, desperate creatures that will not live alongside us and need to be " +
    "culled.  Bring me two heads from creatures that mean us harm.",
+   DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "200", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "150", DB_VARS);
+  SetStringValue(QUEST+ITEM_TAG, "GS_HEAD_EVIL", DB_VARS);
+  SetStringValue(QUEST+NUM_ITEMS, "2", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  
+  //-------------------------------------------------------------------------------------------
+  /* Airevorn Quests */
+  DB_VARS  = "airevorn_vars";
+  DB_QUESTSET = "airevorn";
+  
+  sSQL = "INSERT INTO " + DB_QUEST + " (quest, questset, minlevel, maxlevel) VALUES " + 
+   SQLPrepareStatement("(?,?,?,?),", "explore_airevorn", DB_QUESTSET, "1", "2") + 
+   SQLPrepareStatement("(?,?,?,?),", "cull_rats", DB_QUESTSET, "3", "4") +
+   SQLPrepareStatement("(?,?,?,?),", "bat_skins", DB_QUESTSET, "3", "5") + 
+   SQLPrepareStatement("(?,?,?,?),", "cull_xvarts", DB_QUESTSET, "4", "10") + 
+   SQLPrepareStatement("(?,?,?,?),", "kill_zorgrush", DB_QUESTSET, "9", "10") + 
+   SQLPrepareStatement("(?,?,?,?)", "boss_heads", DB_QUESTSET, "6", "15");
+  SQLExecDirect(sSQL);
+  
+  QUEST = "explore_airevorn";
+  SetStringValue(QUEST+QUEST_TYPE, PATROL, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION, 
+    "You should get to know the village, and learn what it is we do here.  Visit the Temple on the east side of the village and speak with Acolyte Aravind. " +
+	"Then explore the Frozen Hart inn near the temple, and the general store and workshops in the southwest.  Once you have visited each of them, return to me here."
+	, DB_VARS);
+  SetStringValue(QUEST+AREA_TAGS, "avt,avvw,avvtfh", DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "25", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "2000", DB_VARS);
+  
+  QUEST = "cull_rats";
+  SetStringValue(QUEST+QUEST_TYPE, CULL, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION, "Rats have gotten into the granary again!  Please go and clean them out.", DB_VARS);
+  SetStringValue(QUEST+CULL_TAG, "cnraRat", DB_VARS);
+  SetStringValue(QUEST+NUM_CREATURES, "5", DB_VARS);  
+  SetStringValue(QUEST+REWARD_GOLD, "100", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);  
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  QUEST = "bat_skins";  
+  SetStringValue(QUEST+QUEST_TYPE, RETRIEVE, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION,
+   "There is a cave not far to the south full of bats and beetles.  Please bring me back three bat hides; their fur is useful for making sporrans.  Don't forget to take a skinning knife; you can pick one up in the workshops. You can sell any spare hides to Teranth.",
+   DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "250", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
+  SetStringValue(QUEST+ITEM_TAG, "cnrSkinBat", DB_VARS);
+  SetStringValue(QUEST+NUM_ITEMS, "3", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  QUEST = "cull_xvarts";
+  SetStringValue(QUEST+QUEST_TYPE, CULL, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION, "In the hills to the south live a tribe of xvarts.  Their tribe appears to be led by female shamans who favour spells of entrapment and "+
+  "fire.  Please take a patrol south of the village and cull any xvarts above ground... try to pen them back in their lair.", DB_VARS);
+  SetStringValue(QUEST+CULL_TAG, "xvart", DB_VARS);
+  SetStringValue(QUEST+NUM_CREATURES, "5", DB_VARS);  
+  SetStringValue(QUEST+REWARD_GOLD, "250", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "250", DB_VARS); 
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS); 
+  
+  QUEST = "kill_zorgrush";
+  SetStringValue(QUEST+QUEST_TYPE, KILL, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION,
+  "One of the giants that lives in the mountains to the south has become a real source of trouble.  Its name is Zorgrush and it's been beaten back from the village " +
+  "more times than I can count.  Seek it out among the mountain giants and defeat it; we have to teach it to fear our home.",
+  DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "1000", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "250", DB_VARS);
+  SetStringValue(QUEST+REWARD_FAC_REP, "2", DB_VARS);
+  SetStringValue(QUEST+TARGET_TAG, "zorgrush", DB_VARS); 
+  
+  QUEST = "boss_heads";  
+  SetStringValue(QUEST+QUEST_TYPE, RETRIEVE, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION,
+   "Despite our commitment to peace, there are plenty of creatures nearby that have no intention of letting us live peacefully. " +
+   "Bring me two heads from creatures that mean us harm.",
    DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "200", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "150", DB_VARS);

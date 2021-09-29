@@ -66,6 +66,7 @@ void OnSelection(string sPage)
         {
             object oSelf = OBJECT_SELF;
             AssignCommand(oSpeaker, ActionSit(oSelf));
+			DelayCommand(3.0f, SetLocalLocation(oUser, "MI_SIT_LOCATION", GetLocation(oUser)));
         }
     }
     else if (dlgGetSpeakeeDataInt("GS_SIT_FLOOR"))

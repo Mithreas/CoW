@@ -18,6 +18,7 @@
 	DEST_TAG_n - the waypoint tag to teleport to for this destination.
 	DEST_KEY_n - optional - require a PC to possess an item with this tag to show this option.
 */
+#include "inc_achievements"
 #include "inc_caravan"
 #include "inc_subrace"
 #include "ar_utils"
@@ -32,6 +33,7 @@ const string TRAVEL_MENU  = "mica_travel_menu";
 const string SELECTION      = "mica_selection";
 
 const string DESTINATIONS    = "mica_destinations";
+const string DEST_IDS        = "mica_dest_ids";
 const string CONFIRM_OPTIONS = "mica_confirm_options";
 const string TRAVEL_OPTIONS  = "mica_travel_options";
 const string DONE            = "mica_done";
@@ -51,6 +53,7 @@ void Init()
 
   // Always rebuild the list now that we have some locked destinations. 
   DeleteList(DESTINATIONS);
+  DeleteList(DEST_IDS);
   
   int nNth = 1; // Note - DESTINATIONS is 0-based, but the vars are 1-based.
   string sDest = GetLocalString(OBJECT_SELF, "DEST_NAME_" + IntToString(nNth));
@@ -58,8 +61,12 @@ void Init()
   while (sDest != "")
   {
     string sKeyTag = GetLocalString(OBJECT_SELF, "DEST_KEY_" + IntToString(nNth));
-    if (sKeyTag == "" || GetIsObjectValid(GetItemPossessedBy(GetPCSpeaker(), sKeyTag))) AddStringElement(sDest, DESTINATIONS);
-    nNth++;
+    if (sKeyTag == "" || GetIsObjectValid(GetItemPossessedBy(GetPCSpeaker(), sKeyTag)) || acPlayerHasAchievement(GetPCSpeaker(), sKeyTag)) 
+	{
+		AddStringElement(sDest, DESTINATIONS);
+		AddIntElement(nNth, DEST_IDS);
+	}
+	nNth++;
     sDest = GetLocalString(OBJECT_SELF, "DEST_NAME_" + IntToString(nNth));
   }
 
@@ -150,7 +157,7 @@ void PageInit()
 	  if (nType == TRAVEL_TYPE_LAND || nType == TRAVEL_TYPE_RANGER)
 	  {
 	    if (GetRacialType (OBJECT_SELF) == RACIAL_TYPE_ELF)
-		  SetDlgPrompt("Welcome.  I can lead you through the wilds... I will depart " +
+		  SetDlgPrompt("Welcome.  I can lead you through the wilds to a place you've already been... I will depart " +
 		    "after we have given others a chance to join us, every three hours from six " +
 			"in the morning to six in the evening.  We do not travel at night, for I " +
 			"cannot guarantee your safety.  Should you wish to travel, let me know.");
@@ -172,7 +179,7 @@ void PageInit()
 		  SpeakString("Sorry, no traveling without a certificate of seaworthiness.  Can't risk you sinking the ship.");
 		  EndDlg();
 		}
-		else if (nAppearance > 6 && GetSkillRank(SKILL_BLUFF, oPC, FALSE) < 10 && GetSkillRank(SKILL_PERFORM, oPC, FALSE) < 10)
+		else if (nAppearance > 6 && nAppearance != 2082 && GetSkillRank(SKILL_BLUFF, oPC, FALSE) < 10 && GetSkillRank(SKILL_PERFORM, oPC, FALSE) < 10)
 		{
 		  // Shapeshifted - need bluff 10 to get on board. 
 		  SpeakString("Eh?  No beasties on board!");
@@ -258,7 +265,7 @@ void HandleSelection()
     {
       case 0:  // OK
       {	  
-        int nDest = GetLocalInt(OBJECT_SELF, SELECTION) + 1; // 0-based to 1-based list
+        int nDest = GetIntElement(GetLocalInt(OBJECT_SELF, SELECTION), DEST_IDS); // selection and DEST_IDS are both 0-based
         string sTag = GetLocalString(OBJECT_SELF, "DEST_TAG_" + IntToString(nDest));
         Trace(CARAVANS, GetName(oPC) + " has paid to travel to " + sTag);
         SetLocalString(oPC, MICA_DESTINATION, sTag);

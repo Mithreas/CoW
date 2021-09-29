@@ -62,7 +62,6 @@ int getDesiredHeadId(int variant)
             desiredHeadId = GetGender(OBJECT_SELF) == GENDER_MALE ? 6 : 5;
             break;
 
-        case APPEARANCE_TYPE_HALF_ELF:
         case APPEARANCE_TYPE_HUMAN:
 
             if (GetGender(OBJECT_SELF) == GENDER_MALE)
@@ -76,11 +75,15 @@ int getDesiredHeadId(int variant)
             break;
 
         case APPEARANCE_TYPE_HALF_ORC:
+		case 2083: // Shapechanger - Large
 
             desiredHeadId = GetGender(OBJECT_SELF) == GENDER_MALE ? INVALID_HEAD_ID : 2;
             break;
 
         case APPEARANCE_TYPE_HALFLING:
+        case APPEARANCE_TYPE_HALF_ELF:
+		case 2081: // Elfling
+		case 2082: // Shapechanger
 
             desiredHeadId = GetGender(OBJECT_SELF) == GENDER_MALE ? 9 : 10;
             break;

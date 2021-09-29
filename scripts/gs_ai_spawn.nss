@@ -417,4 +417,14 @@ void main()
       //set random facing
       SetFacing(IntToFloat(Random(360)));
     }
+	
+	// Apply DI boost to medium/heavy armour
+	object oChest = GetItemInSlot(INVENTORY_SLOT_CHEST, OBJECT_SELF);
+	
+	if (GetIsObjectValid(oChest) && GetBaseItemType(oChest) == BASE_ITEM_ARMOR && GetArmorBaseACValue(oChest) >= 4)
+	{
+        IPSafeAddItemProperty(oChest,ItemPropertyDamageImmunity(IP_CONST_DAMAGETYPE_SLASHING, IP_CONST_DAMAGEIMMUNITY_25_PERCENT), 0.0f, X2_IP_ADDPROP_POLICY_REPLACE_EXISTING ,FALSE,FALSE, "di_fix");
+        IPSafeAddItemProperty(oChest,ItemPropertyDamageImmunity(IP_CONST_DAMAGETYPE_PIERCING, IP_CONST_DAMAGEIMMUNITY_25_PERCENT), 0.0f, X2_IP_ADDPROP_POLICY_REPLACE_EXISTING ,FALSE,FALSE, "di_fix");
+        IPSafeAddItemProperty(oChest,ItemPropertyDamageImmunity(IP_CONST_DAMAGETYPE_BLUDGEONING, IP_CONST_DAMAGEIMMUNITY_25_PERCENT), 0.0f, X2_IP_ADDPROP_POLICY_REPLACE_EXISTING ,FALSE,FALSE, "di_fix");
+	}
 }

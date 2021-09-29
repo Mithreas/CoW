@@ -75,6 +75,8 @@ void SPC_ApplyEarVFX(object oPC, int nVFX)
 	// Delay command to run after this script ends, to allow the deletion of the previous effect to run first.
 	float fScale = GetLocalFloat(oHide, "AR_SCALE");
 	if (nVFX < 679) fScale += 0.2f;
+	
+	if (GetAppearanceType(oPC) == 2083) fScale += 0.5; // Large phenotype.
     eEff = TagEffect(SupernaturalEffect(EffectVisualEffect(nVFX, FALSE, fScale, Vector(0.0f, 0.0f, fZ))), VAR_SHAPECHANGER);  	
     DelayCommand(0.0f, ApplyEffectToObject(DURATION_TYPE_PERMANENT, eEff, oPC));
   }  
@@ -97,7 +99,7 @@ void SPC_Initialise(object oPC)
    int nBaseForm = GetAppearanceType(oPC);
    int nBaseHead = GetCreatureBodyPart(CREATURE_PART_HEAD, oPC);
    int nBaseRace = GetRacialType(oPC);
-   int nHybridForm = 3;
+   int nHybridForm = 2082; // Custom appearance for Shapechanger that uses halfling models but is Medium sized.
    int nHybridTail = 622;
    int nAnimalForm = 366;
    
@@ -129,7 +131,8 @@ void SPC_DoHybridForm(object oPC)
   if (gsC2GetHasEffect(EFFECT_TYPE_POLYMORPH, oPC, TRUE))
   {
     gsFXRemoveEffect(oPC, OBJECT_INVALID, EFFECT_TYPE_POLYMORPH);	
-	SendMessageToPC(oPC, "You must get out of polymorph before you can pick a form.");
+	SendMessageToPC(oPC, "You must get out of polymorph before you can pick a form.  Please try again.");
+	return;
   }
   else
   {	  
@@ -139,16 +142,21 @@ void SPC_DoHybridForm(object oPC)
 	  int nHybridTail  = GetLocalInt(oHide, VAR_HYBRID_TAIL);
 	  int nCurrentForm = GetLocalInt(oHide, VAR_CURRENT_FORM);
 	  
+	  if (nHybridForm == 3)
+	  {
+	    // Migration code.
+	    nHybridForm = 2082;
+		SetLocalInt(oHide, VAR_HYBRID_FORM, 2082);
+	  }
+	  
 	  if (nCurrentForm == 1)
 	  {
-		// Reapply scale, tail and ears in case they were lost by polymorphing. 
+		// Reapply tail and ears in case they were lost by polymorphing. 
 		SetCreatureTailType(nHybridTail, oPC);	
 		if (GetLocalInt(oHide, VAR_HYBRID_EARS))
 		{
 		  DelayCommand(0.2f, SPC_ApplyEarVFX(oPC, GetLocalInt(oHide, VAR_HYBRID_EARS)));
 		}
-		
-		SetCreatureSize(oPC, CREATURE_SIZE_MEDIUM);
 	  }
 	  else
 	  {
@@ -167,7 +175,7 @@ void SPC_DoHybridForm(object oPC)
 			
 		
 		// Custom code to tune certain dynamic races.
-		if (nHybridForm == 3 || nHybridForm == 5)
+		if (nHybridForm == 5 || nHybridForm == 2082 || nHybridForm == 3 || nHybridForm == 2083)
 		{
 		  if (GetLocalInt(oHide, VAR_HYBRID_HEAD))
 			SetCreatureBodyPart(CREATURE_PART_HEAD, GetLocalInt(oHide, VAR_HYBRID_HEAD), oPC);
@@ -197,14 +205,7 @@ void SPC_DoHybridForm(object oPC)
 		  }
 		}
 		
-		if (nHybridForm == 3) // Size adjustment for halfling.  Could make this variable based.
-		{  
-		  float fScale = GetObjectVisualTransform(oPC, OBJECT_VISUAL_TRANSFORM_SCALE);
-		  float fTrueScale = GetLocalFloat(oHide, "AR_SCALE");
-		  if (fTrueScale == 0.0f || fTrueScale > 1.3f) SetLocalFloat(oHide, "AR_SCALE", fScale);
-		  DelayCommand(0.2f, _VisualTransformVoid(oPC, OBJECT_VISUAL_TRANSFORM_SCALE, fScale + 0.3f));
-		  SetCreatureSize(oPC, CREATURE_SIZE_MEDIUM);
-		}
+		gsPCRefreshCreatureScale(oPC);
 		
 		// Apply soft bonuses spot/listen
 		ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_SUPER_HEROISM), oPC);
@@ -326,7 +327,8 @@ void SPC_DoHumanoidForm(object oPC)
   if (gsC2GetHasEffect(EFFECT_TYPE_POLYMORPH, oPC, TRUE))
   {
     gsFXRemoveEffect(oPC, OBJECT_INVALID, EFFECT_TYPE_POLYMORPH);	
-	SendMessageToPC(oPC, "You must get out of polymorph before you can pick a form.");
+	SendMessageToPC(oPC, "You must get out of polymorph before you can pick a form. Please try again.");
+	return;
   }
   else
   {
@@ -379,14 +381,7 @@ void SPC_DoHumanoidForm(object oPC)
 		DelayCommand(0.1f, SetCommandable(TRUE, oPC));
 		ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_SUPER_HEROISM), oPC);
 	  
-		// Reset scale if needed.
-		float fScale = GetObjectVisualTransform(oPC, OBJECT_VISUAL_TRANSFORM_SCALE);
-		float fTrueScale = GetLocalFloat(oHide, "AR_SCALE");
-		  
-		if (fTrueScale > 0.0f && fScale != fTrueScale)
-		{
-		  DelayCommand(0.2f, _VisualTransformVoid(oPC, OBJECT_VISUAL_TRANSFORM_SCALE, fTrueScale));
-		}	
+		DelayCommand(0.15f, gsPCRefreshCreatureScale(oPC));
 		
 		// Remove spot/listen bonuses.
 		effect eEffect = GetFirstEffect(oPC);

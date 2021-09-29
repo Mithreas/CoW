@@ -59,8 +59,7 @@ void Init()
   if(gsQUGetTrapStrength(oQuarter))
   {
     int nTrapDC = gsQUGetTrapDC(oQuarter);
-    int nSearch = GetSkillRank(SKILL_SEARCH, oPC, FALSE);
-    if (d20() + nSearch >= nTrapDC)
+    if ( gsCMGetIsSkillSuccessful(oPC, SKILL_SEARCH, nTrapDC, FALSE))
     {
       AddStringElement("<c þ >[Disable Trap]</c>", MAIN_MENU);
     }
@@ -185,16 +184,14 @@ void HandleSelection()
           break;
         }
 
-        int nOpenLock = GetSkillRank(SKILL_OPEN_LOCK, oPC, FALSE);
         int nDC = gsQUGetLockDC(oQuarter);
-        if (d20() + nOpenLock >= nDC)
+        if (gsCMGetIsSkillSuccessful(oPC, SKILL_OPEN_LOCK, nDC, TRUE))
         {
           EndDlg();
           gsQUOpen(oQuarter, oPC);
         }
         else
         {
-          SendMessageToPC(oPC, "You fail to pick the lock.");
           EndDlg();
         }
 
@@ -270,16 +267,14 @@ void HandleSelection()
       }
       case 4:  // Disable Trap
       {
-        int nDisable = GetSkillRank(SKILL_DISABLE_TRAP, oPC, FALSE);
         int nDC = gsQUGetTrapDC(oQuarter);
-        if (d20() + nDisable >= nDC)
+        if (gsCMGetIsSkillSuccessful(oPC, SKILL_DISABLE_TRAP, nDC, TRUE))
         {
           gsQUSetTrapStrength(oQuarter, 0);
           RemoveElement(4, MAIN_MENU, OBJECT_SELF);
         }
         else
         {
-          SendMessageToPC(oPC, "You fail to disable the trap.");
           EndDlg();
         }
 

@@ -208,11 +208,11 @@ void _DoMeteor(object oPC)
 {
   vector vDelta = Vector(IntToFloat(Random(6)) - 2.5, IntToFloat(Random(6)) - 2.5, 0.0f);
   location lLoc = Location(GetArea(oPC), GetPosition(oPC) + vDelta, GetFacing(oPC));
-  object oArea = GetArea(oPC);
+  object oCaster = GetObjectByTag("example_hostile_all"); // A creature in the inventory area to use as the "caster"
   
-  AssignCommand(oArea, ApplyEffectAtLocation(DURATION_TYPE_TEMPORARY, EffectAreaOfEffect(55, "", "evt_custatk_hb", ""), lLoc, 7.0f));
-  SetLocalInt(oArea, "DAMAGE_TYPE", DAMAGE_TYPE_FIRE);
-  SetLocalInt(oArea, "VFX_IMP", VFX_IMP_FLAME_M);
+  AssignCommand(oCaster, ApplyEffectAtLocation(DURATION_TYPE_TEMPORARY, EffectAreaOfEffect(55, "", "evt_custatk_hb", ""), lLoc, 7.0f));
+  SetLocalInt(oCaster, "DAMAGE_TYPE", DAMAGE_TYPE_FIRE);
+  SetLocalInt(oCaster, "VFX_IMP", VFX_IMP_FLAME_M);
   
   DelayCommand(6.0f, ApplyEffectAtLocation(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_FNF_METEOR_SWARM, FALSE, 0.3f), lLoc));
 }
@@ -227,7 +227,7 @@ void DoMeteorHeartbeat(object oPC)
 	ApplyEffectAtLocation(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_FNF_SCREEN_SHAKE), GetLocation(oPC));
   }
   
-  DelayCommand(6.0f, DoMeteorHeartbeat(oPC));
+  DelayCommand(12.0f, DoMeteorHeartbeat(oPC));
 }
 //----------------------------------------------------------------
 void DoDeathIllusions()
@@ -444,6 +444,14 @@ void main()
 	  if (bIgnore == 2) DeleteLocalInt(oEntering, "AI_IGNORE");
 	  else SetLocalInt(oEntering, "AI_IGNORE", 2);
 	}
+	
+    // Same trick for scrying.
+	int bScrying = GetLocalInt(oEntering, IS_SCRYING);
+	if (bScrying)
+	{
+	  if (bScrying == 2) DeleteLocalInt(oEntering, IS_SCRYING);
+	  else SetLocalInt(oEntering, IS_SCRYING, 2);
+	}
 
     // Dismount horses
     if (GetIsAreaInterior(oArea) || !GetIsAreaAboveGround(oArea))
@@ -608,6 +616,8 @@ void main()
                 break;
 
             case OBJECT_TYPE_ENCOUNTER:
+				SetEncounterActive(TRUE, oObject);
+				break;
 
             case OBJECT_TYPE_ITEM:
 

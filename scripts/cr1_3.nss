@@ -116,10 +116,10 @@ void main()
 {
   object oSelf = OBJECT_SELF;
   
-  if (GetTag(oSelf) == "GS_ACTIVATOR")
+  if (GetTag(oSelf) == "GS_ACTIVATOR" || GetTag(oSelf) == "cr1_3_reset")
   {
-    // This is the reset placeable. a_enter will call this script when the area
-	// is reset.
+    // This is a reset placeable. a_enter will call this script when the area
+	// is reset, and a reset runestone will let users trigger it.
 	Reset();
 	return;
   }

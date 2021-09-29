@@ -96,6 +96,9 @@ const int MD_BIT_HOBGOBLIN                = 0x1000;
 const int MD_BIT_OGRE                     = 0x2000;
 const int MD_BIT_SHAPECHANGER             = 0x4000;
 const int MD_BIT_DRAGON                   = 0x8000; 
+// Other PC races
+const int MD_BIT_ELFLING                  = 0x10000;
+const int MD_BIT_MONSTROUS                = 0x20000;
 
 const string NAME_GS_SU_VAMPIRE = "Vampire";
 const string DESC_GS_SU_VAMPIRE = "(Favored Class: Wizard)\n\nEveryone knows Vampires.\n\nRequires Major Award (and approval by admin team). Undead Traits, Bat Shape, Regeneration +1 (in Sun -1), Vulnerability to Heal/Mass Heal. ECL +3";
@@ -788,6 +791,8 @@ string gsSUGetRaceName(int nRacialType)
       return "Half-Orc";
     case RACIAL_TYPE_HUMAN:
       return "Human";
+	case 21: // Elfling
+	  return "Elfling";
   }
 
   return "";
@@ -804,6 +809,8 @@ int md_ConvertRaceToBit(int nRace)
     case RACIAL_TYPE_HUMAN: return MD_BIT_HUMAN;
     case RACIAL_TYPE_HALFORC: return MD_BIT_HORC;
     case RACIAL_TYPE_GNOME: return MD_BIT_GNOME;
+	case RACIAL_TYPE_HUMANOID_MONSTROUS: return MD_BIT_MONSTROUS;
+	case 21: return MD_BIT_ELFLING;
     }
 
     return 0; //whoops

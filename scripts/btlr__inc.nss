@@ -21,12 +21,12 @@
 int WINGMAX     =   255;
 int TAILMAX     =   255;
 
-int HFHEADMAX   =   200;    //-- human female
-int HMHEADMAX   =   200;    //-- human male
-int AFHEADMAX   =   20;     //-- halfling female
-int AMHEADMAX   =   20;     //-- halfling male
-int EFHEADMAX   =   150;    //-- elf female
-int EMHEADMAX   =   50;     //-- elf male
+int HFHEADMAX   =   100;    //-- human female
+int HMHEADMAX   =   100;    //-- human male
+int AFHEADMAX   =   50;     //-- halfling female
+int AMHEADMAX   =   60;     //-- halfling male
+int EFHEADMAX   =   100;    //-- elf female
+int EMHEADMAX   =   100;     //-- elf male
 int GFHEADMAX   =   50;     //-- gnome female
 int GMHEADMAX   =   50;     //-- gnome male
 int DFHEADMAX   =   150;    //-- dwarf female

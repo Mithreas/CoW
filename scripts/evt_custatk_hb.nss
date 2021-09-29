@@ -9,7 +9,7 @@ void main()
       return;
   }
   
-  int bArea = (GetObjectType(oCaster) == 0); // Areas and modules have a type of 0.
+  int bArea = (GetTag(oCaster) == "example_hostile_all"); // See a_enter
   
   int nType = GetLocalInt(oCaster, "DAMAGE_TYPE");
   DeleteLocalInt(oCaster, "DAMAGE_TYPE");

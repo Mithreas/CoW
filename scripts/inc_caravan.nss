@@ -144,9 +144,16 @@ void miCADepart(object oCaravan)
       if (sDestinationTag != "" && GetArea(oPC) == oArea)
       {
         // Go!
-        Trace(CARAVANS, GetName(oPC) + " has destination " + sDestinationTag);
-        AssignCommand(oPC, ClearAllActions(TRUE));
-        AssignCommand(oPC, miCADoJourney(sDestinationTag, bType));
+		if (bType == TRAVEL_TYPE_SEA && !miCACanSwim(oPC)) 
+		{
+			miCADrown(oPC);
+		}
+		else
+		{
+			Trace(CARAVANS, GetName(oPC) + " has destination " + sDestinationTag);
+			AssignCommand(oPC, ClearAllActions(TRUE));
+			AssignCommand(oPC, miCADoJourney(sDestinationTag, bType));
+		}
       }
     }
 
@@ -183,7 +190,12 @@ int miCACanSwim(object oPC)
 	else return FALSE;
   }
   
-  if (nRace == RACIAL_TYPE_ELF) return FALSE;  
+  if (nRace == RACIAL_TYPE_ELF) return FALSE; 
+  
+  // Races that can try a swim check.
+  if (GetIsObjectValid(GetItemPossessedBy(oPC, "permission_sea"))) return TRUE;
+  if (nRace == RACIAL_TYPE_HALFELF) return FALSE; 
+  if (nRace == 21) return FALSE;   // Elfling
   
   return TRUE;
 }

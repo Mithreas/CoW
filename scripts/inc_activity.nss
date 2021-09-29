@@ -135,8 +135,12 @@ void GiveResearchInformation(object oPC)
   
   // TODO: support other races than humans.
   string sResearchCategory = RESEARCH_CATEGORY;
+  string sArea = GetName(GetArea(oPC));
   
-  if (GetRacialType(oPC) == RACIAL_TYPE_ELF) 
+  if (FindSubString(sArea, "Merivale") >= 0 || 
+		FindSubString(sArea, "Fernvale") >= 0 || 
+			FindSubString(sArea, "Parli") >= 0 || 
+				FindSubString(sArea, "Caer Vala") >= 0) 
   {
     sResearchCategory = RESEARCH_CATEGORY_ELF;
 	

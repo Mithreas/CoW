@@ -95,7 +95,9 @@ void HandleSelection()
 	{
 	  int nFailRate = 100; // Default for all races.
 	  
-	  if (GetRacialType(oPC) == RACIAL_TYPE_HALFLING) nFailRate = 5;  // Halflings start with a low chance.
+	  if (GetRacialType(oPC) == RACIAL_TYPE_HALFLING) nFailRate = 5;   // Halflings start with a low chance.
+	  if (GetRacialType(oPC) == RACIAL_TYPE_HALFELF)  nFailRate = 50;  // Half-Elves start with a moderate chance.
+	  if (GetRacialType(oPC) == 21)                   nFailRate = 55;  // Elflings start with a moderate chance.
 	  
 	  if (GetLevelByClass(CLASS_TYPE_DRUID, oPC)) nFailRate += 20; // Druids have higher risk.
 	  

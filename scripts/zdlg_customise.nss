@@ -93,6 +93,7 @@ void Init()
   AddStringElement("Change Head",  MAIN_MENU);	
 	
   if (gsSUGetSubRaceByName(GetSubRace(oSpeaker)) == GS_SU_SHAPECHANGER &&
+	  GetLocalInt(gsPCGetCreatureHide(oSpeaker), VAR_CURRENT_FORM) == 1 && 
       GetLocalInt(GetArea(oSpeaker), "MI_RENAME"))
   {
 	AddStringElement("VFX Ears", MAIN_MENU);
@@ -165,7 +166,7 @@ void PageInit()
   string sPage = GetDlgPageString();
   object oPC   = GetPcDlgSpeaker();
 
-  if (GetAppearanceType(oPC) > 7)
+  if (GetAppearanceType(oPC) > 7 && GetAppearanceType(oPC) != 2081 && GetAppearanceType(oPC) != 2082 && GetAppearanceType(oPC) != 2083)
   {
     SetDlgPrompt("Sorry, you cannot customise this hybrid form.  Only 'parts based' models can be customised.");	
   }  
@@ -212,7 +213,7 @@ void HandleSelection()
   object oHide   = gsPCGetCreatureHide(oPC);
   string sPage   = GetDlgPageString();
   
-  if (GetAppearanceType(oPC) > 7)
+  if (GetAppearanceType(oPC) > 7  && GetAppearanceType(oPC) != 2081 && GetAppearanceType(oPC) != 2082 && GetAppearanceType(oPC) != 2083)
   {
     EndDlg();
   }  
@@ -267,19 +268,15 @@ void HandleSelection()
 		}
 		break;
 	  case 6: // Toggle phenotype
-	    if (GetAppearanceType(oPC) == 3) 
+	    if (GetAppearanceType(oPC) == 3 || GetAppearanceType(oPC) == 2082) 
 		{
-		  SetCreatureAppearanceType(oPC, 5);
-		  DelayCommand(0.2f, _VisualTransformVoid(oPC, OBJECT_VISUAL_TRANSFORM_SCALE, GetObjectVisualTransform(oPC, OBJECT_VISUAL_TRANSFORM_SCALE) - 0.3f));
+		  SetCreatureAppearanceType(oPC, 2083);
+		  DelayCommand(0.2f, gsPCRefreshCreatureScale(oPC));
 		}
 		else 
 		{
-		  SetCreatureAppearanceType(oPC, 3);
-		  float fScale = GetObjectVisualTransform(oPC, OBJECT_VISUAL_TRANSFORM_SCALE);
-		  float fTrueScale = GetLocalFloat(oHide, "AR_SCALE");
-		  if (fTrueScale == 0.0f || fTrueScale > 1.3f) SetLocalFloat(oHide, "AR_SCALE", fScale);
-		  DelayCommand(0.2f, _VisualTransformVoid(oPC, OBJECT_VISUAL_TRANSFORM_SCALE, fScale + 0.3f));
-		  SetCreatureSize(oPC, CREATURE_SIZE_MEDIUM);
+		  SetCreatureAppearanceType(oPC, 2082);
+		  DelayCommand(0.2f, gsPCRefreshCreatureScale(oPC));
 		}
 		SetLocalInt(oHide, VAR_HYBRID_FORM, GetAppearanceType(oPC));
 		break;
@@ -327,19 +324,37 @@ void HandleSelection()
   {
     int nHead;
 	int bHybrid = (GetLocalInt(gsPCGetCreatureHide(oPC), VAR_CURRENT_FORM) == 1);
+	
+	int bGender = GetGender(oPC);
+	int nLimit; 
+	switch (GetAppearanceType(oPC))
+	{
+	  case 1: // elf
+	    nLimit = (bGender ? EFHEADMAX : EMHEADMAX);
+		break;
+	  case 5: // halforc
+	    nLimit = (bGender ? OFHEADMAX : OMHEADMAX);
+		break;
+	  case 6: // human
+	    nLimit = (bGender ? HFHEADMAX : HMHEADMAX);
+		break;
+	  default: // other, mainly halfling
+	    nLimit = (bGender ? AFHEADMAX : AMHEADMAX);
+		break;
+	}
   
     switch (selection)
 	{
 	  // @@@ Note - this code will need updating if we add lots more head appearances.
 	  case 0: // next
         nHead = GetCreatureBodyPart(CREATURE_PART_HEAD)+1;
-		if (nHead > AFHEADMAX) nHead = 0;
+		if (nHead > nLimit) nHead = 0;
         SetCreatureBodyPart(CREATURE_PART_HEAD, nHead, oPC);
 		if (bHybrid) SetLocalInt(oHide, VAR_HYBRID_HEAD, nHead);
 		break;
 	  case 1: // previous
         nHead = GetCreatureBodyPart(CREATURE_PART_HEAD)-1;
-		if (nHead < 0) nHead = AFHEADMAX;
+		if (nHead < 0) nHead = nLimit;
         SetCreatureBodyPart(CREATURE_PART_HEAD, nHead, oPC);
 		if (bHybrid) SetLocalInt(oHide, VAR_HYBRID_HEAD, nHead);
 		break;

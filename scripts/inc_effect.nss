@@ -11,6 +11,7 @@
 //:://////////////////////////////////////////////
 
 #include "inc_effecttags"
+#include "nwnx_effect"
 
 /**********************************************************************
  * CONSTANT DEFINITIONS
@@ -54,6 +55,8 @@ int GetIsEffectHarmful(effect eEffect);
 void RemoveTaggedEffects(object oCreature, int nEffectTag, object oCreator = OBJECT_INVALID);
 // Returns TRUE if the effect has been tagged with nEffectTag
 int GetIsTaggedEffect(effect eEffect, int nEffectTag);
+// Removes the icon from an effect.
+effect gsFXRemoveEffectIcon(effect eEffect);
 
 /**********************************************************************
  * PUBLIC FUNCTION DEFINITIONS
@@ -521,4 +524,14 @@ int GetIsTaggedEffect(effect eEffect, int nEffectTag) {
 
   return FALSE;
 }
-
+//---------------------------------------------------------
+effect gsFXRemoveEffectIcon(effect eEffect)
+{
+  struct NWNX_EffectUnpacked eUnpacked = NWNX_Effect_UnpackEffect(eEffect);
+  eUnpacked.bShowIcon = FALSE;
+  
+  //SendMessageToAllDMs("Effect type: " + IntToString(eUnpacked.nType));
+  
+  return NWNX_Effect_PackEffect(eUnpacked);
+  //return eEffect;
+}

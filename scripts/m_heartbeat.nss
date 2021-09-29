@@ -203,6 +203,8 @@ void main()
                         if (GetHitDice(oPC) >= GetLocalInt(GetModule(), "STATIC_LEVEL"))
                         {
                             CreateItemOnObject("ar_gem_" + IntToString(iRPR), oPC);
+							// Gift of wealth - double up.
+							if (miBAGetHasGift(oPC, GIFT_OF_WEALTH)) CreateItemOnObject("ar_gem_" + IntToString(iRPR), oPC);
                         }
                         else
                         {

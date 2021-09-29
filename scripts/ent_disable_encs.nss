@@ -12,6 +12,8 @@ void main()
 	{
 	  SetEncounterActive(FALSE, oEncounter);
 	}
+	
+	oEncounter = GetNextObjectInArea(GetArea(OBJECT_SELF));
   }
 
 }

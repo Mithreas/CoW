@@ -18,7 +18,7 @@ const string DISGUISED = "disguised";
 // nMultiplier is intended to be used to "weight" the decision in favour of the
 // spotter - ideally, the calling code should set it to the number of times
 // this NPC has tried to recognise this PC. Negative multipliers are ignored.
-int SeeThroughDisguise(object oDisguised, object oSpotter, int nMultiplier = 0, string sDescription = "");
+int SeeThroughDisguise(object oDisguised, object oSpotter, int nMultiplier = 1, string sDescription = "");
 
 // Disguises a PC, changing their appearance by subrace. If sName is given, also
 // changes the name to appear.
@@ -56,7 +56,7 @@ void RestorePortrait(object pc);
 */
 int SeeThroughDisguise(object oDisguised,
                        object oSpotter,
-                       int    nMultiplier = 0,
+                       int    nMultiplier = 1,
 					   string sDescription = "")
 {
   int nPerform = GetSkillRank(SKILL_PERFORM, oDisguised);
@@ -84,11 +84,11 @@ int SeeThroughDisguise(object oDisguised,
 
   if (nPerform > nBluff)
   {
-    nResult = ( (d20() + nPerform) < (d20(nMultiplier) + nSpot) );
+    nResult = ( gsCMDoSkillRoll(oDisguised, SKILL_PERFORM) < nMultiplier * gsCMDoSkillRoll(oSpotter, SKILL_SPOT) );
   }
   else
   {
-    nResult = ( (d20() + nBluff) < (d20(nMultiplier) + nSpot) );
+    nResult = ( gsCMDoSkillRoll(oDisguised, SKILL_BLUFF) < nMultiplier * gsCMDoSkillRoll(oSpotter, SKILL_SPOT) );
   }
 
   if (nResult && GetIsPC(oSpotter))

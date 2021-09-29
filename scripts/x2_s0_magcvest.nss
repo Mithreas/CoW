@@ -82,8 +82,19 @@ void main()
             location lLoc = GetLocation(GetSpellTargetObject());
             DelayCommand(1.3f, ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, GetItemPossessor(oMyArmor)));
             ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eDur, GetItemPossessor(oMyArmor), HoursToSeconds(nDuration));
-            AddACBonusToArmor(oMyArmor, HoursToSeconds(nDuration),nAmount);
-    }
+			
+			if (GetBaseItemType(oMyArmor) == BASE_ITEM_ARMOR && GetArmorBaseACValue(oMyArmor) >= 4)
+			{
+                IPSafeAddItemProperty(oMyArmor,ItemPropertyDamageImmunity(IP_CONST_DAMAGETYPE_SLASHING, IP_CONST_DAMAGEIMMUNITY_10_PERCENT), HoursToSeconds(nDuration), X2_IP_ADDPROP_POLICY_REPLACE_EXISTING ,FALSE,FALSE, "mag_vest");
+                IPSafeAddItemProperty(oMyArmor,ItemPropertyDamageImmunity(IP_CONST_DAMAGETYPE_PIERCING, IP_CONST_DAMAGEIMMUNITY_10_PERCENT), HoursToSeconds(nDuration), X2_IP_ADDPROP_POLICY_REPLACE_EXISTING ,FALSE,FALSE, "mag_vest");
+                IPSafeAddItemProperty(oMyArmor,ItemPropertyDamageImmunity(IP_CONST_DAMAGETYPE_BLUDGEONING, IP_CONST_DAMAGEIMMUNITY_10_PERCENT), HoursToSeconds(nDuration), X2_IP_ADDPROP_POLICY_REPLACE_EXISTING ,FALSE,FALSE, "mag_vest");
+				gsCMReapplyDamageImmunityCap(GetItemPossessor(oMyArmor));
+			}
+			else
+			{
+				AddACBonusToArmor(oMyArmor, HoursToSeconds(nDuration),nAmount);
+			}
+		}
         return;
     }
         else
