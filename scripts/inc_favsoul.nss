@@ -6,4 +6,5 @@
  */
 
 // New class constants
+const int CLASS_TYPE_SHAMAN        = 39;
 const int CLASS_TYPE_FAVOURED_SOUL = 40;

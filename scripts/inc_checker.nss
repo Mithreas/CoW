@@ -183,7 +183,7 @@ int CoW_HasAllowedClasses(object oPC)
   int bArcane  = (GetLevelByClass(CLASS_TYPE_WIZARD, oPC) || GetLevelByClass(CLASS_TYPE_SORCERER, oPC));
   int bDivine  = (GetLevelByClass(CLASS_TYPE_CLERIC, oPC) || GetLevelByClass(CLASS_TYPE_FAVOURED_SOUL, oPC));
   int bDruid   = (GetLevelByClass(CLASS_TYPE_DRUID, oPC));
-  int bShifter = (GetLevelByClass(CLASS_TYPE_SHIFTER, oPC));
+  int bShifter = (GetLevelByClass(CLASS_TYPE_SHIFTER, oPC) || GetLevelByClass(CLASS_TYPE_SHAMAN, oPC));
   
   if (bArcane && bDivine)
   {

@@ -114,9 +114,10 @@ void main()
           GetLevelByClass(CLASS_TYPE_CLERIC, oPC) ||
           GetLevelByClass(CLASS_TYPE_BARD, oPC) ||
           GetLevelByClass(CLASS_TYPE_FAVOURED_SOUL, oPC) ||
+          GetLevelByClass(CLASS_TYPE_SHAMAN, oPC) ||
           GetLevelByClass(CLASS_TYPE_WIZARD, oPC))
       {
-        SendMessageToPC(oPC, "A kensai cannot take levels in the sorcerer, druid, bard, favoured soul, cleric or wizard classes.");
+        SendMessageToPC(oPC, "A kensai cannot take levels in the sorcerer, druid, bard, favoured soul, shaman, cleric or wizard classes.");
         SetXP(oPC, nXPLevel - 1);
         DelayCommand(0.5, SetXP(oPC, nXP));
       }

@@ -13,7 +13,6 @@
 
 #include "inc_associates"
 #include "inc_chatrelay"
-#include "inc_common"
 #include "inc_database"
 #include "inc_data_arr"
 #include "inc_divination"
@@ -1889,7 +1888,6 @@ void ProjectImage()
         SetSpontaneousSpellReadyState(oImage, spell.id, FALSE);
     }
 	
-	gsCMReapplyDamageImmunityCap(oImage);
     ApplyEffectToObject(DURATION_TYPE_PERMANENT, SupernaturalEffect(EffectSpellFailure(100)), oImage);
     AddHenchman(OBJECT_SELF, oImage);
 }

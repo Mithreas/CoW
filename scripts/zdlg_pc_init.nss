@@ -636,6 +636,7 @@ void _SetUpAllowedPaths()
       !GetLevelByClass(CLASS_TYPE_CLERIC, oPC) &&
       !GetLevelByClass(CLASS_TYPE_BARD, oPC) &&
       !GetLevelByClass(CLASS_TYPE_FAVOURED_SOUL, oPC) &&
+      !GetLevelByClass(CLASS_TYPE_SHAMAN, oPC) &&
       !GetLevelByClass(CLASS_TYPE_WIZARD, oPC))
   {
     AddStringElement(PATH_OF_THE_KENSAI, PATH_OPTS);
