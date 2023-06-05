@@ -117,7 +117,7 @@ float CNR_FLOAT_SKINNABLE_CORPSE_FADE_TIME_SECS = 300.0; // 5 mins real time
 // If you're a power builder/DM that uses APS/NWNX2 and would like to tweak recipes and
 // reload them without restarting the mod, then you can set this flag to TRUE. CNR will
 // create four related tables to hold the recipe data.
-int CNR_BOOL_RECIPE_DATA_IS_PERSISTENT_IN_SQL_DATABASE = FALSE;
+int CNR_BOOL_RECIPE_DATA_IS_PERSISTENT_IN_SQL_DATABASE = TRUE;
 
 // If you prefer to bypass the long delays associated with recipe initialization,
 // you can set this flag to FALSE. ** WARNING ** This flag should be used during

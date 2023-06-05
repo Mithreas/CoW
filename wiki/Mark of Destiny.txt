@@ -1,0 +1,9 @@
+All characters on Anemoi get a Mark of Destiny.  This perma-kills your character after 10 counted deaths.
+
+However, the only deaths that count are deaths from
+* PvP
+* in areas that are '''not''' tagged as being for arena-style play.
+
+So if you fight another player in the city's market square, the death will count against the Mark of whoever loses.  But if you fight out in the fields around the city, which are tagged for PvP, then the death will not count. 
+
+The thinking here is that only "story" deaths should count - and people should be free to explore and fight out in the wilds.  (For the same reason, PvM deaths carry very little penalty, but a few clearly advertised plot NPCs can inflict permandeath!).

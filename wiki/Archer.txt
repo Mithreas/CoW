@@ -1,0 +1,6 @@
+[[Category:Classes]]
+Archer path removes the built-in two weapon fighting feats from a Ranger, but gives them an innate ability to create a bundle of arrows once per day. 
+
+For levels 1-5 the bundle will be iron arrows, at 6+ the arrows will be steel.
+
+Furthermore Archers recieve a +2 Damage bonus at lvls 4 and 12 on ranged weapons.

@@ -382,7 +382,7 @@ void main()
     string sDeity = GetDeity(OBJECT_SELF);
     float fPiety = gsWOGetPiety(OBJECT_SELF);
     float fRequired = 0.0;
-
+	
     if (! GetIsObjectValid(GetSpellCastItem()))
     {
 //------------------------------------------------------------------------------
@@ -491,7 +491,7 @@ void main()
       else
       {
         //spelltracker
-        if (!GetLocalInt(oHide, "TRUE_FIRE"))
+        if (!GetLocalInt(oHide, "TRUE_FIRE") && GetLastSpellCastClass() != CLASS_TYPE_SHAMAN)
           gsSPTCast(OBJECT_SELF, nSpell, GetMetaMagicFeat());
       }
 // end alt magic check

@@ -1,0 +1,230 @@
+[[Category:Classes]]
+== Barbarian ==    
+==== Available Paths: ====
+[[Kensai]], Tribesman  
+---- 
+==== Requirements: ====
+None
+----  
+==== Proficiencies: ====
+Light and Medium Armor, Simple and Martial Weapons, Shields  
+----
+==== Class Skills: ====
+Craft Armor, Craft Trap, Craft Weapon, Discipline, Heal, Intimidate, Listen, Lore, Parry, Ride, Taunt  
+----
+==== Class Features ==== 
+Base Attack Bonus:    1  <br />
+Base Skill Points:    4  <br />
+Base Hit Points:    12  <br />
+Primary Saves:    Fortitude  <br />
+----
+==== Class Specific Feats: ====    
+''When not noted, the feat works as in regular NWN.''
+{| class="wikitable"
+|+Class Feats
+!Feat
+!Requirements
+!Comment
+|-
+|Barbarian Rage II-III
+|
+|''Taken Sequentially''
+|-
+|Barbarian Rage IV-VI
+|SL: 11/14/15/19
+|''Taken Sequentially''
+|-
+|Barbarian DR I-IV 
+|SL 10/13/16/19, 2/4/6/8 Barbarian class levels
+|''Taken Sequentially''
+|-
+|Mighty Rage
+|19 Strength, 19 Constitution, SL 31 
+|
+|-
+|Terrifying Rage
+|Epic Skill Focus (Intimidate), SL 31 
+|
+|-
+|Thundering Rage 
+|21 Strength, SL 31
+|
+|-
+|}
+----
+
+=== Mechanical Changes ===
+==== General Changes ====
+* A barbarian has two paths possible to choose on character creation: Tribesman and Kensai.
+* When sufficiently drunk (below 0% sobriety) the Barbarian gains a boost to his strength.
+
+==== Barbarian Rage ====
+The Rage doesn't have any of the vanilla effects of NWN, but it will instead do the following:<br />
+
+* Provides a damage bonus to the melee weapon held based on rage level.
+* Boosts will save by rage level.
+* Bonuses during rage based on level.
+* Increases the barbarian's movement rate by 50% for 3 rounds. 
+* Gives temp HP = 50% of barbarian levels HP. 
+* Duration is changed to 2d4 + con mod rounds.
+* Infinite uses/day but has a 1 turn cooldown, starting the moment the rage ends. 
+* Is a free action.
+* During the rage the barbarian will lose stamina at a high rate.
+
+
+Barbarians now get additional boni during Rage depending on their rage feat.
+
+{| class="wikitable"
+! style="text-align: center;" | Barbarian Level
+! Bonus
+|-
+| style="text-align: center;" | Rage feat I
+| style="text-align: center;" | +1 AB during rage
+|-
+| style="text-align: center;" | Rage feat II
+| style="text-align: center;" | 5% Physical Immunity during rage
+|-
+| style="text-align: center;" | Rage feat IV
+| style="text-align: center;" | +1 AB during rage(Stacks with the first AB increase)
+|-
+| style="text-align: center;" | Rage feat V
+| style="text-align: center;" | 5% Physical Immunity during rage (Stacks with the first DI increase)
+|}
+
+* If the barbarian has 13 CON (base, i.e. before modifiers) or lower, the AB bonus is reduced by 1 (minimum 0), and the bonus physical immunities reduced by 5% (minimum 0%).
+
+==== Bonus Damage and Will Saves ====
+Bonus Damage is applied to the Barbarian's Weapon during Rage, if the Barbarian is wielding a Melee Weapon or Throwing Axes.  As with Rage powers, this bonus damage scales up with Barbarian class levels.  Additionally, the Barbarian receives a scaling bonus to Will saves during Rage.<br />
+
+Note that double weapons scale as one-handed weapons for the purposes of calculating bonus Rage damage.<br />
+
+Currently the first Epic Rage feats taken increase the Rage effect. This is likely to change soon. <br />
+
+{| class="wikitable"
+! style="text-align: center;" | Barbarian Rage Feat lvl
+! 1h Melee Damage Bonus
+! 2h Melee Damage Bonus
+! Will Saves Bonus
+|-
+| style="text-align: center;" | 1
+| style="text-align: center;" | 1 Slashing Damage
+| style="text-align: center;" | 3 Slashing Damage
+| style="text-align: center;" | +1
+|-
+| style="text-align: center;" | 2
+| style="text-align: center;" | 2 Slashing Damage
+| style="text-align: center;" | 4 Slashing Damage
+| style="text-align: center;" | +2
+|-
+| style="text-align: center;" | 3
+| style="text-align: center;" | 3 Slashing Damage
+| style="text-align: center;" | 5 Slashing Damage
+| style="text-align: center;" | +3
+|-
+| style="text-align: center;" | 4
+| style="text-align: center;" | 4 Slashing Damage
+| style="text-align: center;" | 6 Slashing Damage
+| style="text-align: center;" | +4
+|-
+| style="text-align: center;" | 5
+| style="text-align: center;" | 5 Slashing Damage
+| style="text-align: center;" | 7 Slashing Damage
+| style="text-align: center;" | +5
+|-
+| style="text-align: center;" | 6
+| style="text-align: center;" | 6 Slashing Damage
+| style="text-align: center;" | 9 Slashing Damage
+| style="text-align: center;" | +6
+|-
+| style="text-align: center;" | 7
+| style="text-align: center;" | 7 Slashing Damage
+| style="text-align: center;" | 11 Slashing Damage
+| style="text-align: center;" | +7
+|}
+
+
+The damage bonus will only apply to the '''melee weapon you have equipped at the moment of raging'''. The only non-melee weapon that will benefit from the Rage are throwing axes. Unarmed attacks do not benefit from the increased damage. <br />
+
+==== Epic Rage Feats ====
+The Epic Rage Feats have been Modified:
+* Each epic rage feat updates the visual effect of Rage.
+* Thundering Rage offers +1 Attack Per Round during rage, which stacks with Haste.
+* Mighty Rage removes crowd control effects and debuffs, and extends rage by 1 turn.
+* Terrifying Rage now works as follows:
+ 
+Upon entering the aura of a raging barbarian with the Terrifying Rage feat, a hostile creature or player must make a will save. 
+:The save DC is [(Intimidate/5)+(Hit Dice/2)+(Base CON Modifier)+5]. This is treated as a saving throw vs fear.
+::For example, a level 30 character with 35 points in Intimidate and a base CON of 22 would have a DC of 33 against Fear. 
+:Against non-PCs, Terrifying Rage causes a 3-round stun and its debuff effect lasts three times longer.
+ 
+Hit dice comparisons have been removed.  Anyone that fails the saving throw is subject to the following effects:
+* Debuff: -1 to AB and Saves per 7 Barbarian levels
+* Debuff: +5% Automatic Spell Failure per 7 Barbarian levels
+* 1/2 round stun
+ 
+The debuff duration is 1d3 + base CON mod rounds.  Mind protection defends against the stun effect, but not the debuff.  Fear immunity protects against Terrifying Rage.
+
+In addition, Epic Rage Feats no longer affects rage tiers.
+
+==== You Are Drunk ====
+Three kinds of beverages decreases your sobriety: ale, wine (different kinds but same effect) and spirits. Drinking these will decrease sobriety and rest meter. How much they decrease depends on the CON stat of the character. This covers all character and not only Barbarians
+* When a character gets drunk their DEX is decreased. More drunk means larger decrease.
+* getting a sobriety of -10,0% - 0,01 % means a DEX decrease of 2, is sobriety -20,0% - 10,1% the DEX decrease is 4 etc etc.
+* For every tick in negative sobriety the Decrease stacks. for example having a sobriety at -15% for one tick would mean a DEX decrease of 8.
+* Reaching -100 % sobriety means the character dies of alcohol poisoning.
+
+'''Only Barbarians get the following benefit:'''
+* When reaching a negative sobriety, the barbarian gets a bonus of +2 to their STR. At next tick the bonus rises to +5
+* The bonus is a soft bonus and counts toward the +12 cap
+TIP: when a tick takes you from Drunk to Sober the barbarian drunk-benefit remains for the next tick but at a +3 (This happens wither your bonus was +2 or +5). This means a carefully drinking barbarian can keep themselves in a two tick routine where they have +2 and +5 to STR with only minor DEX penalties. Any change to any meter (rest, drink, rest) will remove bonus STR when the barbarian is sober.
+
+===== when drunk =====
+* Character has chance of stopping current action and laugh - frequency seems to increase as Sobriety decreases. '''Laughing and falling will make you flatfooted'''
+* Very low sobriety means the character also start falling
+* To stop the laughing emote the player can emote sitting and it should stop momentarily.
+
+
+=== Tribesman ===
+The Tribesman is a Barbarian Path. The barbarian loses the rage ability, and instead he gains, through deed or right, the loyalty of his clan:  A tribesman can call upon two tribesmen to aid him in battle any time. 
+
+* The Rage ability can be used to summon a Tribal Warrior. It does not have a limit of uses per day, but it goes on a six-minute cooldown if a tribesman dies or is dismissed. 
+* The tribesmen act as henchmen, so they have no "duration" and will remain with the barbarian until dismissed or slain. A summoned creature can be conjured as well. 
+* They share race and armor type of the Barbarian. Tribesmen don't use the fat phenotype and are always randomly gendered. 
+* They share the Barbarian level (not character level) of the player character.
+* They don't share racial abilities with the Player character and they don't share any enchantments the player character has on their armor.
+* The tribesmen don't have any rage abilities.
+* A player may RP through the barbarians using the [[Feat_changes#Player_Tool_1|Player Tool 1]] and the [[Console_command#-associate / -a / -f|-a]] command. 
+
+===== Progression of Tribal Warriors =====
+
+In Anemoi the level of your tribesmen is the sum of:
+*Your barbarian lvls.
+*Half of your hitdice.
+*+1 for every rage feat your character has.
+*+2 for every epic rage feat your character has.
+
+A character at lvl 10 with 8 Barbarian lvls, all 6 rage feats and Thundering + Terrifying rage would have:
+
+8(Barbarian lvls) + 5(1/2 hitdice) + 6(rage feats) + 4(Epic rage feats) = lvl 23 tribals.
+
+====== Stats of Tribal Warriors ======
+
+*Equipment: The Tribesmen are called to battle dual-wielding a battle axe with a handaxe. 
+*Enhancement: Every 6 levels, they gain +1 magical enhancement to their weapons. Every level, they gain +1 AC, up to 20.  
+*Ability Scores: Tribesmen start with 16 Strength, 16 Dexterity, 14 Constitution. Every 4 levels, they gain +1 hard Strength.  
+*Saves: Every 2 levels, gain +1 universal saves. Follow normal barbarian save progression. 
+*Feats: The tribesmen start  and gain all normal Barbarian feats. They also start with Blind Fight, Spring Attack, Cleave, Weapon Focus in both weapons, Ambidexterity and Improved Two Weapon Fighting.
+:*At level 9, gain: Toughness.
+:*At level 12, gain: Improved Critical.
+:*At level 24, gain: Epic Weapon Focus.
+*Skills: Follow a "martial" skill progression.
+
+
+
+
+----
+==== Notes, Tips, and Interesting Bits: ====    
+Barbarian grants the most hit points per level and access to the highest amount of non-magical damage reduction making them excellent at taking a beating.  Utilizing drunken and rage strength bonuses also allows you to focus your equipment on other means of increasing this survivability even further.  <br />
+Taking a level of barbarian is not only for the melee tank.  The excellent defense it provides can be invaluable to nearly any class, especially spellcasters.  <br />
+The power of your tribal warriors depends on how many class levels you have.  With enough barbarian levels your tribal warriors will even be granted epic feats.  This can be a great help starting out especially. <br />
+Tribal warriors are great for simulating bodyguards, family, or crowds.  While a single level of barbarian will hurt the actual strength and combat usefulness of your tribal warriors, they can grant you a useful tool for enhancing roleplay.  Polymorphing before summoning your tribal warriors can bring the possibilities even further.  <br />

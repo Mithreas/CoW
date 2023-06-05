@@ -1,0 +1,89 @@
+__NOTOC__
+{{DISPLAYTITLE:<span style="position: absolute; clip: rect(1px 1px 1px 1px); clip: rect(1px, 1px, 1px, 1px);">{{FULLPAGENAME}}</span>}}
+{| style="width:100%; border-spacing:8px; margin:0px;" cellpadding="8"
+
+|-
+| style="width:100%; border:1px solid #cef2e0; vertical-align:top;"  colspan="4"|
+
+{{HeadingBlue|Welcome to Anemoi}}
+
+[[Image:Anemoi.png]]
+
+This is a Neverwinter Nights: Enhanced Edition persistent world with a focus on exploration and discovery, a land of strife and conflict where the things that everybody knows obscure hidden, deeper truths.  It is still very much a work in progress, but there's plenty of content to enjoy.
+
+Have any questions? Want to join our little community? Join our [https://discord.gg/jn69WaU discord] and drop a line!
+|-
+| style="width:25%; border:1px solid #cef2e0; vertical-align:top;" |
+
+{{HeadingBlue|Setting Information}}
+
+*[[Setting Information]]
+**[[Races]]
+**[[What You Should Start Knowing]]
+**[[Religion]]
+**[[Geography]]
+**[[History]]
+**[[Politics]]
+*[[Screenshots]]
+
+
+| style="width:25%; border:1px solid #cef2e0; vertical-align:top;" |
+
+{{HeadingBlue|Character Information}}
+* [[Creation|Character Creation]]
+** [[Sample Builds]]
+* [[Races]]
+* [[:Category:Classes|Classes]]
+* [[Feats]]
+* [[Skills]]
+* [[Spells|Spell Changes]]
+* [[Gifts]]
+* [[Awards]]
+* [[Equipment|Gearing Up]]
+
+| style="width:25%; border:1px solid #cef2e0; vertical-align:top;" |
+
+{{HeadingBlue|Crafting Systems}}
+
+*[[Crafting|Crafting System Overview]]
+**[[Armoursmithing]]
+**[[Weapon Crafting]]
+**[[Tailoring]]
+**[[Jewelry]]
+**[[Woodworking]]
+**[[Imbuing]]
+**[[Investing]]
+**[[Chemistry]]
+*[[Character Customization|Colour Charts]]
+
+| style="width:25%; border:1px solid #cef2e0; vertical-align:top;" |
+
+{{HeadingBlue|Mechanics Reference}}
+
+*[[:Category: Unique Mechanics|Unique Mechanics]]
+** [[Fixed Level advancement system]]
+** [[Crafting|Crafting - modified CNR]]
+** [[Magic Systems]] - arcane and divine
+** [[Stamina]]
+** [[Bounties|Bounties and Arrests]]
+** [[Investigating]]
+** [[Research]]
+** [[Chatbot NPCs]]
+** [[NPC combat tricks]]
+** [[Claiming territory]], including mercenaries
+** [[Quests|Quest system]]
+** [[Reputation]]
+** [[Awards]]
+** [[Achievements]]
+** [[Hungry Sea]]
+*[[:Category:Arelith Mechanics|Arelith Mechanics]]
+**[[:Category:Classes|Class changes]]
+**[[Quarters|Quarter and shop system]]
+**[[RP bonus]]
+**[[State|State - hunger, thirst etc]]
+**[[Console Commands]] - especially [[Investigate]]
+**[[Mark of Destiny]]
+**[[Weather]]
+**[[Climbing]]
+
+|}

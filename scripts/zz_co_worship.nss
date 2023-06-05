@@ -125,7 +125,7 @@ void OnSelection(string sPage)
         {
             int nChoice = dlgGetSelectionIndex();
             // No deity
-            if (nChoice == 6)
+            if (nChoice == 4)
             {
                 // Penalty
                 string sCurrentDeity = GetDeity(oSpeaker);

@@ -127,6 +127,9 @@ int gsCMDoSkillRoll(object oCreature, int nSkill, int nBaseRanksOnly = FALSE);
 int gsCMGetIsSkillSuccessful(object oCreature, int nSkill, int nDifficulty, int bFeedback = TRUE);
 // Reapply the cap to DI.
 void gsCMReapplyDamageImmunityCap(object oPC);
+// Open a NUI window.  sWindowType should be the name of the script 
+// that defines the window properties. 
+void gsCMOpenNUIWindow(object oPC, string sWindowType);
 //----------------------------------------------------------------
 void _DestroyObject(object oItem)
 {
@@ -1174,7 +1177,7 @@ void _gsCMReapplyDamageImmunityCap(object oPC)
   ApplyEffectToObject(DURATION_TYPE_PERMANENT, TagEffect(SupernaturalEffect(gsFXRemoveEffectIcon(EffectDamageImmunityDecrease(DAMAGE_TYPE_SLASHING, nCap))),"IMMUNITY_CAP"), oPC);
   ApplyEffectToObject(DURATION_TYPE_PERMANENT, TagEffect(SupernaturalEffect(gsFXRemoveEffectIcon(EffectDamageImmunityDecrease(DAMAGE_TYPE_SONIC, nCap))),"IMMUNITY_CAP"), oPC);
 } 
-
+//-----------------------------------------------------------------------------------------------------------------
 void gsCMReapplyDamageImmunityCap(object oPC)
 {
   // Remove any existing effects.  Timing matters on this sadly so we need to remove and re-apply.
@@ -1188,4 +1191,11 @@ void gsCMReapplyDamageImmunityCap(object oPC)
   
   DelayCommand(0.1f, _gsCMReapplyDamageImmunityCap(oPC));
   
+}
+//-----------------------------------------------------------------------------------------------------------------
+void gsCMOpenNUIWindow(object oPC, string sWindowType)
+{
+  SetEventScript(GetModule(), EVENT_SCRIPT_MODULE_ON_NUI_EVENT, "m_nui_event");
+  SetLocalInt(oPC, "NUI_CREATE", TRUE);
+  ExecuteScript(sWindowType, oPC);
 }

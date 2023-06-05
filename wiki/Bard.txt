@@ -1,0 +1,58 @@
+[[Category:Classes]]
+== Bard ==       
+==== Requirements: ====
+Race: Elf or Halfling
+----
+
+==== Proficiencies: ====
+Light and Medium Armor, Simple Weapons, Shields  
+----
+==== Class Skills: ====
+Appraise, Bluff, Concentration, Craft Armor, Craft Trap, Craft Weapon, Discipline, Heal, Hide, Listen, Lore, Move Silently, Parry, Perform, Persuade, Pick Pocket, Spellcraft, Taunt, Tumble, Use Magic Device
+----
+==== Class Features ==== 
+Base Attack Bonus:    3/4   <br />
+Base Skill Points:    4   <br />
+Base Hit Points:    6   <br />
+Primary Saves:    Reflex, Will   <br />
+----
+==== Class Specific Feats: ====    
+''When not noted, the feat works as in regular NWN.''
+{| class="wikitable"
+|+Class Feats
+!Feat
+!Requirements
+!Comment
+|-
+|Artist
+|
+|
+|-
+|Bonus Spell Slot (Bard) I-III 
+|
+|
+|-
+|Bard Song Progression     
+|
+| +4 Bard Song Level / +4 Perform Skill
+|-
+|Curse Song
+|
+|
+|-
+|Lingering Song
+|
+|
+|-
+|Lasting Inspiration
+|Lingering Song, Epic Skill Focus (Perform), SL 31
+|
+|-
+|}
+----
+
+=== Mechanical Changes ===
+''Here the general changes should be noted, see Arelith Wiki.''<br />
+----
+==== Notes, Tips, and Interesting Bits: ====     
+The bonus to perform from bard song is a soft bonus.  It is counted along side equipment, gifts, and other buffs but caps at +50.  This in addition to your maximum charisma modifier will determine your characters cap for bard song.  25th level bard song and 75 perform is a typical ceiling, though higher is possible.   <br />

@@ -1,0 +1,118 @@
+== General Info ==
+
+Some skills on Anemoi work differently and may also have additional functionality.  If not noted they function the same as in the regular game.  When purchasing additional skill points by a [[ feats| trainer, ]] a skill is considered a class skill for a character as long as they have taken a level in the class that is proficient with that skill.
+
+== Skill Table ==
+{| class="wikitable"
+! style="text-align:left;width:10rem;" cellpading="16" | Skill
+! Notes
+|-
+|<span id="animalempathy">Animal Empathy</span>
+|Characters with 80% or more of their levels as ranger levels can turn animals into henchmen, allowing them to use Animal Empathy on more than one animal at one time up to 2 henchmen.
+|-
+|<span id="appraise">Appraise</span>
+|Affects max buy price alongside [[ #persuade | persuade]]. <br>Max price is calculated with base 175 + 25 if same race + 25 if same faction + (appraise * 5), using the lower of the merchant's and the player's appraise.  Also used to affect individual buy and sell prices in a much more complicated and randomised manner. 
+|-
+|<span id="bluff">Bluff</span>
+<!-- (TODO) LINK TO COMMAND OR DISGUISE PAGE -->
+|Either bluff or [[ #perform | perform, ]] whichever is higher, is used when determining the effectiveness of a character's disguise when using ''-disguise.''
+<!-- *Manipulate // TBD FEATURES -->
+|-
+|<span id="concentration">Concentration</span>
+|
+*Used to oppose a scrying attempt vs the scryer/seer's [[ #spellcraft | spellcraft ]].<br>
+*Along with resisting taunts, also helps resists feints used by NPCs.
+|-
+|Craft Armor
+|UNUSED. Anemoi uses a different [[ Crafting | crafting system ]].
+|-
+|Craft Trap
+| --
+|-
+|Craft Weapon
+|UNUSED. Anemoi uses a different [[ Crafting | crafting system ]].
+|-
+|Disable Trap
+| --
+|-
+|Discipline
+| --
+|-
+|Heal
+| --
+|-
+|Hide
+| --
+|-
+|<span id="intimidate>Intimidate</span>
+<!-- *Social System // TBD FEATURES -->
+| --
+|-
+|<span id="listen">Listen</span>
+<!-- *Social System // TBD FEATURES -->
+| --
+|-
+|<span id="lore">Lore</span>
+|
+*A factor in determining the effectiveness of ''-research''.
+*A factor along with [[ #search | search ]] in determining the effectiveness of [[Investigating]].
+|-
+|Move Silently
+|  --
+|-
+|Open Lock
+|  --
+|-
+|<span id="parry">Parry</span>
+|Parried attacks have +5 AB and damage bonus equal to half the parry skill up to 20 ranks, and 1/4 beyond 20 ranks. Skill bonus from items count. <br>Parry is a toggled mode, like the modified (Improved) Expertise. [https://nwn.fandom.com/wiki/Parry Fandom Wiki]<br>
+''Note:'' Parry can be effective in Anemoi since the lower fixed level means less attacks are done per round.
+|-
+|<span id="perform">Perform</span>
+<!-- (TODO) LINK TO COMMAND OR DISGUISE PAGE -->
+|Either [[ #bluff | bluff ]] or perform, whichever is higher, is used when determining the effectiveness or a character's disguise when using ''-disguise.''
+<!-- *Social System? // TBD FEATURES -->
+|-
+|<span id="persuade">Persuade</span>
+|
+*Used to achieve better prices from merchants alongside [[ #appraise | appraise ]]. Faction and race bonuses (25 each) are now added to your Persuade score, with the total bonus from reaction capped at 50 - so persuade can be used to get better prices from merchants that aren't already your friends.  Reaction currently effects max sale prices only (not the amount you buy or sell each item for). 
+*Increase the bounty reward from heads.
+*Determines the strength a [[ Magic_Systems | pact]] can be made by animists.
+<!-- *Flirt: tease, flatter, charm, con, beg, influence, bribe // TBD FEATURES -->
+|-
+|<span id="pickpocket">Pick Pocket</span>
+<!-- (TODO) Clarify pickpocket rule and reference to a more detailed pickpocket page. -->
+|Pickpocketing hostile mobs rewards experience and loot. A target's [[ #spot | spot ]] skill increases the pickpocket's chance of detection.<br>The maximum sized item a player can steal from another player is 1x2 or 2x1.
+''Note:'' Certain items like faction keys are not pickpocetable.
+|-
+|Ride
+|Currently mounts in Anemoi are unavailable.
+|-
+|<span id="search">Search</span>
+<!-- (TODO) Reference investigate and confirm loot bonus -->
+|
+*Search adds a chance for additional loot (Search% chance of finding additional items). In a party, the largest Search bonus is used when looting.
+*A factor along with [[ #lore | lore ]] in determining the effectiveness of [[Investigating]].
+|-
+|Set Trap
+| --
+|-
+|<span id="spellcraft">Spellcraft</span>
+|
+*When scrying, a scryer/seer's spellcraft is checked against the target's concentration.
+*Used in determining the strength of a spellcaster's bind when [[ Magic_Systems | binding a spirit]].
+|-
+|<span id="spot">Spot</span>
+<!-- (TODO) reference pickpocket -->
+|Helps in detecting a pickpocket attempt.
+<!-- *Social System // TBD FEATURES -->
+|-
+|Taunt
+| --
+|-
+|Tumble
+| --
+|-
+|Use Magic Device
+| --
+|-
+|}

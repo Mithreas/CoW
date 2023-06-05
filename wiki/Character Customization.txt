@@ -1,0 +1,12 @@
+'''Colour Codes'''
+
+The following chart serves as a guide to the colours used in the Prismatic Mirrors and the appearance tool.
+====Clothing====
+[[File:Cloth.jpg]][[File:Metal.jpg]]
+
+====Tattoo====
+[[File:Tattoo.jpg]]
+====Skin====
+[[File:Skin.jpg]]
+====Hair====
+[[File:Hair.jpg]]

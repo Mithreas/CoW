@@ -1,0 +1,251 @@
+{{CraftNav|title=Investing}}
+
+
+==Rune Crafting==
+
+===+1 Warding Runes===
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+
+|-
+|Warding Rune (+1 vs Animals)
+|
+|1 Blank Scroll <br/>1 Apprentice Scribing Ink
+|
+|
+|-
+|Warding Rune (+1 vs Goblins)
+|
+|1 Blank Scroll <br/>1 Apprentice Scribing Ink<br/>1 Ingot of Ondaran
+|
+|
+|-
+|Warding Rune (+1 vs Lizardfolk)
+|
+|1 Blank Scroll <br/>1 Apprentice Scribing Ink<br/>1 Torch
+|
+|
+|-
+|Warding Rune (+1 vs Fey)
+|
+|1 Blank Scroll <br/>1 Apprentice Scribing Ink<br/>1 Ingot of Iron
+|
+|
+|-
+|Warding Rune (+1 vs Shapechanger)
+|
+|1 Blank Scroll <br/>1 Apprentice Scribing Ink<br/>1 Ingot of Silver
+|
+|
+|-
+|Warding Rune (+1 vs Outsider)
+|
+|1 Blank Scroll <br/>1 Apprentice Scribing Ink<br/>1 Fairy Dust
+|
+|
+|}
+
+===+2 Warding Runes===
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Warding Rune (+2 vs Animals)
+|
+|1 Blank Scroll <br/>1 Journeyman Scribing Ink
+|
+|
+|-
+|Warding Rune (+2 vs Goblins)
+|
+|1 Blank Scroll <br/>1 Journeyman Scribing Ink<br/>1 Ingot of Ondaran
+|
+|
+|-
+|Warding Rune (+2 vs Lizardfolk)
+|
+|1 Blank Scroll <br/>1 Journeyman Scribing Ink<br/>1 Torch
+|
+|
+|-
+|Warding Rune (+2 vs Fey)
+|
+|1 Blank Scroll <br/>1 Journeyman Scribing Ink<br/>1 Ingot of Iron
+|
+|
+|-
+|Warding Rune (+2 vs Shapechanger)
+|
+|1 Blank Scroll <br/>1 Journeyman Scribing Ink<br/>1 Ingot of Silver
+|
+|
+|-
+|Warding Rune (+2 vs Outsider)
+|
+|1 Blank Scroll <br/>1 Journeyman Scribing Ink<br/>1 Fairy Dust
+|
+|
+|}
+
+===+3 Warding Runes===
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Warding Rune (+3 vs Animals)
+|
+|1 Blank Scroll <br/>1 Master Scribing Ink
+|
+|
+|-
+|Warding Rune (+3 vs Goblins)
+|
+|1 Blank Scroll <br/>1 Master Scribing Ink<br/>1 Ingot of Ondaran
+|
+|
+|-
+|Warding Rune (+3 vs Lizardfolk)
+|
+|1 Blank Scroll <br/>1 Master Scribing Ink<br/>1 Torch
+|
+|
+|-
+|Warding Rune (+3 vs Fey)
+|
+|1 Blank Scroll <br/>1 Master Scribing Ink<br/>1 Ingot of Iron
+|
+|
+|-
+|Warding Rune (+3 vs Shapechanger)
+|
+|1 Blank Scroll <br/>1 Master Scribing Ink<br/>1 Ingot of Silver
+|
+|
+|-
+|Warding Rune (+3 vs Outsider)
+|
+|1 Blank Scroll <br/>1 Master Scribing Ink<br/>1 Fairy Dust
+|
+|
+|}
+
+===Investment Runes===
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+
+|-
+|Lesser Rune of Investment
+|
+|1 Blank Scroll <br/>1 Master Scribing Ink<br/>1 Fairy Dust<br/>1 Quartz Crystal
+|
+|
+|-
+|Greater Rune of Investment
+|
+|1 Blank Scroll <br/>1 Master Scribing Ink<br/>1 Fairy Dust<br/>1 Quartz Crystal<br/>1 Wyvern Blood
+|
+|
+|}
+
+==Apprentice Altar==
+
+====Level 1 Scrolls====
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+
+|-
+|Ray of Frost
+|
+|1 Blank Scroll <br/>1 Apprentice Scribing Ink<br/>1 Gem Dust: Greenstone<br/>1 Spell(s) of Ray of Frost
+|
+|
+|-
+|Daze
+|
+|1 Blank Scroll <br/>1 Apprentice Scribing Ink<br/>1 Gem Dust: Greenstone<br/>1 Spell(s) of Daze
+|
+|
+|-
+|Light
+|
+|1 Blank Scroll <br/>1 Apprentice Scribing Ink<br/>1 Gem Dust: Greenstone<br/>1 Spell(s) of Light
+|
+|
+|-
+|Resistance
+|
+|1 Blank Scroll <br/>1 Apprentice Scribing Ink<br/>1 Gem Dust: Greenstone<br/>1 Spell(s) of Resistance
+|
+|
+|-
+|Cure Minor Wounds
+|
+|1 Blank Scroll <br/>1 Apprentice Scribing Ink<br/>1 Gem Dust: Greenstone<br/>1 Spell(s) of Cure Minor Wounds
+|
+|
+|-
+|Charm Person
+|
+|1 Blank Scroll <br/>1 Apprentice Scribing Ink<br/>1 Gem Dust: Greenstone<br/>1 Spell(s) of Charm Person
+|
+|
+|-
+|Negative Energy Ray
+|
+|1 Blank Scroll <br/>1 Apprentice Scribing Ink<br/>1 Gem Dust: Greenstone<br/>1 Spell(s) of Negative Energy Ray
+|
+|
+|-
+|Magic Missile
+|
+|1 Blank Scroll <br/>1 Apprentice Scribing Ink<br/>1 Gem Dust: Greenstone<br/>1 Spell(s) of Magic Missile
+|
+|
+|-
+|Burning Hands
+|
+|1 Blank Scroll <br/>1 Apprentice Scribing Ink<br/>1 Gem Dust: Greenstone<br/>1 Spell(s) of Burning Hands
+|
+|
+|-
+|Color Spray
+|
+|1 Blank Scroll <br/>1 Apprentice Scribing Ink<br/>1 Gem Dust: Greenstone<br/>1 Spell(s) of Color Spray
+|
+|
+|-
+|Sanctuary
+|
+|1 Blank Scroll <br/>1 Apprentice Scribing Ink<br/>1 Gem Dust: Malachite<br/>1 Spell(s) of Sanctuary
+|
+|
+|-
+|Ray of Frost
+|
+|1 Blank Scroll <br/>1 Apprentice Scribing Ink<br/>1 Gem Dust: Greenstone<br/>1 Spell(s) of Ray of Frost
+|
+|
+
+|}

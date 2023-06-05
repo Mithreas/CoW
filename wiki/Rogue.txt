@@ -1,0 +1,59 @@
+[[Category:Classes]]
+== Rogue ==       
+==== Available Paths: ====
+[[Kensai]] 
+----
+
+==== Requirements: ====
+None  
+----
+==== Proficiencies: ====
+Light Armor, Rogue Weapons  
+----
+==== Class Skills: ====
+Appraise, Bluff, Craft Armor, Craft Trap, Craft Weapon, Disable Trap, Heal, Hide, Intimidate, Listen, Lore, Move Silently, Open Lock, Parry, Persuade, Pick Pocket, Search, Set Trap, Spot, Tumble, Use Magic Device  
+----
+==== Class Features ==== 
+Base Attack Bonus:    3/4   <br />
+Base Skill Points:    8   <br />
+Base Hit Points:    6   <br />
+Primary Saves:    Reflex   <br />
+----
+==== Class Specific Feats: ====    
+''When not noted, the feat works as in regular NWN.''
+{| class="wikitable"
+|+Class Feats
+!Feat
+!Requirements
+!Comment
+|-
+|Crippling Strike
+|SL 10 
+|
+|-
+|Defensive Roll
+|SL 10
+|
+|-
+|Opportunist 
+|SL 10
+|
+|-
+|Skill Mastery 
+|SL 10, 5 Rogue levels
+|Applies to a much wider range of checks here - most Search, Bluff and Persuade checks in addition to the normal.
+|-
+|Slippery Mind
+|SL 10
+|
+|-
+|}
+----
+
+=== Mechanical Changes ===
+''Here the general changes should be noted, see Arelith Wiki.''
+----
+==== Notes, Tips, and Interesting Bits: ====   
+Rogues get the most skill points of any class.   <br />
+Rogues are the only class that can detect traps over DC 50 and disable traps over DC 35.   <br />
+A rogues sneak attack damage will not stack with items providing sneak attack damage.   <br />

@@ -1,0 +1,141 @@
+= General Changes =
+
+* Summoning: All summons changed to fit the theme of the server.
+
+* Almost all lvl 1-4 spells that do damage, get that damage doubled. (This change affects every caster).
+
+
+=== Wizard / Sorcerer specific === 
+
+Only Wizards and Sorcerers get granted additional Spells on taking greater spell foci.
+
+
+    GSF Abjuration grants [https://nwn.fandom.com/wiki/Endure_elements Endure Elements].
+    GSF Conjuration grants [https://nwn.fandom.com/wiki/Melf%27s_acid_arrow Melf's Acid Arrow].
+    GSF Divination grants [https://nwn.fandom.com/wiki/See_invisibility See Invisibility].
+    GSF Enchantment grants [https://nwn.fandom.com/wiki/Blindness/deafness Blindness/Deafness].
+    GSF Evocation grants [https://nwn.fandom.com/wiki/Magic_missile Magic Missile].
+    GSF Illusion grants [https://nwn.fandom.com/wiki/Color_spray Color Spray].
+    GSF Necromancy grants [https://nwn.fandom.com/wiki/Ray_of_enfeeblement Ray of Enfeeblement].
+    GSF Transmutation grants [https://nwn.fandom.com/wiki/Burning_hands Burning Hands].
+
+= Spell Changes by Group =
+
+* Sorcerer/Wizard damage shield spells are mutually exclusive: casting one will end whichever else is active. Note that they can be combined with bard's [https://nwn.fandom.com/wiki/Wounding_whispers Wounding Whispers] or Cleric's [https://nwn.fandom.com/wiki/Aura_versus_alignment Un/Holy Aura]. 
+
+* Weapon buffs have been significantly changed. ((FILL IN))
+
+= Specific Spell Changes =
+
+* One general principle of spells on Anemoi is that saves apply vs "disable" effects like Hold or Death that essentially end a combat if successful. Debuff effects like stat drains are likely to be saveless.
+
+==Abjuration==
+
+* [https://nwn.fandom.com/wiki/Dispel Dispel Magic]: SF and GSF: Abjuration grant an additional +1 to the level check to dispel, while ESF: Abjuration will grant an additional +2. All of these bonuses apply after the level cap. Arcane Defense: Abjuration will grant a +2 to the caster level of your effects when defending against dispels.  
+
+*[https://nwn.fandom.com/wiki/Shield_(spell) Shield]: Protects against [https://nwn.fandom.com/wiki/Isaac%27s_lesser_missile_storm Isaac's Lesser Missile Storm] if you have Spell Focus: Abjuration, and also against [[https://nwn.fandom.com/wiki/Isaac%27s_greater_missile_storm Isaac's Greater Missile Storm] if you have Greater or Epic Spell Focus: Abjuration.
+
+==Conjuration==
+
+* Planar summoning ([https://nwn.fandom.com/wiki/Planar_binding Planar Binding], [https://nwn.fandom.com/wiki/Planar_ally Planar Ally] and [https://nwn.fandom.com/wiki/Greater_planar_binding Greater Planar Binding]): All bumped up one tier.
+* GSF: Conjuration increases the tier of your Summon Creature spell by 1. [https://nwn.fandom.com/wiki/Summon_creature_I Summon Creature I] becomes [https://nwn.fandom.com/wiki/Summon_creature_II Summon Creature II], etc.
+* [https://nwn.fandom.com/wiki/Web Web] - made casters immune to their own web spell.  Added a lesser stamina drain for creatures in the web that pass their saves, unless they have immunity to entangle. 
+* [https://nwn.fandom.com/wiki/Cloudkill Cloudkill] - Drains CON at d4+1 per round in addition to acid damage (fort save for half). 
+* [https://nwn.fandom.com/wiki/Cloudkill Acid Fog] - already applies a saveless 75% movement speed reduction and -2 attack and damage (as well as the acid damage).
+
+==Divination==
+
+- [https://nwn.fandom.com/wiki/True_seeing_(spell) True Seeing]: True Sight effect will only last 1 round (Increased to 2 rounds with Spell Focus Divination, 3 rounds with Greater Spell Focus, 5 Rounds with Epic Spell Focus), also grants +15 spot 1 round / CL.
+
+- [https://nwn.fandom.com/wiki/feeblemind Feeblemind] - removed save.  Now drains all 3 mental stats.  If the target fails an opposed Concentration/Spellcraft check, they get a x1.25 increase to the cost of all stamina abilities and spells for the duration of the spell.  Removed stacking of stat drains [though the stamina tax will stack].
+
+==Enchantment==
+
+* Greater Spell Focus Enchantment makes it easier to apply essences to or cast spells on weapons, and Epic Spell Focus makes it an auto success.
+* [https://nwn.fandom.com/wiki/Blindness/deafness Blindness & Deafness] - removed save, removed deafness.  Blindness will apply a 50% miss chance to NPCs rather than the standard Blindness effect.
+* Cloud of Bewilderment - removed stun (so it now does blindness as per Blindness & Deafness). Removed save.  Removed poison immunity check.
+* Mind fog: Applies a x1.5 penalty to the cost of all stamina abilities and blindness (as per Blindness & Deafness) while in the cloud.  If ESF: Enchantment, also applies -6 to all mental stats.  Only affects enemies.  No longer has any lingering effects once you leave the cloud.  Effects do not stack of multiple clouds from the same caster.  
+* Tasha's Hideous Laughter - removed save.  Removed knockdown effect [so it essentially interrupts the target's action queue].
+
+==Evocation==
+
+* ESF Evocation gives a +2 caster lvl bonus to Evocation spells. This is applies after the usual CL cap.
+* All Bigby spells have a Reflex Save, with the exception of Bigby's Clenched Fist, since it already has a Fortitude Save. Additionally, all Bigby spells (except Interposing Hand) will attack both mind and mobility. Protection against one effect will not deny the other, but the spells will only affect mobility if the user is mind effect-immune. The movement-restraining effect can be removed with Remove Paralysis, Restoration, Greater Restoration and Freedom of Movement.
+* Electric Jolt: Does 1d3 damage per caster lvl if the caster has ESF Evocation. Capped at CL 15 (17 with ESF Evo).
+* Gust of Wind - replaced saving throw with an opposed Discipline/Spellcraft check to prevent knockdown.  If the caster has ESF: Evo they get +2 on the check.
+* [https://nwn.fandom.com/wiki/Wall_of_fire Wall of Fire] - 2d6 + CL damage (Damage doubled vs. Undead).  Saving throw has been removed and this spell does not harm allies.
+:* Empowered increases <b>All</b> damage by 50%, not just the variable component (This is also doubled vs. Undead)
+
+==Illusion==
+
+- Displacement: Now lasts turns per caster level.
+
+- Phantasmal Killer: Phantasmal Killer inflicts fear on a target for 1 round / CL on a failed will save (on top of the default damage). A target that fails their fortitude save still dies. 
+
+==Necromancy==
+
+- Undead summoning (Cleric and Wizard spells plus Pale Master abilities): summon varies by your Undead Caster Level (UCL).  This is the sum of your levels in Cleric, Wizard, Favoured Soul, and Sorcerer, plus your caster level bonus for [[Magic_Systems#Divine_magic_and_faith|Piety]] (if you are majority Cleric/FS) or [[Magic_Systems#Pacts_and_Attunement|Attunement]] (if you are not) plus double your levels in Pale Master, plus 5 if you know the Mummy Dust spell. There are 4 tiers of summons; tier 2 unlocks at UCL 10, tier 3 at 20 and tier 4 at 30.
+
+- Ray of Enfeeblement - removed save. Drains stamina equal to str loss. Effects do not stack (new castings will remove previous spell effects on the same target).  Immunity against ability drain will protect against the stamina drain too.
+
+- Enervation - removed save.  Added str/dex/con drains equal to the levels removed.  Made non stacking [but will stack with other spell effects, e.g. the strength drain will stack with Ray of Enfeeblement].  Negative level protection will protect against all effects.
+
+- Circle of Death - now steals 1d6 stamina from every creature in the area of effect, even if they are >8 hit dice.
+
+- Contagion (including BG version) - no saving throw to apply disease.  Diseases still trigger fortitude saves as normal.
+
+==Transmutation==
+
+- Zoo Spells: Changed to add a flat +4. GSF and ESF Transmutation will still add a +1 each.
+
+- Entangle - if you are immune to entanglement, the 5 point stamina drain won't happen any more.
+
+- Slow - removed save.
+
+- Bestow Curse - removed saving throw.
+
+
+
+= Epic Spells =
+
+Having the feat Epic Spell Focus gives access to special spell effects. Most of these can be activated through specific commands. Most of these have a cooldown and/or a cost in stamina. When a single Epic Spell Focus grants access to more than one command, note that all share cooldowns. 
+
+When the command requires a CHARNAME, it can also be activated by sending that command to the Player Character as a direct message (Ex: to scry on Celdor you can either write -scry Celdor or send Celdor -scry as a PM). These abilities often require that you have interacted with the character beforehand, though Scrying on someone else and seeing them is also considered an interaction. 
+
+'''ESF: Abjuration:''' 
+
+-ward: creates a magical trap on the area which will possibly paralize those who cross it. It lasts 15 minutes. 
+
+-ward teleport: allows to ward an area, preventing all teleportation and scrying to and from it. 
+
+'''ESF: Conjuration:''' 
+
+-yoink CHARNAME: brings the character to your location. Can be used once per rest. If the yoink attempt fails, it can be retried after 60 seconds. You cannot yoink someone who is in combat.
+
+'''ESF: Divination:''' 
+
+-scry CHARNAME: spies on the objective through a small cutscene. Costs 5% stamina. Can only be used once every 15 minutes/per rest, whichever is longer. Note also that if you attempt to scry on a character you know, you may see them disguised and learn their true identity. Spies and shapeshifters are encouraged to learn how to protect themselves against magical espionage. 
+
+'''ESF: Enchantment:'''
+
+Has no special command effect. 
+
+'''ESF: Evocation:''' 
+
+Has no special command effect. It adds 2 to the CL of all Evocation spells, ''above'' the usual maximum. 
+
+'''ESF: Ilusion:''' 
+
+-project_image CHARNAME: sends an ilusory message to the destinatary. Can be used while Disguised. Once per rest.
+
+-project_image: summons a illusory copy of your character. It has all your abilities and equipment, which can make it a strong companion. Use the -a command to speak through it. Much like with Disguise, sufficient spot will allow others to notice if it is the real you. 
+
+'''ESF: Necromancy:''' 
+
+Has no special command effect. A prerrequisite of Mummy Dust, and hence useful for Necromancers. 
+
+'''ESF: Transmutation:'''  
+
+-teleport mark: marks an area for teleportation, allowing you to return to that spot.
+
+-teleport: teleports to your mark. Costs 15% stamina. You cannot teleport in the middle of combat.

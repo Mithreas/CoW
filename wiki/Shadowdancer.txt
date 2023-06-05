@@ -1,0 +1,91 @@
+[[Category:Classes]]
+== Shadowdancer ==       
+==== Requirements: ====   
+Hide 8, Move Silently 8, Tumble 5  (or Shadow Mage path)
+----
+
+==== Proficiencies: ====
+Light Armor, Simple Weapons  
+----
+==== Class Skills: ====
+Heal, Hide, Listen, Lore, Move Silently, Persuade, Pick Pocket, Search, Spot, Tumble  
+----
+==== Class Features ==== 
+Base Attack Bonus:    3/4   <br />
+Base Skill Points:    6   <br />
+Base Hit Points:    8   <br />
+Primary Saves:    Reflex   <br />
+----
+==== Class Specific Feats: ====    
+''When not noted, the feat works as in regular NWN.''
+{| class="wikitable"
+|+Class Feats
+!Feat
+!Requirements
+!Comment
+|-
+|Darkvision  
+|
+|
+|-
+|Shadow Daze
+|
+|
+|-
+|Shadow Evade  
+|
+|
+|-
+|Summon Shadow 
+|
+|
+|-
+|Defensive Roll  
+|
+|
+|-
+|Slippery Mind  
+|
+|
+|-
+|}
+----
+
+=== Mechanical Changes ===
+Arelith Changes
+Their Shadow Evade now lasts 3 rounds per class level and has a cooldown of 5 minutes. 
+
+The Concealment bonus scales further after level 10, at an additional 10% per two levels until capping at 50% at level 16.
+
+Their Shadow Daze now has a cooldown of 5 minutes. At class level 8, the effect is improved from Daze to Fear. At level 16, the effect becomes Stun. The DC is now 15 + base INT Modifier + Class Levels. (Previously 10 + DEX Modifier + Class Levels).
+
+A +1 bonus to Hide is given with each SD level taken.
+
+Hide in Plain Sight feat (HiPS) will be granted at SD level 1.
+After leaving stealth mode, HIPS will have 2 rounds of cooldown before it can be used again. Note that other ways of sneaking, such as corner-sneaking, still work while the cooldown is in effect.
+
+Summon Shadow:
+Infinite uses/day, but instead has a cooldown of 3 minutes starting the moment the shadow is slain or dismissed.
+Summon duration increased to at least 24 hours.
+
+The Shadowdancer gains a d6 of improved sneak attack (feat) per three levels of the Shadow when standing near it.
+Can use the -a command and the Player Tool 1.
+
+Shadows auto-guard the Shadowdancer. This behavior can be toggled by talking to the shadow.
+The shadow mirrors the Shadowdancer in several ways:
+They copy the final STR, DEX and CON, not the base.
+They mirror the weapon, but theirs have the "no damage" property, and they cannot use shields or ranged weapons.
+
+If the Shadowdancer has the epic shadowlord feat, the shadows copies the names, description, portrait, and soundset of the shadowdancer. Additionally, it gains immunity to Banishment, Dismissal, and Word of Faith.
+
+They copy Weapon Finesse, Evasion, Improved Evasion, Defensive Roll, Epic Dodge, Uncanny Dodge, and all Dual Wield feats (including ranger's), if the shadowdacer has them.
+Shadows Feats: Blind Fight, Crippling Strike, Sneak Attack (+1d6).
+Shadows gain Regeneration and Damage Reduction /+6 equal to Shadow's hit dice /3.
+Shadows gain the Hide in Plain Sight feat if the master has at least 5 Shadowdancer levels.
+Shadow Skills: Discipline Hide, Move Silently, Listen, Spot.
+Shadow Properties: DR 5/+1, 55% Concealment + 1% / Shadowdancer Level, Undead Immunities.
+Shadows level up in the Outsider class equally to SD level + 5.
+The Epic Shadow Lord feat grants the Shadow +5% Concealment, +5 Hit Dice.
+----
+==== Notes, Tips, and Interesting Bits: ====   
+Shadow daze and shadow evade only grant benefits when taken by class levels.  They have no effect if purchased from the trainer.

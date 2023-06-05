@@ -1,0 +1,80 @@
+[[Category:Classes]]
+==Blackguard==        
+==== Requirements: ====
+Base Attack Bonus 3, Race: Human, Half-Elf
+----
+
+==== Proficiencies: ====
+Light, Medium, and Heavy Armor, Martial and Simple Weapons, Shields  
+----
+==== Class Skills: ====
+Concentration, Craft Armor, Craft Trap, Craft Weapon, Discipline, Heal, Intimidate, Lore, Parry, Persuade, Ride, Taunt  
+----
+==== Class Features ====  
+Base Attack Bonus:    1  <br />
+Base Skill Points:    2  <br />
+Base Hit Points:    10  <br />
+Primary Saves:    Fortitude  <br />
+----
+==== Class Specific Feats: ====    
+''When not noted, the feat works as in regular NWN.''
+{| class="wikitable"
+|+Class Feats
+!Feat
+!Requirements
+!Comment
+|-
+|Dark Blessing
+|
+|
+|-
+|Smite Good
+|
+|
+|-
+|Bulls Strength  
+|
+|
+|-
+|Turn Undead  
+|
+|
+|-
+|Fiendish Servant  
+|
+|
+|-
+|Inflict Serious Wounds
+|
+|
+|-
+|Inflict Critical Wounds
+|Inflict Serious Wounds
+|
+|-
+|Divine Might  
+|13 Charisma, 13 Strength, Power Attack
+|Infinite uses, Consumes Stamina 
+|-
+|Divine Shield  
+|13 Charisma, 13 Strength, Power Attack
+|Infinite uses, Consumes Stamina 
+|-
+|Improved Fiend 
+|Fiendish Servant, SL 31
+|Infinite uses, with a cooldown of 6 minutes from the moment it is unsummoned/killed
+|-
+|Greater Smiting
+|20 Charisma, SL 31
+|
+|-
+|}
+----
+
+=== Mechanical Changes ===
+''Here the general changes should be noted, see Arelith Wiki.''
+----
+==== Notes, Tips, and Interesting Bits: ====   
+Create undead is only obtainable by having 3 blackguard levels.  It cannot be purchased later from the trainer.  <br />
+The Blackguard's version of Bull's Strength will stack with other Bull's Strength spells.  <br />
+Blackguard sneak attack will stack with any sneak attack or death attack granted by other classes or items.  <br />

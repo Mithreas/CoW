@@ -680,6 +680,17 @@ void _DistributePartyExperience(object oPC, int nAmount, float fRange, object oV
             gsXPGiveExperience(oMember, nAmount, TRUE, bKill);
             SetLocalInt(oMember, "PartyXPDistributed" + sRandom, TRUE);
             DelayCommand(0.0, DeleteLocalInt(oMember, "PartyXPDistributed" + sRandom));
+			
+			// Shaman spell regeneration. 
+			if (nAmount > 1 && GetLevelByClass(CLASS_TYPE_SHAMAN, oMember))
+			{
+				int nMax = GetLevelByClass(CLASS_TYPE_SHAMAN, oMember) / 2;
+				int nCurrent = GetLocalInt(oMember, "SHAMAN_SLOT_TO_RESTORE");
+				IncrementRemainingSpellSlots(oMember, CLASS_TYPE_SHAMAN, nCurrent);
+				nCurrent++;
+				if (nCurrent > nMax) nCurrent = 0;
+				SetLocalInt(oMember, "SHAMAN_SLOT_TO_RESTORE", nCurrent);
+			}
         }
         oMember = GetNextFactionMember(oPC);
     }

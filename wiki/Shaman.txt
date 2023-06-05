@@ -1,0 +1,340 @@
+[[Category:Classes]]
+== Shaman== 
+DRAFT - STILL IN DEVELOPMENT AND SUBJECT TO (even more) CHANGE (than usual)   
+     
+The Shaman draws upon beast magic to strengthen themselves and their allies.
+
+The Shaman has its own spell list focused around Transmutation, Illusion and Conjuration spells - list below.  It learns and casts spells like a Sorcerer, using Wisdom as its casting stat.  The Shaman has a chance to regain a spell slot when they or their allies kill enough hit dice of creatures (blood makes the grass grow!).
+==== Requirements ====
+Religion: Beast Cult Deity
+----
+==== Proficiencies ====
+Light and Medium Armor, Simple Weapons, Shields  
+----
+==== Class Skills ====
+Animal Empathy, Concentration, Craft Armor, Craft Trap, Craft Weapon, Heal, Lore, Parry, Persuade, Sense Motive, Spellcraft   
+----
+==== Class Features ==== 
+Base Attack Bonus:    3/4  <br />
+Base Skill Points:    2  <br />
+Base Hit Points:    8  <br />
+Primary Saves:    Fortitude, Will  <br />   
+----
+==== Class Specific Feats ====    
+''When not noted, the feat works as in regular NWN.''<br />
+{| class="wikitable"
+|+Class Feats
+!Feat
+!Granted At
+!Comment
+|-
+|Animal Companion
+|Shaman 1
+|
+|-
+|Nature Sense
+|Shaman 1
+|
+|-
+|Woodland Stride
+|Shaman 2
+|
+|-
+|Trackless Step
+|Shaman 3
+|
+|-
+|Resist Nature's Lure
+|Shaman 4
+|
+|-
+|Wildshape I-VI
+|Shaman 5/6/7/8/9/10 
+|Forms increase at SL 12
+|-
+|Venom Immunity
+|Shaman 9
+|
+|}
+
+----
+==== Spell List ====
+{| class="wikitable"
+!Level 0
+|-
+|Cure Minor Wounds
+|-
+|Flare
+|-
+|Light
+|-
+|Resistance
+|-
+|Virtue
+|}
+{| class="wikitable"
+!Level 1
+|-
+|Burning Hands
+|-
+|Camoflage
+|-
+|Cure Light Wounds
+|-
+|Endure Elements
+|-
+|Entangle
+|-
+|Expeditious Retreat
+|-
+|Grease
+|-
+|Identify
+|-
+|Magic Fang
+|-
+|Magic Weapon
+|-
+|Remove Fear
+|-
+|Summon Creature I
+|-
+|Ultravision
+|}
+{| class="wikitable"
+!Level 2
+|-
+|Barkskin
+|-
+|Blood Frenzy
+|-
+|Bull's Strength
+|-
+|Cat's Grace
+|-
+|Cure Moderate Wounds
+|-
+|Eagle's Splendor
+|-
+|Endurance
+|-
+|Fox's Cunning
+|-
+|Ghostly Visage
+|-
+|Invisibility
+|-
+|Lesser Dispel
+|-
+|Lesser Restoration
+|-
+|One with the Land
+|-
+|Owl's Wisdom
+|-
+|Remove Paralysis
+|-
+|Resist Elements
+|-
+|See Invisibility
+|-
+|Summon Creature II
+|-
+|Web
+|}
+{| class="wikitable"
+!Level 3
+|-
+|Aura of Menace
+|-
+|Bestow Curse
+|-
+|Clarity
+|-
+|Contagion
+|-
+|Cure Serious Wounds
+|-
+|Displacement
+|-
+|Greater Magic Fang
+|-
+|Haste
+|-
+|Invisibility Purge
+|-
+|Invisibility Sphere
+|-
+|Magic Circle vs Alignment
+|-
+|Magic Vestment
+|-
+|Melf's Acid Arrow
+|-
+|Neutralize Poison
+|-
+|Poison
+|-
+|Prayer
+|-
+|Protection from Elements
+|-
+|Quillfire
+|-
+|Remove Blindness/Deafness
+|-
+|Remove Curse
+|-
+|Remove Disease
+|-
+|Silence
+|-
+|Stinking Cloud
+|-
+|Summon Creature III
+|-
+|Unnatural Aura
+|}
+{| class="wikitable"
+!Level 4
+|-
+|Cure Critical Wounds
+|-
+|Dismissal
+|-
+|Dispel Magic
+|-
+|Freedom of Movement
+|-
+|Greater Magic Weapon
+|-
+|Improved Invisibility
+|-
+|Lesser Spell Breach
+|-
+|Mass Camoflage
+|-
+|Negative Energy Protection
+|-
+|Polymorph Self
+|-
+|Shadow Conjuration
+|-
+|Slow
+|-
+|Stoneskin
+|-
+|Summon Creature IV
+|-
+|War Cry
+|}
+{| class="wikitable"
+!Level 5
+|-
+|Awaken
+|-
+|Battletide
+|-
+|Cloudkill
+|-
+|Death Ward
+|-
+|Greater Shadow Conjuration
+|-
+|Minor Globe of Invulnerability
+|-
+|Monstrous Regeneration
+|-
+|Phantasmal Killer
+|-
+|Polymorph Other
+|-
+|Restoration
+|-
+|Summon Creature V
+|-
+|Tenser's Transformation
+|}
+{| class="wikitable"
+!Level 6
+|-
+|Drown
+|-
+|Ethereal Visage
+|-
+|Flesh to Stone
+|-
+|Greater Dispelling
+|-
+|Greater Spell Breach
+|-
+|Greater Stoneskin
+|-
+|Greater Bull's Strength
+|-
+|Greater Cat's Grace
+|-
+|Greater Eagle's Spendor
+|-
+|Greater Endurance
+|-
+|Greater Fox's Cunning
+|-
+|Greater Owl's Wisdom
+|-
+|Healing Circle
+|-
+|Mass Haste
+|-
+|Planar Ally
+|-
+|Shades
+|-
+|Stone to Flesh
+|-
+|Stonehold
+|-
+|Summon Creature VI
+|-
+|True Seeing
+|-
+|Aura of Protection
+|}
+{| class="wikitable"
+!Level 7
+|-
+|Aura of Vitality
+|-
+|Creeping Doom
+|-
+|Mordenkainen's Sword
+|-
+|Regenerate
+|-
+|Shadow Shield
+|-
+|Summon Creature VII
+|-
+|Word of Faith
+|}
+{| class="wikitable"
+!Level 8
+|-
+|Greater Restoration
+|-
+|Nature's Balance
+|-
+|Summon Creature VIII
+|}
+{| class="wikitable"
+!Level 9
+|-
+|Gate
+|-
+|Shapechange
+|-
+|Summon Creature IX
+|}
+----
+==== Notes, Tips, and Interesting Bits: ====   
+The equipment that is merged by wildshape: Helmet, Armor, Shield. Only the highest stat bonus for each stat will be merged.     <br />

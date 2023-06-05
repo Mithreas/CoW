@@ -1,0 +1,13 @@
+This mechanic currently applies to the City of Winds and No Man's Land between the Great Wall and the Merivale outpost.
+
+Scattered around the city and in No Man's Land are various resource areas.  Members of factions can claim the area for their faction by clicking the relevant sign if there are no PCs or NPCs from the currently owning faction present in the area.
+
+Owning a resource area means that the faction's crafting chest, in their craft hall, will be refreshed every minute with resources from that area.  This is a very good thing for convenient crafting. 
+
+Obviously, PCs can't be around all the time.  There are various mercenary captains who lurk around the module who you can pay to post guards on your owned resource areas; other PCs will need to kill the guards before they can steal the area off you.
+
+Mercenaries persist until killed, and will respawn after resets.  
+
+This allows a form of PvP that doesn't involve players killing each other - you can murder each other's NPC minions as well.
+
+[[Category:Unique Mechanics]]

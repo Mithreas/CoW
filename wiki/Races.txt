@@ -1,0 +1,86 @@
+'''Race''' represents a creature's bloodline or ancestry.  In Anemoi there are currently six playable races, but only 3 are available to first time players.
+
+__TOC__
+
+
+==Introduction ==
+Human PCs start in an island city. The three noble houses contest with one another for resources and dominance, while beneath the surface (and the slums of UnderCity) lurks a sinister threat led by the mysterious “Dark One”. Humans do not have access to arcane classes (bard, wizard, sorcerer) or druid.
+
+Halfling PCs start amid green fields, in one of many cosy villages on a nearby peninsula. Despite being skilled farmers (and possessing mild nature magic), their fields and homes are threatened by an infestation of hostile fey, which seem intent on wiping them out. Halflings do not have access to arcane or divine classes (wizard/sorcerer or cleric/paladin) but can be druids and bards.
+
+Elven PCs start amid the lakes and woodlands of the mainland. Their main concern is a virulent plague, coupled with the inherent tendency of their magical nature to rise again as undead following death. Elves do not have access to divine classes (cleric/paladin).
+
+There are three other races, but you can't start with them on your first character - they need you to unlock them.  This is mainly because they have lore implications and I'd like players to have a passing knowledge of the lore before playing one of these characters.
+
+Half-Elves and Elflings are the children of races at war, and hence rare in the current time period.  They are often lone wanderers, or living in small enclaves and trying to avoid the war.  To play one, you have to have discovered a place where half-elves live in the world, and create your character as an Elf (in the new character area you will get the option to change their race).  Elflings, being rarer, require a Normal [[Awards|award]] to play. 
+
+Shapechangers are created in the frozen Northern tundra, but often live among the other races... undetected.  To get the option to create a Shapechanger, you need to have an available major [[Awards|award]], have the [[Achievements|achievements]] for discovering 4 different shapechanger nests, and not have chosen a faction (so don't pick a faction before you pick your subrace!).
+
+==List of Races==
+===Humanoids===
+*Human
+*Halfling
+*Elf
+*Half-Elf (Human/Elf cross)
+*Elfling (Elf/Halfling cross)
+*Shapechanger
+
+{| wikitable class="wikitable sortable"
+!Race
+!Description
+!Stats
+!Start
+!Abilities
+
+|-
+| Human
+| Humans have something of the Renaissance man about them; religion and science operating hand in hand.
+Favored class (Any): When determining whether a multiclass human suffers an XP penalty, his highest-level class does not count.
+| (none)
+| City of Winds
+| Quick to Master: 1 extra feat at 1st level<br> Skilled: 4 extra skill points at 1st level, plus 1 additional skill point at each following level
+|-
+| Elf
+| Elves are dire enemies with the other races, and an Elven force is engaged in a long term siege of a mighty wall that separates the halflings’ peninsula from the mainland, having wiped humans and halflings out from most of the continent.
+| Dex +2<br>Con -2
+| Fernvale
+| Sleeplessness: Immune to spells and effects of the 'Sleep' subtype<br>Hardiness vs. Enchantments: +2 racial bonus on saving throws against mind-affecting spells<br>Bonus Proficiencies (Longsword, Rapier, Shortbow, Longbow)<br>Skill Affinity (Listen): +2 racial bonus to listen checks<br>Skill Affinity (Search): +2 racial bonus to Search checks<br>Skill Affinity (Spot): +2 racial bonus to Spot checks<br>Keen Senses: Elves make active Search checks automatically and with no movement penalties<br>Low-light Vision: Allows them to see better than normal in the dark
+|-
+| Halfling
+| Halflings’ farms send food to the human city, and the humans originally built and still maintain the defensive wall that protects the farmland from Elvish invasion.
+| Dex +2<br>Str -2
+| The Peninsula (Perenor)
+| Small stature<br>+1 size modifier to attack rolls<br>+1 size modifier to AC<br>+4 size bonus to hide checks<br>Skill affinity (move silently): +2 racial bonus to move silently checks<br>Skill affinity (listen): +2 racial bonus to listen checks<br>Lucky: +1 luck bonus to all saving throws<br>Fearless: +2 morale bonus to saving throws against spells and effects of the fear subtype<br>Good aim: +1 racial bonus to attack rolls made with throwing weapons
+|-
+| Half-Elf
+| With elves and humans having been at war for a couple of generations, half-elves are rare indeed.
+| Dex +1<br>Con -1
+| Secret!
+| Sleeplessness: Immune to spells and effects of the 'Sleep' subtype<br>Hardiness vs. Enchantments: +2 racial bonus on saving throws against mind-affecting spells<br>Partial Skill Affinity (Listen, Search, Spot): +1 to these skill checks<br>Low-light Vision: Allows them to see better than normal in the dark
+|-
+|Elfling
+|Even rarer than half-elves, elflings are often loners.
+|Dex+2<br>Str -1<br>Con -1
+|Secret!
+|Sleeplessness: Immune to spells and effects of the 'Sleep' subtype<br>Hardiness vs. Enchantments: +2 racial bonus on saving throws against mind-affecting spells<br>Lucky: +1 luck bonus to all saving throws<br>Skill Affinity (Listen): +2 racial bonus to listen checks<br>Partial Skill Affinity (Search): +1 racial bonus to Search checks<br>Partial Skill Affinity (Spot): +1 racial bonus to Spot checks<br>Keen Senses: Elflings make active Search checks automatically and with no movement penalties<br>Low-light Vision: Allows them to see better than normal in the dark
+|-
+| Shapechanger
+| Shapechangers are wildcards.  Most often found among the tribes in the northern tundra, they can nonetheless be found all over the place... if you look closely.
+| Int +2<br>Con -2
+| Dun Khazak (Twisted Tundra)
+| Can shapechange into a base form (other playable race), hybrid form (their 'home' form) and an [[Animal Form]].<br> Applied as a subrace, inherit the feats and bonuses of their base form. <br>Can consecrate altars regardless of class.<br>Do not gain XP from quests, but gain XP from consecrating altars (once per day) and converting other PCs (once per player).<br>Use Piety to shift, gain Piety if another PC shapechanger changes form near them.
+|-
+
+==Racial sizes==
+Creatures in Neverwinter Nights fall into one of five size categories: Tiny, Small, Medium, Large, Huge.
+The size is based upon [https://nwn.fandom.com/wiki/Appearance.2da_(contents) appearance].
+
+Small:
+*Halfling
+
+Medium:
+*Elf
+*Human
+*Half-Elf
+*Elfling
+*Shapechanger

@@ -1,0 +1,29 @@
+[[Category:Classes]]
+== Sorcerer ==       
+==== Available Paths: ====
+Shadow Mage.
+----
+
+==== Requirements: ====  
+Race: Elf
+----  
+==== Proficiencies: ====
+Cloth Armor, Simple Weapons  
+----
+==== Class Skills: ====
+Concentration, Craft Armor, Craft Trap, Craft Weapon, Heal, Lore, Spellcraft  
+----
+==== Class Features ====  
+Base Attack Bonus:    1/2   <br />
+Base Skill Points:    2   <br />
+Base Hit Points:    4   <br />
+Primary Saves:    Will   <br />
+----
+==== Class Specific Feats: ====    
+None at present!
+
+=== Mechanical Changes ===
+''Here the general changes should be noted, see Arelith Wiki.''
+----
+==== Notes, Tips, and Interesting Bits: ====   
+All non true flame sorcerers are weave masters whether they select the path or not.

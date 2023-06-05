@@ -1,0 +1,13 @@
+This category documents the mechanics that are unique to Anemoi.  Those familiar with Arelith's mechanics will likely be less familiar with these changes.
+* [[Fixed Level advancement system]]
+* [[Crafting|Crafting - modified CNR]]
+* [[Magic Systems]] - arcane and divine
+* [[Stamina]]
+* [[Bounties|Bounties and Arrests]]
+* [[Investigating]]
+* [[Research]]
+* [[Chatbot NPCs]]
+* [[NPC combat tricks]]
+* [[Claiming territory]], including mercenaries
+* [[Quests|Quest system]]
+* [[Reputation]]

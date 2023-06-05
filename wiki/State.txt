@@ -1,0 +1,43 @@
+'''State of character''' is determined by several separate meters for hunger (food), thirst (water), tiredness (rest), and alcohol intoxication (sobriety).
+
+
+Also known as H/T/R and the Survival system. 
+
+== State meter ==
+
+The starting state of characters is this:
+:Food: +75.0% (75.0%)
+:Water: +75.0% (75.0%)
+:Rest: +25.0% (25.0%)
+:Sobriety: +100.0% (100.0%)
+:Piety (0.0%)
+Also see [[Stamina]].
+
+While character is in game (IG), each IG hour will meter for hunger (food), thirst (water), and tiredness (rest) decrease. The decrease will depend on many factors, such as the activity of a character (running around is more tiresome than sitting in library) and [[weather]] conditions (hot summer makes one thirsty).   
+
+The intoxication (sobriety) meter will increase at the same time, but not display once it is at 100%.   
+
+
+When any of the meters reaches 0 (except piety), character will become affected by discomfort. Animation of "tiredness" will start to appear and interrupt any activity, including fighting or casting of spells. At -10% ability decreases start to appear and increase in time. If hit points of character fall under 0 due to loss of constitution or if meter reaches -100%, the character will die. The -10% is cumulative from H/T/R: for example, -5% rest and -5% thirst will trigger an ability decrease.       
+
+Piety represents the current favor with your patron god. Having higher piety allows you to gain some boons by [[Console_commands#-pray|praying]] or even get a [[Divine intervention]] at a critical moment. Piety is essential for divine and nature-based characters as it allows them access to high-level magic and abilities. Piety is the only stat that can go into negative and reach 100% without incurring any penalty, and it drops steadily at a 0.1% rate per tick. 
+
+Note that the state of character is updated even while possessing a familiar and that wizard can still die of exhaustion, hunger or thirst this way. 
+
+
+The [Rest] flag of area indicates that the area can be rested in comfortably. To rest elsewhere, characters' rest meter has to be below 50% to rest. Bars and inns are generally flagged with [Rest], and the H/T/R meters will not go down while in the area. Note the Piety will still go down, and Sobriety will be recovered.
+
+== Roleplaying tips ==
+There are no rules how exactly should rest be roleplayed. This means that Resting is not strictly sleeping, and may be played either way. Resting in the middle of the street is usually not a good idea. However, everything is possible from lengthy paragraphs describing the removal and careful arrangement of armour before settling down for a quick shut-eye, to "*crouches to tie his shoe*". 
+
+
+Players represent rest in many different ways depending on their character, situation and place. Some examples with emotes follows:
+* Nap or sleep - *Removes his armour, checking it and his blade over thoroughly* or *Leans against the wall, closing his eyes in thought*
+* Meditation, reading of spellbook (Wizards)
+* Focusing of mind or meditation (Monk)
+* Praying to the gods (Clerics) - *Closes his eyes, kneeling for a few minutes in silent prayer*
+* Curls up somewhere like an animal and just sleeps (Druid)
+* Sharpen the blades, arrange the arrows in the quiver, feed the companion (Rangers)
+* Pretends not to actually rest, for example in middle of long conversation when rest would be seen as out of place - *Ties his shoes*
+* Reverie (Elves)
+[[Category:Arelith Mechanics]]

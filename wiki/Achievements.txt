@@ -1,0 +1,3 @@
+Achievements are a system for recognising players who've reached certain milestones in the world.  The current list is available on [https://github.com/Mithreas/CoW/blob/master/scripts/achieve_init.nss GitHub] but in summary it includes things like finding certain locations in the world, reaching certain character levels or craft skill levels, and defeating various "raid" bosses scattered throughout the world.
+
+Achievements are shared across all your characters, tied to your player account.  They have no direct mechanical effect, but some character creation options are gated behind achievements, mainly to make sure you know what you're doing before you choose an option that's hard to play.

@@ -1,0 +1,11 @@
+[[Category: Unique Mechanics]]
+Investigation is used for detective type mechanics.  It has three main uses.
+- Questioning an NPC about which PCs they have seen recently.  Can be used e.g. if following someone through a city to check whether you're on the right track.
+- Querying a bloodstain to determine information about what killed the creature that died there.
+- And, most importantly, to uncover secret lore in the world.
+
+To use, simply type -investigate near an object of interest.  If something is in range, your character will move to it and do the relevant investigation.
+
+Secret lore is usually associated with something you can see, though not necessarily something you can click or interact with.  For example, a statue.  Secrets will have up to three levels of information available with progressively higher DCs. If your character has enough (modified) ranks in -both- Search and Lore to meet or exceed the DC - with no dice rolling - then you get a message with the information from that level.  You will automatically be tested against all three level (if they exist) for any investigation check you make; repeating the check will only give the exact same results every time.
+
+Not all secrets have all three levels - some only have one or two.  If you only get one or two lines of information, that might be all there is, or coming back with a higher skill level might uncover more.

@@ -1,0 +1,118 @@
+[[Category:Classes]]
+== Shifter ==    
+==== Available Paths: ====
+[[Kensai]]
+---- 
+==== Requirements: ====
+None
+----  
+==== Proficiencies: ====
+Simple Weapons 
+----
+==== Class Skills: ====
+Craft Armor, Craft Trap, Craft Weapon, Animal Empathy, Bluff, Concentration, Heal, Intimidate, Listen, Lore, Persuade, Sense Motive, Spot  
+----
+==== Class Features ==== 
+Base Attack Bonus:    3/4  <br />
+Base Skill Points:    4  <br />
+Base Hit Points:    8  <br />
+Primary Saves:    Will <br />
+----
+==== Class Specific Feats: ====    
+''When not noted, the feat works as in regular NWN.''<br />
+The Shifter can choose one Form feat per level.  They get various SLAs (spell like abilities) as they advance in level.  The configuration file for Polymorph forms is on [https://github.com/Mithreas/CoW/blob/master/override/polymorph.2da Github]. 
+{| class="wikitable"
+|+Class Feats
+!Feat
+!Requirements
+!Comment
+|-
+|Humanoid Forms: Elf, Human, Halfling, Monstrous
+|Shifter 1+
+|These feats change the Shifter's race and appearance but they can still use spells etc.  You may need to use the radial menu to modify your head after changing racial appearance.  5 Stamina per use.
+|-
+|Special Form: Gender Swap
+|Shifter 1+
+|This feat swaps the gender presented by the Shifter.  You may need to use the radial menu to modify your head after changing gender (and you may need to alter your clothing appearance).  5 Stamina per use. 
+|-
+|Basic Forms: Fairy, Wolf, Panther, Boar, Badger, Chicken, Penguin
+|Shifter 1+
+|These forms are polymorph effects.  Most of them improve when the Shifter hits SL 12. 7 Stamina per use. 
+|-
+|Intermediate Forms: Spider, Troll, Minotaur, Umber Hulk, Bear, Gargoyle, Harpy, Kobold Assassin, Lizardfolk 
+|Shifter 5+
+|These forms are polymorph effects.  Most of them improve when the Shifter hits Shifter 9+.  Stamina costs vary by form (5-7).
+|-
+|Advanced Forms: Fire Giant, Ent, Slaad
+|Shifter 9+ 
+|These are polymorph forms. 15 Stamina per use. 
+|-
+|Bull's Strength
+|Shifter 2
+|As the spell.  Stacks with potion/spellbook versions.  5 Stamina per use.
+|-
+|Cat's Grace
+|Shifter 3
+|As the spell.  Stacks with potion/spellbook versions.  5 Stamina per use.
+|-
+|Endurance
+|Shifter 4
+|As the spell.  Stacks with potion/spellbook versions.  5 Stamina per use.
+|-
+|Owl's Wisdom
+|Shifter 5
+|As the spell.  Stacks with potion/spellbook versions.  5 Stamina per use.
+|-
+|Fox's Cunning
+|Shifter 6
+|As the spell.  Stacks with potion/spellbook versions.  5 Stamina per use.
+|-
+|Eagle's Splendour
+|Shifter 7
+|As the spell.  Stacks with potion/spellbook versions.  5 Stamina per use.
+|-
+|Barkskin
+|Shifter 8
+|As the spell. 8 Stamina per use.
+|-
+|Stoneskin
+|Shifter 9
+|As the spell (except spell school changed to Transmutation).  8 Stamina per use.
+|-
+|Haste
+|Shifter 10
+|As the spell.  10 Stamina per use.
+|-
+|Spell Focus: Transmutation
+|Shifter 4
+|
+|-
+|Greater Spell Focus: Transmutation
+|Shifter 7
+|
+|-
+|Epic Spell Focus: Transmutation
+|Shifter 10
+|
+|}
+----
+
+=== Mechanical Changes ===
+==== General Changes ====
+Shifters have an innate attunement to Water. If they aren't pacted to a spirit, they will be treated as having a Water pact of strength equal to their class level.  (If the shifter also has Monk and/or Assassin levels, the highest of these classes is used to determine innate Attunement). 
+
+Shifters can edit their head model freely using the radial menu. 
+
+Shifters are a religious class and can consecrate altars.  They must worship one of the Beast Gods. 
+----
+==== Notes, Tips, and Interesting Bits: ====    
+Shifters have access to a wide range of forms.  In general, these can be divided up into:
+* Utility forms (e.g. Kobold Commando with stealth skills, Pixie with spells, Troll with regeneration)
+* Forms that use a creature weapon (e.g. animal forms) - these forms will be improved by creature weapon feats.
+* Forms that use a weapon (e.g. Lizardman using a whip) - these forms will be improved by the relevant weapon skill feats (e.g. Weapon Focus).
+
+Shifter spells stack with the potion versions, and potions can be used in polymorph.  This makes the Kensai path a very interesting choice.  On the one hand, it will be a straight improvement to all your forms, and your innate abilities replace the need for potions.  On the other, it removes your ability to use healing potions (the only healing items usable in polymorph) and you miss out on the chance to stack your innate ability boosts with potions for double effect.  A non kensai Shifter of high enough level can max all their ability scores using potions and their innate SLAs, thanks to the spell focuses in Transmutation that they get. 
+
+Shifters' ability to change their appearance and race at will makes them excellent infiltrators.
+
+Harpies have the Bard Song and Curse Song abilities.  Their Bard class level is considered equivalent to their Shifter class level when singing, and their Perform skill is considered to be the character's SL. (The character's Perform skill, if any, and any modifiers to it are ignored).

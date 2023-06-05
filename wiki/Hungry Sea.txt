@@ -1,0 +1,16 @@
+It's widely known that the sea eats magic creatures.  
+
+Humans, with little innate magic, can travel across the sea freely, and shapechanger magic is not detected by the sea.  Other races take more risk... and need to pass a swimming check before they can travel safely.
+
+The Vyvian docks can issue a Certificate of Seaworthiness, which is a sign that you have little enough magic not to be swallowed by the sea.  (Of course, if you dabble in arcane magic after getting the certificate, it won't help you...!).
+
+The test has a reasonable chance of perma-killing your character.  Odds calculation as follows.
+* Halfling race = 5%
+* Half-elf race = 50%
+* Elfling race  = 55%
+* Elf race      = 100%
+* Druid class   = +20%
+* Bard class    = +50%
+You can safely take Bard and Druid after you pass your test.  But if you somehow manage to take Wizard levels, say, your certificate won't be worth the paper it's written on. 
+
+If you plan to travel the sea with an at-risk character, the management strongly recommends that you take your test as early as possible...

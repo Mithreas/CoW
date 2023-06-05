@@ -1,0 +1,5 @@
+Using -research while in a library area causes your character to start studying.  As well as giving you a small amount of xp, it gives you a chance of digging up documents from the past, some of which may provide useful context today.  A high Int will help you with your research, and a high Lore will let you understand what you find more easily.  
+
+This system draws information from a secret database, which may be added to at any time.  
+
+[[Category: Unique Mechanics]]

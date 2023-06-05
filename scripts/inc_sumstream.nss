@@ -75,6 +75,7 @@ const int STREAM_TYPE_DRAGON = 1;
 const int STREAM_TYPE_ELEMENTAL = 2;
 const int STREAM_TYPE_PLANAR = 3;
 const int STREAM_TYPE_UNDEAD = 4;
+const int STREAM_TYPE_TRIBESMAN = 5;
 
 // Constants for specific elements within stream types. Note that there is value overlap in these,
 // and the stream type must also be used to determine which exact summon is being referred to.
@@ -101,6 +102,10 @@ const int STREAM_PLANAR_DEVIL = 0x04;
 const int STREAM_PLANAR_YUGOLOTH = 0x08;
 const int STREAM_PLANAR_DEMON = 0x10;
 const int STREAM_PLANAR_ANY = 31; /* STREAM_PLANAR_CELESTIAL | STREAM_PLANAR_SLAAD | STREAM_PLANAR_DEVIL | STREAM_PLANAR_YUGOLOTH | STREAM_PLANAR_DEMON */
+
+const int STREAM_TRIBESMAN_RANDOM = 0x0;
+const int STREAM_TRIBESMAN_MALE   = 0x01;
+const int STREAM_TRIBESMAN_FEMALE = 0x02;
 
 // Note - these duplicate/overwrite the names above for backwards compatibility.
 const int STREAM_PLANAR_7DIVINES = 0x01;
@@ -800,6 +805,14 @@ string GetStreamElementName(int nStreamType, int nStreamElement)
                 case STREAM_UNDEAD_GHOST:  return "Incorporeal";
             }
             break;
+		case STREAM_TYPE_TRIBESMAN:
+			switch (nStreamElement)
+			{
+				case STREAM_TRIBESMAN_RANDOM: return "Random";
+				case STREAM_TRIBESMAN_MALE:   return "Male";
+				case STREAM_TRIBESMAN_FEMALE: return "Female";
+			}
+			break;
     }
     return "<Error: Undefined Stream Element>";
 }
@@ -858,6 +871,7 @@ string GetStreamTypeName(int nStreamType)
         case STREAM_TYPE_ELEMENTAL: return "Elemental";
         case STREAM_TYPE_PLANAR:    return "Outsider";
         case STREAM_TYPE_UNDEAD:    return "Undead";
+		case STREAM_TYPE_TRIBESMAN: return "Tribal Warrior";
     }
     return "<Error: Undefined Stream Type>";
 }

@@ -1,0 +1,466 @@
+{{CraftNav|title=Imbuing}}
+
+==Imbuing==
+
+===Oils and Inks===
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Tanning Acid
+|
+|1 Five Empty Flasks <br>1 Fire Beetle's Belly
+|
+|
+|-
+|Apprentice Scribing Ink
+|
+|1 Five Empty Flasks <br>1 Bombardier Beetle's Belly
+|
+|
+|-
+|Tanning Oil
+|
+|1 Five Empty Flasks <br>1 Fire Beetle's Belly
+|
+|
+|-
+|Lesser Acid Oil
+|
+|1 Five Empty Flasks <br>1 Acid Flask <br>5 Polished Greenstones
+|
+|
+|-
+|Lesser Cold Oil
+|
+|1 Five Empty Flasks <br>1 Coldstone <br>5 Polished Fluorspar
+|
+|
+|-
+|Lesser Electrical Oil
+|
+|1 Five Empty Flasks <br>1 Quartz <br>5 Polished Amethyst
+|
+|
+|-
+|Lesser Fire Oil
+|
+|1 Five Empty Flasks <br>1 Fire Beetle's Belly <br>5 Polished Fire Agate
+|
+|
+|-
+|Lesser Negative Oil
+|
+|1 Five Empty Flasks <br>1 Skeleton's Knuckle <br>5 Polished Garnet
+|
+|
+|-
+|Lesser Positive Oil
+|
+|1 Five Empty Flasks <br>1 Holy Water <br>5 Polished Phenalope
+|
+|
+|-
+|Lesser Sonic Oil
+|
+|1 Five Empty Flasks <br>1 Thunderstone <br>5 Polished Aventurine
+|
+|
+|-
+|Journeyman Scribing Ink
+|
+|1 Five Empty Flasks <br>1 Ingot of Silver <br>1 Bombardier Beetle's Belly
+|
+|
+|-
+|Master Scribing Ink
+|7
+|1 Five Empty Flasks <br>1 Ingot of Gold <br>1 Bombardier Beetle's Belly
+|
+|
+|-
+|Greater Acid Oil
+|8
+|1 Five Empty Flasks <br>5 Acid Flask <br>1 Polished Emerald
+|
+|
+|-
+|Greater Cold Oil
+|8
+|1 Five Empty Flasks <br>5 Coldstone <br>3 Polished Sapphire
+|
+|
+|-
+|Greater Electrical Oil
+|8
+|1 Five Empty Flasks <br>5 Quartz <br>8 Polished Alexandrite
+|
+|
+|-
+|Greater Fire Oil
+|8
+|1 Five Empty Flasks <br>5 Fire Beetle's Belly <br>3 Polished Fire Opal
+|
+|
+|-
+|Greater Negative Oil
+|8
+|1 Five Empty Flasks <br>5 Skeleton's Knuckle <br>5 Polished Ruby
+|
+|
+|-
+|Greater Positive Oil
+|8
+|1 Five Empty Flasks <br>5 Holy Water <br>2 Polished Diamond
+|
+|
+|-
+|Greater Sonic Oil
+|8
+|1 Five Empty Flasks <br>5 Thunderstone <br>5 Polished Topaz
+|
+|
+|-
+|}
+
+===Essences===
+
+====Temporary Weapon Essences====
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Essence (+1, Acid, Temporary)
+|
+|2 Lesser Acid Oil
+|
+|
+|-
+|Essence (+1, Cold, Temporary)
+|
+|2 Lesser Cold Oil
+|
+|
+|-
+|Essence (+1, Electrical, Temporary)
+|
+|2 Lesser Electrical Oil
+|
+|
+|-
+|Essence (+1, Fire, Temporary)
+|
+|2 Lesser Fire Oil
+|
+|
+|-
+|Essence (+1, Negative, Temporary)
+|
+|2 Lesser Negative Oil
+|
+|
+|-
+|Essence (+1, Positive, Temporary)
+|
+|2 Lesser Positive Oil
+|
+|
+|-
+|Essence (+1, Sonic, Temporary)
+|
+|2 Lesser Sonic Oil
+|
+|
+|-
+|Essence (+d4, Acid, Temporary)
+|
+|5 Lesser Acid Oil
+|
+|
+|-
+|Essence (+d4, Cold, Temporary)
+|
+|5 Lesser Cold Oil
+|
+|
+|-
+|Essence (+d4, Electrical, Temporary)
+|
+|5 Lesser Electrical Oil
+|
+|
+|-
+|Essence (+d4, Fire, Temporary)
+|
+|5 Lesser Fire Oil
+|
+|
+|-
+|Essence (+d4, Negative, Temporary)
+|
+|5 Lesser Negative Oil
+|
+|
+|-
+|Essence (+d4, Positive, Temporary)
+|
+|5 Lesser Positive Oil
+|
+|
+|-
+|Essence (+d4, Sonic, Temporary)
+|
+|5 Lesser Sonic Oil
+|
+|
+
+|}
+
+====Permanent Weapon Essences====
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Essence (+1, Acid, Permanent)
+|9
+|1 Greater Acid Oil
+|
+|
+|-
+|Essence (+1, Cold, Permanent)
+|9
+|1 Greater Cold Oil
+|
+|
+|-
+|Essence (+1, Electrical, Permanent)
+|9
+|1 Greater Electrical Oil
+|
+|
+|-
+|Essence (+1, Fire, Permanent)
+|9
+|1 Greater Fire Oil
+|
+|
+|-
+|Essence (+1, Negative, Permanent)
+|9
+|1 Greater Negative Oil
+|
+|
+|-
+|Essence (+1, Positive, Permanent)
+|9
+|1 Greater Positive Oil
+|
+|
+|-
+|Essence (+1, Sonic, Permanent)
+|9
+|1 Greater Sonic Oil
+|
+|
+|-
+|Essence (+d6, Acid, Permanent)
+|13
+|5 Greater Acid Oil
+|
+|
+|-
+|Essence (+d6, Cold, Permanent)
+|13
+|5 Greater Cold Oil
+|
+|
+|-
+|Essence (+d6, Electrical, Permanent)
+|13
+|5 Greater Electrical Oil
+|
+|
+|-
+|Essence (+d6, Fire, Permanent)
+|13
+|5 Greater Fire Oil
+|
+|
+|-
+|Essence (+d6, Negative, Permanent)
+|13
+|5 Greater Negative Oil
+|
+|
+|-
+|Essence (+d6, Positive, Permanent)
+|13
+|5 Greater Positive Oil
+|
+|
+|-
+|Essence (+d6, Sonic, Permanent)
+|13
+|5 Greater Sonic Oil
+|
+|
+|}
+
+===Potions===
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Potion of Bless
+|
+|Five Empty Flask <br>Angelica Leaf <br>Walnut
+|
+|
+|-
+|Potion of Cure Light Wounds
+|
+|1 Five Empty Flask <br>1 Aloe Leaf <br>1 Garlic Clove
+|
+|
+|-
+|Potion of Lore
+|
+|1 Five Empty Flask <br>1 Clover Leaf <br>1 Sage Leaf
+|
+|
+|-
+|Potion of Barkskin
+|
+|1 Five Empty Flask <br>1 Peppermint <br>1 Birch Bark
+|
+|
+|-
+|Potion of Lesser Restoration
+|
+|1 Five Empty Flask <br>1 Angelica Leaf <br>1 Almond
+|
+|
+|-
+|Potion of Cure Disease
+|
+|1 Five Empty Flask <br>1 Ginseng <br>1 Ginger
+|
+|
+|-
+|Potion of Cure Moderate Wounds
+|3
+|1 Five Empty Flask <br>1 Aloe Leaf <br>1 Comfrey Root
+|
+|
+|-
+|Potion of Bull's Strength
+|3
+|1 Five Empty Flask <br>1 Peppermint Leaf <br>1 Hawthorn Flower
+|
+|
+|-
+|Potion of Cat's Grace
+|3
+|1 Five Empty Flask <br>1 Peppermint Leaf <br>1 Catnip Leaf
+|
+|
+|-
+|Potion of Fox's Cunning
+|3
+|1 Five Empty Flask <br>1 Peppermint Leaf <br>1 Witch Hazel Leaf
+|
+|
+|-
+|Potion of Eagle's Splendor
+|3
+|1 Five Empty Flask <br>1 Peppermint Leaf <br>1 Calendula Flower
+|
+|
+|-
+|Potion of Owl's Wisdom
+|3
+|1 Five Empty Flask <br>1 Peppermint Leaf <br>1 Hazelnut
+|
+|
+|-
+|Potion of Endurance
+|3
+|1 Five Empty Flask <br>1 Peppermint Leaf <br>1 Chestnut
+|
+|
+|-
+|Potion of Aid
+|5
+|1 Five Empty Flask <br>1 Angelica Leaf <br>1 Pecan
+|
+|
+|-
+|Potion of Clarity
+|5
+|1 Five Empty Flask <br>1 Clover Leaf <br>1 Nettle Leaf
+|
+|
+|-
+|Potion of Invisibility
+|7
+|1 Five Empty Flask <br>1 Clover Leaf <br>1 Skullcap Leaf
+|
+|
+|-
+|Potion of Speed
+|7
+|1 Five Empty Flask <br>1 Clover Leaf <br>1 Thistle Leaf
+|
+|
+|-
+|Potion of Cure Serious Wounds
+|9
+|1 Five Empty Flask <br>1 Aloe Leaf <br>1 Echinacea Root
+|
+|
+|-
+|Potion of Antidote
+|9
+|1 Five Empty Flask <br>1 Angelica Leaf <br>1 Chamomile Flower
+|
+|
+|-
+|Potion of Negative Energy Protection
+|10
+|1 Five Empty Flask <br>1 Skullcap Leaf <br>1 Echninacea Root
+|
+|
+|-
+|Potion of Cure Critical Wounds
+|11
+|1 Five Empty Flask <br>3 Aloe Leaf <br>3 Ginger Root
+|
+|
+|-
+|Potion of Heal
+|13
+|1 Five Empty Flask <br>5 Aloe Leaf <br>5 Ginseng
+|
+|
+|-
+|Potion of Attunement
+|15
+|1 Five Empty Flask <br>5 Ingots of Silver <br>5 Polished Sapphire
+|
+|
+|-
+|}

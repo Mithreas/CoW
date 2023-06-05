@@ -1,0 +1,38 @@
+There are various ways to gain equipment to improve your character.
+==Crafting==
+The [[Crafting]] system can be used to make extremely powerful equipment tailored to your character, with the right materials and skill.
+
+The limits of the crafting system boil down to limits on each property (e.g. AB/enhancement to a max of +5, AC to a max of +3) and a max item value of 100,000gp.  It's safe to say that a character with purely top end crafted gear will be a formidable force, however, the module is designed to be perfectly playable without relying on crafted loot.
+
+==Loot Tables==
+Note: all creatures will also drop gold.  The gold is given to *every* character who clicks the creature's corpse.  
+===Creature Loot===
+Creature loot tables are divided by creature type - so all orcs draw from the same loot table, all gnomes draw from the same loot table, etc.  
+
+More valuable items in the loot table will spawn more often for difficult creatures.  However, rarely, even the most valuable items can drop from weaker enemies.
+
+Almost all creatures also have equipment items that they drop.  While rarely useful for PCs to wear, this is often a significant contributor to the gold gained from an expedition. 
+
+===Treasure Loot===
+Treasure loot is divided up into various palettes.  Each palette has its own set of possible drops, selected from randomly in each loot item.
+*Gold - caches that purely contain gold.
+*Weapons - contains a selection of pre-made weapons.  Few of these will be useful to anyone beyond an early career adventurer, but some can be improved via [[Crafting]].
+*Armour - contains a selection of pre-made armour items.  Similar setup to weapons.
+*Items - contains a variety of miscellaneous items (jewellery, consumables etc.) useful to many adventurers.
+*Wardrobe - mainly used in cities and other settlements, contains a range of valuable (but not magical) items for thieves to steal.
+*Stash - contains a variety of low-value items but occasionally turns up something of value.  
+
+===Boss Loot===
+Whenever you kill a boss monster that has a Challenge Rating that's 5 levels below the PC or higher then you get a single random item from the boss loot table.  This includes various items that can't be found elsewhere (e.g. ioun stones, +6 ability score items).  
+
+Note: a PC's challenge rating is calculated by adding their hit dice, ECL (from [[Gifts]]/[[Awards]]), plus 1 for every 5 [[Fixed Level advancement system|purchased feats]] to a maximum of +10 from feats.  So a level 10 character with 0 ECL and 50+ purchased feats will have 10 + 0 + 10 = 20 CR.  However, if the PC has a summon/henchman/etc with a higher calculated ECL, then that is used instead.  NPC ECL is a complex calculation - but if your ECL doesn't seem to be working right, try without summons!
+
+==RNG Loot==
+Anemoi uses a system (built on a framework Scholar Midnight did for Arelith) to generate loot with random properties that can show up in treasure, on bosses or even rarely on ordinary monsters.  To show up on bosses or monsters, the boss or monster has to have a challenge rating that's 5 levels below the PC or higher - i.e. it must be a reasonably challenging encounter.
+
+RNG loot is sometimes "tailored" to the PC - i.e. it will look for things like your weapon focus feats, the highest ability scores, skills etc. you have and give you loot that enhances the abilities you're already invested in.  The rest of the time, it's fully random.  Individual property limits follow very similar rules to the crafting system, but there is no max item value - so it's possible to find RNG items that are better than anything that could be crafted.
+
+==Shops==
+NPC shops have very little of use to adventurers - a few low end items to help folks who are starting out.  
+
+However, players can rent and stock shops, which can include any items that player has access to.

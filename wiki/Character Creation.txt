@@ -1,0 +1,185 @@
+==How to Defend Yourself==
+Most NWN servers rely on Armor Class (AC) as the main defense stat.  Anemoi has a second defense mechanism, based around Damage Immunity (DI).  Heavier armours and larger shields don't provide extra AC - they provide DI instead.  Shields are capped at 1 base Shield AC (before enhancements) and armour is capped at 3 AC (before enhancements). 
+
+On Anemoi, as characters approach the end game, a "low" AC is under 40 and a "high" AC is in the mid 60s. However, it's possible to build up substantial resistance to damage - a focused character can be shrugging off 80% or more of the damage from each blow.  
+
+===Sources of AC===
+The Dexterity stat is very important if you want to focus on high AC defense.  Top end Dexterity scores are 36-38 (i.e. +13-14 modifier).  Other sources of AC open to everyone include +16 from equipment (4 from Shield, 3 from Natural/Armor/Dodge/Deflection).  Miscellaneous bonuses include the Tumble skill (up to +3), and various class abilities and spells (e.g. Haste).
+
+So a non dex focused character might have +1 from dex, +3 from wearing medium or heavy armour, +16 from equipment and +1 from Tumble for a total of about 31 AC before abilities.  A dex focused character might be +14 from dex, +16 from equipment and +3 from Tumble for a total of about 43 AC before abilities.
+
+It's possible to max AC a little further by stacking dodge bonuses on boots, since dodge bonuses stack (e.g. +3 vs <race> should stack with the base +3 AC property).
+
+===Sources of DI and DR===
+All players have access to the elemental immunity feats to block up to 20 elemental damage per hit. For physical damage:
+* Shields give Piercing DI (5% for Small, 25% for Medium, 50% for Tower)
+* Helms give Bludgeoning DI (25% generally).  Steel helms also give 5/- DR vs bludgeoning.
+* Armours give Slashing DI (generally 10% for leathers, 25% for medium and 50% for heavy, though basic materials may give less).
+In addition, Shields, Helms, Armours and Bracers (not gloves) can have 5% DI added to them.  So the max "base" DI a PC can have, wearing heavy armour, a tower shield, helmet and bracers all with 5% DI added against the types they don't already protect against, is 65% DI vs slashing and piercing and 40% DI vs bludgeoning.  Class abilities can then raise this further.
+
+DI is generally a less reliable defense than AC, however, it frees you up to invest heavily in other stats (typically Strength).
+
+==Ability scores==
+Various [[Feats|feats]] have ability score requirements.  Notably, Epic Dodge and Blinding Speed require heavy Dex and further support an AC strategy. Some classes also have synergy with particular ability scores.
+
+If you intend to hit things in combat, you should have a mod of around plus 14 to hit from your main attack ability score (Str, Dex or rarely Wis) after levels ups, feat buys and equipment.
+
+==Class strengths and weaknesses==
+On Anemoi you can take 3 classes as usual, but have a max of 15 class levels to play with, and can purchase almost all abilities of the classes you have taken at the [[Fixed Level advancement system|trainer]].  Typically characters go "deep" on 1-2 classes and "dip" a single level of their remaining classes.  While some people go pure or nearly-pure caster, for most characters, taking a couple of dips will offer you more utility and overall power than remaining pure classed.
+
+Most classes are intended to offer something when taken as a dip, but with rewards for going deeper into the class.  The following table is a highlight view of which each class offers and the typical "break points" (thresholds at which classes offer a significant benefit) to help with build planning - see the class pages for more detail than given here.   
+{| class="wikitable"
+! style="text-align:left;"| Class
+! Ability Synergy
+! Dip
+! Deep
+! Notes
+|-
+| [[Barbarian]]
+| Str, Con
+| Rage (or Tribesmen)
+| DR (1/2 levels, max 4), Scaling Tribesmen
+| Having at least 1 barb unlocks a lot of rage goodies, including access to Thundering Rage which is considered by many a must have for strength builds. If your other classes do not require lots of levels, feel free to throw more into barb as it will give you more base hp, more DR and will boost your temp hp from raging. Consider deep barb for tribals as well. Dex can get good damage bonus damage, but synergizes less with the damage immunity bonus of rage along with the strength requirement of thundering rage.
+|-
+| [[Bard]]
+| Dex, Cha, Str
+| Bard Song; lots of skill unlocks
+| (7) Epic Spell access
+| Bard makes everything better. Bard casting is very lackluster but 7 levels only loses 2 bab while giving access to epic spell foci. Bard song both provides a cushion of temporary HP (great for DI builds) and extra AC (getting AC builds to "good" AC and giving DI builds more respectable AC). 
+|-
+| [[Cleric]]
+| Str, Dex, Wis
+| Up to lvl 5 casting from only 1 cleric. Divine might, Divine shield. Spellcraft.
+| (5) Epic Spell access, cheaper wand/scroll creation (11+) level 6+ spells
+| Having merely five levels of clerics doesn't get you higher level spells than 1 dip, but it has a solid CL of 15 when at max piety which allows you to max out the bonus of several cleric buffs and unlocked super cheap wand making along with powerful spell foci. Battle clerics should consider combos with 5 cleric. Those wantin in cleric for higher lvl spells should consider 1 pm dip.
+|-
+| [[Druid]]
+| Wis
+| Up to lvl 5 casting from 1 druid level.
+| (5) Wild/Elemental shape, Epic Spell access (11+) level 6+ spells
+| Up to +15 caster bonus from [[Magic_Systems#Pacts_and_Attunement|attunement]] Druids need not to worry about that physical stats with the power to turn into elementals, but may consider qualifying for epic dodge (at cost of more mental stats). Zen archery can be used to hit things if wanted to fight in base form as well without investing in physical. Druids are the only class that can providing breach effects for the non-elf side of the conflict. When changing forms, damage immunity from shield helm armor (along with other properties) are added to the new form.
+|-
+| [[Fighter]]
+| Str, Dex, Int
+| BAB top-up, (Epic) Weapon Specialisation
+| Scaling INT bonus to attack & damage, more BAB top up, Second Wind, DI scaling
+| Fighter pairs excellently with Bard, Rogue, Assassin, Cleric and other 3/4 BAB classes that want to hit things in combat.  It also offers a DI bonus that scales with level, pairing nicely with Barbarian for a heavy DI build.
+|-
+| [[Favoured Soul (Class)|Favoured Soul]]
+| Dex, Cha
+| "One trick" and item use
+| (6) Epic Spell access, (++) more spellcasting
+| Favoured Souls can cast essentially infinitely as long as they keep their Piety rolling in.  Your key decision is whether you want a few utility spells to support another class, a "Gish" style self-buffing spell selection, or an offensive focus such as spamming Hammer of the Gods.  Remember sympathetic casting means that a second copy of each spell you cast on someone else will be cast on you.
+|-
+| [[Monk]]
+| Dex, Wis
+| Monk attack progression, Perfect Self, good class skills
+| (6) Wis bonus to AC, (++) higher Spell Resistance
+| With an expanded monk weapon list, and particularly the Quarterstaff, monks get more APR (attacks per round) than other classes.  Their WIS bonus to AC pushes a dex-focused character from "good" to "great" AC. Note the Wis bonus to AC requires at least 50% of your levels to be Monk, or 6 levels, whichever is lower.
+|-
+| [[Paladin]]
+| Dex, Cha, Str
+| Divine Might/Shield, wand access
+|(4) Spellcasting, (11) Epic Spell access
+| Like Clerics, Paladins can use additional spell slots to get access to their higher spell levels.  While traditionally thought of as a heavy armour class, Divine Might & Shield have strong Dex synergy so they are probably stronger with Dex here. 
+|-
+| [[Ranger]]
+| Dex
+| Bane of Enemies
+| (4) Spellcasting, (11) Epic Spell access, (80%) henchman animals
+| Characters who have at least 80% of their levels in Ranger convert animals to henchmen when they successfully use Animal Empathy, and can control up to two at once.  Some animals in the wild are very strong, and offer a tank option allowing the ranger to skimp on defense. 
+|-
+| [[Rogue]]
+| Dex
+| Class skills, ability to spot and disable high end traps
+| (5) Access to Improved Sneak Attack, (++) skill points for days
+| [[Skills]] are particularly important on Anemoi, and there are areas of the module that are particularly focused on supporting burglary as a path of adventure.  Pickpocket and disabling traps are two of the few ways to get XP beyond level 10.
+|-
+| [[Sorcerer]]
+| Cha, Dex
+| "One trick" and item use
+| (6) Epic spell access, (++) more spellcasting
+| Sorcerers get to cast as often as they like so long as they have sufficient [[Stamina]].  Fighter levels reduce the cost of spellcasting, 
+|-
+| [[Wizard]]
+| Int, Dex, Con
+| Rituals and item use 
+| (5) Epic spell focuses, cheaper wand/scroll creation 10 for Undead Caster level 30 for top tier undead and decent casting ability. 11+ the higher spells
+| Elemental pacts allow wizards to surpass the CL of clerics with less level investment, particularly helpful for undead summoning. Using fighter with wizard can allow a high bab arcane with fighter's fill in missing bab bonus. I Rated dex higher synergy because you do not have to worry about spell failure and can potentially gain access to epic dodge.
+|-
+|}
+{| class="wikitable"
+! style="text-align:left;"| Class
+! Ability Synergy
+! Dip
+! Deep
+! Notes
+|-
+| [[Arcane archer|Arcane Archer]]
+| Dex, Wis
+| SLAs
+| (3) Enchant Arrow +6
+| Enchant Arrow scales to +6, but you can only take 2 ranks per level in the class (so 3 levels for max bonus available). Caster level for Imbue Arrow scales further with AA levels.  Arcane Archers can get the highest AB of any class, and synergise well with classes that improve movement speed (Monk, Barbarian).  Rangers can take AA without arcane caster levels.
+|-
+| [[Assassin]]
+| Dex, Int
+| SLAs, class skill access
+| (5) Improved Sneak access,  (7) Ethereal Visage, (++) ability duration & Assassinate damage
+| Assassinate ability grants bonus non-reduceable damage to targets
+|-
+| [[Blackguard]]
+| Dex, Cha, Str
+| Divine Might & Strength, Summon Fiend
+| (3) Create Undead
+| The Blackguard undead feat summons unique undead not available to any other class, culminating in Doom Knights.  Like Paladin, Blackguard offers strong Dex synergy here.
+|-
+| [[Divine Champion (Champion of Torm) | Divine Champion]]
+| Cha
+| Sacred Defense
+| (++) Divine Wrath
+| Underwhelming on Anemoi and overdue for a rework, Divine Champion offers little that can't be done better by other classes (or crafted gear) at present.
+|-
+| [[Dwarven Defender]]
+| Str, Con
+| Damage Reduction 3
+| (10) Damage Reduction 6
+| A strong dip for a DI focused build, since damage reduction is applied after the % reduction from immunity.  Otherwise offers little.
+|-
+| [[Knight (Purple Dragon Knight)|Knight]]
+| N/A
+| Many and varied!
+| N/A
+| Knight is an extremely flexible class and makes any melee build better with a range of useful abilities.  The different traditions provide different boosts, and Heroic Ward is excellent synergy for a companion going the DI defense route. Final Stand for Valiant and Protector is also useful synergy for a DI defense setup.
+|-
+| [[Pale master| Pale Master]]
+| Dex
+| Undead summoning, crit immunity
+| UCL bonus
+| Pale Master is an excellent 1-dip for Cleric or Wizard, granting extra defense and undead summoning without costing any spellcasting capability.  Note that Clerics and Favoured Souls can take Pale Master here.
+|-
+| [[Harper|Spy]]
+| Dex, Cha
+| Bane of Enemies, SLAs
+| (5) Favoured Enemy improves
+| Excellent 1-dip class that gives a lot of utility to a non-caster build.  Note that Cat's Grace and Eagle's Splendor spells stack with potions or spells cast by other classes.
+|-
+| [[Shadowdancer]]
+| Dex
+| HIPS, Shadow
+| (++) Hide bonus per level, (6, 8, 10) Shadow Evade improves
+| Hide in Plain Sight is a strong ability as ever, and the shadow clone is useful as well.  Shadow Evade duration scales with level. 
+|-
+| [[Weapon Master]]
+| Str
+| Ki Damage, Increased Critical Threat & Multiplier for "Big Damage" and killing pressure.
+| (5) Superior Weapon Focus
+| Ki Damage is very helpful for countering AC improvement effects in PvP.  
+|}
+
+==Notable Paths==
+Note: paths must be taken on creation so can only be taken if you start with a relevant class.
+===Spellsword===
+A [[Wizard#On_Spellswords|Wizard path]] that upgrades the Wizard to 3/4 BAB, gives them the ability to enchant their weapon and prevents them conjuring... among other things.  BAB adjustment does not stack with the similar Fighter bonus; the fighter bonus will exclude any Spellsword levels for its calculation.  Fun and flavourful "gish" option, giving melee power without sacrificing higher level spellcasting.
+===Kensai===
+[[Kensai]] is a path available to all classes except heavy casters (so not Bard, Wizard, Sorcerer, Cleric, Druid or Favoured Soul).  Kensai can't take any of those classes.  They can use SLAs (spell like abilities) from their classes, and "mundane" items, but can't use non-thrown ranged weapons or bound spells on items.  The main impact of this on Anemoi is no potion access; potions drop frequently and can be crafted, so are important to many classes.  However, the permanent bonuses for kensai are not insignificant.  
+For more, see the individual class pages or the list in [[:Category:Classes#Paths]].

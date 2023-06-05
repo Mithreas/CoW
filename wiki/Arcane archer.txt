@@ -1,0 +1,46 @@
+[[Category:Classes]]
+== Arcane Archer ==
+==== Requirements: ====
+Base Attack Bonus 3, Weapon Focus (Longbow or Shortbow), Race (Elf or half elf)
+----
+
+==== Proficiencies: ====
+Light and Medium Armor, Simple and Martial Weapons, Shields
+----
+==== Class Skills: ====
+Craft Armor, Craft Trap, Craft Weapon, Heal, Hide, Listen, Lore, Move Silently, Ride, Spot
+----
+==== Class Features ====
+Base Attack Bonus:    1<br />
+Base Skill Points:    4<br />
+Base Hit Points:    8<br />
+Primary Saves:    Fortitude, Reflex
+----
+==== Class Specific Feats: ====
+''When not noted, the feat works as in regular NWN.''
+{| class="wikitable"
+|+Class Feats
+!Feat
+!Requirements
+!Comment
+|-
+|Enchant Arrow I-VI:
+|1/2/3 class levels ''Taken Sequentially''
+|
+|-
+|Hail of Arrows
+|SL13
+|
+|-
+|Arrow of Death
+|SL16
+|
+|-
+|}
+----
+
+=== Mechanical Changes ===
+''Here the general changes should be noted, see Arelith Wiki.''
+----
+==== Notes, Tips, and Interesting Bits: ====
+Enchant arrow adds to both attack bonus and damage, allowing Arcane Archer to obtain the highest attack bonus of all classes.

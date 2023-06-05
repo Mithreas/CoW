@@ -1,0 +1,70 @@
+[[Category:Classes]]
+== Cleric ==        
+==== Available Paths: ====
+[[Favoured_Soul|Favoured Soul]], [[Healer|Healer]]
+----
+==== Requirements: ====
+Race: Human 
+
+Deity: Human Deitys. One of the Seven or the Dark One.
+----
+
+==== Proficiencies: ====
+Light and Medium Armor, Simple Weapons, Shields  
+----
+==== Class Skills: ====
+Concentration, Craft Armor, Craft Trap, Craft Weapon, Heal, Lore, Parry, Persuade, Spellcraft  
+----
+==== Class Features ==== 
+Base Attack Bonus:    3/4  <br />
+Base Skill Points:    2  <br />
+Base Hit Points:    8  <br />
+Primary Saves:    Will  <br />
+----
+==== Class Specific Feats: ====    
+''When not noted, the feat works as in regular NWN.''
+{| class="wikitable"
+|+Class Feats
+!Feat
+!Requirements
+!Comment
+|-
+|Bonus Spell Slot (Cleric) I-V:    
+|''Taken Sequentially''
+|
+|-
+|Improved Caster Level +2 
+|Disabled!
+|''Max +12''
+|-
+|Extra Turning 
+|
+|
+|-
+|Divine Might  
+|13 Charisma, 13 Strength, Power Attack
+|
+|-
+|Divine Shield   
+|13 Charisma, 13 Strength, Power Attack 
+|
+|-
+|}
+----
+=== Mechanical Changes ===
+
+Divine magic has unique properties on this server, please note the changes mentioned in [[Magic_Systems]]
+
+Clerics and paladins get a caster level increase depending on their piety. Its piety/10 rounded down to the next decimal. So a cleric with 89% piety would get +8 CL on spells they cast.
+And yes. That means with a negative piety you will get -CL.
+
+Clerics will restore spells when praying at an altar of their deity.
+
+The Favoured Soul path can cast any of its memorised spells as many times per day as the cleric has slots of that level.  So if the cleric has 3 level 2 spell slots and memorises Bull's Strength, Endurance and Cure Moderate Wounds, they could choose to cast Cure three times, or Bull's once and Endurance twice, or any combination of the three.  As a trade off, they lose their starting armour proficiencies (though can re-learn them later) and both their domains.  
+''Favoured Soul is likely to recieve mayor changes in the near future.''
+
+Clerics with 5 or more levels in the class get a deep discount on wand creation.
+----
+==== Notes, Tips, and Interesting Bits: ====   
+Divine casters already know all spells for every circle of spells.  They only need added spell slots through equipment or feats to have access to them.
+They will still need to have enough Wisdom to cast the spell, for example third circle spells will require 13 wisdom.

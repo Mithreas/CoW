@@ -1,0 +1,521 @@
+== Feats ==     
+All characters can pay gold coins to trainers in exchange for learning a new feat  The trainer will give you the selection of feats that you currently qualify for and are able to select.  When you have decided on which feat to purchase your System Level (SL) will increase. The higher a character's ECL adjustment the more expensive the first feat will cost them, while lower ECL characters will get to spend less.  <br />
+From then on every feat will cost 500 coins more than the last feat you purchased and there is no limit to the amount of feats you can buy.  Once you become SL 31 you will be allowed to begin purchasing epic feats.<br />  
+  
+Feats that stack and can be taken multiple times such as Great Strength can generally only be a maximum of four times one notable exception is Epic Toughness which can only be taken twice.<br />    
+
+Every trainer is only able to train a few classes himself, some trainers for the more exotic prestige classes might be hard to find. (And you can only learn general feats, or feats for which you have the relevant class!  See class pages for class-specific feats)<br />
+  
+Some of the requirements for feats have been changed to allow for a more flexible character build system.  All feats and their requirements are listed below.<br />  
+  
+=== Spellcasting Feats ===
+{| class="wikitable"
+!Feat
+!Requirements
+!Comment
+|-
+| Arcane Defense  
+|Available to all classes
+|
+|-
+| Brew Potion  
+|3 spellcaster levels
+|GP cost is Potion CL * Innate Level * 50 * 0.3 normally.  (Level 5+ Wizards is Innate Level * 15)
+|-
+| Combat Casting
+|1st Circle Spells  
+|
+|-
+| Courteous Magocracy  
+|Can be taken after level 1
+|
+|-
+|Craft Wand  
+|5 spellcaster levels
+|Wands retain the same caster level of their creator
+|- 
+| Craft Wondrous Item 
+|Brew Potion, Scribe Scroll, Craft Wand
+|Spellcasters can add a single 1/day spell to Rings/Amulets/Magic Staves, retains caster level at time of creation.
+|-
+|Empower Spell
+|2nd Circle Spells  
+|
+|-
+|Extend Spell
+|1st Circle Spells  
+|
+|-
+|Greater Spell Focus 
+|Spell Focus 
+|
+|-
+|Greater Spell Penetration
+|Spell Penetration  
+|
+|-
+|Maximize Spell  
+|3rd Circle Spells
+|
+|-
+|Quicken Spell 
+|3rd Circle Spells 
+|
+|-
+|Scribe Scroll 
+|Spellcaster Level 1 
+|
+|-
+|Silent Spell 
+|1st Circle Spells 
+|
+|-
+|Spell Focus 
+|1 Spellcraft 
+|
+|-
+|Spell Penetration  
+| 1st Circle Spells
+|
+|-
+|Still Spell  
+|1st Circle Spells
+|
+|-
+|}
+
+=== Combat Feats ===
+        
+{| class="wikitable"
+!Feat
+!Requirements
+!Comment
+|-
+|Ambidexterity  
+|15 Dexterity 
+|
+|-
+|Armor Proficiency (Heavy) 
+|Armor Proficiency (Light, Medium) 
+|
+|-
+|Armor Proficiency (Light)    
+| 
+|
+|-
+|Armor Proficiency (Medium)  
+|Armor Proficiency (Light)
+|
+|-
+|Blind Fight    
+| 
+|
+|-
+|Called Shot
+|Base Attack Bonus +1  
+|
+|-
+|Circle Kick  
+|Base Attack Bonus +3, 15 Dexterity, Improved Unarmed Strike
+|
+|-
+|Cleave
+|13 Strength, Power Attack  
+|
+|-
+|Deflect Arrows  
+|13 Dexterity, Improved Unarmed Strike 
+|
+|-
+|Dirty Fighting
+|Base Attack Bonus +2   
+|
+|-
+|Disarm 
+|13 Intelligence  
+|
+|-
+|Divine Might  
+|Turn Undead, 13 Charisma, 13 Strength, Power Attack 
+|Infinite uses, Consumes 5% Stamina per use.
+|-
+|Divine Shield 
+|Turn Undead, 13 Charisma, 13 Strength, Power Attack  
+|Infinite uses, Consumes 5% Stamina per use.
+|-
+|Dodge
+|13 Dexterity  
+|
+|-
+|Expertise 
+|13 Intelligence 
+|
+|-
+|Extra Stunning Attacks  
+|Base Attack Bonus +2, Stunning Fist
+|
+|-
+|Great Cleave 
+|13 Strength, Power Attack, Cleave, Base Attack Bonus +4 
+|
+|-
+|Improved Critical  
+|Base Attack Bonus 5, Creature weapon added as a possible selection.
+|
+|-
+|Improved Disarm
+|13 Intelligence, Disarm  
+|
+|-
+|Improved Expertise 
+|13 Intelligence, Expertise 
+|
+|-
+|Improved Knockdown  
+|Base Attack Bonus 5, 13 Intelligence, Knockdown
+|
+|-
+|Improved Parry  
+|13 Intelligence
+|
+|-
+|Improved Power Attack
+|13 Strength, Power Attack  
+|
+|-
+|Improved Two-Weapon Fighting
+|Base Attack Bonus 5, Two Weapon Fighting, Ambidexterity  
+|
+|-
+|Improved Unarmed Strike    
+| 
+|
+|-
+|Knockdown    
+| 
+|
+|-
+|Mobility
+|13 Dexterity, Dodge  
+|
+|-
+|Point Blank Shot    
+| 
+|
+|-
+|Power Attack 
+|13 Strength 
+|
+|-
+|Rapid Reload
+|Base Attack Bonus +2  
+|
+|-
+|Rapid Shot 
+|13 Dexterity, Point Blank Shot 
+|
+|-
+|Shield Proficiency    
+| 
+|
+|-
+|Spring Attack  
+|13 Dexterity, Dodge, Mobility, Base Attack Bonus +4
+|
+|-
+|Stunning Fist  
+|Base Attack Bonus 5, 13 Dexterity, 13 Wisdom, Improved Unarmed Strike
+|
+|-
+|Two-Weapon Fighting    
+| 
+|
+|-
+|Uncanny Dodge I-VI  
+|Available to all classes, Taken Sequentially
+|
+|-
+|<s>Uncanny Reflex</s>
+|Uncanny Dodge VI  
+|Disabled & removed from characters on 29/04/2020 for balance reasons
+|-
+|Weapon Finesse  
+|Base Attack Bonus +1
+|Medium creatures can benefit from Finesse when using Quarterstaff and Windblade.
+|-
+|Weapon Focus 
+|Base Attack Bonus +1, Creature Weapon added as a possible selection. 
+|
+|-
+|Weapon Proficiency (Exotic) 
+|Base Attack Bonus +1 
+|
+|-
+|Weapon Proficiency (Martial)    
+| 
+|
+|-
+|Weapon Proficiency (Simple)    
+| 
+|
+|-
+|Whirlwind Attack  
+|13 Dexterity, 13 Intelligence, Expertise, Dodge, Mobility, Spring Attack, Base Attack Bonus +4
+|
+|-
+|Zen Archery  
+|Base Attack Bonus +3, 13 Wisdom
+|
+|-
+|}
+
+=== General Feats ===       
+
+{| class="wikitable"
+!Feat
+!Requirements
+!Comment
+|-
+|Alertness    
+| 
+|
+|-
+|Artist   
+|Can be taken after level 1, Bard
+|
+|-
+|Bullheaded  
+|Can be taken after level 1
+|
+|-
+|Evasion
+|Available to all classes  
+|
+|-
+|Extra Smiting
+|Smite Evil or Smite Good  
+|
+|-
+|Extra Turning
+|Turn Undead  
+|
+|-
+|Fearless  
+|Available to all races, No requirements
+|
+|-
+|Gain Skill Points  
+|Gain 2 + Intelligence modifier (+1 if human) skill points
+|
+|-
+|Great Fortitude    
+| 
+|
+|-
+|Iron Will    
+| 
+|
+|-
+|Improved Evasion  
+|Available to all classes, 18 Dexterity, Evasion
+|
+|-
+|Improved Initiative    
+| 
+|
+|-
+|Lightning Reflexes    
+| 
+|
+|-
+|Luck Of Heroes  
+|Can be taken after level 1
+|
+|-
+|Resist Disease    
+| 
+|
+|-
+|Resist Energy (Type)    
+| 
+|
+|-
+|Resist Poison    
+| 
+|
+|-
+|Silver Palm  
+|Can be taken after level 1
+|
+|-
+|Skill Focus  
+|Ability to Use Skill
+|
+|-
+|Stealthy    
+| 
+|
+|-
+|Thug    
+| 
+|
+|-
+|Toughness    
+| 
+|
+|-
+|}
+
+
+=== Epic Feats ===
+All require SL 31.    
+        
+{| class="wikitable"
+!Feat
+!Requirements
+!Comment
+|-
+|Automatic Quicken Spell I-II  
+|Quicken Spell, Epic Skill Focus (Spellcraft)
+|
+|-
+|Automatic Silent Spell I-II  
+|Silent Spell, Epic Skill Focus (Spellcraft
+|
+|-
+|Epic Dodge  
+|23 Dexterity, Improved Evasion, Dodge 
+|
+|-
+|Epic Energy Resistance (Type) I-II       
+|Taken Sequentially
+|
+|-
+|Epic Fortitude    
+| 
+|
+|-
+|Epic Prowess    
+| 
+|
+|-
+|Epic Reflexes    
+| 
+|
+|-
+|Epic Reputation    
+| 
+|
+|-
+|Epic Skill Focus 
+|Skill Focus 
+|
+|-
+|Epic Spell Focus  
+|3rd Circle Spells, Greater Spell Focus
+|
+|-
+|Epic Spell Penetration 
+|Greater Spell Penetration 
+|
+|-
+|Epic Toughness I-II    
+| 
+|
+|-
+|Epic Weapon Focus
+|Weapon Focus  
+|
+|-
+|Epic Will    
+| 
+|
+|-
+|Great Charisma I-IV    
+| 
+|
+|-
+|Great Constitution I-IV    
+| 
+|
+|-
+|Great Dexterity I-IV    
+| 
+|
+|-
+|Great Intelligence I-IV    
+| 
+|
+|-
+|Great Strength I-IV    
+| 
+|
+|-
+|Great Smiting
+|20 Charisma, Smite Good or Evil  
+|
+|-
+|Great Wisdom I-IV    
+| 
+|
+|-
+|Improved Combat Casting  
+|Combat Casting
+|
+|-
+|Improved Stunning Fist 
+|17 Dexterity, 17 Wisdom, Improved Unarmed Strike, Stunning Fist 
+|
+|-
+|Improved Sneak Attack I-IV
+|Sneak Attack:requires 3 sneak attack dice from a single class
+|
+|-
+|Improved Whirlwind Attack 
+|17 Dexterity, Whirlwind Attack 
+|
+|-
+|Mummy Dust 
+|Epic Spell Focus Necromancy, Epic Skill Focus Spellcraft, Spellcraft 13
+|Begins at Tier 1 of undead summoning, plus one tier per 10 caster levels - so 30 CL needed to get the highest level summons.  PM levels count double and the feat Mummy Dust gives you a +5 CL bonus. 
+|-
+|Overwhelming Critical
+|18 Strength, Cleave, Great Cleave, Improved Critical  
+|
+|-
+|Perfect Health 
+|20 Constitution, Great Fortitude 
+|
+|-
+|Self Concealment 10%
+|22 Dexterity, Epic Skill Focus (Hide)  
+|
+|-
+|Superior Initiative 
+|Improved Initiative 
+|
+|-
+|Blinding Speed
+|25 Dexterity
+|Infinite uses, Consumes 25% Stamina per use.
+|-
+|}
+
+=== Currently Unavailable Feats ===
+
+:Armor Skin
+:Construct Shape   
+:Devastating Critical  
+:Dragon Shape  
+:Epic Damage Reduction  
+:Outsider Shape  
+:Planar Turning  
+:Self Concealment II-IV  
+:Undead Shape    
+
+==== On Creation only ====
+:Strong Soul
+:Snake Blood
+:Blooded
+:Mounted Archery
+:Mounted Combat

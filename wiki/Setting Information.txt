@@ -1,0 +1,96 @@
+=Overview – gameplay=
+
+Human PCs start in an island city.  The three noble houses contest with one another for resources and dominance, while beneath the surface (and the slums of UnderCity) lurks a sinister threat led by the mysterious “Dark One”.  Humans do not have access to arcane classes (bard, wizard, sorcerer) or druid.
+
+Halfling PCs start amid green fields, in one of many cosy villages on a nearby peninsula.  Despite being skilled farmers (and possessing mild nature magic), their fields and homes are threatened by an infestation of hostile fey, which seem intent on wiping them out.  Halflings do not have access to arcane or divine classes (wizard/sorcerer or cleric/paladin) but can be druids and bards. 
+
+Elven PCs start amid the lakes and woodlands of the mainland.  Their main concern is a virulent plague, coupled with the inherent tendency of their magical nature to rise again as undead following death.   Elves do not have access to divine classes (cleric/paladin).
+
+The world is low magic in terms of gear, and has a level cap of 15 but with the “Fixed Level” progression system [can use gold to purchase additional feats and other advancements via training].  PvM will, in almost all cases be very lightly penalised.  Repeated PvP outside of resource contest areas can lead to permadeath, and certain (clearly marked) plot areas will expose PCs to permadeath from NPC sources.
+
+It will be entirely possible to play the game without leaving the area dominated by your race, fulfilling quests to support your community or faction, and engaging in political/factional roleplay (especially for humans).  Travel between the different areas of the world will be time consuming, though PCs will be able to travel while their players are offline.  The intent is that in a single session of gameplay a player will not be able to visit multiple regions of the world map, enforcing some additional distance between races. 
+
+PvP will also be possible, with conflict between races being a core part of the setting. 
+
+However, the main focus of the world is on discovery.  In this, I acknowledge the influences of the writings of Brandon Sanderson and Stephen Ericsson, whose novels allow their readers to gradually uncover secrets of the setting.  This module is intended to offer a similar experience.
+
+=Wider racial dynamics=
+It will quickly become clear during play that
+*	Elves are dire enemies with the other races, and an Elven force is engaged in a long term siege of a mighty wall that separates the halflings’ peninsula from the mainland, having wiped humans and halflings out from most of the continent.
+*	Halflings’ farms send food to the human city, and the humans originally built and still maintain the defensive wall that protects the farmland from Elvish invasion.
+*	Humans have something of the Renaissance man about them; religion and science operating hand in hand.
+*	Goblins (not playable) are rather simple creatures that can be found in the service of mages.  Vicious towards outsiders, they do little to improve the reputation of mages among their enemies.
+*	Fey (not playable) are deeply hostile to halflings and their human allies, but largely invisible to / symbiotic with Elves.  Creatures of nature, they often claim to speak for the natural world… in their more serious moments. 
+
+=Religion and Magic=
+The human [[religion]] is the Cult of the Seven Divines.  These are legendary heroes who saved humanity from the Elves, and at least one of them (known only as The Emperor) is still seen regularly, and rules the City.  The Divines keep the City safe from Elven attack by enchanting the ocean; a single mage aboard a vessel makes it certain to sink.   No mage claimed by the sea in this way has ever been known to survive.  (Flight doesn’t help either, though it has been rarely tried; storm winds invariably rise up to force fliers to the water).  Elves and Fey, as innately magical creatures, are unable to cross, while the mild nature magic many halflings have only rarely triggers ill effects.  Still, very few halfings risk salt water, and they are not normally permitted on human ships.
+
+No doubt due to the bane effect that the human religion has on their magics, Elves consider it demon worship, and show little mercy to priests of the Seven.
+
+Clerical spells are sympathetic in nature, with the caster receiving the same effect they inflict on another.
+
+Arcane magic, in turn, is deeply tied to the natural world, as both a weapon of nature and a bane.  It draws on natural life force, and overuse will spread death and decay.  But it can also be used to guide and direct the circle of life.  Mages in Elven society typically give of their life essence to power their magics and harvest life essence from the dying; a voluntary social contract among their people, but to their enemies, they are literally soul stealers (see picture). 
+
+Druidic magic is essentially a barter system, where rather than directing natural power, the druid serves and guides it.  Sometimes the druid will be asking favours, sometimes fulfilling them, but they are generally allies to natural powers.  Generally, druidism is a religion recognised by all, though for cultural and geographical reasons humans taking a mystical path follow the Seven.
+
+[[File:Elfmage.jpg]]
+==Minor Casters==
+Ranger and bard magic isn't really "natural", "arcane" or "divine" in the classic D&D sense - trying to categorise everything in that way doesn't really fit here. 
+* There is power all over the place - the elemental spirits represent knots of power that have become sentient, but there is power in the air, the grass, the water.
+* Individuals can learn to tap into this power, but their ability to channel it is limited by their own capability.
+* "Main caster" classes who get to do major things with this power do so with the help of outside forces - gods, powerful spirits etc. 
+* Having a pact or agreement with an outside force is definitely worth of suspicion, if that outside force is not one that your fellow racial members think has their interests at heart.
+* But "minor magics" are basically OK - if an inqusitor sees someone charming a badger who isn't a priest, they're not going to immediately lynch you, though you may find yourself under more attention than others...
+
+=Secrets and Mysteries=
+Everything up to this point is largely common knowledge.  The info will be widely available in game, albeit presented from racial standpoints.
+
+One core facet of the game, however, will be the opportunity to dig beneath the surface of these simple truths.  Doing so will not be simple; the “quest for truth” will require players to assemble information themselves to figure out the right questions to ask.  Certain plot NPCs will not have normal conversation trees, and players will have to type out their questions and rejoinders.  Fail to ask the right question, and you will leave no wiser than you came… if you leave at all.
+
+An example of a mystery that a keen reader might have spotted so far is why the fey, leaders of the natural world, are in opposition to the druids of the halflings, who seek to live in harmony with it.  A druidic PC might naturally wish to investigate that question…  
+
+=Alignment=
+Any D&D based setting needs to define how it will use this particularly broad mechanic.  The approach taken here is as follows.
+*	Good vs Evil aligns to “Compassion vs Selfishess”.  It is not absolute; an Evil character may show compassion (particularly towards someone they care about), while a Good character may fail to show it (particularly towards an enemy).  
+*	Law vs Chaos aligns to “acceptance of authority vs hostility to it”.   A Lawful character is less likely to question the established order, while a Chaotic character is more likely to have friction among their own community due to rejecting established norms.  Of note is that having your own personal code is not lawful – what matters is how closely your code aligns with your society’s.
+
+Alignment is based on a 'character’s own self-image' rather than a cosmic norm.  A healer who insists on healing their enemies, for example, may be Chaotic Good; they identify themselves by showing compassion even to those who reject and oppose their own social order.  Chaotic characters are thus “purer” good or evil, and Lawful characters behave more similarly to each other due to following the same set of cultural norms.
+Alignment is also relevant to magic.  In general, arcane magics are stronger among Chaotic souls, divine magics are stronger among Lawful souls, and druidic magics are strongest on the balance between Law and Chaos. 
+Lastly, it is not major magic to reveal a character’s alignment.   Capable NPCs will react differently to PCs based on their alignment (and how they feel about that alignment).  Note that this is not likely to be universal; an Elf is likely to prefer to deal with a Chaotic human (at odds with their own society) but a Lawful Elf.  
+=The City of Winds=
+Surrounded and protected by the ocean, the City of Winds is the residence of almost all living humans (excepting those posted to the Wall, and a few small fishing communities living among halfling villages on the mainland).  It is dominated by three major Houses – Renerrin, Drannis and Erenia.   House Renerrin are the scholars, primary sponsors of the University, and firm believers in the primacy of science.  House Erenia are the mystics, devout servants of the Seven, and with the most priests among their number.  House Drannis are the warriors, ever aware of the existential threat to the City’s food supply even while many members of the other Houses are rendered complacent by the watery walls of the city itself.  
+
+The City has a Voice (so called because he or she “speaks with the Emperor’s voice”) who serves as the Emperor’s chief officer and handles the vast majority of the business of government (if the divine Emperor himself gets involved, it’s a notable occasion), appointed by vote among all nobles with a certain net wealth or higher, for one year terms (though so long as they keep winning elections, they may serve indefinitely).  The Voice has considerable patronage and overthrowing one is expensive, so a Voice will often be returned unopposed while their political opponents build up their war chests.  Under the Voice is an advisory council, made up of the head of the university (Chancellor), the head of the temple (Archbishop), and the head of the armed forces (Lord of the Wall).  Usually filled by representatives of the three largest Houses.  The small navy (and indeed all other vessels) come under the auspices of the temple rather than the military, a reflection of the lack of any military challenge to human shipping.
+
+The Houses are in constant competition for the position of Voice, which in turn lets the House funnel more and more wealth to itself, making their position ever harder to challenge.  Alliances between the Houses tend to be short-lived and to involve the two non-Voice Houses combining to end a Voice’s tenure deemed to have lasted overlong.  But the few resources outside of the city walls are also contested as sources of wealth, and city law formally ends at the borders of the city, a measure intended to give young bravos real military experience (and to avoid the city guard – under the Voice’s direct command – from ensuring dominance of the resources that exist).  Injuries from these skirmishes are common, but deaths are very rare; healers from all three houses (and some unaligned) roam the area, and are considered exempt from the fighting unless they engage first.  
+
+Few nobles pay much attention to the Undercity, a sprawling slum that extends downwards into the island’s bedrock.  The usual problems of poverty, crime and hunger exist where the light does not reach, and the city guard do not venture below outside of specific operations.  
+
+The greatest crime in the city is to dabble with (arcane) magic.  Arcane knowledge is strictly forbidden, and to be convicted of possessing anything deemed as such carries the death penalty (by drowning, in preference).  At one level, this is an entirely practical matter – for a closet mage stepping foot on a ship would doom the ship.  It also reflects the deep antipathy towards soul-stealing demon magics felt by most of the population.  Suspected mages are thrown into the sea, an effective test of their corruption.
+
+The source of all corruption in the city is the Dark One, supposedly a powerful mage who seeks to corrupt the city by recruiting students to the dark arts, and using them to overthrow the city.  [House Drannis in particular are quick to remind citizens that to abandon the mainland is to starve to death, while House Erenia make sure that all are aware of the inability of mages to cross water.  House Renerrin, meanwhile, plays closest to the edge, and have developed a complex definition of “arcane knowledge” that is used by the courts.   Renerrin scholars working in this area are regularly sent out on rowboats as a purity test.]
+The Dark One is very much a fairy tale – naughty children are threatened with her, and beggars will swear blind that they see her stalk the Undercity at night.  Most disregard these tales, and some even doubt the Dark One’s existence, though it is true that arcane knowledge continues to turn up in the City even today.  Consensus has it that she lives very deep below the city, in the warren of caves that extend deep into the earth.  (University scholars have determined that the island is an extinct volcano, and the caves are old magma channels).
+
+In gameplay, human quests tend to revolve around the rivalry between the Houses, with PCs picking one of the Houses to support (and be paid by!).  Freeform adventuring can take PCs below the city, while the Undercity itself is full of surprises.
+
+=The Peninsula (Perenor)=
+A rural area of gently rolling hills and dense woodland, the peninsula is now the grain basket of the human and halfling races.  A few scattered fishing villages, generally human-populated, bring in food from the sea, while farming villages extract as much produce from the land as they can.  Animal husbandry is rare; fish is eaten far more commonly than meat.  
+
+By now the whole peninsula would be farmland, were it not for the fey.  Deeply protective of the remaining wild spaces, they also seek to spoil established farmland, and reclaim it.  Waking up one morning to find a copse of trees where a field stood the night before is not unusual, while heavy mists frequently keep the sun from fields and limit growth.  Halflings, led by their druids, have got quite experienced at overcoming fey tricks, and claim new land where they can.  
+
+Travel in the Peninsula is hazardous.  Humans will almost always sail around the coast rather than try to travel overland between villages.  Halflings have the unenviable choice of risking the sea or taking a chance on the fey; as a result, it is rare for halflings to leave their village.  Adventurers do exist, however, and there are even a few halfling sea captains who will take members of their race to sea after carefully assessing the risk.  Druids tend to be more able to navigate the feywilds without coming to harm, but are also more likely to attract the wrath of the ocean. 
+Halfling leadership is fragmented due to the difficulty of travel.   Broadly, each village elects a Mayor, and has Elders, though the details of how each are appointed can vary.  Druids also have a respected place, and the voice of the senior Druid (again determined locally) usually carries a lot of weight in decision making.   
+
+Halfling gameplay largely revolves around the struggle against the fey.  Quests are oriented around undoing or preventing fey mischief, while bold adventurers can venture into the feywilds in search of treasure or knowledge.
+=The mainland=
+The continent is vast, and will not be fully rendered in game (!). 
+ 
+Elven settlements are arboreal in nature, and often have fey co-residing (much in the nature of birds in human settlements, the two races tend to have little to do with each other most of the time).  However, the central challenge the Elves face right now is a plague which has spread to nearly every one of their number.  No cure has yet been discovered, though an antidote that forestalls the disease is widespread; a significant number of Elves spend all their time at present creating antidote, and as a result, deaths from the plague have dropped almost to zero.  
+
+The oldest Elf in each settlement is an Elder, and formally the race is ruled by the conclave of Elders.  Each Elder may nominate a delegate.  In practice, the elders of most settlements do not engage in politics (nor nominate a delegate to do so on their behalf), and decisions are made by those who choose to take part. 
+
+There are large areas of the land that are blasted and barren, and those with the capability to do so assist with the healing of these areas.  Elven mages often adopt, or are assigned, patches of wasteland to heal.
+Unfortunately, the magical nature of Elves means that they are very prone to rising as undead.  They avoid this by giving up their magical essence to a mage before death, a process which is also fatal.  Most Elves, therefore, effectively pass via euthanasia at a time of their choosing.  Those who die through natural causes, however, are likely to rise again, with their magic taking on a sentient form of its own.  The more powerful the mage, the more powerful the spirit.  Put a knife in the back of an Elven archmage, and you will likely be dealing with something deeply unpleasant shortly thereafter.  This does not help the reputation of Elves among other races.
+It also, however, means that there are plenty of undead around the mainland.  Most of these tend to occupy ruined settlements, since living Elves rarely venture into such places except on explicit missions to scour restless spirits.  Unfortunately, once a spirit is formed, it is very hard to permanently remove… generally requiring a mage to process the gathered magic into another form. 
+
+In gameplay, most Elven quests revolve around gathering antidote or restoring wasteland.  A few quests, and most freeform adventuring, involve battling with the undead.

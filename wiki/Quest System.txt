@@ -1,0 +1,13 @@
+Each faction has an NPC who gives out quests.  Quests can be of 5 types:
+
+* Retrieve item(s). Character must fetch a number of items of the same type.
+* Kill NPC. Character must kill an NPC.
+* Messenger quest. Character must carry an item from the quest giver to another NPC, carry an item from the other NPC to the quest giver, or both.
+* Help NPC. Character must find another NPC and do a quest for them.
+* Patrol areas. Character must visit a number of areas on a patrol.
+
+Many Quest NPCs will only appear when needed for quests.  Some quests are repeatable - they generally offer a lower reward but can be done once per day.  
+
+All quests have a level range associated with them, and will only be offered to PCs within that level range.  This means if you level up, it might be worth checking for new quests.
+
+[[Category: Unique Mechanics]]

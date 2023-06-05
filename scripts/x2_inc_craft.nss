@@ -173,6 +173,8 @@ int CI_GetClassMagicType(int nClass)
                 return X2_CI_MAGICTYPE_DIVINE; break;
         case CLASS_TYPE_FAVOURED_SOUL:
                 return X2_CI_MAGICTYPE_DIVINE; break;
+		case CLASS_TYPE_SHAMAN:
+				return X2_CI_MAGICTYPE_DIVINE; break;
         case CLASS_TYPE_PALADIN:
                 return X2_CI_MAGICTYPE_DIVINE; break;
         case CLASS_TYPE_BARD:
@@ -328,6 +330,8 @@ object CICraftCraftWand(object oCreator, int nSpellID )
              AddItemProperty(DURATION_TYPE_PERMANENT,ipLimit,oTarget);
              ipLimit = ItemPropertyLimitUseByClass(CLASS_TYPE_FAVOURED_SOUL);
              AddItemProperty(DURATION_TYPE_PERMANENT,ipLimit,oTarget);
+             ipLimit = ItemPropertyLimitUseByClass(CLASS_TYPE_SHAMAN);
+             AddItemProperty(DURATION_TYPE_PERMANENT,ipLimit,oTarget);
         }
         else if (nType == X2_CI_MAGICTYPE_ARCANE)
         {
@@ -416,6 +420,9 @@ object CICraftScribeScroll(object oCreator, int nSpellID)
        case CLASS_TYPE_BARD:
             sClass = "Bard";
             break;
+	   case CLASS_TYPE_SHAMAN:
+	        sClass = "Shaman";
+			break;
     }
 
     if (sClass != "")
@@ -428,6 +435,12 @@ object CICraftScribeScroll(object oCreator, int nSpellID)
 			if (sClass == "Cleric" || sClass == "Ranger" || sClass == "Paladin")
 			{
              itemproperty ipLimit = ItemPropertyLimitUseByClass(CLASS_TYPE_FAVOURED_SOUL);
+             AddItemProperty(DURATION_TYPE_PERMANENT,ipLimit,oTarget);
+			}
+			
+			if (sClass == "Shaman")
+			{
+             itemproperty ipLimit = ItemPropertyLimitUseByClass(CLASS_TYPE_SHAMAN);
              AddItemProperty(DURATION_TYPE_PERMANENT,ipLimit,oTarget);
 			}
 			

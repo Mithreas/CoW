@@ -1,0 +1,18 @@
+[[Category: Unique Mechanics]]
+
+=Overview=
+Stamina is a "state" attribute, like hunger, thirst and rest.  As with the other state attributes, getting into negative stamina territory is a bad thing, and will drain your physical ability scores and give you a spell failure modifier due to exhaustion.
+
+=Gaining and losing stamina=
+Stamina is restored by resting, to a max of (your hitpoints) or 100, whichever is lower.  There are also various game effects that can give you stamina (e.g. see spells below).
+
+Stamina drains at a very low rate every hour, but is mainly drained by doing exhausting things (like running), or being hit by some special attacks.
+
+Casting arcane spells drains you of 1 stamina per spell level.
+
+You can gain a pool of additional "stored" stamina as an arcanist by holding a ritual for other players, allowing you to gain a pool of stamina points that you will draw from automatically whenever your stamina goes to 10 or less.
+
+=Spells with stamina impacts=
+* Web - drains 10 stamina every round from those caught in it.
+* Ghoul Touch - steals stamina equal to its duration from the target and gives it to the caster.
+* Entangle, Vine Mine: Entangle - drain 5 stamina every round from those caught in it.

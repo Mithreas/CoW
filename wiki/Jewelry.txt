@@ -1,0 +1,579 @@
+{{CraftNav|title=Jewelry}}
+
+==Jewelry==
+https://github.com/Mithreas/CoW/blob/master/scripts/cnrjewelersbench.nss
+
+===Polished Gems===
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Polished Greenstone
+|
+|1 Greenstone
+|
+|
+|-
+|Polished Malachite
+|
+|1 Malachite
+|
+|
+|-
+|Polished Fire Agate
+|
+|1 Fire Agate
+|
+|
+|-
+|Polished Aventurine
+|
+|1 Aventurine
+|
+|
+|-
+|Polished Phenalope
+|
+|1 Phenalope
+|
+|
+|-
+|Polished Amethyst
+|
+|1 Amethyst
+|
+|
+|-
+|Polished Fluorospar
+|
+|1 Fluorospar
+|
+|
+|-
+|Polished Garnet
+|
+|1 Garnet
+|
+|
+|-
+|Polished Alexandrite
+|
+|1 Alexandrite
+|
+|
+|-
+|Polished Topaz
+|
+|1 Topaz
+|
+|
+|-
+|Polished Sapphire
+|
+|1 Sapphire
+|
+|
+|-
+|Polished Fire Opal
+|
+|1 Fire Opal
+|
+|
+|-
+|Polished Diamond
+|
+|1 Diamond
+|
+|
+|-
+|Polished Ruby
+|
+|1 Ruby
+|
+|
+|-
+|Polished Emerald
+|
+|1 Emerald
+|
+|
+|-
+|}
+
+===Amulets===
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Value
+! Ingredients
+! Properties
+! Race Requirements
+|-
+|Ondaran Amulet
+|
+|
+|2 Ingot of Ondaran
+|
+|
+|-
+|Ondaran Greenstone Amulet
+|
+|
+|2 Ingot of Ondaran <br>1 Polished Greenstone
+|
+|
+|-
+|Ondaran Malachite Amulet
+|
+|
+|2 Ingot of Ondaran <br>1 Polished Malachite
+|
+|
+|-
+|Ondaran Fire Agate Amulet
+|
+|
+|2 Ingot of Ondaran <br>1 Polished Fire Agate
+|
+|
+|-
+|Iron Amulet
+|
+|
+|2 Ingot of Iron
+|
+|
+|-
+|Iron Aventurine Amulet
+|
+|
+|2 Ingot of Iron <br>1 Polished Aventurine
+|
+|
+|-
+|Iron Phenalope Amulet
+|
+|
+|2 Ingot of Iron <br>1 Polished Phenalope
+|
+|
+|-
+|Iron Amethyst Amulet
+|
+|
+|2 Ingot of Iron <br>1 Polished Amethyst
+|
+|
+|-
+|Silver Amulet
+|
+|
+|2 Ingot of Silver
+|
+|
+|-
+|Silver Fluorospar Amulet
+|
+|
+|2 Ingot of Silver <br>Polished Fluorospar
+|
+|
+|-
+|Silver Garnet Amulet
+|
+|
+|2 Ingot of Silver <br>1 Polished Garnet
+|
+|
+|-
+|Silver Alexandrite Amulet
+|
+|
+|2 Ingot of Silver <br>1 Polished Alexandrite
+|
+|
+|-
+|Gold Amulet
+|
+|
+|2 Ingot of Gold
+|
+|
+|-
+|Gold Topaz Amulet
+|
+|
+|2 Ingot of Gold <br>1 Polished Topaz
+|
+|
+|-
+|Gold Sapphire Amulet
+|
+|
+|2 Ingot of Gold <br>1 Polished Sapphire
+|
+|
+|-
+|Gold Fire Opal Amulet
+|
+|
+|2 Ingot of Gold <br>1 Polished Fire Opal
+|
+|
+|-
+|Electrum Amulet
+|11
+|17000gp
+|2 Ingot of Electrum
+|Enhancement Bonus: Charisma +3
+|
+|-
+|Electrum Diamond Amulet
+|12
+|
+|2 Ingot of Electrum <br>1 Polished Diamond
+|Enhancement Bonus: Strength +3
+|
+|-
+|Electrum Ruby Amulet
+|13
+|
+|2 Ingot of Electrum <br>1 Polished Ruby
+|Enhancement Bonus: Intelligence +3
+|
+|-
+|Electrum Emerald Amulet
+|14
+|
+|2 Ingot of Electrum <br>1 Polished Emerald
+|Enhancement Bonus: Wisdom +3
+|
+|-
+|Greater Luckstone
+|16
+|174241gp
+|2 Ingot of Electrum <br>1 Luckstone
+|
+Skill Bonus: Animal Empathy +5<br/>
+Skill Bonus: Appraise +5<br/>
+Skill Bonus: Concentration +5<br/>
+Skill Bonus: Craft Trap +5<br/>
+Skill Bonus: Disable Trap +5<br/>
+Skill Bonus: Discipline +5<br/>
+Skill Bonus: Heal +5<br/>
+Skill Bonus: Hide +5<br/>
+Skill Bonus: Listen +5<br/>
+Skill Bonus: Lore +5<br/>
+Skill Bonus: Move Silently +5<br/>
+Skill Bonus: Open Lock +5<br/>
+Skill Bonus: Parry +5<br/>
+Skill Bonus: Perform +5<br/>
+Skill Bonus: Persuade +5<br/>
+Skill Bonus: Pick Pocket +5<br/>
+Skill Bonus: Set Trap +5<br/>
+Skill Bonus: Spellcraft +5<br/>
+Skill Bonus: Spot +5<br/>
+Skill Bonus: Taunt +5<br/>
+Skill Bonus: Tumble +5<br/>
+Skill Bonus: Use Magic Device +5<br/>
+|
+|}
+
+===Rings===
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Value
+! Ingredients
+! Properties
+! Race Requirements
+|-
+|Ondaran Ring
+|1
+|
+|1 Ingot of Ondaran
+|
+|
+|-
+|Ondaran Greenstone Ring
+|
+|
+|1 Ingot of Ondaran <br>1 Polished Greenstone
+|
+|
+|-
+|Ondaran Malachite Ring
+|
+|
+|1 Ingot of Ondaran <br>1 Polished Malachite
+|
+|
+|-
+|Ondaran Fire Agate Ring
+|
+|
+|1 Ingot of Ondaran <br>1 Polished Fire Agate
+|
+|
+|-
+|Iron Ring
+|
+|
+|1 Ingot of Iron
+|
+|
+|-
+|Iron Aventurine Ring
+|
+|
+|1 Ingot of Iron <br>1 Polished Aventurine
+|
+|
+|-
+|Iron Phenalope Ring
+|
+|
+|1 Ingot of Iron <br>1 Polished Phenalope
+|
+|
+|-
+|Iron Amethyst Ring
+|
+|
+|1 Ingot of Iron <br>1 Polished Amethyst
+|
+|
+|-
+|Silver Ring
+|
+|
+|1 Ingot of Silver
+|
+|
+|-
+|Silver Fluorospar Ring
+|5
+|
+|1 Ingot of Silver <br>1 Polished Fluorospar
+|
+|
+|-
+|Silver Garnet Ring
+|5
+|
+|1 Ingot of Silver <br>1 Polished Garnet
+|
+|
+|-
+|Silver Alexandrite Ring
+|5
+|
+|1 Ingot of Silver <br>1 Polished Alexandrite
+|
+|
+|-
+|Gold Ring
+|6
+|
+|1 Ingot of Gold
+|Enhancement Bonus: Charisma +2
+|
+|-
+|Gold Topaz Ring
+|9
+|
+|1 Ingot of Gold <br>1 Polished Topaz
+|
+|
+|-
+|Gold Sapphire Ring
+|9
+|
+|1 Ingot of Gold <br>1 Polished Sapphire
+|
+|
+|-
+|Gold Fire Opal Ring
+|9
+|
+|1 Ingot of Gold <br>1 Polished Fire Opal
+|
+|
+|-
+|Electrum Ring
+|10
+|
+|1 Ingot of Electrum
+|Enhancement Bonus: Charisma +3
+|
+|-
+|Electrum Diamond Ring
+|11
+|
+|1 Ingot of Electrum <br>1 Polished Diamond
+|Enhancement Bonus: Strength +3
+| 
+|-
+|Electrum Ruby Ring
+|12
+|
+|1 Ingot of Electrum <br>1 Polished Ruby
+|Enhancement Bonus: Intelligence +3
+|
+|-
+|Electrum Emerald Ring
+|13
+|17000gp
+|1 Ingot of Electrum <br>1 Polished Emerald
+|Enhancement Bonus: Wisdom +3
+|
+|-
+|Ring of Camouflage
+|15
+|13046gp
+|1 Silver Garnet Ring <br>1 Lesser Rune of Investment
+|Skill Bonus: Hide +8<br/>Skill Bonus: Move Silently +8<br/>Use: [https://nwn.fandom.com/wiki/Searing_light Searing Light (5)] 1 Use/Day
+|
+|-
+|Ring of Revealing
+|15
+|
+|1 Silver Alexandrite Ring <br>1 Lesser Rune of Investment
+|Skill Bonus: Listen +8<br/>Skill Bonus: Search +8<br/>Skill Bonus: Spot +8<br/>
+|
+|}
+
+===Stonework===
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirements
+|-
+|Fixture: Stone Vase
+|
+|1 Slab of Plain Stone
+|
+|
+|-
+|Fixture: Headstone
+|
+|1 Slab of Plain Stone
+|
+|
+|-
+|Fixture: Stone Sign
+|
+|1 Slab of Plain Stone <br>1 Slab of Marble <br>1 Slab of Granite
+|
+|
+|-
+|Fixture: Stone Throne
+|
+|3 Slab of Plain Stone
+|
+|
+|-
+|Fixture: Potted Plant
+|
+|2 Slab of Plain Stone
+|
+|
+|-
+|Fixture: Flowers
+|
+|2 Slab of Plain Stone
+|
+|
+|-
+|Fixture: Elaborate Stone Table
+|
+|1 Slab of Plain Stone <br>1 Slab of Marble
+|
+|
+|-
+|Fixture: Stone Column
+|
+|2 Slab of Plain Stone <br>2 Slab of Marble
+|
+|
+|-
+|Fixture: Rune Pillar
+|
+|4 Slab of Marble
+|
+|
+|-
+|Fixture: Skeletal Throne
+|
+|3 Slab of Plain Stone
+|
+|
+|-
+|Fixture: Crystal Ball
+|
+|1 Slab of Plain Stone <br>2 Crystal
+|
+|
+|-
+|Fixture: Guardian Statue
+|
+|1 Slab of Plain Stone <br>2 Slab of Marble
+|
+|
+|-
+|Fixture: Gargoyle
+|
+|3 Slab of Plain Stone
+|
+|
+|-
+|Fixture: Knight Statue
+|
+|2 Slab of Plain Stone <br>2 Slab of Marble
+|
+|
+|-
+|Fixture: Warrior Statue
+|
+|1 Slab of Plain Stone <br>1 Slab of Marble <br>1 Slab of Granite
+|
+|
+|-
+|Fixture: Sphynx Statue
+|
+|2 Slab of Plain Stone <br>4 Slab of Marble
+|
+|
+|-
+|Fixture: Marble Altar
+|
+|4 Slab of Marble
+|
+|Weight: 1001
+|-
+|Fixture: Granite Altar
+|
+|4 Slab of Granite
+|
+|Weight: 1001
+|-
+|Fixture: Spiked Altar
+|8
+|2 Slab of Plain Stone <br>2 Slab of Marble <br>2 Slab of Granite
+|
+|Weight: 1001
+|-
+|Fixture: Enchantment Basin
+|10
+|3 Slab of Marble <br>2 Ingot of Electrum
+|
+|
+|-
+|}

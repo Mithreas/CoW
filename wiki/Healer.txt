@@ -1,0 +1,19 @@
+The Healer is an alternate path for clerics that can only be taken at character creation. Forgoing most of their gear options, these individuals excel at defying death at every turn, ensuring the safety and survival of their allies against all odds. 
+
+* Healers lose all weapon and armor proficiencies, including racial proficiencies, but with the exception of Simple weapons. They ''cannot'' regain these lost proficiencies. 
+
+* The spell Bless lasts turns/level. 
+
+* ''Spontaneous Healing'': A Healer can cast Healing Circle, Heal, and Mass Heal spontaneously as if they were an innate caster ([[sorcerer]], [[bard]]). Consumes 5th level, 6th level, and 8th level spell slots respectively. These spells will appear under special abilities on the radial menu. 
+
+* ''Overhealing'': Healers convert excess healing into temporary hit points. The hit point bonus is limited to 5/ Healer level (Harper Priest levels count, too), and lasts for a period of three rounds. ''A Healer level 13 can overheal for up to 65 points''.  The duration is refreshed on further applications of Overhealing.
+:*Regenerate refreshes and stacks the overheal hit point bonus, while Monstrous Regeneration doesn't. 
+
+* ''Lifeline'': Healers can cast Raise Dead or Resurrection on a living target to apply a Lifeline to that target for the duration of 1 turn. If the affected creature reaches -10 hitpoints during the effect, they fall to the ground unconscious instead of dying, and are raised or resurrected a round later. 
+**Other creatures can only benefit from Lifeline once per rest. Note that this is the creature's rest, not the cleric's. 
+**Bear in mind that the Healers cannot use Lifeline on themselves. 
+**This ability only works with other PCs; not summons, companions, mobs or NPCs of any sort. 
+
+* ''Expanded Healing'': The Healer's radius of area healing spells (Healing Circle, Mass Healing) grows slightly with their levels. A level 30 Healer will have the spell's area effectively doubled. 
+
+Note that these abilities will only work through casted spells; not spells from items.

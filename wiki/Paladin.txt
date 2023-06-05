@@ -1,0 +1,77 @@
+[[Category:Classes]]
+== Paladin ==
+==== Available Paths: ====
+[[Kensai]] 
+----
+
+==== Requirements: ====
+Race: Human
+----
+==== Proficiencies: ====
+Light, Medium, and Heavy Armor, Martial and Simple Weapons, Shields  
+----
+==== Class Skills: ====
+Concentration, Craft Armor, Craft Trap, Craft Weapon, Discipline, Heal, Lore, Parry, Persuade, Ride, Taunt  
+----
+==== Class Features ==== 
+Base Attack Bonus:    1  <br />
+Base Skill Points:    2  <br />
+Base Hit Points:    10  <br />
+Primary Saves:    Fortitude  <br />
+----
+==== Class Specific Feats: ====    
+''When not noted, the feat works as in regular NWN.''
+{| class="wikitable"
+|+Class Feats
+!Feat
+!Requirements
+!Comment
+|-
+|Aura of Courage
+|
+|
+|-
+|Smite Evil 
+|
+|
+|-
+|Remove Disease
+|
+|
+|-
+|Turn Undead 
+|
+|
+|-
+|Bonus Spell Slot (Paladin) I-II  
+|
+|''Taken Sequentially''
+|-
+|Divine Might  
+|13 Charisma, 13 Strength, Power Attack
+|Infinite uses, Consumes Stamina 
+|-
+|Divine Shield
+|13 Charisma, 13 Strength, Power Attack  
+|Infinite uses, Consumes Stamina 
+|-
+|Summon Mount  
+|
+|
+|-
+|Greater Smiting 
+|20 Charisma, SL 31
+|
+|-
+|}
+----
+
+=== Mechanical Changes ===
+
+Clerics and paladins get a caster level increase depending on their piety. Its piety/10 rounded down to the next decimal. So a cleric with 89% piety would get +8 CL on spells they cast. And yes. That means with a negative piety you will get -CL. 
+
+Divine magic has unique properties on this server, please note the changes mentioned in [[Magic_Systems]]
+
+----
+==== Notes, Tips, and Interesting Bits: ====   
+Unlike most divine caster paladins must be at least level 4 to gain access to their spells.  Beyond that they work like all other divine casters and already know all spells for every circle of spells.  They only need added spell slots through equipment or feats to have access to them.

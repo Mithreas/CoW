@@ -1,0 +1,40 @@
+This article is intended as a quick primer on background information about what it's like to live in the world of Anemoi. While [[Setting Information]] covers things you as a player should know, this article is more focused on what would be inside your character's head.
+
+=Information for Everyone=
+==Life and Death==
+When someone's body is damaged to the point where their spirit is driven from it, they find themselves in the realm of the dead.  Returning to the land of the living is a simple act of will.
+
+This means that people can essentially live as long as they want to.  Of course, there are many reasons why they might not want to return.  Bodies still age (humans and halflings rarely pass 100, elves age about 10x more slowly), and once everyday living becomes a constant struggle with pain, most folks decide to let go.  Similarly, there are many ways to break the spirit of another person, such that they welcome the peace of death and choose not to return.
+
+Lastly, there are only a limited number of conduits between the realms of the living and the dead, and souls always return to a place they are familiar with (though there are magics such as the Raise Dead spell that can restore a spirit to the living realm directly).  Especially in times of war, with territory changing hands, seizing a location used as the return point for an individual can essentially stop them returning by sending them back to death as soon as they return.  Hence, the loss of territory often results in the loss of people as well.
+
+==Gods==
+Almost all the gods were once mortal - and the others became gods so long ago that nobody is sure whether they were once mortal or not.  The process of ascension is shrouded in mystery, but all agree that even as mortals each of the gods were great heroes.  It's not an uncommon ambition to follow in that path and ascend oneself - though very few are successful.
+
+=Information for Humans=
+==Political Structure==
+Human society has essentially four classes - nobility, upper citizen, lower citizen, vagabond.  
+*The nobility are organised into houses, usually led along hereditary lines (though adopting a chosen heir is not uncommon).  There are three remaining Great Houses - Renerrin, Drannis and Erenia - but there are also minor Houses, which may consist of as little as a single family.  Sometimes minor Houses are bound to the service of one of the Great Houses, whether by oath or agreement, and it's not unknown for minor Houses to change their allegiance as the political winds blow.
+*Upper citizens are those who are not noble but live in the upper City.  Qualifying as an upper citizen is simple - simply own property.  Acquiring somewhere to live makes you an upper citizen, losing it can demote you.  Upper citizens are usually merchants or other service providers serving the needs of the nobility.
+*Lower citizens are those who hold property in the Undercity.  Lower citizens are not usually allowed in the upper City, though enforcement of this norm varies widely.  It's certainly wise to expect harassment if wandering the surface without the sponsorship of a noble or upper citizen.
+* Vagabonds are those with nowhere to live.  Rough sleeping and similar is not permitted in the upper City, and vagabonds will be driven below if seen.  
+==House Warfare==
+The Houses jockey for position, in a constant contest that helps train young humans into proficient courtiers and warriors in quick time.  Competition between the Houses keeps morale up and builds combat experience, ensuring that humanity is able to build and rebuild skilled and motivated troops to keep the Elves at bay.  Ambition is recognised as a virtue and often rewarded. 
+
+Since return from death is primarily a matter of willpower and desire, conflict between the Houses actually helps make humanity stronger rather than weaker. 
+
+=Information for Halflings=
+==Halflings and Heroes==
+Humans and Elves both celebrate great warriors, aspiring to power and accomplishment.  Halflings take a different view of things.  A halfling hero is one who turns aside from potential greatness in the name of love, family, friendship or some other 'domestic' virtue.  A glorious death - leaving behind a grieving family - is almost considered a crime, even if the individual in question laid down their life to protect their family.  A true hero would have avoided the situation in the first place, and while they will celebrate clever thieves who robbed their enemies blind, a halfling who kills his enemy (and hence puts himself at risk!) is considered foolhardy.
+
+If there are halfling gods, they are unknown.  Halflings themselves revere the Balance, preserving things the way they are rather than driving change.  They are a deeply conservative (small c) people.  Halfling adventurers are often rebelling against this social norm (and hence Chaotically aligned), and are looked down on for doing so.
+
+=Information for Elves=
+==Elven Manners==
+Elves have a very particular view on manners. See your journal as an Elven player for more information.
+==Power Ceremonies==
+Magic plays an important part in Elven life, whether in battle, trade, or simply little things to make life more pleasant (hot water and so on).  To be a mage, therefore, is to hold a special place in Elven society - whether they became a mage by choice through dint of study, or whether they were born with the power, touched by Seravithia. 
+
+Mages, especially sorcerers, are largely limited by their own reserves of power.  Happily, power can be donated from one Elf to another via a simple ceremony performed at any altar.  Mages can hold a ceremony at the altar, allowing those present to donate their own stamina to the mage for later use.   This can make the mage significantly more powerful on the battlefield, if they have a large reserve to draw upon, and most Elves who are not mages themselves regularly donate a portion of their stamina to one of the mages in their community. 
+
+Donating stamina physically exhausts the giver, just as if they had run a great distance or performed some other great effort.  However, it causes no lasting harm, and a short rest is usually sufficient to recover.  However, both participants of a ritual should take care - drawing too heavily on the stamina of another can be lethal if one is drained to the last drop.

@@ -1,0 +1,14 @@
+'''Weather''' is randomly generated around Arelith and reflects to some extend location of area and time of the year. With the exception of a few mechanically represented cases, it is up to the players how much weather effects will be reflected in their roleplay. 
+
+
+Weather conditions will affect the [[state]] of PCs. For example hot summer makes one more thirsty.
+
+
+=== Strong wind ===  
+Strong wind or deep snow may temporary slow characters. Extremely strong wind may even knock them down.  
+
+In case the decreased speed persists even in indoor areas, see the description in [[Common_bugs#I_move_slower_then_I_should|common bugs]].
+
+=== Lightning ===
+There is a fairly low chance to get hit by a lightning in bad weather. The amount of damage character take is approximately proportional to how near the middle of the bolt is character located.
+[[Category:Arelith Mechanics]]

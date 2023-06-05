@@ -1,0 +1,5 @@
+Some NPCs will feint, taunt and parry.
+* Taunt and Parry work just like the PC skills.
+* Feint is a free action, that imposes an AB penalty of up to 6 on you if you lose a contested check - int + hide for the attacker vs dex + discipline for the defender.
+
+[[Category: Unique Mechanics]]

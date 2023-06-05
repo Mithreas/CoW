@@ -1,0 +1,16 @@
+The author of this module was an admin on Arelith for 10 years (and still helps out there in the background), and the Anemoi engine is derived from Arelith's.  This section documents mechanics inherited from Arelith, and any changes made.
+
+*[[:Category:Classes|Class changes]]
+*[[Paths and Gifts]]
+*[[Quarters|Quarter and shop system]]
+*[[RP bonus]]
+*[[Spell changes]]
+*[[State|State - hunger, thirst etc]]
+*[[Deities]]
+*[[Console Commands]] - especially [[Investigate]]
+*[[Mark of Destiny]]
+*[[Epic Sacrifice]] and awards
+*[[Weather]]
+*[[Climbing]]
+*[[Character Customization]]
+*[[Awards]]

@@ -163,8 +163,8 @@ int gsWOGetIsDeityAvailable(int nDeity, object oPlayer = OBJECT_SELF)
 	  return gsWOGetCategory(nDeity) == FB_WO_CATEGORY_SEVEN_DIVINES;
 	}
 	
-	// Shifter - beast gods only.
-	if (gsCMGetHasClass(CLASS_TYPE_SHIFTER, oPlayer))
+	// Shifter, Shaman - beast gods only.
+	if (gsCMGetHasClass(CLASS_TYPE_SHIFTER, oPlayer) || gsCMGetHasClass(CLASS_TYPE_SHAMAN, oPlayer))
 	{
 	  return gsWOGetCategory(nDeity) == FB_WO_CATEGORY_BEAST_CULTS;
 	}
@@ -180,6 +180,7 @@ int gsWOGetIsDeityAvailable(int nDeity, object oPlayer = OBJECT_SELF)
         !gsCMGetHasClass(CLASS_TYPE_PALADIN, oPlayer) &&
         !gsCMGetHasClass(CLASS_TYPE_BLACKGUARD, oPlayer) &&
         !gsCMGetHasClass(CLASS_TYPE_DRUID, oPlayer) &&
+        !gsCMGetHasClass(CLASS_TYPE_SHAMAN, oPlayer) &&
         !gsCMGetHasClass(CLASS_TYPE_RANGER, oPlayer) &&
         !gsCMGetHasClass(CLASS_TYPE_DIVINECHAMPION, oPlayer) &&
         !GetLocalInt(oItem, "GIFT_OF_HOLY")) return TRUE;
@@ -200,7 +201,7 @@ int gsWOGetIsDeityAvailable(int nDeity, object oPlayer = OBJECT_SELF)
     else if(gsCMGetHasClass(CLASS_TYPE_DRUID, oPlayer))
       return FALSE;
 	  
-    // Clerics, rangers, paladins, champion of torms and blackguards must obey alignment restrictions.
+    // Clerics, rangers, paladins, shamans, divine champions and blackguards must obey alignment restrictions.
     //As well as those with the gift of holy & favored souls.
     string sAlignment = "";
 

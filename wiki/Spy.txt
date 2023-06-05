@@ -1,0 +1,68 @@
+[[Category:Classes]]
+== Scout ==       
+==== Requirements: ====   
+Lore 4, Discipline 4  
+----
+==== Proficiencies: ====
+Light Armor, Simple Weapons  
+----
+==== Class Skills: ====
+Appraise, Bluff, Craft Armor, Craft Trap, Craft Weapon, Discipline, Heal, Hide, Listen, Lore, Move Silently, Persuade, Pick Pocket, 
+Tumble  
+----
+==== Class Features ==== 
+Base Attack Bonus:    3/4  <br />
+Base Skill Points:    4  <br />
+Base Hit Points:    6  <br />
+Primary Saves:    Reflex, Will  <br />
+----
+==== Class Specific Feats: ====    
+''When not noted, the feat works as in regular NWN.''
+{| class="wikitable"
+|+Class Feats
+!Feat
+!Requirements
+!Comment
+|-
+|Favored Enemy 
+|
+|
+|-
+|Deneir's Eye 
+|
+|
+|-
+|Sleep  
+|
+|
+|-
+|Cat's Grace
+|
+|
+|-
+|Tymora's Smile 
+|
+|
+|-
+|Eagle's Splendor  
+|
+|
+|-
+|Lliira's Heart  
+|
+|
+|-
+|Craft Harper Item
+|SL 12
+|
+|-
+|Invisibility 
+|SL 12
+|
+|-
+|Bane of Enemies
+|SL 31 
+|
+|-
+|}
+----

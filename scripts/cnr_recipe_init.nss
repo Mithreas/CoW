@@ -55,7 +55,7 @@ void main()
 
   // Smelting
   CnrAddCraftingDevice ("cnrforgepublic");
-  CnrAddCraftingDevice ("cnrIngotRecycler");
+  //CnrAddCraftingDevice ("cnrIngotRecycler");
 
   // Weapon Crafting
   CnrAddCraftingDevice ("cnranvilwnpond");
@@ -64,39 +64,44 @@ void main()
   CnrAddCraftingDevice ("cnranvilwpnste");
   CnrAddCraftingDevice ("cnranvilwpnsil");
   CnrAddCraftingDevice ("cnranvilwpnmit");
-  CnrAddCraftingDevice ("cnrbrazierdem");
-  CnrAddCraftingDevice ("cnrbraziersta");
+  //CnrAddCraftingDevice ("cnrbrazierdem");
+  //CnrAddCraftingDevice ("cnrbraziersta");
 
   // Armor Crafting
   CnrAddCraftingDevice ("cnranvilarmor1");
   CnrAddCraftingDevice ("cnranvilarmor2");
+  CnrAddCraftingDevice ("cnranvilarmorel");
 
   // Alchemy
   CnrAddCraftingDevice ("cnralchemytable");
+  CnrAddCraftingDevice ("cnrexplodebench");
 
   // Scribing
-  CnrAddCraftingDevice ("cnrScribeInkDesk");
+  //CnrAddCraftingDevice ("cnrScribeInkDesk");
   CnrAddCraftingDevice ("cnrScribeLesser");
   CnrAddCraftingDevice ("cnrScribeAverage");
   CnrAddCraftingDevice ("cnrScribeGreater");
+  CnrAddCraftingDevice ("cnrritualtable");
+  CnrAddCraftingDevice ("cnranvilrune");
 
   // Tinkering
   CnrAddCraftingDevice ("cnrtinkersdevice");
-  CnrAddCraftingDevice ("cnrtinkertoolbox");
+  //CnrAddCraftingDevice ("cnrtinkertoolbox");
   CnrAddCraftingDevice ("cnrtinkerfurnace");
-  CnrAddCraftingDevice ("cnrtinkersettings");
+  //CnrAddCraftingDevice ("cnrtinkersettings");
 
   // Wood Crafting
   CnrAddCraftingDevice ("cnrcarpsbench");
+  CnrAddCraftingDevice ("cnrcarpelf");
 
   // Enchanting
-  CnrAddCraftingDevice ("cnrEnchantAltar");
-  CnrAddCraftingDevice ("cnrEnchantStatue");
-  CnrAddCraftingDevice ("cnrEnchantPool");
+  //CnrAddCraftingDevice ("cnrEnchantAltar");
+  //CnrAddCraftingDevice ("cnrEnchantStatue");
+  //CnrAddCraftingDevice ("cnrEnchantPool");
 
   // Gem Crafting
-  CnrAddCraftingDevice ("cnrGemStone");
-  CnrAddCraftingDevice ("cnrGemTable");
+  //CnrAddCraftingDevice ("cnrGemStone");
+  //CnrAddCraftingDevice ("cnrGemTable");
   CnrAddCraftingDevice ("cnrJewelersBench");
 
   // Tailoring
@@ -104,15 +109,16 @@ void main()
   CnrAddCraftingDevice ("cnrcuringtub");
   CnrAddCraftingDevice ("cnrhiderack");
   CnrAddCraftingDevice ("cnrleathertable");
-
+  CnrAddCraftingDevice ("cnrverminetable");
+ 
   // Food Crafting
-  CnrAddCraftingDevice ("cnrBrewersKeg");
-  CnrAddCraftingDevice ("cnrBrewersKettle");
-  CnrAddCraftingDevice ("cnrBrewersOven");
-  CnrAddCraftingDevice ("cnrBakersOven");
-  CnrAddCraftingDevice ("cnrFarmersMill");
-  CnrAddCraftingDevice ("cnrFarmersPress");
-  CnrAddCraftingDevice ("cnrWaterTub");
+  //CnrAddCraftingDevice ("cnrBrewersKeg");
+  //CnrAddCraftingDevice ("cnrBrewersKettle");
+  //CnrAddCraftingDevice ("cnrBrewersOven");
+  //CnrAddCraftingDevice ("cnrBakersOven");
+  //CnrAddCraftingDevice ("cnrFarmersMill");
+  //CnrAddCraftingDevice ("cnrFarmersPress");
+  //CnrAddCraftingDevice ("cnrWaterTub");
 
   // Power builders that want to store their recipes in a persistent db
   // so they can be tweaked without restarting the game sever must first get the
@@ -120,7 +126,13 @@ void main()
   // the cnr_misc table, CNR will use APS to load all scripted recipe data into a
   // SQL database in OnModuleLoad. Once the data is written, "CnrBoolBuildRecipeDatabase"
   // will be automatically be zeroed
-  int bBuildRecipeDatabase = CnrGetPersistentInt(OBJECT_SELF, "CnrBoolBuildRecipeDatabase");
+  //
+  // Note, use the following command to refresh.
+  // UPDATE cnr_misc SET val="1" where name="CnrBoolBuildRecipeDatabase";
+  // INSERT INTO cnr_misc (player, tag, name, val) VALUES ("~", "MODULE", "CnrBoolBuildRecipeDatabase", "1");
+  //int bBuildRecipeDatabase = CnrGetPersistentInt(OBJECT_SELF, "CnrBoolBuildRecipeDatabase");
+  // Always rebuild the database from the script files on reset.
+  int bBuildRecipeDatabase = TRUE;
   if (bBuildRecipeDatabase == TRUE)
   {
     // this call is asynchronous - it uses AssignCommand to avoid TMI

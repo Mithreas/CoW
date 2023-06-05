@@ -624,10 +624,11 @@ void btribeCreateTribesmen(object oPC)
 {
     // Rage Override for tribesman path.
     // Create a tribesman of the appropriate gender.
-    // string sGender = GetGender(oPC) == GENDER_MALE ? "m" : "f";
+	int nStream = GetActiveSummonStream(oPC, STREAM_TYPE_TRIBESMAN);
     string sGender = (d2() == 1) ? "m" : "f";
-    // SpeakString(sGender);
-
+	if (nStream == STREAM_TRIBESMAN_MALE) sGender = "m";
+	if (nStream == STREAM_TRIBESMAN_FEMALE) sGender = "f";
+	
     object oTribesman = CreateObject(OBJECT_TYPE_CREATURE,
                                      "tribesman_" + sGender,
                                      GetLocation(oPC));
@@ -636,6 +637,7 @@ void btribeCreateTribesmen(object oPC)
 	SetCanMasterSpeakThroughAssociate(oTribesman, TRUE);
 
     // Set the subrace ,appearance etc
+	NWNX_Creature_SetRacialType(oTribesman, GetRacialType(oPC));
     SetSubRace(oTribesman, GetSubRace(oPC));
     // SpeakString("Appearance: " + IntToString(GetAppearanceType(oPC)));
     SetCreatureAppearanceType(oTribesman, GetAppearanceType(oPC));

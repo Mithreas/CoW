@@ -8,13 +8,15 @@
 //
 ////////////////////////////////////////////////////////
 
-#define ENGINE_NUM_STRUCTURES   6
+#define ENGINE_NUM_STRUCTURES   8
 #define ENGINE_STRUCTURE_0      effect
 #define ENGINE_STRUCTURE_1      event
 #define ENGINE_STRUCTURE_2      location
 #define ENGINE_STRUCTURE_3      talent
 #define ENGINE_STRUCTURE_4      itemproperty
 #define ENGINE_STRUCTURE_5      sqlquery
+#define ENGINE_STRUCTURE_6      cassowary
+#define ENGINE_STRUCTURE_7      json
 
 // Constants
 
@@ -528,6 +530,8 @@ int EFFECT_TYPE_ETHEREAL                    = 81;
 int EFFECT_TYPE_SPELL_FAILURE               = 82;
 int EFFECT_TYPE_CUTSCENEGHOST               = 83;
 int EFFECT_TYPE_CUTSCENEIMMOBILIZE          = 84;
+int EFFECT_TYPE_RUNSCRIPT                   = 85;
+int EFFECT_TYPE_ICON                        = 86;
 
 int ITEM_APPR_TYPE_SIMPLE_MODEL         = 0;
 int ITEM_APPR_TYPE_WEAPON_COLOR         = 1;
@@ -3560,7 +3564,21 @@ int INVENTORY_DISTURB_TYPE_ADDED    = 0;
 int INVENTORY_DISTURB_TYPE_REMOVED  = 1;
 int INVENTORY_DISTURB_TYPE_STOLEN   = 2;
 
-int GUI_PANEL_PLAYER_DEATH = 0;
+int GUI_PANEL_PLAYER_DEATH      = 0;
+int GUI_PANEL_MINIMAP           = 2;
+int GUI_PANEL_COMPASS           = 3;
+int GUI_PANEL_INVENTORY         = 4;
+int GUI_PANEL_PLAYERLIST        = 5;
+int GUI_PANEL_JOURNAL           = 6;
+int GUI_PANEL_SPELLBOOK         = 7;
+int GUI_PANEL_CHARACTERSHEET    = 8;
+int GUI_PANEL_LEVELUP           = 9;
+int GUI_PANEL_GOLD_INVENTORY    = 10;
+int GUI_PANEL_GOLD_BARTER       = 11;
+int GUI_PANEL_EXAMINE_CREATURE  = 12;
+int GUI_PANEL_EXAMINE_ITEM      = 13;
+int GUI_PANEL_EXAMINE_PLACEABLE = 14;
+int GUI_PANEL_EXAMINE_DOOR      = 15;
 
 int VOICE_CHAT_ATTACK           =   0;
 int VOICE_CHAT_BATTLECRY1       =   1;
@@ -5871,6 +5889,9 @@ int EVENT_SCRIPT_MODULE_ON_EQUIP_ITEM                    = 3015;
 int EVENT_SCRIPT_MODULE_ON_UNEQUIP_ITEM                  = 3016;
 int EVENT_SCRIPT_MODULE_ON_PLAYER_CHAT                   = 3017;
 int EVENT_SCRIPT_MODULE_ON_PLAYER_TARGET                 = 3018;
+int EVENT_SCRIPT_MODULE_ON_PLAYER_GUIEVENT               = 3019;
+int EVENT_SCRIPT_MODULE_ON_PLAYER_TILE_ACTION            = 3020;
+int EVENT_SCRIPT_MODULE_ON_NUI_EVENT                     = 3021;
 
 int EVENT_SCRIPT_AREA_ON_HEARTBEAT                       = 4000;
 int EVENT_SCRIPT_AREA_ON_USER_DEFINED_EVENT              = 4001;
@@ -5954,6 +5975,15 @@ int OBJECT_VISUAL_TRANSFORM_TRANSLATE_X                  = 31;
 int OBJECT_VISUAL_TRANSFORM_TRANSLATE_Y                  = 32;
 int OBJECT_VISUAL_TRANSFORM_TRANSLATE_Z                  = 33;
 int OBJECT_VISUAL_TRANSFORM_ANIMATION_SPEED              = 40;
+
+int OBJECT_VISUAL_TRANSFORM_LERP_NONE                    = 0; // 1
+int OBJECT_VISUAL_TRANSFORM_LERP_LINEAR                  = 1; // x
+int OBJECT_VISUAL_TRANSFORM_LERP_SMOOTHSTEP              = 2; // x * x * (3 - 2 * x)
+int OBJECT_VISUAL_TRANSFORM_LERP_INVERSE_SMOOTHSTEP      = 3; // 0.5 - sin(asin(1.0 - 2.0 * x) / 3.0)
+int OBJECT_VISUAL_TRANSFORM_LERP_EASE_IN                 = 4; // (1 - cosf(x * M_PI * 0.5))
+int OBJECT_VISUAL_TRANSFORM_LERP_EASE_OUT                = 5; // sinf(x * M_PI * 0.5)
+int OBJECT_VISUAL_TRANSFORM_LERP_QUADRATIC               = 6; // x * x
+int OBJECT_VISUAL_TRANSFORM_LERP_SMOOTHERSTEP            = 7; // (x * x * x * (x * (6.0 * x - 15.0) + 10.0))
 
 int VIBRATOR_MOTOR_ANY                                   = 0;
 int VIBRATOR_MOTOR_LEFT                                  = 1;
@@ -6051,6 +6081,326 @@ int MOUSECURSOR_CUSTOM_00                                = 93;  // gui_mp_custom
 int MOUSECURSOR_CUSTOM_00_DOWN                           = 94;  // gui_mp_custom00d
 int MOUSECURSOR_CUSTOM_99                                = 291; // gui_mp_custom99u
 int MOUSECURSOR_CUSTOM_99_DOWN                           = 292; // gui_mp_custom99d
+
+float CASSOWARY_STRENGTH_WEAK                            = 1.0;
+float CASSOWARY_STRENGTH_MEDIUM                          = 1000.0;
+float CASSOWARY_STRENGTH_STRONG                          = 1000000.0;
+float CASSOWARY_STRENGTH_REQUIRED                        = 1001001000.0;
+
+int RUNSCRIPT_EFFECT_SCRIPT_TYPE_ON_APPLIED              = 1;
+int RUNSCRIPT_EFFECT_SCRIPT_TYPE_ON_REMOVED              = 2;
+int RUNSCRIPT_EFFECT_SCRIPT_TYPE_ON_INTERVAL             = 3;
+
+int EFFECT_ICON_INVALID                             = 0;
+int EFFECT_ICON_DAMAGE_RESISTANCE                   = 1;
+int EFFECT_ICON_REGENERATE                          = 2;
+int EFFECT_ICON_DAMAGE_REDUCTION                    = 3;
+int EFFECT_ICON_TEMPORARY_HITPOINTS                 = 4;
+int EFFECT_ICON_ENTANGLE                            = 5;
+int EFFECT_ICON_INVULNERABLE                        = 6;
+int EFFECT_ICON_DEAF                                = 7;
+int EFFECT_ICON_FATIGUE                             = 8;
+int EFFECT_ICON_IMMUNITY                            = 9;
+int EFFECT_ICON_BLIND                               = 10;
+int EFFECT_ICON_ENEMY_ATTACK_BONUS                  = 11;
+int EFFECT_ICON_CHARMED                             = 12;
+int EFFECT_ICON_CONFUSED                            = 13;
+int EFFECT_ICON_FRIGHTENED                          = 14;
+int EFFECT_ICON_DOMINATED                           = 15;
+int EFFECT_ICON_PARALYZE                            = 16;
+int EFFECT_ICON_DAZED                               = 17;
+int EFFECT_ICON_STUNNED                             = 18;
+int EFFECT_ICON_SLEEP                               = 19;
+int EFFECT_ICON_POISON                              = 20;
+int EFFECT_ICON_DISEASE                             = 21;
+int EFFECT_ICON_CURSE                               = 22;
+int EFFECT_ICON_SILENCE                             = 23;
+int EFFECT_ICON_TURNED                              = 24;
+int EFFECT_ICON_HASTE                               = 25;
+int EFFECT_ICON_SLOW                                = 26;
+int EFFECT_ICON_ABILITY_INCREASE_STR                = 27;
+int EFFECT_ICON_ABILITY_DECREASE_STR                = 28;
+int EFFECT_ICON_ATTACK_INCREASE                     = 29;
+int EFFECT_ICON_ATTACK_DECREASE                     = 30;
+int EFFECT_ICON_DAMAGE_INCREASE                     = 31;
+int EFFECT_ICON_DAMAGE_DECREASE                     = 32;
+int EFFECT_ICON_DAMAGE_IMMUNITY_INCREASE            = 33;
+int EFFECT_ICON_DAMAGE_IMMUNITY_DECREASE            = 34;
+int EFFECT_ICON_AC_INCREASE                         = 35;
+int EFFECT_ICON_AC_DECREASE                         = 36;
+int EFFECT_ICON_MOVEMENT_SPEED_INCREASE             = 37;
+int EFFECT_ICON_MOVEMENT_SPEED_DECREASE             = 38;
+int EFFECT_ICON_SAVING_THROW_INCREASE               = 39;
+int EFFECT_ICON_SAVING_THROW_DECREASE               = 40;
+int EFFECT_ICON_SPELL_RESISTANCE_INCREASE           = 41;
+int EFFECT_ICON_SPELL_RESISTANCE_DECREASE           = 42;
+int EFFECT_ICON_SKILL_INCREASE                      = 43;
+int EFFECT_ICON_SKILL_DECREASE                      = 44;
+int EFFECT_ICON_INVISIBILITY                        = 45;
+int EFFECT_ICON_IMPROVEDINVISIBILITY                = 46;
+int EFFECT_ICON_DARKNESS                            = 47;
+int EFFECT_ICON_DISPELMAGICALL                      = 48;
+int EFFECT_ICON_ELEMENTALSHIELD                     = 49;
+int EFFECT_ICON_LEVELDRAIN                          = 50;
+int EFFECT_ICON_POLYMORPH                           = 51;
+int EFFECT_ICON_SANCTUARY                           = 52;
+int EFFECT_ICON_TRUESEEING                          = 53;
+int EFFECT_ICON_SEEINVISIBILITY                     = 54;
+int EFFECT_ICON_TIMESTOP                            = 55;
+int EFFECT_ICON_BLINDNESS                           = 56;
+int EFFECT_ICON_SPELLLEVELABSORPTION                = 57;
+int EFFECT_ICON_DISPELMAGICBEST                     = 58;
+int EFFECT_ICON_ABILITY_INCREASE_DEX                = 59;
+int EFFECT_ICON_ABILITY_DECREASE_DEX                = 60;
+int EFFECT_ICON_ABILITY_INCREASE_CON                = 61;
+int EFFECT_ICON_ABILITY_DECREASE_CON                = 62;
+int EFFECT_ICON_ABILITY_INCREASE_INT                = 63;
+int EFFECT_ICON_ABILITY_DECREASE_INT                = 64;
+int EFFECT_ICON_ABILITY_INCREASE_WIS                = 65;
+int EFFECT_ICON_ABILITY_DECREASE_WIS                = 66;
+int EFFECT_ICON_ABILITY_INCREASE_CHA                = 67;
+int EFFECT_ICON_ABILITY_DECREASE_CHA                = 68;
+int EFFECT_ICON_IMMUNITY_ALL                        = 69;
+int EFFECT_ICON_IMMUNITY_MIND                       = 70;
+int EFFECT_ICON_IMMUNITY_POISON                     = 71;
+int EFFECT_ICON_IMMUNITY_DISEASE                    = 72;
+int EFFECT_ICON_IMMUNITY_FEAR                       = 73;
+int EFFECT_ICON_IMMUNITY_TRAP                       = 74;
+int EFFECT_ICON_IMMUNITY_PARALYSIS                  = 75;
+int EFFECT_ICON_IMMUNITY_BLINDNESS                  = 76;
+int EFFECT_ICON_IMMUNITY_DEAFNESS                   = 77;
+int EFFECT_ICON_IMMUNITY_SLOW                       = 78;
+int EFFECT_ICON_IMMUNITY_ENTANGLE                   = 79;
+int EFFECT_ICON_IMMUNITY_SILENCE                    = 80;
+int EFFECT_ICON_IMMUNITY_STUN                       = 81;
+int EFFECT_ICON_IMMUNITY_SLEEP                      = 82;
+int EFFECT_ICON_IMMUNITY_CHARM                      = 83;
+int EFFECT_ICON_IMMUNITY_DOMINATE                   = 84;
+int EFFECT_ICON_IMMUNITY_CONFUSE                    = 85;
+int EFFECT_ICON_IMMUNITY_CURSE                      = 86;
+int EFFECT_ICON_IMMUNITY_DAZED                      = 87;
+int EFFECT_ICON_IMMUNITY_ABILITY_DECREASE           = 88;
+int EFFECT_ICON_IMMUNITY_ATTACK_DECREASE            = 89;
+int EFFECT_ICON_IMMUNITY_DAMAGE_DECREASE            = 90;
+int EFFECT_ICON_IMMUNITY_DAMAGE_IMMUNITY_DECREASE   = 91;
+int EFFECT_ICON_IMMUNITY_AC_DECREASE                = 92;
+int EFFECT_ICON_IMMUNITY_MOVEMENT_SPEED_DECREASE    = 93;
+int EFFECT_ICON_IMMUNITY_SAVING_THROW_DECREASE      = 94;
+int EFFECT_ICON_IMMUNITY_SPELL_RESISTANCE_DECREASE  = 95;
+int EFFECT_ICON_IMMUNITY_SKILL_DECREASE             = 96;
+int EFFECT_ICON_IMMUNITY_KNOCKDOWN                  = 97;
+int EFFECT_ICON_IMMUNITY_NEGATIVE_LEVEL             = 98;
+int EFFECT_ICON_IMMUNITY_SNEAK_ATTACK               = 99;
+int EFFECT_ICON_IMMUNITY_CRITICAL_HIT               = 100;
+int EFFECT_ICON_IMMUNITY_DEATH_MAGIC                = 101;
+int EFFECT_ICON_REFLEX_SAVE_INCREASED               = 102;
+int EFFECT_ICON_FORT_SAVE_INCREASED                 = 103;
+int EFFECT_ICON_WILL_SAVE_INCREASED                 = 104;
+int EFFECT_ICON_TAUNTED                             = 105;
+int EFFECT_ICON_SPELLIMMUNITY                       = 106;
+int EFFECT_ICON_ETHEREALNESS                        = 107;
+int EFFECT_ICON_CONCEALMENT                         = 108;
+int EFFECT_ICON_PETRIFIED                           = 109;
+int EFFECT_ICON_EFFECT_SPELL_FAILURE                = 110;
+int EFFECT_ICON_DAMAGE_IMMUNITY_MAGIC               = 111;
+int EFFECT_ICON_DAMAGE_IMMUNITY_ACID                = 112;
+int EFFECT_ICON_DAMAGE_IMMUNITY_COLD                = 113;
+int EFFECT_ICON_DAMAGE_IMMUNITY_DIVINE              = 114;
+int EFFECT_ICON_DAMAGE_IMMUNITY_ELECTRICAL          = 115;
+int EFFECT_ICON_DAMAGE_IMMUNITY_FIRE                = 116;
+int EFFECT_ICON_DAMAGE_IMMUNITY_NEGATIVE            = 117;
+int EFFECT_ICON_DAMAGE_IMMUNITY_POSITIVE            = 118;
+int EFFECT_ICON_DAMAGE_IMMUNITY_SONIC               = 119;
+int EFFECT_ICON_DAMAGE_IMMUNITY_MAGIC_DECREASE      = 120;
+int EFFECT_ICON_DAMAGE_IMMUNITY_ACID_DECREASE       = 121;
+int EFFECT_ICON_DAMAGE_IMMUNITY_COLD_DECREASE       = 122;
+int EFFECT_ICON_DAMAGE_IMMUNITY_DIVINE_DECREASE     = 123;
+int EFFECT_ICON_DAMAGE_IMMUNITY_ELECTRICAL_DECREASE = 124;
+int EFFECT_ICON_DAMAGE_IMMUNITY_FIRE_DECREASE       = 125;
+int EFFECT_ICON_DAMAGE_IMMUNITY_NEGATIVE_DECREASE   = 126;
+int EFFECT_ICON_DAMAGE_IMMUNITY_POSITIVE_DECREASE   = 127;
+int EFFECT_ICON_DAMAGE_IMMUNITY_SONIC_DECREASE      = 128;
+int EFFECT_ICON_WOUNDING                            = 129;
+
+int GUIEVENT_CHATBAR_FOCUS                          = 1;
+int GUIEVENT_CHATBAR_UNFOCUS                        = 2;
+int GUIEVENT_CHARACTERSHEET_SKILL_CLICK             = 3;
+int GUIEVENT_CHARACTERSHEET_FEAT_CLICK              = 4;
+int GUIEVENT_EFFECTICON_CLICK                       = 5;
+int GUIEVENT_DEATHPANEL_WAITFORHELP_CLICK           = 6;
+int GUIEVENT_MINIMAP_MAPPIN_CLICK                   = 7;
+int GUIEVENT_MINIMAP_OPEN                           = 8;
+int GUIEVENT_MINIMAP_CLOSE                          = 9;
+int GUIEVENT_JOURNAL_OPEN                           = 10;
+int GUIEVENT_JOURNAL_CLOSE                          = 11;
+int GUIEVENT_PLAYERLIST_PLAYER_CLICK                = 12;
+int GUIEVENT_PARTYBAR_PORTRAIT_CLICK                = 13;
+int GUIEVENT_DISABLED_PANEL_ATTEMPT_OPEN            = 14;
+int GUIEVENT_COMPASS_CLICK                          = 15;
+int GUIEVENT_LEVELUP_CANCELLED                      = 16;
+int GUIEVENT_AREA_LOADSCREEN_FINISHED               = 17;
+int GUIEVENT_QUICKCHAT_ACTIVATE                     = 18;
+int GUIEVENT_QUICKCHAT_SELECT                       = 19;
+int GUIEVENT_QUICKCHAT_CLOSE                        = 20;
+int GUIEVENT_SELECT_CREATURE                        = 21;
+int GUIEVENT_UNSELECT_CREATURE                      = 22;
+int GUIEVENT_EXAMINE_OBJECT                         = 23;
+int GUIEVENT_OPTIONS_OPEN                           = 24;
+int GUIEVENT_OPTIONS_CLOSE                          = 25;
+
+int JSON_TYPE_NULL                                  = 0; // Also invalid
+int JSON_TYPE_OBJECT                                = 1;
+int JSON_TYPE_ARRAY                                 = 2;
+int JSON_TYPE_STRING                                = 3;
+int JSON_TYPE_INTEGER                               = 4;
+int JSON_TYPE_FLOAT                                 = 5;
+int JSON_TYPE_BOOL                                  = 6;
+
+// The player's gui width (inner window bounds).
+string PLAYER_DEVICE_PROPERTY_GUI_WIDTH             = "gui_width";
+// The player's gui height (inner window bounds).
+string PLAYER_DEVICE_PROPERTY_GUI_HEIGHT            = "gui_height";
+// The player's gui scale, in percent (factor 1.4 = 140)
+string PLAYER_DEVICE_PROPERTY_GUI_SCALE             = "gui_scale";
+
+int PLAYER_LANGUAGE_INVALID                         = -1;
+int PLAYER_LANGUAGE_ENGLISH                         = 0;
+int PLAYER_LANGUAGE_FRENCH                          = 1;
+int PLAYER_LANGUAGE_GERMAN                          = 2;
+int PLAYER_LANGUAGE_ITALIAN                         = 3;
+int PLAYER_LANGUAGE_SPANISH                         = 4;
+int PLAYER_LANGUAGE_POLISH                          = 5;
+
+int PLAYER_DEVICE_PLATFORM_INVALID                  = 0;
+int PLAYER_DEVICE_PLATFORM_WINDOWS_X86              = 1;
+int PLAYER_DEVICE_PLATFORM_WINDOWS_X64              = 2;
+int PLAYER_DEVICE_PLATFORM_LINUX_X86                = 10;
+int PLAYER_DEVICE_PLATFORM_LINUX_X64                = 11;
+int PLAYER_DEVICE_PLATFORM_LINUX_ARM32              = 12;
+int PLAYER_DEVICE_PLATFORM_LINUX_ARM64              = 13;
+int PLAYER_DEVICE_PLATFORM_MAC_X86                  = 20;
+int PLAYER_DEVICE_PLATFORM_MAC_X64                  = 21;
+int PLAYER_DEVICE_PLATFORM_IOS                      = 30;
+int PLAYER_DEVICE_PLATFORM_ANDROID_ARM32            = 40;
+int PLAYER_DEVICE_PLATFORM_ANDROID_ARM64            = 41;
+int PLAYER_DEVICE_PLATFORM_ANDROID_X64              = 42;
+int PLAYER_DEVICE_PLATFORM_NINTENDO_SWITCH          = 50;
+int PLAYER_DEVICE_PLATFORM_MICROSOFT_XBOXONE        = 60;
+int PLAYER_DEVICE_PLATFORM_SONY_PS4                 = 70;
+
+int RESTYPE_RES                                     = 0;
+int RESTYPE_BMP                                     = 1;
+int RESTYPE_MVE                                     = 2;
+int RESTYPE_TGA                                     = 3;
+int RESTYPE_WAV                                     = 4;
+int RESTYPE_WFX                                     = 5;
+int RESTYPE_PLT                                     = 6;
+int RESTYPE_INI                                     = 7;
+int RESTYPE_MP3                                     = 8;
+int RESTYPE_MPG                                     = 9;
+int RESTYPE_TXT                                     = 10;
+int RESTYPE_KEY                                     = 9999;
+int RESTYPE_BIF                                     = 9998;
+int RESTYPE_ERF                                     = 9997;
+int RESTYPE_IDS                                     = 9996;
+int RESTYPE_PLH                                     = 2000;
+int RESTYPE_TEX                                     = 2001;
+int RESTYPE_MDL                                     = 2002;
+int RESTYPE_THG                                     = 2003;
+int RESTYPE_FNT                                     = 2005;
+int RESTYPE_LUA                                     = 2007;
+int RESTYPE_SLT                                     = 2008;
+int RESTYPE_NSS                                     = 2009;
+int RESTYPE_NCS                                     = 2010;
+int RESTYPE_MOD                                     = 2011;
+int RESTYPE_ARE                                     = 2012;
+int RESTYPE_SET                                     = 2013;
+int RESTYPE_IFO                                     = 2014;
+int RESTYPE_BIC                                     = 2015;
+int RESTYPE_WOK                                     = 2016;
+int RESTYPE_2DA                                     = 2017;
+int RESTYPE_TLK                                     = 2018;
+int RESTYPE_TXI                                     = 2022;
+int RESTYPE_GIT                                     = 2023;
+int RESTYPE_BTI                                     = 2024;
+int RESTYPE_UTI                                     = 2025;
+int RESTYPE_BTC                                     = 2026;
+int RESTYPE_UTC                                     = 2027;
+int RESTYPE_DLG                                     = 2029;
+int RESTYPE_ITP                                     = 2030;
+int RESTYPE_BTT                                     = 2031;
+int RESTYPE_UTT                                     = 2032;
+int RESTYPE_DDS                                     = 2033;
+int RESTYPE_BTS                                     = 2034;
+int RESTYPE_UTS                                     = 2035;
+int RESTYPE_LTR                                     = 2036;
+int RESTYPE_GFF                                     = 2037;
+int RESTYPE_FAC                                     = 2038;
+int RESTYPE_BTE                                     = 2039;
+int RESTYPE_UTE                                     = 2040;
+int RESTYPE_BTD                                     = 2041;
+int RESTYPE_UTD                                     = 2042;
+int RESTYPE_BTP                                     = 2043;
+int RESTYPE_UTP                                     = 2044;
+int RESTYPE_DFT                                     = 2045;
+int RESTYPE_GIC                                     = 2046;
+int RESTYPE_GUI                                     = 2047;
+int RESTYPE_CSS                                     = 2048;
+int RESTYPE_CCS                                     = 2049;
+int RESTYPE_BTM                                     = 2050;
+int RESTYPE_UTM                                     = 2051;
+int RESTYPE_DWK                                     = 2052;
+int RESTYPE_PWK                                     = 2053;
+int RESTYPE_BTG                                     = 2054;
+int RESTYPE_UTG                                     = 2055;
+int RESTYPE_JRL                                     = 2056;
+int RESTYPE_SAV                                     = 2057;
+int RESTYPE_UTW                                     = 2058;
+int RESTYPE_4PC                                     = 2059;
+int RESTYPE_SSF                                     = 2060;
+int RESTYPE_HAK                                     = 2061;
+int RESTYPE_NWM                                     = 2062;
+int RESTYPE_BIK                                     = 2063;
+int RESTYPE_NDB                                     = 2064;
+int RESTYPE_PTM                                     = 2065;
+int RESTYPE_PTT                                     = 2066;
+int RESTYPE_BAK                                     = 2067;
+int RESTYPE_DAT                                     = 2068;
+int RESTYPE_SHD                                     = 2069;
+int RESTYPE_XBC                                     = 2070;
+int RESTYPE_WBM                                     = 2071;
+int RESTYPE_MTR                                     = 2072;
+int RESTYPE_KTX                                     = 2073;
+int RESTYPE_TTF                                     = 2074;
+int RESTYPE_SQL                                     = 2075;
+int RESTYPE_TML                                     = 2076;
+int RESTYPE_SQ3                                     = 2077;
+int RESTYPE_LOD                                     = 2078;
+int RESTYPE_GIF                                     = 2079;
+int RESTYPE_PNG                                     = 2080;
+int RESTYPE_JPG                                     = 2081;
+int RESTYPE_CAF                                     = 2082;
+int RESTYPE_JUI                                     = 2083;
+
+// For JsonArrayTransform():
+int JSON_ARRAY_SORT_ASCENDING                       = 1;
+int JSON_ARRAY_SORT_DESCENDING                      = 2;
+int JSON_ARRAY_SHUFFLE                              = 3;
+int JSON_ARRAY_REVERSE                              = 4;
+int JSON_ARRAY_UNIQUE                               = 5;
+int JSON_ARRAY_COALESCE                             = 6;
+
+int JSON_FIND_EQUAL                                 = 0;
+int JSON_FIND_LT                                    = 1;
+int JSON_FIND_LTE                                   = 2;
+int JSON_FIND_GT                                    = 3;
+int JSON_FIND_GTE                                   = 4;
+
+int JSON_SET_SUBSET                                 = 1;
+int JSON_SET_UNION                                  = 2;
+int JSON_SET_INTERSECT                              = 3;
+int JSON_SET_DIFFERENCE                             = 4;
+int JSON_SET_SYMMETRIC_DIFFERENCE                   = 5;
 
 string sLanguage = "nwscript";
 
@@ -8069,10 +8419,10 @@ void SetMapPinEnabled(object oMapPin, int nEnabled);
 effect EffectHitPointChangeWhenDying(float fHitPointChangePerRound);
 
 // Spawn a GUI panel for the client that controls oPC.
+// Will force show panels disabled with SetGuiPanelDisabled()
 // - oPC
-// - nGUIPanel: GUI_PANEL_*
-// * Nothing happens if oPC is not a player character or if an invalid value is
-//   used for nGUIPanel.
+// - nGUIPanel: GUI_PANEL_*, except GUI_PANEL_COMPASS / GUI_PANEL_LEVELUP / GUI_PANEL_GOLD_* / GUI_PANEL_EXAMINE_*
+// * Nothing happens if oPC is not a player character or if an invalid value is used for nGUIPanel.
 void PopUpGUIPanel(object oPC, int nGUIPanel);
 
 // Clear all personal feelings that oSource has about oTarget.
@@ -9031,8 +9381,10 @@ int GetDefensiveCastingMode(object oCreature);
 // * returns APPEARANCE_TYPE_INVALID for non creatures/invalid creatures
 int GetAppearanceType(object oCreature);
 
-// SpawnScriptDebugger() will cause the script debugger to be executed
-// after this command is executed!
+// SpawnScriptDebugger() will attempt to communicate with the a running script debugger
+// instance. You need to run it yourself, and enable it in Options/Config beforehand.
+// A sample debug server is included with the game installation in utils/.
+// Will only work in singleplayer, NOT on dedicated servers.
 // In order to compile the script for debugging go to Tools->Options->Script Editor
 // and check the box labeled "Generate Debug Information When Compiling Scripts"
 // After you have checked the above box, recompile the script that you want to debug.
@@ -9179,7 +9531,8 @@ string GetCampaignString(string sCampaignName, string sVarName, object oPlayer=O
 // If an owner is specified and the object is an item, it will be put into their inventory
 // Otherwise, it will be created at the location.
 // If a new tag is specified, it will be assigned to the new object.
-object CopyObject(object oSource, location locLocation, object oOwner = OBJECT_INVALID, string sNewTag = "");
+// If bCopyLocalState is TRUE, local vars, effects, action queue, and transition info (triggers, doors) are copied over.
+object CopyObject(object oSource, location locLocation, object oOwner = OBJECT_INVALID, string sNewTag = "", int bCopyLocalState = FALSE);
 
 // This will remove ANY campaign variable. Regardless of type.
 void DeleteCampaignVariable(string sCampaignName, string sVarName, object oPlayer=OBJECT_INVALID);
@@ -9187,12 +9540,15 @@ void DeleteCampaignVariable(string sCampaignName, string sVarName, object oPlaye
 // Stores an object with the given id.
 // NOTE: this command can be used for storing Creatures, Items, Placeables, Waypoints, Stores, Doors, Triggers.
 // Returns 0 if it failled, 1 if it worked.
-int StoreCampaignObject(string sCampaignName, string sVarName, object oObject, object oPlayer=OBJECT_INVALID);
+// If bSaveObjectState is TRUE, local vars, effects, action queue, and transition info (triggers, doors) are saved out
+// (except for Combined Area Format, which always has object state saved out).
+int StoreCampaignObject(string sCampaignName, string sVarName, object oObject, object oPlayer=OBJECT_INVALID, int bSaveObjectState=FALSE);
 
 // Use RetrieveCampaign with the given id to restore it.
 // If you specify an owner, the object will try to be created in their repository
 // If the owner can't handle the item (or if it's a non-item) it will be created at the given location.
-object RetrieveCampaignObject(string sCampaignName, string sVarName, location locLocation, object oOwner = OBJECT_INVALID, object oPlayer=OBJECT_INVALID);
+// If bLoadObjectState is TRUE, local vars, effects, action queue, and transition info (triggers, doors) are read in.
+object RetrieveCampaignObject(string sCampaignName, string sVarName, location locLocation, object oOwner = OBJECT_INVALID, object oPlayer=OBJECT_INVALID, int bLoadObjectState=FALSE);
 
 // Returns an effect that is guaranteed to dominate a creature
 // Like EffectDominated but cannot be resisted
@@ -11126,7 +11482,7 @@ int GetItemPropertyDuration(itemproperty nProperty);
 // - Returns 0 if the duration type of the item property is not DURATION_TYPE_TEMPORARY.
 int GetItemPropertyDurationRemaining(itemproperty nProperty);
 
-// Instances a new area from the given resref, which needs to be a existing module area.
+// Instances a new area from the given sSourceResRef, which needs to be a existing module area.
 // Will optionally set a new area tag and displayed name. The new area is accessible
 // immediately, but initialisation scripts for the area and all contained creatures will only
 // run after the current script finishes (so you can clean up objects before returning).
@@ -11136,9 +11492,20 @@ int GetItemPropertyDurationRemaining(itemproperty nProperty);
 // Note: When spawning a second instance of a existing area, you will have to manually
 //       adjust all transitions (doors, triggers) with the relevant script commands,
 //       or players might end up in the wrong area.
-object CreateArea(string sResRef, string sNewTag = "", string sNewName = "");
+// Note: Areas cannot have duplicate ResRefs, so your new area will have a autogenerated,
+//       sequential resref starting with "nw_"; for example: nw_5. You cannot influence this resref.
+//       If you destroy an area, that resref will be come free for reuse for the next area created.
+//       If you need to know the resref of your new area, you can call GetResRef on it.
+// Note: When instancing an area from a loaded savegame, it will spawn the area as it was at time of save, NOT
+//       at module creation. This is because the savegame replaces the module data. Due to technical limitations,
+//       polymorphed creatures, personal reputation, and associates will currently fail to restore correctly.
+object CreateArea(string sSourceResRef, string sNewTag = "", string sNewName = "");
 
 // Destroys the given area object and everything in it.
+//
+// If the area is in a module, the .are and .git data is left behind and you can spawn from
+// it again. If the area is a temporary copy, the data will be deleted and you cannot spawn it again
+// via the resref.
 //
 // Return values:
 //    0: Object not an area or invalid.
@@ -11148,12 +11515,23 @@ object CreateArea(string sResRef, string sNewTag = "", string sNewName = "");
 int DestroyArea(object oArea);
 
 // Creates a copy of a existing area, including everything inside of it (except players).
+// Will optionally set a new area tag and displayed name. The new area is accessible
+// immediately, but initialisation scripts for the area and all contained creatures will only
+// run after the current script finishes (so you can clean up objects before returning).
+//
+// This is similar to CreateArea, except this variant will copy all changes made to the source
+// area since it has spawned. CreateArea() will instance the area from the .are and .git data
+// as it was at creation.
 //
 // Returns the new area, or OBJECT_INVALID on error.
 //
 // Note: You will have to manually adjust all transitions (doors, triggers) with the
 //       relevant script commands, or players might end up in the wrong area.
-object CopyArea(object oArea);
+// Note: Areas cannot have duplicate ResRefs, so your new area will have a autogenerated,
+//       sequential resref starting with "nw_"; for example: nw_5. You cannot influence this resref.
+//       If you destroy an area, that resref will be come free for reuse for the next area created.
+//       If you need to know the resref of your new area, you can call GetResRef on it.
+object CopyArea(object oArea, string sNewTag = "", string sNewName = "");
 
 // Returns the first area in the module.
 object GetFirstArea();
@@ -11316,14 +11694,14 @@ int SetEventScript(object oObject, int nHandler, string sScript);
 // - oObject can be any valid Creature, Placeable, Item or Door.
 // - nTransform is one of OBJECT_VISUAL_TRANSFORM_*
 // Returns the current (or default) value.
-float GetObjectVisualTransform(object oObject, int nTransform);
+float GetObjectVisualTransform(object oObject, int nTransform, int bCurrentLerp = FALSE);
 
 // Sets a visual transform on the given object.
 // - oObject can be any valid Creature, Placeable, Item or Door.
 // - nTransform is one of OBJECT_VISUAL_TRANSFORM_*
 // - fValue depends on the transformation to apply.
 // Returns the old/previous value.
-float SetObjectVisualTransform(object oObject, int nTransform, float fValue);
+float SetObjectVisualTransform(object oObject, int nTransform, float fValue, int nLerpType = OBJECT_VISUAL_TRANSFORM_LERP_NONE, float fLerpDuration = 0.0, int bPauseWithGame = TRUE);
 
 // Sets an integer material shader uniform override.
 // - sMaterial needs to be a material on that object.
@@ -11540,6 +11918,7 @@ string SqlGetError(sqlquery sqlQuery);
 // N.B.: You can pass sqlqueries into DelayCommand; HOWEVER
 //       *** they will NOT survive a game save/load ***
 //       Any commands on a restored sqlquery will fail.
+// Please check the SQLite_README.txt file in lang/en/docs/ for the list of builtin functions.
 sqlquery SqlPrepareQueryCampaign(string sDatabase, string sQuery);
 
 // Sets up a query.
@@ -11558,6 +11937,7 @@ sqlquery SqlPrepareQueryCampaign(string sDatabase, string sQuery);
 // N.B.: You can pass sqlqueries into DelayCommand; HOWEVER
 //       *** they will NOT survive a game save/load ***
 //       Any commands on a restored sqlquery will fail.
+// Please check the SQLite_README.txt file in lang/en/docs/ for the list of builtin functions.
 sqlquery SqlPrepareQueryObject(object oObject, string sQuery);
 
 // Bind an integer to a named parameter of the given prepared query.
@@ -11578,8 +11958,10 @@ void SqlBindVector(sqlquery sqlQuery, string sParam, vector vVector);
 
 // Bind a object to a named parameter of the given prepared query.
 // Objects are serialized, NOT stored as a reference!
-// Currently supported object types: Creatures, Items, Placeables, Waypoints, Stores, Doors, Triggers
-void SqlBindObject(sqlquery sqlQuery, string sParam, object oObject);
+// Currently supported object types: Creatures, Items, Placeables, Waypoints, Stores, Doors, Triggers, Areas (CAF format)
+// If bSaveObjectState is TRUE, local vars, effects, action queue, and transition info (triggers, doors) are saved out
+// (except for Combined Area Format, which always has object state saved out).
+void SqlBindObject(sqlquery sqlQuery, string sParam, object oObject, int bSaveObjectState = FALSE);
 
 // Executes the given query and fetches a row; returning true if row data was
 // made available; false otherwise. Note that this will return false even if
@@ -11622,7 +12004,8 @@ vector SqlGetVector(sqlquery sqlQuery, int nIndex);
 // Objects are serialized, NOT stored as a reference!
 // In case of error, INVALID_OBJECT will be returned.
 // In traditional fashion, nIndex starts at 0.
-object SqlGetObject(sqlquery sqlQuery, int nIndex, location lSpawnAt, object oInventory = OBJECT_INVALID);
+// If bLoadObjectState is TRUE, local vars, effects, action queue, and transition info (triggers, doors) are read in.
+object SqlGetObject(sqlquery sqlQuery, int nIndex, location lSpawnAt, object oInventory = OBJECT_INVALID, int bLoadObjectState = FALSE);
 
 // Convert sHex, a string containing a hexadecimal object id,
 // into a object reference. Counterpart to ObjectToString().
@@ -11636,3 +12019,608 @@ object StringToObject(string sHex);
 // * This is not considered a friendly or hostile combat action. It will not affect factions, nor will it trigger script events.
 // * This will not advise player parties in the combat log.
 void SetCurrentHitPoints(object oObject, int nHitPoints);
+
+// Returns the currently executing event (EVENT_SCRIPT_*) or 0 if not determinable.
+// Note: Will return 0 in DelayCommand/AssignCommand.
+// * bInheritParent: If TRUE, ExecuteScript(Chunk) will inherit their event ID from their parent event.
+//                   If FALSE, it will return the event ID of the current script, which may be 0.
+//
+// Some events can run in the same script context as a previous event (for example: CreatureOnDeath, CreatureOnDamaged)
+// In cases like these calling the function with bInheritParent = TRUE will return the wrong event ID.
+int GetCurrentlyRunningEvent(int bInheritParent = TRUE);
+
+// Get the integer parameter of eEffect at nIndex.
+// * nIndex bounds: 0 >= nIndex < 8.
+// * Some experimentation will be needed to find the right index for the value you wish to determine.
+// Returns: the value or 0 on error/when not set.
+int GetEffectInteger(effect eEffect, int nIndex);
+
+// Get the float parameter of eEffect at nIndex.
+// * nIndex bounds: 0 >= nIndex < 4.
+// * Some experimentation will be needed to find the right index for the value you wish to determine.
+// Returns: the value or 0.0f on error/when not set.
+float GetEffectFloat(effect eEffect, int nIndex);
+
+// Get the string parameter of eEffect at nIndex.
+// * nIndex bounds: 0 >= nIndex < 6.
+// * Some experimentation will be needed to find the right index for the value you wish to determine.
+// Returns: the value or "" on error/when not set.
+string GetEffectString(effect eEffect, int nIndex);
+
+// Get the object parameter of eEffect at nIndex.
+// * nIndex bounds: 0 >= nIndex < 4.
+// * Some experimentation will be needed to find the right index for the value you wish to determine.
+// Returns: the value or OBJECT_INVALID on error/when not set.
+object GetEffectObject(effect eEffect, int nIndex);
+
+// Get the vector parameter of eEffect at nIndex.
+// * nIndex bounds: 0 >= nIndex < 2.
+// * Some experimentation will be needed to find the right index for the value you wish to determine.
+// Returns: the value or {0.0f, 0.0f, 0.0f} on error/when not set.
+vector GetEffectVector(effect eEffect, int nIndex);
+
+// Check if nBaseItemType fits in oTarget's inventory.
+// Note: Does not check inside any container items possessed by oTarget.
+// * nBaseItemType: a BASE_ITEM_* constant.
+// * oTarget: a valid creature, placeable or item.
+// Returns: TRUE if the baseitem type fits, FALSE if not or on error.
+int GetBaseItemFitsInInventory(int nBaseItemType, object oTarget);
+
+// Get oObject's local cassowary variable reference sVarName
+// * Return value on error: empty solver
+// * NB: cassowary types are references, same as objects.
+//   Unlike scalars such as int and string, solver references share the same data.
+//   Modifications made to one reference are reflected on others.
+cassowary GetLocalCassowary(object oObject, string sVarName);
+
+// Set a reference to the given solver on oObject.
+// * NB: cassowary types are references, same as objects.
+//   Unlike scalars such as int and string, solver references share the same data.
+//   Modifications made to one reference are reflected on others.
+void SetLocalCassowary(object oObject, string sVarName, cassowary cSolver);
+
+// Delete local solver reference.
+// * NB: cassowary types are references, same as objects.
+//   Unlike scalars such as int and string, solver references share the same data.
+//   Modifications made to one reference are reflected on others.
+void DeleteLocalCassowary(object oObject, string sVarName);
+
+// Clear out this solver, removing all state, constraints and suggestions.
+// This is provided as a convenience if you wish to reuse a cassowary variable.
+// It is not necessary to call this for solvers you simply want to let go out of scope.
+void CassowaryReset(cassowary cSolver);
+
+// Add a constraint to the system.
+// * The constraint needs to be a valid comparison equation, one of: >=, ==, <=.
+// * This implementation is a linear constraint solver.
+// * You cannot multiply or divide variables and expressions with each other.
+//   Doing so will result in a error when attempting to add the constraint.
+//   (You can, of course, multiply or divide by constants).
+// * fStrength must be >= CASSOWARY_STRENGTH_WEAK && <= CASSOWARY_STRENGTH_REQUIRED.
+// * Any referenced variables can be retrieved with CassowaryGetValue().
+// * Returns "" on success, or the parser/constraint system error message.
+string CassowaryConstrain(cassowary cSolver, string sConstraint, float fStrength = CASSOWARY_STRENGTH_REQUIRED);
+
+// Suggest a value to the solver.
+// * Edit variables are soft constraints and exist as an optimisation for complex systems.
+//   You can do the same with Constrain("v == 5", CASSOWARY_STRENGTH_xxx); but edit variables
+//   allow you to suggest values without having to rebuild the solver.
+// * fStrength must be >= CASSOWARY_STRENGTH_WEAK && < CASSOWARY_STRENGTH_REQUIRED
+//   Suggested values cannot be required, as suggesting a value must not invalidate the solver.
+void CassowarySuggestValue(cassowary cSolver, string sVarName, float fValue, float fStrength = CASSOWARY_STRENGTH_STRONG);
+
+// Get the value for the given variable, or 0.0 on error.
+float CassowaryGetValue(cassowary cSolver, string sVarName);
+
+// Gets a printable debug state of the given solver, which may help you debug
+// complex systems.
+string CassowaryDebug(cassowary cSolver);
+
+// Overrides a given strref to always return sValue instead of what is in the TLK file.
+// Setting sValue to "" will delete the override
+void SetTlkOverride(int nStrRef, string sValue="");
+
+// Constructs a custom itemproperty given all the parameters explicitly.
+// This function can be used in place of all the other ItemPropertyXxx constructors
+// Use GetItemProperty{Type,SubType,CostTableValue,Param1Value} to see the values for a given itemproperty.
+itemproperty ItemPropertyCustom(int nType, int nSubType=-1, int nCostTableValue=-1, int nParam1Value=-1);
+
+// Create a RunScript effect.
+// Notes: When applied as instant effect, only sOnAppliedScript will fire.
+//        In the scripts, OBJECT_SELF will be the object the effect is applied to.
+// * sOnAppliedScript: An optional script to execute when the effect is applied.
+// * sOnRemovedScript: An optional script to execute when the effect is removed.
+// * sOnIntervalScript: An optional script to execute every fInterval seconds.
+// * fInterval: The interval in seconds, must be >0.0f if an interval script is set.
+//              Very low values may have an adverse effect on performance.
+// * sData: An optional string of data saved in the effect, retrievable with GetEffectString() at index 0.
+effect EffectRunScript(string sOnAppliedScript = "", string sOnRemovedScript = "", string sOnIntervalScript = "", float fInterval = 0.0f, string sData = "");
+
+// Get the effect that last triggered an EffectRunScript() script.
+// Note: This can be used to get the creator or tag, among others, of the EffectRunScript() in one of its scripts.
+// * Returns an effect of type EFFECT_TYPE_INVALIDEFFECT when called outside of an EffectRunScript() script.
+effect GetLastRunScriptEffect();
+
+// Get the script type (RUNSCRIPT_EFFECT_SCRIPT_TYPE_*) of the last triggered EffectRunScript() script.
+// * Returns 0 when called outside of an EffectRunScript() script.
+int GetLastRunScriptEffectScriptType();
+
+// Hides the effect icon of eEffect and of all effects currently linked to it.
+effect HideEffectIcon(effect eEffect);
+
+// Create an Icon effect.
+// * nIconID: The effect icon (EFFECT_ICON_*) to display.
+//            Using the icon for Poison/Disease will also color the health bar green/brown, useful to simulate custom poisons/diseases.
+// Returns an effect of type EFFECT_TYPE_INVALIDEFFECT when nIconID is < 1 or > 255.
+effect EffectIcon(int nIconID);
+
+// Gets the player that last triggered the module OnPlayerGuiEvent event.
+object GetLastGuiEventPlayer();
+
+// Gets the last triggered GUIEVENT_* in the module OnPlayerGuiEvent event.
+int GetLastGuiEventType();
+
+// Gets an optional integer of specific gui events in the module OnPlayerGuiEvent event.
+// * GUIEVENT_CHATBAR_*: The selected chat channel. Does not indicate the actual used channel.
+//                       0 = Shout, 1 = Whisper, 2 = Talk, 3 = Party, 4 = DM
+// * GUIEVENT_CHARACTERSHEET_SKILL_SELECT: The skill ID.
+// * GUIEVENT_CHARACTERSHEET_FEAT_SELECT: The feat ID.
+// * GUIEVENT_EFFECTICON_CLICK: The effect icon ID (EFFECT_ICON_*)
+// * GUIEVENT_DISABLED_PANEL_ATTEMPT_OPEN: The GUI_PANEL_* the player attempted to open.
+// * GUIEVENT_QUICKCHAT_SELECT: The hotkey character representing the option
+// * GUIEVENT_EXAMINE_OBJECT: A GUI_PANEL_EXAMINE_* constant
+int GetLastGuiEventInteger();
+
+// Gets an optional object of specific gui events in the module OnPlayerGuiEvent event.
+// * GUIEVENT_MINIMAP_MAPPIN_CLICK: The waypoint the map note is attached to.
+// * GUIEVENT_CHARACTERSHEET_*_SELECT: The owner of the character sheet.
+// * GUIEVENT_PLAYERLIST_PLAYER_CLICK: The player clicked on.
+// * GUIEVENT_PARTYBAR_PORTRAIT_CLICK: The creature clicked on.
+// * GUIEVENT_DISABLED_PANEL_ATTEMPT_OPEN: For GUI_PANEL_CHARACTERSHEET, the owner of the character sheet.
+//                                         For GUI_PANEL_EXAMINE_*, the object being examined.
+// * GUIEVENT_*SELECT_CREATURE: The creature that was (un)selected
+// * GUIEVENT_EXAMINE_OBJECT: The object being examined.
+object GetLastGuiEventObject();
+
+// Disable a gui panel for the client that controls oPlayer.
+// Notes: Will close the gui panel if currently open, except GUI_PANEL_LEVELUP / GUI_PANEL_GOLD_*
+//        Does not persist through relogging or in savegames.
+//        Will fire a GUIEVENT_DISABLED_PANEL_ATTEMPT_OPEN OnPlayerGuiEvent for some gui panels if a player attempts to open them.
+//        You can still force show a panel with PopUpGUIPanel().
+//        You can still force examine an object with ActionExamine().
+// * nGuiPanel: A GUI_PANEL_* constant, except GUI_PANEL_PLAYER_DEATH.
+void SetGuiPanelDisabled(object oPlayer, int nGuiPanel, int bDisabled);
+
+// Gets the ID (1..8) of the last tile action performed in OnPlayerTileAction
+int GetLastTileActionId();
+
+// Gets the target position in the module OnPlayerTileAction event.
+vector GetLastTileActionPosition();
+
+// Gets the player object that triggered the OnPlayerTileAction event.
+object GetLastPlayerToDoTileAction();
+
+// Parse the given string as a valid json value, and returns the corresponding type.
+// Returns a JSON_TYPE_NULL on error.
+// Check JsonGetError() to see the parse error, if any.
+// NB: The parsed string needs to be in game-local encoding, but the generated json structure
+//     will contain UTF-8 data.
+json JsonParse(string sJson);
+
+// Dump the given json value into a string that can be read back in via JsonParse.
+// nIndent describes the indentation level for pretty-printing; a value of -1 means no indentation and no linebreaks.
+// Returns a string describing JSON_TYPE_NULL on error.
+// NB: The dumped string is in game-local encoding, with all non-ascii characters escaped.
+string JsonDump(json jValue, int nIndent = -1);
+
+// Describes the type of the given json value.
+// Returns JSON_TYPE_NULL if the value is empty.
+int JsonGetType(json jValue);
+
+// Returns the length of the given json type.
+// For objects, returns the number of top-level keys present.
+// For arrays, returns the number of elements.
+// Null types are of size 0.
+// All other types return 1.
+int JsonGetLength(json jValue);
+
+// Returns the error message if the value has errored out.
+// Currently only describes parse errors.
+string JsonGetError(json jValue);
+
+// Create a NULL json value, seeded with a optional error message for JsonGetError().
+json JsonNull(string sError = "");
+
+// Create a empty json object.
+json JsonObject();
+
+// Create a empty json array.
+json JsonArray();
+
+// Create a json string value.
+// NB: Strings are encoded to UTF-8 from the game-local charset.
+json JsonString(string sValue);
+
+// Create a json integer value.
+json JsonInt(int nValue);
+
+// Create a json floating point value.
+json JsonFloat(float fValue);
+
+// Create a json bool valye.
+json JsonBool(int bValue);
+
+// Returns a string representation of the json value.
+// Returns "" if the value cannot be represented as a string, or is empty.
+// NB: Strings are decoded from UTF-8 to the game-local charset.
+string JsonGetString(json jValue);
+
+// Returns a int representation of the json value, casting where possible.
+// Returns 0 if the value cannot be represented as a int.
+// Use this to parse json bool types.
+// NB: This will narrow down to signed 32 bit, as that is what NWScript int is.
+//     If you are trying to read a 64 bit or unsigned integer that doesn't fit into int32, you will lose data.
+//     You will not lose data if you keep the value as a json element (via Object/ArrayGet).
+int JsonGetInt(json jValue);
+
+// Returns a float representation of the json value, casting where possible.
+// Returns 0.0 if the value cannot be represented as a float.
+// NB: This will narrow doubles down to float.
+//     If you are trying to read a double, you will potentially lose precision.
+//     You will not lose data if you keep the value as a json element (via Object/ArrayGet).
+float JsonGetFloat(json jValue);
+
+// Returns a json array containing all keys of jObject.
+// Returns a empty array if the object is empty or not a json object, with JsonGetError() filled in.
+json JsonObjectKeys(json jObject);
+
+// Returns the key value of sKey on the object jObect.
+// Returns a null json value if jObject is not a object or sKey does not exist on the object, with JsonGetError() filled in.
+json JsonObjectGet(json jObject, string sKey);
+
+// Returns a modified copy of jObject with the key at sKey set to jValue.
+// Returns a json null value if jObject is not a object, with JsonGetError() filled in.
+json JsonObjectSet(json jObject, string sKey, json jValue);
+
+// Returns a modified copy of jObject with the key at sKey deleted.
+// Returns a json null value if jObject is not a object, with JsonGetError() filled in.
+json JsonObjectDel(json jObject, string sKey);
+
+// Gets the json object at jArray index position nIndex.
+// Returns a json null value if the index is out of bounds, with JsonGetError() filled in.
+json JsonArrayGet(json jArray, int nIndex);
+
+// Returns a modified copy of jArray with position nIndex set to jValue.
+// Returns a json null value if jArray is not actually an array, with JsonGetError() filled in.
+// Returns a json null value if nIndex is out of bounds, with JsonGetError() filled in.
+json JsonArraySet(json jArray, int nIndex, json jValue);
+
+// Returns a modified copy of jArray with jValue inserted at position nIndex.
+// All succeeding objects in the array will move by one.
+// By default (-1), inserts objects at the end of the array ("push").
+// nIndex = 0 inserts at the beginning of the array.
+// Returns a json null value if jArray is not actually an array, with JsonGetError() filled in.
+// Returns a json null value if nIndex is not 0 or -1 and out of bounds, with JsonGetError() filled in.
+json JsonArrayInsert(json jArray, json jValue, int nIndex = -1);
+
+// Returns a modified copy of jArray with the element at position nIndex removed,
+// and the array resized by one.
+// Returns a json null value if jArray is not actually an array, with JsonGetError() filled in.
+// Returns a json null value if nIndex is out of bounds, with JsonGetError() filled in.
+json JsonArrayDel(json jArray, int nIndex);
+
+// Transforms the given object into a json structure.
+// The json format is compatible with what https://github.com/niv/neverwinter.nim@1.4.3+ emits.
+// Returns the null json type on errors, or if oObject is not serializable, with JsonGetError() filled in.
+// Supported object types: creature, item, trigger, placeable, door, waypoint, encounter, store, area (combined format)
+// If bSaveObjectState is TRUE, local vars, effects, action queue, and transition info (triggers, doors) are saved out
+// (except for Combined Area Format, which always has object state saved out).
+json ObjectToJson(object oObject, int bSaveObjectState = FALSE);
+
+// Deserializes the game object described in jObject.
+// Returns OBJECT_INVALID on errors.
+// Supported object types: creature, item, trigger, placeable, door, waypoint, encounter, store, area (combined format)
+// For areas, locLocation is ignored.
+// If bLoadObjectState is TRUE, local vars, effects, action queue, and transition info (triggers, doors) are read in.
+object JsonToObject(json jObject, location locLocation, object oOwner = OBJECT_INVALID, int bLoadObjectState = FALSE);
+
+// Returns the element at the given JSON pointer value.
+// For example, given the JSON document:
+//   {
+//     "foo": ["bar", "baz"],
+//     "": 0,
+//     "a/b": 1,
+//     "c%d": 2,
+//     "e^f": 3,
+//     "g|h": 4,
+//     "i\\j": 5,
+//     "k\"l": 6,
+//     " ": 7,
+//     "m~n": 8
+//   }
+// The following JSON strings evaluate to the accompanying values:
+//   ""           // the whole document
+//   "/foo"       ["bar", "baz"]
+//   "/foo/0"     "bar"
+//   "/"          0
+//   "/a~1b"      1
+//   "/c%d"       2
+//   "/e^f"       3
+//   "/g|h"       4
+//   "/i\\j"      5
+//   "/k\"l"      6
+//   "/ "         7
+//   "/m~0n"      8
+// See https://datatracker.ietf.org/doc/html/rfc6901 for more details.
+// Returns a json null value on error, with JsonGetError() filled in.
+json JsonPointer(json jData, string sPointer);
+
+// Return a modified copy of jData with jPatch applied, according to the rules described below.
+// See JsonPointer() for documentation on the pointer syntax.
+// Returns a json null value on error, with JsonGetError() filled in.
+// jPatch is an array of patch elements, each containing a op, a path, and a value field. Example:
+// [
+//   { "op": "replace", "path": "/baz", "value": "boo" },
+//   { "op": "add", "path": "/hello", "value": ["world"] },
+//   { "op": "remove", "path": "/foo"}
+// ]
+// Valid operations are: add, remove, replace, move, copy, test
+// See https://datatracker.ietf.org/doc/html/rfc7386 for more details on the patch rules.
+json JsonPatch(json jData, json jPatch);
+
+// Returns the diff (described as a json structure you can pass into JsonPatch) between the two objects.
+// Returns a json null value on error, with JsonGetError() filled in.
+json JsonDiff(json jLHS, json jRHS);
+
+// Returns a modified copy of jData with jMerge merged into it. This is an alternative to
+// JsonPatch/JsonDiff, with a syntax more closely resembling the final object.
+// See https://datatracker.ietf.org/doc/html/rfc7386 for details.
+// Returns a json null value on error, with JsonGetError() filled in.
+json JsonMerge(json jData, json jMerge);
+
+// Get oObject's local json variable sVarName
+// * Return value on error: json null type
+json GetLocalJson(object oObject, string sVarName);
+
+// Set oObject's local json variable sVarName to jValue
+void SetLocalJson(object oObject, string sVarName, json jValue);
+
+// Delete oObject's local json variable sVarName
+void DeleteLocalJson(object oObject, string sVarName);
+
+// Bind an json to a named parameter of the given prepared query.
+// Json values are serialised into a string.
+// Example:
+//   sqlquery v = SqlPrepareQueryObject(GetModule(), "insert into test (col) values (@myjson);");
+//   SqlBindJson(v, "@myjson", myJsonObject);
+//   SqlStep(v);
+void SqlBindJson(sqlquery sqlQuery, string sParam, json jValue);
+
+// Retrieve a column cast as a json value of the currently stepped row.
+// You can call this after SqlStep() returned TRUE.
+// In case of error, a json null value will be returned.
+// In traditional fashion, nIndex starts at 0.
+json SqlGetJson(sqlquery sqlQuery, int nIndex);
+
+// This stores a json out to the specified campaign database
+// The database name:
+//  - is case insensitive and it must be the same for both set and get functions.
+//  - can only contain alphanumeric characters, no spaces.
+// The var name must be unique across the entire database, regardless of the variable type.
+// If you want a variable to pertain to a specific player in the game, provide a player object.
+void SetCampaignJson(string sCampaignName, string sVarName, json jValue, object oPlayer=OBJECT_INVALID);
+
+// This will read a json from the  specified campaign database
+// The database name:
+//  - is case insensitive and it must be the same for both set and get functions.
+//  - can only contain alphanumeric characters, no spaces.
+// The var name must be unique across the entire database, regardless of the variable type.
+// If you want a variable to pertain to a specific player in the game, provide a player object.
+json GetCampaignJson(string sCampaignName, string sVarName, object oPlayer=OBJECT_INVALID);
+
+// Gets a device property/capability as advertised by the client.
+// sProperty is one of PLAYER_DEVICE_PROPERTY_xxx.
+// Returns -1 if
+// - the property was never set by the client,
+// - the the actual value is -1,
+// - the player is running a older build that does not advertise device properties,
+// - the player has disabled sending device properties (Options->Game->Privacy).
+int GetPlayerDeviceProperty(object oPlayer, string sProperty);
+
+// Returns the LANGUAGE_xx code of the given player, or -1 if unavailable.
+int GetPlayerLanguage(object oPlayer);
+
+// Returns one of PLAYER_DEVICE_PLATFORM_xxx, or 0 if unavailable.
+int GetPlayerDevicePlatform(object oPlayer);
+
+// Deserializes the given resref/template into a JSON structure.
+// Supported GFF resource types:
+// * RESTYPE_CAF (and RESTYPE_ARE, RESTYPE_GIT, RESTYPE_GIC)
+// * RESTYPE_UTC
+// * RESTYPE_UTI
+// * RESTYPE_UTT
+// * RESTYPE_UTP
+// * RESTYPE_UTD
+// * RESTYPE_UTW
+// * RESTYPE_UTE
+// * RESTYPE_UTM
+// Returns a valid gff-type json structure, or a null value with JsonGetError() set.
+json TemplateToJson(string sResRef, int nResType);
+
+// Returns the resource location of sResRef.nResType, as seen by the running module.
+// Note for dedicated servers: Checks on the module/server side, not the client.
+// Returns "" if the resource does not exist in the search space.
+string ResManGetAliasFor(string sResRef, int nResType);
+
+// Finds the nNth available resref starting with sPrefix.
+// * Set bSearchBaseData to TRUE to also search base game content stored in your game installation directory.
+//   WARNING: This can be very slow.
+// * Set sOnlyKeyTable to a specific keytable to only search the given named keytable (e.g. "OVERRIDE:").
+// Returns "" if no such resref exists.
+string ResManFindPrefix(string sPrefix, int nResType, int nNth = 1, int bSearchBaseData = FALSE, string sOnlyKeyTable = "");
+
+// Create a NUI window from the given resref(.jui) for the given player.
+// * The resref needs to be available on the client, not the server.
+// * The token is a integer for ease of handling only. You are not supposed to do anything with it, except store/pass it.
+// * The window ID needs to be alphanumeric and short. Only one window (per client) with the same ID can exist at a time.
+//   Re-creating a window with the same id of one already open will immediately close the old one.
+// * See nw_inc_nui.nss for full documentation.
+// Returns the window token on success (>0), or 0 on error.
+int NuiCreateFromResRef(object oPlayer, string sResRef, string sWindowId = "");
+
+// Create a NUI window inline for the given player.
+// * The token is a integer for ease of handling only. You are not supposed to do anything with it, except store/pass it.
+// * The window ID needs to be alphanumeric and short. Only one window (per client) with the same ID can exist at a time.
+//   Re-creating a window with the same id of one already open will immediately close the old one.
+// * See nw_inc_nui.nss for full documentation.
+// Returns the window token on success (>0), or 0 on error.
+int NuiCreate(object oPlayer, json jNui, string sWindowId = "");
+
+// You can look up windows by ID, if you gave them one.
+// * Windows with a ID present are singletons - attempting to open a second one with the same ID
+//   will fail, even if the json definition is different.
+// Returns the token if found, or 0.
+int NuiFindWindow(object oPlayer, string sId);
+
+// Destroys the given window, by token, immediately closing it on the client.
+// Does nothing if nUiToken does not exist on the client.
+// Does not send a close event - this immediately destroys all serverside state.
+// The client will close the window asynchronously.
+void NuiDestroy(object oPlayer, int nUiToken);
+
+// Returns the originating player of the current event.
+object NuiGetEventPlayer();
+
+// Gets the window token of the current event (or 0 if not in a event).
+int NuiGetEventWindow();
+
+// Returns the event type of the current event.
+// * See nw_inc_nui.nss for full documentation of all events.
+string NuiGetEventType();
+
+// Returns the ID of the widget that triggered the event.
+string NuiGetEventElement();
+
+// Get the array index of the current event.
+// This can be used to get the index into an array, for example when rendering lists of buttons.
+// Returns -1 if the event is not originating from within an array.
+int NuiGetEventArrayIndex();
+
+// Returns the window ID of the window described by nUiToken.
+// Returns "" on error, or if the window has no ID.
+string NuiGetWindowId(object oPlayer, int nUiToken);
+
+// Gets the json value for the given player, token and bind.
+// * json values can hold all kinds of values; but NUI widgets require specific bind types.
+//   It is up to you to either handle this in NWScript, or just set compatible bind types.
+//   No auto-conversion happens.
+// Returns a json null value if the bind does not exist.
+json NuiGetBind(object oPlayer, int nUiToken, string sBindName);
+
+// Sets a json value for the given player, token and bind.
+// The value is synced down to the client and can be used in UI binding.
+// When the UI changes the value, it is returned to the server and can be retrieved via NuiGetBind().
+// * json values can hold all kinds of values; but NUI widgets require specific bind types.
+//   It is up to you to either handle this in NWScript, or just set compatible bind types.
+//   No auto-conversion happens.
+// * If the bind is on the watch list, this will immediately invoke the event handler with the "watch"
+//   even type; even before this function returns. Do not update watched binds from within the watch handler
+//   unless you enjoy stack overflows.
+// Does nothing if the given player+token is invalid.
+void NuiSetBind(object oPlayer, int nUiToken, string sBindName, json jValue);
+
+// Swaps out the given element (by id) with the given nui layout (partial).
+// * This currently only works with the "group" element type, and the special "_window_" root group.
+void NuiSetGroupLayout(object oPlayer, int nUiToken, string sElement, json jNui);
+
+// Mark the given bind name as watched.
+// A watched bind will invoke the NUI script event every time it's value changes.
+// Be careful with binding nui data inside a watch event handler: It's easy to accidentally recurse yourself into a stack overflow.
+int NuiSetBindWatch(object oPlayer, int nUiToken, string sBind, int bWatch);
+
+// Returns the nNth window token of the player, or 0.
+// nNth starts at 0.
+// Iterator is not write-safe: Calling DestroyWindow() will invalidate move following offsets by one.
+int NuiGetNthWindow(object oPlayer, int nNth = 0);
+
+// Return the nNth bind name of the given window, or "".
+// If bWatched is TRUE, iterates only watched binds.
+// If FALSE, iterates all known binds on the window (either set locally or in UI).
+string NuiGetNthBind(object oPlayer, int nToken, int bWatched, int nNth = 0);
+
+// Returns the event payload, specific to the event.
+// Returns JsonNull if event has no payload.
+json NuiGetEventPayload();
+
+// Get the userdata of the given window token.
+// Returns JsonNull if the window does not exist on the given player, or has no userdata set.
+json NuiGetUserData(object oPlayer, int nToken);
+
+// Sets an arbitrary json value as userdata on the given window token.
+// This userdata is not read or handled by the game engine and not sent to clients.
+// This mechanism only exists as a convenience for the programmer to store data bound to a windows' lifecycle.
+// Will do nothing if the window does not exist.
+void NuiSetUserData(object oPlayer, int nToken, json jUserData);
+
+// Returns the number of script instructions remaining for the currently-running script.
+// Once this value hits zero, the script will abort with TOO MANY INSTRUCTIONS.
+// The instruction limit is configurable by the user, so if you have a really long-running
+// process, this value can guide you with splitting it up into smaller, discretely schedulable parts.
+// Note: Running this command and checking/handling the value also takes up some instructions.
+int GetScriptInstructionsRemaining();
+
+// Returns a modified copy of jArray with the value order changed according to nTransform:
+// * JSON_ARRAY_SORT_ASCENDING, JSON_ARRAY_SORT_DESCENDING
+//    Sorting is dependent on the type and follows json standards (.e.g. 99 < "100").
+// * JSON_ARRAY_SHUFFLE
+//   Randomises the order of elements.
+// * JSON_ARRAY_REVERSE
+//   Reverses the array.
+// * JSON_ARRAY_UNIQUE
+//   Returns a modified copy of jArray with duplicate values removed.
+//   Coercable but different types are not considered equal (e.g. 99 != "99"); int/float equivalence however applies: 4.0 == 4.
+//   Order is preserved.
+// * JSON_ARRAY_COALESCE
+//   Returns the first non-null entry. Empty-ish values (e.g. "", 0) are not considered null, only the json scalar type.
+json JsonArrayTransform(json jArray, int nTransform);
+
+// Returns the nth-matching index or key of jNeedle in jHaystack.
+// Supported haystacks: object, array
+// Ordering behaviour for objects is unspecified.
+// Return null when not found or on any error.
+json JsonFind(json jHaystack, json jNeedle, int nNth = 0, int nConditional = JSON_FIND_EQUAL);
+
+// Returns a copy of the range (nBeginIndex, nEndIndex) inclusive of jArray.
+// Negative nEndIndex values count from the other end.
+// Out-of-bound values are clamped to the array range.
+// Examples:
+//  json a = JsonParse("[0, 1, 2, 3, 4]");
+//  JsonArrayGetRange(a, 0, 1)    // => [0, 1]
+//  JsonArrayGetRange(a, 1, -1)   // => [1, 2, 3, 4]
+//  JsonArrayGetRange(a, 0, 4)    // => [0, 1, 2, 3, 4]
+//  JsonArrayGetRange(a, 0, 999)  // => [0, 1, 2, 3, 4]
+//  JsonArrayGetRange(a, 1, 0)    // => []
+//  JsonArrayGetRange(a, 1, 1)    // => [1]
+// Returns a null type on error, including type mismatches.
+json JsonArrayGetRange(json jArray, int nBeginIndex, int nEndIndex);
+
+// Returns the result of a set operation on two arrays.
+// Operations:
+// * JSON_SET_SUBSET (v <= o):
+//   Returns true if every element in jValue is also in jOther.
+// * JSON_SET_UNION (v | o):
+//   Returns a new array containing values from both sides.
+// * JSON_SET_INTERSECT (v & o):
+//   Returns a new array containing only values common to both sides.
+// * JSON_SET_DIFFERENCE (v - o):
+//   Returns a new array containing only values not in jOther.
+// * JSON_SET_SYMMETRIC_DIFFERENCE (v ^ o):
+//   Returns a new array containing all elements present in either array, but not both.
+json JsonSetOp(json jValue, int nOp, json jOther);
+
+// Returns the column name of s2DA at nColumn index (starting at 0).
+// Returns "" if column nColumn doesn't exist (at end).
+string Get2DAColumn(string s2DA, int nColumnIdx);
+
+// Returns the number of defined rows in the 2da s2DA.
+int Get2DARowCount(string s2DA);

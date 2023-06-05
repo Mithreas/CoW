@@ -1,0 +1,9 @@
+PCs have reputation with factions (currently just their own one), and factions have a global ranking system.  Eventually this will be used within the City to determine changes in leadership positions. 
+
+PC faction reputation determines rank in the faction.  Reach a high enough level and you'll become a Guard, and once you hit the top of the tree you become a Noble.  These positions will give you access to more of the faction's private areas.  
+
+You gain reputation points as quest rewards, by crafting, and by killing enemies of your faction.  Factions gain points by controlling areas, and lose them when servants of the faction are killed. 
+
+May well do other things too in future - this is a mechanic that's intended to be hooked into other things over time.
+
+[[Category: Unique Mechanics]]

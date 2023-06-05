@@ -14,8 +14,21 @@
 //:://////////////////////////////////////////////
 #include "x2_inc_compon"
 #include "inc_crime"
+#include "nwnx_object"
+
+void DoRespawnDoor(string sDoor, vector vPosition, float fFacing)
+{
+  object oNewDoor = NWNX_Object_Deserialize(sDoor);
+  NWNX_Object_AddToArea(oNewDoor, OBJECT_SELF, vPosition);
+  NWNX_Object_SetFacing(oNewDoor, fFacing);
+}
+
 void main()
 {
+	//Check that this script hasn't already fired.
+	if (GetLocalInt(OBJECT_SELF, "DESTROYED")) return;
+	SetLocalInt(OBJECT_SELF, "DESTROYED", TRUE);
+
   /*
     Author: Mithreas
     Date: 17 Apr 06
@@ -54,6 +67,12 @@ void main()
     }
 
   }
+  
+  // Respawn the door. 
+  string sDoor = GetLocalString (OBJECT_SELF, "NWNX_OBJECT_STRING");
+  vector vPos = GetPosition(OBJECT_SELF);
+  float fFacing = GetFacing(OBJECT_SELF);
+  if (sDoor != "") AssignCommand(GetArea(OBJECT_SELF), DelayCommand(1800.0f, DoRespawnDoor(sDoor, vPos, fFacing)));
 
   craft_drop_placeable();
 }

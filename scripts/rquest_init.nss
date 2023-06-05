@@ -1064,10 +1064,10 @@ void main()
   QUEST = "explore_fernvale";
   SetStringValue(QUEST+QUEST_TYPE, PATROL, DB_VARS);
   SetStringValue(QUEST+DESCRIPTION, 
-    "You should get to know the village.  Visit the Rangers' Guild, the Mages' Guild, the Canopy, and the Temple. " +
+    "You should get to know the village.  Visit the Rangers' Guild, the Mages' Guild, the Canopy, the Bakery, and the Temple. " +
 	"They're all nearby; the guilds are to your left and right, the way up to the canopy is further to your left, " +
-	"and the temple is a short walk to the east.", DB_VARS);
-  SetStringValue(QUEST+AREA_TAGS, "fevCanopy,fevMageGuild,fevRangersGuild,fevtemple", DB_VARS);
+	"the bakery is a short walk to the southeast and the temple is a short walk to the east.", DB_VARS);
+  SetStringValue(QUEST+AREA_TAGS, "fevCanopy,fevMageGuild,fevRangersGuild,fevtemple,fevb", DB_VARS);
   SetStringValue(QUEST+REWARD_GOLD, "25", DB_VARS);
   SetStringValue(QUEST+REWARD_XP, "2000", DB_VARS);
   

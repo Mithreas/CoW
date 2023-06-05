@@ -1,0 +1,143 @@
+{{CraftNav|title=Crafting}}
+
+[[Category: Unique Mechanics]]
+=Fundamentals of the crafting system=
+
+* You gain crafting XP by crafting.  Failing will give you more XP than succeeding on an easy recipe, but less than succeeding at a hard one. 
+* Crafting is time based.  Resources are plentiful (especially if playing a faction in control of resource areas) and time is the limiting factor on how much you can do. (So I won't be adding bulk create options!)
+* Some basic recipes, like smelting ingots, always succeed and don't rely on craft skills.
+* Most more advanced recipes require basic ingredients from other craft skills. 
+* Each craft skill is helped by two stats (see below for list).  Having high values in these stats will make crafting easier. Only the base stats are used!
+** Base stats are your starting stats + Great Stat Feat (Ex: Great Strength)
+** Every +2 in attribute bonuses = 1 effective craft level
+* You craft base items with a material property, e.g. Material: Iron.  The base items have few or no functional properties.
+* You can improve items at crafting stations.  Improving items is how you add properties.  Improving gets easier with higher quality materials and higher craft skills.  (It is based off the Arelith enchantment basin system though without spell focuses).
+* Properties are categorised as "mundane" or "magical".  This determines which craft skills are used to add them, and which materials make them easier to add.
+* Using the proper materials for the type of enchant category will not only give you a higher success percentage but also make the enchant cheaper.
+
+=Craft skills and current status=
+* Weapon crafting (STR/DEX) - ondaran, iron and silver implemented and debugged.  Should be in good shape. 
+* Armour crafting (STR/CON) - ondaran, iron and silver implemented and debugged.  Should be in good shape.
+* Carpentry (STR/WIS) - Implemented, though Duskwood may be very hard to get, if even possible.  Ironwood exists but is rare. 
+* Tailoring (DEX/INT) - Implemented (both leathers and cloths/wools/silks), moderately well tested.
+* Jewelry (DEX/CHA) - ondaran, iron and silver implemented, plus gem polishing.  Should be in good shape.
+* Cooking (CON/CHA) - not implemented yet
+* Explosives (CON/INT) - some recipes in place, much more love needed.
+* Imbuing (WIS/CHA) - potion crafting pretty well completed, needs testing (easier as a halfling, better access to herbs).  Weapon essences exist, defensive ones todo. Also used for putting magical properties on weapons. 
+* Investing (INT/WIS) - scroll crafting and rune crafting implemented and tested.  Also used for putting magical properties on jewelry/clothing/armour.
+
+You use the craft skills for the following:
+{| class="wikitable" style="text-align:center"
+!Item type!!Mundane Improvements!!Magical Improvements
+|-
+|Armour, bracers, shields||Armour crafting||Investing
+|-
+|Bows, ammo, staves||Wood crafting||Imbuing
+|-
+|Whips, slings, gloves, cloaks, belts, boots||Tailoring||Investing
+|-
+|Other weapons||Weapon crafting||Imbuing
+|-
+|Rings and amulets||Jewelry||Investing
+|}
+
+=Mundane Properties=
+The following properties are classified as 'mundane'. The difficulty of adding these to an item will be determined by how well the material takes mundane improvements. 
+*AC Bonus
+*AC vs Damage Type (Slashing/Piercing/Bludgeoning)
+*Arcane Spell Failure
+*Attack Bonus
+*Base Item Weight Reduction
+*Damage Bonus (Slashing/Piercing/Bludgeoning)
+*Damage Immunity (Slashing/Piercing/Bludgeoning)
+*Enhancement Bonus
+*Extra Melee Damage Type
+*Extra Ranged Damage Type
+*Keen
+*Massive Criticals
+*Mighty
+
+=Magical Properties=
+The next following properties are classed as 'magical'. The difficulty of adding these to an item will be determined by how well the material takes magical improvements. 
+*Ability Score
+*AC Bonus vs Racial Type
+*Attack Bonus vs Racial Type
+*Bonus Spell Slot
+*Damage Bonus (Elemental/Energy)
+*Damage Bonus vs Racial Type
+*Damage Immunity (Elemental/Energy)
+*Damage Resistance (Elemental/Energy)
+*Darkvision
+*Enhancement Bonus vs Racial Type
+*Light
+*Regeneration: Vampiric
+*Saving Throw Bonus
+*Saving Throw Bonus: Specific
+*Skill Bonus
+*Spell Resistance
+
+=Material Multipliers=
+The material multipliers below are used to calculate the difficulty of the improvement, and affect the maximum value of properties that can be put on an item.  Effectively, the cost of the property is divided by the relevant material multiplier (hence, the 0.5 for Ondaran is a penalty!).
+{| class="wikitable" style="text-align:center"
+!Material!!Mundane Multiplier!!Magical Multiplier
+|-
+|Ondaran||0.5||1
+|-
+|Iron||3||1
+|-
+|Silver||2||2
+|-
+|Gold||1||3
+|-
+|Electrum||1||3
+|-
+|Steel||4||1
+|-
+|Mithril||4||3
+|-
+|Ironwood||2||2
+|-
+|Duskwood||3||3
+|-
+|Hide||2||1
+|-
+|Leather||3||1
+|-
+|Silk||1||3
+|-
+|Entwood||2||3
+|-
+|Arachne Chitin||2||3
+|-
+|Dragonhide||3||3
+|}
+Note there are some rare materials, with different bonuses.  e.g. should anyone find ankheg scale and make armour out of it, it has a 4x mundane multiplier and 2x magical.
+
+=Material/Quality Bonuses=
+Some items have gem insets, or have a Quality property.  These give an effective bonus (or penalty for low Quality) to your craft skill while trying to improve the item.  These bonuses can be substantial!
+
+{| class="wikitable" style="text-align:center"
+!Quality!!Gem Property!!Bonus
+|-
+|Very Poor || || -3
+|-
+|Poor || || -2
+|-
+| Below Average || || -1
+|-
+|Average || || 0
+|-
+| Above Average || Greenstone/Malachite/Fire Agate || 1
+|-
+| Good || Aventurine/Phenalope || 2
+|-
+| Very Good || Amethyst/Fluorspar || 3
+|-
+| Excellent  || Alexandrite/Garnet || 4
+|-
+| Masterwork || Topaz || 5
+|-
+| Godlike || Sapphire, Fire Opal || 6
+|-
+| || Diamond, Ruby, Emerald || 7
+|}

@@ -365,6 +365,7 @@ struct openStore md_DoAppraise(object oStore, object oMerchant, object oCustomer
 	  int nReaction = GetSkillRank(SKILL_PERSUADE, oCustomer, FALSE);
 	  if (bRacesMatch) nReaction += 25;
 	  if (bNationMatch) nReaction += 25;
+	  if (GetIsFriend(oCustomer, oMerchant)) nReaction += 25;
 	  if (nReaction > 50) nReaction = 50;
 	  
 	  nMaxBuyPrice += nReaction;

@@ -1,0 +1,12 @@
+[[Category:Arelith Mechanics]]
+==Climb Checks==
+At some places in the module you need to pass a climb check to progress.
+
+Climb checks are d20 + (level in relevant classes) + (str and dex mods) - (armour check penalty)
+
+"Relevant classes" are fighter, rogue, assassin, ranger, arcane archer, harper, monk and barbarian.
+
+The default DC is 30 but this can be overridden per location.
+
+===Help===
+People can help each other climb.  If another PC is nearby then you get their bonuses and penalties (classes, str/dex, armour check) added to your own.

@@ -1,0 +1,16 @@
+[[Category:Classes]]
+
+==== Kensai Path Features ==== 
+Permanent +2 AC bonus  <br />
+Permanent additional attack  <br />
+Kensai can only use melee weapons and throwing weapons.  <br />
+A kensai cannot use magic except for Raise Dead, Resurrection, and Restoration, including from potions. Spell-like feats and innate abilities will function normally alongside spells cast from the spellbook of a Kensai class (Paladin / Ranger).  <br />
+----
+
+==== Kensai Classes ==== 
+:    [[Barbarian]]
+:    [[Monk]]
+:    [[Paladin]]
+:    [[Ranger]]
+:    [[Rogue]]
+----

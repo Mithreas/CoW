@@ -964,6 +964,9 @@ string gsCRGetRecipeOutputList(struct gsCRRecipe stRecipe)
 //----------------------------------------------------------------
 void gsCRLoadRecipeList(int nSkill)
 {
+	// Currently unused.
+	return;
+	
     int nStart = 0;
     //int nEnd   = 0;
     object oObject;

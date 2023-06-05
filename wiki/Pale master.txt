@@ -1,0 +1,69 @@
+[[Category:Classes]]
+== Pale Master ==    
+==== Requirements: ====
+3 Levels of Cleric, Favored Soul, Bard, Wizard OR Sorcerer
+----
+==== Proficiencies: ====
+None  
+----
+==== Class Skills: ====
+Concentration, Craft Armor, Craft Trap, Craft Weapon, Heal, Hide, Listen, Lore, Move Silently, Persuade, Spellcraft  
+----
+==== Class Features ====  
+Base Attack Bonus:    1/2   <br />
+Base Skill Points:    2   <br />
+Base Hit Points:    6   <br />
+Primary Saves:    Fortitude, Will   <br />
+----
+==== Class Specific Feats: ====    
+''When not noted, the feat works as in regular NWN.''
+{| class="wikitable"
+|+Class Feats
+!Feat
+!Requirements
+!Comment
+|-
+|Animate Dead  
+|
+|
+|-
+|Darkvision  
+|
+|
+|-
+|Deathless Vigor 
+|
+|
+|-
+|Summon Undead  
+|Animate Dead 
+|
+|-
+|Summon Greater Undead
+|Summon Undead  
+|
+|-
+|Tough as Bone
+|SL 15  
+|
+|-
+|Deathless Touch
+|Undead Graft 2 (Requires Level 8 PM), SL 15
+|
+|-
+|Deathless Mastery
+|Tough as Bone, SL 20  
+|
+|-
+|}
+----
+
+=== Mechanical Changes ===
+Every Pale Master level counts as two levels for the purposes of Death summons (especially Mummy Dust).   <br />
+Every 2 Pale Master levels counts as +1 Caster Level for Spell Effects, Durations, Damage Dice and Dispel purposes (This does not apply for Spell Penetration).
+
+----
+==== Notes, Tips, and Interesting Bits: ====    
+Deathless Vigor only increases hit points if obtained through class levels.  Buying the feat from the trainer will not grant additional hit points.   <br />
+Wizards or Clerics who take only a single level of pale master still earn the ability to cast 8th circle spells but will need to memorize those spells from scrolls.  This is the only multi-class combination which retains the ability to cast 8th circle without taking bonus spell slots.   <br />
+Having hide and move silently as class skills enables a spellcaster to qualify for assassin or shadowdancer.   <br />

@@ -1,0 +1,16 @@
+=Earning Awards=
+An Award is a reward for retiring a character.  There are three tiers of Award.
+* A Minor award is granted to any player who deletes a character of [[Fixed_Level_advancement_system|System Level]] 15 or higher.
+* A Normal award is granted to any player who deletes a character of SL 50 or higher.
+* A Major award is granted to any player who deletes a character of SL 100 or higher.
+
+Deletion can either be via the console command (-delete_character), or via permadeath via the few means in the module that bring it about.
+
+=Spending Awards=
+Awards may be spent at character creation to add a boon to your character.  This may include
+* Access to restricted races or subraces, currently:
+** Elfling, requires Normal award
+** Shapechanger, requires Major award
+* A reduction in ECL, making XP gains faster and feat purchases cheaper (-1 for Minor award, -2 for Normal, -3 for Major).
+
+In addition, any character who has a reward used on them gains crafting XP faster (10% for Minor award, 25% for Normal, 50% for Major).

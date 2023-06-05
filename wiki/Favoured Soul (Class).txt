@@ -1,0 +1,48 @@
+[[Category:Classes]]
+== Favoured Soul ==     
+The Favoured Soul is chosen of one of the Seven Divines.  Some received their blessing in person (DM permission needed for this!), or in a dream, while others have just always felt a closeness to one of the Seven, and have set out to live a life as close to their path as possible.
+
+Vessels of their deity's power, albeit in a small way, the Favoured Soul is not an avatar... but a powerful direct servant of their patron. 
+==== Available Paths: ====
+None.
+----
+==== Requirements: ====
+Race: Any, but must worship one of the Seven Divines (human gods) to draw power.  This would be considered heretical and probably traitorous by the Elves, and a bit weird but accepted among halflings.  Mechanically non humans will require the Gift of Unique Favour to worship one of the Seven. 
+----
+==== Proficiencies: ====
+Light and Medium Armor, Simple, Martial and Exotic Weapons, Shields  
+----
+==== Class Skills: ====
+Concentration, Craft Armor, Craft Trap, Craft Weapon, Heal, Lore, Parry, Persuade, Spellcraft  
+----
+==== Class Features ==== 
+Base Attack Bonus:    3/4  <br />
+Base Skill Points:    2  <br />
+Base Hit Points:    8  <br />
+Primary Saves:    Will, Fortitude, Reflex  <br />
+----
+==== Class Specific Feats: ====    
+''When not noted, the feat works as in regular NWN.''
+Favoured Soul spells are affected by CL boosts as usual.
+
+Favoured Souls get
+- Resist Energy (Fire & Cold) at level 5
+- Resist Energy (Acid & Electrical) at level 10.
+
+Note that Resist Energy does not stack with the epic versions of the feat.
+----
+=== Mechanical Changes ===
+Favoured Souls learn new spells at the same rate as Sorcerers, but from the Cleric spell list not the Wizard list.
+
+Divine magic has unique properties on this server, please note the changes mentioned in [[Magic_Systems]]
+
+Favoured Souls get the usual Cleric caster level increase depending on their piety. Its piety/10 rounded down to the next decimal. So a cleric with 89% piety would get +8 CL on spells they cast.
+And yes. That means with a negative piety you will get -CL.
+
+Favoured Souls may cast their spells any number of times per day, but each cast will cost piety equal to the spell level.  This means that the more spells they cast, the weaker those spells will get (due to the above CL boost).
+
+Favoured Souls gain piety at double the rate of other classes and do not naturally lose it over time.  
+
+----
+==== Notes, Tips, and Interesting Bits: ====   
+The Aspects of your chosen god give you bonus ways to gain piety.  With piety being so critical to your spellcasting you will want to be able to keep it as high as possible.

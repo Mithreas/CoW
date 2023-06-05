@@ -1,0 +1,790 @@
+{{CraftNav|title=Tailoring}}
+
+==Tailoring==
+
+===Components===
+
+====Cloth and Silks====
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Cloth
+|
+|Cotton
+|
+|
+|-
+|Spun Wool
+|
+|Skin of a Wooly Creature
+|
+|
+|-
+|Spun Silk
+|
+|Silk
+|
+|
+|-
+|}
+
+====Small Hides====
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Cured Badger Hide
+|
+|Skin of a Badger <br> Tanning Acid
+|
+|
+|-
+|}
+
+====Medium Hides====
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Cured Wolf Hide
+|
+|Skin of a Badger <br> Tanning Acid
+|
+|
+|-
+|}
+
+====Large Hides====
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Cured Deer Hide
+|
+|Skin of a Deer<br> Tanning Acid
+|
+|
+|-
+|Cured Worg Hide
+|
+|Skin of a Worg<br> Tanning Acid
+|
+|
+|-
+|Cured Grizzly Hide
+|
+|Skin of a Grizzly Bear<br> Tanning Acid
+|
+|
+|-
+|Cured Dire BearHide
+|6
+|Skin of a Dire Bear<br> Tanning Acid
+|
+|
+|-
+|}
+
+====Leathers====
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Badger Leather
+|
+|Skin of a Badger <br> Tanning Oil
+|
+|
+|-
+|Deer Leather
+|
+|Skin of a Deer<br> Tanning Oil
+|
+|
+|-
+|Wolf Leather
+|
+|Skin of a Wolf<br> Tanning Oil
+|
+|
+|-
+|Grizzly Leather
+|
+|Skin of a Grizzly Bear<br> Tanning Oil
+|
+|
+|-
+|Worg Leather
+|
+|Skin of a Worg<br> Tanning Oil
+|
+|
+|-
+|Dire Bear Leather
+|7
+|Skin of a Dire Bear<br> Tanning Oil
+|
+|
+|-
+|}
+
+===Armour===
+
+====Clothing====
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Clothes
+|
+|2 Cloth
+|
+|
+|-
+|Woolen Clothes
+|
+|2 Spun Wool
+|
+|
+|-
+|Silk Clothes
+|
+|2 Spun Silk
+|
+|
+|-
+|Cloth Gloves
+|
+|Cloth
+|
+|
+|-
+|Gloves (Wool)
+|
+|Spun Wool
+|
+|
+|-
+|Gloves (Silk)
+|
+|Spun Silk
+|
+|
+|-
+|Cotton Cloak
+|
+|Cloth
+|
+|
+|-
+|Wool Cloak
+|
+|Spun Wool
+|
+|
+|-
+|Silk Cloak
+|
+|Spun Silk
+|
+|
+|-
+|}
+
+====Padded Armour====
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Padded Armour
+|
+|2 Cloth <br>Cloth Padding
+|
+|
+|-
+|Woollen Padded Armour
+|
+|2 Spun Wool <br>Cloth Padding
+|
+|
+|-
+|Silk Padded Armour
+|
+|2 Spun Silk <br>Cloth Padding
+|
+|
+|-
+|}
+
+====Hide Armour====
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Badger Hide Armour
+|
+|3 Cured Badger Hide <br>Cloth Padding
+|
+|
+|-
+|Deer Hide Armour
+|
+|3 Cured Deer Hide <br>Cloth Padding
+|
+|
+|-
+|Wolf Hide Armour
+|
+|3 Cured Wolf Hide <br>Cloth Padding
+|Slashing 5% Immunity Bonus
+|
+|-
+|Grizzly Bear Hide Armour
+|
+|3 Cured Grizzly Bear Hide <br>Cloth Padding
+|
+|
+|-
+|Worg Hide Armour
+|
+|3 Cured Worg Hide <br>Cloth Padding
+|12 Spell Resistance
+|
+|-
+|Dire Bear Hide Armour
+|7
+|3 Cured Dire Bear Hide <br>Cloth Padding
+|
+|
+|-
+|Dragonhide Armour
+|12
+|3 Dragonhide <br>Cloth Padding
+|
+|
+|-
+|}
+
+====Leather Armour====
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Badger Leather Armour
+|
+|3 Badger Leather <br>Cloth Padding
+|
+|
+|-
+|Deer Leather Armour
+|
+|3 Deer Leather <br>Cloth Padding
+|
+|
+|-
+|Wolf Leather Armour
+|
+|3 Wolf Leather <br>Cloth Padding
+|Slashing 10% Immunity Bonus
+|
+|-
+|Grizzly Bear Leather Armour
+|
+|3 Grizzly Bear Leather <br>Cloth Padding
+|
+|
+|-
+|Worg Leather Armour
+|6
+|3 Worg Leather <br>Cloth Padding
+|
+|
+|-
+|Dire Bear Leather Armour
+|8
+|3 Dire Bear Leather <br>Cloth Padding
+|
+|
+|-
+|}
+
+====Studded Armour====
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Studded Badger Leather Armour
+|
+|3 Badger Leather <br>Cloth Padding <br>Studs
+|
+|
+|-
+|Studded Deer Leather Armour
+|
+|3 Deer Leather <br>Cloth Padding <br>Studs
+|
+|
+|-
+|Studded Wolf Leather Armour
+|
+|3 Wolf Leather <br>Cloth Padding <br>Studs
+|
+|
+|-
+|Studded Grizzly Bear Leather Armour
+|
+|3 Grizzly Bear Leather <br>Cloth Padding <br>Studs
+|
+|
+|-
+|Studded Worg Leather Armour
+|7
+|3 Worg Leather <br>Cloth Padding <br>Studs
+|
+|
+|-
+|Studded Dire Bear Leather Armour
+|9
+|3 Dire Bear Leather <br>Cloth Padding <br>Studs
+|
+|
+|-
+|Studded Dragonhide Armour
+|13
+|3 Dragonhide <br>Cloth Padding <br>Studs
+|
+|
+|-
+|}
+
+===Healing Kits===
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|5 Basic Healer's Kits
+|
+|Cotton <br>Aloe Leaf <br>Garlic Clove
+|Healer's Kit +1
+|
+|-
+|5 Healer's Kits
+|
+|Cotton <br>Aloe Leaf <br>Comfrey Root
+|Healer's Kit +3
+|
+|-
+|5 Good Healer's Kits
+|
+|Cotton <br>Aloe Leaf <br>Ginger Root
+|Healers's Kit +6
+|
+|-
+|5 Superb Healer's Kits
+|
+|Cotton <br>Aloe Leaf <br>Ginseng Root
+|Healer's Kit +10
+|
+|-
+|}
+
+===Weapons===
+
+====Slings====
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Cloth Sling
+|
+|Cloth
+|
+|
+|-
+|Hide Sling
+|
+|Cured Badger Hide
+|
+|
+|-
+|Leather Sling
+|
+|Badger Leather
+|
+|
+|-
+|}
+
+====Whips====
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Hide Whip
+|
+|Cured Wolf Hide
+|
+|
+|-
+|Leather Whip
+|
+|Wolf Leather
+|
+|
+|-
+|Dragonhide Sling
+|9
+|Dragonhide 
+|
+|
+|-
+|Dragonhide Whip
+|12
+|Dragonhide 
+|
+|
+|-
+|}
+
+===Products===
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Cloth Padding
+|
+|Cloth <br>Cotton
+|
+|
+|-
+|Bow String
+|
+|Silk
+|
+|
+|-
+|Rope
+|
+|Cloth
+|
+|
+|-
+|Fixture: Cushions
+|
+|Cloth <br>Cotton
+|
+|
+|-
+|Fixture: Bedroll
+|
+|Cloth <br>Spun Wool
+|
+|
+|-
+|Fixture: Tent
+|
+|3 Cloth
+|
+|
+|-
+|Fixture: Rug (round blue)
+|
+|3 Spun Wool
+|
+|
+|-
+|Fixture: Rug (fancy medium)
+|
+|3 Spun Wool
+|
+|
+|-
+|Fixture: Rug (fancy large)
+|
+|4 Spun Wool
+|
+|
+|-
+|Fixture: Market Stall
+|
+|4 Cloth
+|
+|
+|-
+|}
+
+===Accessories===
+
+====Boots====
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Badger Hide Boots
+|
+|Cured Badger Hide
+|
+|
+|-
+|Deer Hide Boots
+|
+|Cured Deer Hide
+|
+|
+|-
+|Wolf Hide Boots
+|
+|Cured Wolf Hide
+|
+|
+|-
+|Grizzly Hide Boots
+|
+|Cured Grizzly Hide
+|
+|
+|-
+|Worg Hide Boots
+|4
+|Cured Worg Hide
+|
+|Spell Resistance: 12
+|-
+|Dire Bear Hide Boots
+|6
+|Cured Dire Bear Hide
+|
+|
+|-
+|Dragonhide Boots
+|10
+|Dragonhide
+|
+|
+|-
+|}
+
+====Cloaks====
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Badger Hide Cloak
+|
+|Cured Badger Hide
+|
+|
+|-
+|Deer Hide Cloak
+|
+|Cured Deer Hide
+|
+|
+|-
+|Wolf Hide Cloak
+|
+|Cured Wolf Hide
+|
+|
+|-
+|Grizzly Hide Cloak
+|
+|Cured Grizzly Hide
+|
+|
+|-
+|Worg Hide Cloak
+|4
+|Cured Worg Hide
+|
+|
+|-
+|Dire Bear Hide Cloak
+|6
+|Cured Dire Bear Hide
+|
+|
+|-
+|Dragonhide Cloak
+|10
+|Dragonhide
+|
+|
+|-
+|}
+
+====Belts====
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Badger Hide Belt
+|
+|Cured Badger Hide
+|
+|
+|-
+|Deer Hide Belt
+|
+|Cured Deer Hide
+|
+|
+|-
+|Wolf Hide Belt
+|
+|Cured Wolf Hide
+|
+|
+|-
+|Grizzly Hide Belt
+|
+|Cured Grizzly Hide
+|
+|
+|-
+|Worg Hide Belt
+|5
+|Cured Worg Hide
+|
+|
+|-
+|Dire Bear Hide Belt
+|7
+|Cured Dire Bear Hide
+|
+|
+|-
+|Dragonhide Belt
+|10
+|Dragonhide
+|
+|
+|-
+|}
+
+===Misc===
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Bracers
+|
+|Badger Leather
+|
+|
+|-
+|Leather Bindings
+|
+|Badger Leather
+|
+|
+|-
+|Bearskin Rug
+|
+|Cured Grizzly Bear Hide
+|
+|
+|-
+|}
+
+===House Items===
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Erenia: Robes of the Inquisition (male)
+|
+|Cloth <br> 3 Small Silver Plate <br>Ingot of Silver <br>Recipe Card: Robes of the Inquisition
+|
+|
+|-
+|Erenia: Robes of the Inquisition (female)
+|
+|Cloth <br> 3 Small Silver Plate <br>Ingot of Silver <br>Recipe Card: Robes of the Inquisition
+|
+|
+|-
+|Renerrin: Rake's Salvation
+|
+|4 Lirium-Silk <br>Recipe Card: Rake's Salvation
+|
+|
+|-
+|}

@@ -1,0 +1,86 @@
+[[Category:Classes]]
+
+===Introduction===
+The Knight is a paragon of martial discipline. Inspiring those around her and using her superior knowledge of tactics and strategy, she masters the battlefield.
+
+===Anemoi Changes===
+Prerequisites: 1 BAB, Discipline 4 Ranks, Any Alignment.<br />
+The maximum level for this class is 10, instead of 5.<br />
+Upon taking your first PDK level, '''after changing areas,''' a conversation will appear asking if you want to choose one of the following traditions:
+
+
+====Knightly Traditions====
+
+There are three traditions of Knight, that focus on different aspects of the class.  You will be asked to select your Tradition shortly after taking your first level in Knight.
+* Knight Vanguard. The Knight Vanguard is the scourge of his enemies, scattering all before her.
+* Knight Protector. The Knight Protector is the defender of the weak, and stalwart comrade-at-arms.
+* Knight Valiant. The Knight Valiant inspires all around her to feats of heroism.
+
+The Tradition of your Order will determine which Knightly abilities improve.
+
+
+{|class="wikitable"
+! Ability
+! Level
+! Cooldown 
+! Duration
+! Type
+! Description
+|-
+| Heroic Shield
+| 1
+| 1 Hour
+| 12 Hours
+| Instant Action/Targeted
+| The Knight designates a friendly target as a Ward, automatically applying a [[Console_command#-guard|-guard]] to them. The Ward gains 5% + 1% per 2 Knight Levels (10% at level 10) damage immunity to all damage types, as well as 1/+1 DR. Additionally, the designated Ward benefits more from the knightly abilities described below. Using the ability on a different ally before the duration ends will remove the buffs and guard from the previous Ward. Using the ability on the Ward again, before the effect expires, (12 IG Hours) will disable guard on the target, but leave the DR and DI active.
+|-
+| Rallying Cry
+| 1
+| 3 turns (1.5 turns for '''Valiant''')
+| Immediate
+| Instant Action/Colossal Area
+| The Knight and all nearby allies gain +1 AB and +1 Damage for 1 turn. The Ward, if within range, gains an additional +2 damage.<br>
+'''(Valiant 7)''': At class level 7, the Knight Valiant increases these bonuses to +2. At class level 10, the Knight Valiant increases these bonuses to +3. These bonuses cannot exceed the Knight Valiant's Charisma modifier, but have a minimum value of +1. An affected Ward's +2 damage is added on top of this increased bonus.
+|-
+| Inspire Courage
+| 2
+| 3 Turns (1.5 Turns for '''Protector''')
+| Immediate
+| Standard Action/Colossal Area
+| The Knight removes fear effects from all allies in range. All affected allies gain a +2 bonus to all saving throws for 1 turn. If the Ward is within range, the Ward has one negative status effect removed.<br>
+'''(Protector 7)''': At class level 7, the Knight Protector removes all negative status effects from all affected allies (as per the Restoration spell). The saving throw bonus is increased to +4. For one turn, the Ward's defensive bonuses from Heroic Shield is doubled.
+|-
+| Fear
+| 3
+| 3 Turns (1.5 for '''Vanguard''')
+| 1 Turn
+| Standard Action/Large Area
+| Nearby enemies must make a Will save versus Fear. The DC of this save is 15 + Knight Class Levels + Intimidate / 3. Enemies who fail this saving throw suffer a -1 penalty, improving to -2 at 8 Knight levels, to AC, AB, and Saving Throws, and a 5% Spell Failure chance per 4 Knight levels. The minimum penalty is -1. Mind-protecting spells do not block this effect. Being attacked while casting Fear will not trigger any Concentration checks.<br>
+'''(Vanguard 7)''': At class level 7, these penalties are doubled.
+|-
+| Oath of Wrath
+| 4
+| 3 Turns
+| 1 Turn
+| Instant Action/Targeted Ability
+| A targeted enemy loses 2 AC and is provoked, forcing them to switch target to the PDK. In addition,
+'''(Valiant)''': all allies within a colossal radius gain +1 magic damage, plus 1 per five PDK levels, against the target's racial type.<br>
+'''(Vanguard)''': the target incurs 5% vulnerability to all damage types, + 1% per Knight level.<br>
+'''(Protector)''': the target loses 1 AB per five Knight levels and gains 2% Spell Failure chance per Knight level.
+|-
+| Final Stand
+| 5
+| 3 Turns
+| Immediate/Special
+| Standard Action/Large Area
+| Each nearby ally is healed for 1d8 HP per Knight level, and an additional 1d8 HP per 5% missing health on that ally. Healing on the Ward is empowered (150% of normal). Additionally,
+'''(Valiant 10)''': at ten class levels, the Knight Valiant and all affected allies gain 10 Regeneration per round for 1 Turn.<br>
+'''(Protector 10)''': at ten class levels, the Knight Protector and all affected allies gain 20% immunity to elemental damage types and 5/+10 DR for 1 turn.<br>
+'''(Vanguard 10)''': at ten class levels, enemies within the area of effect are immobilized for one round with no saving throw, leaving them [http://nwn.wikia.com/wiki/Flat-foot Flat-Footed].
+|}
+
+===Notes===
+*All Knight abilities can be bought from a trainer. You need to have SL~8-12 to do so.
+*All the abilities of the Knight are considered extraordinary effects, and thus immune to dispels.
+*You must change areas to get the message to choose a tradition after taking the first PDK level.
+*For the purposes of PDK feats, your PDK level or SL/5 is counted- whichever is higher.

@@ -1,0 +1,6 @@
+[[Category:Classes]]
+Shadow Mage is a path for Wizards and Sorcerers.  
+
+Shadow mages cannot cast Evocation spells, but get +2 DC on Necromancy, Illusion and Enchantment spells. 
+
+Shadow mages must worship the Dark One or Sabatha the Sneak.

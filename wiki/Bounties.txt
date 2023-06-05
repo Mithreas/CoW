@@ -1,0 +1,5 @@
+Getting caught doing naughty things adds to your bounty with a particular faction.  This includes things like breaking in to owned property, stealing, assault, murder.  
+
+If you have a bounty, guards from that faction will arrest you and ask you to pay it off.  If you pay it off, it's gone and you are legal again.  If you can't or won't pay, you can go to jail for a period, or try and fight your way out of the situation...
+
+[[Category: Unique Mechanics]]

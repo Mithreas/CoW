@@ -1,0 +1,573 @@
+{{CraftNav|title=Armoursmithing}}
+
+
+== Armorsmithing ==
+ 
+https://github.com/Mithreas/CoW/blob/master/scripts/cnranvilarmor1.nss
+https://github.com/Mithreas/CoW/blob/master/scripts/cnranvilarmorel.nss
+
+===Shields===
+
+====Ondaran Shields====
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Ingredients
+! Level
+! Properties
+! Race Requirement
+|-
+|Ondaran Buckler
+|1
+|1 Small Ondaran Plates <br>1 Wooden Buckler
+|
+|
+|-
+|Large Ondaran Shield
+|2
+|1 Medium Ondaran Plates <br>1 Wooden Large Shield
+|
+|
+|-
+|Ondaran Tower Shield
+|3
+|1 Large Ondaran Plates <br>1 Wooden Tower Shield
+|
+|
+|}
+
+====Iron Shields====
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Ingredients
+! Level
+! Properties
+! Race Requirement
+|-
+|Iron Buckler
+|3
+|1 Small Iron Plates <br>1 Wooden Buckler
+|
+|Humans, Hin
+|-
+|Large Iron Shield
+|4
+|1 Medium Iron Plates <br>1 Wooden Large Shield
+|
+|Humans, Hin
+|-
+|Iron Tower Shield
+|5
+|1 Large Iron Plates <br>1 Wooden Tower Shield
+|
+|Humans, Hin
+|}
+
+====Silver Shields====
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Ingredients
+! Level
+! Properties
+! Race Requirement
+|-
+|Silver Buckler
+|5
+|1 Small Silver Plates <br>1 Wooden Buckler
+|
+|
+|-
+|Large Silver Shield
+|6
+|1 Medium Silver Plates <br>1 Wooden Large Shield
+|
+|
+|-
+|Silver Tower Shield
+|7
+|1 Large Silver Plates <br>1 Wooden Tower Shield
+|
+|
+|-
+|}
+
+====Steel Shields====
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Ingredients
+! Level
+! Properties
+! Race Requirement
+|-
+|Steel Buckler
+|11
+|1 Small Steel Plates <br>1 Wooden Buckler
+|
+|
+|-
+|Large Steel Shield
+|12
+|1 Medium Steel Plates <br>1 Wooden Large Shield
+|
+|
+|-
+|Steel Tower Shield
+|14
+|1 Large Steel Plates <br>1 Wooden Tower Shield
+|
+|
+|-
+|}
+
+===Helmets===
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Ingredients
+! Level
+! Properties
+! Race Requirement
+|-
+|Ondaran Helmet
+|2
+|1 Ondaran Small Plates
+|
+|
+|-
+|Chitin Helmet
+|4
+|2 Small Chitin Plates
+|
+|
+|-
+|Iron Helmet
+|4
+|1 Small Iron Plates
+|
+|Humans, Hin
+|-
+|Silver Helmet
+|6
+|1 Small Silver Plates
+|
+|
+|-
+|Steel Helmet
+|11
+|1 Small Steel Plates
+|
+|
+|}
+
+===Armour===
+
+====Ondaran Armour====
+
+=====Medium Ondaran=====
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Ingredients
+! Level
+! Item Properties
+! Race Requirement
+|-
+|Ondaran Chain Shirt
+|2
+|2 Ondaran Chain Rings <br>2 Cloth Padding 
+|
+|
+|-
+|Ondaran Scale Mail
+|2
+|1 Ondaran Chain Rings <br> 1 Ondaran Small Plates <br>2 Cloth Padding 
+|
+|
+|-
+|Ondaran Chain Mail
+|2
+|2 Ondaran Chain Rings <br>2 Cloth Padding 
+|
+|
+|}
+
+=====Heavy Ondaran=====
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Ingredients
+! Level
+! Item Properties
+! Race Requirement
+|-
+|Ondaran Banded Mail
+|3
+|2 Ondaran Small Plates <br>2 Cloth Padding 
+|
+|
+|-
+|Ondaran Splint Mail
+|3
+|1 Ondaran Chain Rings <br>1 Ondaran Small Plates <br>2 Cloth Padding 
+|
+|
+|-
+|Ondaran Half Plate
+|3
+|1 Large Ondaran Plates <br>2 Cloth Padding 
+|
+|
+|-
+|Ondaran Full Plate
+|3
+|1 Large Ondaran Plates <br>1 Ondaran Small Plates <br>2 Cloth Padding 
+|
+|
+|}
+
+====Iron Armour====
+
+=====Medium Iron=====
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Ingredients
+! Level
+! Item Properties
+! Race Requirement
+|-
+|Iron Chain Mail
+|4
+|2 Iron Chain Rings <br>2 Cloth Padding 
+|
+|Humans, Hin
+|-
+|Iron Scale Mail
+|6
+|1 Iron Chain Rings <br>1 Small Iron Plates <br>2 Cloth Padding 
+|
+|Humans, Hin
+|}
+
+=====Heavy Iron=====
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Ingredients
+! Level
+! Item Properties
+! Race Requirement
+|-
+|Iron Banded Mail
+|5
+|2 Small Iron Plates <br>2 Cloth Padding 
+|
+|Humans, Hin
+|-
+|Iron Half Plate
+|5
+|1 Large Iron Plates <br>2 Cloth Padding 
+|
+|Humans, Hin
+|-
+|Iron Full Plate
+|5
+|1 Large Iron Plates <br>1 Small Iron Plates <br>2 Cloth Padding 
+|
+|Humans, Hin
+|}
+
+====Silver Armour====
+
+=====Medium Silver=====
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Ingredients
+! Level
+! Item Properties
+! Race Requirement
+|-
+| Silver Chain Mail
+|6
+|2 Silver Chain Rings <br>2 Cloth Padding 
+|
+|
+|-
+|Silver Scale Mail
+|6
+|1 Silver Chain Rings <br>1 Small Silver Plates <br>2 Cloth Padding 
+|
+|
+|}
+
+=====Heavy Silver=====
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Ingredients
+! Level
+! Item Properties
+! Race Requirement
+|-
+|Silver Banded Mail
+|7
+|2 Small Silver Plates <br>2 Cloth Padding 
+|
+|
+|-
+|Silver Half Plate
+|7
+|1 Large Silver Plates <br>2 Cloth Padding 
+|
+|
+|-
+|Silver Full Plate
+|7
+|1 Large Silver Plates <br>1 Small Silver Plates <br>2 Cloth Padding 
+|
+|
+|}
+
+====Steel Armour====
+
+=====Medium Steel=====
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Ingredients
+! Level
+! Item Properties
+! Race Requirement
+|-
+| Steel Chain Mail
+|12
+|2 Steel Chain Rings <br>2 Cloth Padding 
+|
+|
+|-
+|Steel Scale Mail
+|12
+|1 Steel Chain Rings <br>1 Small Steel Plates <br>2 Cloth Padding 
+|
+|
+|}
+
+=====Heavy Steel=====
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Ingredients
+! Level
+! Item Properties
+! Race Requirement
+
+|-
+|Steel Banded Mail
+|13
+|2 Small Steel Plates <br>2 Cloth Padding 
+|
+|
+|-
+|Steel Half Plate
+|15
+|1 Large Steel Plates <br>2 Cloth Padding 
+|
+|
+|-
+|Steel Full Plate
+|18
+|1 Large Steel Plates <br>1 Small Steel Plates <br>2 Cloth Padding 
+|
+|
+|}
+
+====Chitin Armor====
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Ingredients
+! Level
+! Item Properties
+! Race Requirement
+|-
+|Chitin Scale Mail
+|6
+|1 Medium Chitin Plates <br>1 Small Chitin Plates <br>2 Cloth Padding 
+|
+|
+|-
+|}
+
+====Ankheg Armour====
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Ingredients
+! Level
+! Item Properties
+! Race Requirement
+|-
+|Ankheg Full Plate
+|15
+|1 Ankheg Shell <br>2 Cloth Padding 
+|
+|
+|}
+
+===Components===
+
+====Ondaran Components====
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Ondaran Small Plates
+|1
+|1 Ondaran Ingot
+|
+|
+|-
+|Medium Ondaran Plates
+|1
+|2 Ondaran Ingot
+|
+|
+|-
+|Large Ondaran Plates
+|1
+|3 Ondaran Ingot
+|
+|
+|-
+|Ondaran Chain Rings
+|1
+|1 Ondaran Ingot
+|
+|
+|}
+
+====Iron Components====
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Small Iron Plates
+|3
+|1 Iron Ingot
+|
+|Humans, Hin
+|-
+|Medium Iron Plates
+|3
+|2 Iron Ingot
+|
+|Humans, Hin
+|-
+|Large Iron Plates
+|3
+|3 Iron Ingot
+|
+|Humans, Hin
+|-
+|Chain Rings
+|3
+|1 Iron Ingot
+|
+|Humans, Hin
+|-
+|Studs
+|1
+|1 Iron Ingot
+|
+|Humans, Hin
+|}
+
+====Silver Components====
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Small Silver Plates
+|5
+|1 Silver Ingot
+|
+|
+|-
+|Medium Silver Plates
+|5
+|2 Silver Ingot
+|
+|
+|-
+|Large Silver Plates
+|5
+|3 Silver Ingot
+|
+|
+|-
+|Silver Chain Rings
+|5
+|1 Silver Ingot
+|
+|
+|}
+
+====Steel Components====
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Small Steel Plates
+|10
+|1 Steel Ingot
+|
+|
+|-
+|Medium Steel Plates
+|10
+|2 Steel Ingot
+|
+|
+|-
+|Large Steel Plates
+|10
+|3 Steel Ingot
+|
+|
+|-
+|Steel Chain Rings
+|10
+|1 Steel Ingot
+|
+|
+|}
+
+====Chitin Components====
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Small Chitin Plates
+|3
+|1 Arachne Chitin
+|
+|Elves
+|-
+|Medium Chitin Plates
+|3
+|2 Arachne Chitin
+|
+|Elves
+|-
+|Large Chitin Plates
+|3
+|3 Arachne Chitin
+|
+|Elves
+|-
+|}

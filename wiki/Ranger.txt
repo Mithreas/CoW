@@ -1,0 +1,71 @@
+[[Category:Classes]]
+== Ranger ==       
+==== Available Paths: ====
+[[Archer]], [[Kensai]]
+----
+
+==== Requirements: ====
+None  
+----
+==== Proficiencies: ====
+Light and Medium Armor, Martial and Simple Weapons, Shields  
+----
+==== Class Skills: ====
+Animal Empathy, Concentration, Craft Armor, Craft Trap, Craft Weapon, Discipline, Heal, Hide, Listen, Lore, Move Silently, Parry, Ride, Search, Set Trap, Spot   
+----
+==== Class Features ====  
+Base Attack Bonus:    1   <br />
+Base Skill Points:    4   <br />
+Base Hit Points:    10   <br />
+Primary Saves:    Fortitude   <br />
+----
+==== Class Specific Feats: ====    
+''When not noted, the feat works as in regular NWN.''
+{| class="wikitable"
+|+Class Feats
+!Feat
+!Requirements
+!Comment
+|-
+|Favored Enemy  
+|
+|
+|-
+|Improved Dual-Wield 
+|Dual-Wield
+|Works exactly like Two-Weapon Fighting
+|-
+|Ranger Progression
+|
+| +4 Ranger Tracking Levels / +4 Animal Empathy
+|-
+|Bonus Spell Slot (Ranger) I-II  
+|
+|
+|-
+|Bane of Enemies
+|SL 31
+|
+|-
+|}
+----
+
+=== Mechanical Changes ===
+''Here the general changes should be noted, see Arelith Wiki.''
+
+A ranger with 3 or more levels gets more information when examining tracks left by players.  Taking the Ranger Progression feat counts as a level in ranger for this purpose, so a Level 2 ranger can examine tracks with this feat.
+
+The Ranger progression feat does not increase the favoured enemy boni or the animal companion.
+
+Rangers who have at least 80% of their class levels in the Ranger class get improved Animal Empathy.  Dominated animals become Henchmen (don't go away on rest) and you can have up to two of them at once.
+
+Rangers need to follow a Nature deity to cast the following spells. (Their other spells they can cast even if they worship a non-nature deity).  
+*Camoflage
+*Entangle
+*Magic Fang
+*One with the Land
+*Greater Magic Fang
+*Mass Camoflage
+----
+==== Notes, Tips, and Interesting Bits: ====   
+Unlike most divine caster rangers must be at least level 4 to gain access to their spells.  Beyond that they work like all other divine casters and already know all spells for every circle of spells.  They only need added spell slots through equipment or feats to have access to them.   <br />

@@ -1,0 +1,153 @@
+[[Category:Classes]]
+== Druid ==         
+==== Requirements: ====
+Race: Hin  
+
+Religion: Nature Deity
+----
+
+==== Proficiencies: ====
+Light and Medium Armor, Druid Weapons, Shields  
+----
+==== Class Skills: ====
+Animal Empathy, Concentration, Craft Armor, Craft Trap, Craft Weapon, Heal, Lore, Parry, Persuade, Spellcraft   
+----
+==== Class Features ==== 
+Base Attack Bonus:    3/4  <br />
+Base Skill Points:    4  <br />
+Base Hit Points:    8  <br />
+Primary Saves:    Fortitude, Will  <br />   
+----
+==== Class Specific Feats: ====    
+''When not noted, the feat works as in regular NWN.''<br />
+{| class="wikitable"
+|+Class Feats
+!Feat
+!Requirements
+!Comment
+|-
+|Bonus Spell Slot (Druid) I-V  
+|''Taken Sequentially''
+|
+|-
+|Elemental Shape I-IV
+|Granted at lvl 5/7/9/11
+|''II, III and IV can be purchased at SL 11, 16, 21''
+|-
+|Venom Immunity
+|Granted at lvl 9
+|''Can be purchased''
+|}
+----
+
+=== Mechanical Changes ===
+''Here the general changes should be noted, see Arelith Wiki.''
+
+Druids have unique properties on this server, please note the changes mentioned in [[Magic_Systems]]
+
+=== Elemental Shapes ===
+
+On Anemoi, Druid elemental shapes differ greatly to vanilla nwn.<br />
+A druid with the Elemental Shape feat polymorphs into a huge elemental of the selected type. <br />
+Through binding himself to a elemental (see [[Magic_Systems]]), the druid can advance one of his shapes to elder.<br />
+
+<br />
+All elemental shapes get construct immunities. They are immune to: <br />
+- Critical Hits <br />
+- Disease <br />
+- Mind-Affecting Spells <br />
+- Paralysis <br />
+- Poison <br />
+- Sneak Attack <br />
+
+{| class="wikitable"
+! style="text-align: center;" | Shape
+! STR
+! CON
+! DEX
+! AC Bonus
+! HP Bonus
+! Melee Attack
+! Other 
+|-
+| style="text-align: left;" | Huge Fire Elemental
+| style="text-align: center;" | 16
+| style="text-align: center;" | 26
+| style="text-align: center;" | 20
+| style="text-align: center;" | 11
+| style="text-align: center;" | 25
+| style="text-align: center;" | Bludgeoning [2d8] <br /> Fire [2d8]
+| style="text-align: center;" | Damage Immunity Fire (100%) <br /> Damage Vulnerability Cold (50%)
+|-
+| style="text-align: left;" | Huge Water Elemental
+| style="text-align: center;" | 24
+| style="text-align: center;" | 19
+| style="text-align: center;" | 22
+| style="text-align: center;" | 10
+| style="text-align: center;" | 50
+| style="text-align: center;" | Bludgeoning [2d8] <br /> Cold [2d6]
+| style="text-align: center;" | Damage Immunity Fire (100%) <br /> Damage Immunity Acid (50%) <br /> Damage Vulnerability Electrical (50%) <br /> Regeneration +2
+|-
+| style="text-align: left;" | Huge Earth Elemental
+| style="text-align: center;" | 36
+| style="text-align: center;" | 22
+| style="text-align: center;" | 10
+| style="text-align: center;" | 7
+| style="text-align: center;" | 75
+| style="text-align: center;" | Bludgeoning [2d10]
+| style="text-align: center;" | Damage Vulnerability Sonic (50%) <br /> Damage Immunity Piercing (5%) <br /> Damage Immunity Slashing (5%)
+|-
+| style="text-align: left;" | Huge Air Elemental
+| style="text-align: center;" | 19
+| style="text-align: center;" | 19
+| style="text-align: center;" | 28
+| style="text-align: center;" | 12
+| style="text-align: center;" | 0
+| style="text-align: center;" | Bludgeoning [2d6] <br /> Sonic [2d6]
+| style="text-align: center;" | Damage Vulnerability Cold (50%) <br /> Bonus Feat: Weapon Finesse
+|-
+|
+|-
+| style="text-align: left;" | Elder Fire Elemental
+| style="text-align: center;" | 20
+| style="text-align: center;" | 36
+| style="text-align: center;" | 26
+| style="text-align: center;" | 13
+| style="text-align: center;" | 50
+| style="text-align: center;" | Bludgeoning [2d8] <br /> Fire [2d12]
+| style="text-align: center;" | Damage Immunity Fire (100%) <br /> Damage Vulnerability Cold (100%) <br /> Damage Immunity Piercing (10%) <br /> Damage Immunity Slashing (10%) <br /> Damage Immunity Bludgeoning (10%)
+|-
+| style="text-align: left;" | Elder Water Elemental
+| style="text-align: center;" | 30
+| style="text-align: center;" | 26
+| style="text-align: center;" | 22
+| style="text-align: center;" | 10
+| style="text-align: center;" | 100
+| style="text-align: center;" | Bludgeoning [2d10] <br /> Cold [2d8]
+| style="text-align: center;" | Damage Immunity Fire (100%) <br /> Damage Immunity Acid (50%) <br /> Damage Immunity Piercing (10%) <br /> Damage Immunity Slashing (10%) <br /> Damage Vulnerability Electrical (100%) <br /> Regeneration +4
+|-
+| style="text-align: left;" | Elder Earth Elemental
+| style="text-align: center;" | 40
+| style="text-align: center;" | 30
+| style="text-align: center;" | 10
+| style="text-align: center;" | 10
+| style="text-align: center;" | 150
+| style="text-align: center;" | Bludgeoning [2d12]
+| style="text-align: center;" | Damage Vulnerability Sonic (100%) <br /> Damage Immunity Piercing (5%) <br /> Damage Immunity Slashing (5%) <br /> Damage Resistance Slashing (5/-) <br /> Damage Resistance Piercing (5/-) <br /> Damage Resistance Bludgeoning (10/-)
+|-
+| style="text-align: left;" | Elder Air Elemental
+| style="text-align: center;" | 26
+| style="text-align: center;" | 22
+| style="text-align: center;" | 38
+| style="text-align: center;" | 13
+| style="text-align: center;" | 0
+| style="text-align: center;" | Bludgeoning [2d6] <br /> Sonic [2d6]
+| style="text-align: center;" | Damage Vulnerability Cold (100%) <br /> Damage Immunity Piercing (10%) <br /> Damage Immunity Slashing (10%) <br /> Damage Immunity Bludgeoning (10%) <br /> Bonus Feat: Weapon Finesse
+|}
+
+
+----
+==== Notes, Tips, and Interesting Bits: ====   
+Divine casters already know all spells for every circle of spells.  They only need added spell slots through equipment or feats to have access to them.  <br />
+Druids have access to many unique feats which can not be learned from the trainer and only obtained by taking enough levels at creation.  <br />
+The equipment that is merged by wildshape: Helmet, Armor, Shield. Only the highest stat bonus for each stat will be merged.     <br />

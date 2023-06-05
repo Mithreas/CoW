@@ -1,0 +1,18 @@
+[[Category:Classes]]
+DEPRECATED - existing characters will continue to work but new ones cannot be created.  There is now a [[Favoured Soul (Class)]]
+
+A favoured soul is a Cleric path that's akin to a divine sorcerer, a natural channel for their deity's powers.  
+
+Favoured souls gain
+- Spontaneous casting of cleric spells, as described below
+- Reflex as a favoured save.
+
+Favoured souls lose 
+- Domains - both the powers and the additional spell selections
+- The Heavy Armour feat (but can select or train the feat after start)
+- Turn Undead (and hence the ability to use powers that key off it, like Divine Might). 
+
+For all other purposes they follow Cleric progression (BAB, Will and Fortitude saves, HP etc.).
+
+===Favoured soul spellcasting===
+A favoured soul selects spells to memorise as usual... but they can cast any of those memorised spells a total number of times equal to their number of spell slots.  For example, a character who as 3 level 2 spell slots and memorises Bull's Strength, Eagle's Splendor and Owl's Wisdom could Bull's Strength 3 times, or Owl's Wisdom twice and Eagle's Splendor once, or any other combination to a total of three spells.

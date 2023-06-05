@@ -1,0 +1,714 @@
+{{CraftNav|title=Woodworking}}
+
+==Woodworking==
+
+===Timbers===
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|(Irl) Shafts
+|
+|Branch of Irl
+|
+|
+|-
+|(Ironwood) Shafts
+|
+|Branch of Ironwood
+|
+|
+|-
+|(Duskwood) Shafts
+|
+|Branch of Duskwood
+|
+|
+|-
+|Plank of Irl
+|
+|Branch of Irl
+|
+|
+|-
+|Plank of Ironwood
+|
+|Branch of Ironwood
+|
+|
+|-
+|Plank of Duskwood
+|
+|Branch of Duskwood
+|
+|
+|-
+|Short Stave of Irl
+|
+|Branch of Irl
+|
+|
+|-
+|Long Stave of Irl
+|
+|Branch of Irl
+|
+|
+|-
+|Short Stave of Ironwood
+|
+|Branch of Ironwood
+|
+|
+|-
+|Long Stave of Ironwood
+|
+|Branch of Ironwood
+|
+|
+|-
+|Short Stave of Duskwood
+|5
+|Branch of Duskwood
+|
+|
+|-
+|Long Stave of Duskwood
+|5
+|Branch of Duskwood
+|
+|
+|-
+|}
+
+===Misc===
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Blank Scrolls
+|
+|Branch of Irl
+|
+|
+|-
+|Torch
+|
+|Short Stave of Irl <br>Rope
+|
+|
+|-
+|Bone Wand
+|
+|Short Stave of Irl <br>Skeleton's Knuckle
+|
+|
+|-
+|Compound Bow Cam
+|
+|Ingot of Iron
+|
+|
+|-
+|}
+
+===Weapons===
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Wooden Club
+|
+|Short Stave of Irl
+|
+|
+|-
+|Ironwood Club
+|
+|Short Stave of Ironwood
+|
+|
+|-
+|Duskwood Club
+|6
+|Short Stave of Duskwood
+|
+|
+|-
+|Wooden Quarterstaff
+|
+|Long Stave of Irl
+|
+|
+|-
+|Ironwood Quarterstaff
+|
+|Long Stave of Ironwood
+|
+|
+|-
+|Duskwood Quarterstaff
+|6
+|Long Stave of Duskwood
+|
+|
+|-
+|Duskwood Mage's Staff
+|7
+|Long Stave of Duskwood <br>Polished Garnet <br>Gem Dust: Alexandrite <br>Gem Dust: Fluorspar
+|
+|
+|-
+|}
+
+===Arrows===
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Ondaran Arrows
+|
+|Ingot of Ondaran <br>Shaft <br>Feathers
+|
+|
+|-
+|Iron Arrows
+|
+|Ingot of Iron<br>3 Shaft <br>5 Feathers
+|
+|
+|-
+|Silver Arrows
+|2
+|Ingot of Ondaran <br>3 Shaft <br>5 Feathers
+|
+|
+|-
+|}
+
+===Bolts===
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Ondaran Bolts
+|
+|Ingot of Ondaran <br>Shaft <br>Feathers
+|
+|
+|-
+|Iron Bolts
+|
+|Ingot of Iron<br>3 Shaft <br>5 Feathers
+|
+|
+|-
+|Silver Bolts
+|2
+|Ingot of Ondaran <br>3 Shaft <br>4 Feathers
+|
+|
+|-
+|}
+
+===Bows===
+
+====Irl====
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Irl Short Bow
+|
+|Short Stave of Irl <br>Bow String
+|
+|
+|-
+|Irl Light Crossbow
+|
+|Plank of Irl <br>Bow String
+|
+|
+|-
+|Irl Long Bow
+|
+|Long Stave of Irl <br>Bow String
+|
+|
+|-
+|Irl Heavy Crossbow
+|
+|2 Plank of Irl <br>Bow String
+|
+|
+|-
+|}
+
+====Ironwood====
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Value
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Ironwood Short Bow
+|2
+|
+|Short Stave of Ironwood <br>Bow String
+|
+|
+|-
+|Ironwood Light Crossbow
+|2
+|
+|Plank of Ironwood <br>Bow String
+|
+|
+|-
+|Ironwood Long Bow
+|2
+|
+|Long Stave of Ironwood <br>Bow String
+|
+|
+|-
+|Ironwood Heavy Crossbow
+|4
+|
+|2 Plank of Ironwood <br>Bow String
+|
+|
+|-
+|North Wind Bow (Longbow)
+|6
+|1770gp
+|Longbow (Ironwood) <br>Compound Bow Cam <br>Gem Dust: Sapphire
+|Damage Resistance: Cold Resist 15/-
+|
+|-
+|Eaglebow (Shortbow)
+|6
+|4606gp
+|Shortbow (Ironwood) <br>Compound Bow Cam <br>Gem Dust: Phenalope <br> Gem Dust: Garnet <br> Gem Dust: Alexandrite
+|
+Skill Bonus: Search +6<br/>
+Skill Bonus: Spot +6<br/>
+|
+|-
+|}
+
+====Duskwood====
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Value
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Duskwood Short Bow
+|6
+|
+|Short Stave of Duskwood <br>Bow String
+|
+|
+|-
+|Duskwood Light Crossbow
+|6
+|
+|Plank of Duskwood <br>Bow String
+|
+|
+|-
+|Duskwood Long Bow
+|6
+|
+|Long Stave of Duskwood <br>Bow String
+|
+|
+|-
+|Duskwood Heavy Crossbow
+|8
+|
+|2 Plank of Duskwood <br>Bow String
+|
+|
+|-
+|Lesser Oathbow (Shortbow)
+|10
+|31660gp
+|1 Shortbow (Duskwood) <br>1 Compound Bow Cam <br>1 Gem Dust: Ruby <br>1 Gem Dust: Fire Opal
+|
+Attack Bonus: +3<br/>
+Damage Bonus vs. Monstrous 2d10 Damage Piercing<br/>
+Massive Criticals: 1d8 Damage<br/>
+Mighty +3
+|
+|-
+|Lilting Note (Shortbow)
+|10
+|
+|1 Shortbow (Duskwood) <br>1 Compound Bow Cam <br/>1 Gem Dust: Sapphire<br/>1 Gem Dust: Topaz
+|
+Attack Bonus: +5<br/>
+Bonus Spell Slot: Bard Level 6<br/>
+Skill Bonus: Perform +5<br/>
+Use: [https://nwn.fandom.com/wiki/Amplify Amplify (5)] 1 Use/Day<br/>
+Only Useable By: Bard OR Spy<br/>
+UMD Requirement (15)
+|
+|-
+|Tansheron's Bow (Shortbow)
+|14
+|8060gp
+|1 Shortbow (Duskwood) <br>1 Gem Dust: Emerald <br>1 Gem Dust: Garnet
+|Unlimited Ammo: Arrow Ammo: Basic
+|
+|-
+|Bow of Winds (Longbow)
+|16
+|
+|1 Longbow (Duskwood) <br>1 Gem Dust: Diamand<br>1 Polished Emerald
+|
+|
+|}
+
+===Shields===
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Wooden Buckler
+|
+|Plank of Irl
+|
+|
+|-
+|Wooden Large Shield
+|
+|2 Plank of Irl
+|
+|
+|-
+|Wooden Tower Shield
+|
+|3 Plank of Irl
+|
+|
+|-
+|}
+
+===Furniture===
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Fixture: Stool
+|
+|Plank of Irl
+|
+|
+|-
+|Fixture: Chair
+|
+|Plank of Irl
+|
+|
+|-
+|Fixture: Signpost
+|
+|2 Plank of Irl
+|
+|
+|-
+|Fixture: Signboard (small)
+|
+|3 Plank of Irl
+|
+|
+|-
+|Fixture: Sturdy Chair
+|
+|2 Plank of Irl
+|
+|
+|-
+|Fixture: Black Chair
+|
+|Plank of Ironwood
+|
+|
+|-
+|Fixture: Bench (simple)
+|
+|2 Plank of Irl
+|
+|
+|-
+|Fixture: Bench (with brace)
+|
+|2 Plank of Irl
+|
+|
+|-
+|Fixture: Bench (cot)
+|
+|Plank of Irl <br>Cloth
+|
+|
+|-
+|Fixture: Wooden Throne
+|
+|3 Plank of Irl
+|
+|
+|-
+|Fixture: Signboard (hanging)
+|
+|Plank of Irl <br>Ingot of Ondaran
+|
+|
+|-
+|Fixture: Bench (large)
+|
+|3 Plank of Irl
+|
+|
+|-
+|Fixture: Couch
+|
+|Plank of Irl <br>2 Cotton
+|
+|
+|-
+|Fixture: Lecturn
+|
+|2 Plank of Irl
+|
+|
+|-
+|Fixture: Signboard (medium)
+|
+|2 Plank of Irl
+|
+|
+|-
+|Fixture: Simple Table
+|
+|2 Plank of Irl
+|
+|
+|-
+|Fixture: Round Wooden Table
+|
+|2 Plank of Irl
+|
+|
+|-
+|Fixture: Bookcase
+|
+|3 Plank of Irl
+|
+|
+|-
+|Fixture: Armoire
+|
+|3 Plank of Irl
+|
+|
+|-
+|Fixture: Chest of Drawers
+|2
+|3 Plank of Irl
+|
+|
+|-
+|Fixture: Wooden Pillar
+|2
+|4 Plank of Irl
+|
+|
+|-
+|Fixture: Bed
+|2
+|Plank of Irl <br>2 Cotton <br>1 Cloth
+|
+|
+|-
+|Fixture: Torch Stand
+|2
+|Plank of Irl <br>2 Lump of Coal
+|
+|
+|-
+|Fixture: Message Board
+|3
+|3 Plank of Irl
+|
+|
+|-
+|Fixture: Dice Table
+|3
+|Plank of Ironwood
+|
+|
+|-
+|Fixture: Impaled Monster Head
+|
+|Plank of Irl
+|
+|
+|-
+|Fixture: Skull Pole
+|
+|Plank of Irl
+|
+|
+|-
+|Fixture: Combat Dummy
+|
+|2 Plank of Irl <br>2 Cotton
+|
+|
+|-
+|Fixture: Keg
+|
+|2 Plank of Irl
+|
+|
+|-
+|Fixture: Archery Target
+|
+|2 Plank of Irl
+|
+|
+|-
+|Fixture: Gallows
+|
+|3 Plank of Irl
+|
+|
+|-
+|Fixture: Cheval de Frise
+|3
+|5 Plank of Irl
+|
+|
+|-
+|Fixture: Painting 1
+|6
+|Plank of Duskwood
+|
+|
+|-
+|Fixture: Painting 1
+|6
+|Plank of Duskwood
+|
+|
+|-
+|Fixture: Flag (green and white)
+|
+|Plank of Irl <br>Cloth
+|
+|
+|-
+|Fixture: Flag (black with red dot)
+|
+|Plank of Irl <br>Cloth
+|
+|
+|-
+|Fixture: Flag (light purple)
+|
+|Plank of Irl <br>Cloth
+|
+|
+|-
+|Fixture: Flag (black and white)
+|
+|Plank of Irl <br>Cloth
+|
+|
+|-
+|Fixture: Flag (purple and white)
+|
+|Plank of Irl <br>Cloth
+|
+|
+|-
+|Fixture: Flag (purple cross)
+|
+|Plank of Irl <br>Cloth
+|
+|
+|-
+|Fixture: Flag (yellow)
+|
+|Plank of Irl <br>Cloth
+|
+|
+|-
+|Fixture: Flag (Jolly Roger)
+|
+|Plank of Irl <br>Cloth
+|
+|
+|-
+|}
+
+===House Items===
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Erenia: Staff of the Gods
+|8
+|Long Stave of Duskwood <br>Yellow Phosphorescent Moss <br>Recipe Card: Staff of the Gods
+|
+|
+|-
+|Drannis: Quickfire Bow
+|8
+|Short Stave of Irl<br>Short Stave of Ironwood <br>Long Stave of Duskwood <br>Recipe Card: Quickfire Bow
+|
+|
+|-
+|}

@@ -15,6 +15,7 @@
 #include "nw_i0_spells"
 #include "inc_generic"
 #include "inc_math"
+#include "inc_pc"
 #include "inc_statuseffect"
 
 void main()
@@ -25,7 +26,10 @@ void main()
 
     int nDuration = GetHitDice(GetAreaOfEffectCreator());
     int nRacial = GetRacialType(oTarget);
-    int nDC = nHD /3;
+	int nBonus = GetLocalInt(gsPCGetCreatureHide(GetAreaOfEffectCreator()), "FL_LEVEL");
+	if (nBonus > 0) nBonus -= nHD;
+	if (nBonus > 60) nBonus = 60;
+    int nDC = 10 + nHD /3 + nBonus / 3;
 
     if(GetIsEnemy(oTarget))
     {

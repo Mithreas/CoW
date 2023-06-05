@@ -1,0 +1,7 @@
+A small number of NPCs have dynamic conversations... that is, they will respond to what you say, rather than using a standard dialog file.
+
+Some of these are puzzles and riddles, but the most important use of it is for plot NPCs.  A few NPCs in hard to get to places might choose to talk to you - if you are "the right sort of person" for them - and talking to them can get you a lot of information that isn't commonly available.
+
+Of course, such NPCs tend to be old and powerful, and upsetting them can be terminal.  There are a few places in the module where permadeath is a real possibility... and there might be quite a high correlation between "places with plot NPCs" and "places where you might shuffle off your mortal coil"...
+
+[[Category: Unique Mechanics]]

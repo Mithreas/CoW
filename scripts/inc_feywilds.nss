@@ -175,6 +175,7 @@ void FW_Init()
   AddStringElement("uchouse9", UC_HOUSES, oMod);
   AddStringElement("uchouse4", UC_HOUSES, oMod);  // dark one cultist
   AddStringElement("uchouse6", UC_HOUSES, oMod);  // beast cult
+  AddStringElement("uchouse10", UC_HOUSES, oMod);  // special
   
   // Parli city houses.
   DeleteList(PC_HOUSES, oMod);

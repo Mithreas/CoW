@@ -1,0 +1,145 @@
+[[Category:Classes]]
+== Monk ==        
+==== Available Paths: ====
+[[Kensai]]  
+----
+
+==== Requirements: ====
+None
+----  
+==== Proficiencies: ====
+Cloth Armor, Monk Weapons  
+---- 
+==== Class Skills: ====
+Concentration, Craft Armor, Craft Trap, Craft Weapon, Discipline, Heal, Hide, Listen, Lore, Move Silently, Parry, Persuade, Tumble  
+----
+==== Class Features ==== 
+Base Attack Bonus:    3/4  <br />
+Base Skill Points:    4  <br />
+Base Hit Points:    8  <br />
+Primary Saves:    Fortitude, Reflex, Will  <br />  
+----
+==== Class Specific Feats: ====    
+''When not noted, the feat works as in regular NWN.''
+{| class="wikitable"
+|+Class Feats
+!Feat
+!Requirements
+!Comment
+|-
+|Ki Strike I-III
+|
+|''Taken Sequentially''
+|-
+|Purity of Body
+|
+|
+|-
+|Wholeness of Body
+|
+|
+|-
+|Diamond Body
+|SL 10
+|
+|-
+|Diamond Soul
+|SL 11
+|
+|-
+|Quivering Palm  
+|SL 14
+|
+|-
+|Empty Body
+|SL 17
+|
+|-
+|Perfect Self 
+|SL 19
+|
+|-
+|Improved Stunning Fist I-IV
+|17 Dexterity, 17 Wisdom, SL 31
+|
+|-
+|Improved Spell Resistance I-V
+|Diamond Soul, SL 31
+|
+|-
+|}
+----
+
+=== Mechanical Changes ===
+''Here the general changes should be noted, see Arelith Wiki.''
+----
+==== Notes, Tips, and Interesting Bits: ====   
+Monks need at least 6 levels in the class to benefit from the Wisdom AC bonus.
+
+The Monk Wisdom AC Bonus requires 50% of your total levels to be in the Monk class, or 6 levels in Monk, whichever is lower.
+
+The Following Weapons benefit from UBAB, as well as being able to be used with Flurry of Blows.
+
+{| class="wikitable"
+|+Weapons
+!Weapon
+!Finessable
+!Dual Wield
+!Damage Roll
+!Critical Rating
+!Damage Type
+!Notes
+
+|-
+|Quarterstaff
+|Yes
+|Yes
+|1d6
+|x2
+|Bludgeoning
+|Benefits from +2 AB from double weapons.
+
+|-
+|Shuriken
+|Yes
+|No
+|1d3
+|x2
+|Piercing
+|Only ranged monk weapon.
+
+|-
+|Handaxe
+|Yes
+|Yes
+|1d6
+|x3
+|Slashing
+|Highest crit multiplier.
+
+|-
+|Dagger
+|Yes
+|Yes
+|1d4
+|19-20/2x
+|Piercing
+|Highest threat range.
+
+|-
+|Kama
+|Yes
+|Yes
+|1d6
+|x2
+|Slashing
+|
+
+|-
+|Club
+|No
+|Yes
+|1d6
+|x2
+|Bludgeoning
+|

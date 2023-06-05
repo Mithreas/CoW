@@ -1,0 +1,151 @@
+== Summary of class restrictions ==
+Note: Some restrictions can by lifted via ingame actions.  Classes not listed here are open to all races.  Alignment restrictions have been lifted from all classes.
+{| class="wikitable"
+!Race
+!Arcane Archer
+!Bard
+!Blackguard
+!Cleric
+!Druid
+!Paladin
+!Shifter
+!Sorcerer
+!Wizard
+|-
+|Human
+|N
+|N
+|Y
+|Y
+|N
+|Y
+|N
+|N
+|N
+|-
+|Elf
+|Y
+|Y
+|N
+|N
+|N
+|N
+|N
+|Y
+|Y
+|-
+|Halfling
+|N
+|Y
+|N
+|N
+|Y
+|N
+|N
+|N
+|N
+|-
+|Shapechanger
+|N
+|Y
+|N
+|N
+|N
+|N
+|Y
+|N
+|N
+|-
+|Half-Elf
+|N
+|Y
+|Y
+|N
+|N
+|Y
+|N
+|N
+|N
+|-
+|Elfling
+|N
+|Y
+|N
+|N
+|Y
+|N
+|N
+|N
+|Y
+|-
+|}
+
+And the following prestige classes are restricted:
+* No Red Dragon Disciples
+
+You cannot ordinarily mix classes from more than one of the following lists on the same character.  (So a Wiz/Sorc is allowed, but not a Wiz/Shifter).  This is because the powers of these classes are granted by the gods (so yes, in a sense, all major magics are "divine" here).  If hypothetically you were able to find a deity who could offer Shifter and Wizard magics together, then you could take them on one character.  I'm not promising that such a deity exists...
+{| class="wikitable"
+!Arcane
+!Divine
+!Druidic
+!Shapechanger
+|-
+|Wizard
+|Cleric
+|Druid
+|Shifter
+|-
+|Sorcerer
+|Favoured Soul
+|
+|Shaman
+|}
+
+== Classes ==
+
+==== Base classes ====
+
+:    [[Barbarian]]
+:    [[Bard]]
+:    [[Cleric]]
+:    [[Druid]]
+:    [[Fighter]]
+:    [[Favoured Soul (Class)]]
+:    [[Monk]]
+:    [[Paladin]]
+:    [[Ranger]]
+:    [[Rogue]]
+:    [[Shaman]]
+:    [[Shifter]]
+:    [[Sorcerer]]
+:    [[Wizard]]
+
+----
+
+==== Prestige classes ====
+
+:    [[Arcane archer]]
+:    [[Assassin]]
+:    [[Blackguard]]
+:    [[Divine Champion (Champion of Torm)]]
+:    [[Dwarven Defender]]
+:    [[Spy|Spy (Harper)]]
+:    [[Pale master]]
+:    [[Knight (Purple Dragon Knight)]]
+:    [[Shadowdancer]]
+:    [[Weapon Master]]
+
+----
+
+==== Currently not selectable ====
+
+:    [[Red dragon disciple]]
+
+==Paths==
+: [[Kensai]]
+: [[Archer]]
+: [http://anemoi.crabdance.com/index.php/Barbarian#Tribesman Tribesman]
+: [[Favoured Soul]]
+: [[Healer]]
+: [http://anemoi.crabdance.com/index.php/Wizard#On_Spellswords Spellsword]
+: [[Shadow Mage]]

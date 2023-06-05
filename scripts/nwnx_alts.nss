@@ -228,11 +228,6 @@ int SetWeaponSpecializationFeat (int nBaseItem, int nFeat);
 // Index of the effect integer that defines a visual effect's value.
 const int EFFECT_INTEGER_VISUAL_EFFECT_TYPE = 0;
 
-/* Returns the internal effect integer at the index specified. The index
- * is limited to being between 0 and GetEffectNumIntegers(), and which index
- * contains what value depends entirely on the type of effect. */
-int GetEffectInteger (effect eEffect, int nIndex);
-
 // Sets whether OBJECT_SELF can be detected by their own party.
 void SetStealthPartyRevealed(int state);
 
@@ -307,14 +302,6 @@ int GetKnowsFeat (int nFeatId, object oCreature) {
 
   return NWNX_Creature_GetKnowsFeat(oCreature, nFeatId);
 
-}
-
-
-
-
-
-int GetEffectInteger (effect eEffect, int nIndex) {
-  return 0;
 }
 
 void SetStealthPartyRevealed(int state) {

@@ -1,0 +1,575 @@
+{{CraftNav|title=Weapon Crafting}}
+
+
+==Weapon Crafting==
+ 
+https://github.com/Mithreas/CoW/blob/master/scripts/cnranvilarmor1.nss
+https://github.com/Mithreas/CoW/blob/master/scripts/cnranvilarmorel.nss
+
+===Components===
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Small Ondaran Blade
+|
+|Ingot of Ondaran
+|
+|
+|-
+|Medium Ondaran Blade
+|
+|2 Ingot of Ondaran
+|
+|
+|-
+|Large Ondaran Blade
+|
+|3 Ingot of Ondaran
+|
+|
+|-
+|Small Ondaran Head
+|
+|Ingot of Ondaran
+|
+|
+|-
+|Medium Ondaran Head
+|
+|2 Ingot of Ondaran
+|
+|
+|-
+|Large Ondaran Head
+|
+|3 Ingot of Ondaran
+|
+|
+|-
+|Ondaran Shoddings
+|
+|Ingot of Ondaran
+|
+|
+|-
+|Small Iron Blade
+|
+|Ingot of Iron
+|
+|
+|-
+|Medium Iron Blade
+|
+|2 Ingot of Iron
+|
+|
+|-
+|Large Iron Blade
+|
+|3 Ingot of Iron
+|
+|
+|-
+|Small Iron Head
+|
+|Ingot of Iron
+|
+|
+|-
+|Medium Iron Head
+|
+|2 Ingot of Iron
+|
+|
+|-
+|Large Iron Head
+|
+|3 Ingot of Iron
+|
+|
+|-
+|Iron Shoddings
+|
+|Ingot of Iron
+|
+|
+|-
+|Small Silver Blade
+|
+|Ingot of Silver
+|
+|
+|-
+|Medium Silver Blade
+|
+|2 Ingot of Silver
+|
+|
+|-
+|Large Silver Blade
+|
+|3 Ingot of Silver
+|
+|
+|-
+|Small Silver Head
+|
+|Ingot of Silver
+|
+|
+|-
+|Medium Silver Head
+|
+|2 Ingot of Silver
+|
+|
+|-
+|Large Silver Head
+|
+|3 Ingot of Silver
+|
+|
+|-
+|Silver Shoddings
+|
+|Ingot of Silver
+|
+|
+|-
+|Small Steel Blade
+|6
+|Ingot of Steel
+|
+|
+|-
+|Medium Steel Blade
+|7
+|2 Ingot of Steel
+|
+|
+|-
+|Large Steel Blade
+|8
+|3 Ingot of Steel
+|
+|
+|-
+|Small Steel Head
+|6
+|Ingot of Steel
+|
+|
+|-
+|Medium Steel Head
+|7
+|2 Ingot of Steel
+|
+|
+|-
+|Large Steel Head
+|8
+|3 Ingot of Steel
+|
+|
+|-
+|}
+
+===Slingstones & Knives===
+
+====Slingstones====
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Ondaran Slingstones
+|
+|Ingot of Ondaran
+|
+|
+|-
+|Iron Slingstones
+|
+|Ingot of Iron
+|
+|
+|-
+|Silver Slingstones
+|
+|Ingot of Silver
+|
+|
+|-
+|Steel Slingstones
+|6
+|Ingot of Steel
+|
+|
+|-
+|}
+
+====Throwing Knives====
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Ondaran Throwing Knives
+|
+|Ingot of Ondaran
+|
+|
+|-
+|Iron Throwing Knives
+|
+|Ingot of Iron
+|
+|
+|-
+|Silver Throwing Knives
+|
+|Ingot of Silver
+|
+|
+|-
+|Steel Throwing Knives
+|6
+|Ingot of Steel
+|
+|
+|-
+|}
+
+===Axes===
+
+====Handaxe====
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Ondaran Handaxe
+|
+|Small Ondaran Blade <br>Shaft
+|
+|
+|-
+|Iron Handaxe
+|
+|Small Iron Blade <br>Shaft
+|
+|
+|-
+|Silver Handaxe
+|
+|Small Silver Blade <br>Shaft
+|
+|
+|-
+|Steel Handaxe
+|7
+|Small Steel Blade <br>Shaft
+|
+|
+|-
+|}
+
+====Battleaxe====
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Ondaran Battleaxe
+|
+|Medium Ondaran Blade <br>Shaft
+|
+|
+|-
+|Iron Battleaxe
+|
+|Medium Iron Blade <br>Shaft
+|
+|
+|-
+|Silver Battleaxe
+|
+|Medium Silver Blade <br>Shaft
+|
+|
+|-
+|Steel Battleaxe
+|10
+|Medium Steel Blade <br>Shaft
+|
+|
+|-
+|}
+
+====Greataxe====
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Ondaran Greataxe
+|
+|Large Ondaran Blade <br>Shaft
+|
+|
+|-
+|Iron Greataxe
+|
+|Large Iron Blade <br>Shaft
+|
+|
+|-
+|Silver Greataxe
+|
+|Large Silver Blade <br>Shaft
+|
+|
+|-
+|Steel Greataxe
+|10
+|Large Steel Blade <br>Shaft
+|
+|
+|-
+|}
+
+====Waraxe====
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Ondaran Waraxe
+|
+|Medium Ondaran Blade <br>Shaft
+|
+|
+|-
+|Iron Waraxe
+|
+|Medium Iron Blade <br>Shaft
+|
+|
+|-
+|Silver Waraxe
+|
+|Medium Silver Blade <br>Shaft
+|
+|
+|-
+|Steel Waraxe
+|11
+|Medium Steel Blade <br>Shaft
+|
+|
+|-
+|}
+
+===Bladed===
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Ondaran Dagger
+|
+|Small Ondaran Blade <br>Leather Bindings
+|
+|
+|-
+|Ondaran Short Sword
+|
+|Small Ondaran Blade <br>Leather Bindings
+|
+|
+|-
+|Ondaran Rapier
+|
+|Medium Ondaran Blade <br>Leather Bindings
+|
+|
+|-
+|Ondaran Windblade
+|
+|Medium Ondaran Blade <br>Leather Bindings
+|
+|
+|-
+|Ondaran Longsword
+|
+|Medium Ondaran Blade <br>Leather Bindings
+|
+|
+|-
+|Ondaran Greatsword
+|
+|Large Ondaran Blade <br>Leather Bindings
+|
+|
+|-
+|}
+
+===Blunts===
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Ondaran Mace
+|
+|Small Ondaran Head <br>Shaft
+|
+|
+|-
+|Ondaran Morningstar
+|
+|Medium Ondaran Head <br>Shaft
+|
+|
+|-
+|Ondaran Warhammer
+|
+|Large Ondaran Head <br>Shaft
+|
+|
+|-
+|Ondaran Shod Club
+|
+|Wooden Club <br>Ondaran Shoddings
+|
+|
+|-
+|Ondaran Shod Quarterstaff
+|
+|Wooden Quarterstaff <br>2 Ondaran Shoddings
+|
+|
+|-
+|}
+
+===Double-Sided===
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Ondaran Dire Mace
+|
+|2 Small Ondaran Head <br>Shaft
+|
+|
+|-
+|Ondaran Double Axe
+|
+|2 Medium Ondaran Blade <br>Shaft
+|
+|
+|-
+|Ondaran Two-Bladed Sword
+|
+|2 Medium Ondaran Blade <br>Shaft
+|
+|
+|-
+|}
+
+===Polearms===
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Ondaran Spear
+|
+|Small Ondaran Blade <br>Shaft
+|
+|
+|-
+|Ondaran Halberd
+|
+|Large Ondaran Blade <br>Shaft
+|
+|
+|-
+|}
+
+===Fixtures===
+
+{| class="wikitable"
+! style="text-alignleft;"| Name
+! Level
+! Ingredients
+! Properties
+! Race Requirement
+|-
+|Fixture: Candelabra
+|
+|2 Ingot of Ondaran
+|
+|
+|-
+|Fixture: Fire Bowl
+|
+|2 Ingot of Ondaran
+|
+|
+|-
+|Fixture: Standing Mirror
+|
+|3 Ingot of Ondaran <br>Ingot of Silver
+|
+|
+|-
+|Fixture: Telescope
+|
+|2 Ingot of Ondaran <br>Ingot of Glass
+|
+|
+|-
+|Fixture: Torture Rack
+|
+|4 Ingot of Ondaran
+|
+|
+|-
+|}

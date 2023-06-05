@@ -1,0 +1,102 @@
+You can take two major and one minor gift on character creation.
+
+Major Gifts are listed in '''bold''' text.
+
+{| class="wikitable"
+|-
+! Gift
+! Effect
+! ECL
+|-
+| '''Gift of Might'''
+| STR +2
+| +1
+|-
+| '''Gift of Grace'''
+| DEX +2
+| +1
+|-
+| '''Gift of Endurance'''
+| CON +2
+| +1
+|-
+| '''Gift of Learning'''
+| INT +2
+| +1
+|-
+| '''Gift of Insight'''
+| WIS +2
+| +1
+|-
+| '''Gift of Confidence'''
+| CHA +2
+| +1
+|-
+| '''Gift of Wealth'''
+| +1,000 gold on start, and each in-game month the character is active
+| +0.5
+|-
+| Gift of Craftmanship
+| +1 to all craft skill levels for the purpose of calculating success chances
+| +1
+|-
+| Gift of Tongues
+| Able to learn languages faster
+| +1
+|-
+| Gift of Hardiness
+| 5% damage immunity to fire, cold, electric, acid
+| +0.5
+|-
+| Gift of Darkness
+| Darkness 1/day
+| +0.5
+|-
+| Gift of Hiding
+| Invisibility 1/day
+| +0.5
+|-
+| Gift of Light
+| Light 1/day
+| 0
+|-
+| Gift of the Gab
+| Bluff +6
+| 0
+|-
+| Gift of Lightfingers
+| Pickpocket +6
+| 0
+|-
+| Gift of the Hunter
+| Spot +6
+| 0
+|-
+| Gift of the Sneak
+| Hide +4, Move silently +4
+| 0
+|-
+| '''Gift of Fortune'''
+| All saves +2
+| +1
+|-
+| Gift of Stardom
+| Perform +6
+| 0
+|-
+| Gift of Humility
+| All abilities -2
+| -2
+|-
+| Gift of the (Un)Holy
+| Allows non-cleric to hold ceremonies and to consecrate/desecrate altars
+| +0.5
+|-
+| Gift of Unique Favor
+| Allows character to ignore deity race restrictions
+| +0.5
+|-
+| Gift of Greenfingers
+| Allows non-nature character to tend plants
+| +0.5
+|-

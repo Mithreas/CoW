@@ -1,0 +1,50 @@
+[[Category:Classes]]
+== Weapon Master ==       
+==== Requirements: ====
+Base Attack Bonus 3, Dodge, Expertise, Weapon Focus  
+----
+==== Proficiencies: ====
+None  
+----
+==== Class Skills: ====
+Discipline, Heal, Intimidate, Listen, Lore, Spot    
+----
+==== Class Features ====  
+Base Attack Bonus:    1   <br />
+Base Skill Points:    2   <br />
+Base Hit Points:    10   <br />
+Primary Saves:    Reflex   <br />
+----
+==== Class Specific Feats: ====    
+''When not noted, the feat works as in regular NWN.''
+{| class="wikitable"
+|+Class Feats
+!Feat
+!Requirements
+!Comment
+|-
+|Weapon of Choice 
+|
+|
+|-
+|Increased Multiplier
+|SL 15 
+|
+|-
+|Ki Critical
+|SL 15  
+|
+|-
+|}
+----
+=== Mechanical Changes ===
+====Ki Damage====
+The Ki Damage feat has received a significant upgrade.  As well as its normal effects, it will strip all temporary AC, damage immunity increase and damage shield effects from the target, including temporary AC from their equipped armour (but not shield).  It will deal 1 magic damage per such effect removed.
+
+Effects linked to the removed effect will also be removed - e.g. it will remove all bard song's effects except temp HP since they are linked to the AC increase.
+
+Ki Damage has a stamina cost of 50 - 5* your weapon master level, and refreshes itself a minute after use.  The target must be within 10m of you when you use the feat to trigger the added effects.
+----
+
+=== Notes, Tips, and Interesting Bits: ===
+Superior weapon focus can only be obtained by taking class levels.  You cannot purchase the feat later from the trainer.

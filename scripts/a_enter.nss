@@ -612,6 +612,17 @@ void main()
                 {
                     SetLocked(oObject, TRUE);
                 }
+				
+				// Set up respawning - event handler and string representation of the door.
+				if (GetEventScript(oObject, EVENT_SCRIPT_DOOR_ON_DEATH) == "")
+				{
+				  SetEventScript(oObject, EVENT_SCRIPT_DOOR_ON_DEATH, "x2_door_death");
+				}
+				
+				if (GetLocalString(oObject, "NWNX_OBJECT_STRING") == "")
+				{
+				  SetLocalString(oObject, "NWNX_OBJECT_STRING", NWNX_Object_Serialize(oObject));
+				}
 
                 break;
 

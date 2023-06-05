@@ -186,5 +186,27 @@ void main()
             return;
 		}
     }
+	else if (sStreamType == "b")
+	{
+		// Barbarian tribal warriors
+		AddKnownSummonStream(GetPCSpeaker(), STREAM_TYPE_TRIBESMAN, STREAM_TRIBESMAN_MALE, FALSE);
+		AddKnownSummonStream(GetPCSpeaker(), STREAM_TYPE_TRIBESMAN, STREAM_TRIBESMAN_FEMALE, FALSE);
+		
+		if (sStreamElement == "mal")
+		{
+		  SetActiveSummonStream(OBJECT_SELF, STREAM_TYPE_TRIBESMAN, STREAM_TRIBESMAN_MALE, TRUE);
+		  return;
+		}
+		else if (sStreamElement == "fem")
+		{
+		  SetActiveSummonStream(OBJECT_SELF, STREAM_TYPE_TRIBESMAN, STREAM_TRIBESMAN_FEMALE, TRUE);
+		  return;
+		}
+		else if (sStreamElement == "ran")
+		{
+		  SetActiveSummonStream(OBJECT_SELF, STREAM_TYPE_TRIBESMAN, STREAM_TRIBESMAN_RANDOM, TRUE);
+		  return;
+		}
+	}
     SendMessageToPC(OBJECT_SELF, "Stream type either invalid or unavailable. Type '-stream ?' for help, or '-stream' for a list of available streams.");
 }

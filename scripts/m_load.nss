@@ -230,7 +230,7 @@ void main()
     // dunshine, grab playerpassword and save it as a variable for use later in gs_run_reboot
     SetLocalString(oMod, "GVD_SERVER_PASSWORD", NWNX_Administration_GetPlayerPassword());
 
-    if (nLoggingEnabled) SetLocalInt(oMod, "MI_DEBUG", 1);
+    if (nLoggingEnabled) SetLocalInt(oMod, "MI_DEBUG", nLoggingEnabled);
     else SetLocalInt(oMod, "MI_DEBUG", 0);
     SetMaxHenchmen(2);
 

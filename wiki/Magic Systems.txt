@@ -1,0 +1,190 @@
+=Overview=
+The mechanics of magic are similar to core D&D, but with some important changes.
+* Cleric magic is "sympathetic".
+* Druidic magic works pretty normally, but can be withdrawn in extreme circumstances.
+* Arcane magic is exhausting, draining Stamina.
+
+=Fundamentals of Magical Theory=
+(This can be found on in-game books but is reproduced here for reference.  Obviously, IC, this knowledge is not universal!). 
+===Volume 1: Power===
+The first volume talks about magical power.  Living creatures naturally absorb magic into themselves as they breathe.  Wizards learn to make use of the power they have acquired to cast spells.  However, it's dangerous - magic will literally consume the caster's life force if they run out of magic.
+
+Storing power is therefore a major part of being a mage.  Mages use all sorts of tools to build power, but the most fundamental way to get power is to be given it by another.  The book explains how to perform a ritual that will draw power from willing donors around you... for instance, those who cannot make use of power themselves.  The book emphasises the importance of building your power reserve at every opportunity. 
+===Volume 2: Elemental Spirits===
+The second volume talks about elementals, explaining that a common field of magic involves manipulating elemental energies.  
+
+Almost everything in the world is made up of elements, and the elemental energy can be tapped by magic.  Doing so can be challenging, however, as the magician must wrestle with the energy's own sense of form.  Magical power is used to break the elemental's own sense of form, and to transform it into whatever the mage needs. 
+
+The more elemental energy is needed, the harder this is.  Larger pools of elemental power have a stronger sense of form, and the largest actually acquire a sort of sentience, and need a lot of magical power to control. 
+===Volume 3: Transference===
+The third volume talks about transference - the art of moving energy through space.
+
+It starts with the example of casting a fireball in a swamp.  Most of the elemental energy available in the local area is water-based, which makes casting a fireball much harder.  However, energy is not constrained by space in the same way that matter is.  The wizard can draw fire from any source they are familiar with... for example, the campfire they started that morning, that they have left burning during the battle to use as a source of fire.
+
+While transferring energy across distance is essentially free, the mage's need to "reach" to a familiar source is more challenging.  Through binding rituals and practice, a mage can build up familiarity with particular sources and use them with greater ease from further away.  Of course, if an enemy learns of your sources, they could weaken you by destroying them. 
+
+Preparation is therefore vital - especially for fire magics, as most fires need constant feeding.  An early part of becoming a powerful mage is to identify and bind to the power sources that they will draw on for their spells.
+===Volume 4: Mind, Matter and Magic===
+The fourth volume focuses on mind and matter.  Just as magic can be used to compel elemental forces to take a particular form, so can magic be used to influence the minds of sentient creatures.  The essential principle of changing the form of something applies, however, rather than changing the shape of a creature, you change their personality, intentions and motivations.  This is the basis of spells of charm, dominate and hold - the so-called "Enchantment" school.  Alternately, spells like Confusion simply remove the form of a creature's thoughts, leaving them disordered without imposing a replacement form.
+
+Actually changing the shape or composition of matter is a very different problem.  Spells like Flesh to Stone "cheat" by simply creating a layer over the outside that imprisons a creature.  But spells like Shapechange require actual transformation of matter.  This is a complex process that requires both focus of mind and elemental transformations of many different types.  The subconscious mind takes control of ensuring that the final shape "works", but the magician must focus on adjusting the form of each part of their body, for example to grow claws, or a thicker hide.  This may involve adding matter to their form from outside.
+
+Some creatures are able to transform themselves without being skilled mages.  Such creatures are usually dimorphic; that is, they have two natural forms, and their mind and matter are equally comfortable in both, and can easily transform.  Truly fluid shapechangers are much rarer, and are only lightly set into each form that they take.
+
+Very gifted shapechangers (and arcanists) can change the quantity of matter in their body, not just its form.  This is typically done by binding elementals together to form the additional body parts, and requires either bargains with the elementals involved or powerful magic to bind them.  
+===Volume 5: Divination and the Pattern===
+The fifth volume focuses on divination, or the reading of the Pattern. Unlike other Arts, the Seer rarely seeks to bring change through application of her Art, but instead to learn, that her other talents - or those of her associates - may be better directed.  
+
+Reading the Pattern is not easy.  Its nature is associative; that is to say, objects which have close associations with one another will be close in the Pattern.  Such things change over time, and thus the Pattern changes also.  Most uses of the Art focus on understanding the present, for the view shown through the Pattern is unlike that presented to mundane senses, and much can be learnt by it.  But a skilled reader of the Pattern may see more than the present, may be able to discern hints of past or future by studying the movements of the present.
+
+To understand what is possible through the Art, one must understand the Pattern.  The better one's understanding, the more one knows to be possible.  One stone on the path to understanding concerns names.
+
+Names have power, because they create associations.  By naming something or someone, mortals create an association between the name and the thing.  That association can be read, in the Pattern.  One of the simplest uses of Divination is to determine the properties of an object.  First among those properties is the name, and other properties are revealed, by reading the object's interactions with others in the Pattern.  A simple use of the Art, to find answers associated closely with the object in question. 
+
+A second stone on the path is the importance of minds.  The will of mortals alters the Pattern with every decision made, and thus the mind of a mortal stands out starkly in the Pattern, a swirling nexus of possibilities becoming reality.  While mortals may hide themselves, or conceal themselves behind wards or walls, physical closeness forms a weak association between two individuals, as they affect one another with their words or behaviour.  Even apprentice diviners can learn to detect nearby individuals through some wards, but more skilled Seers can sense the nearness of another more precisely; none can hide from a skilled Seer reading the Pattern. 
+
+It is rare for a Diviner to use their Art to directly affect the world.  But a powerful Seer can do more than read the Pattern; they can affect it, plucking on the threads of the Weave directly.  Such is a challenging and dangerous task, for if too little care is employed, the Seer may twist the threads about themselves.  But to one skilled in the Art, another's mind or heart may be stopped for a while, by simulating the effect on the Pattern of a stimulus that would cause the same.  Greater effects are also possible, but the Pattern follows its own rules, and to attempt to achieve an end directly without having seen it happen naturally, requires either great luck or a truly complete understanding of the Pattern.
+
+=Key differences between magical classes=
+==Divine magic and faith==
+Divine classes are the Cleric, Paladin and Favoured Soul. 
+
+Any spell a Cleric or Favoured Soul casts on another creature will also be cast on the cleric themselves.  Slay Living is not recommended!  This is great for buff spells, but means attack spells must be used with great care.
+
+The highest level cleric spells cost piety.  You can gain piety in various ways, depending on the aspect(s) of your chosen deity.  You can also gain it through praying at altars or by meditating with the -meditate command, however, prayer is exhausting and will slowly train your hitpoints. 
+
+Favored Souls lose domains but can cast spontaneously, consuming piety with each cast. 
+
+The Caster Level of all three divine classes is increased (or decreased!) by 1/10th of their Piety score.  Staying aligned with your deity makes your magic stronger. 
+
+==Druidic magic==
+Druids are animists, that is, their magic comes from bartering with the spirits in the world around them.  Elemental spirits exist throughout the land, and druids make bargains with them to power their spells.  Most of the time these bargains are simple; for example, the druid might burn something to win the favour of a fire spirit.  However, more powerful spirits and more powerful spells may demand greater bargains, such as clearing out a blocked stream for a water spirit.  [Some of this is reflected mechanically - see below - but you are encouraged to RP it further!].
+
+A druid who betrays the elemental powers they deal with may, on very rare occasions, get cursed by a powerful elemental.  Such a curse is essentially a threat to other elementals; help this person and I will end you.  This essentially means the druid can no longer cast spells.
+
+Elementals are all over the world, and while minor spirits tend to have little awareness of their own (making pleasing them easy), larger ones have true intelligence and personality, and may be friend or foe just like other sentient creatures.  Druids can oppose hostile elementals without risking their bargains, though the more powerful the elemental, the more care is appropriate.
+
+Rangers who cast spells do so in a similar way to druids, and they can also benefit from bargains.  
+
+==Arcane magic==
+Arcane magic is exhausting, sapping the strength of the caster.  This is reflected in game by taking [[Stamina]] damage when you cast arcane spells.
+
+Arcanists can boost the power of their spells by binding to locations of power, allowing them to channel power from that place when they cast their spells.  This is reflected via Attunement, see below.
+
+=Pacts and Attunement=
+Spirits inhabit much of the world.  Characters can make pacts with them, or bind them, in order to increase their magical power.
+
+Using binding or pacting, a caster can get a bonus of up to 15 caster levels on one school, a corresponding penalty to the opposing school, and half the bonus on the rest of their spells.    
+
+==Binding or Pacting a spirit==
+Upon encountering a spirit, a character may attempt to bind it or pact with it.  The strength of a spirit is a number, usually 1-10.
+*The base DC for a spirit is 5x its strength, however, this is reduced by your Persuade skill.
+*Binding it requires Spellcraft.  So a Spellcraft 35 character [with 0 Persuade] can bind a spirit of strength 7 or less.
+*Pacting with it works off Druid class levels, doubled.  So a level 10 Druid with 15 Persuade can pact with a spirit of strength 7 or less.
+
+On successfully doing either of these the character gains an elemental attunement to the spirit's element with the strength of that spirit.
+
+==Elemental Attunements and spellcasting==
+An attunement gives a Caster Level bonus or penalty to your spells, depending on the spell school of the spell.  Each Element has a preferred school and an opposed school & element. 
+* When casting spells of the school of your attuned Element, the Strength of any pact you have is added to your CL (caster level) as a bonus.  
+* When casting spells of the school opposed to your attuned Element, then Strength of any pact you have is subtracted from your CL as a penalty.
+* When casting spells of other schools, you add half the strength of your pact as a CL bonus.
+* This bonus is capped at the strength of your Elemental.  So even if you are strongly aligned to Fire, if you are pacted to a strength 1 spirit, you only get an extra +1 from this bonus. 
+
+Example: Thiel is a level 9 Sorcerer, pacted to a strength 5 Fire spirit.  When she casts Evocation spells (which are aligned with Fire), her caster level is 9+5 = 14.  When she casts Transmutation spells (aligned with Water and opposed to Fire), her caster level is 9-5=4.  When casting Illusion spells (neutral alignment to Fire), her caster level is 9 + (5/2) = 11.
+
+==Keeping the spirits happy==
+Different spirits like different things.  Engaging in these activities will further your personal attunement towards a particular element.  The closer your personal attunement matches the attunement of the pact you have, the more powerful the pact. Mechanically, you get a caster level bonus equal to the number of elements that you are less attuned to than your pact element.  So continuing our example of Thiel the evoker, if her Fire attunement is her second highest - lower than, say, Air but higher than Water, Life, Death and Earth (4 elements) - then she would get a CL bonus of 4 because she's keeping the fire spirits happy with her.  With her Strength 5 pact, her total CL bonus is now +9 for Evocation spells, -9 for Transmutation and +4 for other schools.
+
+The 6 elements and the activities that further your attunement are as follows.  (Casting spells or spell-like abilities, including from potions etc., will also affect your personal attunement). 
+
+{| class="wikitable"
+! Element
+! Spell School
+! Activities
+|-
+| Air
+| Illusion
+| Using Stealth, Pickpocket and passing -disguise checks
+|-
+| Earth
+| Enchantment
+| Mining, crafting things you've made before, mundane enhancements on items
+|-
+| Fire
+| Evocation
+| Crafting things for the first time, magical enhancements on items
+|-
+| Water
+| Transmutation
+| Shapeshifting, Using -disguise to change your appearance, trading
+|-
+| Life
+| Conjuration
+| Healing, summoning animal companions
+|-
+| Death
+| Necromancy
+| Killing things
+|}
+
+===Elements, Spell Schools and Opposition===
+{| class="wikitable"
+! Element
+! School
+! Opposed By
+|-
+| Air
+| Illusion
+| Earth / Enchantment
+|-
+| Earth
+| Enchantment
+| Air / Illusion
+|-
+| Fire
+| Evocation
+| Water / Transmutation
+|-
+| Water
+| Transmutation
+| Fire / Evocation
+|- 
+| Life
+| Conjuration
+| Death / Necromancy
+|- 
+| Death
+| Necromancy
+| Life / Conjuration
+|}
+The other two spell schools - Divination and Abjuration - are unaligned, and may be used freely regardless of pacts and bindings.
+
+==Elemental Attunements and Shapeshifting==
+Druids who use Elemental Form will find it easier to take the shape of the element they are attuned to.  They will be able to use a stronger form of their attuned element, but will be unable to shift into the opposing element's form.  
+
+==Attuned Classes==
+Three classes have built-in attunement.  Absent any other pacts, they will always be considered to have a pact of the following elements with strength equal to their class level.
+{| class="wikitable"
+! Class
+! Element
+|-
+| Assassin
+| Air
+|- 
+| Shifter
+| Water
+|-
+| Monk
+| Earth
+|}
+(If a character has multiple of these classes, the highest level one will count.  If the levels are equal, Assassin trumps Shifter trumps Monk).
+
+==A note on Wands==
+Wands on Anemoi use the caster level that they were created at.
+
+So a wizard - who has access to cheap wands - can in theory bind an elemental, channel its energies into making loads of high CL wands, and then bind a different elemental.  The wands will still operate at the higher CL (and, unlike other forms of bound spells, won't be affected by the user's Attunement/Pacts when used).  
+
+Hence a wizard who prepares properly can actually get high level magic across all the Elements... at least for spells that they can bind into wands. 
+
+[[Category: Unique Mechanics]]

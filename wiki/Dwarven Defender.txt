@@ -1,0 +1,39 @@
+[[Category:Classes]]
+== Dwarven Defender ==       
+==== Requirements: ====
+Base Attack Bonus 3  
+----
+==== Proficiencies: ====
+Light, Medium, and Heavy Armor, Martial and Simple Weapons, Shields  
+----
+==== Class Skills: ====
+Concentration, Craft Armor, Craft Trap, Craft Weapon, Discipline, Heal, Listen, Lore, Spot   
+----
+==== Class Features ==== 
+Base Attack Bonus:    1  <br />
+Base Skill Points:    2  <br />
+Base Hit Points:    12  <br />
+Primary Saves:    Fortitude, Will  <br />
+----
+==== Class Specific Feats: ====    
+''When not noted, the feat works as in regular NWN.''
+{| class="wikitable"
+|+Class Feats
+!Feat
+!Requirements
+!Comment
+|-
+|Defensive Awareness I-III
+|
+|''Taken Sequentially''
+|-
+|Damage Reduction
+|Defensive Awareness III 
+|
+|-
+|}
+----
+=== Mechanical Changes ===
+''Here the general changes should be noted, see Arelith Wiki.''
+----
+==== Notes, Tips, and Interesting Bits: ====

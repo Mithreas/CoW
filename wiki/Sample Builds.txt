@@ -1,0 +1,456 @@
+Work in progress! At the moment of this edit
+
+This page for sample build ideas
+
+First listed stat I am aiming to have at least a modifier of 14 by end of the build (17 base + gift +3 from lvl ups +4 stat but +12 from equipment/buffs)
+
+
+{|
+! style="text-align:left;"| Build Name
+! Level 10 build
+! Level 15 build
+! Key Stats
+! Races (listed in optimal order)
+! Author
+! Pros and cons
+! Notes
+|-
+| [[High DI and AB warrior]]
+| fighter 7 barb 2 knight 1
+| fighter 12 barb 2 knight 1
+| Str, Int, Con
+| Shapechanger, Human, Elf
+| bob
+| 
+  -High sustainable AB (50+ with everything on while 2handing), high DI (87 while raging, 77 when off), DR 1 to stop tickle attacks, Good raw damage. Lacks tools for scenarios where hulk smash does not work, has Knight utility, lacks magical utility. Very good Kensai compatibility. *NOTE THIS BUILD IS OUTDATED DUE TO DI CHANGES WITH MAX CAP DI OF 75*
+| Valiant path recommended. The idea of this build is to have a highest possible str score possible while still achieving an INT of 22. Base str of 17 plus 3 lvl up and 2 gift and 4 feat buy and maxed equipment/buffs. Base intelligence needs to reach 22, so should be 18 at lvl 1. You can gift INT and, or shapechanger race to help with this. Elf is a very poor choice as you will already be tight on stats while wanting a solid con score. 
+|-
+| [[Deathknight]]
+| Cleric 5 PM 5
+| Cleric 6 pm 5 barb 4
+| Str, Cha, Wis
+| Human
+| bob
+| 
+  -Easy undead leveling
+  -5 Str APR potential (4 at full ab; around 48 ab with 2hander at lvl 15)
+  -DR 2 DI 65/75 crit immunity
+  -subpar ac, divine might/shield
+  -decent caster level
+| Definition of classic cleric wind up time with heavy reliance on divine power for full apr. Access to thundering rage means less spamming divine power for half power up. Early access to UCL makes easier leveling. Travel domain highly recommended/assumed. 2nd domain is toss up between strength, fire, magic, and trickery
+|-
+| [[Cut-throat/purse]]
+| Rogue 5 SD 2 Fighter 3
+| Rogue 5 SD 5 Fighter 5
+| Dex, Int
+| Hin, Human, Elf
+| bob
+|
+  -Full BAB rogue shadowdancer
+  -13d6 sneak with shadow, 8 without
+  -hips, crippling strike, 15 hd shadow
+  -good skill access
+  -stamina reduction to blinding speed
+  -lacks high ac of bard/cleric/monk dex builds
+| A fun build for someone want to be a traditional sneak. Five figther lvl on a cloth wearing build can allow mroe liberal use of blinding speed. Blinding speed is not to be constantly spammed in PvE but can be used in a pinch as an instant action. Lacks the stopping power and of a monk assassin fighter, but can cleverly leverage UMD and tinkering to make up for it (not that an assassin can't but the potential is still there for a higher ceiling)
+|-
+| [[Holy Warrior]]
+| cleric 5 DD 1 Fighter 4
+| cleric 5 DD 1 Fighter 9
+| Str, Cha, Int, Wis
+| Human
+| bob
+|
+ -Full BAB
+ -70+ di with 3 edr
+ -cheap wands with up to lvl 5 slot purchase access
+ -medium ac with cleric buffs, defensive stance, divine shield
+ -high stamina quality of life for armor and divine shield/might spam
+ -43 non 2hander AB without temp buffs
+ -Reaches 50 + AB with buffs running
+| Does not take full advantage of a cleric's access to divine power, but reduces wind up time allowing other buffs. Travel domain is a must unless you got a friend making haste wands for you. Trickery domain will serve well, fire could be fun.
+|-
+| [[MartialSongArts]]
+| monk 6 bard 1 fighter 3
+| monk 9 bard 1 fighter 5
+| Dex, Wis, Int
+| Elf, Hin
+| bob
+| 
+  -Full BAB with UBAB
+  -8 APR when hasted
+  -potion boosting pact magic
+  -bardsong/curse
+  -all the skills
+  -up to 20 SR
+  -30% movemetn speed
+  -superqaulity of life stamina
+  -60 ac with just bard song and no natural armor or temp buffs
+  -70+ non expertise ac with all the buffs
+  -44 AB
+  -low hp and low starting carrying capacity
+| This is the king of min max ab/ac. Without even using curse song, you can hit most things while rocking 70 to 80 ac with IE, curse song just guarantees the fate of PvE and PvP. Ab and ac is so good you can turn on Improved power attack and still dodge and hit most things if you wanted more stopping power with the 8 APR. You wil be starting with 8 cha/str/con to pull the full minmax potential. Humans will struggle extremely hard to counter it, the best counter is a bard weaponmaster that can strip the buffs, and then place a curse song not allowing a re-apply of bard song. The ability to have a pact with water, allows haste potions to last a long longer, fighter reduction of stamina can allow blinding speed to be used in pinch, and barkskin potions will give plus 5 natural armor. Numbers assumes Elf Variant with QStaff. Hin variant uses daggers, loses plus 2 ab from qstaff bu gains better crit range and plus 1 ab and ac from small size. Hin variant is heavily vulnerable to disarm tactics with tiny weapons, a tactic available to the elf variant using  large sized QStaff. This build can easily become a parry edodge meme against a boss for even more damage with minimum reequipping due to bard song bonus to skills. 
+|-
+| [[The Mithril Warrior]]
+| bard 7 WM 1 barb 2
+| bard 7 WM 5 barb 3
+| Str
+| Elf
+| bob
+|
+  -Thundering Rage
+  -Epic spell foci access
+  -almost full BAB
+  -weapon master debuff and crits
+  -high str and barb damage per hit
+  -decent ac for str build
+  -Excellent skill access/boosts for STR build
+  -bard/curesong
+  -doesn't struggle to hit anything
+  -Pacts access
+  -DR 1 DI up to 75
+| If the bard/monk/fighter is a god, then this is a godslayer. With tumble access, bard song and the ability to easily put on IE with curse song, access to plus 5 barkskin potions with water pact it can put up a solid ac for a str build before it's DI/DR defense. It heavily counter any ac build as it strips your ac with ki strike and places curse song on you. With haste it can feature 3 full ab attacks with 2 hander rage and strength damage with some cool mithril weapon since elf. With your ESF your illusion clone can be rebuffed and reach even higher AB since you do not rely on fighter for missing AB. Said clone will also wreckface with an even higher str score and high crits. Be the paragon of elven warriors as you can summons allies and divine on enemies in a full mithril suit.
+|-
+| [[The Trickster]]
+| Bard 7, SD 1, Fighter 1
+| Bard 7, SD 2, Fighter 5
+| Dex, Int
+| Hin, Elf
+| bob
+| 
+  -Good AC
+  -ESF access
+  - bardsong/curse
+  -12 hd shadow (gaurds you)
+  -UMD for end game lvl 9 scroll access
+  - hips
+  - lots of skill points and skill boost
+  - decent to eventually full BAB
+  - Have 2 copies of your self with shadow and ESF Illusion
+| -A build more focused on on the utility aspects of the bard than the combat, though can still hold their own with bard boosting themselves and their shadow. Between UMD, Hips, high skill access/boost, and ESF access this class should be able to focus on their utility for both PvE content and interactions with other players (such as disguising). You don't have to min max your str and con for wisdom scores like the more combat focused monk bard builds.
+|-
+| [[Elven Archer]]
+| Ranger 6 AA 3 Bard 1
+| Ranger 11 AA 3 Bard 1
+| Dex
+| Elf
+| bob
+|
+ -super high AB with imbue arrow 6 and bane of enemies
+ -bard for tumble, umd, songs, etc.
+ -nice damage support from ranger
+ -access to animal empathy (and all other skills)
+ -ESF focus
+ - next to full BAB
+| One of the few things that can hit the bard/monk combo without debuffing the bardmonk. True strike potion plus rapid called shot and kiting can make short work of most people (doesnt need the AB of truestrike to hit most things, but it will help overcome their discipline). Illusion clone of archer for more damage output
+|-
+| [[Arcane Archer]]
+| Wizard 5 AA 3 fighter 2
+| Wizard 7 AA 3 Fighter 5
+| Dex, Int
+| Elf
+| bob
+| 
+ -high ab
+ -earlier ESF access than other martial archers
+ -not reliant on other for truestrike.
+ -lack bane of enemies but if full BAB
+ -acces to cheap crafting of wands,potions, scrolls
+ -doesnt need umd cause mage, access to rituals
+ -up to lvl four spells which can be wanded
+ -ESF clone will be lacking AB compared to other martial ESF, but can still dish it out
+| You could argue the bard arcane archer is objectively better, but this can also get boosted by someone else's bard song. This does not lack on the martial capacity while being able to tend to the wizard needs of a community from rituals to wand making, etc. Stand in your own web with a bunch of walls of fire as you hail arrows upon your enemies. Maybe open up with a fireball to soften them up first as mow them down as they closer and caught in your web and firewalls. The build and RP is solid for an arcane archer.
+|-
+| [[Necrodancer]]
+| Wizard 5 PM 4 bard 1
+| Wizard 10 PM 4 bard 1
+  or Wiz 9 PM 5 bard 1
+| Dex, Int
+| Elf
+| bob
+|
+ -immune to crits and mind effects
+ -High ac potential with, silver shield/PM/bard song when maxed out dex
+ -Easy access to UCL 30. Can potentially pull off UCL 30 while focusing in a non death pact
+ -access to the best debuffs and buffs with bards song/curse and saveless wizard spells
+ -access to rituals
+ -lvl 6 spells with up to cl 27
+ -not quite full wizard RP wise, but still pretty wizardry.
+| An epic dodge wizard that can break 60 ac with buffs while having a strong caster presence. Can solo really well and support parties really well with their wide array of buffs/debuffs.
+|-
+| [[The Skald]]
+| Tribal Barb 8 knight 1 bard 1
+| Tribal barb 13 knight 1 bard 1
+| Look at notes
+| Hin, elf
+| bob
+|
+  -epic level henchmen
+  -bard boosts for said henchmen
+  -access to umd for unused summmon slot to be buffed by bardsong
+  -high hp potential
+  -knight support utility
+  -almost full bab
+  -great solo or party support
+  -pact magic for longer lasting haste potions and better barkskin potions (for self and minions!) 
+| The non casterbased 'pet' build. Can go str or dex or both for self fighting purposes due to barbarian access to DR. Thundering rage will also increase the the power of the barbarian henchmen. When you need more power and don't have a party, use UMD.
+|-
+| [[Full Wizard]]
+| wizard 9 pm 1
+| wizard 14 pm 1
+| dex/int
+| elf
+| bob
+| level 8 spells, high CL
+| the build is pretty self explanatory. Its noted that your wands will be better than everyone else's wands and you can be a staple to the community making everyone else's wizardy pale in comparison for when you deliver your services to your community.
+|-
+| [[Armored Sorceror]]
+| sorc 9 fighter 1
+| sorc 14/12 fighter 1/3
+| Cha, con
+| Elf
+| bob
+| 
+ -armor allows sorcerer to focus on their casting stat
+ -more vulnerable than 14 sorc bard 1 dex focused sorceror
+ -higher DCs can be useful for PvE, only useful for non full geared PvP (happens a lot with lazy humans)
+ -reduce stamina cost of spells
+ -more stamina gains per tick
+| Probably better off being dex focused sorceror with epic dodge and 1 bard dip, but there is something about the stamina qaulity of life when wanting to spam lots of spells. So that's what this build embraces, your spells as you can focus more on charisma too. Going more fighter lvls will reduce your spell access a bit but will increase your bab and your stamina efficiency and hp. This can be useful if you want to do a build that involves damage immunity bite back spells and vampiric touch. You might dip a third class if heavily going that route.
+|-
+| [[Defensive Sorceror]]
+| Sorc 10
+| Sorc 14 bard 1
+| Dex, cha
+| Elf
+| bob
+|
+ -epic dodge and high dex mod with bard song can give you some survival factor, can support a party with the bard goodies
+| self explanatory
+|-
+| [[Druid's Paw]]
+| 5 druid 5 monk
+| 5 druid 6 monk 4 fighter
+| Wis, dex (epic dodge) or int
+| Hin
+| bob
+| 
+ -ESF access
+ -potential FULL BAB
+ -druid pact magic
+ -high wisdom ac in elemental forms
+ -human side access to breach spell
+| You still get wisdom ac before monk 6 as long as you are majority monk. So start off monk till monk 5 then 11th level will be monk. Air elemental form is probably best when attempting high ac, but Earth can be fun too if wanting to get your ESF Illusion clone a massive str score by buffing self, making copy and the buffing the copy again. because of stat buying and hin bonus to dex and gifts, its possible to go for epic dodge and not compromise on your wisdom score. This dex will also help fight before you get to lvl 10.
+|-
+| [[Short duelist]]
+| Bard 7 WM 1 Barb 2
+| Bard 7 WM 5 Barb 2
+| Dex, Str (blinding speed and Thundering rage)
+| bob
+| 
+| 
+ -Dex hin version of the "Mithril" warrior build
+ -less damage, more ac and less DI, better Crit range
+ -2 hand finesses rapier
+ -blindingspeed, epic dodge, thundering rage
+ -lower hp than str elf version
+ -better ac and ab than elf str version
+| This hin duelist gets the best of all worlds as they 2 hand finesse a rapier with thundering rage. The catch is you have to start with garbage Int(9) and cant start taking weaponmaster until you great feat buy more INT. Those not interested in ESF of a bard can just take 1 bard and go way more barbarian levels for hp and DR.
+|-
+| [[Darkrain]]
+| monk 6 fighter 3 assassin 1
+| monk 6 fighter 5 assassin 5
+| Dex, Wis, Int
+| Hin, Elf, Human
+| bob
+|
+  - Good ac with dex and monk
+  - Full BAB with UBAB
+  - good monk and assassin utility
+  - pact class attuned for potion bonuses
+  - up to 8d6 sneak attack
+  - decent bonus damage form fighter and assassinate ability
+| It's ac/ab numbers may not be as flashy as a monk/bard/fighter but it gets the job done with invisibilty SLA abilities plus monk speed and a kit that benefits a lot from getting drop on foes. Quick and deadly
+|-
+| [[Duelist]]
+| 4 fighter 1 harper 5 assassin
+| 7 fighter 1 harper 7 assassin
+| Dex, Int
+| Human, Hin, Elf (only human is cool here for dueling)
+| bob
+| 
+  -Harper utility
+  -assassin utility
+  -bane of enemies
+  -full bab
+  -9d6 sneak
+  -up to plus 13 damage form int class related bonuses
+  -suitable for rapier (and duels)
+| I was thinking of something along these lines and Mithreas told me it's his build, and i just brutally cannibalized it and put a shallow copy of it on here just now.
+|-
+| [[Step lightly carry a big sword]]
+| Barb 7 Harper 1 SD 2
+| Barb 10 Harper 1 SD 5
+| Str, Dex
+| Elf, Human.
+| bob
+|
+  - Hybrid str dex builds. Aims for epic dodge and thundering rage
+  - Hips
+  - Shadow to help tank
+  - Thundering Rage
+| The build is built around the idea of being able to use hips to quickly disengage the enemy and immediately attack again without missing a beat to flatfoot them. With no/light armor, you can boost up your parry really high and do some fun 2 handed parry attacks while hips is on cooldown. In a mob of monsters? Press stealth and whirlwind. having a shadow with a 2hander also looks really cool. This is a meme build
+|-
+| [[Human Paragon]]
+| Paladin 8 harper 1 BG 1
+| Paladin 11 harper 1 BG 3
+| 
+ - Starting: STR 14, DEX 15 +3 (+2 Gift), CON 10, WIS 10, INT 10, CHA 16 (+2 Gift)
+ - Final STR is 30, DEX is 36, CON is 26, WIS is 14, INT is 14, and CHA is 34 (Buffs/equipment, great feat buy)
+| Human
+| bob/Kalgoon
+|
+ -all the saves
+ -all the stat buffs 
+ -super flexible equipment options
+ -Fiendish servant and SL scaling Doom Gaurd
+ -High level Holy avenger
+ -ESF Illusion real stronk with double stat buffing for str dex and cha
+ -sword and shield when wanting defense
+ -duskwood quarterstaff Two weapon fighting when wanting more offense
+ -High damage bow option with bless, holysword, high quality ammunition and bow.
+ -Divine might/shield
+| This build wrecks for offensive/defensive option and had a super flexibly qaulity of life for not needing to craft stat boosts on items and can help benefits henchmen/summons more.
+|-
+| [[Enlightened One]]
+| cleric 5 monk 5
+| cleric 9 monk 6 pm 1
+  Or cleric 5 monk 6 fighter 4
+| dex, wis, cha
+| human
+| bob
+| 
+  -good caster level and buffs
+  -poor bab, heavy divine power Reliance
+  -still has 4 to 6 apr without divine power, 2 more fill ab apr when divine power
+  -mind/crit immunity
+  -nigh invuln to non magic weapon physical attacks (so like spike traps or black tentacles or blade barrier with dr/magic
+  -innate sr
+  -high ac with monk + cleric buffs divine shield + pm ac
+  -high damage potential apr + divine migt
+  -lower ab cieling cap with reliance on divine power
+  -good movement speed
+  -domains
+| a pve monster with divine might ignoring DI (Mithreas might eventually fix this). Can be dangerous against pvp but will struggle reaching higher ab numbers as divine power uses up a large portion of the 20 soft ab cap. 
+
+A good alternative is 5 cleric 6 monk 4 fighter for less a more stable bab and higher ab potential with a little less defensive capacity.
+|-
+| [[Elven Deathknight]]
+| sorc 8 fighter 1 pm 1
+| sorc 9 fighter 5 pm 1
+| cha, str, con
+| Elf
+| bob
+| 
+  -crit/mind immunities
+  -potential of ucl 30 undead
+  -good bab potential
+  -good infini stamina management
+  -DI with crit immune, with biteback spells and spammable autoquicken vampiric touch (use trollblood to.help too) while standing in stackable firewalls
+| tankier with 5 fighter and able to spam spells more freely and focus on chsrisma with no dex needed. Can be str based too with true strike being spammable for good knoockdowns. But spell spamming prob more effective.
+|-
+| [[armored agent]]
+| barb 8 DD 1 spy 1
+| barb 13 dd1 spy 1
+| str, con
+| human, any
+| bob
+|
+  -umd/tumble/util
+  -bane of enemies
+  -di 65\75
+  -dr 7
+  -thundering rage
+  -high base hp
+  -lots of temp.hp
+|  with umd added to harper scout, humand have have a flexible utility 1 dip prc option on their str martials (not nesrly as good as bard, but bane of enemies helps quite a bit. With defensive stance dodge ac and potental access to wands you can rock a medium ac for layered defenses with your dr (though not overly mobile!)
+|-
+| [[Human Commander]]
+| barb 8 DD1 BG 1
+| barb 12 DD1 BG 3
+| Str, Cha, Con
+| Human
+| bob
+|
+  -works well with well normal, tribal, or kensai
+  -dr 7 + divine shield + defensive stance makes good layered defense
+  -divine might when more damage is needed
+  -double str buff with BG bulstrength onself, and minions
+  -have easier time making equipment for saves
+  -have good base hp
+| Doesnt have the umd potential of the armored agent but has much better melee stopping power. The cha to saves and access to divine might/shield and other SLA really helps of those wanting to try out a strength based kensai. Tribals are no joke as they reach 30 + hd and can be double strength buffed while you fight along side them dishing it out as well. At higher lvls rotate between epic fiend and undead doomgaurd for when they die and are on cooldown.
+|-
+| [[Chosen One]]
+| Favoured Soul 10
+| FS 14 Cleric 1
+| Dex/Cha
+| Human
+| bob
+| 
+  -high caster infini casting
+  -double up on aoe spells by selecting target with sympahetic casting (so casts on self too!)
+  -auto quicken, maximize sympathetic double casting of high cl and dc of hammer of gods
+  -infini spontaneous casting of word of faith
+  -eventaully domain slash, divinemightshield with potential UCL 30
+  -a pure caster concept that doesnt dip 1 palemaster
+  -infini casting of divine power
+  -good ac potential
+  -spontaneous greater sanctuary
+| Two maximized castings of hammer of god at point black AOE range with sympathetic casting will try 4 will saves and 160 divine damage. Favoured souls are no joke for offensive casters and can provide needed sympathetic heals to the party.
+|-
+| [[Shifter Commander]]
+| Barb 1 (tribal) shifter 8 sd 1
+| shifter 10 barb 4 sd 1
+| N/A (int for skills is good)
+| changeling
+| bob
+|
+  -hips any form for infiltration
+  -high stat shadow
+  -decent tribal barbs can be any race
+  -dr 2
+  -bab 11 + haste
+  -max out stats with no gear
+  -use of several forms
+  -harpie form bard song synergy
+  -ESF trans for buffs and attunement potion
+| Shadow stat potentiel = base shifter form +24. You full buff to plus 12 while shifted then copy yourself and then full buff that copy another plus 12 to stats. Tribals also benefit from plus 12 physical stat buffs with ESF focus
+|-
+| [[Shifter Assassin]]
+| Shifter 5 Assassin 5
+| Shifter 5 Assassin 5 Fighter 5
+| int
+| changeling
+| bob
+|
+  -high ab potential
+  -combine assassin SLA with various shifter forms
+  -8d6 sneak damage
+  -use kobold commando for hips (this may not be a thing have not confirmed)
+  -umd
+| a Shifter that embraces its subterfuge ability but still wants AB and decent solo damage without an army. A little lack luster on direct combst but flexibility of umd should help for emd game potential
+|-
+| [[kungfu shifter]]
+| Shifter 5 monk 5
+| Shifter 9 monk 6
+| wis, int
+| changeling
+| bob
+|
+  -ubab to make up for lower bab
+  -most the shifter cookies
+  -monk sr/immunities/movement
+  -high ac
+| can trade higher forms for bab and go shifter 5 monk 6 fighter 4
+|-
+|}

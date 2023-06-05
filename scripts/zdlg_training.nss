@@ -274,6 +274,7 @@ void init_feat_list (object oPC)
      GetLevelByClass(CLASS_TYPE_BARD, oPC) ||
      GetLevelByClass(CLASS_TYPE_CLERIC, oPC) ||
      GetLevelByClass(CLASS_TYPE_DRUID, oPC) ||
+     GetLevelByClass(CLASS_TYPE_SHAMAN, oPC) ||
 	 GetLevelByClass(CLASS_TYPE_FAVOURED_SOUL, oPC) ||
      GetLevelByClass(CLASS_TYPE_RANGER, oPC) >=4 ||
      GetLevelByClass(CLASS_TYPE_PALADIN, oPC) >= 4)
@@ -575,7 +576,7 @@ void init_feat_list (object oPC)
     //add_feat_to_list(oPC, "Sonic Resistance (50)", FEAT_EPIC_ENERGY_RESISTANCE_SONIC_5);
     add_feat_to_list(oPC, "Epic Fiend", FEAT_EPIC_EPIC_FIEND, FALSE, CLASS_TYPE_BLACKGUARD); 
     add_feat_to_list(oPC, "Epic Shadowlord", FEAT_EPIC_EPIC_SHADOWLORD, FALSE, CLASS_TYPE_SHADOWDANCER);
-	if (GetKnowsFeat(339, oPC)) add_feat_to_list(oPC, "Infinite Wildshape", 1068, FALSE, CLASS_TYPE_DRUID);
+	if (GetKnowsFeat(339, oPC)) add_feat_to_list(oPC, "Infinite Wildshape", 1068, FALSE, CLASS_TYPE_SHAMAN);
     if (GetKnowsFeat(341, oPC)) add_feat_to_list(oPC, "Infinite Elemental Shape", 1069, FALSE, CLASS_TYPE_DRUID);
     add_feat_to_list(oPC, "Epic Fortitude", FEAT_EPIC_FORTITUDE);
     add_feat_to_list(oPC, "Great CHA 1", FEAT_EPIC_GREAT_CHARISMA_1);
@@ -706,6 +707,7 @@ void init_feat_list (object oPC)
         GetLevelByClass(CLASS_TYPE_CLERIC,oPC) ||
 	    GetLevelByClass(CLASS_TYPE_FAVOURED_SOUL, oPC) ||
         GetLevelByClass(CLASS_TYPE_DRUID,oPC) ||
+        GetLevelByClass(CLASS_TYPE_SHAMAN, oPC) ||
         GetLevelByClass(CLASS_TYPE_RANGER, oPC) >=4 ||
         GetLevelByClass(CLASS_TYPE_PALADIN, oPC) >= 4 ||
         GetLevelByClass(CLASS_TYPE_SORCERER,oPC) ||
@@ -715,6 +717,7 @@ void init_feat_list (object oPC)
 	      GetLevelByClass(CLASS_TYPE_SORCERER, oNPC) ||
 	      GetLevelByClass(CLASS_TYPE_DRUID, oNPC) ||
 	      GetLevelByClass(CLASS_TYPE_CLERIC, oNPC) ||
+		  GetLevelByClass(CLASS_TYPE_SHAMAN, oNPC) ||
 	      GetLevelByClass(CLASS_TYPE_FAVOURED_SOUL, oNPC) ||
 	      GetLevelByClass(CLASS_TYPE_BARD, oNPC))
   
@@ -926,14 +929,16 @@ void init_feat_list (object oPC)
 
   if (GetLevelByClass(CLASS_TYPE_DRUID, oPC) && GetLevelByClass(CLASS_TYPE_DRUID, oNPC))
   {
-    add_feat_to_list(oPC, "Wildshape II", 335, FALSE, CLASS_TYPE_DRUID);
-    add_feat_to_list(oPC, "Wildshape III", 336, FALSE, CLASS_TYPE_DRUID);
-    if (nPCLevel > 9) add_feat_to_list(oPC, "Wildshape IV", 337, FALSE, CLASS_TYPE_DRUID);
-    if (nPCLevel > 9) add_feat_to_list(oPC, "Wildshape V", 338, FALSE, CLASS_TYPE_DRUID);
-    if (nPCLevel > 9) add_feat_to_list(oPC, "Wildshape VI", 339, FALSE, CLASS_TYPE_DRUID);
-    if (nPCLevel > 15) add_feat_to_list(oPC, "Elemental Shape I", 304, FALSE, CLASS_TYPE_DRUID);
-    if (nPCLevel > 16) add_feat_to_list(oPC, "Elemental Shape II", 340, FALSE, CLASS_TYPE_DRUID);
-    if (nPCLevel > 18) add_feat_to_list(oPC, "Elemental Shape III", 341, FALSE, CLASS_TYPE_DRUID);
+    //add_feat_to_list(oPC, "Wildshape II", 335, FALSE, CLASS_TYPE_DRUID);
+    //add_feat_to_list(oPC, "Wildshape III", 336, FALSE, CLASS_TYPE_DRUID);
+    //if (nPCLevel > 9) add_feat_to_list(oPC, "Wildshape IV", 337, FALSE, CLASS_TYPE_DRUID);
+    //if (nPCLevel > 9) add_feat_to_list(oPC, "Wildshape V", 338, FALSE, CLASS_TYPE_DRUID);
+    //if (nPCLevel > 9) add_feat_to_list(oPC, "Wildshape VI", 339, FALSE, CLASS_TYPE_DRUID);
+    //if (nPCLevel > 15) add_feat_to_list(oPC, "Elemental Shape I", 304, FALSE, CLASS_TYPE_DRUID);
+    add_feat_to_list(oPC, "Venom Immunity", 203, FALSE, CLASS_TYPE_DRUID);
+    if (nPCLevel > 10) add_feat_to_list(oPC, "Elemental Shape II", 340, FALSE, CLASS_TYPE_DRUID);
+    if (nPCLevel > 15) add_feat_to_list(oPC, "Elemental Shape III", 341, FALSE, CLASS_TYPE_DRUID);
+    if (nPCLevel > 20) add_feat_to_list(oPC, "Elemental Shape III", 341, FALSE, CLASS_TYPE_DRUID);
   }
   
   if (miTOGetTotemAnimalAppearance(oPC) && miTOGetTotemBonus(oPC) < 12)

@@ -1,0 +1,54 @@
+[[Category:Classes]]
+== Assassin ==        
+==== Requirements: ====
+Hide 8, Move Silently 8  
+----
+==== Proficiencies: ====   
+Light Armor, Simple Weapons  
+----
+==== Class Skills: ====
+Appraise, Bluff, Craft Armor, Craft Trap, Craft Weapon, Disable Trap, Heal, Hide, Intimidate, Listen, Lore, Move Silently, Open Lock, Pick Pocket, Search, Set Trap, Spot, Tumble, Use Magic Device  
+----
+==== Class Features ==== 
+Base Attack Bonus:    3/4  <br />
+Base Skill Points:    4  <br />
+Base Hit Points:    6  <br />
+Primary Saves:    Reflex  <br />
+----
+==== Class Specific Feats: ====    
+All Spell-Like Abilities are infinite uses per day, but drain Stamina.
+{| class="wikitable"
+|+Class Feats
+!Feat
+!Requirements
+!Comment
+|-
+|Ghostly Visage
+|
+|At Assassin level 7, this upgrades to Ethereal Visage.
+|-
+|Poison Save 
+|
+|
+|-
+|Darkness 
+|
+|
+|-
+|Invisibility 
+|
+|
+|-
+|Improved Invisibility
+|Invisibility
+|
+|-
+|}
+----
+
+=== Mechanical Changes ===
+''Here the general changes should be noted, see Arelith Wiki.''
+----
+==== Notes, Tips, and Interesting Bits: ====
+The DC for death attack is based off of intelligence and increases by 1 for each level of assassin.  <br />
+Death attack will stack with sneak attack granted from other classes as well as items.

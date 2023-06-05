@@ -1,0 +1,58 @@
+[[Category:Classes]]
+== Fighter ==       
+==== Available Paths: ====
+[[Kensai]]
+----
+
+==== Requirements: ====
+None  
+----
+==== Proficiencies: ====
+Light, Medium, and Heavy Armor, Martial and Simple Weapons, Shields  
+----
+==== Class Skills: ==== 
+Concentration, Craft Armor, Craft Trap, Craft Weapon, Discipline, Heal, Lore, Parry, Ride   
+----
+==== Class Features ====  
+Base Attack Bonus:    1  <br />
+Base Skill Points:    2  <br />
+Base Hit Points:    10  <br />
+Primary Saves:    Fortitude  <br />
+----
+==== Class Specific Feats: ====    
+''When not noted, the feat works as in regular NWN.''
+{| class="wikitable"
+|+Class Feats
+!Feat
+!Requirements
+!Comment
+|-
+|Weapon Specialization  
+|4 Character Levels
+|
+|-
+|Epic Weapon Specialization
+|Weapon Specialization, SL 31
+|
+|-
+|}
+----
+=== Mechanical Changes ===
+====Static modifiers====
+* Fighters get a bonus of 1 to attack and damage at every odd Fighter level (1/3/5/7/etc), capped by their base INT score.  So a level 5+ Fighter with 16 base INT will get +3 to attack and damage.
+* Fighters get a bonus of 1% immunity to the three Physical damage types for each Fighter level they have.  This stacks with immunity from other sources (e.g. armour).
+* Multiclass Fighters who have lower Base Attack Bonus than their total character level get a bonus to their Base Attack.  The bonus is the lowest of
+** The amount they need to get to BAB = total character level
+** Their base INT mod
+** Their Fighter level
+***...so a level 4 Fighter 6 Wizard, with a BAB of 7, and base INT 20, gets +3 BAB to take them to the 10 they would have if all their classes were full BAB (both Fighter levels and INT mod are higher than needed for the full bonus). 
+====Stamina effects====
+Fighters regain 0.1 stamina every round even while moving, and an additional 0.1 per 2 fighter levels while stationary.
+
+Each level in fighter reduces the stamina costs of spells and abilities by 5%.
+====Class powers====
+Fighters gain access to the -secondwind command, which regains 10HP per class level for the same cost in stamina.
+
+----
+==== Notes, Tips, and Interesting Bits: ====
+Note - the Fighter BAB bonus does not stack with the Spellsword bonus.  Spellsword levels are ignored for calculating Fighter BAB bonuses.

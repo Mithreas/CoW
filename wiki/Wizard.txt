@@ -1,0 +1,273 @@
+[[Category:Classes]]
+== Wizard ==       
+==== Available Paths ====
+Spellsword
+----
+==== Requirements: ====
+None  
+----
+==== Proficiencies: ====
+Cloth Armor, Wizard Weapons  
+----
+==== Class Skills: ====
+Concentration, Craft Armor, Craft Trap, Craft Weapon, Heal, Lore, Spellcraft  
+----
+==== Class Features ==== 
+Base Attack Bonus:    1/2   <br />
+Base Skill Points:    2   <br />
+Base Hit Points:    4   <br />
+Primary Saves:    Will   <br />
+
+Improved Caster Level +2  
+----
+==== Class Specific Feats: ====    
+''When not noted, the feat works as in regular NWN.''
+{| class="wikitable"
+|+Class Feats
+!Feat
+!Requirements
+!Comment
+|-
+|Bonus Spell Slot (Wizard) I-V  
+|
+|
+|-
+|Improved Caster Level +2   
+|''Disabled''
+|To a max of +12
+|-
+|Epic Imbue
+|Spellsword, SL 31
+|Gives the ability to imbue a second spell on a weapon.
+|-
+|}
+----
+
+=== Mechanical Changes ===
+==== On Wizards ====
+
+:For a wizard, crafting magical items is greatly reduced in price.
+:Greater Spell Foci give a Wizard access to certain spells they can cast an unlimited amount of times. (It is worth noting that those spells, especially the combat ones, profit from increased effect on this server).
+
+
+==== On Spellswords ====
+
+A character can become a spellsword at character creation, turning the wizard levels into spellsword levels, as long as they have no school specialization.<br />
+''Spellswords are under review. Be aware, that there will be changes made in future.'' <br />
+
+
+===== Spellsword Abilities =====
+
+:Wizard Hit Die upgraded to d6
+:Wizard AB progression upgraded to 3/4
+:They gain Simple and Martial Weapon proficiency
+:They gain Light and Medium Armor proficiency
+:They gain Uncanny Dodge
+:They gain 5% Arcane Spell Failure reduction to Armor
+:If they aren't holding anything in their offhand (shield, bow, two-hander, etc), they gain +1 (Shield) AC per int modifier, capped by cl/6+1 to a maximum of 6 at 30
+:Gains the ability to Imbue. Greater Imbue can be bought at SL 31.
+
+===== Spellsword Mage Armor and other spells =====
+At caster lvl 8, Mage Armor (spell) gives the spellsword twice as much AC. At 15, it gives thrice as much. Note that multiclass characters need the majority of their levels in spellsword to receive any bonus. For example, a character with 8 spellsword/4 fighter/4 rogue, would not receive any bonus to mage armor, whereas an 8 spellsword/4 fighter/3 rogue would get the initial double bonus. <br />
+
+===== Imbuing =====
+
+Spellswords have the unique trait of being able to "charge" spells into their weapons, with different conditions and different effects. <br />
+
+Armors can be imbued using ''defensive'' spells,  ''storing'' the spell in the armor, which will be activated and triggered the moment the spellsword is struck and will function as the spell normally would. <br />
+
+Weapons can be imbued using ''damage'' spells. This will grant the weapon a corresponding energy damage and an additional on-hit effect based on the energy damage of the spell. After buying Greater Imbue: They are able to imbue their weapons with two damage properties at once. <br />
+
+===== Limitations =====
+:You cannot imbue spells from your barred schools. 
+:You can only imbue from spells casted by yourself; scrolls, wands and other sources may not be used to imbue.  
+:The on-hit property of the imbue can only trigger once per hit in a Flurry, or every two seconds. Characters with more than 3 attacks benefit less from Imbue effects. 
+:You can only imbue melee weapons. 
+:You cannot imbue gloves.
+:The imbue can stack with nearly any weapon buff. Restrictive weapon buffs (those that require the weapon to be blank) must be cast BEFORE imbuing, and the same applies to weapon essences. It does ''not'' stack with temporary essences. <br />
+
+{| class="wikitable"
+! Energy Type
+! On-hit Effect (Save)
+! rowspan="8" | 
+! Spell Level
+! Bonus Damage
+|-
+| Magic
+| Single Breached Spell and -2/-4/-6 SR for 10 Rounds (Will)<br>Will stack during duration
+| rowspan="2" | Tier 1<br>Levels 0 to 3
+| rowspan="2" | 1d4 (1 for Magic)
+|-
+| Acid
+| Deals delayed Acid damage equal to Xd4 (Reflex)
+|-
+| Cold
+| -1 APR for 2/4/6 Rounds (Fort)<br>50% Movement speed reduction
+| rowspan="2" | Tier 2<br>Levels 4 to 6
+| rowspan="2" | 1d8 (1d4 for Magic)
+|-
+| Electric
+| Deals additional Damage equal to ''Xd4''
+|-
+| Fire
+| -2/-3/-4 AC for 10 Rounds (Reflex)
+| rowspan="3" | Tier 3<br>Levels 7 to 9
+| rowspan="3" | 1d12 (1d8 for Magic)
+|-
+| Negative
+| Deals additional Damage equal to ''Xd4/2'' (Will)<br>Spellsword heals equal to negative damage dealt
+|-
+| Sonic
+| Silences for 1 Round (Will)
+|}
+
+''Xd4'' is casterlvl/5 + 1*Imbue Tier. A cl 20 Spellsword using a ''stilled'' Acid Fog (Spell level 7, tier 3), would gain an imbue of 1d12 Acid and an Acid Burn of 7d4, at DC 34 Fort. <br />
+
+The save DC is 10+Spellsword level+0/2/4 (Tier 1 imbue increases in 0, Tier 2 increases +2, Tier 3 increases +4) <br />
+
+===== Compatible Damage Spells =====
+Note that '''''metamagic''''' can be used to fill the gap and push spells into higher categories for an imbue of greater power. <br />
+
+{| class="wikitable"
+! style="text-align: center;" | Level
+! style="text-align: center;" | Magic
+! style="text-align: center;" | Fire
+! style="text-align: center;" | Cold
+! style="text-align: center;" | Acid
+! style="text-align: center;" | Electric
+! style="text-align: center;" | Negative
+! style="text-align: center;" | Sonic
+|-
+| style="text-align: center;" | 0
+| style="text-align: center;" | -
+| style="text-align: center;" | Flare
+| style="text-align: center;" | Ray of Frost
+| style="text-align: center;" | Acid Splash
+| style="text-align: center;" | Electric Jolt
+| style="text-align: center;" | -
+| style="text-align: center;" | -
+|-
+| style="text-align: center;" | 1
+| style="text-align: center;" | Magic Missile
+| style="text-align: center;" | Burning Hands
+| style="text-align: center;" | Ice Dagger
+| style="text-align: center;" | -
+| style="text-align: center;" | -
+| style="text-align: center;" | Negative Energy Ray
+| style="text-align: center;" | Horizikaul's Boom
+|-
+| style="text-align: center;" | 2
+| style="text-align: center;" | Death Armor
+| style="text-align: center;" | Combust
+| style="text-align: center;" | -
+| style="text-align: center;" | Melf's Acid Arrow
+| style="text-align: center;" | Gedlee's Electric Loop
+| style="text-align: center;" | -
+| style="text-align: center;" | -
+|-
+| style="text-align: center;" | 3
+| style="text-align: center;" | -
+| style="text-align: center;" | Fireball<br>Fireball (Shades)<br>Flame Arrow
+| style="text-align: center;" | -
+| style="text-align: center;" | Mestil's Acid Breath
+| style="text-align: center;" | Lightning Bolt<br>Scintillating Sphere
+| style="text-align: center;" | Negative Energy Burst<br>Vampiric Touch
+| style="text-align: center;" | Silence
+|-
+| style="text-align: center;" | 4
+| style="text-align: center;" | Isaac's Lesser Missile Storm<br>Phantasmal Killer<br>Magic Missile (SC)
+| style="text-align: center;" | Wall of Fire<br>Wall of Fire (Shades)
+| style="text-align: center;" | Ice Storm
+| style="text-align: center;" | -
+| style="text-align: center;" | -
+| style="text-align: center;" | Enervation
+| style="text-align: center;" | -
+|-
+| style="text-align: center;" | 5
+| style="text-align: center;" | -
+| style="text-align: center;" | Firebrand
+| style="text-align: center;" | Cone of Cold<br>Cone of Cold (Shades)
+| style="text-align: center;" | Acid Arrow (GSC)
+| style="text-align: center;" | Ball Lightning
+| style="text-align: center;" | -
+| style="text-align: center;" | -
+|-
+| style="text-align: center;" | 6
+| style="text-align: center;" | Isaac's Greater Missile Storm
+| style="text-align: center;" | -
+| style="text-align: center;" | -
+| style="text-align: center;" | Acid Fog
+| style="text-align: center;" | Chain Lightning
+| style="text-align: center;" | -
+| style="text-align: center;" | Wounding Whispers
+|-
+| style="text-align: center;" | 7
+| style="text-align: center;" | -
+| style="text-align: center;" | Delayed Blast Fireball
+| style="text-align: center;" | -
+| style="text-align: center;" | -
+| style="text-align: center;" | -
+| style="text-align: center;" | Finger of Death
+| style="text-align: center;" | Great Thunderclap
+|-
+| style="text-align: center;" | 8
+| style="text-align: center;" | Horrid Wilting
+| style="text-align: center;" | Incendiary Cloud
+| style="text-align: center;" | -
+| style="text-align: center;" | -
+| style="text-align: center;" | -
+| style="text-align: center;" | Create Undead<br>Create Greater Undead
+| style="text-align: center;" | -
+|-
+|}
+
+
+===== Compatible Defensive Spells =====
+{| class="wikitable"
+! style="text-align: center;" | Level
+! style="text-align: center;" | Spell (School)
+|-
+| style="text-align: center;" | 1
+| style="text-align: center;" | Shield (Abjuration)<br>Mage Armor (Conjuration)
+|-
+| style="text-align: center;" | 2
+| style="text-align: center;" | Ghostly Visage (Illusion)<br>Death Armor (Necromancy)
+|-
+| style="text-align: center;" | 3
+| style="text-align: center;" | -
+|-
+| style="text-align: center;" | 4
+| style="text-align: center;" | Elemental Shield (Evocation)<br>Stoneskin (Abjuration)<br>Minor Globe of Invulnerability (Abjuration
+|-
+| style="text-align: center;" | 5
+| style="text-align: center;" | Mestil's Acid Sheath (Conjuration)<br>Ethereal Visage (Illusion)<br>Lesser Spell Mantle (Abjuration)
+|-
+| style="text-align: center;" | 6
+| style="text-align: center;" | Greater Stoneskin (Transmutation)<br>Globe of Invulnerability (Abjuration)
+|-
+| style="text-align: center;" | 7
+| style="text-align: center;" | Shadow Shield (Illusion)<br>Spell Mantle (Abjuration)
+|}
+
+===== Restrictions =====
+Spellswords lose access to: <br />
+:One spell school of their choice 
+:All summoning spells and abilities (the only exception being the wizard familiar)
+:All epic spells, including command spells like [[Console_command#-scry|-scry]], except Epic Mage Armour. Other side effects and non-epic commands work as normal.
+
+===== Notes =====
+:The change to the BAB progression works as a bonus. This means that they cannot take feats that require a minimum BAB until their wizard BAB (1/2) is high enough. 
+::For example, a full spellsword cannot take Improved Critical (requires 5 BAB) until level 10. 
+:The bonuses (AC, AB, disc) are soft, counting toward their respective caps and not counting for feat/class requirements. 
+:Their summoning restriction is absolute. All spells and abilities means '''all''' of them, even abilities that are not strictly summoning, like the druid's animal companion, the shadowdancer's shadow, or Mordenkainen's Sword spell. They are prevented from using these spells even from scrolls and other sources. Domination and charm abilities, however, work normally.
+:They cannot choose Conjuration as their forbidden school.
+:Using the [[Console_command#-twohand|-twohand]] command counts as having the offhand occupied for the purposes of the bonus AC.
+:Imbuing equipment will tend to show the feedback of "invalid target for this spell", but check the item. If it applied an on-hit property, it should be working.
+:Spellswords can only imbue their own equipment. if an imbued weapon leaves the spellsword's inventory, it will lose all its buffs. 
+:Shades[http://nwn.wikia.com/wiki/Shades] is a lvl 6 spell, however the innate level of each variant is the innate level of the corresponding "normal" spell.
+
+
+
+----
+==== Notes, Tips, and Interesting Bits: ====   
+All items not just wizard items have a reduced cost when made by a wizard with 5 levels or more, especially wands.

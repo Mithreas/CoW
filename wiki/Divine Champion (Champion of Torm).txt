@@ -1,0 +1,48 @@
+[[Category:Classes]]
+== Divine Champion (Champion of Torm) ==       
+==== Requirements: ====
+Non-Evil, Base Attack Bonus 3 
+---- 
+==== Proficiencies: ====
+Light and Medium Armor, Martial and Simple Weapons, Shields  
+----
+==== Class Skills: ====
+Craft Armor, Craft Trap, Craft Weapon, Discipline, Heal, Lore, Parry, Ride, Spot  
+----
+==== Class Features ==== 
+Base Attack Bonus:    1  <br />
+Base Skill Points:    2  <br />
+Base Hit Points:    10  <br />
+Primary Saves:    Fortitude, Reflex  <br />
+----
+==== Class Specific Feats: ====    
+''When not noted, the feat works as in regular NWN.''
+{| class="wikitable"
+|+Class Feats
+!Feat
+!Requirements
+!Comment
+|-
+|Sacred Defense I-V:  
+|''Taken Sequentially''
+|
+|-
+|Smite Evil  
+|
+|
+|-
+|Divine Wrath  
+|
+|Divine Wrath must be earned through class levels to have any benefit.  
+|-
+|Greater Smiting:  
+|20 Charisma, SL 31   
+|
+|-
+|}
+----
+=== Mechanical Changes ===
+''Here the general changes should be noted, see Arelith Wiki.''
+----
+==== Notes, Tips, and Interesting Bits: ====
+Divine Wrath must be earned through class levels to have any benefit.

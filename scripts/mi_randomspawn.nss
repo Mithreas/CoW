@@ -10,16 +10,7 @@
 //
 // MI_SPAWN_WAYPOINT (string) - tag of waypoint to spawn at
 // MI_SPAWN_MINLEVEL (int) - min hit dice of the entering creature
-// MI_SPAWN_IFRACE1 to MI_SPAWN_IFRACE5 - spawn only if race in list
-// MI_SPAWN_IFSUBRACE1 to MI_SPAWN_IFSUBRACE5 - spawn only if subrace in list
 
-//::  Added by ActionReplay:
-//::  AR_UD_ONLY (int)      - set to 1 to only allow spawns for UD character
-//::  AR_SURF_ONLY (int)    - set to 1 to only allow spawns for Surface characters
-//::  AR_DROW_PROTECT (int) - set to 1 to check if PC entering trigger has a UD PC in their party to "protect" them from the spawn, i.e from drow occasional surface spawns
-//::  AR_VFX                - set to a VFX constant value to spawn this VFX on creature location when they appear, omit or set at zero to ignore
-
-#include "inc_subrace"
 #include "inc_flag"
 #include "inc_log"
 #include "ar_utils"
@@ -68,37 +59,11 @@ void main()
   if (!nMultiSpawn)    nMultiSpawnNum = 1;
   if (!nMultiSpawnNum) nMultiSpawnNum = 1;
 
-  int bUDOnly           = GetLocalInt(oTrigger, "AR_UD_ONLY");
-  int bSurfOnly         = GetLocalInt(oTrigger, "AR_SURF_ONLY");
-  int bMonsterProtect   = GetLocalInt(oTrigger, "AR_DROW_PROTECT");
-  if ( bUDOnly ) bSurfOnly = FALSE;
-
   string sNewTag        = GetLocalString(oTrigger, "MI_SETTAG");      // If empty, default tag will be used.
-
-/*
-Septire - Temporarily disabled because racial checks are not being used yet.
-
-  int    nRace1    = GetLocalInt(oTrigger, "MI_SPAWN_IFRACE1");
-  int    nRace2    = GetLocalInt(oTrigger, "MI_SPAWN_IFRACE2");
-  int    nRace3    = GetLocalInt(oTrigger, "MI_SPAWN_IFRACE3");
-  int    nRace4    = GetLocalInt(oTrigger, "MI_SPAWN_IFRACE4");
-  int    nRace5    = GetLocalInt(oTrigger, "MI_SPAWN_IFRACE5");
-  int    nSubrace1 = GetLocalInt(oTrigger, "MI_SPAWN_IFSUBRACE1");
-  int    nSubrace2 = GetLocalInt(oTrigger, "MI_SPAWN_IFSUBRACE2");
-  int    nSubrace3 = GetLocalInt(oTrigger, "MI_SPAWN_IFSUBRACE3");
-  int    nSubrace4 = GetLocalInt(oTrigger, "MI_SPAWN_IFSUBRACE4");
-  int    nSubrace5 = GetLocalInt(oTrigger, "MI_SPAWN_IFSUBRACE5");
-*/
 
   // Valid resref?
   if (sResRef == "") return;
   if ((!nTimeout)||(nTimeout == 0)) nTimeout = 1; // One game hour.
-
-  //::  Check UD/Surfacer restrictions
-  //::  Also this makes sure the Timeout does not kick in when, say, a UD character enters a Surface specific Trigger and vice-versa.
-  if ( bMonsterProtect && (ar_GetMonsterInParty(oEntering, TRUE) || ar_GetPCMonsterInRange(oEntering, 15.0, TRUE)) ) return;
-  if ( bUDOnly   && !ar_IsUDCharacter(oEntering, TRUE) )    return;
-  if ( bSurfOnly &&  ar_IsUDCharacter(oEntering, TRUE) )    return;
 
   // Have we fired recently?
   int nTimestamp        = GetLocalInt(GetModule(), "GS_TIMESTAMP");
@@ -124,41 +89,6 @@ Septire - Temporarily disabled because racial checks are not being used yet.
     return;
   }
 
-/*
-Septire: Temporarily disabled these racial checks because they are not being used.
-
-  // Do we have race or subrace restrictions?
-  int bSpawn = !(nRace1 || nRace2 || nRace3 || nRace4 || nRace5);
-
-  if (!bSpawn)
-  {
-    int nRace = GetRacialType(oEntering);
-    if (nRace == nRace1) bSpawn = TRUE;
-    if (nRace == nRace2) bSpawn = TRUE;
-    if (nRace == nRace3) bSpawn = TRUE;
-    if (nRace == nRace4) bSpawn = TRUE;
-    if (nRace == nRace5) bSpawn = TRUE;
-  }
-
-  if (bSpawn)
-  {
-    bSpawn = !(nSubrace1 || nSubrace2 || nSubrace3 || nSubrace4 || nSubrace5);
-
-    if (!bSpawn)
-    {
-      int nSubrace = gsSUGetSubRaceByName(GetSubRace(oEntering));
-      if (nSubrace == nSubrace1) bSpawn = TRUE;
-      if (nSubrace == nSubrace2) bSpawn = TRUE;
-      if (nSubrace == nSubrace3) bSpawn = TRUE;
-      if (nSubrace == nSubrace4) bSpawn = TRUE;
-      if (nSubrace == nSubrace5) bSpawn = TRUE;
-    }
-  }
-
-  if (!bSpawn) return;
-
-*/
-
   // Do we have a location?
   location lLoc = GetLocation(oTrigger);
   object oWaypoint = GetObjectByTag(sWaypoint);
@@ -168,8 +98,7 @@ Septire: Temporarily disabled these racial checks because they are not being use
   if (d100() < nChance)
   {
     //::  Log it!
-    string sMiddix = bSurfOnly ? "(Surfacer)" : "(Underdarker)";
-    Log(RANDOMSPAWN, "A Random Spawn was Triggered by " + GetName(oEntering, TRUE) + " " + sMiddix + " in " + GetName(GetArea(OBJECT_SELF)) + ".");
+    Log(RANDOMSPAWN, "A Random Spawn was Triggered by " + GetName(oEntering, TRUE) + " in " + GetName(GetArea(OBJECT_SELF)) + ".");
 
     int nCreatureNum;
     int nResRefCounter = 1;
