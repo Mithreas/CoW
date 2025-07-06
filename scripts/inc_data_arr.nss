@@ -73,7 +73,7 @@ const int ARRAY_INVALID_INDEX = -1;
 // to use the new methods (defined in nwnx_data_new).  Being naughty and including it here rather than in the 
 // type specific files that use it. 
 
-#include "nwnx_data_new"
+#include "nwnx_data"
 #include "inc_data_arr_flt"
 #include "inc_data_arr_int"
 #include "inc_data_arr_obj"

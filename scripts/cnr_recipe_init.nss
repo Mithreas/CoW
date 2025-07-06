@@ -58,7 +58,7 @@ void main()
   //CnrAddCraftingDevice ("cnrIngotRecycler");
 
   // Weapon Crafting
-  CnrAddCraftingDevice ("cnranvilwnpond");
+  CnrAddCraftingDevice ("cnranvilwpnond");
   CnrAddCraftingDevice ("cnranvilwpnelf");
   CnrAddCraftingDevice ("cnranvilwpniro");
   CnrAddCraftingDevice ("cnranvilwpnste");

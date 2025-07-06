@@ -12,7 +12,7 @@
 //:://////////////////////////////////////////////
 
 #include "inc_common"
-#include "inc_array"
+#include "inc_array_old"
 #include "inc_generic"
 #include "inc_levelbonuses"
 #include "inc_generic"

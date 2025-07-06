@@ -2,7 +2,6 @@
 /// @brief Functions exposing additional object properties.
 /// @{
 /// @file nwnx_object.nss
-#include "nwnx"
 
 const string NWNX_Object = "NWNX_Object"; ///< @private
 
@@ -40,6 +39,13 @@ const int NWNX_OBJECT_TYPE_INTERNAL_PORTAL = 15;
 const int NWNX_OBJECT_TYPE_INTERNAL_SOUND = 16;
 /// @}
 
+/// @anchor projectile_types
+/// @name Projectile VFX Types
+/// @{
+const int NWNX_OBJECT_SPELL_PROJECTILE_TYPE_DEFAULT = 6;
+const int NWNX_OBJECT_SPELL_PROJECTILE_TYPE_USE_PATH = 7;
+/// @}
+
 /// A local variable structure.
 struct NWNX_Object_LocalVariable
 {
@@ -67,13 +73,6 @@ int NWNX_Object_GetLocalVariableCount(object obj);
 /// @note Will return type UNKNOWN for cassowary variables.
 /// @return An NWNX_Object_LocalVariable struct.
 struct NWNX_Object_LocalVariable NWNX_Object_GetLocalVariable(object obj, int index);
-
-/// @brief Convert an object id to the actual object.
-/// @param id The object id.
-/// @return An object from the provided object ID.
-/// @remark This is the counterpart to ObjectToString.
-/// @deprecated Use the basegame StringToObject() function. This will be removed in a future NWNX release.
-object NWNX_Object_StringToObject(string id);
 
 /// @brief Set oObject's position.
 /// @param oObject The object.
@@ -137,12 +136,6 @@ int NWNX_Object_GetAppearance(object oPlaceable);
 /// @return TRUE if the object has the visual effect applied to it
 int NWNX_Object_GetHasVisualEffect(object obj, int nVFX);
 
-/// @brief Check if an item can fit in an object's inventory.
-/// @param obj The object with an inventory.
-/// @param baseitem The base item id to check for a fit.
-/// @return TRUE if an item of base item type can fit in object's inventory
-int NWNX_Object_CheckFit(object obj, int baseitem);
-
 /// @brief Get an object's damage immunity.
 /// @param obj The object.
 /// @param damageType The damage type to check for immunity. Use DAMAGE_TYPE_* constants.
@@ -191,19 +184,6 @@ string NWNX_Object_GetTriggerGeometry(object oTrigger);
 ///
 /// @remark The minimum number of vertices is 3.
 void NWNX_Object_SetTriggerGeometry(object oTrigger, string sGeometry);
-
-/// @brief Add an effect to an object that displays an icon and has no other effect.
-/// @remark See effecticons.2da for a list of possible effect icons.
-/// @param obj The object to apply the effect.
-/// @param nIcon The icon id.
-/// @param fDuration If specified the effect will be temporary and last this length in seconds, otherwise the effect
-/// will be permanent.
-void NWNX_Object_AddIconEffect(object obj, int nIcon, float fDuration=0.0);
-
-/// @brief Remove an icon effect from an object that was added by the NWNX_Object_AddIconEffect() function.
-/// @param obj The object.
-/// @param nIcon The icon id.
-void NWNX_Object_RemoveIconEffect(object obj, int nIcon);
 
 /// @brief Export an object to the UserDirectory/nwnx folder.
 /// @param sFileName The filename without extension, 16 or less characters.
@@ -290,14 +270,6 @@ int NWNX_Object_GetInternalObjectType(object oObject);
 /// @return TRUE on success.
 int NWNX_Object_AcquireItem(object oObject, object oItem);
 
-/// @brief Cause oObject to face fDirection.
-/// @note This function is almost identical to SetFacing(), the only difference being that it allows you to specify
-/// the target object without the use of AssignCommand(). This is useful when you want to change the facing of an object
-/// in an ExecuteScriptChunk() call where AssignCommand() does not work.
-/// @param oObject The object to change its facing of
-/// @param fDirection The direction the object should face
-void NWNX_Object_SetFacing(object oObject, float fDirection);
-
 /// @brief Clear all spell effects oObject has applied to others.
 /// @param oObject The object that applied the spell effects.
 void NWNX_Object_ClearSpellEffectsOnOthers(object oObject);
@@ -320,14 +292,18 @@ int NWNX_Object_GetIsDestroyable(object oObject);
 /// @brief Checks for specific spell immunity. Should only be called in spellscripts
 /// @param oDefender The object defending against the spell.
 /// @param oCaster The object casting the spell.
+/// @param nSpellId The casted spell id. Default value is -1, which corrresponds to the normal game behaviour.
 /// @return -1 if defender has no immunity, 2 if the defender is immune
-int NWNX_Object_DoSpellImmunity(object oDefender, object oCaster);
+int NWNX_Object_DoSpellImmunity(object oDefender, object oCaster, int nSpellId=-1);
 
 /// @brief Checks for spell school/level immunities and mantles. Should only be called in spellscripts
 /// @param oDefender The object defending against the spell.
 /// @param oCaster The object casting the spell.
+/// @param nSpellId The casted spell id. Default value is -1, which corrresponds to the normal game behaviour.
+/// @param nSpellLevel The level of the casted spell. Default value is -1, which corrresponds to the normal game behaviour.
+/// @param nSpellSchool The school of the casted spell (SPELL_SCHOOL_* constant). Default value is -1, which corrresponds to the normal game behaviour.
 /// @return -1 defender no immunity. 2 if immune. 3 if immune, but the immunity has a limit (example: mantles)
-int NWNX_Object_DoSpellLevelAbsorption(object oDefender, object oCaster);
+int NWNX_Object_DoSpellLevelAbsorption(object oDefender, object oCaster, int nSpellId=-1, int nSpellLevel=-1, int nSpellSchool=-1);
 
 /// @brief Sets if a placeable has an inventory.
 /// @param obj The placeable.
@@ -382,570 +358,553 @@ void NWNX_Object_SetLastTriggered(object oObject, object oLast);
 /// @return The remaining duration, in seconds, or the zero on failure.
 float NWNX_Object_GetAoEObjectDurationRemaining(object oAoE);
 
+/// @brief Sets conversations started by oObject to be private or not.
+/// @note ActionStartConversation()'s bPrivateConversation parameter will overwrite this flag.
+/// @param oObject The object.
+/// @param bPrivate TRUE/FALSE.
+void NWNX_Object_SetConversationPrivate(object oObject, int bPrivate);
+
+/// @brief Sets the radius of a circle AoE object.
+/// @param oAoE The AreaOfEffect object.
+/// @param fRadius The radius, must be bigger than 0.0f.
+void NWNX_Object_SetAoEObjectRadius(object oAoE, float fRadius);
+
+/// @brief Gets the radius of a circle AoE object.
+/// @param oAoE The AreaOfEffect object.
+/// @return The radius or 0.0f on error
+float NWNX_Object_GetAoEObjectRadius(object oAoE);
+
+/// @brief Gets whether the last spell cast of oObject was spontaneous.
+/// @note Should be called in a spell script.
+/// @param oObject The object.
+/// @return true if the last spell was cast spontaneously
+int NWNX_Object_GetLastSpellCastSpontaneous(object oObject);
+
+/// @brief Gets the last spell cast domain level.
+/// @note Should be called in a spell script.
+/// @param oObject The object.
+/// @return Domain level of the cast spell, 0 if not a domain spell
+int NWNX_Object_GetLastSpellCastDomainLevel(object oObject);
+
+/// @brief Force the given object to carry the given UUID. Any other object currently owning the UUID is stripped of it.
+/// @param oObject The object
+/// @param sUUID The UUID to force
+void NWNX_Object_ForceAssignUUID(object oObject, string sUUID);
+
+/// @brief Returns how many items are in oObject's inventory.
+/// @param oObject A creature, placeable, item or store.
+/// @return Returns a count of how many items are in oObject's inventory.
+int NWNX_Object_GetInventoryItemCount(object oObject);
+
+/// @brief Override the projectile visual effect of ranged/throwing weapons and spells.
+/// @param oCreature The creature.
+/// @param nProjectileType A @ref projectile_types "NWNX_OBJECT_SPELL_PROJECTILE_TYPE_*" constant or -1 to remove the override.
+/// @param nProjectilePathType A "PROJECTILE_PATH_TYPE_*" constant or -1 to ignore.
+/// @param nSpellID A "SPELL_*" constant. -1 to ignore.
+/// @param bPersist Whether the override should persist to the .bic file (for PCs).
+/// @note Persistence is enabled after a server reset by the first use of this function. Recommended to trigger on a dummy target OnModuleLoad to enable persistence.
+///       This will override all spell projectile VFX from oCreature until the override is removed.
+void NWNX_Object_OverrideSpellProjectileVFX(object oCreature, int nProjectileType = -1, int nProjectilePathType = -1, int nSpellID = -1, int bPersist = FALSE);
+
+/// @brief Returns TRUE if the last spell was cast instantly. This function should only be called in a spell script.
+/// @note To initialize the hooks used by this function it is recommended to call this function once in your module load script.
+/// @return TRUE if the last spell was instant.
+int NWNX_Object_GetLastSpellInstant();
+
+/// @brief Sets the creator of a trap on door, placeable, or trigger. Also changes trap Faction to that of the new Creator.
+/// @note Triggers (ground traps) will instantly update colour (Green/Red). Placeable/doors will not change if client has already seen them.
+/// @param oObject Door, placeable or trigger (trap) object
+/// @param oCreator The new creator of the trap. Any non-creature creator will assign OBJECT_INVALID (similar to toolset-laid traps)
+void NWNX_Object_SetTrapCreator(object oObject, object oCreator);
+
+/// @brief Return the name of the object for nLanguage.
+/// @param oObject an object
+/// @param nLanguage A PLAYER_LANGUAGE constant.
+/// @param nGender   Gender to use, 0 or 1.
+/// @return The localized string.
+string NWNX_Object_GetLocalizedName(object oObject, int nLanguage, int nGender = 0);
+
+/// @brief Set the name of the object as set in the toolset for nLanguage.
+/// @note You may have to SetName(oObject, "") for the translated string to show.
+/// @param oObject an object
+/// @param sName New value to set
+/// @param nLanguage A PLAYER_LANGUAGE constant.
+/// @param nGender   Gender to use, 0 or 1.
+void NWNX_Object_SetLocalizedName(object oObject, string sName, int nLanguage, int nGender = 0);
+
 /// @}
 
 int NWNX_Object_GetLocalVariableCount(object obj)
 {
-    string sFunc = "GetLocalVariableCount";
-
-    NWNX_PushArgumentObject(obj);
-    NWNX_CallFunction(NWNX_Object, sFunc);
-
-    return NWNX_GetReturnValueInt();
+    NWNXPushObject(obj);
+    NWNXCall(NWNX_Object, "GetLocalVariableCount");
+    return NWNXPopInt();
 }
 
 struct NWNX_Object_LocalVariable NWNX_Object_GetLocalVariable(object obj, int index)
 {
-    string sFunc = "GetLocalVariable";
-
-    NWNX_PushArgumentInt(index);
-    NWNX_PushArgumentObject(obj);
-    NWNX_CallFunction(NWNX_Object, sFunc);
-
+    NWNXPushInt(index);
+    NWNXPushObject(obj);
+    NWNXCall(NWNX_Object, "GetLocalVariable");
     struct NWNX_Object_LocalVariable var;
-    var.key  = NWNX_GetReturnValueString();
-    var.type = NWNX_GetReturnValueInt();
+    var.key  = NWNXPopString();
+    var.type = NWNXPopInt();
     return var;
-}
-
-object NWNX_Object_StringToObject(string id)
-{
-    WriteTimestampedLogEntry("WARNING: NWNX_Object_StringToObject() is deprecated, please use the basegame's StringToObject()");
-
-    return StringToObject(id);
 }
 
 void NWNX_Object_SetPosition(object oObject, vector vPosition, int bUpdateSubareas = TRUE)
 {
-    string sFunc = "SetPosition";
-
-    NWNX_PushArgumentInt(bUpdateSubareas);
-    NWNX_PushArgumentFloat(vPosition.x);
-    NWNX_PushArgumentFloat(vPosition.y);
-    NWNX_PushArgumentFloat(vPosition.z);
-    NWNX_PushArgumentObject(oObject);
-
-    NWNX_CallFunction(NWNX_Object, sFunc);
+    NWNXPushInt(bUpdateSubareas);
+    NWNXPushVector(vPosition);
+    NWNXPushObject(oObject);
+    NWNXCall(NWNX_Object, "SetPosition");
 }
 
 int NWNX_Object_GetCurrentHitPoints(object creature)
 {
-    string sFunc = "GetCurrentHitPoints";
-
-    NWNX_PushArgumentObject(creature);
-    NWNX_CallFunction(NWNX_Object, sFunc);
-
-    return NWNX_GetReturnValueInt();
+    NWNXPushObject(creature);
+    NWNXCall(NWNX_Object, "GetCurrentHitPoints");
+    return NWNXPopInt();
 }
 
 void NWNX_Object_SetCurrentHitPoints(object creature, int hp)
 {
-    string sFunc = "SetCurrentHitPoints";
-
-    NWNX_PushArgumentInt(hp);
-    NWNX_PushArgumentObject(creature);
-
-    NWNX_CallFunction(NWNX_Object, sFunc);
+    NWNXPushInt(hp);
+    NWNXPushObject(creature);
+    NWNXCall(NWNX_Object, "SetCurrentHitPoints");
 }
 
 void NWNX_Object_SetMaxHitPoints(object creature, int hp)
 {
-    string sFunc = "SetMaxHitPoints";
-
-    NWNX_PushArgumentInt(hp);
-    NWNX_PushArgumentObject(creature);
-
-    NWNX_CallFunction(NWNX_Object, sFunc);
+    NWNXPushInt(hp);
+    NWNXPushObject(creature);
+    NWNXCall(NWNX_Object, "SetMaxHitPoints");
 }
 
 string NWNX_Object_Serialize(object obj)
 {
-    string sFunc = "Serialize";
-
-    NWNX_PushArgumentObject(obj);
-
-    NWNX_CallFunction(NWNX_Object, sFunc);
-    return NWNX_GetReturnValueString();
+    NWNXPushObject(obj);
+    NWNXCall(NWNX_Object, "Serialize");
+    return NWNXPopString();
 }
 
 object NWNX_Object_Deserialize(string serialized)
 {
-    string sFunc = "Deserialize";
-
-    NWNX_PushArgumentString(serialized);
-
-    NWNX_CallFunction(NWNX_Object, sFunc);
-    return NWNX_GetReturnValueObject();
+    NWNXPushString(serialized);
+    NWNXCall(NWNX_Object, "Deserialize");
+    return NWNXPopObject();
 }
 
 string NWNX_Object_GetDialogResref(object obj)
 {
-    string sFunc = "GetDialogResref";
-
-    NWNX_PushArgumentObject(obj);
-
-    NWNX_CallFunction(NWNX_Object, sFunc);
-    return NWNX_GetReturnValueString();
+    NWNXPushObject(obj);
+    NWNXCall(NWNX_Object, "GetDialogResref");
+    return NWNXPopString();
 }
 
 void NWNX_Object_SetDialogResref(object obj, string dialog)
 {
-    string sFunc = "SetDialogResref";
-
-    NWNX_PushArgumentString(dialog);
-    NWNX_PushArgumentObject(obj);
-
-    NWNX_CallFunction(NWNX_Object, sFunc);
+    NWNXPushString(dialog);
+    NWNXPushObject(obj);
+    NWNXCall(NWNX_Object, "SetDialogResref");
 }
 
 void NWNX_Object_SetAppearance(object oPlaceable, int nAppearance)
 {
-    string sFunc = "SetAppearance";
-
-    NWNX_PushArgumentInt(nAppearance);
-    NWNX_PushArgumentObject(oPlaceable);
-
-    NWNX_CallFunction(NWNX_Object, sFunc);
+    NWNXPushInt(nAppearance);
+    NWNXPushObject(oPlaceable);
+    NWNXCall(NWNX_Object, "SetAppearance");
 }
 
 int NWNX_Object_GetAppearance(object oPlaceable)
 {
-    string sFunc = "GetAppearance";
-
-    NWNX_PushArgumentObject(oPlaceable);
-    NWNX_CallFunction(NWNX_Object, sFunc);
-
-    return NWNX_GetReturnValueInt();
+    NWNXPushObject(oPlaceable);
+    NWNXCall(NWNX_Object, "GetAppearance");
+    return NWNXPopInt();
 }
 
 int NWNX_Object_GetHasVisualEffect(object obj, int nVFX)
 {
-    string sFunc = "GetHasVisualEffect";
-
-    NWNX_PushArgumentInt(nVFX);
-    NWNX_PushArgumentObject(obj);
-
-    NWNX_CallFunction(NWNX_Object, sFunc);
-
-    return NWNX_GetReturnValueInt();
-}
-
-int NWNX_Object_CheckFit(object obj, int baseitem)
-{
-    string sFunc = "CheckFit";
-
-    NWNX_PushArgumentInt(baseitem);
-    NWNX_PushArgumentObject(obj);
-
-    NWNX_CallFunction(NWNX_Object, sFunc);
-
-    return NWNX_GetReturnValueInt();
+    NWNXPushInt(nVFX);
+    NWNXPushObject(obj);
+    NWNXCall(NWNX_Object, "GetHasVisualEffect");
+    return NWNXPopInt();
 }
 
 int NWNX_Object_GetDamageImmunity(object obj, int damageType)
 {
-    string sFunc = "GetDamageImmunity";
-
-    NWNX_PushArgumentInt(damageType);
-    NWNX_PushArgumentObject(obj);
-
-    NWNX_CallFunction(NWNX_Object, sFunc);
-
-    return NWNX_GetReturnValueInt();
+    NWNXPushInt(damageType);
+    NWNXPushObject(obj);
+    NWNXCall(NWNX_Object, "GetDamageImmunity");
+    return NWNXPopInt();
 }
 
 void NWNX_Object_AddToArea(object obj, object area, vector pos)
 {
-    string sFunc = "AddToArea";
-
-    NWNX_PushArgumentFloat(pos.z);
-    NWNX_PushArgumentFloat(pos.y);
-    NWNX_PushArgumentFloat(pos.x);
-    NWNX_PushArgumentObject(area);
-    NWNX_PushArgumentObject(obj);
-    NWNX_CallFunction(NWNX_Object, sFunc);
+    NWNXPushVector(pos);
+    NWNXPushObject(area);
+    NWNXPushObject(obj);
+    NWNXCall(NWNX_Object, "AddToArea");
 }
 
 int NWNX_Object_GetPlaceableIsStatic(object obj)
 {
-    string sFunc = "GetPlaceableIsStatic";
-
-    NWNX_PushArgumentObject(obj);
-
-    NWNX_CallFunction(NWNX_Object, sFunc);
-    return NWNX_GetReturnValueInt();
+    NWNXPushObject(obj);
+    NWNXCall(NWNX_Object, "GetPlaceableIsStatic");
+    return NWNXPopInt();
 }
 
 void NWNX_Object_SetPlaceableIsStatic(object obj, int isStatic)
 {
-    string sFunc = "SetPlaceableIsStatic";
-
-    NWNX_PushArgumentInt(isStatic);
-    NWNX_PushArgumentObject(obj);
-
-    NWNX_CallFunction(NWNX_Object, sFunc);
+    NWNXPushInt(isStatic);
+    NWNXPushObject(obj);
+    NWNXCall(NWNX_Object, "SetPlaceableIsStatic");
 }
 
 int NWNX_Object_GetAutoRemoveKey(object obj)
 {
-    string sFunc = "GetAutoRemoveKey";
-
-    NWNX_PushArgumentObject(obj);
-    NWNX_CallFunction(NWNX_Object, sFunc);
-
-    return NWNX_GetReturnValueInt();
+    NWNXPushObject(obj);
+    NWNXCall(NWNX_Object, "GetAutoRemoveKey");
+    return NWNXPopInt();
 }
 
 void NWNX_Object_SetAutoRemoveKey(object obj, int bRemoveKey)
 {
-    string sFunc = "SetAutoRemoveKey";
-
-    NWNX_PushArgumentInt(bRemoveKey);
-    NWNX_PushArgumentObject(obj);
-
-    NWNX_CallFunction(NWNX_Object, sFunc);
+    NWNXPushInt(bRemoveKey);
+    NWNXPushObject(obj);
+    NWNXCall(NWNX_Object, "SetAutoRemoveKey");
 }
 
 string NWNX_Object_GetTriggerGeometry(object oTrigger)
 {
-    string sFunc = "GetTriggerGeometry";
-
-    NWNX_PushArgumentObject(oTrigger);
-    NWNX_CallFunction(NWNX_Object, sFunc);
-
-    return NWNX_GetReturnValueString();
+    NWNXPushObject(oTrigger);
+    NWNXCall(NWNX_Object, "GetTriggerGeometry");
+    return NWNXPopString();
 }
 
 void NWNX_Object_SetTriggerGeometry(object oTrigger, string sGeometry)
 {
-    string sFunc = "SetTriggerGeometry";
-
-    NWNX_PushArgumentString(sGeometry);
-    NWNX_PushArgumentObject(oTrigger);
-    NWNX_CallFunction(NWNX_Object, sFunc);
-}
-
-void NWNX_Object_AddIconEffect(object obj, int nIcon, float fDuration=0.0)
-{
-    string sFunc = "AddIconEffect";
-
-    NWNX_PushArgumentFloat(fDuration);
-    NWNX_PushArgumentInt(nIcon);
-    NWNX_PushArgumentObject(obj);
-    NWNX_CallFunction(NWNX_Object, sFunc);
-}
-
-void NWNX_Object_RemoveIconEffect(object obj, int nIcon)
-{
-    string sFunc = "RemoveIconEffect";
-
-    NWNX_PushArgumentInt(nIcon);
-    NWNX_PushArgumentObject(obj);
-    NWNX_CallFunction(NWNX_Object, sFunc);
+    NWNXPushString(sGeometry);
+    NWNXPushObject(oTrigger);
+    NWNXCall(NWNX_Object, "SetTriggerGeometry");
 }
 
 void NWNX_Object_Export(object oObject, string sFileName, string sAlias = "NWNX")
 {
-    string sFunc = "Export";
-
-    NWNX_PushArgumentString(sAlias);
-    NWNX_PushArgumentString(sFileName);
-    NWNX_PushArgumentObject(oObject);
-    NWNX_CallFunction(NWNX_Object, sFunc);
+    NWNXPushString(sAlias);
+    NWNXPushString(sFileName);
+    NWNXPushObject(oObject);
+    NWNXCall(NWNX_Object, "Export");
 }
 
 int NWNX_Object_GetInt(object oObject, string sVarName)
 {
-    string sFunc = "GetInt";
-
-    NWNX_PushArgumentString(sVarName);
-    NWNX_PushArgumentObject(oObject);
-    NWNX_CallFunction(NWNX_Object, sFunc);
-
-    return NWNX_GetReturnValueInt();
+    NWNXPushString(sVarName);
+    NWNXPushObject(oObject);
+    NWNXCall(NWNX_Object, "GetInt");
+    return NWNXPopInt();
 }
 
 void NWNX_Object_SetInt(object oObject, string sVarName, int nValue, int bPersist)
 {
-    string sFunc = "SetInt";
-
-    NWNX_PushArgumentInt(bPersist);
-    NWNX_PushArgumentInt(nValue);
-    NWNX_PushArgumentString(sVarName);
-    NWNX_PushArgumentObject(oObject);
-    NWNX_CallFunction(NWNX_Object, sFunc);
+    NWNXPushInt(bPersist);
+    NWNXPushInt(nValue);
+    NWNXPushString(sVarName);
+    NWNXPushObject(oObject);
+    NWNXCall(NWNX_Object, "SetInt");
 }
 
 void NWNX_Object_DeleteInt(object oObject, string sVarName)
 {
-    string sFunc = "DeleteInt";
-
-    NWNX_PushArgumentString(sVarName);
-    NWNX_PushArgumentObject(oObject);
-    NWNX_CallFunction(NWNX_Object, sFunc);
+    NWNXPushString(sVarName);
+    NWNXPushObject(oObject);
+    NWNXCall(NWNX_Object, "DeleteInt");
 }
 
 string NWNX_Object_GetString(object oObject, string sVarName)
 {
-    string sFunc = "GetString";
-
-    NWNX_PushArgumentString(sVarName);
-    NWNX_PushArgumentObject(oObject);
-    NWNX_CallFunction(NWNX_Object, sFunc);
-
-    return NWNX_GetReturnValueString();
+    NWNXPushString(sVarName);
+    NWNXPushObject(oObject);
+    NWNXCall(NWNX_Object, "GetString");
+    return NWNXPopString();
 }
 
 void NWNX_Object_SetString(object oObject, string sVarName, string sValue, int bPersist)
 {
-    string sFunc = "SetString";
-
-    NWNX_PushArgumentInt(bPersist);
-    NWNX_PushArgumentString(sValue);
-    NWNX_PushArgumentString(sVarName);
-    NWNX_PushArgumentObject(oObject);
-    NWNX_CallFunction(NWNX_Object, sFunc);
+    NWNXPushInt(bPersist);
+    NWNXPushString(sValue);
+    NWNXPushString(sVarName);
+    NWNXPushObject(oObject);
+    NWNXCall(NWNX_Object, "SetString");
 }
 
 void NWNX_Object_DeleteString(object oObject, string sVarName)
 {
-    string sFunc = "DeleteString";
-
-    NWNX_PushArgumentString(sVarName);
-    NWNX_PushArgumentObject(oObject);
-    NWNX_CallFunction(NWNX_Object, sFunc);
+    NWNXPushString(sVarName);
+    NWNXPushObject(oObject);
+    NWNXCall(NWNX_Object, "DeleteString");
 }
 
 float NWNX_Object_GetFloat(object oObject, string sVarName)
 {
-    string sFunc = "GetFloat";
-
-    NWNX_PushArgumentString(sVarName);
-    NWNX_PushArgumentObject(oObject);
-    NWNX_CallFunction(NWNX_Object, sFunc);
-
-    return NWNX_GetReturnValueFloat();
+    NWNXPushString(sVarName);
+    NWNXPushObject(oObject);
+    NWNXCall(NWNX_Object, "GetFloat");
+    return NWNXPopFloat();
 }
 
 void NWNX_Object_SetFloat(object oObject, string sVarName, float fValue, int bPersist)
 {
-    string sFunc = "SetFloat";
-
-    NWNX_PushArgumentInt(bPersist);
-    NWNX_PushArgumentFloat(fValue);
-    NWNX_PushArgumentString(sVarName);
-    NWNX_PushArgumentObject(oObject);
-    NWNX_CallFunction(NWNX_Object, sFunc);
+    NWNXPushInt(bPersist);
+    NWNXPushFloat(fValue);
+    NWNXPushString(sVarName);
+    NWNXPushObject(oObject);
+    NWNXCall(NWNX_Object, "SetFloat");
 }
 
 void NWNX_Object_DeleteFloat(object oObject, string sVarName)
 {
-    string sFunc = "DeleteFloat";
-
-    NWNX_PushArgumentString(sVarName);
-    NWNX_PushArgumentObject(oObject);
-    NWNX_CallFunction(NWNX_Object, sFunc);
+    NWNXPushString(sVarName);
+    NWNXPushObject(oObject);
+    NWNXCall(NWNX_Object, "DeleteFloat");
 }
 
 void NWNX_Object_DeleteVarRegex(object oObject, string sRegex)
 {
-    string sFunc = "DeleteVarRegex";
-
-    NWNX_PushArgumentString(sRegex);
-    NWNX_PushArgumentObject(oObject);
-    NWNX_CallFunction(NWNX_Object, sFunc);
+    NWNXPushString(sRegex);
+    NWNXPushObject(oObject);
+    NWNXCall(NWNX_Object, "DeleteVarRegex");
 }
 
 int NWNX_Object_GetPositionIsInTrigger(object oTrigger, vector vPosition)
 {
-    string sFunc = "GetPositionIsInTrigger";
-
-    NWNX_PushArgumentFloat(vPosition.z);
-    NWNX_PushArgumentFloat(vPosition.y);
-    NWNX_PushArgumentFloat(vPosition.x);
-    NWNX_PushArgumentObject(oTrigger);
-    NWNX_CallFunction(NWNX_Object, sFunc);
-
-    return NWNX_GetReturnValueInt();
+    NWNXPushVector(vPosition);
+    NWNXPushObject(oTrigger);
+    NWNXCall(NWNX_Object, "GetPositionIsInTrigger");
+    return NWNXPopInt();
 }
 
 int NWNX_Object_GetInternalObjectType(object oObject)
 {
-    string sFunc = "GetInternalObjectType";
-
-    NWNX_PushArgumentObject(oObject);
-    NWNX_CallFunction(NWNX_Object, sFunc);
-
-    return NWNX_GetReturnValueInt();
+    NWNXPushObject(oObject);
+    NWNXCall(NWNX_Object, "GetInternalObjectType");
+    return NWNXPopInt();
 }
 
 int NWNX_Object_AcquireItem(object oObject, object oItem)
 {
-    string sFunc = "AcquireItem";
-
-    NWNX_PushArgumentObject(oItem);
-    NWNX_PushArgumentObject(oObject);
-    NWNX_CallFunction(NWNX_Object, sFunc);
-
-    return NWNX_GetReturnValueInt();
-}
-
-void NWNX_Object_SetFacing(object oObject, float fDirection)
-{
-    string sFunc = "SetFacing";
-
-    NWNX_PushArgumentFloat(fDirection);
-    NWNX_PushArgumentObject(oObject);
-    NWNX_CallFunction(NWNX_Object, sFunc);
+    NWNXPushObject(oItem);
+    NWNXPushObject(oObject);
+    NWNXCall(NWNX_Object, "AcquireItem");
+    return NWNXPopInt();
 }
 
 void NWNX_Object_ClearSpellEffectsOnOthers(object oObject)
 {
-    string sFunc = "ClearSpellEffectsOnOthers";
-
-    NWNX_PushArgumentObject(oObject);
-    NWNX_CallFunction(NWNX_Object, sFunc);
+    NWNXPushObject(oObject);
+    NWNXCall(NWNX_Object, "ClearSpellEffectsOnOthers");
 }
 
 string NWNX_Object_PeekUUID(object oObject)
 {
-    string sFunc = "PeekUUID";
-
-    NWNX_PushArgumentObject(oObject);
-    NWNX_CallFunction(NWNX_Object, sFunc);
-
-    return NWNX_GetReturnValueString();
+    NWNXPushObject(oObject);
+    NWNXCall(NWNX_Object, "PeekUUID");
+    return NWNXPopString();
 }
 
 int NWNX_Object_GetDoorHasVisibleModel(object oDoor)
 {
-    string sFunc = "GetDoorHasVisibleModel";
-
-    NWNX_PushArgumentObject(oDoor);
-    NWNX_CallFunction(NWNX_Object, sFunc);
-
-    return NWNX_GetReturnValueInt();
+    NWNXPushObject(oDoor);
+    NWNXCall(NWNX_Object, "GetDoorHasVisibleModel");
+    return NWNXPopInt();
 }
 
 int NWNX_Object_GetIsDestroyable(object oObject)
 {
-    string sFunc = "GetIsDestroyable";
-
-    NWNX_PushArgumentObject(oObject);
-    NWNX_CallFunction(NWNX_Object, sFunc);
-
-    return NWNX_GetReturnValueInt();
+    NWNXPushObject(oObject);
+    NWNXCall(NWNX_Object, "GetIsDestroyable");
+    return NWNXPopInt();
 }
 
-int NWNX_Object_DoSpellImmunity(object oDefender, object oCaster)
+int NWNX_Object_DoSpellImmunity(object oDefender, object oCaster, int nSpellId=-1)
 {
-    string sFunc = "DoSpellImmunity";
-    NWNX_PushArgumentObject(oCaster);
-    NWNX_PushArgumentObject(oDefender);
-    NWNX_CallFunction(NWNX_Object, sFunc);
-
-    return  NWNX_GetReturnValueInt();
+    NWNXPushInt(nSpellId);
+    NWNXPushObject(oCaster);
+    NWNXPushObject(oDefender);
+    NWNXCall(NWNX_Object, "DoSpellImmunity");
+    return  NWNXPopInt();
 }
 
-int NWNX_Object_DoSpellLevelAbsorption(object oDefender, object oCaster)
+int NWNX_Object_DoSpellLevelAbsorption(object oDefender, object oCaster, int nSpellId=-1, int nSpellLevel=-1, int nSpellSchool=-1)
 {
-    string sFunc = "DoSpellLevelAbsorption";
-    NWNX_PushArgumentObject(oCaster);
-    NWNX_PushArgumentObject(oDefender);
-    NWNX_CallFunction(NWNX_Object, sFunc);
-
-    return  NWNX_GetReturnValueInt();
+    NWNXPushInt(nSpellSchool);
+    NWNXPushInt(nSpellLevel);
+    NWNXPushInt(nSpellId);
+    NWNXPushObject(oCaster);
+    NWNXPushObject(oDefender);
+    NWNXCall(NWNX_Object, "DoSpellLevelAbsorption");
+    return  NWNXPopInt();
 }
 
 void NWNX_Object_SetHasInventory(object obj, int bHasInventory)
 {
-    string sFunc = "SetHasInventory";
-
-    NWNX_PushArgumentInt(bHasInventory);
-    NWNX_PushArgumentObject(obj);
-
-    NWNX_CallFunction(NWNX_Object, sFunc);
+    NWNXPushInt(bHasInventory);
+    NWNXPushObject(obj);
+    NWNXCall(NWNX_Object, "SetHasInventory");
 }
 
 int NWNX_Object_GetCurrentAnimation(object oObject)
 {
-    string sFunc = "GetCurrentAnimation";
-
-    NWNX_PushArgumentObject(oObject);
-    NWNX_CallFunction(NWNX_Object, sFunc);
-
-    return NWNX_GetReturnValueInt();
+    NWNXPushObject(oObject);
+    NWNXCall(NWNX_Object, "GetCurrentAnimation");
+    return NWNXPopInt();
 }
 
 int NWNX_Object_GetAILevel(object oObject)
 {
-    string sFunc = "GetAILevel";
-
-    NWNX_PushArgumentObject(oObject);
-    NWNX_CallFunction(NWNX_Object, sFunc);
-
-    return NWNX_GetReturnValueInt();
+    NWNXPushObject(oObject);
+    NWNXCall(NWNX_Object, "GetAILevel");
+    return NWNXPopInt();
 }
 
 void NWNX_Object_SetAILevel(object oObject, int nLevel)
 {
-    string sFunc = "SetAILevel";
-
-    NWNX_PushArgumentInt(nLevel);
-    NWNX_PushArgumentObject(oObject);
-
-    NWNX_CallFunction(NWNX_Object, sFunc);
+    NWNXPushInt(nLevel);
+    NWNXPushObject(oObject);
+    NWNXCall(NWNX_Object, "SetAILevel");
 }
 
 string NWNX_Object_GetMapNote(object oObject, int nID = 0, int nGender = 0)
 {
-    string sFunc = "GetMapNote";
-
-    NWNX_PushArgumentInt(nGender);
-    NWNX_PushArgumentInt(nID);
-    NWNX_PushArgumentObject(oObject);
-    NWNX_CallFunction(NWNX_Object, sFunc);
-
-    return NWNX_GetReturnValueString();
+    NWNXPushInt(nGender);
+    NWNXPushInt(nID);
+    NWNXPushObject(oObject);
+    NWNXCall(NWNX_Object, "GetMapNote");
+    return NWNXPopString();
 }
 
 void NWNX_Object_SetMapNote(object oObject, string sMapNote, int nID = 0, int nGender = 0)
 {
-    string sFunc = "SetMapNote";
-
-    NWNX_PushArgumentInt(nGender);
-    NWNX_PushArgumentInt(nID);
-    NWNX_PushArgumentString(sMapNote);
-    NWNX_PushArgumentObject(oObject);
-    NWNX_CallFunction(NWNX_Object, sFunc);
+    NWNXPushInt(nGender);
+    NWNXPushInt(nID);
+    NWNXPushString(sMapNote);
+    NWNXPushObject(oObject);
+    NWNXCall(NWNX_Object, "SetMapNote");
 }
 
 int NWNX_Object_GetLastSpellCastFeat(object oObject)
 {
-    string sFunc = "GetLastSpellCastFeat";
-
-    NWNX_PushArgumentObject(oObject);
-    NWNX_CallFunction(NWNX_Object, sFunc);
-
-    return NWNX_GetReturnValueInt();
+    NWNXPushObject(oObject);
+    NWNXCall(NWNX_Object, "GetLastSpellCastFeat");
+    return NWNXPopInt();
 }
 
 void NWNX_Object_SetLastTriggered(object oObject, object oLast)
 {
-    string sFunc = "SetLastTriggered";
-
-    NWNX_PushArgumentObject(oLast);
-    NWNX_PushArgumentObject(oObject);
-
-    NWNX_CallFunction(NWNX_Object, sFunc);
+    NWNXPushObject(oLast);
+    NWNXPushObject(oObject);
+    NWNXCall(NWNX_Object, "SetLastTriggered");
 }
 
 float NWNX_Object_GetAoEObjectDurationRemaining(object oAoE)
 {
-    string sFunc = "GetAoEObjectDurationRemaining";
+    NWNXPushObject(oAoE);
+    NWNXCall(NWNX_Object, "GetAoEObjectDurationRemaining");
+    return NWNXPopFloat();
+}
 
-    NWNX_PushArgumentObject(oAoE);
-    NWNX_CallFunction(NWNX_Object, sFunc);
+void NWNX_Object_SetConversationPrivate(object oObject, int bPrivate)
+{
+    NWNXPushInt(bPrivate);
+    NWNXPushObject(oObject);
+    NWNXCall(NWNX_Object, "SetConversationPrivate");
+}
 
-    return NWNX_GetReturnValueFloat();
+void NWNX_Object_SetAoEObjectRadius(object oAoE, float fRadius)
+{
+    NWNXPushFloat(fRadius);
+    NWNXPushObject(oAoE);
+    NWNXCall(NWNX_Object, "SetAoEObjectRadius");
+}
+
+float NWNX_Object_GetAoEObjectRadius(object oAoE)
+{
+    NWNXPushObject(oAoE);
+    NWNXCall(NWNX_Object, "GetAoEObjectRadius");
+    return NWNXPopFloat();
+}
+
+int NWNX_Object_GetLastSpellCastSpontaneous(object oObject)
+{
+    NWNXPushObject(oObject);
+    NWNXCall(NWNX_Object, "GetLastSpellCastSpontaneous");
+    return NWNXPopInt();
+}
+
+int NWNX_Object_GetLastSpellCastDomainLevel(object oObject)
+{
+    NWNXPushObject(oObject);
+    NWNXCall(NWNX_Object, "GetLastSpellCastDomainLevel");
+    return NWNXPopInt();
+}
+
+void NWNX_Object_ForceAssignUUID(object oObject, string sUUID)
+{
+    NWNXPushString(sUUID);
+    NWNXPushObject(oObject);
+    NWNXCall(NWNX_Object, "ForceAssignUUID");
+}
+
+int NWNX_Object_GetInventoryItemCount(object oObject)
+{
+    NWNXPushObject(oObject);
+    NWNXCall(NWNX_Object, "GetInventoryItemCount");
+    return NWNXPopInt();
+}
+
+void NWNX_Object_OverrideSpellProjectileVFX(object oCreature, int nProjectileType = -1, int nProjectilePathType = -1, int nSpellID = -1, int bPersist = FALSE)
+{
+    NWNXPushInt(bPersist);
+    NWNXPushInt(nSpellID);
+    NWNXPushInt(nProjectilePathType);
+    NWNXPushInt(nProjectileType);
+    NWNXPushObject(oCreature);
+    NWNXCall(NWNX_Object, "OverrideSpellProjectileVFX");
+}
+
+int NWNX_Object_GetLastSpellInstant()
+{
+    NWNXCall(NWNX_Object, "GetLastSpellInstant");
+    return NWNXPopInt();
+}
+
+void NWNX_Object_SetTrapCreator(object oObject, object oCreator)
+{
+    NWNXPushObject(oCreator);
+    NWNXPushObject(oObject);
+    NWNXCall(NWNX_Object, "SetTrapCreator");
+}
+
+string NWNX_Object_GetLocalizedName(object oObject, int nLanguage, int nGender = 0)
+{
+    string sFunc = "GetLocalizedName";
+
+    NWNXPushInt(nGender);
+    NWNXPushInt(nLanguage);
+    NWNXPushObject(oObject);
+
+    NWNXCall(NWNX_Object, sFunc);
+    return NWNXPopString();
+}
+
+void NWNX_Object_SetLocalizedName(object oObject, string sName, int nLanguage, int nGender = 0)
+{
+    string sFunc = "SetLocalizedName";
+
+    NWNXPushInt(nGender);
+    NWNXPushInt(nLanguage);
+    NWNXPushString(sName);
+    NWNXPushObject(oObject);
+
+    NWNXCall(NWNX_Object, sFunc);
 }

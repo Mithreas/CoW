@@ -1,6 +1,6 @@
 // file that includes several previous nwnx functions, we currently don't have and use a work-around for
 // or that we replaced with an empty function for now, which can be removed here when the nwnx version is done
-
+#include "nwnx_deprecated"
 #include "inc_data_arr"
 #include "nwnx_creature"
 #include "inc_database"
@@ -196,9 +196,6 @@ int SetPCSkillPoints (object oPC, int nSkillPoints);
 /* Sets the internal item property integer at the specified index to the
  * value specified. */
 itemproperty SetItemPropertyInteger (itemproperty ipProp, int nIndex, int nValue);
-
-/* Sets oCreature's gender using a GENDER_* constant. */
-int SetGender (object oCreature, int nGender);
 
 /* Gets oCreature's natural base AC */
 int GetACNaturalBase (object oCreature);
@@ -413,11 +410,6 @@ int SetPCSkillPoints (object oPC, int nSkillPoints) {
 
 int GetIsClassSkill (int nClass, int nSkill) {
   return 0;
-}
-
-int SetGender (object oCreature, int nGender) {
-  NWNX_Creature_SetGender(oCreature, nGender);
-  return GetGender(oCreature);
 }
 
 int GetACNaturalBase (object oCreature) {

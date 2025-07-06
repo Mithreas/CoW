@@ -2,7 +2,7 @@
 /// @brief Functions for plugin developers.
 /// @{
 /// @file nwnx.nss
-
+#include  "nwnx_deprecated"
 /// @brief Scripting interface to NWNX.
 /// @param pluginName The plugin name.
 /// @param functionName The function name (do not include NWNX_Plugin_).

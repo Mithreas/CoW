@@ -20,7 +20,7 @@ void DoRespawnDoor(string sDoor, vector vPosition, float fFacing)
 {
   object oNewDoor = NWNX_Object_Deserialize(sDoor);
   NWNX_Object_AddToArea(oNewDoor, OBJECT_SELF, vPosition);
-  NWNX_Object_SetFacing(oNewDoor, fFacing);
+  SetFacing(fFacing, oNewDoor);
 }
 
 void main()

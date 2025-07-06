@@ -1859,7 +1859,7 @@ void CnrRecipeDisplayCraftingResult(object oPC, object oDevice, string sKeyToRec
         {
           int nLevelXP = GetLocalInt(GetModule(), "CnrTradeXPLevel" + IntToString(nNewLevel+1));
           nLevelXP -= nNewXP;
-          sInfo2 += CNR_TEXT_YOU_NEED + IntToString(nLevelXP) + CNR_TEXT_XP_TO_REACH_THE_NEXT_LEVEL_IN + sTradeName + ".";
+          sInfo2 += CNR_TEXT_YOU_NEED + IntToString(nLevelXP) + CNR_TEXT_XP_TO_REACH_THE_NEXT_LEVEL_IN + sTradeName + ". ";
         }
         sInfo2 += CNR_TEXT_YOU_ARE_CURRENTLY_AT_LEVEL + IntToString(nNewLevel) + ".\n";
       }
@@ -3602,7 +3602,7 @@ void CnrWriteAllDevicesToSqlDatabase()
         // Clear all recipe data associated with sDeviceTag
         sSQL = "DELETE FROM cnr_components WHERE sDeviceTag = '" + sDeviceTag + "'";
         CnrSQLExecDirect(sSQL);
-        sSQL = "DELETE FROM cnr_recipes WHERE sDeviceTag = '" + sDeviceTag + "'`";
+        sSQL = "DELETE FROM cnr_recipes WHERE sDeviceTag = '" + sDeviceTag + "'";
         CnrSQLExecDirect(sSQL);
         sSQL = "DELETE FROM cnr_submenus WHERE sDeviceTag = '" + sDeviceTag + "'";
         CnrSQLExecDirect(sSQL);

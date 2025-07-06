@@ -2,9 +2,22 @@
 /// @brief Utility functions to manipulate the builtin effect type.
 /// @{
 /// @file nwnx_effect.nss
-#include "nwnx"
 
 const string NWNX_Effect = "NWNX_Effect"; ///< @private
+
+/// EQUIPPED effects are always associated with a slotted item:
+/// Setting this duration type requires the effect creator
+/// to be set to the (already equipped) item that should remove
+/// this effect when unequipped.
+/// Removal behaviour for effects where the creator is NOT a equipped
+/// item is undefined.
+/// They are not removed by resting, cannot be dispelled, etc.
+const int DURATION_TYPE_EQUIPPED = 3;
+
+/// These are feat/racial effects used internally by the game to
+/// implement things like movement speed changes and darkvision.
+/// They cannot be removed by resting, dispelling, etc.
+const int DURATION_TYPE_INNATE   = 4;
 
 /// An unpacked effect
 struct NWNX_EffectUnpacked
@@ -51,12 +64,8 @@ struct NWNX_EffectUnpacked
     object oParam1; ///< @todo Describe
     object oParam2; ///< @todo Describe
     object oParam3; ///< @todo Describe
-    float vParam0x; ///< @todo Describe
-    float vParam0y; ///< @todo Describe
-    float vParam0z; ///< @todo Describe
-    float vParam1x; ///< @todo Describe
-    float vParam1y; ///< @todo Describe
-    float vParam1z; ///< @todo Describe
+    vector vParam0; ///< @todo Describe
+    vector vParam1; ///< @todo Describe
 
     string sTag; ///< @todo Describe
 
@@ -72,24 +81,6 @@ struct NWNX_EffectUnpacked NWNX_Effect_UnpackEffect(effect e);
 /// @param e The NWNX_EffectUnpacked structure to convert.
 /// @return The effect.
 effect NWNX_Effect_PackEffect(struct NWNX_EffectUnpacked e);
-
-/// @brief Set a script with optional data that runs when an effect expires
-/// @param e The effect.
-/// @param script The script to run when the effect expires.
-/// @param data Any other data you wish to send back to the script.
-/// @remark OBJECT_SELF in the script is the object the effect is applied to.
-/// @note Only works for TEMPORARY and PERMANENT effects applied to an object.
-effect NWNX_Effect_SetEffectExpiredScript(effect e, string script, string data = "");
-
-/// @brief Get the data set with NWNX_Effect_SetEffectExpiredScript()
-/// @note Should only be called from a script set with NWNX_Effect_SetEffectExpiredScript().
-/// @return The data attached to the effect.
-string NWNX_Effect_GetEffectExpiredData();
-
-/// @brief Get the effect creator.
-/// @note Should only be called from a script set with NWNX_Effect_SetEffectExpiredScript().
-/// @return The object from which the effect originated.
-object NWNX_Effect_GetEffectExpiredCreator();
 
 /// @brief replace an already applied effect on an object
 /// Only duration, subtype, tag and spell related fields can be overwritten.
@@ -126,58 +117,71 @@ int NWNX_Effect_RemoveEffectById(object oObject,  string sID);
 /// @param oObject The object to apply it to.
 void NWNX_Effect_Apply(effect eEffect, object oObject);
 
-/// @brief Accessorize an EffectVisualEffect(), making it undispellable and unable to be removed by resting or death.
-/// @note If linked with a non-visualeffect or a non-accessorized visualeffect it *will* get removed.
-/// @param eEffect An EffectVisualEffect(), does not work for other effect types.
-/// @return The accessorized effect or an unchanged effect if not an EffectVisualEffect().
-effect NWNX_Effect_AccessorizeVisualEffect(effect eEffect);
+/// @brief Sets an effect creator.
+/// @param eEffect The effect to be modified.
+/// @param oObject The effect creator.
+/// @return The effect with creator field set.
+effect NWNX_Effect_SetEffectCreator(effect eEffect, object oObject);
+
+/// @brief Checks if the given effect is valid. Unlike the game builtin, this call considers internal types too.
+/// @param eEffect The effect to check
+/// @return TRUE if the effect is valid (including internal types).
+int NWNX_Effect_GetIsEffectValid(effect eEffect);
+
+/// @brief Returns the number of applied effects on the given object.
+/// @param oObject The object to get the applied effect count for.
+/// @return The number of applied effects, including internal.
+int NWNX_Effect_GetAppliedEffectCount(object oObject);
+
+/// @brief Returns the nNth applied effect on a object.
+/// @param oObject The object to get the applied effect copy for.
+/// @param nNth The effect index to get.
+/// @note Make sure to check with NWNX_Effect_GetIsEffectValid, as this iterator also includes internal effects.
+/// @return A copy of the applied game effect, or a invalid effect.
+effect NWNX_Effect_GetAppliedEffect(object oObject, int nNth);
 
 /// @}
 
-struct NWNX_EffectUnpacked __NWNX_Effect_ResolveUnpack(string sFunc, int bLink=TRUE)
+struct NWNX_EffectUnpacked __NWNX_Effect_ResolveUnpack(int bLink=TRUE)
 {
     struct NWNX_EffectUnpacked n;
 
-    n.sItemProp = NWNX_GetReturnValueString();
+    n.sItemProp = NWNXPopString();
 
-    n.sTag = NWNX_GetReturnValueString();
+    n.sTag = NWNXPopString();
 
-    n.vParam0z = NWNX_GetReturnValueFloat();
-    n.vParam0y = NWNX_GetReturnValueFloat();
-    n.vParam0x = NWNX_GetReturnValueFloat();
-    n.vParam0z = NWNX_GetReturnValueFloat();
-    n.vParam0y = NWNX_GetReturnValueFloat();
-    n.vParam0x = NWNX_GetReturnValueFloat();
-    n.oParam3 = NWNX_GetReturnValueObject();
-    n.oParam2 = NWNX_GetReturnValueObject();
-    n.oParam1 = NWNX_GetReturnValueObject();
-    n.oParam0 = NWNX_GetReturnValueObject();
-    n.sParam5 = NWNX_GetReturnValueString();
-    n.sParam4 = NWNX_GetReturnValueString();
-    n.sParam3 = NWNX_GetReturnValueString();
-    n.sParam2 = NWNX_GetReturnValueString();
-    n.sParam1 = NWNX_GetReturnValueString();
-    n.sParam0 = NWNX_GetReturnValueString();
-    n.fParam3 = NWNX_GetReturnValueFloat();
-    n.fParam2 = NWNX_GetReturnValueFloat();
-    n.fParam1 = NWNX_GetReturnValueFloat();
-    n.fParam0 = NWNX_GetReturnValueFloat();
-    n.nParam7 = NWNX_GetReturnValueInt();
-    n.nParam6 = NWNX_GetReturnValueInt();
-    n.nParam5 = NWNX_GetReturnValueInt();
-    n.nParam4 = NWNX_GetReturnValueInt();
-    n.nParam3 = NWNX_GetReturnValueInt();
-    n.nParam2 = NWNX_GetReturnValueInt();
-    n.nParam1 = NWNX_GetReturnValueInt();
-    n.nParam0 = NWNX_GetReturnValueInt();
-    n.nNumIntegers = NWNX_GetReturnValueInt();
+    n.vParam1 = NWNXPopVector();
+    n.vParam0 = NWNXPopVector();
+    n.oParam3 = NWNXPopObject();
+    n.oParam2 = NWNXPopObject();
+    n.oParam1 = NWNXPopObject();
+    n.oParam0 = NWNXPopObject();
+    n.sParam5 = NWNXPopString();
+    n.sParam4 = NWNXPopString();
+    n.sParam3 = NWNXPopString();
+    n.sParam2 = NWNXPopString();
+    n.sParam1 = NWNXPopString();
+    n.sParam0 = NWNXPopString();
+    n.fParam3 = NWNXPopFloat();
+    n.fParam2 = NWNXPopFloat();
+    n.fParam1 = NWNXPopFloat();
+    n.fParam0 = NWNXPopFloat();
+    n.nParam7 = NWNXPopInt();
+    n.nParam6 = NWNXPopInt();
+    n.nParam5 = NWNXPopInt();
+    n.nParam4 = NWNXPopInt();
+    n.nParam3 = NWNXPopInt();
+    n.nParam2 = NWNXPopInt();
+    n.nParam1 = NWNXPopInt();
+    n.nParam0 = NWNXPopInt();
+    n.nNumIntegers = NWNXPopInt();
 
     if(bLink)
     {
-        n.bLinkRightValid = NWNX_GetReturnValueInt();
-        n.eLinkRight = NWNX_GetReturnValueEffect();
-        n.bLinkLeftValid = NWNX_GetReturnValueInt();
-        n.eLinkLeft = NWNX_GetReturnValueEffect();
+        n.bLinkRightValid = NWNXPopInt();
+        n.eLinkRight = NWNXPopEffect();
+        n.bLinkLeftValid = NWNXPopInt();
+        n.eLinkLeft = NWNXPopEffect();
     }
     else
     {
@@ -185,200 +189,166 @@ struct NWNX_EffectUnpacked __NWNX_Effect_ResolveUnpack(string sFunc, int bLink=T
         n.bLinkLeftValid = FALSE;
     }
 
-    n.nCasterLevel = NWNX_GetReturnValueInt();
-    n.bShowIcon = NWNX_GetReturnValueInt();
-    n.bExpose = NWNX_GetReturnValueInt();
-    n.nSpellId = NWNX_GetReturnValueInt();
-    n.oCreator = NWNX_GetReturnValueObject();
+    n.nCasterLevel = NWNXPopInt();
+    n.bShowIcon = NWNXPopInt();
+    n.bExpose = NWNXPopInt();
+    n.nSpellId = NWNXPopInt();
+    n.oCreator = NWNXPopObject();
 
-    n.nExpiryTimeOfDay = NWNX_GetReturnValueInt();
-    n.nExpiryCalendarDay = NWNX_GetReturnValueInt();
-    n.fDuration = NWNX_GetReturnValueFloat();
+    n.nExpiryTimeOfDay = NWNXPopInt();
+    n.nExpiryCalendarDay = NWNXPopInt();
+    n.fDuration = NWNXPopFloat();
 
-    n.nSubType = NWNX_GetReturnValueInt();
-    n.nType = NWNX_GetReturnValueInt();
-    n.sID = NWNX_GetReturnValueString();
+    n.nSubType = NWNXPopInt();
+    n.nType = NWNXPopInt();
+    n.sID = NWNXPopString();
 
     return n;
 }
 
-void __NWNX_Effect_ResolvePack(string sFunc, struct NWNX_EffectUnpacked e, int bReplace=FALSE)
+void __NWNX_Effect_ResolvePack(struct NWNX_EffectUnpacked e, int bReplace=FALSE)
 {
     if(!bReplace)
-        NWNX_PushArgumentInt(e.nType);
+        NWNXPushInt(e.nType);
 
-    NWNX_PushArgumentInt(e.nSubType);
+    NWNXPushInt(e.nSubType);
 
-    NWNX_PushArgumentFloat(e.fDuration);
-    NWNX_PushArgumentInt(e.nExpiryCalendarDay);
-    NWNX_PushArgumentInt(e.nExpiryTimeOfDay);
+    NWNXPushFloat(e.fDuration);
+    NWNXPushInt(e.nExpiryCalendarDay);
+    NWNXPushInt(e.nExpiryTimeOfDay);
 
-    NWNX_PushArgumentObject(e.oCreator);
-    NWNX_PushArgumentInt(e.nSpellId);
-    NWNX_PushArgumentInt(e.bExpose);
-    NWNX_PushArgumentInt(e.bShowIcon);
-    NWNX_PushArgumentInt(e.nCasterLevel);
+    NWNXPushObject(e.oCreator);
+    NWNXPushInt(e.nSpellId);
+    NWNXPushInt(e.bExpose);
+    NWNXPushInt(e.bShowIcon);
+    NWNXPushInt(e.nCasterLevel);
 
     if(!bReplace)
     {
-        NWNX_PushArgumentEffect(e.eLinkLeft);
-        NWNX_PushArgumentInt(e.bLinkLeftValid);
-        NWNX_PushArgumentEffect(e.eLinkRight);
-        NWNX_PushArgumentInt(e.bLinkRightValid);
+        NWNXPushEffect(e.eLinkLeft);
+        NWNXPushInt(e.bLinkLeftValid);
+        NWNXPushEffect(e.eLinkRight);
+        NWNXPushInt(e.bLinkRightValid);
     }
 
-    NWNX_PushArgumentInt(e.nNumIntegers);
-    NWNX_PushArgumentInt(e.nParam0);
-    NWNX_PushArgumentInt(e.nParam1);
-    NWNX_PushArgumentInt(e.nParam2);
-    NWNX_PushArgumentInt(e.nParam3);
-    NWNX_PushArgumentInt(e.nParam4);
-    NWNX_PushArgumentInt(e.nParam5);
-    NWNX_PushArgumentInt(e.nParam6);
-    NWNX_PushArgumentInt(e.nParam7);
-    NWNX_PushArgumentFloat(e.fParam0);
-    NWNX_PushArgumentFloat(e.fParam1);
-    NWNX_PushArgumentFloat(e.fParam2);
-    NWNX_PushArgumentFloat(e.fParam3);
-    NWNX_PushArgumentString(e.sParam0);
-    NWNX_PushArgumentString(e.sParam1);
-    NWNX_PushArgumentString(e.sParam2);
-    NWNX_PushArgumentString(e.sParam3);
-    NWNX_PushArgumentString(e.sParam4);
-    NWNX_PushArgumentString(e.sParam5);
-    NWNX_PushArgumentObject(e.oParam0);
-    NWNX_PushArgumentObject(e.oParam1);
-    NWNX_PushArgumentObject(e.oParam2);
-    NWNX_PushArgumentObject(e.oParam3);
+    NWNXPushInt(e.nNumIntegers);
+    NWNXPushInt(e.nParam0);
+    NWNXPushInt(e.nParam1);
+    NWNXPushInt(e.nParam2);
+    NWNXPushInt(e.nParam3);
+    NWNXPushInt(e.nParam4);
+    NWNXPushInt(e.nParam5);
+    NWNXPushInt(e.nParam6);
+    NWNXPushInt(e.nParam7);
+    NWNXPushFloat(e.fParam0);
+    NWNXPushFloat(e.fParam1);
+    NWNXPushFloat(e.fParam2);
+    NWNXPushFloat(e.fParam3);
+    NWNXPushString(e.sParam0);
+    NWNXPushString(e.sParam1);
+    NWNXPushString(e.sParam2);
+    NWNXPushString(e.sParam3);
+    NWNXPushString(e.sParam4);
+    NWNXPushString(e.sParam5);
+    NWNXPushObject(e.oParam0);
+    NWNXPushObject(e.oParam1);
+    NWNXPushObject(e.oParam2);
+    NWNXPushObject(e.oParam3);
 
-    NWNX_PushArgumentFloat(e.vParam0x);
-    NWNX_PushArgumentFloat(e.vParam0y);
-    NWNX_PushArgumentFloat(e.vParam0z);
+    NWNXPushVector(e.vParam0);
+    NWNXPushVector(e.vParam1);
 
-    NWNX_PushArgumentFloat(e.vParam1x);
-    NWNX_PushArgumentFloat(e.vParam1y);
-    NWNX_PushArgumentFloat(e.vParam1z);
+    NWNXPushString(e.sTag);
 
-    NWNX_PushArgumentString(e.sTag);
-
-    NWNX_PushArgumentString(e.sItemProp);
+    NWNXPushString(e.sItemProp);
 }
 
 struct NWNX_EffectUnpacked NWNX_Effect_UnpackEffect(effect e)
 {
-    string sFunc = "UnpackEffect";
-
-    NWNX_PushArgumentEffect(e);
-    NWNX_CallFunction(NWNX_Effect, sFunc);
-
-    return __NWNX_Effect_ResolveUnpack(sFunc);
+    NWNXPushEffect(e);
+    NWNXCall(NWNX_Effect, "UnpackEffect");
+    return __NWNX_Effect_ResolveUnpack();
 }
 effect NWNX_Effect_PackEffect(struct NWNX_EffectUnpacked e)
 {
-    string sFunc = "PackEffect";
-
-    __NWNX_Effect_ResolvePack(sFunc, e);
-
-    NWNX_CallFunction(NWNX_Effect, sFunc);
-    return NWNX_GetReturnValueEffect();
-}
-
-effect NWNX_Effect_SetEffectExpiredScript(effect e, string script, string data = "")
-{
-    string sFunc = "SetEffectExpiredScript";
-
-    NWNX_PushArgumentString(data);
-    NWNX_PushArgumentString(script);
-    NWNX_PushArgumentEffect(e);
-
-    NWNX_CallFunction(NWNX_Effect, sFunc);
-
-    return NWNX_GetReturnValueEffect();
-}
-
-string NWNX_Effect_GetEffectExpiredData()
-{
-    string sFunc = "GetEffectExpiredData";
-
-    NWNX_CallFunction(NWNX_Effect, sFunc);
-
-    return NWNX_GetReturnValueString();
-}
-
-object NWNX_Effect_GetEffectExpiredCreator()
-{
-    string sFunc = "GetEffectExpiredCreator";
-
-    NWNX_CallFunction(NWNX_Effect, sFunc);
-
-    return NWNX_GetReturnValueObject();
+    __NWNX_Effect_ResolvePack(e);
+    NWNXCall(NWNX_Effect, "PackEffect");
+    return NWNXPopEffect();
 }
 
 int NWNX_Effect_ReplaceEffect(object obj, effect eOld, effect eNew)
 {
-    string sFunc = "ReplaceEffect";
-
-    NWNX_PushArgumentEffect(eNew);
-    NWNX_PushArgumentEffect(eOld);
-    NWNX_PushArgumentObject(obj);
-
-    NWNX_CallFunction(NWNX_Effect, sFunc);
-
-    return NWNX_GetReturnValueInt();
+    NWNXPushEffect(eNew);
+    NWNXPushEffect(eOld);
+    NWNXPushObject(obj);
+    NWNXCall(NWNX_Effect, "ReplaceEffect");
+    return NWNXPopInt();
 }
 
 int NWNX_Effect_GetTrueEffectCount(object oObject)
 {
-    string sFunc = "GetTrueEffectCount";
-    NWNX_PushArgumentObject(oObject);
-    NWNX_CallFunction(NWNX_Effect, sFunc);
-
-    return  NWNX_GetReturnValueInt();
+    NWNXPushObject(oObject);
+    NWNXCall(NWNX_Effect, "GetTrueEffectCount");
+    return NWNXPopInt();
 }
 
 struct NWNX_EffectUnpacked NWNX_Effect_GetTrueEffect(object oObject, int nIndex)
 {
-    string sFunc = "GetTrueEffect";
-    NWNX_PushArgumentInt(nIndex);
-    NWNX_PushArgumentObject(oObject);
-    NWNX_CallFunction(NWNX_Effect, sFunc);
-
-    return __NWNX_Effect_ResolveUnpack(sFunc, FALSE);
+    NWNXPushInt(nIndex);
+    NWNXPushObject(oObject);
+    NWNXCall(NWNX_Effect, "GetTrueEffect");
+    return __NWNX_Effect_ResolveUnpack(FALSE);
 }
 
 void NWNX_Effect_ReplaceEffectByIndex(object oObject, int nIndex, struct  NWNX_EffectUnpacked e)
 {
-    string sFunc = "ReplaceEffectByIndex";
-
-    __NWNX_Effect_ResolvePack(sFunc, e, TRUE);
-
-    NWNX_PushArgumentInt(nIndex);
-    NWNX_PushArgumentObject(oObject);
-    NWNX_CallFunction(NWNX_Effect, sFunc);
+    __NWNX_Effect_ResolvePack(e, TRUE);
+    NWNXPushInt(nIndex);
+    NWNXPushObject(oObject);
+    NWNXCall(NWNX_Effect, "ReplaceEffectByIndex");
 }
 
 int NWNX_Effect_RemoveEffectById(object oObject,  string sID)
 {
-    string sFunc = "RemoveEffectById";
-    NWNX_PushArgumentString(sID);
-    NWNX_PushArgumentObject(oObject);
-    NWNX_CallFunction(NWNX_Effect, sFunc);
-
-    return  NWNX_GetReturnValueInt();
+    NWNXPushString(sID);
+    NWNXPushObject(oObject);
+    NWNXCall(NWNX_Effect, "RemoveEffectById");
+    return NWNXPopInt();
 }
 
 void NWNX_Effect_Apply(effect eEffect, object oObject)
 {
-    string sFunc = "Apply";
-    NWNX_PushArgumentObject(oObject);
-    NWNX_PushArgumentEffect(eEffect);
-    NWNX_CallFunction(NWNX_Effect, sFunc);
+    NWNXPushObject(oObject);
+    NWNXPushEffect(eEffect);
+    NWNXCall(NWNX_Effect, "Apply");
 }
 
-effect NWNX_Effect_AccessorizeVisualEffect(effect eEffect)
+effect NWNX_Effect_SetEffectCreator(effect eEffect, object oObject)
 {
-    string sFunc = "AccessorizeVisualEffect";
-    NWNX_PushArgumentEffect(eEffect);
-    NWNX_CallFunction(NWNX_Effect, sFunc);
-    return NWNX_GetReturnValueEffect();
+    NWNXPushObject(oObject);
+    NWNXPushEffect(eEffect);
+    NWNXCall(NWNX_Effect, "SetEffectCreator");
+    return NWNXPopEffect();
+}
+
+int NWNX_Effect_GetIsEffectValid(effect eEffect)
+{
+    NWNXPushEffect(eEffect);
+    NWNXCall(NWNX_Effect, "GetIsEffectValid");
+    return NWNXPopInt();
+}
+
+int NWNX_Effect_GetAppliedEffectCount(object oObject)
+{
+    NWNXPushObject(oObject);
+    NWNXCall(NWNX_Effect, "GetAppliedEffectCount");
+    return NWNXPopInt();
+}
+
+effect NWNX_Effect_GetAppliedEffect(object oObject, int nNth)
+{
+    NWNXPushInt(nNth);
+    NWNXPushObject(oObject);
+    NWNXCall(NWNX_Effect, "GetAppliedEffect");
+    return NWNXPopEffect();
 }

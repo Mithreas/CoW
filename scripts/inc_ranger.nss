@@ -1,6 +1,6 @@
 // Ranger library.  For maintaining kill array.
 
-#include "inc_array"
+#include "inc_array_old"
 #include "inc_pc"
 
 //----------------------------------------------------------

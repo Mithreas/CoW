@@ -97,7 +97,7 @@ sudo docker run --restart unless-stopped -dit \
     -e NWNX_WEAPON_SKIP=n \
     -e NWNX_TWEAKS_PARRY_ALL_ATTACKS=true \
     -e NWNX_CORE_LOG_LEVEL=6 \
-    nwnxee/unified:build8193.34
+    nwnxee/unified:build8193.37.15
 
 #    nwnxee/unified:build8193.20
 

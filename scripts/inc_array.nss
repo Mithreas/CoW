@@ -1,1055 +1,515 @@
-//::///////////////////////////////////////////////
-//:: Array Function Library
-//:: _inc_array
-//:://////////////////////////////////////////////
-/*
-    Contains functions for creating and managing
-    variable arrays.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 13, 2016
-//:://////////////////////////////////////////////
+/// @addtogroup data Data
+/// @brief Provides a number of data structures for NWN code to use (simulated arrays)
+/// @{
+/// @file nwnx_data.nss
 
-#include "inc_math"
+const int INVALID_INDEX = -1;
+const int TYPE_FLOAT = 0;
+const int TYPE_INTEGER = 1;
+const int TYPE_OBJECT = 2;
+const int TYPE_STRING = 3;
 
-/**********************************************************************
- * CONFIG PARAMETERS
- **********************************************************************/
+/// @defgroup data_array_at Array At
+/// @brief Returns the element at the index.
+/// @ingroup data
+/// @param obj The object.
+/// @param tag The tag.
+/// @param index The index.
+/// @return The element of associated type.
+/// @{
+string Array_At_Str(string tag, int index, object obj=OBJECT_INVALID);
+float  Array_At_Flt(string tag, int index, object obj=OBJECT_INVALID);
+int    Array_At_Int(string tag, int index, object obj=OBJECT_INVALID);
+object Array_At_Obj(string tag, int index, object obj=OBJECT_INVALID);
+/// @}
 
-// The maximum number of elements in an array.
-const int ARRAY_MAX_SIZE = 50;
 
-/**********************************************************************
- * CONSTANT DEFINITIONS
- **********************************************************************/
+/// Clears the entire array, such that size==0.
+void Array_Clear(string tag, object obj=OBJECT_INVALID);
 
-// The minimum number of elements in an array.
-const int ARRAY_MIN_SIZE = 0;
-// Return value when fetching a value's index if none is found.
-const int INDEX_INVALID = -1;
-// Return value of float on error.
-const float NULL_FLOAT = 0.0f;
-// Return value of int on error.
-const int NULL_INT = 0;
-// Return value of string on error.
-const string NULL_STRING = "";
+/// @defgroup data_array_contains Array Contains
+/// @brief Checks if array contains the element.
+/// @ingroup data
+/// @param obj The object.
+/// @param tag The tag.
+/// @param element The element.
+/// @return TRUE if the collection contains the element.
+/// @{
+int Array_Contains_Flt(string tag, float  element, object obj=OBJECT_INVALID);
+int Array_Contains_Int(string tag, int    element, object obj=OBJECT_INVALID);
+int Array_Contains_Obj(string tag, object element, object obj=OBJECT_INVALID);
+int Array_Contains_Str(string tag, string element, object obj=OBJECT_INVALID);
+/// @}
 
-// Variable name prefix used to distinguish array variables from other variables.
-const string LIB_ARRAY_PREFIX = "Lib_Array_";
+/// Copies the array of name otherTag over the array of name tag.
+void Array_Copy(string tag, string otherTag, object obj=OBJECT_INVALID);
 
-/**********************************************************************
- * PUBLIC FUNCTION PROTOTYPES
- **********************************************************************/
+/// Erases the element at index, and shuffles any elements from index size-1 to index + 1 left.
+void Array_Erase(string tag, int index, object obj=OBJECT_INVALID);
 
-// Creates an array of floats on the specified object. This function must be called before
-// array variables can be set.
-void CreateFloatArray(object oObject, string sArrayName, int nSize);
-// Creates an array of ints on the specified object. This function must be called before
-// array variables can be set.
-void CreateIntArray(object oObject, string sArrayName, int nSize);
-// Creates an array of locations on the specified object. This function must be called before
-// array variables can be set.
-void CreateLocationArray(object oObject, string sArrayName, int nSize);
-// Creates an array of objects on the specified object. This function must be called before
-// array variables can be set.
-void CreateObjectArray(object oObject, string sArrayName, int nSize);
-// Creates an array of strings on the specified object. This function must be called before
-// array variables can be set.
-void CreateStringArray(object oObject, string sArrayName, int nSize);
-// Deletes the float array variable at the specified index (i.e. element).
-void DeleteArrayFloat(object oObject, string sArrayName, int nElement);
-// Deletes the int array variable at the specified index (i.e. element).
-void DeleteArrayInt(object oObject, string sArrayName, int nElement);
-// Deletes the location array variable at the specified index (i.e. element).
-void DeleteArrayLocation(object oObject, string sArrayName, int nElement);
-// Deletes the object array variable at the specified index (i.e. element).
-void DeleteArrayObject(object oObject, string sArrayName, int nElement);
-// Deletes the string array variable at the specified index (i.e. element).
-void DeleteArrayString(object oObject, string sArrayName, int nElement);
-// Deletes the specified float array (and all child components) from the object.
-void DeleteFloatArray(object oObject, string sArrayName);
-// Deletes the specified int array (and all child components) from the object.
-void DeleteIntArray(object oObject, string sArrayName);
-// Deletes the specified location array (and all child components) from the object.
-void DeleteLocationArray(object oObject, string sArrayName);
-// Deletes the specified object array (and all child components) from the object.
-void DeleteObjectArray(object oObject, string sArrayName);
-// Deletes the specified string array (and all child components) from the object.
-void DeleteStringArray(object oObject, string sArrayName);
-// Returns the value of the float at the specified array index (i.e. element).
-float GetArrayFloat(object oObject, string sArrayName, int nElement);
-// Returns the value of the int at the specified array index (i.e. element).
-int GetArrayInt(object oObject, string sArrayName, int nElement);
-// Returns the value of the location at the specified array index (i.e. element).
-location GetArrayLocation(object oObject, string sArrayName, int nElement);
-// Returns the value of the object at the specified array index (i.e. element).
-object GetArrayObject(object oObject, string sArrayName, int nElement);
-// Returns the value of the string at the specified array index (i.e. element).
-string GetArrayString(object oObject, string sArrayName, int nElement);
-// Returns the location of nNth element in an array matching the specified value.
-// Returns INDEX_INVALID if the element is not found.
-int GetFloatArrayIndexOf(object oObject, string sArrayName, float fValue, int nNth = 1);
-// Returns the size (i.e. maximum capacity) of the specified float array.
-int GetFloatArraySize(object oObject, string sArrayName);
-// Returns the location of nNth element in an array matching the specified value.
-// Returns INDEX_INVALID if the element is not found.
-int GetIntArrayIndexOf(object oObject, string sArrayName, int nValue, int nNth = 1);
-// Returns the size (i.e. maximum capacity) of the specified int array.
-int GetIntArraySize(object oObject, string sArrayName);
-// Returns TRUE if nIndex falls within the bounds of the specified array.
-int GetIsValidFloatArrayIndex(object oObject, string sArrayName, int nIndex);
-// Returns TRUE if nIndex falls within the bounds of the specified array.
-int GetIsValidIntArrayIndex(object oObject, string sArrayName, int nIndex);
-// Returns TRUE if nIndex falls within the bounds of the specified array.
-int GetIsValidLocationArrayIndex(object oObject, string sArrayName, int nIndex);
-// Returns TRUE if nIndex falls within the bounds of the specified array.
-int GetIsValidObjectArrayIndex(object oObject, string sArrayName, int nIndex);
-// Returns TRUE if nIndex falls within the bounds of the specified array.
-int GetIsValidStringArrayIndex(object oObject, string sArrayName, int nIndex);
-// Returns the location of nNth element in an array matching the specified value.
-// Returns INDEX_INVALID if the element is not found.
-int GetLocationArrayIndexOf(object oObject, string sArrayName, location lValue, int nNth = 1);
-// Returns the size (i.e. maximum capacity) of the specified location array.
-int GetLocationArraySize(object oObject, string sArrayName);
-// Returns the location of nNth element in an array matching the specified value.
-// Returns INDEX_INVALID if the element is not found.
-int GetObjectArrayIndexOf(object oObject, string sArrayName, object oValue, int nNth = 1);
-// Returns the size (i.e. maximum capacity) of the specified object array.
-int GetObjectArraySize(object oObject, string sArrayName);
-// Returns the location of nNth element in an array matching the specified value.
-// Returns INDEX_INVALID if the element is not found.
-int GetStringArrayIndexOf(object oObject, string sArrayName, string sValue, int nNth = 1);
-// Returns the size (i.e. maximum capacity) of the specified string array.
-int GetStringArraySize(object oObject, string sArrayName);
-// Alters the size (i.e. maximum capacity) of the specified array. If the size is
-// decreased, then any values that extend beyond the bounds of the new array will be deleted.
-void ResizeFloatArray(object oObject, string sArrayName, int nSize);
-// Alters the size (i.e. maximum capacity) of the specified array. If the size is
-// decreased, then any values that extend beyond the bounds of the new array will be deleted.
-void ResizeIntArray(object oObject, string sArrayName, int nSize);
-// Alters the size (i.e. maximum capacity) of the specified array. If the size is
-// decreased, then any values that extend beyond the bounds of the new array will be deleted.
-void ResizeLocationArray(object oObject, string sArrayName, int nSize);
-// Alters the size (i.e. maximum capacity) of the specified array. If the size is
-// decreased, then any values that extend beyond the bounds of the new array will be deleted.
-void ResizeObjectArray(object oObject, string sArrayName, int nSize);
-// Alters the size (i.e. maximum capacity) of the specified array. If the size is
-// decreased, then any values that extend beyond the bounds of the new array will be deleted.
-void ResizeStringArray(object oObject, string sArrayName, int nSize);
-// Sets a float array value. Note that the array must first be initialized with
-// CreateFloatArray() for this function to work.
-void SetArrayFloat(object oObject, string sArrayName, int nElement, float fValue);
-// Sets an int array value. Note that the array must first be initialized with
-// CreateIntArray() for this function to work.
-void SetArrayInt(object oObject, string sArrayName, int nElement, int nValue);
-// Sets a location array value. Note that the array must first be initialized with
-// CreateLocationArray() for this function to work.
-void SetArrayLocation(object oObject, string sArrayName, int nElement, location lValue);
-// Sets an object array value. Note that the array must first be initialized with
-// CreateObjectArray() for this function to work.
-void SetArrayObject(object oObject, string sArrayName, int nElement, object oValue);
-// Sets a string array value. Note that the array must first be initialized with
-// CreateStringArray() for this function to work.
-void SetArrayString(object oObject, string sArrayName, int nElement, string sValue);
+/// @defgroup data_array_find Array Find
+/// @brief Get the index at which the element is located.
+/// @ingroup data
+/// @param obj The object.
+/// @param tag The tag.
+/// @param element The element.
+/// @return Returns the index at which the element is located, or ARRAY_INVALID_INDEX.
+/// @{
+int Array_Find_Flt(string tag, float  element, object obj=OBJECT_INVALID);
+int Array_Find_Int(string tag, int    element, object obj=OBJECT_INVALID);
+int Array_Find_Obj(string tag, object element, object obj=OBJECT_INVALID);
+int Array_Find_Str(string tag, string element, object obj=OBJECT_INVALID);
+/// @}
 
-/**********************************************************************
- * PUBLIC FUNCTION DEFINITIONS
- **********************************************************************/
+/// @defgroup data_array_insert Array Insert
+/// @brief Inserts the element at the index, where size > index >= 0.
+/// @ingroup data
+/// @param obj The object.
+/// @param tag The tag.
+/// @param index The index.
+/// @param element The element.
+/// @{
+void Array_Insert_Flt(string tag, int index, float  element, object obj=OBJECT_INVALID);
+void Array_Insert_Int(string tag, int index, int    element, object obj=OBJECT_INVALID);
+void Array_Insert_Obj(string tag, int index, object element, object obj=OBJECT_INVALID);
+void Array_Insert_Str(string tag, int index, string element, object obj=OBJECT_INVALID);
+/// @}
 
-//::///////////////////////////////////////////////
-//:: CreateFloatArray
-//:://////////////////////////////////////////////
-/*
-    Creates an array of floats on the specified
-    object. This function must be called before
-    array variables can be set.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-void CreateFloatArray(object oObject, string sArrayName, int nSize)
-{
-    nSize = ClampInt(nSize, ARRAY_MIN_SIZE, ARRAY_MAX_SIZE);
-    SetLocalInt(oObject, LIB_ARRAY_PREFIX + "Float" + sArrayName + "Size", nSize);
-}
+/// @defgroup data_array_pushback Array Pushback
+/// @brief Pushes an element to the back of the collection.
+/// @remark Functionally identical to an insert at index size-1.
+/// @ingroup data
+/// @param obj The object.
+/// @param tag The tag.
+/// @param element The element.
+/// @{
+void Array_PushBack_Flt(string tag, float  element, object obj=OBJECT_INVALID);
+void Array_PushBack_Int(string tag, int    element, object obj=OBJECT_INVALID);
+void Array_PushBack_Obj(string tag, object element, object obj=OBJECT_INVALID);
+void Array_PushBack_Str(string tag, string element, object obj=OBJECT_INVALID);
+/// @}
 
-//::///////////////////////////////////////////////
-//:: CreateIntArray
-//:://////////////////////////////////////////////
-/*
-    Creates an array of ints on the specified
-    object. This function must be called before
-    array variables can be set.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-void CreateIntArray(object oObject, string sArrayName, int nSize)
-{
-    nSize = ClampInt(nSize, ARRAY_MIN_SIZE, ARRAY_MAX_SIZE);
-    SetLocalInt(oObject, LIB_ARRAY_PREFIX + "Int" + sArrayName + "Size", nSize);
-}
+/// Resizes the array. If the array is shrinking, it chops off elements at the ned.
+void Array_Resize(string tag, int size, object obj=OBJECT_INVALID);
 
-//::///////////////////////////////////////////////
-//:: CreateLocationArray
-//:://////////////////////////////////////////////
-/*
-    Creates an array of locations on the specified
-    object. This function must be called before
-    array variables can be set.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-void CreateLocationArray(object oObject, string sArrayName, int nSize)
-{
-    nSize = ClampInt(nSize, ARRAY_MIN_SIZE, ARRAY_MAX_SIZE);
-    SetLocalInt(oObject, LIB_ARRAY_PREFIX + "Location" + sArrayName + "Size", nSize);
-}
+/// Reorders the array such each possible permutation of elements has equal probability of appearance.
+void Array_Shuffle(string tag, object obj=OBJECT_INVALID);
 
-//::///////////////////////////////////////////////
-//:: CreateObjectArray
-//:://////////////////////////////////////////////
-/*
-    Creates an array of objects on the specified
-    object. This function must be called before
-    array variables can be set.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-void CreateObjectArray(object oObject, string sArrayName, int nSize)
-{
-    nSize = ClampInt(nSize, ARRAY_MIN_SIZE, ARRAY_MAX_SIZE);
-    SetLocalInt(oObject, LIB_ARRAY_PREFIX + "Object" + sArrayName + "Size", nSize);
-}
+/// Returns the size of the array.
+int Array_Size(string tag, object obj=OBJECT_INVALID);
 
-//::///////////////////////////////////////////////
-//:: CreateStringArray
-//:://////////////////////////////////////////////
-/*
-    Creates an array of strings on the specified
-    object. This function must be called before
-    array variables can be set.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-void CreateStringArray(object oObject, string sArrayName, int nSize)
-{
-    nSize = ClampInt(nSize, ARRAY_MIN_SIZE, ARRAY_MAX_SIZE);
-    SetLocalInt(oObject, LIB_ARRAY_PREFIX + "String" + sArrayName + "Size", nSize);
-}
+/// Sorts the collection based on descending order.
+void Array_SortAscending(string tag, int type=TYPE_STRING, object obj=OBJECT_INVALID);
 
-//::///////////////////////////////////////////////
-//:: DeleteArrayFloat
-//:://////////////////////////////////////////////
-/*
-    Deletes the float array variable at the
-    specified index (i.e. element).
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-void DeleteArrayFloat(object oObject, string sArrayName, int nElement)
-{
-    DeleteLocalFloat(oObject, LIB_ARRAY_PREFIX + "Float" + sArrayName + IntToString(nElement));
-}
+/// Sorts the collection based on descending order.
+void Array_SortDescending(string tag, int type=TYPE_STRING, object obj=OBJECT_INVALID);
 
-//::///////////////////////////////////////////////
-//:: DeleteArrayInt
-//:://////////////////////////////////////////////
-/*
-    Deletes the int array variable at the
-    specified index (i.e. element).
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-void DeleteArrayInt(object oObject, string sArrayName, int nElement)
-{
-    DeleteLocalInt(oObject, LIB_ARRAY_PREFIX + "Int" + sArrayName + IntToString(nElement));
-}
+/// @defgroup data_array_set Array Set
+/// @brief Sets the element at the index, where size > index >= 0.
+/// @ingroup data
+/// @param obj The object.
+/// @param tag The tag.
+/// @param index The index.
+/// @param element The element.
+/// @{
+void Array_Set_Flt(string tag, int index, float  element, object obj=OBJECT_INVALID);
+void Array_Set_Int(string tag, int index, int    element, object obj=OBJECT_INVALID);
+void Array_Set_Obj(string tag, int index, object element, object obj=OBJECT_INVALID);
+void Array_Set_Str(string tag, int index, string element, object obj=OBJECT_INVALID);
+/// @}
 
-//::///////////////////////////////////////////////
-//:: DeleteArrayLocation
-//:://////////////////////////////////////////////
-/*
-    Deletes the location array variable at the
-    specified index (i.e. element).
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-void DeleteArrayLocation(object oObject, string sArrayName, int nElement)
-{
-    DeleteLocalLocation(oObject, LIB_ARRAY_PREFIX + "Location" + sArrayName + IntToString(nElement));
-}
+/// @}
 
-//::///////////////////////////////////////////////
-//:: DeleteArrayObject
-//:://////////////////////////////////////////////
-/*
-    Deletes the object array variable at the
-    specified index (i.e. element).
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-void DeleteArrayObject(object oObject, string sArrayName, int nElement)
-{
-    DeleteLocalObject(oObject, LIB_ARRAY_PREFIX + "Object" + sArrayName + IntToString(nElement));
-}
+//
+// Local Utility Functions.
+//
+string GetTableName(string tag, object obj=OBJECT_INVALID, int bare=FALSE) {
+    if (obj == OBJECT_INVALID)
+        obj = GetModule();
 
-//::///////////////////////////////////////////////
-//:: DeleteArrayString
-//:://////////////////////////////////////////////
-/*
-    Deletes the string array variable at the
-    specified index (i.e. element).
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-void DeleteArrayString(object oObject, string sArrayName, int nElement)
-{
-    DeleteLocalString(oObject, LIB_ARRAY_PREFIX + "String" + sArrayName + IntToString(nElement));
-}
+    string sName = "array_" + ObjectToString(obj) + "_" + tag;
+    // Remove invalid characters from the tag rather than failing.
+    string sCleansed = RegExpReplace("[^A-Za-z0-9_\$@#]", sName, "");
+    // But provide some feedback.
+    if (GetStringLength(sName) != GetStringLength(sCleansed) || GetStringLength(sCleansed) == 0) {
+        WriteTimestampedLogEntry("WARNING:  Invalid table name detected for array with tag <" + tag + ">.  Only characters (a-zA-Z0-9), _, @, $ and # are allowed. Using <"+sCleansed+"> instead.");
 
-//::///////////////////////////////////////////////
-//:: DeleteFloatArray
-//:://////////////////////////////////////////////
-/*
-    Deletes the specified float array (and all
-    child components) from the object.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-void DeleteFloatArray(object oObject, string sArrayName)
-{
-    ResizeFloatArray(oObject, sArrayName, 0);
-    DeleteLocalFloat(oObject, LIB_ARRAY_PREFIX + "Float" + sArrayName + "Size");
-}
-
-//::///////////////////////////////////////////////
-//:: DeleteIntArray
-//:://////////////////////////////////////////////
-/*
-    Deletes the specified int array (and all
-    child components) from the object.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-void DeleteIntArray(object oObject, string sArrayName)
-{
-    ResizeIntArray(oObject, sArrayName, 0);
-    DeleteLocalInt(oObject, LIB_ARRAY_PREFIX + "Int" + sArrayName + "Size");
-}
-
-//::///////////////////////////////////////////////
-//:: DeleteLocationArray
-//:://////////////////////////////////////////////
-/*
-    Deletes the specified location array (and all
-    child components) from the object.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-void DeleteLocationArray(object oObject, string sArrayName)
-{
-    ResizeLocationArray(oObject, sArrayName, 0);
-    DeleteLocalLocation(oObject, LIB_ARRAY_PREFIX + "Location" + sArrayName + "Size");
-}
-
-//::///////////////////////////////////////////////
-//:: DeleteObjectArray
-//:://////////////////////////////////////////////
-/*
-    Deletes the specified object array (and all
-    child components) from the object.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-void DeleteObjectArray(object oObject, string sArrayName)
-{
-    ResizeObjectArray(oObject, sArrayName, 0);
-    DeleteLocalObject(oObject, LIB_ARRAY_PREFIX + "Object" + sArrayName + "Size");
-}
-
-//::///////////////////////////////////////////////
-//:: DeleteStringArray
-//:://////////////////////////////////////////////
-/*
-    Deletes the specified string array (and all
-    child components) from the object.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-void DeleteStringArray(object oObject, string sArrayName)
-{
-    ResizeStringArray(oObject, sArrayName, 0);
-    DeleteLocalString(oObject, LIB_ARRAY_PREFIX + "String" + sArrayName + "Size");
-}
-
-//::///////////////////////////////////////////////
-//:: GetArrayFloat
-//:://////////////////////////////////////////////
-/*
-    Returns the value of the float at the
-    specified array index (i.e. element).
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-float GetArrayFloat(object oObject, string sArrayName, int nElement)
-{
-    if(GetIsValidFloatArrayIndex(oObject, sArrayName, nElement))
-        return GetLocalFloat(oObject, LIB_ARRAY_PREFIX + "Float" + sArrayName + IntToString(nElement));
-
-    return NULL_FLOAT;
-}
-
-//::///////////////////////////////////////////////
-//:: GetArrayInt
-//:://////////////////////////////////////////////
-/*
-    Returns the value of the int at the
-    specified array index (i.e. element).
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-int GetArrayInt(object oObject, string sArrayName, int nElement)
-{
-    if(GetIsValidIntArrayIndex(oObject, sArrayName, nElement))
-        return GetLocalInt(oObject, LIB_ARRAY_PREFIX + "Int" + sArrayName + IntToString(nElement));
-
-    return NULL_INT;
-}
-
-//::///////////////////////////////////////////////
-//:: GetArrayLocation
-//:://////////////////////////////////////////////
-/*
-    Returns the value of the location at the
-    specified array index (i.e. element).
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-location GetArrayLocation(object oObject, string sArrayName, int nElement)
-{
-    location lLoc;
-    if(GetIsValidLocationArrayIndex(oObject, sArrayName, nElement))
-        return GetLocalLocation(oObject, LIB_ARRAY_PREFIX + "Location" + sArrayName + IntToString(nElement));
-
-    return lLoc;
-}
-
-//::///////////////////////////////////////////////
-//:: GetArrayObject
-//:://////////////////////////////////////////////
-/*
-    Returns the value of the object at the
-    specified array index (i.e. element).
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-object GetArrayObject(object oObject, string sArrayName, int nElement)
-{
-    if(GetIsValidObjectArrayIndex(oObject, sArrayName, nElement))
-        return GetLocalObject(oObject, LIB_ARRAY_PREFIX + "Object" + sArrayName + IntToString(nElement));
-
-    return OBJECT_INVALID;
-}
-
-//::///////////////////////////////////////////////
-//:: GetArrayString
-//:://////////////////////////////////////////////
-/*
-    Returns the value of the string at the
-    specified array index (i.e. element).
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-string GetArrayString(object oObject, string sArrayName, int nElement)
-{
-    if(GetIsValidStringArrayIndex(oObject, sArrayName, nElement))
-        return GetLocalString(oObject, LIB_ARRAY_PREFIX + "String" + sArrayName + IntToString(nElement));
-
-    return NULL_STRING;
-}
-
-//::///////////////////////////////////////////////
-//:: GetFloatArrayIndexOf
-//:://////////////////////////////////////////////
-/*
-    Returns the location of nNth element in
-    an array matching the specified value.
-    Returns INDEX_INVALID if the element is not
-    found.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-int GetFloatArrayIndexOf(object oObject, string sArrayName, float fValue, int nNth = 1)
-{
-    int i;
-    int nSize = GetFloatArraySize(oObject, sArrayName);
-
-    for(i = 0; i < nSize; i++)
-    {
-        if(GetArrayFloat(oObject, sArrayName, i) == fValue)
-            nNth--;
-        if(!nNth)
-            return i;
     }
 
-    return INDEX_INVALID;
-}
-
-//::///////////////////////////////////////////////
-//:: GetFloatArraySize
-//:://////////////////////////////////////////////
-/*
-    Returns the size (i.e. maximum capacity)
-    of the specified float array.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-int GetFloatArraySize(object oObject, string sArrayName)
-{
-    return GetLocalInt(oObject, LIB_ARRAY_PREFIX + "Float" + sArrayName + "Size");
-}
-
-//::///////////////////////////////////////////////
-//:: GetIntArrayIndexOf
-//:://////////////////////////////////////////////
-/*
-    Returns the location of nNth element in
-    an array matching the specified value.
-    Returns INDEX_INVALID if the element is not
-    found.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-int GetIntArrayIndexOf(object oObject, string sArrayName, int nValue, int nNth = 1)
-{
-    int i;
-    int nSize = GetIntArraySize(oObject, sArrayName);
-
-    for(i = 0; i < nSize; i++)
-    {
-        if(GetArrayInt(oObject, sArrayName, i) == nValue)
-            nNth--;
-        if(!nNth)
-            return i;
+    // BARE returns just the table name with no wrapping.
+    if (bare == TRUE) {
+        return sCleansed;
     }
 
-    return INDEX_INVALID;
+    // Table name wraped in quotes to avoid token expansion.
+    return "\""+sCleansed+"\"";
 }
 
-//::///////////////////////////////////////////////
-//:: GetIntArraySize
-//:://////////////////////////////////////////////
-/*
-    Returns the size (i.e. maximum capacity)
-    of the specified int array.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-int GetIntArraySize(object oObject, string sArrayName)
-{
-    return GetLocalInt(oObject, LIB_ARRAY_PREFIX + "Int" + sArrayName + "Size");
+string GetTableCreateString(string tag, object obj=OBJECT_INVALID) {
+    // for simplicity sake, everything is turned into a string.  Possible enhancement
+    // to create specific tables for int/float/whatever.
+    return "CREATE TABLE IF NOT EXISTS " + GetTableName(tag, obj) + " ( ind INTEGER, value TEXT )";
 }
 
-//::///////////////////////////////////////////////
-//:: GetIsValidFloatArrayIndex
-//:://////////////////////////////////////////////
-/*
-    Returns TRUE if nIndex falls within the
-    bounds of the specified array.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-int GetIsValidFloatArrayIndex(object oObject, string sArrayName, int nIndex)
-{
-    int nSize = GetFloatArraySize(oObject, sArrayName);
-
-    return (nIndex >= 0) && (nIndex <= nSize - 1);
+int TableExists(string tag, object obj=OBJECT_INVALID) {
+    string stmt = "SELECT name FROM sqlite_master WHERE type = 'table' AND name = @tablename;";
+    sqlquery sqlQuery = SqlPrepareQueryObject(GetModule(), stmt);
+    SqlBindString(sqlQuery, "@tablename", GetTableName(tag, obj, TRUE));
+    return SqlStep(sqlQuery);
 }
 
-//::///////////////////////////////////////////////
-//:: GetIsValidIntArrayIndex
-//:://////////////////////////////////////////////
-/*
-    Returns TRUE if nIndex falls within the
-    bounds of the specified array.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-int GetIsValidIntArrayIndex(object oObject, string sArrayName, int nIndex)
-{
-    int nSize = GetIntArraySize(oObject, sArrayName);
-
-    return (nIndex >= 0) && (nIndex <= nSize - 1);
+void ExecuteStatement(string statement, object obj=OBJECT_INVALID) {
+    if (obj == OBJECT_INVALID)
+        obj = GetModule();
+    // There's no direct "execute this.."  everything has to be prepared then executed.
+    //WriteTimestampedLogEntry("SQL: " + statement);
+    sqlquery sqlQuery = SqlPrepareQueryObject(GetModule(), statement);
+    SqlStep(sqlQuery);
 }
 
-//::///////////////////////////////////////////////
-//:: GetIsValidLocationArrayIndex
-//:://////////////////////////////////////////////
-/*
-    Returns TRUE if nIndex falls within the
-    bounds of the specified array.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-int GetIsValidLocationArrayIndex(object oObject, string sArrayName, int nIndex)
-{
-    int nSize = GetLocationArraySize(oObject, sArrayName);
-
-    return (nIndex >= 0) && (nIndex <= nSize - 1);
+void CreateArrayTable(string tag, object obj=OBJECT_INVALID) {
+    string createStatement = GetTableCreateString(tag, obj);
+    ExecuteStatement(createStatement, obj);
 }
 
-//::///////////////////////////////////////////////
-//:: GetIsValidObjectArrayIndex
-//:://////////////////////////////////////////////
-/*
-    Returns TRUE if nIndex falls within the
-    bounds of the specified array.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-int GetIsValidObjectArrayIndex(object oObject, string sArrayName, int nIndex)
-{
-    int nSize = GetObjectArraySize(oObject, sArrayName);
-
-    return (nIndex >= 0) && (nIndex <= nSize - 1);
+// Get the table row count.  Returns -1 on error (0 is a valid number of rows in a table)
+int GetRowCount(string tag, object obj=OBJECT_INVALID) {
+    if (obj == OBJECT_INVALID)
+        obj = GetModule();
+    CreateArrayTable(tag, obj);
+    string stmt = "SELECT COUNT(1) FROM " + GetTableName(tag, obj);
+    sqlquery sqlQuery = SqlPrepareQueryObject(GetModule(), stmt);
+    if ( SqlStep(sqlQuery) ) {
+        return SqlGetInt(sqlQuery, 0);
+    }
+    return -1;
 }
 
-//::///////////////////////////////////////////////
-//:: GetIsValidStringArrayIndex
-//:://////////////////////////////////////////////
-/*
-    Returns TRUE if nIndex falls within the
-    bounds of the specified array.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-int GetIsValidStringArrayIndex(object oObject, string sArrayName, int nIndex)
-{
-    int nSize = GetStringArraySize(oObject, sArrayName);
 
-    return (nIndex >= 0) && (nIndex <= nSize - 1);
+////////////////////////////////////////////////////////////////////////////////
+// return the value contained in location "index"
+string Array_At_Str(string tag, int index, object obj=OBJECT_INVALID)
+{
+    // Just "create if not exists" to ensure it exists for the insert.
+    CreateArrayTable(tag, obj);
+
+    string stmt = "SELECT value FROM " + GetTableName(tag, obj) + " WHERE ind = @ind";
+    sqlquery sqlQuery = SqlPrepareQueryObject(GetModule(), stmt);
+    SqlBindInt(sqlQuery, "@ind", index);
+    if ( SqlStep(sqlQuery) ) {
+        return SqlGetString(sqlQuery, 0);
+    }
+    return "";
 }
 
-//::///////////////////////////////////////////////
-//:: GetLocationArrayIndexOf
-//:://////////////////////////////////////////////
-/*
-    Returns the location of nNth element in
-    an array matching the specified value.
-    Returns INDEX_INVALID if the element is not
-    found.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-int GetLocationArrayIndexOf(object oObject, string sArrayName, location lValue, int nNth = 1)
+float Array_At_Flt(string tag, int index, object obj=OBJECT_INVALID)
 {
-    int i;
-    int nSize = GetLocationArraySize(oObject, sArrayName);
+    string st = Array_At_Str(tag, index, obj);
+    if (st == "") {
+        return 0.0;
+    }
+    return StringToFloat(st);
+}
 
-    for(i = 0; i < nSize; i++)
-    {
-        if(GetArrayLocation(oObject, sArrayName, i) == lValue)
-            nNth--;
-        if(!nNth)
-            return i;
+int Array_At_Int(string tag, int index, object obj=OBJECT_INVALID)
+{
+    string st = Array_At_Str(tag, index, obj);
+    if (st == "") {
+        return 0;
+    }
+    return StringToInt(st);
+}
+
+object Array_At_Obj(string tag, int index, object obj=OBJECT_INVALID)
+{
+    string st = Array_At_Str(tag, index, obj);
+    if (st == "") {
+        return OBJECT_INVALID;
+    }
+    return StringToObject(st);
+}
+
+void Array_Clear(string tag, object obj=OBJECT_INVALID)
+{
+    // Just "create if not exists" to ensure it exists for the insert.
+    CreateArrayTable(tag, obj);
+	
+    ExecuteStatement("delete from "+GetTableName(tag, obj), obj);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Return true/value (1/0) if the array contains the value "element"
+int Array_Contains_Str(string tag, string element, object obj=OBJECT_INVALID)
+{
+    CreateArrayTable(tag, obj);
+    string stmt = "SELECT COUNT(1) FROM "+GetTableName(tag, obj)+" WHERE value = @element";
+
+    sqlquery sqlQuery = SqlPrepareQueryObject(GetModule(), stmt);
+    SqlBindString(sqlQuery, "@element", element);
+
+    int pos = -1;
+    if ( SqlStep(sqlQuery) ) {
+        pos = SqlGetInt(sqlQuery, 0);
+        if (pos > 0) {
+            return TRUE;
+        }
+    }
+    return FALSE;
+}
+
+int Array_Contains_Flt(string tag, float element, object obj=OBJECT_INVALID)
+{
+    return Array_Contains_Str(tag, FloatToString(element), obj);
+}
+
+int Array_Contains_Int(string tag, int element, object obj=OBJECT_INVALID)
+{
+    return Array_Contains_Str(tag, IntToString(element), obj);
+}
+
+int Array_Contains_Obj(string tag, object element, object obj=OBJECT_INVALID)
+{
+    return Array_Contains_Str(tag, ObjectToString(element), obj);
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+void Array_Copy(string tag, string otherTag, object obj=OBJECT_INVALID)
+{
+    CreateArrayTable(otherTag, obj);
+    ExecuteStatement("INSERT INTO "+GetTableName(otherTag, obj)+" SELECT * FROM "+GetTableName(tag, obj), obj);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+void Array_Erase(string tag, int index, object obj=OBJECT_INVALID)
+{
+    int rows = GetRowCount(tag, obj);
+    // Silently fail if "index" is outside the range of valid indicies.
+    if (index >= 0 && index < rows) {
+	    string stmt = "DELETE FROM "+GetTableName(tag, obj)+" WHERE ind = @ind";
+	    sqlquery sqlQuery = SqlPrepareQueryObject(GetModule(), stmt);
+	    SqlBindInt(sqlQuery, "@ind", index);
+	    SqlStep(sqlQuery);
+
+	    stmt = "UPDATE "+GetTableName(tag, obj)+" SET ind = ind - 1 WHERE ind > @ind";
+	    sqlQuery = SqlPrepareQueryObject(GetModule(), stmt);
+	    SqlBindInt(sqlQuery, "@ind", index);
+	    SqlStep(sqlQuery);
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// return the index in the array containing "element"
+// if not found, return INVALID_INDEX
+int Array_Find_Str(string tag, string element, object obj=OBJECT_INVALID)
+{
+    string stmt;
+    sqlquery sqlQuery;
+
+    // Just create it before trying to select in case it doesn't exist yet.
+    CreateArrayTable(tag, obj);
+
+    stmt = "SELECT IFNULL(MIN(ind),@invalid_index) FROM "+GetTableName(tag, obj)+" WHERE value = @element";
+    sqlQuery = SqlPrepareQueryObject(GetModule(), stmt);
+
+    SqlBindInt(sqlQuery, "@invalid_index", INVALID_INDEX);
+    SqlBindString(sqlQuery, "@element", element);
+    if ( SqlStep(sqlQuery) ) {
+        return SqlGetInt(sqlQuery, 0);
+    }
+    return INVALID_INDEX;
+}
+
+int Array_Find_Flt(string tag, float element, object obj=OBJECT_INVALID)
+{
+    return Array_Find_Str(tag, FloatToString(element), obj);
+}
+
+int Array_Find_Int(string tag, int element, object obj=OBJECT_INVALID)
+{
+    return Array_Find_Str(tag, IntToString(element), obj);
+}
+
+int Array_Find_Obj(string tag, object element, object obj=OBJECT_INVALID)
+{
+    return Array_Find_Str(tag, ObjectToString(element), obj);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Insert a new element into position 'index'.  If index is beyond the number of rows in the array,
+// this will quietly fail.  This could be changed if you wanted to support sparse
+// arrays.
+void Array_Insert_Str(string tag, int index, string element, object obj=OBJECT_INVALID)
+{
+    int rows = GetRowCount(tag, obj);
+    // Index numbers are off by one, much like C arrays, so for "rows=10" - values are 0-9.
+    // It's not unreasonable to fail if you try to insert ind=10 into an array who's indexes
+    // only go to 9, but I guess it doesn't hurt as long as we're not allowing gaps in
+    // index numbers.
+    if (index >= 0 && index <= rows) {
+        // index is passed as an integer, so immune (as far as I know) to SQL injection for a one shot query.
+        ExecuteStatement("UPDATE "+GetTableName(tag, obj)+" SET ind = ind + 1 WHERE ind >= "+IntToString(index), obj);
+        // Element, however, is not.
+        string stmt = "INSERT INTO "+GetTableName(tag, obj)+" VALUES ( @ind, @element )";
+        sqlquery sqlQuery = SqlPrepareQueryObject(GetModule(), stmt);
+        SqlBindInt(sqlQuery, "@ind", index);
+        SqlBindString(sqlQuery, "@element", element);
+        SqlStep(sqlQuery);
+    }
+}
+
+void Array_Insert_Flt(string tag, int index, float element, object obj=OBJECT_INVALID)
+{
+    Array_Insert_Str(tag, index, FloatToString(element), obj);
+}
+
+void Array_Insert_Int(string tag, int index, int element, object obj=OBJECT_INVALID)
+{
+    Array_Insert_Str(tag, index, IntToString(element), obj);
+}
+
+void Array_Insert_Obj(string tag, int index, object element, object obj=OBJECT_INVALID)
+{
+    Array_Insert_Str(tag, index, ObjectToString(element), obj);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Insert a new element at the end of the array.
+void Array_PushBack_Str(string tag, string element, object obj=OBJECT_INVALID)
+{
+    // Create it before trhing to INSERT into it.  If it already exists, this is a no-op.
+    CreateArrayTable(tag, obj);
+    
+    // If rowCount = 10, indexes are from 0 to 9, so this becomes the 11th entry at index 10.
+    int rowCount = GetRowCount(tag, obj);
+
+    string stmt = "INSERT INTO "+GetTableName(tag, obj)+" VALUES ( @ind, @element )";
+    sqlquery sqlQuery = SqlPrepareQueryObject(GetModule(), stmt);
+    SqlBindInt(sqlQuery, "@ind", rowCount);
+    SqlBindString(sqlQuery, "@element", element);
+    SqlStep(sqlQuery);
+}
+
+void Array_PushBack_Flt(string tag, float element, object obj=OBJECT_INVALID)
+{
+    Array_PushBack_Str(tag, FloatToString(element), obj);
+}
+
+void Array_PushBack_Int(string tag, int element, object obj=OBJECT_INVALID)
+{
+    Array_PushBack_Str(tag, IntToString(element), obj);
+}
+
+void Array_PushBack_Obj(string tag, object element, object obj=OBJECT_INVALID)
+{
+    Array_PushBack_Str(tag, ObjectToString(element), obj);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Cuts the array off at size 'size'.  Elements beyond size are removed.
+void Array_Resize(string tag, int size, object obj=OBJECT_INVALID)
+{
+    // Int immune to sql injection so easier to one-shot it.
+    ExecuteStatement("DELETE FROM "+GetTableName(tag, obj)+" WHERE ind >= " + IntToString(size), obj);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+void Array_Shuffle(string tag, object obj=OBJECT_INVALID)
+{
+    string table = GetTableName(tag, obj, TRUE);
+    ExecuteStatement("CREATE TABLE " +table+ "_temp AS SELECT ROW_NUMBER() OVER(ORDER BY RANDOM())-1, value FROM " +table, obj);
+    ExecuteStatement("DELETE FROM " +table , obj);
+    ExecuteStatement("INSERT INTO " +table+ " SELECT * FROM " +table+ "_temp", obj);
+    ExecuteStatement("DROP TABLE " +table+ "_TEMP", obj);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+int Array_Size(string tag, object obj=OBJECT_INVALID)
+{
+    return GetRowCount(tag, obj);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Sort the array by value according to 'direction' (ASC or DESC).
+// Supplying a type allows for correct numerical sorting of integers or floats.
+void Array_Sort(string tag, string dir="ASC", int type=TYPE_STRING, object obj=OBJECT_INVALID)
+{
+    string table = GetTableName(tag, obj, TRUE);
+    string direction = GetStringUpperCase(dir);
+
+    if ( ! (direction == "ASC" || direction == "DESC") ) {
+        WriteTimestampedLogEntry("WARNING:  Invalid sort direction <" + direction + "> supplied.  Defaulting to ASC.");
+        direction = "ASC";
     }
 
-    return INDEX_INVALID;
-}
-
-//::///////////////////////////////////////////////
-//:: GetLocationArraySize
-//:://////////////////////////////////////////////
-/*
-    Returns the size (i.e. maximum capacity)
-    of the specified location array.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-int GetLocationArraySize(object oObject, string sArrayName)
-{
-    return GetLocalInt(oObject, LIB_ARRAY_PREFIX + "Location" + sArrayName + "Size");
-}
-
-//::///////////////////////////////////////////////
-//:: GetObjectArrayIndexOf
-//:://////////////////////////////////////////////
-/*
-    Returns the location of nNth element in
-    an array matching the specified value.
-    Returns INDEX_INVALID if the element is not
-    found.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-int GetObjectArrayIndexOf(object oObject, string sArrayName, object oValue, int nNth = 1)
-{
-    int i;
-    int nSize = GetObjectArraySize(oObject, sArrayName);
-
-    for(i = 0; i < nSize; i++)
-    {
-        if(GetArrayObject(oObject, sArrayName, i) == oValue)
-            nNth--;
-        if(!nNth)
-            return i;
+    // default orderBy for strings.
+    string orderBy = "ORDER BY value " + direction;
+    switch(type) {
+        case TYPE_INTEGER:
+            orderBy = "ORDER BY CAST(value AS INTEGER)" + direction;
+            break;
+        case TYPE_FLOAT:
+            orderBy = "ORDER BY CAST(value AS DECIMAL)" + direction;
+            break;
     }
-
-    return INDEX_INVALID;
+    ExecuteStatement("CREATE TABLE " +table+  "_temp AS SELECT ROW_NUMBER() OVER(" + orderBy + ")-1, value FROM " +table, obj);
+    ExecuteStatement("DELETE FROM " +table, obj);
+    ExecuteStatement("INSERT INTO " +table+ " SELECT * FROM " +table+ "_temp", obj);
+    ExecuteStatement("DROP TABLE " +table+ "_temp", obj);
 }
 
-//::///////////////////////////////////////////////
-//:: GetObjectArraySize
-//:://////////////////////////////////////////////
-/*
-    Returns the size (i.e. maximum capacity)
-    of the specified object array.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-int GetObjectArraySize(object oObject, string sArrayName)
+void Array_SortAscending(string tag, int type=TYPE_STRING, object obj=OBJECT_INVALID)
 {
-    return GetLocalInt(oObject, LIB_ARRAY_PREFIX + "Object" + sArrayName + "Size");
+    Array_Sort(tag, "ASC", type, obj);
 }
 
-//::///////////////////////////////////////////////
-//:: GetStringArrayIndexOf
-//:://////////////////////////////////////////////
-/*
-    Returns the location of nNth element in
-    an array matching the specified value.
-    Returns INDEX_INVALID if the element is not
-    found.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-int GetStringArrayIndexOf(object oObject, string sArrayName, string sValue, int nNth = 1)
+void Array_SortDescending(string tag, int type=TYPE_STRING, object obj=OBJECT_INVALID)
 {
-    int i;
-    int nSize = GetStringArraySize(oObject, sArrayName);
+    Array_Sort(tag, "DESC", type, obj);
+}
 
-    for(i = 0; i < nSize; i++)
-    {
-        if(GetArrayString(oObject, sArrayName, i) == sValue)
-            nNth--;
-        if(!nNth)
-            return i;
+////////////////////////////////////////////////////////////////////////////////
+// Set the value of array index 'index' to a 'element'
+// This will quietly eat values if index > array size
+void Array_Set_Str(string tag, int index, string element, object obj=OBJECT_INVALID)
+{
+    int rows = GetRowCount(tag, obj);
+    if (index >= 0 && index <= rows) {
+        string stmt = "UPDATE "+GetTableName(tag, obj)+" SET value = @element WHERE ind = @ind";
+        sqlquery sqlQuery = SqlPrepareQueryObject(GetModule(), stmt);
+        SqlBindInt(sqlQuery, "@ind", index);
+        SqlBindString(sqlQuery, "@element", element);
+        SqlStep(sqlQuery);
     }
-
-    return INDEX_INVALID;
 }
 
-//::///////////////////////////////////////////////
-//:: GetStringArraySize
-//:://////////////////////////////////////////////
-/*
-    Returns the size (i.e. maximum capacity)
-    of the specified string array.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-int GetStringArraySize(object oObject, string sArrayName)
+void Array_Set_Flt(string tag, int index, float element, object obj=OBJECT_INVALID)
 {
-    return GetLocalInt(oObject, LIB_ARRAY_PREFIX + "String" + sArrayName + "Size");
+    Array_Set_Str(tag, index, FloatToString(element), obj);
 }
 
-//::///////////////////////////////////////////////
-//:: ResizeFloatArray
-//:://////////////////////////////////////////////
-/*
-    Alters the size (i.e. maximum capacity)
-    of the specified array. If the size is
-    decreased, then any values that extend beyond
-    the bounds of the new array will be deleted.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-void ResizeFloatArray(object oObject, string sArrayName, int nSize)
+void Array_Set_Int(string tag, int index, int element, object obj=OBJECT_INVALID)
 {
-    int nPreviousSize = GetFloatArraySize(oObject, sArrayName);
-
-    nSize = ClampInt(nSize, ARRAY_MIN_SIZE, ARRAY_MAX_SIZE);
-    SetLocalInt(oObject, LIB_ARRAY_PREFIX + "Float" + sArrayName + "Size", nSize);
-
-    if(nSize < nPreviousSize)
-        while(nPreviousSize > nSize)
-        {
-            nPreviousSize--;
-            DeleteArrayFloat(oObject, sArrayName, nPreviousSize);
-        }
+    Array_Set_Str(tag, index, IntToString(element), obj);
 }
 
-//::///////////////////////////////////////////////
-//:: ResizeIntArray
-//:://////////////////////////////////////////////
-/*
-    Alters the size (i.e. maximum capacity)
-    of the specified array. If the size is
-    decreased, then any values that extend beyond
-    the bounds of the new array will be deleted.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-void ResizeIntArray(object oObject, string sArrayName, int nSize)
+void Array_Set_Obj(string tag, int index, object element, object obj=OBJECT_INVALID)
 {
-    int nPreviousSize = GetIntArraySize(oObject, sArrayName);
-
-    nSize = ClampInt(nSize, ARRAY_MIN_SIZE, ARRAY_MAX_SIZE);
-    SetLocalInt(oObject, LIB_ARRAY_PREFIX + "Int" + sArrayName + "Size", nSize);
-
-    if(nSize < nPreviousSize)
-        while(nPreviousSize > nSize)
-        {
-            nPreviousSize--;
-            DeleteArrayInt(oObject, sArrayName, nPreviousSize);
-        }
+    Array_Set_Str(tag, index, ObjectToString(element), obj);
 }
 
-//::///////////////////////////////////////////////
-//:: ResizeLocationArray
-//:://////////////////////////////////////////////
-/*
-    Alters the size (i.e. maximum capacity)
-    of the specified array. If the size is
-    decreased, then any values that extend beyond
-    the bounds of the new array will be deleted.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-void ResizeLocationArray(object oObject, string sArrayName, int nSize)
-{
-    int nPreviousSize = GetLocationArraySize(oObject, sArrayName);
-
-    nSize = ClampInt(nSize, ARRAY_MIN_SIZE, ARRAY_MAX_SIZE);
-    SetLocalInt(oObject, LIB_ARRAY_PREFIX + "Location" + sArrayName + "Size", nSize);
-
-    if(nSize < nPreviousSize)
-        while(nPreviousSize > nSize)
-        {
-            nPreviousSize--;
-            DeleteArrayLocation(oObject, sArrayName, nPreviousSize);
-        }
+void Array_Debug_Dump(string tag, string title = "xxx", object obj=OBJECT_INVALID) {
+    if (title != "xxx") {
+        WriteTimestampedLogEntry("== " + title + " ======================================");
+    }
+    WriteTimestampedLogEntry("Table name = " + GetTableName(tag, obj));
+    string stmt = "SELECT ind, value FROM " + GetTableName(tag, obj);
+    sqlquery sqlQuery = SqlPrepareQueryObject(GetModule(), stmt);
+    int    ind = -1;
+    string value = "";
+    while ( SqlStep(sqlQuery) ) {
+        ind = SqlGetInt(sqlQuery, 0);
+        value = SqlGetString(sqlQuery, 1);
+        WriteTimestampedLogEntry(tag + "[" + IntToString(ind) + "] = " + value);
+    }
 }
-
-//::///////////////////////////////////////////////
-//:: ResizeObjectArray
-//:://////////////////////////////////////////////
-/*
-    Alters the size (i.e. maximum capacity)
-    of the specified array. If the size is
-    decreased, then any values that extend beyond
-    the bounds of the new array will be deleted.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-void ResizeObjectArray(object oObject, string sArrayName, int nSize)
-{
-    int nPreviousSize = GetObjectArraySize(oObject, sArrayName);
-
-    nSize = ClampInt(nSize, ARRAY_MIN_SIZE, ARRAY_MAX_SIZE);
-    SetLocalInt(oObject, LIB_ARRAY_PREFIX + "Object" + sArrayName + "Size", nSize);
-
-    if(nSize < nPreviousSize)
-        while(nPreviousSize > nSize)
-        {
-            nPreviousSize--;
-            DeleteArrayObject(oObject, sArrayName, nPreviousSize);
-        }
-}
-
-//::///////////////////////////////////////////////
-//:: ResizeStringArray
-//:://////////////////////////////////////////////
-/*
-    Alters the size (i.e. maximum capacity)
-    of the specified array. If the size is
-    decreased, then any values that extend beyond
-    the bounds of the new array will be deleted.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-void ResizeStringArray(object oObject, string sArrayName, int nSize)
-{
-    int nPreviousSize = GetStringArraySize(oObject, sArrayName);
-
-    nSize = ClampInt(nSize, ARRAY_MIN_SIZE, ARRAY_MAX_SIZE);
-    SetLocalInt(oObject, LIB_ARRAY_PREFIX + "String" + sArrayName + "Size", nSize);
-
-    if(nSize < nPreviousSize)
-        while(nPreviousSize > nSize)
-        {
-            nPreviousSize--;
-            DeleteArrayString(oObject, sArrayName, nPreviousSize);
-        }
-}
-
-//::///////////////////////////////////////////////
-//:: SetArrayFloat
-//:://////////////////////////////////////////////
-/*
-    Sets a float array value. Note that the array
-    must first be initialized with
-    CreateFloatArray() for this function to work.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-void SetArrayFloat(object oObject, string sArrayName, int nElement, float fValue)
-{
-    if(GetIsValidFloatArrayIndex(oObject, sArrayName, nElement))
-        SetLocalFloat(oObject, LIB_ARRAY_PREFIX + "Float" + sArrayName + IntToString(nElement), fValue);
-}
-
-//::///////////////////////////////////////////////
-//:: SetArrayInt
-//:://////////////////////////////////////////////
-/*
-    Sets an int array value. Note that the array
-    must first be initialized with
-    CreateIntArray() for this function to work.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-void SetArrayInt(object oObject, string sArrayName, int nElement, int nValue)
-{
-    if(GetIsValidIntArrayIndex(oObject, sArrayName, nElement))
-        SetLocalInt(oObject, LIB_ARRAY_PREFIX + "Int" + sArrayName + IntToString(nElement), nValue);
-}
-
-//::///////////////////////////////////////////////
-//:: SetArrayLocation
-//:://////////////////////////////////////////////
-/*
-    Sets a location array value. Note that the array
-    must first be initialized with
-    CreateLocationArray() for this function to work.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-void SetArrayLocation(object oObject, string sArrayName, int nElement, location lValue)
-{
-    if(GetIsValidLocationArrayIndex(oObject, sArrayName, nElement))
-        SetLocalLocation(oObject, LIB_ARRAY_PREFIX + "Location" + sArrayName + IntToString(nElement), lValue);
-}
-
-//::///////////////////////////////////////////////
-//:: SetArrayObject
-//:://////////////////////////////////////////////
-/*
-    Sets an object array value. Note that the array
-    must first be initialized with
-    CreateObjectArray() for this function to work.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 25, 2011
-//:://////////////////////////////////////////////
-void SetArrayObject(object oObject, string sArrayName, int nElement, object oValue)
-{
-    if(GetIsValidObjectArrayIndex(oObject, sArrayName, nElement))
-        SetLocalObject(oObject, LIB_ARRAY_PREFIX + "Object" + sArrayName + IntToString(nElement), oValue);
-}
-
-//::///////////////////////////////////////////////
-//:: SetArrayString
-//:://////////////////////////////////////////////
-/*
-    Sets a string array value. Note that the array
-    must first be initialized with
-    CreateStringArray() for this function to work.
-*/
-//:://////////////////////////////////////////////
-//:: Created By: Peppermint
-//:: Created On: July 13, 2016
-//:://////////////////////////////////////////////
-void SetArrayString(object oObject, string sArrayName, int nElement, string sValue)
-{
-    if(GetIsValidStringArrayIndex(oObject, sArrayName, nElement))
-        SetLocalString(oObject, LIB_ARRAY_PREFIX + "String" + sArrayName + IntToString(nElement), sValue);
-}
-

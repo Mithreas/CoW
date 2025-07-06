@@ -35,6 +35,7 @@ void _RemoveFeat(object oPC, int nFeat)
 {
   NWNX_Creature_RemoveFeat(oPC, nFeat);
   _RefundGoldLvl(oPC);
+  SendMessageToPC(oPC, "Feat " + GetStringByStrRef(StringToInt(Get2DAString("feat", "name", nFeat))) + " has been refunded.");
 }
 
 void _Relevel(object oPC)
@@ -129,6 +130,10 @@ void main()
   if (GetKnowsFeat(FEAT_EPIC_ENERGY_RESISTANCE_SONIC_4 ,oPC)) _RemoveFeat(oPC, FEAT_EPIC_ENERGY_RESISTANCE_SONIC_4);
   if (GetKnowsFeat(FEAT_EPIC_ENERGY_RESISTANCE_SONIC_5 ,oPC)) _RemoveFeat(oPC, FEAT_EPIC_ENERGY_RESISTANCE_SONIC_5);
   
+  // 6th July 2025
+  if (GetKnowsFeat(FEAT_MOUNTED_COMBAT, oPC)) _RemoveFeat(oPC, FEAT_MOUNTED_COMBAT);
+  // TODO - Ride skill.
+  // TODO - something with summon mount?
 
   //Every other feat
   int x;

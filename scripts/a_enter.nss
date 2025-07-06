@@ -536,8 +536,12 @@ void main()
 	// IS_UNDERWATER = 2 means totally underwater (drains stamina very fast, slows PC).
 	if (GetLocalInt(oArea, "IS_UNDERWATER") == 2 && (GetIsPC(oEntering) || GetIsPC(GetMaster(oEntering))))
 	{
-	  // Water elemental shapes and Shifters can breathe underwater.
-	  if (GetAppearanceType(oEntering) != 68 && GetAppearanceType(oEntering) != 69 && !GetLevelByClass(CLASS_TYPE_SHIFTER, oEntering))
+	  // Water elemental shapes and Shifters can breathe underwater.  Undead and Constructs don't have to breathe.
+	  if (GetAppearanceType(oEntering) != 68 && 
+	      GetAppearanceType(oEntering) != 69 && 
+		  !GetLevelByClass(CLASS_TYPE_SHIFTER, oEntering) &&
+		  GetRacialType(oEntering) != RACIAL_TYPE_UNDEAD &&
+		  GetRacialType(oEntering) != RACIAL_TYPE_CONSTRUCT)
 	  {
 	    _ApplyUnderwaterSpeedPenalty(oEntering);
 	    DoUnderwaterHeartbeat(oEntering);

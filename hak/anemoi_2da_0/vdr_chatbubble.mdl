@@ -1,0 +1,90 @@
+#MAXMODEL ASCII
+# model: vdr_chatbubble
+filedependancy vdr_chatbubble.max
+newmodel vdr_chatbubble
+setsupermodel vdr_chatbubble NULL
+classification EFFECT
+setanimationscale 1
+#MAXGEOM  ASCII
+beginmodelgeom vdr_chatbubble
+node dummy vdr_chatbubble
+  parent NULL
+endnode
+node dummy Dummy01
+  parent vdr_chatbubble
+  position 0 0 0
+  orientation 0 0 0 0
+endnode
+node emitter OmenEmitter01
+  parent Dummy01
+  p2p 0
+  p2p_sel 0
+  affectedByWind 0
+  m_isTinted 0
+  bounce 0
+  random 0
+  inherit 0
+  inheritvel 0
+  inherit_local 1
+  inherit_part 0
+  splat 0
+  renderorder 0
+  spawntype 0
+  update Single
+  render Aligned_to_World_Z
+  blend Lighten
+  texture fxpa_chatbubble
+  xgrid 2
+  ygrid 2
+  loop 1
+  deadspace 0
+  twosidedtex 0
+  blastRadius 0
+  blastLength 0
+  position 0 0 0.1
+  orientation 0 0 0 0
+  colorStart 0.7 0.7 0.7
+  colorEnd 0.7 0.7 0.7
+  alphaStart 1
+  alphaEnd 0
+  sizeStart 0.8
+  sizeEnd 0.8
+  sizeStart_y 0
+  sizeEnd_y 0
+  frameStart 0
+  frameEnd 3
+  birthrate 1
+  lifeExp -1
+  mass 0
+  spread 0
+  particleRot 0
+  velocity 0
+  randvel 0
+  fps 3
+  xsize 0
+  ysize 0
+  bounce_co 0
+  blurlength 0
+  lightningDelay 0
+  lightningRadius 0
+  lightningScale 0
+  p2p_bezier2 0
+  p2p_bezier3 0
+  combinetime 0
+  drag 0
+  grav 0
+  threshold 0
+endnode
+endmodelgeom vdr_chatbubble
+
+#MAXANIM ASCII
+newanim duration vdr_chatbubble
+  length 1.0
+  transtime 0
+  animroot vdr_chatbubble
+  node dummy vdr_chatbubble
+    parent NULL
+  endnode
+doneanim duration vdr_chatbubble
+
+donemodel vdr_chatbubble

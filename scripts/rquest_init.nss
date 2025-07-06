@@ -52,7 +52,7 @@ void main()
    SQLPrepareStatement("(?,?,?,?),", "forest_patrol", DB_QUESTSET, "6", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "farm_patrol", DB_QUESTSET, "6", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "cull_cutthroats", DB_QUESTSET, "9", "10") + 
-   SQLPrepareStatement("(?,?,?,?),", "kill_erenia_scout", DB_QUESTSET, "7", "12") +
+   SQLPrepareStatement("(?,?,?,?),", "kill_erenia_scout", DB_QUESTSET, "8", "12") +
    SQLPrepareStatement("(?,?,?,?),", "kill_drannis_scout", DB_QUESTSET, "7", "12") + 
    SQLPrepareStatement("(?,?,?,?),", "make_black_powder", DB_QUESTSET, "8", "15") + 
    SQLPrepareStatement("(?,?,?,?),", "make_gonne", DB_QUESTSET, "10", "15") + 
@@ -338,7 +338,7 @@ void main()
    SQLPrepareStatement("(?,?,?,?),", "mountain_patrol", DB_QUESTSET, "6", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "laurisfetter", DB_QUESTSET, "6", "10") +
    SQLPrepareStatement("(?,?,?,?),", "kill_erenia_scout", DB_QUESTSET, "7", "12") +
-   SQLPrepareStatement("(?,?,?,?),", "kill_renerrin_scout", DB_QUESTSET, "7", "12") + 
+   SQLPrepareStatement("(?,?,?,?),", "kill_renerrin_scout", DB_QUESTSET, "8", "12") + 
    SQLPrepareStatement("(?,?,?,?),", "patrol_darzun_entrance", DB_QUESTSET, "8", "12") + 
    SQLPrepareStatement("(?,?,?,?),", "make_warhammer", DB_QUESTSET, "7", "15") + 
    SQLPrepareStatement("(?,?,?,?),", "cull_taskmasters", DB_QUESTSET, "9", "10") + 
@@ -613,7 +613,7 @@ void main()
    SQLPrepareStatement("(?,?,?,?),", "cull_spiders", DB_QUESTSET, "6", "8") + 
    SQLPrepareStatement("(?,?,?,?),", "forest_patrol", DB_QUESTSET, "6", "10") + 
    SQLPrepareStatement("(?,?,?,?),", "kill_drannis_scout", DB_QUESTSET, "7", "12") +
-   SQLPrepareStatement("(?,?,?,?),", "kill_renerrin_scout", DB_QUESTSET, "7", "12") +
+   SQLPrepareStatement("(?,?,?,?),", "kill_renerrin_scout", DB_QUESTSET, "8", "12") +
    SQLPrepareStatement("(?,?,?,?),", "cull_taskmasters", DB_QUESTSET, "9", "10") + 
    SQLPrepareStatement("(?,?,?,?)", "sanctify", DB_QUESTSET, "10", "15");
  SQLExecDirect(sSQL);

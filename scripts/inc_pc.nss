@@ -192,6 +192,7 @@ void gsPCCacheValues(object oPC)
 string gsPCGetPlayerID(object oPC)
 {
   // if (!GetIsPC(oPC)) return ""; - can't do this, GetIsPC returns False while a PC is exiting.
+  if (GetIsDM(oPC) || GetIsDMPossessed(oPC)) return "";
   
   string sID = GetLocalString(oPC, "GS_PC_ID");
 
