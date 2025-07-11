@@ -32,7 +32,7 @@ void main()
     object oNPC             = OBJECT_SELF;
     string sDoorTagToHandle = GetLocalString(oNPC, "sep_merch_door");
 	int    bNightOwl        = GetLocalInt(oNPC, "sep_merch_nightowl");
-    object oKickWP          = GetWaypointByTag(GetLocalString(oNPC, "NPCTag_kick_to"));
+    object oKickWP          = GetWaypointByTag(GetLocalString(oNPC, "sep_merch_kick_to"));
 	
 
     if (GetIsObjectValid(oKickWP)) DN_HandlePlayerKick(oKickWP, nEventNum, bNightOwl);

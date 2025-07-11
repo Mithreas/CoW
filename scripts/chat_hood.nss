@@ -70,7 +70,18 @@ int getDesiredHeadId(int variant)
             }
             else
             {
-                desiredHeadId = variant == 1 ? 12 : 143;
+				switch (variant)
+				{
+				  case 1:
+					desiredHeadId = 143;
+					break;
+				  case 2:
+				    desiredHeadId = 12;
+					break;
+				  default:
+				    desiredHeadId = 33;
+					break;
+				}
             }
             break;
 

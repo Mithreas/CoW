@@ -15,6 +15,7 @@
     * Help NPC. Character must find another NPC and do a quest for them.
     * Patrol areas. Character must visit a number of areas on a patrol.
 	* Cull creatures.  Character must kill X creatures with tag Y. 
+	* Uncover agent.  Character must detect which of 5 NPCs is an agent.
 
   @@@ Support more than one quest at a time.
   @@@ Rework the database structure so that there is a single quests table with
@@ -33,7 +34,7 @@
   Tables that must be filled out by the builder (all in standard APS-style):
   questname_quests - Contains a list of quest tags, matching them to templates.
                      A template is one of the quest types, stored as a string:
-                     RETRIEVE, KILL, MESSENGER, HELP, PATROL
+                     RETRIEVE, KILL, MESSENGER, HELP, PATROL, CULL, UNCOVER_AGENT
   questname_vars   - Stores the variables for each quest. The variables needed
                      depend on the quest type, but all quest types have two
                      common variables:
@@ -89,18 +90,18 @@
 					 CULL: 
 					 questtag_culltag      - the tag of the creature(s)
 					 questtag_numcreatures - the number to kill
+					 
+					 UNCOVER AGENT:
+					 todo
 
 
   Tables that are used by the scripts, and need to be set up (in usual APS
   style) but not populated with data:
-  questname_player - Stores the fact that a player has done a particular
-                     quest. One entry per player/character hash, containing a
-                     colon-delimited list of quests that the char has done. (Two
-                     colons are used to make substring matching easier and
-                     prevent problems if one quest name is a substring of
-                     another!).
+  rquest_player_data - Stores the fact that a player has done a particular
+                     quest. 
 
-
+  rquest_player_quests - stores the current active quests for a player. 
+  
   __Hooking NPCs into this system__
 
   NPC questgivers need the following:
@@ -129,8 +130,8 @@ const string RQUEST          = "RANDOM_QUESTS"; // For tracing
 const string QUEST_DB        = "_quests";
 const string QUEST_VAR_DB    = "_vars";
 const string QUEST_PLAYER_DB = "rquest_player_data";
+const string QUEST_CURRENT_DB= "rquest_player_quests";
 const string QUEST_DB_NAME   = "QUEST_DB_NAME";
-const string CURRENT_QUEST   = "rand_quest_current_quest";
 const string CULL_TAG        = "_culltag";
 const string DESCRIPTION     = "_description";
 const string REWARD_GOLD     = "_rewardgold";
@@ -159,21 +160,21 @@ const string MESSENGER       = "MESSENGER";
 const string HELP            = "HELP";
 const string PATROL          = "PATROL";
 const string CULL            = "CULL";
+const string UNCOVER_AGENT   = "UNCOVER_AGENT";
 
 const string AREA_LIST       = "AREA_LIST";
 const string KILL_COUNT      = "RQST_KILL_COUNT";
 
-// Returns TRUE if the PC's current quest is complete. 
-int IsQuestComplete(object oPC, int bFinish = FALSE);
-// Returns 1 if the PC has completed their current quest for oNPC, and rewards
+// Returns TRUE if the PC has finished sQuest 
+int IsQuestComplete(object oPC, string sQuest, string sQuestSet, int bFinish = FALSE);
+// Returns 1 if the PC has completed the specified quest, and rewards
 // the PC appropriately.
-int QuestIsDone(object oPC, object oNPC);
-// Reset all information pertaining to the current quest oPC is doing for oNPC.
-// oPC will now not be doing a quest for oNPC.
-void TidyQuest(object oPC, object oNPC);
-// Set up everything for the quest assigned to the PC.
-void SetUpQuest(object oPC, object oNPC);
-// Pick a new quest for this PC. Return value on error: "".
+int QuestIsDone(object oPC, string sQuest, string sQuestSet);
+// Reset all information pertaining to the current quest oPC is doing.
+void TidyQuest(object oPC, string sQuest, string sQuestSet);
+// Set up everything for the specified quest.
+void SetUpQuest(object oPC, string sQuest, string sQuestSet);
+// Pick a new quest for this PC, from oNPC's quest set. Return value on error: "".
 string GenerateNewQuest(object oPC, object oNPC);
 // Creates a quest NPC in the marked location.
 void CreateQuestNPC(string sNPCTag);
@@ -193,9 +194,17 @@ void PlayerIsActive(object oPC, string sNPCTag);
 // Check whether oPC is active with sNPCTag
 int GetIsPlayerActive(object oPC, string sNPCTag);
 // Check whether oPC has done sQuest with oQuestNPC
-int HasDoneRandomQuest(object oPC, string sQuest, object oQuestNPC = OBJECT_SELF);
+int HasDoneRandomQuest(object oPC, string sQuest, string sQuestSet);
 // Mark sQuest as having been done by oPC for oQuestNPC
 void MarkQuestDone(object oPC, string sQuest, object oQuestNPC = OBJECT_SELF);
+// Return the intro text associated with sQuest / sQuestSet.
+string GetQuestIntro(string sQuest, string sQuestSet);
+// Add sQuest/sQuestSet as an active quest for oPC
+void SetQuestActive(object oPC, string sQuest, string sQuestSet);
+// Remove sQuest/sQuestSet as an active quest for oPC
+void SetQuestInactive(object oPC, string sQuest, string sQuestSet);
+// Check whether oPC is active on sQuest
+int GetQuestActive(object oPC, string sQuest, string sQuestSet);
 // Called at startup and every game day to update the quest targets for repeatable quests.
 void UpdateRepeatableQuests();
 
@@ -422,36 +431,39 @@ void RemovePatrolVariables(object oPC, string sAreaList)
 void CheckIfOnPatrol(object oPC, object oArea)
 {
   Trace(RQUEST, "Checking whether PC "+GetName(oPC, TRUE)+" has been told to patrol "+GetName(oArea));
-  string sQuest = GetPersistentString(oPC, CURRENT_QUEST);
-  if (sQuest == "") return;
-  string sQuestSet =  GetPersistentString(oPC, sQuest);
 
-  string sVarsDB   = sQuestSet + QUEST_VAR_DB;
+  string sSQL = "SELECT quest,questset FROM " + QUEST_CURRENT_DB + " where pcid='" + gsPCGetPlayerID(oPC) + "'";
+  string sQuestSet;
+  string sQuest;
+  SQLExecDirect(sSQL);
   
-  object oCache = miDAGetCacheObject(sVarsDB);
-
-  string sAreaList = GetLocalString(oCache, sQuest+AREA_TAGS);
-  Trace(RQUEST, "PC's list of areas to patrol is: " + sAreaList);
-
-  if (sAreaList != "")
+  while (SQLFetch())
   {
-    if (FindSubString(sAreaList, GetTag(oArea)) > -1)
+    sQuest    = SQLGetData(1);
+	sQuestSet =  SQLGetData(2);
+
+	string sVarsDB   = sQuestSet + QUEST_VAR_DB;
+  
+	object oCache = miDAGetCacheObject(sVarsDB);
+
+	string sAreaList = GetLocalString(oCache, sQuest+AREA_TAGS);
+	Trace(RQUEST, "PC's list of areas to patrol is: " + sAreaList);
+	
+    if (sAreaList != "")
     {
-      Trace(RQUEST, "Marking area as patrolled.");
-      SetPersistentInt(oPC,GetTag(oArea),1);
-    }
+      if (FindSubString(sAreaList, GetTag(oArea)) > -1)
+      {
+        Trace(RQUEST, "Marking area as patrolled.");
+        SetPersistentInt(oPC,GetTag(oArea),1);
+		return;
+      }
+    } 
   }
 }
 
-void RewardPC(object oPC, object oNPC)
+void RewardPC(object oPC, string sQuest, string sQuestSet)
 {
   Trace(RQUEST, "Rewarding PC " + GetName(oPC, TRUE));
-  // setup.
-  string sQuest = GetPersistentString(oPC, CURRENT_QUEST);
-  if (sQuest == "") return; // No quest, so mark as complete so PC can get
-                            // another one (graceful handling).
-
-  string sQuestSet = GetLocalString(oNPC, QUEST_DB_NAME);
 
   if (sQuestSet == "")
   {
@@ -490,7 +502,7 @@ void RewardPC(object oPC, object oNPC)
   if (nFacRep > 0)
   {
     // Give rep points with the House to everyone in the party.
-    GiveRepPoints(oPC, nFacRep, CheckFactionNation(oNPC), TRUE);
+    GiveRepPoints(oPC, nFacRep, CheckFactionNation(OBJECT_SELF), TRUE);
   }
 
   int nGloRep = StringToInt(GetLocalString(oCache, sQuest+REWARD_GLO_REP));
@@ -506,16 +518,14 @@ void RewardPC(object oPC, object oNPC)
   }
 }
 
-int IsQuestComplete(object oPC, int bFinish = FALSE)
+int IsQuestComplete(object oPC, string sQuest, string sQuestSet, int bFinish = FALSE)
 {
   // Returns TRUE if the PC has completed their current quest.
   Trace(RQUEST, "Checking if quest is completed.");
   // setup.
-  string sQuest = GetPersistentString(oPC, CURRENT_QUEST);
+  
   if (sQuest == "") return 1; // No quest, so mark as complete so PC can get
                               // another one (graceful handling).
-							  
-  string sQuestSet = GetPersistentString(oPC, sQuest);
 
   if (sQuestSet == "")
   {
@@ -622,7 +632,7 @@ int IsQuestComplete(object oPC, int bFinish = FALSE)
       }
     }
   }
-  else if (sQuestType == HELP)
+  else if (sQuestType == HELP || sQuestType == UNCOVER_AGENT)
   {
     nDone = IsQuestDoneByName(sQuest, oPC);
   }
@@ -661,7 +671,7 @@ int IsQuestComplete(object oPC, int bFinish = FALSE)
   }
   else if (sQuestType == CULL)
   {
-    int nKillCount = GetLocalInt(gsPCGetCreatureHide(oPC), KILL_COUNT);
+    int nKillCount = GetLocalInt(gsPCGetCreatureHide(oPC), sQuest+KILL_COUNT);
 	
 	nDone = !nKillCount;
   }
@@ -675,26 +685,21 @@ int IsQuestComplete(object oPC, int bFinish = FALSE)
   return nDone;
 }
 
-int QuestIsDone(object oPC, object oNPC)
+int QuestIsDone(object oPC, string sQuest, string sQuestSet)
 {
-  int nDone = IsQuestComplete(oPC, TRUE);
+  int nDone = IsQuestComplete(oPC, sQuest, sQuestSet, TRUE);
 
   // Reward if quest completed.
-  if (nDone) RewardPC(oPC, oNPC);
+  if (nDone) RewardPC(oPC, sQuest, sQuestSet);
 
   // Cleanup if done.
-  if (nDone) TidyQuest(oPC, oNPC);
+  if (nDone) TidyQuest(oPC, sQuest, sQuestSet);
   return nDone;
 }
 
-void TidyQuest(object oPC, object oNPC)
+void TidyQuest(object oPC, string sQuest, string sQuestSet)
 {
   Trace(RQUEST, "Tidying up current quest for " + GetName(oPC, TRUE));
-  // setup.
-  string sQuest = GetPersistentString(oPC, CURRENT_QUEST);
-  if (sQuest == "") return; // Nothing to do, no quest active.
-
-  string sQuestSet = GetLocalString(oNPC, QUEST_DB_NAME);
 
   if (sQuestSet == "")
   {
@@ -741,7 +746,24 @@ void TidyQuest(object oPC, object oNPC)
   {
     RemovePatrolVariables(oPC, sAreaList);
   }
-
+  
+  // If Uncover Agent, clean up the agents and the target variable.
+  if (GetLocalString(oCache, sQuest + QUEST_TYPE) == UNCOVER_AGENT)
+  {
+    int nCount  = 1;
+	int nTarget = Random(5) + 1;
+	
+	for (nCount; nCount <=5; nCount++)
+	{
+	  sNPC = "qst_" + sQuest + "_" + IntToString(nCount);
+	  
+      //We don't need to wait around for this player any more.
+      PlayerNoLongerActive(oPC, sNPC);
+	}
+	
+	DeletePersistentVariable(oPC, sQuest+TARGET_TAG);
+  }
+  
   // Mark quest as done for this PC, if it's not a repeatable one. 
   if (GetLocalString(oCache, sQuest + IS_REPEATABLE) == "")
   {
@@ -754,19 +776,14 @@ void TidyQuest(object oPC, object oNPC)
   }
 
   // Remove the quest vars from the PC.
-  DeletePersistentVariable(oPC, CURRENT_QUEST);
-  DeletePersistentVariable(oPC, sQuest);
+  SetQuestInactive(oPC, sQuest, sQuestSet);
 }
 
-void SetUpQuest(object oPC, object oNPC)
+void SetUpQuest(object oPC, string sQuest, string sQuestSet)
 {
   Trace (RQUEST, "Setting up new quest for " + GetName(oPC, TRUE));
   // setup.
-  // Todo - tag the quest with the questtag so that PCs can have multiple.
-  string sQuest = GetPersistentString(oPC, CURRENT_QUEST);
   if (sQuest == "") return; // Nothing to do, no quest active.
-
-  string sQuestSet = GetLocalString(oNPC, QUEST_DB_NAME);
 
   if (sQuestSet == "")
   {
@@ -781,6 +798,7 @@ void SetUpQuest(object oPC, object oNPC)
   string sVarsDB   = sQuestSet + QUEST_VAR_DB;
   
   object oCache = miDAGetCacheObject(sVarsDB);
+  SetPersistentString(oPC, sQuest, sQuestSet);
   // end setup.
 
   // Give item to PC if needed
@@ -825,23 +843,42 @@ void SetUpQuest(object oPC, object oNPC)
     AddPersistentPerson(GetObjectByTag("WP_"+sNPC+"_SPAWN"), sNPC, FALSE);
   }
 
-  if (GetLocalString(oCache, sQuest + QUEST_TYPE) == HELP)
+  if (GetLocalString(oCache, sQuest + QUEST_TYPE) == HELP || 
+      GetLocalString(oCache, sQuest + QUEST_TYPE) == UNCOVER_AGENT)
   {
     // Note the quest as started.
     SetPersistentInt(oPC, sQuest, 1, 0, DB_MISC_QUESTS);
+  }
+  
+  // If Uncover Agent, set up the agents, and select the "right" one.
+  if (GetLocalString(oCache, sQuest + QUEST_TYPE) == UNCOVER_AGENT)
+  {
+    int nCount  = 1;
+	int nTarget = Random(5) + 1;
+	
+	for (nCount; nCount <=5; nCount++)
+	{
+	  sNPC = "qst_" + sQuest + IntToString(nCount);
+	  
+      //Tell the NPC to hang around for the PC.
+      PlayerIsActive(oPC, sNPC);
+	  AddPersistentPerson(GetObjectByTag("WP_"+sNPC+"_SPAWN"), sNPC, FALSE);
+	}
+	
+	SetPersistentString(oPC, sQuest+TARGET_TAG, "qst_" + sQuest + IntToString(nTarget));
   }
   
   // Set the target kill count.
   // Cache the description in case the quest changes midway.
   if (StringToInt(GetLocalString(oCache, sQuest + NUM_CREATURES)))
   {
-    SetLocalString(gsPCGetCreatureHide(oPC), DESCRIPTION, GetLocalString(oCache, sQuest + DESCRIPTION));
-    SetLocalInt(gsPCGetCreatureHide(oPC), KILL_COUNT, StringToInt(GetLocalString(oCache, sQuest + NUM_CREATURES)));
-	SetLocalString(gsPCGetCreatureHide(oPC), CULL_TAG, GetLocalString(oCache, sQuest + CULL_TAG));
+    SetLocalString(gsPCGetCreatureHide(oPC), sQuest+DESCRIPTION, GetLocalString(oCache, sQuest + DESCRIPTION));
+    SetLocalInt(gsPCGetCreatureHide(oPC), sQuest+KILL_COUNT, StringToInt(GetLocalString(oCache, sQuest + NUM_CREATURES)));
+	SetLocalString(gsPCGetCreatureHide(oPC), sQuest+CULL_TAG, GetLocalString(oCache, sQuest + CULL_TAG));
   }
   else
   {
-    DeleteLocalString(gsPCGetCreatureHide(oPC), DESCRIPTION);
+    DeleteLocalString(gsPCGetCreatureHide(oPC), DESCRIPTION); // backwards compatibility
   }
 
   // Done.
@@ -892,11 +929,12 @@ string GenerateNewQuest(object oPC, object oNPC)
 
     // Is this quest suitable for this PC?
     // Has the PC done it?
-    if (!HasDoneRandomQuest(oPC, sQuestToTry))
+    if (!HasDoneRandomQuest(oPC, sQuestToTry, sQuestSet))
     {
       // PC hasn't already done this quest.
       Trace (RQUEST, "PC hasn't already done quest, selecting quest.");
 	  sQuest = sQuestToTry;
+	  break;
     }	
 	
 	nCount++;
@@ -912,20 +950,16 @@ string GenerateNewQuest(object oPC, object oNPC)
   else
   {
     // We found a valid quest. Save the new quest on the PC, and return.
-    SetPersistentString(oPC, CURRENT_QUEST, sQuest);
-	
-    // Save a var on the PC linking the quest to a quest set, in case we need
-    // to look up details later.
-    SetPersistentString(oPC, sQuest, sQuestSet);
+    SetQuestActive(oPC, sQuest, sQuestSet);
 
     return sQuest;
   }
 }
 
-int HasDoneRandomQuest(object oPC, string sQuest, object oQuestNPC = OBJECT_SELF)
+int HasDoneRandomQuest(object oPC, string sQuest, string sQuestSet)
 { 
   string sSQL = "SELECT pcid FROM " + QUEST_PLAYER_DB + " WHERE quest = '" + sQuest + "' AND pcid = '" + 
-   gsPCGetPlayerID(oPC) + "' AND questset = '" + GetLocalString(oQuestNPC, QUEST_DB_NAME) + "'";
+   gsPCGetPlayerID(oPC) + "' AND questset = '" + sQuestSet + "'";
    
   SQLExecDirect(sSQL);
   
@@ -970,6 +1004,59 @@ void SetStringValue(string sName, string sValue, string sDatabase)
 {
   object oCache = miDAGetCacheObject(sDatabase);
   SetLocalString(oCache, sName, sValue);
+}
+
+// Return the intro text associated with sQuest / sQuestSet.
+string GetQuestIntro(string sQuest, string sQuestSet)
+{
+  string sIntro = "";
+
+  string sVarsDB   = sQuestSet + QUEST_VAR_DB;
+  
+  object oCache = miDAGetCacheObject(sVarsDB);
+  sIntro = GetLocalString(oCache, sQuest + DESCRIPTION);
+  
+  return sIntro;
+}
+
+// Add sQuest/sQuestSet as an active quest for oPC
+void SetQuestActive(object oPC, string sQuest, string sQuestSet)
+{
+  // Check quest is not already active.
+  string sSQL = "SELECT pcid FROM " + QUEST_CURRENT_DB + " WHERE pcid='" + gsPCGetPlayerID(oPC) + "' AND quest='" + 
+   sQuest + "' AND questset='" + sQuestSet + "'";
+   
+  SQLExecDirect(sSQL);
+
+  if (SQLFetch()) return;  // already exists.  
+  
+  sSQL = "INSERT INTO " + QUEST_CURRENT_DB + " (pcid,quest,questset) VALUES ('" + gsPCGetPlayerID(oPC) + 
+   "','" + sQuest + "','" + sQuestSet + "')";
+   
+  SQLExecDirect(sSQL);
+  
+}
+// Remove sQuest/sQuestSet as an active quest for oPC
+void SetQuestInactive(object oPC, string sQuest, string sQuestSet)
+{
+  string sSQL = "DELETE FROM " + QUEST_CURRENT_DB + " WHERE pcid='" + gsPCGetPlayerID(oPC) + "' AND quest='" + 
+   sQuest + "' AND questset='" + sQuestSet + "'";
+   
+  SQLExecDirect(sSQL);
+}
+
+int GetQuestActive(object oPC, string sQuest, string sQuestSet)
+{
+	string sSQL = "SELECT quest,questset FROM " + QUEST_CURRENT_DB + " where pcid='" + gsPCGetPlayerID(oPC) + "'";
+	
+	SQLExecDirect(sSQL);
+	
+	while (SQLFetch())
+	{
+		if (sQuest == SQLGetData(1) && sQuestSet == SQLGetData(2)) return TRUE;
+	}
+	
+	return FALSE;
 }
 
 void UpdateRepeatableQuests()

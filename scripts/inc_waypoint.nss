@@ -28,7 +28,8 @@ void gsWPWalkWaypoint()
         oWaypoint = GetWaypointByTag("GS_WP_NPOST_" + sTag);
     }
 
-    if (! GetIsObjectValid(oWaypoint))
+    if (! GetIsObjectValid(oWaypoint) && 
+	    ! (nNight && GetIsObjectValid(GetWaypointByTag("GS_WP_NWALK_" + sTag + "_01"))))
     {
         oWaypoint = GetWaypointByTag("GS_WP_DPOST_" + sTag);
     }

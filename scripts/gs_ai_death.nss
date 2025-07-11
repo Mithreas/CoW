@@ -172,9 +172,8 @@ void main()
   if (GetIsPC(oKiller) || GetIsPC(GetMaster(oKiller)))
   {
     object oResponsiblePC = (GetIsObjectValid(GetMaster(oKiller)) ? GetMaster(oKiller) : oKiller);
-    object oPC = GetFirstPC();
-    while (GetIsObjectValid(oPC) && (GetIsDM(oPC) || oPC == oResponsiblePC)) oPC = GetNextPC();
-    if (!GetIsReactionTypeHostile(oSelf, oPC))
+
+    if (!GetIsReactionTypeHostile(oSelf, oResponsiblePC))
     {
       SendMessageToAllDMs(GetName(oResponsiblePC) + " just killed " + GetName(oSelf) +
        " in " + GetName(GetArea(oSelf)));
@@ -184,9 +183,10 @@ void main()
 	
 	// Random quests hook - have we completed an assassin or cull mission?
 	object oCreature = GetFirstObjectInShape(SHAPE_SPHERE, 40.0f, GetLocation(OBJECT_SELF), TRUE);
-
+    Log("DEATH", "Looking for nearby creatures.");
     while (GetIsObjectValid(oCreature))
-    {
+    {		
+	  Log("DEATH", "Debug: checking creature: " + GetName(oCreature));
 	  if (GetIsPC(oCreature))
 	  {
 	    if (GetIsPlayerActive(oCreature, GetTag(oSelf)))
@@ -194,13 +194,22 @@ void main()
 	      PlayerNoLongerActive(oCreature, GetTag(oSelf));
 	    }
 		
-		if (GetLocalInt(gsPCGetCreatureHide(oCreature), KILL_COUNT) && 
-		    GetTag(oSelf) == GetLocalString(gsPCGetCreatureHide(oCreature), CULL_TAG))
+	    string sSQL = "SELECT quest FROM " + QUEST_CURRENT_DB + " where pcid='" + gsPCGetPlayerID(oCreature) + "'";
+		SQLExecDirect(sSQL);
+			  Log("DEATH", "Debug: executed sql: " + sSQL);
+		while(SQLFetch())
 		{
-		  int nCount = GetLocalInt(gsPCGetCreatureHide(oCreature), KILL_COUNT) - 1;
-		  
-		  SendMessageToPC(oCreature, GetName(oSelf) + " slain.  " + IntToString(nCount) + " remaining for quest.");
-		  SetLocalInt(gsPCGetCreatureHide(oCreature), KILL_COUNT, nCount);
+			string sQuest = SQLGetData(1);
+			  Log("DEATH", "Debug: checking quest: " + sQuest);
+			
+			if (GetLocalInt(gsPCGetCreatureHide(oCreature), sQuest+KILL_COUNT) && 
+				GetTag(oSelf) == GetLocalString(gsPCGetCreatureHide(oCreature), sQuest+CULL_TAG))
+			{
+			  int nCount = GetLocalInt(gsPCGetCreatureHide(oCreature), sQuest+KILL_COUNT) - 1;
+			  
+			  SendMessageToPC(oCreature, GetName(oSelf) + " slain.  " + IntToString(nCount) + " remaining for quest.");
+			  SetLocalInt(gsPCGetCreatureHide(oCreature), sQuest+KILL_COUNT, nCount);
+			}
 		}
 	  }
 	  

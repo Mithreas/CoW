@@ -15,3 +15,6 @@ scripts/*.ncs
 
 # Exclude any backed up files.
 *.backup
+
+# ignore the notes files
+quest-notes.txt

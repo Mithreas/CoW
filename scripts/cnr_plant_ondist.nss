@@ -12,11 +12,15 @@
 /////////////////////////////////////////////////////////
 #include "cnr_plant_utils"
 #include "cnr_config_inc"
+#include "inc_common"
+#include "inc_pc"
+#include "inc_worship"
 
-void SpawnNewPlant(string sPlantTag, location locPlant)
+void SpawnNewPlant(string sPlantTag, location locPlant, string sTended = "")
 {
   object oPlant = CreateObject(OBJECT_TYPE_PLACEABLE, sPlantTag, locPlant);
   SetLocalInt(oPlant, "GS_STATIC", TRUE);
+  if (sTended != "") SetLocalInt(oPlant, sTended, TRUE);
   DestroyObject(OBJECT_SELF);
 }
 
@@ -39,6 +43,28 @@ void main()
   {
     bRespawnThisPlant = TRUE;
   }
+  
+  object oPC = GetLastDisturbed();
+  string sTended = "TENDED_" + gsPCGetPlayerID(oPC);
+  int bTended = FALSE;
+  
+    if ((GetLocalInt(OBJECT_SELF, "TENDED_TO") == 0) &&
+	    (GetLocalInt(OBJECT_SELF, sTended) == 0) &&
+        (GetLocalInt(gsPCGetCreatureHide(oPC), "GIFT_GREENFINGERS") || (
+         gsWOGetDeityAspect(oPC) & ASPECT_NATURE &&
+         (gsCMGetHasClass(CLASS_TYPE_RANGER, oPC) || gsCMGetHasClass(CLASS_TYPE_DRUID, oPC) ||
+          gsCMGetHasClass(CLASS_TYPE_CLERIC, oPC)))))
+    {
+      // Tend to the plant
+      gsWOAdjustPiety(oPC, 1.0f);
+      SetLocalInt(OBJECT_SELF, "TENDED_TO", 1);
+	  
+	  fSpawnSecs = 0.0f;
+	  bRespawnThisPlant = TRUE;
+	  bTended = TRUE;
+
+      FloatingTextStringOnCreature("You tend to the plant, encouraging it to bloom once more.", oPC);
+    }  
 
   if (bRespawnThisPlant)
   {  
@@ -49,7 +75,7 @@ void main()
       location locPlant = GetLocation(OBJECT_SELF);
       object oSpawner = CreateObject(OBJECT_TYPE_PLACEABLE, "cnrobjectspawner", locPlant);
 	  SetLocalInt(oSpawner, "GS_STATIC", TRUE);
-      AssignCommand(oSpawner, DelayCommand(fSpawnSecs, SpawnNewPlant(sPlantTag, locPlant)));
+      AssignCommand(oSpawner, DelayCommand(fSpawnSecs, SpawnNewPlant(sPlantTag, locPlant, bTended ? sTended : "")));
       DestroyObject(OBJECT_SELF);
       return;
     }

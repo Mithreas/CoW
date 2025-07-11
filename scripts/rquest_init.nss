@@ -1353,6 +1353,188 @@ void main()
   SetStringValue(QUEST+NUM_ITEMS, "2", DB_VARS);
   SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
   
+  /* Miscellaneous Quests */
+  DB_VARS  = "misc_quests_vars";
+  DB_QUESTSET = "misc_quests";
+  
+  // Import all the Miscellaneous quests.
+  sSQL = "INSERT INTO " + DB_QUEST + " (quest, questset, minlevel, maxlevel) VALUES " + 
+   SQLPrepareStatement("(?,?,?,?),", "darn_veyne", DB_QUESTSET, "1", "15") +
+   SQLPrepareStatement("(?,?,?,?),", "luthien_marrow", DB_QUESTSET, "1", "15") + 
+   SQLPrepareStatement("(?,?,?,?),", "roderic_halden", DB_QUESTSET, "1", "15") +
+   SQLPrepareStatement("(?,?,?,?),", "tessa_varn", DB_QUESTSET, "1", "15") +
+   SQLPrepareStatement("(?,?,?,?),", "nimble_nyra", DB_QUESTSET, "1", "15") +
+   SQLPrepareStatement("(?,?,?,?),", "alric_dene", DB_QUESTSET, "1", "15") +
+   SQLPrepareStatement("(?,?,?,?),", "helga_brann", DB_QUESTSET, "1", "15") +
+   SQLPrepareStatement("(?,?,?,?),", "fenric", DB_QUESTSET, "1", "15") +
+   SQLPrepareStatement("(?,?,?,?),", "elenna_voss", DB_QUESTSET, "1", "15") +
+   SQLPrepareStatement("(?,?,?,?),", "rava", DB_QUESTSET, "1", "15") +
+   SQLPrepareStatement("(?,?,?,?),", "tolan_greaves", DB_QUESTSET, "1", "15") +
+   SQLPrepareStatement("(?,?,?,?),", "veyric_solan", DB_QUESTSET, "1", "15") +
+   SQLPrepareStatement("(?,?,?,?),", "olric", DB_QUESTSET, "1", "15") +
+   SQLPrepareStatement("(?,?,?,?),", "veyra_solt", DB_QUESTSET, "1", "15");
+  SQLExecDirect(sSQL);
+  
+  QUEST = "darn_veyne";
+  SetStringValue(QUEST+QUEST_TYPE, UNCOVER_AGENT, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION,
+   "There is a heretic hiding among the scribes in the Merchant District. Use your wits " + 
+   "to uncover the agent and confront them. Do not fail: the purity of the city depends on it.",
+   DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "75", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "30", DB_VARS);  
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  QUEST = "luthien_marrow";  
+  SetStringValue(QUEST+QUEST_TYPE, RETRIEVE, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION,
+   "I loaned my copy of Songs of Antiquity to a merchant who then sold it! I want it back — intact. " + 
+   "Find the book, and ensure it’s not been defiled by greasy fingers or worse.  Try looking in the " +
+   "Market Square.",
+   DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "125", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "25", DB_VARS);
+  SetStringValue(QUEST+ITEM_TAG, "SongsOfAntiquity", DB_VARS);
+  SetStringValue(QUEST+NUM_ITEMS, "1", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  QUEST = "roderic_halden";
+  SetStringValue(QUEST+QUEST_TYPE, PATROL, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION, 
+    "The barracks are stretched thin. I need someone to patrol the Imperial City gates, the South Gates, " +
+	"and the West Gates. Report anything unusual."
+	, DB_VARS);
+  SetStringValue(QUEST+AREA_TAGS, "imperialcityentr,southgates,WestGates", DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "25", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "25", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+
+  QUEST = "tessa_varn";
+  SetStringValue(QUEST+QUEST_TYPE, MESSENGER, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION,
+  "Take this sealed order to the Merchant District. My associates will know what to do. And don't open it - unless you enjoy being blacklisted.",
+  DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "25", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "25", DB_VARS);
+  SetStringValue(QUEST+ITEM_TO_GIVE, "sealedtradeorder", DB_VARS);
+  SetStringValue(QUEST+TYPE, "GIVE", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  QUEST = "nimble_nyra";  
+  SetStringValue(QUEST+QUEST_TYPE, RETRIEVE, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION,
+   "One of my crew got greedy and ran off with a pouch of marked coins. Track him down in the Warehouse District and bring back what's mine. No questions.",
+   DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "35", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "25", DB_VARS);
+  SetStringValue(QUEST+ITEM_TAG, "markedcoins", DB_VARS);
+  SetStringValue(QUEST+NUM_ITEMS, "1", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  QUEST = "alric_dene";  
+  SetStringValue(QUEST+QUEST_TYPE, RETRIEVE, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION,
+   "I'm expecting a shipment of rare oils from the Docks, but I have reason to doubt the quality of the shipment.  Please purchase a sample and bring it to me discretely, and I'll reward you.",
+   DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "75", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "25", DB_VARS);
+  SetStringValue(QUEST+ITEM_TAG, "perfumesample", DB_VARS);
+  SetStringValue(QUEST+NUM_ITEMS, "1", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+
+  QUEST = "fenric";
+  SetStringValue(QUEST+QUEST_TYPE, MESSENGER, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION,
+  "This letter must reach the Harbormaster's deputy without interception. Deliver it directly - no detours, no delays. And don't read it, unless you enjoy curses.  Bring me his reply.",
+  DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "25", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "25", DB_VARS);
+  SetStringValue(QUEST+ITEM_TO_GIVE, "codedmessage", DB_VARS);
+  SetStringValue(QUEST+ITEM_TO_BRING, "codedreply", DB_VARS);
+  SetStringValue(QUEST+TYPE, "BOTH", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  QUEST = "helga_brann";  
+  SetStringValue(QUEST+QUEST_TYPE, RETRIEVE, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION,
+   "I need more silver ore to complete a commission - two pieces should do it.  I'll reward you, of course.",
+   DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "50", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "25", DB_VARS);
+  SetStringValue(QUEST+ITEM_TAG, "cnrnuggetsil", DB_VARS);
+  SetStringValue(QUEST+NUM_ITEMS, "2", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  QUEST = "elenna_voss";
+  SetStringValue(QUEST+QUEST_TYPE, HELP, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION,
+   "The merchant Alexia Thorne is contesting a contract. Speak with her, resolve the dispute, " + 
+   "and return with a signed amendment. Use charm or pressure - I care only for results.", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "25", DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "25", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  QUEST = "rava";  
+  SetStringValue(QUEST+QUEST_TYPE, RETRIEVE, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION,
+   "The Imperials have confiscated a shipment of herbs that I had on special order.  Retrieve it from their storehouse without them noticing, and I'll reward you.",
+   DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "50", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "25", DB_VARS);
+  SetStringValue(QUEST+ITEM_TAG, "herbshipment", DB_VARS);
+  SetStringValue(QUEST+NUM_ITEMS, "1", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  QUEST = "tolan_greaves";
+  SetStringValue(QUEST+QUEST_TYPE, PATROL, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION, 
+    "Security's been lax. Walk the Docks and Warehouse districts and the Imperial Storehouse, check the locks, and make sure no one's sneaking in after hours. If they are - deal with it."
+	, DB_VARS);
+  SetStringValue(QUEST+AREA_TAGS, "slums,docks,CityWarehouseDistrictImperialSto", DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "25", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "25", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  QUEST = "veyric_solan";  
+  SetStringValue(QUEST+QUEST_TYPE, RETRIEVE, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION,
+   "I need five sticks of incense from the Temple of the Seven Divines on Sunrise Isle to ship to the Wall.  Fetch them for me and I'll make it worth your while.",
+   DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "1000", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "25", DB_VARS);
+  SetStringValue(QUEST+ITEM_TAG, "stickofincense", DB_VARS);
+  SetStringValue(QUEST+NUM_ITEMS, "5", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
+  QUEST = "olric";
+  SetStringValue(QUEST+QUEST_TYPE, CULL, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION, "Sea snakes have been attacking our boats. They nest on the sandy beaches of the Alanastor Coast.  Go and cull ten of them and you'll have my support.", DB_VARS);
+  SetStringValue(QUEST+CULL_TAG, "sea_snake", DB_VARS);
+  SetStringValue(QUEST+NUM_CREATURES, "10", DB_VARS);  
+  SetStringValue(QUEST+REWARD_GOLD, "25", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "50", DB_VARS); 
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS); 
+
+  QUEST = "veyra_solt";
+  SetStringValue(QUEST+QUEST_TYPE, MESSENGER, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION,
+  "This manifest needs to reach the Imperial Bank. Deliver it to the manager - sealed and unaltered. And don't let the Inquisition see it.",
+  DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "25", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "25", DB_VARS);
+  SetStringValue(QUEST+ITEM_TO_GIVE, "shipmanifest", DB_VARS);
+  SetStringValue(QUEST+TYPE, "GIVE", DB_VARS);
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+           
+  QUEST = "yelra_dorne";
+  SetStringValue(QUEST+QUEST_TYPE, UNCOVER_AGENT, DB_VARS);
+  SetStringValue(QUEST+DESCRIPTION,
+   "Smugglers have infiltrated the local dock workers.  Uncover a smuggler, and inform me so I can arrest them... or deal with them yourself, if you'd rather.",
+   DB_VARS);
+  SetStringValue(QUEST+REWARD_GOLD, "25", DB_VARS);
+  SetStringValue(QUEST+REWARD_XP, "25", DB_VARS);  
+  SetStringValue(QUEST+IS_REPEATABLE, "true", DB_VARS);
+  
   // Randomise.
   UpdateRepeatableQuests();
 }

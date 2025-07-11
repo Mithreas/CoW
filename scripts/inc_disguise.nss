@@ -125,7 +125,7 @@ int SeeThroughDisguise(object oDisguised,
       if (gsWOGetDeityAspect(oDisguised) & ASPECT_TRICKERY_DECEIT)
       gsWOAdjustPiety(oDisguised, 0.1f);
 	  
-	  miDVGivePoints(oDisguised, ELEMENT_WATER, 1.0f);
+	  miDVGivePoints(oDisguised, ELEMENT_AIR, 1.0f);
     }
 
     if (GetIsPC(oSpotter))

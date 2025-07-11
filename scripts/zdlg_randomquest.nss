@@ -109,9 +109,23 @@ void PageInit()
   string sQuestDB  = sQuestSet + QUEST_DB;
   string sVarsDB   = sQuestSet + QUEST_VAR_DB;
   string sPlayerDB = sQuestSet + QUEST_PLAYER_DB;
-
-  string sCurrentQuest = GetPersistentString(oPC, CURRENT_QUEST); 
+ 
   object oCache        = miDAGetCacheObject(sVarsDB);
+
+  string sSQL = "SELECT quest FROM " + QUEST_CURRENT_DB + " WHERE pcid='" + gsPCGetPlayerID(oPC) + 
+   "' AND questset ='" + sQuestSet + "'";
+  SQLExecDirect(sSQL);
+  
+  string sCurrentQuest;
+  if (SQLFetch())
+  {
+    sCurrentQuest = SQLGetData(1);
+  }
+  else
+  {
+    sCurrentQuest = "";
+  }
+  
   Trace(RQUEST, "Got current quest for PC " + GetName(oPC) + ": " + sCurrentQuest);
 
   if (sPage == "")
@@ -260,7 +274,7 @@ void PageInit()
       Trace(RQUEST, "Got new quest: " + sNewQuest);
       SetDlgPrompt("Here's a task you should be able to do. " +
                    GetLocalString(oCache, sNewQuest + DESCRIPTION));
-	  SetUpQuest(oPC, OBJECT_SELF);			   
+	  SetUpQuest(oPC, sNewQuest, sQuestSet);			   
       SetDlgResponseList(MAIN_MENU, OBJECT_SELF);
     }
   }
@@ -338,6 +352,23 @@ void HandleSelection()
   object oPC     = GetPcDlgSpeaker();
   object oNPC    = OBJECT_SELF;
   string sResponseList   = GetDlgResponseList();
+  
+  string sQuestSet = GetLocalString(OBJECT_SELF, QUEST_DB_NAME);
+
+  string sSQL = "SELECT quest FROM " + QUEST_CURRENT_DB + " WHERE pcid='" + gsPCGetPlayerID(oPC) + 
+   "' AND questset ='" + sQuestSet + "'";
+  SQLExecDirect(sSQL);
+  
+  string sCurrentQuest;
+  if (SQLFetch())
+  {
+    sCurrentQuest = SQLGetData(1);
+  }
+  else
+  {
+    sCurrentQuest = "";
+  }
+  Trace(RQUEST, "Got current quest for PC " + GetName(oPC) + ": " + sCurrentQuest);
 
   if (sResponseList == GREETING)
   {
@@ -379,7 +410,7 @@ void HandleSelection()
       case 0:
       {
         // PC claims to be done. Check and clean up.
-        if (QuestIsDone(oPC, OBJECT_SELF))
+        if (QuestIsDone(oPC, sCurrentQuest, sQuestSet))
         {
           GivePointsToFaction(10, GetPCFaction(oPC));
           SetDlgPageString(DONE);
@@ -420,7 +451,7 @@ void HandleSelection()
       {
         // Backing out.
         TakeRepPoint(oPC, CheckFactionNation(OBJECT_SELF));
-        TidyQuest(oPC, OBJECT_SELF);
+        TidyQuest(oPC, sCurrentQuest, sQuestSet);
         SetDlgPageString(REFUSED);
         break;
       }

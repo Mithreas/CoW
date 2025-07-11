@@ -41,7 +41,8 @@ const int NATION_VYVIAN            = 6;
 const int NATION_ELF               = 7;
 const int NATION_AIREVORN          = 8;
 const int NATION_DUNKHAZAK         = 9;
-
+const int NATION_INQUISITION       = 10;
+// Added Inquisition via faction variable on some NPCs as "nation" 10.
 const int NUM_NATIONS              = 10;
 
 /* Tags for nation wanted tokens are root + nation number. */
@@ -98,7 +99,9 @@ const int FACTION_DUNKHAZAK_COMMONER   = 30;
 const int FACTION_DUNKHAZAK_DEFENDER   = 31;
 const int FACTION_DUNKHAZAK_MERCS      = 32;
 
-const int NUM_FACTIONS                 = 32;
+const int FACTION_INQUISITORS          = 33;
+
+const int NUM_FACTIONS                 = 33;
 
 /* Bounty values for crimes. */
 
@@ -402,6 +405,11 @@ int CheckFactionNation(object oNPC, int nCountMercenaries = FALSE)
 	 case FACTION_DUNKHAZAK_DEFENDER:
 	 {
 	   nNation = NATION_DUNKHAZAK;
+	   break;
+	 }
+	 case FACTION_INQUISITORS:
+	 {
+	   nNation = NATION_INQUISITION;
 	   break;
 	 }
      default:

@@ -384,6 +384,7 @@ int miBAGetIsBackgroundLegal(int nBackground, object oPC)
   return FALSE;
 }
 
+// Only give faction gear if this is your primary faction.  Now that it's possible to get rep in other factions. 
 void miBADoFactionGear(object oPC, int nBackground, int nLevel)
 {
   switch (nLevel)
@@ -393,7 +394,14 @@ void miBADoFactionGear(object oPC, int nBackground, int nLevel)
     switch (nBackground)
 	{
 	  case MI_BA_DRANNIS:	
-        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_drannis"))) return;	  
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_drannis"))) return;	
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_erenia"))) return; 
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_renerrin"))) return; 
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_warden"))) return;
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_shadow"))) return;
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_fernvale"))) return;	
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_airevorn"))) return;
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_dunkhazak"))) return;	
         CreateItemOnObject("galeoutfit", oPC);
         CreateItemOnObject("key_drannis", oPC);
         CreateItemOnObject("drannis_dye_1", oPC);
@@ -402,7 +410,14 @@ void miBADoFactionGear(object oPC, int nBackground, int nLevel)
         GiveGoldToCreature(oPC, 750);
 	    break;
 	  case MI_BA_ERENIA:  
-        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_erenia"))) return;	       
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_drannis"))) return;	
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_erenia"))) return; 
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_renerrin"))) return; 
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_warden"))) return;
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_shadow"))) return;
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_fernvale"))) return;	
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_airevorn"))) return;
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_dunkhazak"))) return;	       
         CreateItemOnObject("spiritoutfit", oPC);
         CreateItemOnObject("key_erenia", oPC);
         CreateItemOnObject("erenia_dye_1", oPC);
@@ -411,7 +426,14 @@ void miBADoFactionGear(object oPC, int nBackground, int nLevel)
         GiveGoldToCreature(oPC, 750);
         break;
 	  case MI_BA_RENERRIN:
-        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_renerrin"))) return;	  
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_drannis"))) return;	
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_erenia"))) return; 
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_renerrin"))) return; 
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_warden"))) return;
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_shadow"))) return;
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_fernvale"))) return;	
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_airevorn"))) return;
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_dunkhazak"))) return;	  
         CreateItemOnObject("voiceoutfit", oPC);
         CreateItemOnObject("key_renerrin", oPC);
         CreateItemOnObject("renerrin_dye_1", oPC);
@@ -420,30 +442,65 @@ void miBADoFactionGear(object oPC, int nBackground, int nLevel)
         GiveGoldToCreature(oPC, 750);
 		break;
       case MI_BA_WARDEN:   	  
-        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_warden"))) return;	  
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_drannis"))) return;	
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_erenia"))) return; 
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_renerrin"))) return; 
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_warden"))) return;
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_shadow"))) return;
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_fernvale"))) return;	
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_airevorn"))) return;
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_dunkhazak"))) return;		  
         CreateItemOnObject("nw_cloth001", oPC);
         CreateItemOnObject("key_warden", oPC);
         GiveGoldToCreature(oPC, 750);
 		break;
       case MI_BA_SHADOW:   	  
-        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_shadow"))) return;	  
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_drannis"))) return;	
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_erenia"))) return; 
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_renerrin"))) return; 
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_warden"))) return;
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_shadow"))) return;
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_fernvale"))) return;	
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_airevorn"))) return;
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_dunkhazak"))) return;		  
         CreateItemOnObject("key_shadow", oPC);
         CreateItemOnObject("shadow_phil", oPC);
         GiveGoldToCreature(oPC, 250);
 		break;
       case MI_BA_FERNVALE:   	  
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_drannis"))) return;	
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_erenia"))) return; 
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_renerrin"))) return; 
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_warden"))) return;
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_shadow"))) return;
         if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_fernvale"))) return;	
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_airevorn"))) return;
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_dunkhazak"))) return;	
         CreateItemOnObject("key_fernvale", oPC);  
         GiveGoldToCreature(oPC, 750);
 		break;
       case MI_BA_AIREVORN:	  
-        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_airevorn"))) return;	  
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_drannis"))) return;	
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_erenia"))) return; 
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_renerrin"))) return; 
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_warden"))) return;
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_shadow"))) return;
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_fernvale"))) return;	
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_airevorn"))) return;
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_dunkhazak"))) return;	  
 	    CreateItemOnObject("aireoutfit", oPC);
         CreateItemOnObject("key_airevorn", oPC);
         GiveGoldToCreature(oPC, 750);
 		break;
       case MI_BA_DUNKHAZAK:	 
-        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_dunkhazak"))) return;
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_drannis"))) return;	
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_erenia"))) return; 
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_renerrin"))) return; 
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_warden"))) return;
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_shadow"))) return;
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_fernvale"))) return;	
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_airevorn"))) return;
+        if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_dunkhazak"))) return;	
         CreateItemOnObject("key_dunkhazak", oPC);
 		CreateItemOnObject("infil_key", oPC);
         GiveGoldToCreature(oPC, 750);	   
@@ -457,18 +514,21 @@ void miBADoFactionGear(object oPC, int nBackground, int nLevel)
     switch (nBackground)
 	{
 	  case MI_BA_DRANNIS:	
+        if (!GetIsObjectValid(GetItemPossessedBy(oPC, "key_drannis"))) return;	
         if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_drannis_guar"))) return;	
 		SendMessageToPC(oPC, "Congratulations, you have achieved Officer status.");
         CreateItemOnObject("key_drannis_guar", oPC);
         GiveGoldToCreature(oPC, 1000);
 	    break;
 	  case MI_BA_ERENIA:  
+        if (!GetIsObjectValid(GetItemPossessedBy(oPC, "key_erenia"))) return;	
         if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_erenia_guard"))) return;
 		SendMessageToPC(oPC, "Congratulations, you have achieved Officer status.");
         CreateItemOnObject("key_erenia_guard", oPC);
         GiveGoldToCreature(oPC, 1000);
         break;
 	  case MI_BA_RENERRIN:
+        if (!GetIsObjectValid(GetItemPossessedBy(oPC, "key_renerrin"))) return;	
         if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_renerrin_gua"))) return;	
 		SendMessageToPC(oPC, "Congratulations, you have achieved Officer status.");
         CreateItemOnObject("key_renerrin_gua", oPC);
@@ -494,24 +554,28 @@ void miBADoFactionGear(object oPC, int nBackground, int nLevel)
     switch (nBackground)
 	{
 	  case MI_BA_DRANNIS:	
+        if (!GetIsObjectValid(GetItemPossessedBy(oPC, "key_drannis"))) return;	
         if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_drannis_nobl"))) return;	
 		SendMessageToPC(oPC, "Congratulations, you have achieved Noble status.");
         CreateItemOnObject("key_drannis_nobl", oPC);
         GiveGoldToCreature(oPC, 1000);
 	    break;
 	  case MI_BA_ERENIA:  
+        if (!GetIsObjectValid(GetItemPossessedBy(oPC, "key_erenia"))) return;	
         if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_erenia_noble"))) return;
 		SendMessageToPC(oPC, "Congratulations, you have achieved Noble status.");
         CreateItemOnObject("key_erenia_noble", oPC);
         GiveGoldToCreature(oPC, 1000);
         break;
 	  case MI_BA_RENERRIN:
+        if (!GetIsObjectValid(GetItemPossessedBy(oPC, "key_renerrin"))) return;	
         if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_renerrin_nob"))) return;	
 		SendMessageToPC(oPC, "Congratulations, you have achieved Noble status.");
         CreateItemOnObject("key_renerrin_nob", oPC);
         GiveGoldToCreature(oPC, 1000);
 		break;
       case MI_BA_WARDEN:   
+        if (!GetIsObjectValid(GetItemPossessedBy(oPC, "key_warden"))) return;	
         if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_vyv_elder"))) return;
 		SendMessageToPC(oPC, "Congratulations, you have achieved Protector status.");
         CreateItemOnObject("key_vyv_elder", oPC);		  
@@ -519,11 +583,13 @@ void miBADoFactionGear(object oPC, int nBackground, int nLevel)
       case MI_BA_SHADOW:   	  
 		break;
       case MI_BA_FERNVALE: 
+        if (!GetIsObjectValid(GetItemPossessedBy(oPC, "key_fernvale"))) return;	
         if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_fern_elder"))) return;
 		SendMessageToPC(oPC, "Congratulations, you have achieved Elder status.");
         CreateItemOnObject("key_fern_elder", oPC);	  	  
 		break; 
       case MI_BA_AIREVORN:	
+        if (!GetIsObjectValid(GetItemPossessedBy(oPC, "key_airevorn"))) return;	
         if (GetIsObjectValid(GetItemPossessedBy(oPC, "key_aire_elder"))) return;
 		SendMessageToPC(oPC, "Congratulations, you have achieved Most Favoured status.");
         CreateItemOnObject("key_aire_elder", oPC);	  
